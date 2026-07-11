@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Pie chart 30 30 30 10">
+  <rect width="512" height="512" rx="112" fill="#ffffff"/>
+  <g>
+    <path d="M 256 256 L 256 64 A 192 192 0 0 1 438.596 315.332 Z" fill="#5381ac"/>
+    <path d="M 256 256 L 438.596 315.332 A 192 192 0 0 1 143.133 411.331 Z" fill="#ac5381"/>
+    <path d="M 256 256 L 143.133 411.331 A 192 192 0 0 1 143.133 100.669 Z" fill="#81ac53"/>
+    <path d="M 256 256 L 143.133 100.669 A 192 192 0 0 1 256 64 Z" fill="#9ca3af"/>
+  </g>
+</svg>

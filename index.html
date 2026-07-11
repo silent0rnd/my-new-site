@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/avatar-donut.svg" type="image/svg+xml" />
+    <title>Максим Мирошников - специалист по платному трафику</title>
+    <script>
+      (function () {
+        try {
+          var savedScroll = Number(sessionStorage.getItem("naklikayScrollY") || 0);
+          if ((location.hash && location.hash !== "#") || savedScroll > 120) {
+            document.documentElement.classList.add("is-restoring-scroll");
+          } else {
+            document.documentElement.classList.add("is-hero-intro-pending");
+          }
+        } catch (error) {}
+      })();
+    </script>
+    <link rel="preload" href="assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="assets/maxim-portrait-video-frame-first.jpg" as="image" fetchpriority="high" />
+    <link rel="preload" href="assets/maxim-portrait-motion.mp4" as="video" type="video/mp4" fetchpriority="high" />
+    <link rel="stylesheet" href="styles.css?v=20260710-desktop-visible" />
+    <script src="cases-data.js?v=20260706-cases" defer></script>
+    <script src="script.js?v=20260710-desktop-visible" defer></script>
+  </head>
+  <body>
+    <nav class="page-menu" aria-label="Навигация по странице">
+      <a class="page-menu__link is-active" href="#start" data-page-menu-link="start">Начало</a>
+      <a class="page-menu__link" href="#work-scope" data-page-menu-link="work-scope">Что входит</a>
+      <a class="page-menu__link" href="#about" data-page-menu-link="about">Обо мне</a>
+      <a class="page-menu__link" href="#cases" data-page-menu-link="cases">Кейсы</a>
+      <a class="page-menu__link" href="#reviews" data-page-menu-link="reviews">Отзывы</a>
+      <a class="page-menu__link" href="#contacts" data-page-menu-link="contacts">Контакты</a>
+    </nav>
+
+    <button class="mobile-menu-toggle" type="button" aria-label="Открыть меню" aria-controls="mobile-page-menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+
+    <nav class="mobile-page-menu" id="mobile-page-menu" aria-label="Мобильная навигация по странице" hidden>
+      <a class="page-menu__link is-active" href="#start" data-page-menu-link="start">Начало</a>
+      <a class="page-menu__link" href="#work-scope" data-page-menu-link="work-scope">Что входит</a>
+      <a class="page-menu__link" href="#about" data-page-menu-link="about">Обо мне</a>
+      <a class="page-menu__link" href="#cases" data-page-menu-link="cases">Кейсы</a>
+      <a class="page-menu__link" href="#reviews" data-page-menu-link="reviews">Отзывы</a>
+      <a class="page-menu__link" href="#contacts" data-page-menu-link="contacts">Контакты</a>
+    </nav>
+
+    <main class="hero" id="start" aria-label="Первый экран сайта Максима">
+      <header class="topbar">
+        <div class="messenger-links" aria-label="Мессенджеры">
+          <a href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">Макс</a>
+        </div>
+      </header>
+
+      <section class="stats" aria-label="Опыт и результаты">
+        <div>
+          <strong class="stat-number">10+</strong>
+          <span class="stat-label">лет в трафике</span>
+        </div>
+        <div>
+          <strong class="stat-number">200+</strong>
+          <span class="stat-label">млн бюджета</span>
+        </div>
+        <div>
+          <strong class="stat-number">40+</strong>
+          <span class="stat-label">кейсов</span>
+        </div>
+      </section>
+
+      <section class="intro">
+        <p class="eyebrow">Меня зовут Максим Мирошников</p>
+        <h1>Привет!</h1>
+        <p class="subtitle">
+          Я специалист по платному трафику / Яндекс Директ / Telegram Ads / Avito Ads
+        </p>
+        <p class="hero-copy">
+          Нахожу слабые места в рекламе и выстраиваю трафик так, чтобы бюджет работал на продажи, а не на статистику в кабинете
+        </p>
+      </section>
+
+      
+
+      <figure class="portrait">
+        <img
+          class="portrait-poster"
+          src="assets/maxim-portrait-video-frame-first.jpg"
+          alt=""
+          aria-hidden="true"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          width="928"
+          height="1080"
+        />
+        <video
+          class="portrait-video"
+          src="assets/maxim-portrait-motion.mp4"
+          autoplay
+          muted
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        ></video>
+      </figure>
+    </main>
+
+    <section class="work-scope" id="work-scope" aria-labelledby="work-scope-title">
+      <div class="work-scope__inner">
+        <header class="work-scope__header">
+          <h2 id="work-scope-title">Что входит в работу над рекламой</h2>
+          <p class="work-scope__lead">
+            Это не разовая настройка кабинета. Перед запуском я разбираю бизнес, оффер, посадочную страницу, рекламные кабинеты, аналитику и точки потерь бюджета.
+          </p>
+        </header>
+
+        <div class="work-scope__grid">
+          <article class="work-card">
+            <span class="work-card__number">01</span>
+            <h3>Разбор бизнеса, оффера и текущей воронки</h3>
+            <p>Смотрю, что вы продаете, кому, с какой экономикой и куда сейчас ведете трафик.</p>
+            <p class="work-card__label">Что проверяю:</p>
+            <ul>
+              <li>нишу, спрос и конкурентов;</li>
+              <li>сайт, квиз, воронки и рекламные кабинеты;</li>
+              <li>прошлые рекламные кампании;</li>
+              <li>оффер, форму заявки и первый экран;</li>
+              <li>точки, где пользователь может уходить без обращения.</li>
+            </ul>
+            <div class="work-card__result">
+              <span>На выходе</span>
+              <p>Понимание, что мешает рекламе окупаться и что нужно поправить до запуска или в процессе работы.</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <span class="work-card__number">02</span>
+            <h3>Выбор каналов и план рекламных гипотез</h3>
+            <p>Не запускаю все каналы подряд. Сначала определяю, где есть шанс получить заявки по вашей задаче.</p>
+            <p class="work-card__label">Что делаю:</p>
+            <ul>
+              <li>выбираю каналы: Яндекс Директ, Tg Ads, Avito Ads или связку;</li>
+              <li>определяю сегменты аудитории;</li>
+              <li>формирую офферы и рекламные гипотезы;</li>
+              <li>оцениваю минимальный бюджет для теста;</li>
+              <li>определяю показатели для оценки результата.</li>
+            </ul>
+            <div class="work-card__result">
+              <span>На выходе</span>
+              <p>Понятный план запуска: что тестируем, зачем, на какую аудиторию и по каким цифрам оцениваем результат.</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <span class="work-card__number">03</span>
+            <h3>Настройка и запуск кампаний</h3>
+            <p>Собираю кампании так, чтобы можно было управлять результатом, а не просто получать клики.</p>
+            <p class="work-card__label">Что входит:</p>
+            <ul>
+              <li>создание современной структуры кампаний;</li>
+              <li>проработка ключевых фраз, аудитории и сегментов;</li>
+              <li>создание текстов и креативов;</li>
+              <li>создание целей в Метрике;</li>
+              <li>блокировка спамных площадок;</li>
+              <li>контроль чистоты трафика;</li>
+              <li>запуск тестовых связок.</li>
+            </ul>
+            <div class="work-card__result">
+              <span>На выходе</span>
+              <p>Запущенные кампании с понятной структурой и аналитикой для дальнейшей оптимизации.</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <span class="work-card__number">04</span>
+            <h3>Оптимизация, отчетность и масштабирование</h3>
+            <p>После запуска основная работа - смотреть, какие связки дают заявки, а какие просто тратят бюджет.</p>
+            <p class="work-card__label">Что анализирую:</p>
+            <ul>
+              <li>стоимость заявки;</li>
+              <li>качество обращений;</li>
+              <li>конверсии посадочной страницы;</li>
+              <li>слабые фразы, площадки, аудитории и объявления;</li>
+              <li>рабочие связки, которые можно усилить;</li>
+              <li>новые гипотезы для роста.</li>
+            </ul>
+            <div class="work-card__result">
+              <span>На выходе</span>
+              <p>Отчет с выводами, списком изменений и понятным планом: что отключаем, что дорабатываем, что масштабируем.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="about__inner">
+        <figure class="about__media">
+          <img
+            class="about__photo"
+            src="assets/about-portrait.jpg"
+            alt="Портрет Максима Мирошникова"
+            loading="lazy"
+          />
+          <figcaption class="about__caption">
+            <strong>Максим Мирошников</strong>
+            <span>Специалист по Яндекс Директу и интернет-маркетингу</span>
+          </figcaption>
+        </figure>
+
+        <div class="about__content">
+          <svg class="about__orb" viewBox="0 0 420 420" aria-hidden="true" focusable="false">
+            <path class="about__orb-path" d="M211 24 C312 27 392 105 395 205 C399 311 317 394 211 396 C106 399 24 318 25 212 C26 107 107 21 211 24" pathLength="1" />
+          </svg>
+
+          <h2 id="about-title">Обо мне</h2>
+
+          <div class="about__copy">
+            <p>Я занимаюсь интернет-рекламой более 10 лет. За это время прошёл путь от арбитража трафика и работы в digital-агентствах до интернет-маркетолога на крупном производстве. Сейчас работаю как ИП и веду проекты напрямую: запускаю рекламу, создаю сайты и воронки, помогаю выстраивать связь между маркетингом, заявками и продажами.</p>
+            <p>Мой подход - не просто “настроить рекламу”, а собрать рабочую систему привлечения заявок: проработать оффер, структуру кампаний, посадочную страницу, аналитику и точки, где бизнес теряет обращения.</p>
+            <p>Работаю официально: по договору как ИП, с ЭДО и закрывающими документами. Клиент общается напрямую со специалистом, который отвечает за результат, а не с менеджером между вами и исполнителем.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cases-showcase" id="cases" aria-labelledby="cases-title">
+      <div class="cases-showcase__inner">
+        <header class="cases-showcase__header">
+          <h2 id="cases-title">Кейсы по нишам</h2>
+          <p class="cases-showcase__lead">
+            <span class="cases-showcase__lead-highlight">Выберите направление</span>, чтобы посмотреть проекты, похожие на вашу задачу.
+          </p>
+        </header>
+
+        <div class="case-filters" aria-label="Фильтры кейсов">
+          <button class="case-filter is-active" type="button" data-case-filter="all">Все кейсы</button>
+          <button class="case-filter" type="button" data-case-filter="education">Образование</button>
+          <button class="case-filter" type="button" data-case-filter="real-estate">Недвижимость</button>
+          <button class="case-filter" type="button" data-case-filter="b2b">B2B</button>
+          <button class="case-filter" type="button" data-case-filter="b2c">B2C</button>
+          <button class="case-filter" type="button" data-case-filter="tg-ads">TG Ads</button>
+        </div>
+
+        <div class="cases-grid" data-cases-grid></div>
+        <p class="cases-empty" data-cases-empty hidden>Пока кейсы для этой ниши готовятся.</p>
+        <button class="cases-load-more" type="button" data-cases-load-more hidden>
+          Загрузить остальные кейсы
+        </button>
+      </div>
+    </section>
+
+    <section class="reviews-section" id="reviews" aria-labelledby="reviews-title">
+      <div class="reviews-section__inner">
+        <header class="reviews-section__head">
+          <h2 class="reviews-section__title" id="reviews-title">Отзывы</h2>
+          <p class="reviews-section__text">
+            Здесь собраны <span class="reviews-section__text-highlight">живые отзывы</span> клиентов: сообщения, которые я получил после совместной работы.
+          </p>
+        </header>
+
+        <div class="reviews-gallery" data-reviews-gallery></div>
+      </div>
+    </section>
+
+    <footer class="site-footer site-footer--contacts" id="contacts">
+      <div class="site-footer__inner">
+        <div class="site-footer__main">
+          <div class="site-footer__content">
+            <section class="site-footer__contacts" aria-labelledby="footer-contacts-title">
+              <h2 class="site-footer__title" id="footer-contacts-title">Контакты</h2>
+              <p class="site-footer__lead">
+                <span class="site-footer__lead-highlight">Напишите</span>, если хотите обсудить рекламу, сайт или воронку.
+              </p>
+
+              <p class="site-footer__location">г. Ростов-на-Дону</p>
+
+              <address class="site-footer__contact-list">
+                <a href="mailto:direct@miroshnikov-maxim.ru">direct@miroshnikov-maxim.ru</a>
+                <a href="tel:+79604457203">+7 960 445-72-03</a>
+                <a href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">Telegram: @miroshnikov_maxim</a>
+                <a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">MAX: ссылка на профиль</a>
+              </address>
+
+              <div class="site-footer__details" aria-label="Реквизиты">
+                <p>ИП Мирошников Максим Анатольевич</p>
+                <p>ИНН: 616509115086</p>
+                <p>ОГРНИП: 322619600194754</p>
+              </div>
+            </section>
+
+            <div class="site-footer__signature">
+              <img
+                src="images/signature/maxim-signature.svg"
+                alt="Подпись Максим Мирошников"
+                class="site-footer__signature-image"
+                loading="lazy"
+                decoding="async"
+              />
+              <p class="site-footer__signature-caption">
+                Максим Мирошников - ревностный последователь осознанного маркетинга
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="site-footer__legal">
+          <a href="https://naklikay.ru/personal-data-consent/" target="_blank" rel="noopener noreferrer">Согласие на обработку персональных данных</a>
+          <a href="https://naklikay.ru/cookie-policy/" target="_blank" rel="noopener noreferrer">Cookie</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
