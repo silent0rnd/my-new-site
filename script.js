@@ -627,7 +627,7 @@ const caseFilters = casesShowcase ? casesShowcase.querySelectorAll("[data-case-f
 const casesGrid = casesShowcase ? casesShowcase.querySelector("[data-cases-grid]") : null;
 const casesEmpty = casesShowcase ? casesShowcase.querySelector("[data-cases-empty]") : null;
 const casesLoadMoreButton = casesShowcase ? casesShowcase.querySelector("[data-cases-load-more]") : null;
-const homepageCases = Array.isArray(window.siteCases) ? window.siteCases : [];
+const homepageCases = Array.isArray(window.siteCases) ? window.siteCases.filter((caseItem) => caseItem.isFeatured !== false) : [];
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const footerSignature = document.querySelector(".site-footer__signature");
 let caseRevealObserver = null;

@@ -1681,13 +1681,81 @@ h1 {
   background: #4d4d4b;
 }
 
+.case-project {
+  padding: 0 0 34px;
+  border-top: 1px solid var(--line);
+}
+
+.case-project__header {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
+  gap: 20px 28px;
+  padding: 76px 0 44px;
+}
+
+.case-project__number {
+  grid-row: span 2;
+  margin: 0;
+  color: #4c4c4a;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.case-project__number::before {
+  content: "";
+  display: inline-block;
+  width: 19px;
+  height: 1px;
+  margin-right: 8px;
+  vertical-align: middle;
+  background: #4d4d4b;
+}
+
+.case-project__header h2 {
+  margin: 0;
+  color: #202020;
+  font-family: var(--display-font);
+  font-size: clamp(50px, 6vw, 86px);
+  font-weight: 300;
+  line-height: 0.92;
+}
+
+.case-project__intro {
+  max-width: 680px;
+  margin: 0;
+  color: #202020;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.case-project .case-metrics {
+  padding-top: 28px;
+}
+
+.case-project .case-content-section,
+.case-project .case-gallery-section {
+  padding: 58px 0;
+}
+
+.case-project .case-content-section h3,
+.case-project .case-gallery-section h3 {
+  margin: 0;
+  color: #202020;
+  font-family: var(--display-font);
+  font-size: clamp(38px, 4.6vw, 66px);
+  font-weight: 300;
+  line-height: 0.95;
+}
+
 .case-gallery {
   --screenshot-radius: 8px;
   position: relative;
   min-height: clamp(420px, 48vw, 560px);
   width: 100%;
   max-width: 100vw;
-  overflow: hidden;
+  overflow: visible;
   perspective: 1400px;
   perspective-origin: 50% 50%;
 }
@@ -2466,6 +2534,16 @@ h1 {
     gap: 30px;
     padding: 62px 0;
   }
+
+  .case-project__header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 62px 0 38px;
+  }
+
+  .case-project__number {
+    grid-row: auto;
+  }
 }
 
 @media (max-width: 560px) {
@@ -2905,6 +2983,27 @@ h1 {
   .case-gallery-section h2,
   .case-conclusion h2,
   .related-cases h2 {
+    max-width: 320px;
+    font-size: 44px;
+  }
+
+  .case-project__header h2 {
+    max-width: 320px;
+    font-size: 52px;
+  }
+
+  .case-project__intro {
+    max-width: 320px;
+    font-size: 18px;
+  }
+
+  .case-project .case-content-section,
+  .case-project .case-gallery-section {
+    padding: 52px 0;
+  }
+
+  .case-project .case-content-section h3,
+  .case-project .case-gallery-section h3 {
     max-width: 320px;
     font-size: 44px;
   }

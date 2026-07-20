@@ -12,6 +12,7 @@
   const COVERFLOW_TRANSITION_MS = 640;
   const COVERFLOW_WHEEL_THRESHOLD = 18;
   let activeLightboxIndex = 0;
+  let activeLightboxImages = [];
   let lightbox = null;
   let lightboxImage = null;
   let lightboxCaption = null;
@@ -45,7 +46,7 @@
     return `../${caseItem.slug}/`;
   }
 
-  function appendParagraphs(parent, paragraphs) {
+  function appendParagraphs(parent, paragraphs = []) {
     paragraphs.forEach((text) => {
       parent.append(createElement("p", "", text));
     });
@@ -55,42 +56,42 @@
     return cases.filter((caseItem) => caseItem.category === currentCase.category && caseItem.slug !== currentCase.slug);
   }
 
-  function hasCaseImages() {
-    return Array.isArray(currentCase.images) && currentCase.images.length > 0;
+  function hasImages(images) {
+    return Array.isArray(images) && images.length > 0;
   }
 
   function getCaseTitleSuffix(caseItem) {
     return caseItem.channel === "Telegram Ads" ? "кейс Telegram Ads" : "кейс Яндекс.Директ";
   }
 
-  function createGalleryItems() {
-    return currentCase.images.map((image, index) => ({
+  function createGalleryItems(images) {
+    return images.map((image, index) => ({
       image: assetPath(image.src),
       text: image.alt || `Скриншот ${index + 1}`,
       index,
     }));
   }
 
-  function getLightboxImage(index) {
-    const imageCount = currentCase.images.length;
+  function getLightboxImage(images, index) {
+    const imageCount = images.length;
     const wrappedIndex = (index + imageCount) % imageCount;
 
     return {
       index: wrappedIndex,
-      image: currentCase.images[wrappedIndex],
+      image: images[wrappedIndex],
     };
   }
 
-  function showLightboxImage(index) {
-    if (!lightboxImage || !lightboxCaption || currentCase.images.length === 0) {
+  function showLightboxImage(images, index) {
+    if (!lightboxImage || !lightboxCaption || images.length === 0) {
       return;
     }
 
-    const nextImage = getLightboxImage(index);
+    const nextImage = getLightboxImage(images, index);
     activeLightboxIndex = nextImage.index;
     lightboxImage.src = assetPath(nextImage.image.src);
     lightboxImage.alt = nextImage.image.alt;
-    lightboxCaption.textContent = `${activeLightboxIndex + 1} / ${currentCase.images.length}`;
+    lightboxCaption.textContent = `${activeLightboxIndex + 1} / ${images.length}`;
   }
 
   function closeLightbox() {
@@ -117,13 +118,14 @@
     }
   }
 
-  function openLightbox(index, triggerElement) {
+  function openLightbox(images, index, triggerElement) {
     if (!lightbox) {
       return;
     }
 
     lastFocusedElement = triggerElement || document.activeElement;
-    showLightboxImage(index);
+    activeLightboxImages = images;
+    showLightboxImage(activeLightboxImages, index);
 
     if (lightboxHideTimer) {
       window.clearTimeout(lightboxHideTimer);
@@ -153,13 +155,13 @@
 
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      showLightboxImage(activeLightboxIndex - 1);
+      showLightboxImage(activeLightboxImages, activeLightboxIndex - 1);
       return;
     }
 
     if (event.key === "ArrowRight") {
       event.preventDefault();
-      showLightboxImage(activeLightboxIndex + 1);
+      showLightboxImage(activeLightboxImages, activeLightboxIndex + 1);
     }
   }
 
@@ -174,11 +176,11 @@
     return hero;
   }
 
-  function renderMetrics() {
+  function renderMetrics(metrics) {
     const section = createElement("section", "case-metrics", "");
     section.setAttribute("aria-label", "Ключевые цифры кейса");
 
-    currentCase.metrics.forEach((metric) => {
+    metrics.forEach((metric) => {
       const item = createElement("div", "case-metric");
       item.append(createElement("strong", "", metric.value));
       item.append(createElement("span", "", metric.label));
@@ -188,10 +190,10 @@
     return section;
   }
 
-  function renderFacts() {
+  function renderFacts(facts) {
     const list = createElement("dl", "case-facts");
 
-    currentCase.facts.forEach((fact) => {
+    facts.forEach((fact) => {
       const parts = fact.split(":");
       const term = parts.length > 1 ? parts.shift().trim() : "Факт";
       const description = parts.join(":").trim() || fact;
@@ -203,12 +205,12 @@
     return list;
   }
 
-  function renderSections() {
+  function renderSections(sections, headingTag = "h2") {
     const fragment = document.createDocumentFragment();
 
-    currentCase.sections.forEach((sectionData) => {
+    sections.forEach((sectionData) => {
       const section = createElement("section", "case-content-section");
-      const title = createElement("h2", "", sectionData.heading);
+      const title = createElement(headingTag, "", sectionData.heading);
       const copy = createElement("div", "case-content-section__copy");
 
       appendParagraphs(copy, sectionData.paragraphs);
@@ -359,13 +361,13 @@
     });
   }
 
-  function renderCoverflowGallery() {
+  function renderCoverflowGallery(images) {
     const gallery = createElement("div", "case-gallery");
     const stage = createElement("div", "case-gallery__stage");
     const previousButton = createElement("button", "case-gallery__nav case-gallery__nav--prev", "‹");
     const nextButton = createElement("button", "case-gallery__nav case-gallery__nav--next", "›");
     const progress = createElement("div", "case-gallery__progress");
-    const galleryItems = createGalleryItems();
+    const galleryItems = createGalleryItems(images);
 
     stage.setAttribute("aria-label", "Галерея скриншотов");
     previousButton.type = "button";
@@ -381,7 +383,7 @@
       button.type = "button";
       button.setAttribute("data-lightbox-index", String(galleryItem.index));
       button.setAttribute("aria-label", `Открыть скриншот ${galleryItem.index + 1} из ${galleryItems.length}`);
-      button.addEventListener("click", () => openLightbox(galleryItem.index, button));
+      button.addEventListener("click", () => openLightbox(images, galleryItem.index, button));
       img.src = galleryItem.image;
       img.alt = galleryItem.text;
       img.loading = "lazy";
@@ -407,12 +409,29 @@
     return gallery;
   }
 
-  function renderGallery() {
+  function renderGallery(images, headingTag = "h2") {
     const section = createElement("section", "case-gallery-section");
-    const title = createElement("h2", "", "Скриншоты");
-    const gallery = renderCoverflowGallery();
+    const title = createElement(headingTag, "", "Скриншоты");
+    const gallery = renderCoverflowGallery(images);
 
     section.append(title, gallery);
+    return section;
+  }
+
+  function renderCollectionProject(project, index) {
+    const section = createElement("section", "case-project");
+    const header = createElement("header", "case-project__header");
+    const number = createElement("p", "case-project__number", `Проект ${String(index + 1).padStart(2, "0")}`);
+    const title = createElement("h2", "", project.title);
+    const intro = createElement("p", "case-project__intro", project.intro);
+
+    header.append(number, title, intro);
+    section.append(header, renderMetrics(project.metrics), renderFacts(project.facts), renderSections(project.sections, "h3"));
+
+    if (hasImages(project.images)) {
+      section.append(renderGallery(project.images, "h3"));
+    }
+
     return section;
   }
 
@@ -447,8 +466,8 @@
     lightboxCloseButton = closeButton;
 
     backdrop.addEventListener("click", closeLightbox);
-    previousButton.addEventListener("click", () => showLightboxImage(activeLightboxIndex - 1));
-    nextButton.addEventListener("click", () => showLightboxImage(activeLightboxIndex + 1));
+    previousButton.addEventListener("click", () => showLightboxImage(activeLightboxImages, activeLightboxIndex - 1));
+    nextButton.addEventListener("click", () => showLightboxImage(activeLightboxImages, activeLightboxIndex + 1));
     closeButton.addEventListener("click", closeLightbox);
     document.addEventListener("keydown", handleLightboxKeydown);
 
@@ -564,18 +583,26 @@
       return;
     }
 
-    document.title = `${currentCase.title} - ${getCaseTitleSuffix(currentCase)}`;
+    document.title =
+      currentCase.caseType === "collection" ? `${currentCase.title} - кейсы` : `${currentCase.title} - ${getCaseTitleSuffix(currentCase)}`;
     root.textContent = "";
 
-    const pageBlocks = [renderHero(), renderMetrics(), renderFacts(), renderSections()];
+    if (currentCase.caseType === "collection") {
+      const pageBlocks = [renderHero(), ...currentCase.projects.map(renderCollectionProject), renderLightbox()];
 
-    if (hasCaseImages()) {
-      pageBlocks.push(renderGallery());
+      root.append(...pageBlocks);
+      return;
+    }
+
+    const pageBlocks = [renderHero(), renderMetrics(currentCase.metrics), renderFacts(currentCase.facts), renderSections(currentCase.sections)];
+
+    if (hasImages(currentCase.images)) {
+      pageBlocks.push(renderGallery(currentCase.images));
     }
 
     pageBlocks.push(renderConclusion(), renderRelatedCases());
 
-    if (hasCaseImages()) {
+    if (hasImages(currentCase.images)) {
       pageBlocks.push(renderLightbox());
     }
 
