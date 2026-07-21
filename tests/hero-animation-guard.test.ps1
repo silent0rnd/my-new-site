@@ -30,6 +30,11 @@ $index = Get-Content -Raw -Encoding UTF8 (Join-Path $root "index.html")
 $styles = Get-Content -Raw -Encoding UTF8 (Join-Path $root "styles.css")
 
 Assert-Contains $script "function shouldRunHeroIntroAnimation()" "Missing hero animation guard"
+Assert-Contains $script "const LETTER_DELAY_MS = 63;" "Hero letter stagger must be 30 percent faster"
+Assert-Contains $script "const ANIMATION_DURATION_MS = 588;" "Hero roll duration must be 30 percent faster"
+Assert-Contains $script "const TEXT_LETTER_DELAY_MS = 8;" "Hero text stagger must be faster"
+Assert-Contains $script "const GLOBAL_ANIMATION_DELAY_MS = 3000;" "Hero intro must keep the video timing intact"
+Assert-Contains $styles "animation: text-roll-in 588ms" "Hero CSS roll duration must match JavaScript timing"
 Assert-Contains $script 'window.location.hash' "Hero animation guard must skip hash navigation"
 Assert-Contains $script "window.scrollY" "Hero animation guard must check restored scroll position"
 Assert-Contains $script "if (shouldRunHeroIntroAnimation())" "Hero animation setup must be guarded"

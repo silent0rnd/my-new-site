@@ -95,7 +95,7 @@ Assert-Match $js 'const portraitVideo = document\.querySelector\("\.portrait-vid
 Assert-NotMatch $js 'const isMobilePortrait' "Portrait reveal logic must not be mobile-only"
 Assert-Match $js 'const messengerLinkTargets = document\.querySelectorAll\("\.messenger-links a"\)' "Messenger link underline hooks missing"
 Assert-Match $js 'const workResultTargets = document\.querySelectorAll\("\.work-card__result > span"\)' "Work result underline hooks missing"
-Assert-Match $js 'const HIGHLIGHT_DELAY_MS = 7000' "Highlight delay must be 7000ms"
+Assert-Match $js 'const HIGHLIGHT_DELAY_MS = 5600' "Highlight delay must be 5600ms"
 Assert-Match $js 'const HERO_HIGHLIGHT_TEXT = "\\u0447\\u0442\\u043e\\u0431\\u044b \\u0431\\u044e\\u0434\\u0436\\u0435\\u0442 \\u0440\\u0430\\u0431\\u043e\\u0442\\u0430\\u043b \\u043d\\u0430 \\u043f\\u0440\\u043e\\u0434\\u0430\\u0436\\u0438"' "Highlight target text missing"
 Assert-Match $js 'createElementNS\("http://www\.w3\.org/2000/svg", "svg"\)' "Inline SVG underline creation missing"
 Assert-Match $js 'pathLength", "1"' "Underline path length normalization missing"
