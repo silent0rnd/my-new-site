@@ -89,6 +89,7 @@ Assert-Match $index "data-cases-grid" "Cases grid hook missing"
 Assert-Match $index "data-cases-load-more" "Load more hook missing"
 Assert-Match $index "data-case-filter=`"all`"" "All cases filter missing"
 Assert-Match $index "data-case-filter=`"tg-ads`"" "TG Ads filter missing"
+Assert-Match $css '@media \(max-width: 560px\)[\s\S]*?\.case-filters \{[\s\S]*?flex-wrap:\s*wrap;[\s\S]*?overflow-x:\s*visible;' "Mobile case filters must wrap without horizontal scrolling"
 if ($index.IndexOf('<section class="about"') -gt $index.IndexOf('<section class="cases-showcase"')) {
   throw "About block must be above cases block"
 }

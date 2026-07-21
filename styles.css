@@ -2747,20 +2747,14 @@ h1 {
   }
 
   .case-filters {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 8px;
-    margin: 36px -18px 0;
-    padding: 0 18px 4px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .case-filters::-webkit-scrollbar {
-    display: none;
+    margin: 36px 0 0;
+    padding: 0;
+    overflow-x: visible;
   }
 
   .case-filter {
-    flex: 0 0 auto;
     min-height: 40px;
     padding: 10px 14px;
     font-size: 16px;
