@@ -39,6 +39,18 @@ Assert-NotContains $index '>telegram: @miroshnikov_maxim</a>' "Footer old Telegr
 Assert-Contains $index 'https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE' "Footer missing Max link"
 Assert-Contains $index '>MAX:' "Footer Max link text is wrong"
 Assert-NotContains $index '>max:' "Footer old Max link text must be removed"
+Assert-Contains $index 'site-footer__channels' "Footer missing channels section"
+Assert-Contains $index 'https://max.ru/id616509115086_biz' "Footer missing MAX channel link"
+Assert-Contains $index 'https://t.me/kot_baun_pro' "Footer missing Telegram channel link"
+Assert-Contains $index 'https://www.youtube.com/channel/UC50PdHuEt3ttl-0f5VoJfdg' "Footer missing YouTube channel link"
+Assert-Contains $index 'https://rutube.ru/channel/30401918' "Footer missing RuTube channel link"
+Assert-Contains $index 'site-footer__channel-icon' "Footer channel icons are missing"
+Assert-NotContains $index 'site-footer__channel-arrow' "Footer channel links must not have arrows"
+
+$channelLinkCount = [regex]::Matches($index, 'class="site-footer__channel-link"').Count
+if ($channelLinkCount -ne 4) {
+  throw "Footer must contain exactly four channel links"
+}
 Assert-Contains $index 'site-footer__lead-highlight' "Footer lead first word must be wrapped for underline"
 Assert-Contains $index 'images/signature/maxim-signature.svg' "Footer missing signature image path"
 Assert-Contains $index 'site-footer__signature-caption' "Footer missing signature caption element"
@@ -57,6 +69,10 @@ Assert-Contains $styles '--footer-signature-x' "Footer signature must support cu
 Assert-Contains $styles '--footer-signature-y' "Footer signature must support cursor-based y movement"
 Assert-Contains $styles '--footer-signature-rotate' "Footer signature must support cursor-based rotation"
 Assert-Contains $styles '.site-footer__lead-highlight' "Footer lead highlight style is missing"
+Assert-Contains $styles '.site-footer__channels-grid' "Footer channels grid style is missing"
+Assert-Contains $styles 'grid-template-columns: repeat(2, minmax(0, 1fr));' "Footer channels must use two desktop columns"
+Assert-Contains $styles 'grid-template-columns: 1fr;' "Footer channels must use one mobile column"
+Assert-Contains $styles 'min-height: 48px;' "Footer channel links must have accessible touch targets"
 
 Assert-Contains $script 'moveFooterSignature' "Footer signature missing cursor move handler"
 Assert-Contains $script 'pointermove' "Footer signature missing pointermove listener"
