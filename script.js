@@ -6,6 +6,12 @@
   const YANDEX_METRIKA_ID = 110564693;
   const YANDEX_METRIKA_SRC = "https://mc.yandex.ru/metrika/tag.js?id=110564693";
 
+  // script.js всегда лежит в корне сайта, поэтому его собственный адрес даёт корень.
+  // Пути от корня вида "/images/..." работают только через сервер: если открыть файл
+  // кейса с диска двойным кликом, браузер ищет папку в корне диска C: и путь ломается.
+  const rootScript = document.currentScript || document.querySelector('script[src*="script.js"]');
+  const SITE_ROOT = new URL(".", rootScript ? rootScript.src : location.href).href;
+
   function readCookieConsent() {
     try {
       const storedValue = window.localStorage.getItem(CONSENT_KEY);
@@ -82,7 +88,7 @@
     icon.className = "cookie-consent__icon";
     icon.setAttribute("aria-hidden", "true");
     text.className = "cookie-consent__text";
-    text.innerHTML = 'Я, как и все, использую файлы cookie. Но согласно нашим прекрасным законам, я вынужден вам это показать. Нажимая кнопку, вы подтверждаете <a href="/cookie-policy/" target="_blank" rel="noopener noreferrer">согласие на их использование</a> и <a href="/personal-data-consent/" target="_blank" rel="noopener noreferrer">обработку персональных данных</a>.';
+    text.innerHTML = `Я, как и все, использую файлы cookie. Но согласно нашим прекрасным законам, я вынужден вам это показать. Нажимая кнопку, вы подтверждаете <a href="${SITE_ROOT}cookie-policy/" target="_blank" rel="noopener noreferrer">согласие на их использование</a> и <a href="${SITE_ROOT}personal-data-consent/" target="_blank" rel="noopener noreferrer">обработку персональных данных</a>.`;
     button.className = "cookie-consent__button";
     button.type = "button";
     button.textContent = "Понятно";
@@ -122,33 +128,103 @@
     }, COOKIE_CONSENT_DELAY_MS);
   }
 
-  function ensureLegalFooter() {
-    if (document.querySelector(".site-footer") || document.body.classList.contains("case-detail-page")) {
+  // Разметка футера продублирована здесь и в index.html. Меняете контакты - правьте оба места.
+  // Свести в одно нельзя без переноса футера главной в JS, а это отложит его появление на главной.
+  const SITE_FOOTER_HTML = `
+    <div class="site-footer__inner">
+      <div class="site-footer__main">
+        <div class="site-footer__content">
+          <section class="site-footer__contacts" aria-labelledby="footer-contacts-title">
+            <h2 class="site-footer__title" id="footer-contacts-title">Контакты</h2>
+            <p class="site-footer__lead">
+              <span class="site-footer__lead-highlight">Напишите</span>, если хотите обсудить рекламу, сайт или воронку.
+            </p>
+
+            <p class="site-footer__location">г. Ростов-на-Дону</p>
+
+            <address class="site-footer__contact-list">
+              <a href="mailto:direct@miroshnikov-maxim.ru">direct@miroshnikov-maxim.ru</a>
+              <a href="tel:+79604457203">+7 960 445-72-03</a>
+              <a href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">Telegram: @miroshnikov_maxim</a>
+              <a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">MAX: ссылка на профиль</a>
+            </address>
+
+            <section class="site-footer__channels" aria-labelledby="footer-channels-title">
+              <h3 class="site-footer__channels-title" id="footer-channels-title">Мои каналы</h3>
+              <div class="site-footer__channels-grid">
+                <a class="site-footer__channel-link" href="https://max.ru/id616509115086_biz" target="_blank" rel="noopener noreferrer">
+                  <svg class="site-footer__channel-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+                    <rect x="3.5" y="3.5" width="25" height="25" rx="7" stroke="currentColor" stroke-width="2.25" />
+                    <path d="M10 21.5V16a6 6 0 0 1 12 0v.15a6.35 6.35 0 0 1-8.8 5.86l-3.2 1.9v-2.4Z" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span>MAX-канал</span>
+                </a>
+                <a class="site-footer__channel-link" href="https://t.me/kot_baun_pro" target="_blank" rel="noopener noreferrer">
+                  <svg class="site-footer__channel-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+                    <path d="M4.5 14.2 27 5.2c.9-.36 1.8.5 1.5 1.43l-7.08 21.05c-.3.9-1.5 1.06-2.05.28l-5.7-8.12-9-3.66Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="m13.67 19.84 8.15-9.15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span>Telegram-канал</span>
+                </a>
+                <a class="site-footer__channel-link" href="https://www.youtube.com/channel/UC50PdHuEt3ttl-0f5VoJfdg" target="_blank" rel="noopener noreferrer">
+                  <svg class="site-footer__channel-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+                    <rect x="3.5" y="7" width="25" height="18" rx="5" stroke="currentColor" stroke-width="2" />
+                    <path d="m14 12.5 6.5 3.5-6.5 3.5v-7Z" fill="currentColor" />
+                  </svg>
+                  <span>YouTube-канал</span>
+                </a>
+                <a class="site-footer__channel-link" href="https://rutube.ru/channel/30401918" target="_blank" rel="noopener noreferrer">
+                  <svg class="site-footer__channel-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+                    <rect x="3.5" y="3.5" width="25" height="25" rx="8" stroke="currentColor" stroke-width="2.25" />
+                    <path d="M10 23V9h6.2a4.3 4.3 0 0 1 1.25 8.42L22 23M10 16.4h6.2" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <span>RuTube-канал</span>
+                </a>
+              </div>
+            </section>
+
+            <div class="site-footer__details" aria-label="Реквизиты">
+              <p>ИП Мирошников Максим Анатольевич</p>
+              <p>ИНН: 616509115086</p>
+              <p>ОГРНИП: 322619600194754</p>
+            </div>
+          </section>
+
+          <div class="site-footer__signature">
+            <img
+              src="${SITE_ROOT}images/signature/maxim-signature.svg"
+              alt="Подпись Максим Мирошников"
+              class="site-footer__signature-image"
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="site-footer__signature-caption">
+              Максим Мирошников - ревностный последователь осознанного маркетинга
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-footer__legal">
+        <a href="${SITE_ROOT}personal-data-consent/" target="_blank" rel="noopener noreferrer">Согласие на обработку персональных данных</a>
+        <a href="${SITE_ROOT}cookie-policy/" target="_blank" rel="noopener noreferrer">Cookie</a>
+      </div>
+    </div>
+  `;
+
+  function ensureSiteFooter() {
+    if (document.querySelector(".site-footer")) {
       return;
     }
 
     const footer = document.createElement("footer");
-    const inner = document.createElement("div");
-    const consentLink = document.createElement("a");
-    const cookieLink = document.createElement("a");
-
-    footer.className = "site-footer";
-    inner.className = "site-footer__inner";
-    consentLink.href = "/personal-data-consent/";
-    consentLink.target = "_blank";
-    consentLink.rel = "noopener noreferrer";
-    consentLink.textContent = "Согласие на обработку персональных данных";
-    cookieLink.href = "/cookie-policy/";
-    cookieLink.target = "_blank";
-    cookieLink.rel = "noopener noreferrer";
-    cookieLink.textContent = "Политика использования cookie";
-
-    inner.append(consentLink, cookieLink);
-    footer.append(inner);
+    footer.className = "site-footer site-footer--contacts";
+    footer.id = "contacts";
+    footer.innerHTML = SITE_FOOTER_HTML;
     document.body.append(footer);
   }
 
-  ensureLegalFooter();
+  ensureSiteFooter();
 
   if (readCookieConsent()) {
     window.loadYandexMetrika();
@@ -156,6 +232,34 @@
     showCookieConsentBannerWithDelay();
   }
 })();
+
+// Короткие слова (предлоги, союзы) склеиваются со следующим словом неразрывным
+// пробелом, чтобы не повисали в конце строки. На заголовках в 60-90px одиночное
+// "в" или "и" в конце строки - самый заметный типографический дефект в кадре.
+// Дополняет text-wrap из styles.css: там выравнивается длина строк, здесь
+// запрещается сам перенос. Блоки с побуквенной анимацией (.hero) не трогаем.
+const TYPOGRAPHY_TAGS = "h1, h2, h3, p, li, dd, figcaption";
+const TYPOGRAPHY_SKIP = ".hero";
+const SHORT_WORD = /^[("«„'-]*[а-яёa-z]{1,2}$/i;
+
+function glueShortWords(text) {
+  return text.replace(/(\S+)(\s+)/g, (match, word) => (SHORT_WORD.test(word) ? `${word}\u00A0` : match));
+}
+
+function applyTypography(root) {
+  root.querySelectorAll(TYPOGRAPHY_TAGS).forEach((element) => {
+    if (element.closest(TYPOGRAPHY_SKIP)) return;
+
+    element.childNodes.forEach((node) => {
+      if (node.nodeType !== Node.TEXT_NODE) return;
+
+      const glued = glueShortWords(node.nodeValue);
+      if (glued !== node.nodeValue) {
+        node.nodeValue = glued;
+      }
+    });
+  });
+}
 
 const LETTER_DELAY_MS = 63;
 const ANIMATION_DURATION_MS = 588;
@@ -753,6 +857,7 @@ function createCaseCard(caseItem) {
   card.addEventListener("mousemove", moveCaseCard);
   card.addEventListener("mouseleave", resetCaseCard);
   wrapper.append(card);
+  applyTypography(wrapper);
 
   return wrapper;
 }
@@ -1012,12 +1117,23 @@ if (reviewsGallery && reviewsData.length > 0) {
     updateReviewsGallery();
   }
 
+  function clearReviewLightboxLoading() {
+    reviewLightbox.classList.remove("is-loading");
+  }
+
+  reviewLightboxImage.addEventListener("load", clearReviewLightboxLoading);
+  reviewLightboxImage.addEventListener("error", clearReviewLightboxLoading);
+
   function showReviewLightboxImage(index) {
     reviewLightboxIndex = (index + reviewsData.length) % reviewsData.length;
     const review = reviewsData[reviewLightboxIndex];
     reviewLightboxImage.src = review.src;
     reviewLightboxImage.alt = review.alt;
     reviewLightboxCounter.textContent = `${reviewLightboxIndex + 1} / ${reviewsData.length}`;
+    reviewLightbox.classList.toggle(
+      "is-loading",
+      !(reviewLightboxImage.complete && reviewLightboxImage.naturalWidth > 0)
+    );
   }
 
   function handleReviewLightboxKeydown(event) {
@@ -1132,3 +1248,7 @@ if (reviewsGallery && reviewsData.length > 0) {
   reviewsGallery.append(reviewStage, reviewPrev, reviewNext, reviewProgress);
   updateReviewsGallery();
 }
+
+// Один проход по готовой странице: на главной карточки кейсов к этому моменту
+// отрисованы, на странице кейса case-page.js уже собрал контент.
+applyTypography(document);

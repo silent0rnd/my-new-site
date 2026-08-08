@@ -92,6 +92,10 @@
     lightboxImage.src = assetPath(nextImage.image.src);
     lightboxImage.alt = nextImage.image.alt;
     lightboxCaption.textContent = `${activeLightboxIndex + 1} / ${images.length}`;
+    lightbox.classList.toggle(
+      "is-loading",
+      !(lightboxImage.complete && lightboxImage.naturalWidth > 0)
+    );
   }
 
   function closeLightbox() {
@@ -459,6 +463,8 @@
     closeButton.setAttribute("aria-label", "Закрыть");
     image.className = "case-lightbox__image";
     image.decoding = "async";
+    image.addEventListener("load", () => overlay.classList.remove("is-loading"));
+    image.addEventListener("error", () => overlay.classList.remove("is-loading"));
 
     lightbox = overlay;
     lightboxImage = image;

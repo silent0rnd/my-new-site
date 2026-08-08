@@ -41,6 +41,23 @@ body {
   text-rendering: geometricPrecision;
 }
 
+/* Заголовки раскладываются по строкам ровнее, у абзацев не остаётся
+   одинокого последнего слова. Дополняет неразрывные пробелы из script.js:
+   там склеиваются короткие предлоги, здесь выравнивается длина строк. */
+h1,
+h2,
+h3,
+.work-scope__lead,
+.case-hero__lead {
+  text-wrap: balance;
+}
+
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
 body.has-lightbox {
   overflow: hidden;
 }
@@ -939,7 +956,6 @@ h1 {
     border-color 180ms ease,
     background-color 180ms ease,
     transform 180ms ease;
-  will-change: transform;
 }
 
 .case-card-orange-border {
@@ -1217,7 +1233,6 @@ h1 {
     transform 640ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
     filter 520ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, opacity;
 }
 
 .reviews-gallery__button.is-tilting {
@@ -1582,7 +1597,7 @@ h1 {
 
 .case-facts {
   display: grid;
-  grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
+  grid-template-columns: minmax(240px, 0.6fr) minmax(0, 1fr);
   gap: 0 28px;
   margin: 0 0 34px;
   padding: 28px 0;
@@ -1618,12 +1633,14 @@ h1 {
 .case-conclusion,
 .related-cases {
   display: grid;
-  grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
+  grid-template-columns: minmax(240px, 0.6fr) minmax(0, 1fr);
   gap: 28px;
   padding: 72px 0;
   border-top: 1px solid var(--line);
 }
 
+/* Кегль связан с шириной левой колонки: на 72px длинные заголовки рвались
+   на 2-3 строки с висячим предлогом, короткие при этом смотрелись нормально. */
 .case-content-section h2,
 .case-gallery-section h2,
 .case-conclusion h2,
@@ -1631,7 +1648,7 @@ h1 {
   margin: 0;
   color: #202020;
   font-family: var(--display-font);
-  font-size: clamp(40px, 5vw, 72px);
+  font-size: clamp(34px, 4.4vw, 66px);
   font-weight: 300;
   line-height: 0.95;
   letter-spacing: 0;
@@ -1688,7 +1705,7 @@ h1 {
 
 .case-project__header {
   display: grid;
-  grid-template-columns: minmax(180px, 0.42fr) minmax(0, 1fr);
+  grid-template-columns: minmax(240px, 0.6fr) minmax(0, 1fr);
   gap: 20px 28px;
   padding: 76px 0 44px;
 }
@@ -1744,7 +1761,7 @@ h1 {
   margin: 0;
   color: #202020;
   font-family: var(--display-font);
-  font-size: clamp(38px, 4.6vw, 66px);
+  font-size: clamp(32px, 4vw, 60px);
   font-weight: 300;
   line-height: 0.95;
 }
@@ -1758,6 +1775,18 @@ h1 {
   overflow: visible;
   perspective: 1400px;
   perspective-origin: 50% 50%;
+}
+
+/* Слайды позиционируются от центра .case-gallery. Пока карусель стоит в правой
+   колонке сетки, этот центр не совпадает с центром экрана и блок читается как
+   сбитый вправо. Отдаём карусели обе колонки и гасим левый отступ .case-detail,
+   тогда её центр совпадает с центром экрана. */
+@media (min-width: 921px) {
+  .case-gallery-section .case-gallery {
+    grid-column: 1 / -1;
+    width: calc(100% + 104px);
+    margin-left: -104px;
+  }
 }
 
 .case-gallery__stage {
@@ -1800,7 +1829,6 @@ h1 {
   transition:
     transform 640ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, opacity;
 }
 
 .case-gallery__button.is-tilting {
@@ -1985,6 +2013,43 @@ h1 {
   background: var(--bg);
 }
 
+/* Индикатор загрузки картинки, общий для обоих лайтбоксов.
+   Картинка начинает качаться только в момент клика, поэтому без него
+   на медленной сети видно пустой затемнённый экран. */
+.reviews-lightbox::after,
+.case-lightbox::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border: 3px solid rgb(255 255 255 / 0.26);
+  border-top-color: #FF9800;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+.reviews-lightbox.is-loading::after,
+.case-lightbox.is-loading::after {
+  opacity: 1;
+  animation: lightbox-spin 720ms linear infinite;
+}
+
+.reviews-lightbox.is-loading .reviews-lightbox__image,
+.case-lightbox.is-loading .case-lightbox__image {
+  opacity: 0;
+}
+
+@keyframes lightbox-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .case-lightbox__caption {
   justify-self: center;
   color: var(--bg);
@@ -2160,7 +2225,6 @@ h1 {
 
   .related-card.is-visible {
     transform-style: preserve-3d;
-    will-change: transform;
   }
 
   .related-card.is-visible:hover {
@@ -3623,7 +3687,6 @@ h1 {
   transition:
     transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 220ms ease;
-  will-change: transform;
 }
 
 .site-footer__signature-caption {

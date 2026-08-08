@@ -79,6 +79,18 @@ Assert-Contains $script "ecommerce: `"dataLayer`"" "Script missing Yandex Metrik
 Assert-NotContains $script "data-cookie-settings" "Script must not create cookie settings trigger"
 Assert-NotContains $consent "data-cookie-settings" "Consent footer must not include cookie settings trigger"
 Assert-NotContains $cookie "data-cookie-settings" "Cookie footer must not include cookie settings trigger"
-Assert-Contains $script 'case-detail-page' "Script must skip generated legal footer on case detail pages"
+# Раньше футер намеренно не рисовался на страницах кейсов, из-за чего там не было
+# ни контактов, ни правовых ссылок. Теперь он обязан появляться на всех страницах.
+Assert-NotContains $script 'case-detail-page' "Script must not skip the footer on case detail pages"
+Assert-Contains $script 'ensureSiteFooter' "Script missing shared footer builder"
+Assert-Contains $script 'mailto:direct@miroshnikov-maxim.ru' "Generated footer missing email"
+Assert-Contains $script 'tel:+79604457203' "Generated footer missing phone"
+Assert-Contains $script 'https://t.me/miroshnikov_maxim' "Generated footer missing Telegram"
+Assert-Contains $script 'personal-data-consent/' "Generated footer missing personal-data-consent link"
+Assert-Contains $script 'cookie-policy/' "Generated footer missing cookie-policy link"
+# Пути в футере строятся от корня сайта, вычисленного из адреса самого script.js:
+# иначе страница кейса, открытая с диска, теряет подпись и правовые ссылки.
+Assert-Contains $script 'const SITE_ROOT' "Script must resolve the site root for footer assets"
+Assert-NotContains $script 'src="/images/signature' "Footer signature must not use a root-absolute path"
 
 Write-Host "Legal and cookie checks passed"
