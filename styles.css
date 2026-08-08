@@ -958,61 +958,9 @@ h1 {
     transform 180ms ease;
 }
 
-.case-card-orange-border {
-  position: absolute;
-  inset: -1px;
-  width: calc(100% + 2px);
-  height: calc(100% + 2px);
-  opacity: 0;
-  transition: opacity 220ms ease;
-  pointer-events: none;
-}
-
-.case-card-orange-border-line {
-  --case-line-shift-x: 0;
-  --case-line-shift-y: 0;
-  fill: none;
-  stroke: #FF9800;
-  stroke-width: 2;
-  stroke-linecap: round;
-  transform: translate3d(0, 0, 0);
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.case-card-orange-border-line--top {
-  --case-line-shift-x: clamp(-120px, -14vw, -62px);
-  --case-line-shift-y: 0;
-}
-
-.case-card-orange-border-line--right {
-  --case-line-shift-x: 0;
-  --case-line-shift-y: clamp(62px, 14vw, 120px);
-}
-
 .case-card:hover {
   border-color: #b8b8b2;
   background: rgb(255 255 255 / 0.22);
-}
-
-.case-card:hover .case-card-orange-border,
-.case-card:focus-visible .case-card-orange-border {
-  opacity: 1;
-}
-
-.case-card:hover .case-card-orange-border-line,
-.case-card:focus-visible .case-card-orange-border-line {
-  animation: case-orange-line-sway 4000ms cubic-bezier(.45, 0, .2, 1) infinite;
-}
-
-@keyframes case-orange-line-sway {
-  50% {
-    transform: translate3d(var(--case-line-shift-x), var(--case-line-shift-y), 0);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
 }
 
 .case-card:focus-visible {
@@ -1065,8 +1013,10 @@ h1 {
   font-size: 18px;
   font-weight: 500;
   line-height: 1.25;
-  border-bottom: 1px solid transparent;
-  transition: border-color 180ms ease;
+}
+
+.case-card__more .delayed-underline-path {
+  transition-duration: 420ms;
 }
 
 .case-card__more::after {
@@ -1079,8 +1029,14 @@ h1 {
     transform 220ms cubic-bezier(.2, .7, .2, 1);
 }
 
-.case-card:hover .case-card__more {
-  border-color: #FF9800;
+.case-card:hover .case-card__more .delayed-underline-svg,
+.case-card:focus-visible .case-card__more .delayed-underline-svg {
+  opacity: 1;
+}
+
+.case-card:hover .case-card__more .delayed-underline-path,
+.case-card:focus-visible .case-card__more .delayed-underline-path {
+  stroke-dashoffset: 0;
 }
 
 .case-card:hover .case-card__more::after,
@@ -2317,7 +2273,7 @@ h1 {
     transform: translate(-50%, -50%) translateX(var(--reviews-x, 0px)) scale(var(--reviews-scale, 1)) !important;
   }
 
-  .case-card-orange-border-line,
+  .case-card__more .delayed-underline-path,
   .case-card__more::after {
     animation: none !important;
     transition: none !important;

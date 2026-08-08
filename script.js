@@ -731,7 +731,26 @@ const caseFilters = casesShowcase ? casesShowcase.querySelectorAll("[data-case-f
 const casesGrid = casesShowcase ? casesShowcase.querySelector("[data-cases-grid]") : null;
 const casesEmpty = casesShowcase ? casesShowcase.querySelector("[data-cases-empty]") : null;
 const casesLoadMoreButton = casesShowcase ? casesShowcase.querySelector("[data-cases-load-more]") : null;
-const homepageCases = Array.isArray(window.siteCases) ? window.siteCases.filter((caseItem) => caseItem.isFeatured !== false) : [];
+const caseCategoryOrder = (Array.isArray(window.caseCategories) ? window.caseCategories : [])
+  .map((category) => category.id)
+  .filter((id) => id !== "all");
+
+function interleaveCasesByCategory(caseItems) {
+  const buckets = caseCategoryOrder.map((id) => caseItems.filter((item) => item.category === id));
+  const mixed = [];
+
+  while (buckets.some((bucket) => bucket.length > 0)) {
+    buckets.forEach((bucket) => {
+      if (bucket.length > 0) mixed.push(bucket.shift());
+    });
+  }
+
+  return mixed.concat(caseItems.filter((item) => !caseCategoryOrder.includes(item.category)));
+}
+
+const homepageCases = interleaveCasesByCategory(
+  Array.isArray(window.siteCases) ? window.siteCases.filter((caseItem) => caseItem.isFeatured !== false) : [],
+);
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const footerSignature = document.querySelector(".site-footer__signature");
 let caseRevealObserver = null;
@@ -809,9 +828,6 @@ function resetCaseCard(event) {
 function createCaseCard(caseItem) {
   const wrapper = document.createElement("div");
   const card = document.createElement("a");
-  const orangeBorder = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  const orangeBorderTopLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  const orangeBorderRightLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
   const top = document.createElement("span");
   const title = document.createElement("h3");
   const result = document.createElement("p");
@@ -823,23 +839,6 @@ function createCaseCard(caseItem) {
   card.href = getHomepageCaseHref(caseItem);
   card.target = "_blank";
   card.rel = "noopener noreferrer";
-  orangeBorder.classList.add("case-card-orange-border");
-  orangeBorder.setAttribute("viewBox", "0 0 100 100");
-  orangeBorder.setAttribute("preserveAspectRatio", "none");
-  orangeBorder.setAttribute("aria-hidden", "true");
-  orangeBorderTopLine.classList.add("case-card-orange-border-line", "case-card-orange-border-line--top");
-  orangeBorderRightLine.classList.add("case-card-orange-border-line", "case-card-orange-border-line--right");
-  orangeBorderTopLine.setAttribute("x1", "50");
-  orangeBorderTopLine.setAttribute("y1", "1");
-  orangeBorderTopLine.setAttribute("x2", "94");
-  orangeBorderTopLine.setAttribute("y2", "1");
-  orangeBorderRightLine.setAttribute("x1", "99");
-  orangeBorderRightLine.setAttribute("y1", "4");
-  orangeBorderRightLine.setAttribute("x2", "99");
-  orangeBorderRightLine.setAttribute("y2", "46");
-  [orangeBorderTopLine, orangeBorderRightLine].forEach((line) => {
-    line.setAttribute("vector-effect", "non-scaling-stroke");
-  });
   top.className = "case-card__category";
   title.className = "case-card__title";
   result.className = "case-card__result";
@@ -851,9 +850,9 @@ function createCaseCard(caseItem) {
   result.textContent = caseItem.shortResult;
   channel.textContent = `Канал: ${caseItem.channel}`;
   more.textContent = "Подробнее";
+  attachDelayedUnderline(more);
 
-  orangeBorder.append(orangeBorderTopLine, orangeBorderRightLine);
-  card.append(orangeBorder, top, title, result, channel, more);
+  card.append(top, title, result, channel, more);
   card.addEventListener("mousemove", moveCaseCard);
   card.addEventListener("mouseleave", resetCaseCard);
   wrapper.append(card);
