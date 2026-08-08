@@ -34,6 +34,9 @@
   </head>
   <body>
     <nav class="page-menu" aria-label="Навигация по странице">
+      <svg class="page-menu__progress" viewBox="0 0 8 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path class="page-menu__progress-path" d="M3.8 0 C2.2 13 5.1 22 3.1 34 C1.9 45 5.4 56 3.4 68 C2.3 79 4.8 89 3.2 100" pathLength="1" />
+      </svg>
       <a class="page-menu__link is-active" href="#start" data-page-menu-link="start">Начало</a>
       <a class="page-menu__link" href="#work-scope" data-page-menu-link="work-scope">Что входит</a>
       <a class="page-menu__link" href="#about" data-page-menu-link="about">Обо мне</a>
@@ -207,12 +210,14 @@
     <section class="about" id="about" aria-labelledby="about-title">
       <div class="about__inner">
         <figure class="about__media">
-          <img
-            class="about__photo"
-            src="assets/about-portrait.jpg"
-            alt="Портрет Максима Мирошникова"
-            loading="lazy"
-          />
+          <div class="about__photo-stack">
+            <img
+              class="about__photo"
+              src="assets/about-portrait.jpg"
+              alt="Портрет Максима Мирошникова"
+              loading="lazy"
+            />
+          </div>
           <figcaption class="about__caption">
             <strong>Максим Мирошников</strong>
             <span>Специалист по Яндекс Директу и интернет-маркетингу</span>

@@ -275,6 +275,7 @@ const SCROLL_RESTORE_KEY = "naklikayScrollY";
 const statsTargets = document.querySelectorAll(".stats strong, .stats span");
 const messengerLinkTargets = document.querySelectorAll(".messenger-links a");
 const workResultTargets = document.querySelectorAll(".work-card__result > span");
+const workCards = document.querySelectorAll(".work-card");
 const casesLeadHighlight = document.querySelector(".cases-showcase__lead-highlight");
 const reviewsTextHighlight = document.querySelector(".reviews-section__text-highlight");
 const siteFooterLeadHighlight = document.querySelector(".site-footer__lead-highlight");
@@ -323,6 +324,7 @@ restoreSavedScrollPosition();
 
 function initPageMenu() {
   const menuLinks = document.querySelectorAll("[data-page-menu-link]");
+  const desktopMenu = document.querySelector(".page-menu");
   const mobileMenu = document.querySelector(".mobile-page-menu");
   const mobileToggle = document.querySelector(".mobile-menu-toggle");
   const sectionIds = ["start", "work-scope", "about", "cases", "reviews", "contacts"];
@@ -332,16 +334,49 @@ function initPageMenu() {
 
   if (!menuLinks.length || !sections.length) return;
 
+  let activeSectionId = null;
+  let progressFrame = null;
+
+  function updateReadingProgress() {
+    progressFrame = null;
+    if (!desktopMenu) return;
+
+    const scrollRange = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    const progress = scrollRange === 0 ? 1 : Math.min(1, Math.max(0, getCurrentScrollY() / scrollRange));
+    desktopMenu.style.setProperty("--scroll-progress", progress.toFixed(4));
+  }
+
+  function queueReadingProgress() {
+    if (progressFrame !== null) return;
+    progressFrame = window.requestAnimationFrame(updateReadingProgress);
+  }
+
+  function markReached(link) {
+    link.classList.remove("is-reached");
+    void link.offsetWidth;
+    link.classList.add("is-reached");
+    link.addEventListener("animationend", () => link.classList.remove("is-reached"), { once: true });
+  }
+
   function setActiveSection(id) {
+    const activeIndex = sectionIds.indexOf(id);
+    const shouldAnimateReach = activeSectionId !== null && activeSectionId !== id;
+
     menuLinks.forEach((link) => {
       const isActive = link.getAttribute("data-page-menu-link") === id;
+      const linkIndex = sectionIds.indexOf(link.getAttribute("data-page-menu-link"));
       link.classList.toggle("is-active", isActive);
+      link.classList.toggle("is-passed", linkIndex >= 0 && linkIndex < activeIndex);
       if (isActive) {
         link.setAttribute("aria-current", "true");
       } else {
         link.removeAttribute("aria-current");
       }
+
+      if (isActive && shouldAnimateReach) markReached(link);
     });
+
+    activeSectionId = id;
   }
 
   function closeMobileMenu() {
@@ -411,8 +446,11 @@ function initPageMenu() {
   }
 
   window.addEventListener("scroll", updateActiveFromScroll, { passive: true });
+  window.addEventListener("scroll", queueReadingProgress, { passive: true });
   window.addEventListener("resize", updateActiveFromScroll);
+  window.addEventListener("resize", queueReadingProgress);
   updateActiveFromScroll();
+  updateReadingProgress();
 }
 
 initPageMenu();
@@ -470,6 +508,25 @@ function attachDelayedUnderline(element) {
   }
 
   return element;
+}
+
+const TICK_PATH = "M1.5 7.1 C3 8.2 4.1 9.7 5.3 11.4 C7.2 7.5 9.5 4.1 12.7 1.8";
+
+function createTickSvg() {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+  svg.setAttribute("class", "work-tick");
+  svg.setAttribute("viewBox", "0 0 14 13");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("focusable", "false");
+
+  path.setAttribute("class", "work-tick__path");
+  path.setAttribute("d", TICK_PATH);
+  path.setAttribute("pathLength", "1");
+
+  svg.append(path);
+  return svg;
 }
 
 function buildTextRoll(element, baseDelay = 0, letterDelay = LETTER_DELAY_MS, highlightText = "") {
@@ -570,22 +627,45 @@ if (shouldRunHeroIntroAnimation()) {
 
 document.documentElement.classList.remove("is-hero-intro-pending");
 
-if (workResultTargets.length > 0) {
-  const workUnderlineObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
+if (workCards.length > 0) {
+  workResultTargets.forEach(attachDelayedUnderline);
 
-        entry.target.classList.add("is-underlined");
-        observer.unobserve(entry.target);
-      });
-    },
-    { rootMargin: "0px 0px -18% 0px", threshold: 0.8 }
-  );
+  workCards.forEach((card) => {
+    card.querySelectorAll("li").forEach((item) => {
+      if (!item.querySelector(".work-tick")) {
+        item.prepend(createTickSvg());
+      }
+    });
+  });
 
-  workResultTargets.forEach((element) => {
-    const underlinedResult = attachDelayedUnderline(element);
-    workUnderlineObserver.observe(underlinedResult);
+  const revealWorkCard = (card) => {
+    card.querySelectorAll(".work-card__result > span").forEach((result) => result.classList.add("is-underlined"));
+    card.querySelectorAll("ul").forEach((list) => list.classList.add("is-ticked"));
+  };
+
+  const skipWorkCardAnimation =
+    !("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const workUnderlineObserver = skipWorkCardAnimation
+    ? null
+    : new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            revealWorkCard(entry.target);
+            observer.unobserve(entry.target);
+          });
+        },
+        { rootMargin: "0px 0px -18% 0px", threshold: 0.25 }
+      );
+
+  workCards.forEach((card) => {
+    if (skipWorkCardAnimation) {
+      revealWorkCard(card);
+    } else {
+      workUnderlineObserver.observe(card);
+    }
   });
 }
 
@@ -808,6 +888,109 @@ if (footerSignature) {
   footerSignature.addEventListener("pointerleave", resetFooterSignature);
 }
 
+function supportsFooterSignatureMask() {
+  if (!window.CSS || typeof window.CSS.supports !== "function") return false;
+
+  return (
+    window.CSS.supports("mask-image", "linear-gradient(90deg, #000, transparent)") ||
+    window.CSS.supports("-webkit-mask-image", "linear-gradient(90deg, #000, transparent)")
+  );
+}
+
+function initFooterSignatureReveal() {
+  if (
+    !footerSignature ||
+    prefersReducedMotion.matches ||
+    !("IntersectionObserver" in window) ||
+    !supportsFooterSignatureMask()
+  ) {
+    return;
+  }
+
+  const signatureImage = footerSignature.querySelector(".site-footer__signature-image");
+  if (!signatureImage) return;
+
+  footerSignature.classList.add("is-signature-reveal-enabled");
+
+  const startReveal = () => {
+    footerSignature.classList.add("is-signature-writing");
+  };
+
+  const signatureRevealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        observer.unobserve(entry.target);
+
+        if (signatureImage.complete) {
+          startReveal();
+          return;
+        }
+
+        signatureImage.addEventListener("load", startReveal, { once: true });
+        signatureImage.addEventListener(
+          "error",
+          () => footerSignature.classList.remove("is-signature-reveal-enabled"),
+          { once: true },
+        );
+      });
+    },
+    { threshold: 0.2 },
+  );
+
+  signatureRevealObserver.observe(footerSignature);
+}
+
+initFooterSignatureReveal();
+
+// Портрет в "Обо мне": ч/б фото, под курсором проявляется цветное пятно.
+// Курсора нет - пятно едет сверху вниз, пока фото проезжает экран.
+const aboutPhotoStack = document.querySelector(".about__photo-stack");
+
+function setAboutSpot(x, y) {
+  aboutPhotoStack.style.setProperty("--about-spot-x", `${x.toFixed(1)}%`);
+  aboutPhotoStack.style.setProperty("--about-spot-y", `${y.toFixed(1)}%`);
+}
+
+if (aboutPhotoStack && !prefersReducedMotion.matches) {
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    aboutPhotoStack.addEventListener("pointermove", (event) => {
+      const rect = aboutPhotoStack.getBoundingClientRect();
+      setAboutSpot(((event.clientX - rect.left) / rect.width) * 100, ((event.clientY - rect.top) / rect.height) * 100);
+    });
+    aboutPhotoStack.addEventListener("pointerenter", () => aboutPhotoStack.classList.add("is-lit"));
+    aboutPhotoStack.addEventListener("pointerleave", () => aboutPhotoStack.classList.remove("is-lit"));
+  } else {
+    let aboutSpotFrame = 0;
+
+    const updateAboutSpotOnScroll = () => {
+      aboutSpotFrame = 0;
+
+      const rect = aboutPhotoStack.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const isVisible = rect.bottom > 0 && rect.top < viewportHeight;
+
+      aboutPhotoStack.classList.toggle("is-lit", isVisible);
+      if (!isVisible) return;
+
+      // 1 - фото только въехало снизу, 0 - полностью ушло вверх.
+      const progress = rect.bottom / (viewportHeight + rect.height);
+      setAboutSpot(50, 110 - progress * 120);
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (aboutSpotFrame) return;
+        aboutSpotFrame = window.requestAnimationFrame(updateAboutSpotOnScroll);
+      },
+      { passive: true },
+    );
+    updateAboutSpotOnScroll();
+  }
+}
+
 function moveCaseCard(event) {
   if (!canTiltCaseCard()) return;
 
@@ -823,6 +1006,197 @@ function moveCaseCard(event) {
 
 function resetCaseCard(event) {
   event.currentTarget.style.transform = "";
+}
+
+// Отсчёт цифр в карточке кейса при наведении. Числа один раз оборачиваются в span,
+// дальше hover гоняет по ним общий rAF-цикл.
+// В TT Masters цифры пропорциональные: при 45px "1" занимает 14px, а "8" и "0" - 22px.
+// Пока число крутится, строка дышит на десятки пикселей и хвост ездит туда-сюда. Лечится
+// только постоянным резервом ширины под самый широкий кадр отсчёта: в покое и во время
+// анимации макет одинаковый, двигаться нечему. Резерв считаем в пикселях - ch в этом
+// шрифте резолвится в ноль. Валюту и "+" забираем внутрь span, чтобы запас ширины падал
+// в межсловный пробел, а не разрывал "126₽".
+// Группы тысяч ("656 000") идут первой альтернативой, иначе съедалась бы только "656".
+const COUNT_PATTERN = /(\d+(?:[\s ]\d{3})+|\d+(?:[.,]\d+)?)([₽€$%+]?)/g;
+const COUNT_DURATION_MS = 900;
+const COUNT_SAMPLES = 256;
+const COUNT_CHARS = "0123456789.,  ₽€$%+";
+const COUNT_TARGETS = ".case-card__title, .case-card__result, .related-card__title, .related-card__result";
+const countFrames = new WeakMap();
+const charWidthCache = new Map();
+
+// У цифр нет кернинга, поэтому ширина строки - обычная сумма ширин символов.
+// Один замер на шрифт вместо тысяч обращений к layout.
+function getCharWidths(element) {
+  const style = getComputedStyle(element);
+  const key = `${style.fontFamily}|${style.fontSize}|${style.fontWeight}|${style.fontStyle}|${style.letterSpacing}`;
+  const cached = charWidthCache.get(key);
+
+  if (cached) return cached;
+
+  const probe = document.createElement("span");
+  probe.style.cssText = "position:absolute;left:-9999px;top:0;visibility:hidden;white-space:pre";
+  probe.style.fontFamily = style.fontFamily;
+  probe.style.fontSize = style.fontSize;
+  probe.style.fontWeight = style.fontWeight;
+  probe.style.fontStyle = style.fontStyle;
+  probe.style.letterSpacing = style.letterSpacing;
+  document.body.append(probe);
+
+  const widths = new Map();
+  Array.from(COUNT_CHARS).forEach((char) => {
+    probe.textContent = char;
+    widths.set(char, probe.getBoundingClientRect().width);
+  });
+
+  probe.remove();
+  charWidthCache.set(key, widths);
+  return widths;
+}
+
+function parseCount(span) {
+  const raw = span.dataset.count;
+  const separatorMatch = raw.match(/[.,](?=\d+$)/);
+
+  return {
+    raw,
+    suffix: span.dataset.countSuffix || "",
+    value: Number(raw.replace(/[\s ]/g, "").replace(",", ".")),
+    separator: separatorMatch ? separatorMatch[0] : ",",
+    decimals: separatorMatch ? raw.length - raw.indexOf(separatorMatch[0]) - 1 : 0,
+    grouped: /[\s ]/.test(raw),
+  };
+}
+
+function formatCount(count, value) {
+  const [whole, fraction] = value.toFixed(count.decimals).split(".");
+  const grouped = count.grouped ? whole.replace(/\B(?=(\d{3})+$)/g, " ") : whole;
+
+  return `${grouped}${fraction ? count.separator + fraction : ""}${count.suffix}`;
+}
+
+function reserveCountWidth(span) {
+  const count = parseCount(span);
+  const widths = getCharWidths(span);
+  let widest = 0;
+
+  // Перебираем значения, а не кадры: так резерв не зависит от кривой easing.
+  for (let sample = 0; sample <= COUNT_SAMPLES; sample += 1) {
+    const text = formatCount(count, (count.value * sample) / COUNT_SAMPLES);
+    let width = 0;
+
+    for (const char of text) {
+      width += widths.get(char) || 0;
+    }
+
+    if (width > widest) widest = width;
+  }
+
+  span.style.minWidth = `${Math.ceil(widest)}px`;
+}
+
+function wrapCardNumbers(card) {
+  card.querySelectorAll(COUNT_TARGETS).forEach((element) => {
+    Array.from(element.childNodes).forEach((node) => {
+      if (node.nodeType !== Node.TEXT_NODE || !COUNT_PATTERN.test(node.nodeValue)) return;
+
+      COUNT_PATTERN.lastIndex = 0;
+      const fragment = document.createDocumentFragment();
+      let lastIndex = 0;
+      let match;
+
+      while ((match = COUNT_PATTERN.exec(node.nodeValue)) !== null) {
+        const span = document.createElement("span");
+        span.className = "case-count";
+        span.dataset.count = match[1];
+        span.dataset.countSuffix = match[2];
+        span.textContent = match[0];
+        fragment.append(node.nodeValue.slice(lastIndex, match.index), span);
+        lastIndex = match.index + match[0].length;
+      }
+
+      fragment.append(node.nodeValue.slice(lastIndex));
+      node.replaceWith(fragment);
+    });
+  });
+}
+
+function stopCountUp(event) {
+  const card = event.currentTarget;
+  const frame = countFrames.get(card);
+
+  if (frame) {
+    window.cancelAnimationFrame(frame);
+    countFrames.delete(card);
+  }
+
+  card.querySelectorAll(".case-count").forEach((span) => {
+    span.textContent = `${span.dataset.count}${span.dataset.countSuffix}`;
+  });
+}
+
+function startCountUp(event) {
+  if (!canTiltCaseCard()) return;
+
+  const card = event.currentTarget;
+  const spans = Array.from(card.querySelectorAll(".case-count"));
+
+  if (spans.length === 0) return;
+
+  const previousFrame = countFrames.get(card);
+  if (previousFrame) window.cancelAnimationFrame(previousFrame);
+
+  const counts = spans.map(parseCount);
+  spans.forEach((span) => {
+    if (!span.style.minWidth) reserveCountWidth(span);
+  });
+
+  const startedAt = performance.now();
+
+  const step = (now) => {
+    const progress = Math.min(1, (now - startedAt) / COUNT_DURATION_MS);
+
+    spans.forEach((span, index) => {
+      const count = counts[index];
+
+      if (progress >= 1) {
+        span.textContent = `${count.raw}${count.suffix}`;
+        return;
+      }
+
+      // Числа до 10 - это два-три кадра, ease-out склеил бы их в рывок в самом начале.
+      const eased = count.value < 10 && count.decimals === 0 ? progress : 1 - (1 - progress) ** 3;
+      span.textContent = formatCount(count, count.value * eased);
+    });
+
+    if (progress < 1) {
+      countFrames.set(card, window.requestAnimationFrame(step));
+      return;
+    }
+
+    countFrames.delete(card);
+  };
+
+  countFrames.set(card, window.requestAnimationFrame(step));
+}
+
+function prepareCountUp(card) {
+  // На тач-устройствах и при reduced motion отсчёта не будет, значит и резерв ширины
+  // не нужен: карточка остаётся ровно такой, какой была до этой правки.
+  if (!canTiltCaseCard()) return;
+
+  wrapCardNumbers(card);
+
+  const spans = card.querySelectorAll(".case-count");
+  if (spans.length === 0) return;
+
+  // Меряем только после загрузки TT Masters, иначе ширины будут от запасного шрифта.
+  document.fonts.ready.then(() => spans.forEach(reserveCountWidth));
+
+  card.addEventListener("mouseenter", startCountUp);
+  card.addEventListener("focus", startCountUp);
+  card.addEventListener("mouseleave", stopCountUp);
+  card.addEventListener("blur", stopCountUp);
 }
 
 function createCaseCard(caseItem) {
@@ -857,6 +1231,7 @@ function createCaseCard(caseItem) {
   card.addEventListener("mouseleave", resetCaseCard);
   wrapper.append(card);
   applyTypography(wrapper);
+  prepareCountUp(card);
 
   return wrapper;
 }
@@ -944,6 +1319,48 @@ function updateCaseFilters() {
   });
 }
 
+function animateCaseFilterSelection(button) {
+  if (prefersReducedMotion.matches) return;
+
+  caseFilters.forEach((filter) => filter.classList.remove("is-selecting"));
+  void button.offsetWidth;
+  button.classList.add("is-selecting");
+  button.addEventListener("animationend", (event) => {
+    if (event.animationName === "case-filter-settle" && event.pseudoElement === "::before") {
+      button.classList.remove("is-selecting");
+    }
+  }, { once: true });
+}
+
+function animateCasesLoadMore() {
+  if (!casesLoadMoreButton || prefersReducedMotion.matches) return;
+
+  casesLoadMoreButton.classList.remove("is-loading-more");
+  void casesLoadMoreButton.offsetWidth;
+  casesLoadMoreButton.classList.add("is-loading-more");
+  casesLoadMoreButton.addEventListener("animationend", (event) => {
+    if (event.animationName === "case-filter-settle" && event.pseudoElement === "::before") {
+      casesLoadMoreButton.classList.remove("is-loading-more");
+    }
+  }, { once: true });
+}
+
+function addCaseControlRays(button) {
+  if (button.querySelector(".case-control-rays")) return;
+
+  const rays = document.createElement("span");
+  rays.className = "case-control-rays";
+  rays.setAttribute("aria-hidden", "true");
+
+  for (let index = 0; index < 3; index += 1) {
+    const ray = document.createElement("span");
+    ray.className = "case-control-ray";
+    rays.append(ray);
+  }
+
+  button.append(rays);
+}
+
 function renderCases() {
   if (!casesGrid) return;
 
@@ -957,24 +1374,53 @@ function renderCases() {
 }
 
 caseFilters.forEach((button) => {
+  addCaseControlRays(button);
+
   button.addEventListener("click", () => {
-    activeCaseCategory = button.dataset.caseFilter || "all";
+    const nextCaseCategory = button.dataset.caseFilter || "all";
+    const categoryChanged = nextCaseCategory !== activeCaseCategory;
+
+    activeCaseCategory = nextCaseCategory;
     visibleCaseCount = 4;
     renderCases();
+
+    if (categoryChanged) animateCaseFilterSelection(button);
   });
 });
 
 if (casesLoadMoreButton) {
+  addCaseControlRays(casesLoadMoreButton);
+
   casesLoadMoreButton.addEventListener("click", () => {
     const filteredCases = getFilteredCases();
     const previousVisibleCount = visibleCaseCount;
     visibleCaseCount += 6;
     appendCaseCards(filteredCases.slice(previousVisibleCount, visibleCaseCount), previousVisibleCount);
     updateCasesControls(filteredCases);
+    animateCasesLoadMore();
   });
 }
 
 renderCases();
+
+// Похожие кейсы на странице кейса: case-page.js рендерит их синхронно и выполняется
+// раньше script.js, так что к этому моменту карточки уже в DOM.
+document.querySelectorAll(".related-card").forEach(prepareCountUp);
+
+function setHandDrawnNavIcon(button, direction) {
+  const arrowPath = direction === "prev"
+    ? "M29.4 15.7C26.7 18.3 23.5 21.1 20.4 24.3C23.1 27.1 26 30 28.8 32.6"
+    : "M18.6 15.7C21.3 18.3 24.5 21.1 27.6 24.3C24.9 27.1 22 30 19.2 32.6";
+
+  button.classList.add("hand-drawn-nav", `hand-drawn-nav--${direction}`);
+  button.innerHTML = `
+    <svg class="hand-drawn-nav__art" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+      <path class="hand-drawn-nav__paper" d="M24.7 4.1C36.6 3.3 43.1 12.7 43.8 23.4C44.4 34.5 35.8 43.6 24.4 44C12.9 44.4 3.8 36 4.5 24.7C5.2 13.1 13 4.8 24.7 4.1Z" />
+      <path class="hand-drawn-nav__ring" d="M24.7 4.1C36.6 3.3 43.1 12.7 43.8 23.4C44.4 34.5 35.8 43.6 24.4 44C12.9 44.4 3.8 36 4.5 24.7C5.2 13.1 13 4.8 24.7 4.1Z" />
+      <path class="hand-drawn-nav__ring hand-drawn-nav__ring--echo" d="M23.9 4.8C34.9 3.7 43.9 12 43.2 24.6C42.6 36.2 34.9 43.1 23.3 43.5C12.3 43.8 4.8 35.9 4.8 23.5C4.9 12.2 13 5.9 23.9 4.8Z" />
+      <path class="hand-drawn-nav__arrow" d="${arrowPath}" />
+    </svg>`;
+}
 
 const reviewsData = [
   { src: "images/reviews/review-01.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 1" },
@@ -1008,8 +1454,8 @@ if (reviewsGallery && reviewsData.length > 0) {
   reviewNext.className = "reviews-gallery__nav reviews-gallery__nav--next";
   reviewPrev.type = "button";
   reviewNext.type = "button";
-  reviewPrev.textContent = "‹";
-  reviewNext.textContent = "›";
+  setHandDrawnNavIcon(reviewPrev, "prev");
+  setHandDrawnNavIcon(reviewNext, "next");
   reviewPrev.setAttribute("aria-label", "Показать предыдущий отзыв");
   reviewNext.setAttribute("aria-label", "Показать следующий отзыв");
 
@@ -1041,8 +1487,8 @@ if (reviewsGallery && reviewsData.length > 0) {
   reviewLightboxPrev.type = "button";
   reviewLightboxNext.type = "button";
   reviewLightboxClose.textContent = "×";
-  reviewLightboxPrev.textContent = "‹";
-  reviewLightboxNext.textContent = "›";
+  setHandDrawnNavIcon(reviewLightboxPrev, "prev");
+  setHandDrawnNavIcon(reviewLightboxNext, "next");
   reviewLightboxClose.setAttribute("aria-label", "Закрыть отзыв");
   reviewLightboxPrev.setAttribute("aria-label", "Показать предыдущий отзыв");
   reviewLightboxNext.setAttribute("aria-label", "Показать следующий отзыв");

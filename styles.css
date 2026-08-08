@@ -5,6 +5,7 @@
   --line: #d9d9d4;
   --text-font: "TT Masters", "Helvetica Neue", Arial, system-ui, sans-serif;
   --display-font: "TT Masters", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --hand-drawn-line-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M1 5.2C16 3.5 31 6.4 49 4.8S83 6.2 99 4.4' fill='none' stroke='black' stroke-linecap='round' stroke-width='9'/%3E%3C/svg%3E");
 }
 
 @font-face {
@@ -84,6 +85,7 @@ a {
 }
 
 .page-menu {
+  --scroll-progress: 0;
   position: fixed;
   z-index: 20;
   top: 132px;
@@ -94,8 +96,30 @@ a {
   max-width: 132px;
 }
 
+.page-menu__progress {
+  position: absolute;
+  z-index: 0;
+  top: 14px;
+  bottom: 14px;
+  left: 0;
+  width: 7px;
+  height: calc(100% - 28px);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.page-menu__progress-path {
+  fill: none;
+  stroke: #FF9800;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--scroll-progress));
+}
+
 .page-menu__link {
   position: relative;
+  z-index: 1;
   display: block;
   padding: 3px 0 3px 14px;
   color: #111;
@@ -114,14 +138,53 @@ a {
   height: 6px;
   border-radius: 50%;
   background: #FF9800;
-  opacity: 0;
+  opacity: 0.28;
   transform: translateY(-50%) scale(0.72);
   transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.page-menu__link.is-passed::before {
+  opacity: 0.62;
+  transform: translateY(-50%) scale(0.86);
 }
 
 .page-menu__link.is-active::before {
   opacity: 1;
   transform: translateY(-50%) scale(1);
+}
+
+.page-menu__link::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: -4px;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid #FF9800;
+  border-radius: 48% 52% 46% 54%;
+  opacity: 0;
+  transform: translateY(-50%) scale(0.28) rotate(-8deg);
+  pointer-events: none;
+}
+
+.page-menu__link.is-reached::before {
+  animation: page-menu-point-settle 310ms cubic-bezier(.2, .8, .32, 1);
+}
+
+.page-menu__link.is-reached::after {
+  animation: page-menu-point-ring 310ms ease-out;
+}
+
+@keyframes page-menu-point-settle {
+  0% { transform: translateY(-50%) scale(0.72); }
+  42% { transform: translateY(-50%) scale(1.48) rotate(-7deg); }
+  100% { transform: translateY(-50%) scale(1); }
+}
+
+@keyframes page-menu-point-ring {
+  0% { opacity: 0.88; transform: translateY(-50%) scale(0.28) rotate(-8deg); }
+  100% { opacity: 0; transform: translateY(-50%) scale(1.5) rotate(7deg); }
 }
 
 .mobile-menu-toggle,
@@ -387,6 +450,18 @@ a {
     animation: none !important;
   }
 
+  .work-tick__path {
+    transition: none;
+    stroke-dashoffset: 0;
+  }
+
+  .page-menu__progress-path,
+  .page-menu__link::before,
+  .page-menu__link::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
 }
 
 .intro {
@@ -627,21 +702,53 @@ h1 {
 
 .work-card li {
   position: relative;
-  padding-left: 17px;
+  padding-left: 22px;
   color: #61615f;
   font-size: 17px;
   font-weight: 500;
   line-height: 1.38;
 }
 
-.work-card li::before {
-  content: "";
+.work-tick {
   position: absolute;
   left: 0;
-  top: 0.7em;
-  width: 7px;
-  height: 1px;
-  background: #4d4d4b;
+  top: 0.24em;
+  width: 13px;
+  height: 12px;
+  overflow: visible;
+  transform: rotate(var(--tick-tilt, -3deg));
+}
+
+.work-card li:nth-child(3n + 2) .work-tick {
+  --tick-tilt: 2deg;
+}
+
+.work-card li:nth-child(3n) .work-tick {
+  --tick-tilt: -5deg;
+}
+
+.work-card li:nth-child(1) { --tick-delay: 0ms; }
+.work-card li:nth-child(2) { --tick-delay: 90ms; }
+.work-card li:nth-child(3) { --tick-delay: 180ms; }
+.work-card li:nth-child(4) { --tick-delay: 270ms; }
+.work-card li:nth-child(5) { --tick-delay: 360ms; }
+.work-card li:nth-child(6) { --tick-delay: 450ms; }
+.work-card li:nth-child(7) { --tick-delay: 540ms; }
+
+.work-tick__path {
+  fill: none;
+  stroke: #FF9800;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 520ms cubic-bezier(.25, .85, .35, 1);
+  transition-delay: var(--tick-delay, 0ms);
+}
+
+.work-card ul.is-ticked .work-tick__path {
+  stroke-dashoffset: 0;
 }
 
 .work-card__result {
@@ -687,6 +794,11 @@ h1 {
   margin: 0;
 }
 
+.about__photo-stack {
+  position: relative;
+  isolation: isolate;
+}
+
 .about__photo {
   display: block;
   width: 100%;
@@ -695,6 +807,41 @@ h1 {
   object-fit: cover;
   object-position: 50% 22%;
   background: var(--bg);
+}
+
+/* Цветной слой поверх ч/б: то же изображение, вырезанное радиальной маской.
+   Кадрирование обязано повторять object-fit/object-position у .about__photo.
+   mix-blend-mode: color берёт из цветного файла только цветность, светлоту оставляет
+   от ч/б слоя - поэтому фон снимка не может проступить прямоугольником. */
+.about__photo-stack::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("assets/about-portrait-color.png") 50% 22% / cover no-repeat;
+  mix-blend-mode: color;
+  -webkit-mask-image: radial-gradient(
+    circle var(--about-spot-r, 170px) at var(--about-spot-x, 50%) var(--about-spot-y, -40%),
+    #000 0 38%,
+    transparent 72%
+  );
+  mask-image: radial-gradient(
+    circle var(--about-spot-r, 170px) at var(--about-spot-x, 50%) var(--about-spot-y, -40%),
+    #000 0 38%,
+    transparent 72%
+  );
+  opacity: 0;
+  transition: opacity 260ms ease;
+  pointer-events: none;
+}
+
+.about__photo-stack.is-lit::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__photo-stack::after {
+    display: none;
+  }
 }
 
 .about__caption {
@@ -882,13 +1029,15 @@ h1 {
 }
 
 .case-filter {
+  --case-filter-ring: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 42' preserveAspectRatio='none'%3E%3Cpath d='M4.3 21.5C4.2 9.7 14.2 3.6 29.4 3.4C48.5 2.5 80.7 2.4 93.4 8.9C101.3 13 98.4 30.5 91.3 35.8C78.1 40.6 43 40.2 23.7 39.4C10.7 39.1 3.7 32.2 4.3 21.5Z' fill='none' stroke='%237d7d7a' stroke-linecap='round' stroke-linejoin='round' stroke-width='.45'/%3E%3Cpath d='M5.5 21.2C5.3 10.7 14.8 4.7 30.1 4.5C50.7 3.5 79.4 3.5 92.3 9.8C99.2 14.4 97.5 29.3 90.2 34.8C76.3 39.2 43.4 38.8 24.3 38.2C12.1 37.8 4.8 31.4 5.5 21.2Z' fill='none' stroke='%237d7d7a' stroke-linecap='round' stroke-linejoin='round' stroke-opacity='.38' stroke-width='.1875'/%3E%3C/svg%3E");
   appearance: none;
+  position: relative;
+  isolation: isolate;
   min-height: 42px;
   padding: 10px 16px 11px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  border: 0;
   background: transparent;
-  color: #4c4c4a;
+  color: #202020;
   font: inherit;
   font-size: 17px;
   font-weight: 500;
@@ -901,11 +1050,175 @@ h1 {
     transform 180ms ease;
 }
 
-.case-filter:hover,
+.case-filter::before,
+.cases-load-more::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -3px -4px;
+  background-image: var(--case-filter-ring);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+  transform-origin: center;
+  transition: transform 180ms ease;
+}
+
 .case-filter.is-active {
-  border-color: #202020;
-  color: #202020;
-  background: rgb(32 32 32 / 0.045);
+  --case-filter-ring: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 42' preserveAspectRatio='none'%3E%3Cpath d='M4.3 21.5C4.2 9.7 14.2 3.6 29.4 3.4C48.5 2.5 80.7 2.4 93.4 8.9C101.3 13 98.4 30.5 91.3 35.8C78.1 40.6 43 40.2 23.7 39.4C10.7 39.1 3.7 32.2 4.3 21.5Z' fill='none' stroke='%23202020' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.35'/%3E%3Cpath d='M5.5 21.2C5.3 10.7 14.8 4.7 30.1 4.5C50.7 3.5 79.4 3.5 92.3 9.8C99.2 14.4 97.5 29.3 90.2 34.8C76.3 39.2 43.4 38.8 24.3 38.2C12.1 37.8 4.8 31.4 5.5 21.2Z' fill='none' stroke='%23202020' stroke-linecap='round' stroke-linejoin='round' stroke-opacity='.44' stroke-width='.55'/%3E%3C/svg%3E");
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .case-filter:hover::before,
+  .cases-load-more:hover::before {
+    animation: case-filter-wiggle 760ms ease-in-out infinite;
+  }
+}
+
+.case-filter.is-selecting::before,
+.cases-load-more.is-loading-more::before {
+  animation: case-filter-settle 460ms cubic-bezier(.33, .9, .4, 1);
+}
+
+.case-control-rays {
+  position: absolute;
+  z-index: 1;
+  top: -6px;
+  right: -26px;
+  width: 46px;
+  height: 6px;
+  pointer-events: none;
+}
+
+.case-control-ray {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: var(--ray-length);
+  height: 3.33px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M2 5.8C13 1.9 24 8.2 36 4.7C48 1.8 57 7.7 69 4.1C80 1.2 89 6.8 98 3.2' fill='none' stroke='%23FF9800' stroke-linecap='round' stroke-linejoin='round' stroke-width='8.5'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  opacity: 0;
+  transform: translate(0, 0) rotate(var(--ray-angle)) scaleX(0.25);
+  transform-origin: left center;
+}
+
+.case-control-ray:nth-child(1) {
+  --ray-length: 18px;
+  --ray-angle: -76deg;
+  --ray-rest-x: 0px;
+  --ray-rest-y: 0px;
+  --ray-burst-x: 12px;
+  --ray-burst-y: -17px;
+  --ray-delay: 105ms;
+}
+
+.case-control-ray:nth-child(2) {
+  --ray-length: 18px;
+  --ray-angle: -60deg;
+  --ray-rest-x: 10px;
+  --ray-rest-y: 0px;
+  --ray-burst-x: 19px;
+  --ray-burst-y: -13px;
+  --ray-delay: 0ms;
+}
+
+.case-control-ray:nth-child(3) {
+  --ray-length: 16px;
+  --ray-angle: -44deg;
+  --ray-rest-x: 20px;
+  --ray-rest-y: 0px;
+  --ray-burst-x: 26px;
+  --ray-burst-y: -8px;
+  --ray-delay: 55ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .case-filter:hover .case-control-ray,
+  .cases-load-more:hover .case-control-ray {
+    animation: case-control-ray-appear 280ms cubic-bezier(.2, .8, .25, 1) var(--ray-delay) forwards;
+  }
+}
+
+.case-filter.is-selecting .case-control-ray,
+.cases-load-more.is-loading-more .case-control-ray {
+  animation: case-control-ray-burst 420ms cubic-bezier(.18, .8, .3, 1) var(--ray-delay) forwards;
+}
+
+@keyframes case-control-ray-appear {
+  from {
+    opacity: 0;
+    transform: translate(0, 0) rotate(var(--ray-angle)) scaleX(0.25);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(var(--ray-rest-x), var(--ray-rest-y)) rotate(var(--ray-angle)) scaleX(1);
+  }
+}
+
+@keyframes case-control-ray-burst {
+  0% {
+    opacity: 1;
+    transform: translate(var(--ray-rest-x), var(--ray-rest-y)) rotate(var(--ray-angle)) scaleX(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--ray-burst-x), var(--ray-burst-y)) rotate(var(--ray-angle)) scaleX(1.12);
+  }
+}
+
+@keyframes case-filter-wiggle {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0);
+  }
+
+  28% {
+    transform: translateX(-1px) rotate(-0.45deg);
+  }
+
+  58% {
+    transform: translateX(0.85px) rotate(0.35deg);
+  }
+
+  82% {
+    transform: translateX(-0.45px) rotate(-0.18deg);
+  }
+}
+
+@keyframes case-filter-settle {
+  0% {
+    transform: translateX(0) rotate(0);
+  }
+
+  24% {
+    transform: translateX(-1.35px) rotate(-0.65deg);
+  }
+
+  54% {
+    transform: translateX(1.05px) rotate(0.5deg);
+  }
+
+  76% {
+    transform: translateX(-0.45px) rotate(-0.2deg);
+  }
+
+  100% {
+    transform: translateX(0) rotate(0);
+  }
+}
+
+.case-filter:focus-visible,
+.cases-load-more:focus-visible {
+  outline: none;
+}
+
+.case-filter:focus-visible::before,
+.cases-load-more:focus-visible::before {
+  filter: drop-shadow(0 0 1.5px rgb(32 32 32 / 0.8));
 }
 
 .case-filter:active {
@@ -985,6 +1298,15 @@ h1 {
   letter-spacing: 0;
 }
 
+/* Ширину слота под считающееся число выставляет JS в пикселях: она равна самому широкому
+   кадру отсчёта и держится постоянно, поэтому строка не дышит. Транзишена тут быть не
+   должно - любая анимация ширины и есть то самое дёрганье. */
+.case-count {
+  display: inline-block;
+  text-align: start;
+  font-variant-numeric: tabular-nums;
+}
+
 .case-card__result {
   max-width: 470px;
   margin: 34px 0 0;
@@ -1055,11 +1377,13 @@ h1 {
 }
 
 .cases-load-more {
+  --case-filter-ring: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 42' preserveAspectRatio='none'%3E%3Cpath d='M4.3 21.5C4.2 9.7 14.2 3.6 29.4 3.4C48.5 2.5 80.7 2.4 93.4 8.9C101.3 13 98.4 30.5 91.3 35.8C78.1 40.6 43 40.2 23.7 39.4C10.7 39.1 3.7 32.2 4.3 21.5Z' fill='none' stroke='%237d7d7a' stroke-linecap='round' stroke-linejoin='round' stroke-width='.45'/%3E%3Cpath d='M5.5 21.2C5.3 10.7 14.8 4.7 30.1 4.5C50.7 3.5 79.4 3.5 92.3 9.8C99.2 14.4 97.5 29.3 90.2 34.8C76.3 39.2 43.4 38.8 24.3 38.2C12.1 37.8 4.8 31.4 5.5 21.2Z' fill='none' stroke='%237d7d7a' stroke-linecap='round' stroke-linejoin='round' stroke-opacity='.38' stroke-width='.1875'/%3E%3C/svg%3E");
   appearance: none;
+  position: relative;
+  isolation: isolate;
   margin-top: 34px;
   padding: 13px 18px 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  border: 0;
   background: transparent;
   color: #202020;
   font: inherit;
@@ -1067,15 +1391,7 @@ h1 {
   font-weight: 500;
   line-height: 1;
   cursor: pointer;
-  transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    transform 180ms ease;
-}
-
-.cases-load-more:hover {
-  border-color: #202020;
-  background: rgb(32 32 32 / 0.045);
+  transition: transform 180ms ease;
 }
 
 .cases-load-more:active {
@@ -1293,6 +1609,8 @@ h1 {
   border: 0;
   border-radius: 999px;
   background: #c4c4bf;
+  -webkit-mask: var(--hand-drawn-line-mask) center / 100% 100% no-repeat;
+  mask: var(--hand-drawn-line-mask) center / 100% 100% no-repeat;
   cursor: pointer;
   transition: width 220ms ease, background-color 220ms ease;
 }
@@ -1733,24 +2051,11 @@ h1 {
   perspective-origin: 50% 50%;
 }
 
-/* Слайды позиционируются от центра .case-gallery. Пока карусель стоит в правой
-   колонке сетки, этот центр не совпадает с центром экрана и блок читается как
-   сбитый вправо. Отдаём карусели обе колонки и гасим левый отступ .case-detail,
-   тогда её центр совпадает с центром экрана. */
-@media (min-width: 921px) {
-  .case-gallery-section .case-gallery {
-    grid-column: 1 / -1;
-    width: calc(100% + 104px);
-    margin-left: -104px;
-  }
-}
-
 .case-gallery__stage {
   position: relative;
   min-height: inherit;
   transform-style: preserve-3d;
   touch-action: pan-y;
-  cursor: grab;
 }
 
 .case-gallery__item {
@@ -1837,8 +2142,8 @@ h1 {
   z-index: 20;
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
+  width: 72px;
+  height: 72px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgb(243 243 241 / 0.9);
@@ -1896,6 +2201,8 @@ h1 {
   border: 0;
   border-radius: 999px;
   background: #c7c7c1;
+  -webkit-mask: var(--hand-drawn-line-mask) center / 100% 100% no-repeat;
+  mask: var(--hand-drawn-line-mask) center / 100% 100% no-repeat;
   cursor: pointer;
   transition:
     width 180ms ease,
@@ -2077,6 +2384,100 @@ h1 {
   transform: translateY(1px);
 }
 
+/* Общие рисованные стрелки для отзывов и галерей кейсов. */
+.hand-drawn-nav {
+  --hand-drawn-tilt: -3deg;
+  --hand-drawn-return: 1deg;
+  --hand-drawn-settle: -0.5deg;
+  border-color: transparent;
+  background: transparent;
+  overflow: visible;
+}
+
+.hand-drawn-nav--next {
+  --hand-drawn-tilt: 3deg;
+  --hand-drawn-return: -1deg;
+  --hand-drawn-settle: 0.5deg;
+}
+
+.hand-drawn-nav__art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  transform-origin: center;
+}
+
+.hand-drawn-nav__paper {
+  fill: rgb(243 243 241 / 0.9);
+}
+
+.hand-drawn-nav__ring,
+.hand-drawn-nav__arrow {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hand-drawn-nav__ring {
+  stroke: #FF9800;
+  stroke-width: 2.35;
+}
+
+.hand-drawn-nav__ring--echo {
+  stroke-width: 1.15;
+  stroke-opacity: 0.4;
+}
+
+.hand-drawn-nav__arrow {
+  stroke: #202020;
+  stroke-width: 2.45;
+}
+
+.hand-drawn-nav:hover .hand-drawn-nav__art,
+.hand-drawn-nav:focus-visible .hand-drawn-nav__art {
+  animation: hand-drawn-bounce 560ms linear;
+}
+
+.hand-drawn-nav:focus-visible {
+  outline: none;
+}
+
+.hand-drawn-nav:focus-visible .hand-drawn-nav__art {
+  filter: drop-shadow(0 0 2px rgb(255 152 0 / 0.38));
+}
+
+.reviews-gallery__nav.hand-drawn-nav:hover,
+.reviews-lightbox__nav.hand-drawn-nav:hover,
+.case-gallery__nav.hand-drawn-nav:hover,
+.case-lightbox__button.hand-drawn-nav:hover {
+  border-color: transparent;
+  background: transparent;
+}
+
+@keyframes hand-drawn-bounce {
+  0% {
+    transform: rotate(0) scale(1);
+  }
+
+  38% {
+    transform: rotate(var(--hand-drawn-tilt)) scale(1.16);
+  }
+
+  64% {
+    transform: rotate(var(--hand-drawn-return)) scale(0.97);
+  }
+
+  82% {
+    transform: rotate(var(--hand-drawn-settle)) scale(1.035);
+  }
+
+  100% {
+    transform: rotate(0) scale(1);
+  }
+}
+
 .related-list-wrap {
   position: relative;
   max-height: 430px;
@@ -2227,6 +2628,10 @@ h1 {
     transition: none !important;
   }
 
+  .case-count {
+    min-width: 0 !important;
+  }
+
   .case-card-reveal,
   .case-card,
   .case-filter,
@@ -2234,6 +2639,18 @@ h1 {
   .related-card {
     transition: none !important;
     transform: none !important;
+  }
+
+  .case-filter:hover::before,
+  .case-filter.is-selecting::before,
+  .cases-load-more:hover::before,
+  .cases-load-more.is-loading-more::before {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .case-control-rays {
+    display: none;
   }
 
   .case-card-reveal {
@@ -2253,6 +2670,12 @@ h1 {
   .reviews-lightbox__nav,
   .reviews-lightbox__close {
     transition: none !important;
+  }
+
+  .hand-drawn-nav:hover .hand-drawn-nav__art,
+  .hand-drawn-nav:focus-visible .hand-drawn-nav__art {
+    animation: none !important;
+    transform: none;
   }
 
   .case-gallery__button {
@@ -2717,6 +3140,10 @@ h1 {
     margin-top: 30px;
   }
 
+  .about__photo-stack {
+    --about-spot-r: 120px;
+  }
+
   .about__photo {
     min-height: 410px;
   }
@@ -3055,8 +3482,8 @@ h1 {
   .case-gallery__nav {
     top: auto;
     bottom: 0;
-    width: 42px;
-    height: 42px;
+    width: 63px;
+    height: 63px;
     transform: none;
   }
 
@@ -3645,6 +4072,33 @@ h1 {
     opacity 220ms ease;
 }
 
+.site-footer__signature.is-signature-reveal-enabled .site-footer__signature-image {
+  -webkit-mask-image: linear-gradient(90deg, #000 0 50%, transparent 50% 100%);
+  -webkit-mask-position: 100% 0;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 200% 100%;
+  mask-image: linear-gradient(90deg, #000 0 50%, transparent 50% 100%);
+  mask-position: 100% 0;
+  mask-repeat: no-repeat;
+  mask-size: 200% 100%;
+}
+
+.site-footer__signature.is-signature-writing .site-footer__signature-image {
+  animation: footer-signature-write 1.4s linear forwards;
+}
+
+@keyframes footer-signature-write {
+  from {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+
+  to {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+}
+
 .site-footer__signature-caption {
   max-width: 520px;
   margin: 12px 0 0;
@@ -3698,6 +4152,12 @@ h1 {
   .site-footer__signature-image {
     transition: none;
     transform: none !important;
+  }
+
+  .site-footer__signature.is-signature-reveal-enabled .site-footer__signature-image {
+    -webkit-mask-image: none;
+    animation: none;
+    mask-image: none;
   }
 }
 

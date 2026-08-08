@@ -10,7 +10,6 @@
   const currentCase = cases.find((caseItem) => caseItem.slug === page.dataset.caseSlug);
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const COVERFLOW_TRANSITION_MS = 640;
-  const COVERFLOW_WHEEL_THRESHOLD = 18;
   let activeLightboxIndex = 0;
   let activeLightboxImages = [];
   let lightbox = null;
@@ -32,6 +31,21 @@
     }
 
     return element;
+  }
+
+  function setHandDrawnNavIcon(button, direction) {
+    const arrowPath = direction === "prev"
+      ? "M29.4 15.7C26.7 18.3 23.5 21.1 20.4 24.3C23.1 27.1 26 30 28.8 32.6"
+      : "M18.6 15.7C21.3 18.3 24.5 21.1 27.6 24.3C24.9 27.1 22 30 19.2 32.6";
+
+    button.classList.add("hand-drawn-nav", `hand-drawn-nav--${direction}`);
+    button.innerHTML = `
+      <svg class="hand-drawn-nav__art" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <path class="hand-drawn-nav__paper" d="M24.7 4.1C36.6 3.3 43.1 12.7 43.8 23.4C44.4 34.5 35.8 43.6 24.4 44C12.9 44.4 3.8 36 4.5 24.7C5.2 13.1 13 4.8 24.7 4.1Z" />
+        <path class="hand-drawn-nav__ring" d="M24.7 4.1C36.6 3.3 43.1 12.7 43.8 23.4C44.4 34.5 35.8 43.6 24.4 44C12.9 44.4 3.8 36 4.5 24.7C5.2 13.1 13 4.8 24.7 4.1Z" />
+        <path class="hand-drawn-nav__ring hand-drawn-nav__ring--echo" d="M23.9 4.8C34.9 3.7 43.9 12 43.2 24.6C42.6 36.2 34.9 43.1 23.3 43.5C12.3 43.8 4.8 35.9 4.8 23.5C4.9 12.2 13 5.9 23.9 4.8Z" />
+        <path class="hand-drawn-nav__arrow" d="${arrowPath}" />
+      </svg>`;
   }
 
   function assetPath(src) {
@@ -305,34 +319,6 @@
     lockCoverflowAnimation(gallery);
   }
 
-  function bindCoverflowWheel(gallery) {
-    const stage = gallery.querySelector(".case-gallery__stage");
-    let wheelLocked = false;
-
-    if (!stage) return;
-
-    stage.addEventListener(
-      "wheel",
-      (event) => {
-        const direction = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-
-        if (Math.abs(direction) < COVERFLOW_WHEEL_THRESHOLD) return;
-        event.preventDefault();
-
-        if (wheelLocked) return;
-        wheelLocked = true;
-
-        const activeIndex = Number(gallery.dataset.activeIndex || "0");
-        setCoverflowIndex(gallery, activeIndex + (direction > 0 ? 1 : -1));
-
-        window.setTimeout(() => {
-          wheelLocked = false;
-        }, reducedMotion.matches ? 80 : COVERFLOW_TRANSITION_MS);
-      },
-      { passive: false }
-    );
-  }
-
   function bindCoverflowHoverTilt(gallery) {
     const buttons = gallery.querySelectorAll(".case-gallery__button");
 
@@ -368,14 +354,16 @@
   function renderCoverflowGallery(images) {
     const gallery = createElement("div", "case-gallery");
     const stage = createElement("div", "case-gallery__stage");
-    const previousButton = createElement("button", "case-gallery__nav case-gallery__nav--prev", "‹");
-    const nextButton = createElement("button", "case-gallery__nav case-gallery__nav--next", "›");
+    const previousButton = createElement("button", "case-gallery__nav case-gallery__nav--prev");
+    const nextButton = createElement("button", "case-gallery__nav case-gallery__nav--next");
     const progress = createElement("div", "case-gallery__progress");
     const galleryItems = createGalleryItems(images);
 
     stage.setAttribute("aria-label", "Галерея скриншотов");
     previousButton.type = "button";
     nextButton.type = "button";
+    setHandDrawnNavIcon(previousButton, "prev");
+    setHandDrawnNavIcon(nextButton, "next");
     previousButton.setAttribute("aria-label", "Предыдущий скриншот");
     nextButton.setAttribute("aria-label", "Следующий скриншот");
 
@@ -408,7 +396,6 @@
     nextButton.addEventListener("click", () => setCoverflowIndex(gallery, Number(gallery.dataset.activeIndex || "0") + 1));
     gallery.append(stage, previousButton, nextButton, progress);
     updateCoverflowGallery(gallery, 0);
-    bindCoverflowWheel(gallery);
     bindCoverflowHoverTilt(gallery);
     return gallery;
   }
@@ -443,8 +430,8 @@
     const overlay = createElement("div", "case-lightbox");
     const backdrop = createElement("button", "case-lightbox__backdrop");
     const figure = createElement("figure", "case-lightbox__figure");
-    const previousButton = createElement("button", "case-lightbox__button case-lightbox__button--prev", "‹");
-    const nextButton = createElement("button", "case-lightbox__button case-lightbox__button--next", "›");
+    const previousButton = createElement("button", "case-lightbox__button case-lightbox__button--prev");
+    const nextButton = createElement("button", "case-lightbox__button case-lightbox__button--next");
     const closeButton = createElement("button", "case-lightbox__close", "×");
     const image = document.createElement("img");
     const caption = createElement("figcaption", "case-lightbox__caption");
@@ -459,6 +446,8 @@
     previousButton.setAttribute("aria-label", "Предыдущий скриншот");
     nextButton.type = "button";
     nextButton.setAttribute("aria-label", "Следующий скриншот");
+    setHandDrawnNavIcon(previousButton, "prev");
+    setHandDrawnNavIcon(nextButton, "next");
     closeButton.type = "button";
     closeButton.setAttribute("aria-label", "Закрыть");
     image.className = "case-lightbox__image";
