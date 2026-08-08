@@ -262,6 +262,9 @@ function applyTypography(root) {
 }
 
 const LETTER_DELAY_MS = 63;
+// 63 × 0.75: на страницах кейсов перекат заголовков идёт на четверть быстрее.
+// Парное правило - animation-duration у .case-detail в styles.css.
+const CASE_LETTER_DELAY_MS = 47;
 const ANIMATION_DURATION_MS = 588;
 const GLOBAL_ANIMATION_DELAY_MS = 3000;
 const AFTER_STATS_PAUSE_MS = 0;
@@ -464,8 +467,11 @@ function shouldRunHeroIntroAnimation() {
   return currentScroll < Math.max(120, window.innerHeight * 0.25);
 }
 
+// Неразрывный пробел из applyTypography() переживает разбор на буквы: он остаётся
+// внутри слова, а у .text-roll-word стоит white-space: nowrap - значит перенос между
+// склеенными словами невозможен. Обычный \s его бы схлопнул и типографика пропала бы.
 function getCleanText(element) {
-  return (element.textContent || "").replace(/\s+/g, " ").trim();
+  return (element.textContent || "").replace(/[ \t\n\r]+/g, " ").trim();
 }
 
 function splitHighlightText(text, highlightText) {
@@ -548,12 +554,12 @@ function buildTextRoll(element, baseDelay = 0, letterDelay = LETTER_DELAY_MS, hi
       fragmentRoot.className = "delayed-underline";
     }
 
-    const parts = fragment.text.split(/(\s+)/);
+    const parts = fragment.text.split(/([ \t\n\r]+)/);
 
     for (const part of parts) {
       if (!part) continue;
 
-      if (/^\s+$/.test(part)) {
+      if (/^[ \t\n\r]+$/.test(part)) {
         fragmentRoot.append(document.createTextNode(" "));
         continue;
       }
@@ -831,6 +837,7 @@ function interleaveCasesByCategory(caseItems) {
 const homepageCases = interleaveCasesByCategory(
   Array.isArray(window.siteCases) ? window.siteCases.filter((caseItem) => caseItem.isFeatured !== false) : [],
 );
+const FOOTER_SIGNATURE_DRAW_DURATION_MS = 1400;
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const footerSignature = document.querySelector(".site-footer__signature");
 let caseRevealObserver = null;
@@ -888,33 +895,64 @@ if (footerSignature) {
   footerSignature.addEventListener("pointerleave", resetFooterSignature);
 }
 
-function supportsFooterSignatureMask() {
-  if (!window.CSS || typeof window.CSS.supports !== "function") return false;
-
-  return (
-    window.CSS.supports("mask-image", "linear-gradient(90deg, #000, transparent)") ||
-    window.CSS.supports("-webkit-mask-image", "linear-gradient(90deg, #000, transparent)")
-  );
+function getFooterSignatureAnimationSource(sourceUrl) {
+  return sourceUrl.replace("maxim-signature.svg", "maxim-signature-writing.webp");
 }
 
 function initFooterSignatureReveal() {
   if (
     !footerSignature ||
     prefersReducedMotion.matches ||
-    !("IntersectionObserver" in window) ||
-    !supportsFooterSignatureMask()
+    !("IntersectionObserver" in window)
   ) {
     return;
   }
 
-  const signatureImage = footerSignature.querySelector(".site-footer__signature-image");
-  if (!signatureImage) return;
+  const staticSignature = footerSignature.querySelector("img.site-footer__signature-image");
+  if (!staticSignature) return;
 
-  footerSignature.classList.add("is-signature-reveal-enabled");
+  const originalSource = staticSignature.getAttribute("src");
+  if (!originalSource) return;
+
+  const animationSource = getFooterSignatureAnimationSource(originalSource);
+  const animationPreload = new Image();
+  let animationReady = false;
+  let animationQueued = false;
+  let animationStarted = false;
+
+  const finishDrawing = () => {
+    staticSignature.src = originalSource;
+    footerSignature.classList.remove("is-signature-writing");
+    footerSignature.classList.add("is-signature-written");
+  };
+
+  const playAnimation = () => {
+    if (animationStarted) return;
+
+    animationStarted = true;
+    staticSignature.src = animationSource;
+    footerSignature.classList.add("is-signature-writing");
+    window.setTimeout(finishDrawing, FOOTER_SIGNATURE_DRAW_DURATION_MS);
+  };
 
   const startReveal = () => {
-    footerSignature.classList.add("is-signature-writing");
+    animationQueued = true;
+    if (animationReady) playAnimation();
   };
+
+  animationPreload.addEventListener("load", () => {
+    animationReady = true;
+    if (animationQueued) playAnimation();
+  }, { once: true });
+
+  animationPreload.addEventListener("error", () => {
+    animationQueued = false;
+  }, { once: true });
+
+  animationPreload.src = animationSource;
+  if (animationPreload.complete && animationPreload.naturalWidth > 0) {
+    animationReady = true;
+  }
 
   const signatureRevealObserver = new IntersectionObserver(
     (entries, observer) => {
@@ -922,18 +960,7 @@ function initFooterSignatureReveal() {
         if (!entry.isIntersecting) return;
 
         observer.unobserve(entry.target);
-
-        if (signatureImage.complete) {
-          startReveal();
-          return;
-        }
-
-        signatureImage.addEventListener("load", startReveal, { once: true });
-        signatureImage.addEventListener(
-          "error",
-          () => footerSignature.classList.remove("is-signature-reveal-enabled"),
-          { once: true },
-        );
+        startReveal();
       });
     },
     { threshold: 0.2 },
@@ -1021,7 +1048,9 @@ const COUNT_PATTERN = /(\d+(?:[\s ]\d{3})+|\d+(?:[.,]\d+)?)([₽€$%+]?)/g;
 const COUNT_DURATION_MS = 900;
 const COUNT_SAMPLES = 256;
 const COUNT_CHARS = "0123456789.,  ₽€$%+";
-const COUNT_TARGETS = ".case-card__title, .case-card__result, .related-card__title, .related-card__result";
+const COUNT_TARGETS =
+  ".case-card__title, .case-card__result, .related-card__title, .related-card__result, " +
+  ".case-metric strong, .case-hero__result";
 const countFrames = new WeakMap();
 const charWidthCache = new Map();
 
@@ -1135,15 +1164,14 @@ function stopCountUp(event) {
   });
 }
 
-function startCountUp(event) {
-  if (!canTiltCaseCard()) return;
-
-  const card = event.currentTarget;
-  const spans = Array.from(card.querySelectorAll(".case-count"));
+// Сам отсчёт не знает, кто его запустил: на карточке это курсор, на странице кейса -
+// прокрутка. Проверка на мышь живёт в обработчике наведения, а не здесь.
+function runCountUp(container) {
+  const spans = Array.from(container.querySelectorAll(".case-count"));
 
   if (spans.length === 0) return;
 
-  const previousFrame = countFrames.get(card);
+  const previousFrame = countFrames.get(container);
   if (previousFrame) window.cancelAnimationFrame(previousFrame);
 
   const counts = spans.map(parseCount);
@@ -1170,14 +1198,20 @@ function startCountUp(event) {
     });
 
     if (progress < 1) {
-      countFrames.set(card, window.requestAnimationFrame(step));
+      countFrames.set(container, window.requestAnimationFrame(step));
       return;
     }
 
-    countFrames.delete(card);
+    countFrames.delete(container);
   };
 
-  countFrames.set(card, window.requestAnimationFrame(step));
+  countFrames.set(container, window.requestAnimationFrame(step));
+}
+
+function startCountUp(event) {
+  if (!canTiltCaseCard()) return;
+
+  runCountUp(event.currentTarget);
 }
 
 function prepareCountUp(card) {
@@ -1697,3 +1731,73 @@ if (reviewsGallery && reviewsData.length > 0) {
 // Один проход по готовой странице: на главной карточки кейсов к этому моменту
 // отрисованы, на странице кейса case-page.js уже собрал контент.
 applyTypography(document);
+
+// Заголовки секций перекатываются по буквам, как хиро. Разбор идёт здесь, сразу после
+// типографики и до первой отрисовки: буквы уже стоят в DOM невидимые и на паузе, а
+// IntersectionObserver только снимает паузу. Разбирать под скроллом нельзя - переписывать
+// заголовок на сотню спанов в момент пересечения и есть тот дёрганый подмен текста.
+const sectionTitles = document.querySelectorAll(
+  "#work-scope-title, #about-title, #cases-title, #reviews-title, #footer-contacts-title, " +
+    ".case-detail h1, .case-detail h2, .case-detail h3"
+);
+
+sectionTitles.forEach((title) => {
+  title.classList.add("is-roll-paused");
+  buildTextRoll(title, 0, title.closest(".case-detail") ? CASE_LETTER_DELAY_MS : LETTER_DELAY_MS);
+});
+
+document.documentElement.classList.remove("is-section-titles-pending");
+
+if (sectionTitles.length > 0 && "IntersectionObserver" in window) {
+  const sectionTitleObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        entry.target.classList.remove("is-roll-paused");
+        observer.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.1 }
+  );
+
+  sectionTitles.forEach((title) => sectionTitleObserver.observe(title));
+} else {
+  sectionTitles.forEach((title) => title.classList.remove("is-roll-paused"));
+}
+
+// На карточке отсчёт запускает курсор, на странице кейса - прокрутка: цифры проезжают
+// мимо один раз. Значение сразу ставится в ноль, иначе настоящее число успело бы
+// показаться при входе в экран и скакнуть обратно на ноль.
+// Шапка целиком, а не .case-hero__result: wrapCardNumbers ищет цели через
+// querySelectorAll, то есть среди потомков - сам переданный элемент она не видит.
+const countBlocks = document.querySelectorAll(".case-metrics, .case-hero");
+
+if (countBlocks.length > 0 && !prefersReducedMotion.matches) {
+  countBlocks.forEach((block) => {
+    wrapCardNumbers(block);
+    block.querySelectorAll(".case-count").forEach((span) => {
+      span.textContent = formatCount(parseCount(span), 0);
+    });
+  });
+
+  // Резерв ширины меряется только после загрузки TT Masters, иначе замеры будут от
+  // запасного шрифта и строка всё равно будет дышать на отсчёте.
+  document.fonts.ready.then(() => {
+    countBlocks.forEach((block) => block.querySelectorAll(".case-count").forEach(reserveCountWidth));
+  });
+
+  const countObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        runCountUp(entry.target);
+        observer.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.3 }
+  );
+
+  countBlocks.forEach((block) => countObserver.observe(block));
+}

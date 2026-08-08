@@ -79,6 +79,28 @@ body.cookie-consent-open {
   visibility: hidden;
 }
 
+/* Заголовки секций до разбора на буквы прячутся так же, как хиро: текст не должен
+   мелькнуть готовым, иначе перекат читается как подмена, а не как появление. */
+.is-section-titles-pending .work-scope h2,
+.is-section-titles-pending .about h2,
+.is-section-titles-pending .cases-showcase h2,
+.is-section-titles-pending .reviews-section__title,
+.is-section-titles-pending .site-footer__title {
+  visibility: hidden;
+}
+
+/* Буквы собраны сразу на загрузке, но стоят на кадре from (opacity: 0) вместе с
+   отсчётом --roll-delay. Снятие класса запускает лесенку задержек с нуля. */
+.is-roll-paused .text-roll-letter > span {
+  animation-play-state: paused;
+}
+
+/* На кейсе заголовков много и они длинные, перекат идёт на четверть быстрее: 588 × 0.75.
+   Парная константа - CASE_LETTER_DELAY_MS в script.js, ужимать надо оба слагаемых. */
+.case-detail .text-roll-letter > span {
+  animation-duration: 441ms;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -1862,7 +1884,9 @@ h1 {
   line-height: 0.95;
 }
 
-.case-metric span {
+/* Только прямой ребёнок: это подпись метрики. Описательный потомок ловил бы и спан
+   счётчика внутри strong - крупная рукописная цифра съезжала бы на 20px и серый. */
+.case-metric > span {
   color: #61615f;
   font-size: 20px;
   font-weight: 500;
@@ -3394,7 +3418,7 @@ h1 {
     font-size: 36px;
   }
 
-  .case-metric span {
+  .case-metric > span {
     font-size: 17px;
   }
 
@@ -4072,33 +4096,6 @@ h1 {
     opacity 220ms ease;
 }
 
-.site-footer__signature.is-signature-reveal-enabled .site-footer__signature-image {
-  -webkit-mask-image: linear-gradient(90deg, #000 0 50%, transparent 50% 100%);
-  -webkit-mask-position: 100% 0;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: 200% 100%;
-  mask-image: linear-gradient(90deg, #000 0 50%, transparent 50% 100%);
-  mask-position: 100% 0;
-  mask-repeat: no-repeat;
-  mask-size: 200% 100%;
-}
-
-.site-footer__signature.is-signature-writing .site-footer__signature-image {
-  animation: footer-signature-write 1.4s linear forwards;
-}
-
-@keyframes footer-signature-write {
-  from {
-    -webkit-mask-position: 100% 0;
-    mask-position: 100% 0;
-  }
-
-  to {
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
-  }
-}
-
 .site-footer__signature-caption {
   max-width: 520px;
   margin: 12px 0 0;
@@ -4152,12 +4149,6 @@ h1 {
   .site-footer__signature-image {
     transition: none;
     transform: none !important;
-  }
-
-  .site-footer__signature.is-signature-reveal-enabled .site-footer__signature-image {
-    -webkit-mask-image: none;
-    animation: none;
-    mask-image: none;
   }
 }
 

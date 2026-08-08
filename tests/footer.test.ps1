@@ -29,6 +29,7 @@ $index = Get-Content -Raw -Encoding UTF8 (Join-Path $root "index.html")
 $styles = Get-Content -Raw -Encoding UTF8 (Join-Path $root "styles.css")
 $script = Get-Content -Raw -Encoding UTF8 (Join-Path $root "script.js")
 $signature = Get-Content -Raw -Encoding UTF8 (Join-Path $root "images/signature/maxim-signature.svg")
+$signatureAnimation = Join-Path $root "images/signature/maxim-signature-writing.webp"
 
 Assert-Contains $index '<footer class="site-footer site-footer--contacts" id="contacts">' "Footer must be final contacts block with #contacts"
 Assert-Contains $index 'href="mailto:direct@miroshnikov-maxim.ru"' "Footer missing mailto link"
@@ -68,9 +69,6 @@ Assert-Contains $styles '@media (hover: hover) and (pointer: fine)' "Footer miss
 Assert-Contains $styles '--footer-signature-x' "Footer signature must support cursor-based x movement"
 Assert-Contains $styles '--footer-signature-y' "Footer signature must support cursor-based y movement"
 Assert-Contains $styles '--footer-signature-rotate' "Footer signature must support cursor-based rotation"
-Assert-Contains $styles 'footer-signature-write 1.4s linear forwards' "Footer signature must write over 1.4 seconds"
-Assert-Contains $styles '-webkit-mask-image: linear-gradient(90deg' "Footer signature needs a WebKit reveal mask"
-Assert-Contains $styles 'mask-image: linear-gradient(90deg' "Footer signature needs a reveal mask"
 Assert-Contains $styles '.site-footer__lead-highlight' "Footer lead highlight style is missing"
 Assert-Contains $styles '.site-footer__channels-grid' "Footer channels grid style is missing"
 Assert-Contains $styles 'grid-template-columns: repeat(2, minmax(0, 1fr));' "Footer channels must use two desktop columns"
@@ -82,6 +80,10 @@ Assert-Contains $script 'pointermove' "Footer signature missing pointermove list
 Assert-Contains $script 'pointerleave' "Footer signature missing pointerleave listener"
 Assert-Contains $script 'initFooterSignatureReveal' "Footer signature reveal initializer is missing"
 Assert-Contains $script 'is-signature-writing' "Footer signature reveal class is missing"
+Assert-Contains $script 'getFooterSignatureAnimationSource' "Footer signature must use the prepared source animation"
+Assert-Contains $script 'maxim-signature-writing.webp' "Footer signature must use the prepared WebP animation"
+Assert-Contains $script 'animationPreload' "Footer signature must preload its animation before playback"
+Assert-Contains $script 'FOOTER_SIGNATURE_DRAW_DURATION_MS = 1400' "Footer signature must draw for 1.4 seconds"
 Assert-Contains $script 'threshold: 0.2' "Footer signature reveal must start after entering the viewport"
 Assert-Contains $script 'prefersReducedMotion.matches' "Footer signature reveal must respect reduced motion"
 Assert-Contains $script 'siteFooterLeadHighlight' "Footer lead underline script is missing"
@@ -96,6 +98,15 @@ if ($signature.Contains('fill="#FDFDFD"')) {
 
 if (-not $signature.Contains("<svg")) {
   throw "Signature file must be a browser-readable SVG"
+}
+
+if (-not (Test-Path $signatureAnimation)) {
+  throw "Prepared signature animation is missing"
+}
+
+& python (Join-Path $PSScriptRoot "signature-animation.test.py") $signatureAnimation
+if ($LASTEXITCODE -ne 0) {
+  throw "Signature animation regression checks failed"
 }
 
 Write-Host "footer checks passed"
