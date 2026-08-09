@@ -899,7 +899,7 @@ h1 {
   left: -126px;
   width: 354px;
   height: 354px;
-  opacity: 0.72;
+  opacity: 0.405;
   pointer-events: none;
   transform-origin: 50% 50%;
   z-index: 0;
@@ -1957,7 +1957,7 @@ h1 {
   width: 177px;
   height: 177px;
   color: #FF9800;
-  opacity: 0.52;
+  opacity: 0.2925;
   pointer-events: none;
   transform: translate3d(0, 0, 0) rotate(-1deg);
   transform-origin: 50% 50%;
@@ -2996,7 +2996,7 @@ h1 {
     left: 152px;
     width: 240px;
     height: 240px;
-    opacity: 0.4;
+    opacity: 0.225;
   }
 
   .about h2 {
@@ -3310,7 +3310,7 @@ h1 {
     left: 162px;
     width: 178px;
     height: 178px;
-    opacity: 0.34;
+    opacity: 0.19125;
   }
 
   .about__media {
@@ -3601,7 +3601,7 @@ h1 {
   .case-sketch-orb {
     width: 89px;
     height: 89px;
-    opacity: 0.44;
+    opacity: 0.2475;
   }
 
   .case-sketch-orb--upper {
