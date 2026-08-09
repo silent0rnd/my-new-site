@@ -3167,6 +3167,39 @@ h1 {
   }
 }
 
+/* Планшет в вертикальном положении: первый экран не должен пустовать */
+@media (min-width: 768px) and (max-width: 920px) and (min-height: 700px) {
+  .stats {
+    gap: 58px;
+    margin-top: 76px;
+  }
+
+  .stats div {
+    width: 128px;
+  }
+
+  .intro {
+    margin-top: 78px;
+  }
+
+  h1 {
+    max-width: none;
+    font-size: 134px;
+  }
+
+  .subtitle,
+  .hero-copy {
+    max-width: 400px;
+    font-size: 21px;
+  }
+
+  .portrait {
+    right: -130px;
+    width: min(96vw, 580px);
+    height: 70dvh;
+  }
+}
+
 @media (max-width: 560px) {
   .hero {
     min-height: 100dvh;
@@ -3175,6 +3208,40 @@ h1 {
   .topbar {
     height: 32px;
     font-size: 14px;
+  }
+
+  .messenger-links a,
+  .site-footer--contacts .site-footer__contact-list a,
+  .site-footer--contacts .site-footer__legal a {
+    position: relative;
+  }
+
+  .messenger-links a::after,
+  .site-footer--contacts .site-footer__contact-list a::after,
+  .site-footer--contacts .site-footer__legal a::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 44px);
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+
+  .reviews-gallery__nav::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 44px;
+    height: 44px;
+  }
+
+  .reviews-gallery__nav--prev::after {
+    left: 0;
+  }
+
+  .reviews-gallery__nav--next::after {
+    right: 0;
   }
 
   .stats {
@@ -3479,15 +3546,37 @@ h1 {
   }
 
   .reviews-gallery__progress {
-    bottom: 13px;
+    bottom: 0;
   }
 
   .reviews-gallery__dot {
     width: 18px;
+    height: 44px;
+    position: relative;
+    background: transparent;
   }
 
   .reviews-gallery__dot.is-active {
     width: 30px;
+    background: transparent;
+  }
+
+  .reviews-gallery__dot::before {
+    content: "";
+    position: absolute;
+    top: 29.5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    border-radius: 999px;
+    background: #c4c4bf;
+    -webkit-mask: var(--hand-drawn-line-mask) center / 100% 100% no-repeat;
+    mask: var(--hand-drawn-line-mask) center / 100% 100% no-repeat;
+    transform: translateY(-50%);
+  }
+
+  .reviews-gallery__dot.is-active::before {
+    background: #FF9800;
   }
 
   .reviews-lightbox {

@@ -1494,15 +1494,15 @@ function setHandDrawnNavIcon(button, direction) {
 }
 
 const reviewsData = [
-  { src: "images/reviews/review-01.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 1" },
-  { src: "images/reviews/review-02.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 2" },
-  { src: "images/reviews/review-03.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 3" },
-  { src: "images/reviews/review-04.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 4" },
-  { src: "images/reviews/review-05.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 5" },
-  { src: "images/reviews/review-06.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 6" },
-  { src: "images/reviews/review-07.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 7" },
-  { src: "images/reviews/review-08.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 8" },
-  { src: "images/reviews/review-09.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 9" },
+  { src: "images/reviews/review-01.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 1", width: 583, height: 362 },
+  { src: "images/reviews/review-02.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 2", width: 576, height: 1280 },
+  { src: "images/reviews/review-03.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 3", width: 576, height: 1280 },
+  { src: "images/reviews/review-04.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 4", width: 1228, height: 1024 },
+  { src: "images/reviews/review-05.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 5", width: 1219, height: 511 },
+  { src: "images/reviews/review-06.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 6", width: 576, height: 1280 },
+  { src: "images/reviews/review-07.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 7", width: 576, height: 1280 },
+  { src: "images/reviews/review-08.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 8", width: 1221, height: 253 },
+  { src: "images/reviews/review-09.webp", alt: "Отзыв клиента о работе с рекламой, скриншот 9", width: 933, height: 830 },
 ];
 
 const reviewsGallery = document.querySelector("[data-reviews-gallery]");
@@ -1645,6 +1645,8 @@ if (reviewsGallery && reviewsData.length > 0) {
     const review = reviewsData[reviewLightboxIndex];
     reviewLightboxImage.src = review.src;
     reviewLightboxImage.alt = review.alt;
+    reviewLightboxImage.width = review.width;
+    reviewLightboxImage.height = review.height;
     reviewLightboxCounter.textContent = `${reviewLightboxIndex + 1} / ${reviewsData.length}`;
     reviewLightbox.classList.toggle(
       "is-loading",
@@ -1709,6 +1711,8 @@ if (reviewsGallery && reviewsData.length > 0) {
     image.alt = review.alt;
     image.decoding = "async";
     image.loading = "lazy";
+    image.width = review.width;
+    image.height = review.height;
 
     dot.className = "reviews-gallery__dot";
     dot.type = "button";
