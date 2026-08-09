@@ -10,6 +10,11 @@
   const currentCase = cases.find((caseItem) => caseItem.slug === page.dataset.caseSlug);
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const COVERFLOW_TRANSITION_MS = 640;
+  const CASE_SKETCH_ORB_PATHS = {
+    upper: "M107 12C156 14 196 52 198 101C199 151 163 194 112 198C61 201 17 166 12 114C7 62 47 15 95 13",
+    middle: "M105 11C158 9 198 46 200 98C203 149 167 190 117 200C65 211 19 177 10 124C2 72 40 25 91 13",
+    lower: "M100 14C149 8 190 40 199 89C207 140 171 185 122 198C72 210 24 178 13 130C0 79 35 27 83 16",
+  };
   let activeLightboxIndex = 0;
   let activeLightboxImages = [];
   let lightbox = null;
@@ -31,6 +36,24 @@
     }
 
     return element;
+  }
+
+  function addCaseSketchOrb(section, variant) {
+    const orb = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+    orb.classList.add("case-sketch-orb", `case-sketch-orb--${variant}`);
+    orb.setAttribute("viewBox", "0 0 210 210");
+    orb.setAttribute("aria-hidden", "true");
+    orb.setAttribute("focusable", "false");
+    orb.dataset.caseSketchOrb = variant;
+
+    path.setAttribute("d", CASE_SKETCH_ORB_PATHS[variant]);
+    path.setAttribute("vector-effect", "non-scaling-stroke");
+    orb.append(path);
+
+    section.classList.add("has-case-sketch-orb");
+    section.append(orb);
   }
 
   function setHandDrawnNavIcon(button, direction) {
@@ -223,10 +246,10 @@
     return list;
   }
 
-  function renderSections(sections, headingTag = "h2") {
+  function renderSections(sections, headingTag = "h2", decorationVariants = {}) {
     const fragment = document.createDocumentFragment();
 
-    sections.forEach((sectionData) => {
+    sections.forEach((sectionData, index) => {
       const section = createElement("section", "case-content-section");
       const title = createElement(headingTag, "", sectionData.heading);
       const copy = createElement("div", "case-content-section__copy");
@@ -244,6 +267,13 @@
       }
 
       section.append(title, copy);
+
+      const decorationVariant = decorationVariants[index];
+
+      if (decorationVariant) {
+        addCaseSketchOrb(section, decorationVariant);
+      }
+
       fragment.append(section);
     });
 
@@ -409,7 +439,7 @@
     return section;
   }
 
-  function renderCollectionProject(project, index) {
+  function renderCollectionProject(project, index, decorationVariant = "") {
     const section = createElement("section", "case-project");
     const header = createElement("header", "case-project__header");
     const number = createElement("p", "case-project__number", `Проект ${String(index + 1).padStart(2, "0")}`);
@@ -417,7 +447,12 @@
     const intro = createElement("p", "case-project__intro", project.intro);
 
     header.append(number, title, intro);
-    section.append(header, renderMetrics(project.metrics), renderFacts(project.facts), renderSections(project.sections, "h3"));
+    section.append(
+      header,
+      renderMetrics(project.metrics),
+      renderFacts(project.facts),
+      renderSections(project.sections, "h3", decorationVariant ? { 0: decorationVariant } : {}),
+    );
 
     if (hasImages(project.images)) {
       section.append(renderGallery(project.images, "h3"));
@@ -475,7 +510,27 @@
     const section = createElement("section", "case-conclusion");
     section.append(createElement("h2", "", "Вывод"));
     section.append(createElement("p", "", currentCase.conclusion));
+    addCaseSketchOrb(section, "lower");
     return section;
+  }
+
+  function initCaseSketchOrbs() {
+    const orbs = document.querySelectorAll("[data-case-sketch-orb]");
+
+    if (orbs.length === 0 || reducedMotion.matches || !("IntersectionObserver" in window)) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-animated", entry.isIntersecting);
+        });
+      },
+      { rootMargin: "300px 0px" },
+    );
+
+    orbs.forEach((orb) => observer.observe(orb));
   }
 
   function renderRelatedCases() {
@@ -583,13 +638,41 @@
     root.textContent = "";
 
     if (currentCase.caseType === "collection") {
-      const pageBlocks = [renderHero(), ...currentCase.projects.map(renderCollectionProject), renderLightbox()];
+      const middleDecorationIndex = Math.floor(currentCase.projects.length / 2);
+      const lowerDecorationIndex = Math.min(
+        currentCase.projects.length - 1,
+        Math.max(1, Math.floor(currentCase.projects.length * 0.6)),
+      );
+      const pageBlocks = [
+        renderHero(),
+        ...currentCase.projects.map((project, index) => {
+          const decorationVariant = index === 0
+            ? "upper"
+            : index === middleDecorationIndex
+              ? "middle"
+              : index === lowerDecorationIndex
+                ? "lower"
+                : "";
+          return renderCollectionProject(project, index, decorationVariant);
+        }),
+        renderLightbox(),
+      ];
 
       root.append(...pageBlocks);
+      initCaseSketchOrbs();
       return;
     }
 
-    const pageBlocks = [renderHero(), renderMetrics(currentCase.metrics), renderFacts(currentCase.facts), renderSections(currentCase.sections)];
+    const middleDecorationIndex = Math.floor(currentCase.sections.length / 2);
+    const pageBlocks = [
+      renderHero(),
+      renderMetrics(currentCase.metrics),
+      renderFacts(currentCase.facts),
+      renderSections(currentCase.sections, "h2", {
+        0: "upper",
+        [middleDecorationIndex]: "middle",
+      }),
+    ];
 
     if (hasImages(currentCase.images)) {
       pageBlocks.push(renderGallery(currentCase.images));
@@ -602,6 +685,7 @@
     }
 
     root.append(...pageBlocks);
+    initCaseSketchOrbs();
     revealRelatedCards();
     initRelatedCasesHover();
   }

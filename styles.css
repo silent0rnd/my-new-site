@@ -468,7 +468,8 @@ a {
   }
 
   .about__orb,
-  .about__orb-path {
+  .about__orb-path,
+  .case-sketch-orb {
     animation: none !important;
   }
 
@@ -1937,6 +1938,136 @@ h1 {
   border-top: 1px solid var(--line);
 }
 
+.case-content-section.has-case-sketch-orb,
+.case-conclusion.has-case-sketch-orb {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.case-content-section.has-case-sketch-orb > :not(.case-sketch-orb),
+.case-conclusion.has-case-sketch-orb > :not(.case-sketch-orb) {
+  position: relative;
+  z-index: 1;
+}
+
+.case-sketch-orb {
+  position: absolute;
+  z-index: 0;
+  width: 177px;
+  height: 177px;
+  color: #FF9800;
+  opacity: 0.52;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0) rotate(-1deg);
+  transform-origin: 50% 50%;
+  animation-play-state: paused;
+}
+
+.case-sketch-orb path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.case-sketch-orb--upper {
+  top: 38px;
+  right: clamp(34px, 11%, 120px);
+}
+
+.case-sketch-orb--middle {
+  top: 44px;
+  left: clamp(240px, 36%, 440px);
+}
+
+.case-sketch-orb--lower {
+  left: clamp(350px, 44%, 520px);
+  bottom: 28px;
+}
+
+.case-sketch-orb--upper.is-animated {
+  will-change: transform;
+  animation: case-sketch-orb-upper 18s linear -9s infinite;
+}
+
+.case-sketch-orb--middle.is-animated {
+  will-change: transform;
+  animation: case-sketch-orb-middle 21s linear -7s infinite;
+}
+
+.case-sketch-orb--lower.is-animated {
+  will-change: transform;
+  animation: case-sketch-orb-lower 23s linear -14s infinite;
+}
+
+@keyframes case-sketch-orb-upper {
+  0% {
+    transform: translate3d(-12px, 9px, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate3d(15px, -16px, 0) rotate(90deg);
+  }
+
+  55% {
+    transform: translate3d(7px, 13px, 0) rotate(198deg);
+  }
+
+  78% {
+    transform: translate3d(-16px, -9px, 0) rotate(281deg);
+  }
+
+  100% {
+    transform: translate3d(-12px, 9px, 0) rotate(360deg);
+  }
+}
+
+@keyframes case-sketch-orb-middle {
+  0% {
+    transform: translate3d(14px, -11px, 0) rotate(0deg);
+  }
+
+  28% {
+    transform: translate3d(-15px, 16px, 0) rotate(-101deg);
+  }
+
+  58% {
+    transform: translate3d(9px, 15px, 0) rotate(-209deg);
+  }
+
+  81% {
+    transform: translate3d(-10px, -14px, 0) rotate(-292deg);
+  }
+
+  100% {
+    transform: translate3d(14px, -11px, 0) rotate(-360deg);
+  }
+}
+
+@keyframes case-sketch-orb-lower {
+  0% {
+    transform: translate3d(13px, -10px, 0) rotate(0deg);
+  }
+
+  24% {
+    transform: translate3d(-16px, 14px, 0) rotate(86deg);
+  }
+
+  52% {
+    transform: translate3d(11px, 15px, 0) rotate(187deg);
+  }
+
+  76% {
+    transform: translate3d(-13px, -15px, 0) rotate(274deg);
+  }
+
+  100% {
+    transform: translate3d(13px, -10px, 0) rotate(360deg);
+  }
+}
+
 /* Кегль связан с шириной левой колонки: на 72px длинные заголовки рвались
    на 2-3 строки с висячим предлогом, короткие при этом смотрелись нормально. */
 .case-content-section h2,
@@ -3002,6 +3133,29 @@ h1 {
     padding: 62px 0;
   }
 
+  .case-sketch-orb {
+    width: 120px;
+    height: 120px;
+  }
+
+  .case-sketch-orb--upper {
+    top: 30px;
+    right: 28px;
+  }
+
+  .case-sketch-orb--middle {
+    top: auto;
+    right: 48px;
+    bottom: 24px;
+    left: auto;
+  }
+
+  .case-sketch-orb--lower {
+    left: auto;
+    right: 64px;
+    bottom: 24px;
+  }
+
   .case-project__header {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -3442,6 +3596,27 @@ h1 {
   .related-cases {
     gap: 24px;
     padding: 52px 0;
+  }
+
+  .case-sketch-orb {
+    width: 89px;
+    height: 89px;
+    opacity: 0.44;
+  }
+
+  .case-sketch-orb--upper {
+    top: 24px;
+    right: 20px;
+  }
+
+  .case-sketch-orb--middle {
+    right: 12px;
+    bottom: 16px;
+  }
+
+  .case-sketch-orb--lower {
+    right: 32px;
+    bottom: 18px;
   }
 
   .case-content-section h2,

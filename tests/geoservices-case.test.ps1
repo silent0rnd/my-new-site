@@ -38,7 +38,7 @@ Assert-Match $page 'case-back-link' "Geoservices page must have a back link"
 Assert-Match $page '../../case-page\.js' "Geoservices page must load case renderer"
 Assert-Match $caseJs 'renderCollectionProject' "Collection renderer is missing"
 Assert-Match $caseJs 'activeLightboxImages' "Lightbox must switch between gallery image sets"
-Assert-Match $caseJs 'currentCase\.projects\.map\(renderCollectionProject\)' "Collection projects must render in source order"
+Assert-Match $caseJs 'currentCase\.projects\.map\(\(project,\s*index\)' "Collection projects must render in source order"
 Assert-Match $sitemap 'https://naklikay\.ru/cases/geoservices-promotion/' "Geoservices URL is missing from sitemap"
 
 $imagePaths = [regex]::Matches($data, 'assets/cases/(geoservices-[^"\s]+)') | ForEach-Object { $_.Groups[1].Value } | Select-Object -Unique
