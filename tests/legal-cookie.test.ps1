@@ -69,6 +69,9 @@ Assert-Contains $styles "transition-delay: 120ms;" "Cookie icon must animate aft
 
 Assert-Contains $script "naklikayCookieConsent" "Script missing localStorage consent key"
 Assert-Contains $script "COOKIE_CONSENT_DELAY_MS = 5000" "Cookie banner must appear after a 5 second delay"
+Assert-Contains $script "COOKIE_CONSENT_MOBILE_DELAY_MS = 6000" "Cookie banner must appear after a 6 second delay on mobile"
+Assert-Contains $script 'MOBILE_VIEWPORT_QUERY = "(max-width: 720px)"' "Cookie banner must use the approved mobile breakpoint"
+Assert-Contains $script "? COOKIE_CONSENT_MOBILE_DELAY_MS" "Cookie banner must select the mobile delay on small viewports"
 Assert-Contains $script "COOKIE_CONSENT_ANIMATION_MS = 360" "Script must keep cookie removal synced with the animation"
 Assert-Contains $script 'requestAnimationFrame(() => {' "Cookie banner must wait a paint frame before starting entrance animation"
 Assert-Contains $script '      requestAnimationFrame(() => {' "Cookie banner entrance animation must start on the second animation frame"

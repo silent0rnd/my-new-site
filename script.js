@@ -2,9 +2,11 @@
   const CONSENT_KEY = "naklikayCookieConsent";
   const CONSENT_TTL_MS = 365 * 24 * 60 * 60 * 1000;
   const COOKIE_CONSENT_DELAY_MS = 5000;
+  const COOKIE_CONSENT_MOBILE_DELAY_MS = 6000;
   const COOKIE_CONSENT_ANIMATION_MS = 360;
   const YANDEX_METRIKA_ID = 110564693;
   const YANDEX_METRIKA_SRC = "https://mc.yandex.ru/metrika/tag.js?id=110564693";
+  const MOBILE_VIEWPORT_QUERY = "(max-width: 720px)";
 
   // script.js всегда лежит в корне сайта, поэтому его собственный адрес даёт корень.
   // Пути от корня вида "/images/..." работают только через сервер: если открыть файл
@@ -121,11 +123,15 @@
   }
 
   function showCookieConsentBannerWithDelay() {
+    const delay = window.matchMedia(MOBILE_VIEWPORT_QUERY).matches
+      ? COOKIE_CONSENT_MOBILE_DELAY_MS
+      : COOKIE_CONSENT_DELAY_MS;
+
     window.setTimeout(() => {
       if (!readCookieConsent()) {
         showCookieConsentBanner();
       }
-    }, COOKIE_CONSENT_DELAY_MS);
+    }, delay);
   }
 
   // Разметка футера продублирована здесь и в index.html. Меняете контакты - правьте оба места.
@@ -957,6 +963,11 @@ function initFooterSignatureReveal() {
   let animationQueued = false;
   let animationStarted = false;
 
+  // Пока анимация не началась, место подписи держим пустым: иначе на медленной
+  // мобильной сети сначала видно готовую подпись, а потом она заново рисуется.
+  const showSignature = () => footerSignature.classList.remove("is-signature-idle");
+  footerSignature.classList.add("is-signature-idle");
+
   const finishDrawing = () => {
     staticSignature.src = originalSource;
     footerSignature.classList.remove("is-signature-writing");
@@ -968,13 +979,24 @@ function initFooterSignatureReveal() {
 
     animationStarted = true;
     staticSignature.src = animationSource;
+    showSignature();
     footerSignature.classList.add("is-signature-writing");
     window.setTimeout(finishDrawing, FOOTER_SIGNATURE_DRAW_DURATION_MS);
   };
 
   const startReveal = () => {
     animationQueued = true;
-    if (animationReady) playAnimation();
+    if (animationReady) {
+      playAnimation();
+      return;
+    }
+
+    // Анимация не догрузилась - не оставляем пустое место навсегда.
+    window.setTimeout(() => {
+      if (animationStarted) return;
+      animationQueued = false;
+      showSignature();
+    }, 2500);
   };
 
   animationPreload.addEventListener("load", () => {
@@ -984,6 +1006,7 @@ function initFooterSignatureReveal() {
 
   animationPreload.addEventListener("error", () => {
     animationQueued = false;
+    showSignature();
   }, { once: true });
 
   animationPreload.src = animationSource;
@@ -1008,8 +1031,7 @@ function initFooterSignatureReveal() {
 
 initFooterSignatureReveal();
 
-// Портрет в "Обо мне": ч/б фото, под курсором проявляется цветное пятно.
-// Курсора нет - пятно едет сверху вниз, пока фото проезжает экран.
+// Портрет в "Обо мне": цветное пятно доступно только при точном курсоре.
 const aboutPhotoStack = document.querySelector(".about__photo-stack");
 
 function setAboutSpot(x, y) {
@@ -1018,40 +1040,13 @@ function setAboutSpot(x, y) {
 }
 
 if (aboutPhotoStack && !prefersReducedMotion.matches) {
-  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  if (window.matchMedia("(min-width: 721px) and (hover: hover) and (pointer: fine)").matches) {
     aboutPhotoStack.addEventListener("pointermove", (event) => {
       const rect = aboutPhotoStack.getBoundingClientRect();
       setAboutSpot(((event.clientX - rect.left) / rect.width) * 100, ((event.clientY - rect.top) / rect.height) * 100);
     });
     aboutPhotoStack.addEventListener("pointerenter", () => aboutPhotoStack.classList.add("is-lit"));
     aboutPhotoStack.addEventListener("pointerleave", () => aboutPhotoStack.classList.remove("is-lit"));
-  } else {
-    let aboutSpotFrame = 0;
-
-    const updateAboutSpotOnScroll = () => {
-      aboutSpotFrame = 0;
-
-      const rect = aboutPhotoStack.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-      const isVisible = rect.bottom > 0 && rect.top < viewportHeight;
-
-      aboutPhotoStack.classList.toggle("is-lit", isVisible);
-      if (!isVisible) return;
-
-      // 1 - фото только въехало снизу, 0 - полностью ушло вверх.
-      const progress = rect.bottom / (viewportHeight + rect.height);
-      setAboutSpot(50, 110 - progress * 120);
-    };
-
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (aboutSpotFrame) return;
-        aboutSpotFrame = window.requestAnimationFrame(updateAboutSpotOnScroll);
-      },
-      { passive: true },
-    );
-    updateAboutSpotOnScroll();
   }
 }
 
@@ -1082,7 +1077,9 @@ function resetCaseCard(event) {
 // в межсловный пробел, а не разрывал "126₽".
 // Группы тысяч ("656 000") идут первой альтернативой, иначе съедалась бы только "656".
 const COUNT_PATTERN = /(\d+(?:[\s ]\d{3})+|\d+(?:[.,]\d+)?)([₽€$%+]?)/g;
-const COUNT_DURATION_MS = 900;
+const DESKTOP_COUNT_DURATION_MS = 900;
+const MOBILE_COUNT_DURATION_MS = 1350;
+const mobileCaseViewport = window.matchMedia("(max-width: 720px)");
 const COUNT_SAMPLES = 256;
 const COUNT_CHARS = "0123456789.,  ₽€$%+";
 const COUNT_TARGETS =
@@ -1203,7 +1200,7 @@ function stopCountUp(event) {
 
 // Сам отсчёт не знает, кто его запустил: на карточке это курсор, на странице кейса -
 // прокрутка. Проверка на мышь живёт в обработчике наведения, а не здесь.
-function runCountUp(container) {
+function runCountUp(container, duration = DESKTOP_COUNT_DURATION_MS) {
   const spans = Array.from(container.querySelectorAll(".case-count"));
 
   if (spans.length === 0) return;
@@ -1219,7 +1216,7 @@ function runCountUp(container) {
   const startedAt = performance.now();
 
   const step = (now) => {
-    const progress = Math.min(1, (now - startedAt) / COUNT_DURATION_MS);
+    const progress = Math.min(1, (now - startedAt) / duration);
 
     spans.forEach((span, index) => {
       const count = counts[index];
@@ -1246,15 +1243,14 @@ function runCountUp(container) {
 }
 
 function startCountUp(event) {
-  if (!canTiltCaseCard()) return;
+  if (!canTiltCaseCard() || mobileCaseViewport.matches) return;
 
-  runCountUp(event.currentTarget);
+  runCountUp(event.currentTarget, DESKTOP_COUNT_DURATION_MS);
 }
 
 function prepareCountUp(card) {
-  // На тач-устройствах и при reduced motion отсчёта не будет, значит и резерв ширины
-  // не нужен: карточка остаётся ровно такой, какой была до этой правки.
-  if (!canTiltCaseCard()) return;
+  // На мобильном отсчёт запустится при появлении карточки, на ПК - при наведении.
+  if (prefersReducedMotion.matches || (!mobileCaseViewport.matches && !canTiltCaseCard())) return;
 
   wrapCardNumbers(card);
 
@@ -1264,10 +1260,26 @@ function prepareCountUp(card) {
   // Меряем только после загрузки TT Masters, иначе ширины будут от запасного шрифта.
   document.fonts.ready.then(() => spans.forEach(reserveCountWidth));
 
+  if (mobileCaseViewport.matches) return;
+
   card.addEventListener("mouseenter", startCountUp);
   card.addEventListener("focus", startCountUp);
   card.addEventListener("mouseleave", stopCountUp);
   card.addEventListener("blur", stopCountUp);
+}
+
+function startMobileCountUp(card) {
+  if (
+    !card ||
+    prefersReducedMotion.matches ||
+    !mobileCaseViewport.matches ||
+    card.dataset.mobileCountPlayed === "true"
+  ) {
+    return;
+  }
+
+  card.dataset.mobileCountPlayed = "true";
+  runCountUp(card, MOBILE_COUNT_DURATION_MS);
 }
 
 function createCaseCard(caseItem) {
@@ -1330,6 +1342,7 @@ function observeCaseCards(revealItems = casesGrid ? casesGrid.querySelectorAll("
           if (!entry.isIntersecting) return;
 
           entry.target.classList.add("is-visible");
+          startMobileCountUp(entry.target.querySelector(".case-card"));
           observer.unobserve(entry.target);
         });
       },
@@ -1833,7 +1846,10 @@ if (countBlocks.length > 0 && !prefersReducedMotion.matches) {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
 
-        runCountUp(entry.target);
+        runCountUp(
+          entry.target,
+          mobileCaseViewport.matches ? MOBILE_COUNT_DURATION_MS : DESKTOP_COUNT_DURATION_MS
+        );
         observer.unobserve(entry.target);
       });
     },

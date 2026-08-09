@@ -86,6 +86,9 @@ Assert-Contains $script 'animationPreload' "Footer signature must preload its an
 Assert-Contains $script 'FOOTER_SIGNATURE_DRAW_DURATION_MS = 1400' "Footer signature must draw for 1.4 seconds"
 Assert-Contains $script 'threshold: 0.2' "Footer signature reveal must start after entering the viewport"
 Assert-Contains $script 'prefersReducedMotion.matches' "Footer signature reveal must respect reduced motion"
+Assert-Contains $script 'is-signature-idle' "Footer signature must stay hidden until it starts drawing"
+Assert-Contains $styles '.site-footer__signature.is-signature-idle .site-footer__signature-image' "Hidden state for the signature is missing in styles"
+Assert-Contains $styles 'aspect-ratio: 1120 / 747' "Footer signature must reserve its space to avoid layout jump"
 Assert-Contains $script 'siteFooterLeadHighlight' "Footer lead underline script is missing"
 Assert-Contains $script 'footerLeadUnderlineObserver' "Footer lead underline observer is missing"
 
