@@ -43,7 +43,7 @@ Assert-NotMatch $css '\.portrait\s+img' "Portrait fallback image CSS must be rem
 Assert-Match $css '\.about\s*\{[\s\S]*background:\s*var\(--bg\)' "About section must inherit page background"
 Assert-Match $css '\.about__inner\s*\{[\s\S]*grid-template-columns:\s*minmax\(280px, 0\.82fr\) minmax\(0, 1fr\)' "About desktop grid missing"
 Assert-NotMatch $css '\.about__photo\s*\{[^}]*filter:' "About portrait must stay untouched so its backdrop matches the page"
-Assert-Match $css '\.about__photo-stack::after\s*\{[\s\S]*about-portrait-color\.png' "About colour layer source missing"
+Assert-Match $css '\.about__photo-stack::after\s*\{[\s\S]*about-portrait-color\.webp' "About colour layer source missing"
 Assert-Match $css '\.about__photo-stack::after\s*\{[\s\S]*mask-image:\s*radial-gradient' "About colour spot mask missing"
 Assert-Match $css '\.about__photo\s*\{[\s\S]*object-fit:\s*cover' "About photo must use portrait composition"
 Assert-Match $css '\.about__content\s*\{[\s\S]*position:\s*relative[\s\S]*isolation:\s*isolate' "About text block must isolate orb behind text"

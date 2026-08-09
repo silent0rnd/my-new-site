@@ -233,6 +233,15 @@
   }
 })();
 
+// Страховка на весь остальной файл. Анимация прячет текст до разбора на буквы, и если
+// разбор не дойдёт до конца из-за ошибки, текст останется невидимым. Таймер снимает все
+// метки "спрятано до анимации" - и на главной, и на кейсах. Последняя строка файла его
+// отменяет, поэтому в рабочем сценарии он не срабатывает никогда.
+const animationFailsafe = setTimeout(() => {
+  document.documentElement.classList.remove("is-restoring-scroll", "is-hero-intro-pending", "is-section-titles-pending");
+  document.querySelectorAll(".is-roll-paused").forEach((element) => element.classList.remove("is-roll-paused"));
+}, 4000);
+
 // Короткие слова (предлоги, союзы) склеиваются со следующим словом неразрывным
 // пробелом, чтобы не повисали в конце строки. На заголовках в 60-90px одиночное
 // "в" или "и" в конце строки - самый заметный типографический дефект в кадре.
@@ -309,10 +318,14 @@ function saveCurrentScrollY() {
   } catch (error) {}
 }
 
+// Прокрутку помним только для главной. У кейсов своя вкладка, но хранилище общее,
+// поэтому без этой проверки кейс открывался с середины - на позиции главной страницы.
+const isHomePage = window.location.pathname.replace(/index\.html$/, "") === "/";
+
 function restoreSavedScrollPosition() {
   const savedScroll = readSavedScrollY();
 
-  if (savedScroll > 120 && !window.location.hash) {
+  if (isHomePage && savedScroll > 120 && !window.location.hash) {
     window.scrollTo(0, savedScroll);
   }
 
@@ -321,8 +334,11 @@ function restoreSavedScrollPosition() {
   });
 }
 
-window.addEventListener("pagehide", saveCurrentScrollY);
-window.addEventListener("beforeunload", saveCurrentScrollY);
+if (isHomePage) {
+  window.addEventListener("pagehide", saveCurrentScrollY);
+  window.addEventListener("beforeunload", saveCurrentScrollY);
+}
+
 restoreSavedScrollPosition();
 
 function initPageMenu() {
@@ -425,6 +441,18 @@ function initPageMenu() {
   if (mobileToggle) {
     mobileToggle.addEventListener("click", toggleMobileMenu);
   }
+
+  document.addEventListener("pointerdown", (event) => {
+    if (
+      mobileMenu?.hidden ||
+      mobileMenu?.contains(event.target) ||
+      mobileToggle?.contains(event.target)
+    ) {
+      return;
+    }
+
+    closeMobileMenu();
+  });
 
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
@@ -539,59 +567,68 @@ function buildTextRoll(element, baseDelay = 0, letterDelay = LETTER_DELAY_MS, hi
   const text = getCleanText(element);
   let letterIndex = 0;
 
-  element.textContent = "";
-  element.setAttribute("aria-label", text);
+  // Разбор стирает исходный текст, чтобы собрать его заново по буквам. Если на середине
+  // сборки что-то сломается, кусок текста просто исчезнет с экрана, поэтому на такой
+  // случай возвращаем строку целиком - без анимации, но на месте.
+  try {
+    element.textContent = "";
+    element.setAttribute("aria-label", text);
 
-  const rollRoot = document.createElement("span");
-  rollRoot.className = "text-roll";
+    const rollRoot = document.createElement("span");
+    rollRoot.className = "text-roll";
 
-  const fragments = splitHighlightText(text, highlightText);
+    const fragments = splitHighlightText(text, highlightText);
 
-  for (const fragment of fragments) {
-    const fragmentRoot = fragment.highlighted ? document.createElement("span") : rollRoot;
+    for (const fragment of fragments) {
+      const fragmentRoot = fragment.highlighted ? document.createElement("span") : rollRoot;
 
-    if (fragment.highlighted) {
-      fragmentRoot.className = "delayed-underline";
-    }
-
-    const parts = fragment.text.split(/([ \t\n\r]+)/);
-
-    for (const part of parts) {
-      if (!part) continue;
-
-      if (/^[ \t\n\r]+$/.test(part)) {
-        fragmentRoot.append(document.createTextNode(" "));
-        continue;
+      if (fragment.highlighted) {
+        fragmentRoot.className = "delayed-underline";
       }
 
-      const word = document.createElement("span");
-      word.className = "text-roll-word";
+      const parts = fragment.text.split(/([ \t\n\r]+)/);
 
-      for (const letter of Array.from(part)) {
-        const letterWrap = document.createElement("span");
-        const letterInner = document.createElement("span");
+      for (const part of parts) {
+        if (!part) continue;
 
-        letterWrap.className = "text-roll-letter";
-        letterWrap.style.setProperty("--roll-delay", `${baseDelay + letterIndex * letterDelay}ms`);
-        letterWrap.setAttribute("aria-hidden", "true");
-        letterInner.textContent = letter;
+        if (/^[ \t\n\r]+$/.test(part)) {
+          fragmentRoot.append(document.createTextNode(" "));
+          continue;
+        }
 
-        letterWrap.append(letterInner);
-        word.append(letterWrap);
-        letterIndex += 1;
+        const word = document.createElement("span");
+        word.className = "text-roll-word";
+
+        for (const letter of Array.from(part)) {
+          const letterWrap = document.createElement("span");
+          const letterInner = document.createElement("span");
+
+          letterWrap.className = "text-roll-letter";
+          letterWrap.style.setProperty("--roll-delay", `${baseDelay + letterIndex * letterDelay}ms`);
+          letterWrap.setAttribute("aria-hidden", "true");
+          letterInner.textContent = letter;
+
+          letterWrap.append(letterInner);
+          word.append(letterWrap);
+          letterIndex += 1;
+        }
+
+        fragmentRoot.append(word);
       }
 
-      fragmentRoot.append(word);
+      if (fragment.highlighted) {
+        attachDelayedUnderline(fragmentRoot);
+        rollRoot.append(fragmentRoot);
+      }
     }
 
-    if (fragment.highlighted) {
-      attachDelayedUnderline(fragmentRoot);
-      rollRoot.append(fragmentRoot);
-    }
+    element.append(rollRoot);
+    return letterIndex;
+  } catch (error) {
+    element.textContent = text;
+    element.classList.remove("is-roll-paused");
+    return 0;
   }
-
-  element.append(rollRoot);
-  return letterIndex;
 }
 
 let maxStatsLetters = 0;
@@ -1801,3 +1838,6 @@ if (countBlocks.length > 0 && !prefersReducedMotion.matches) {
 
   countBlocks.forEach((block) => countObserver.observe(block));
 }
+
+// Файл дошёл до конца, всё спрятанное уже показано штатно - страховка не нужна.
+clearTimeout(animationFailsafe);
