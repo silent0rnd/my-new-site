@@ -3641,6 +3641,21 @@ h1 {
     line-height: 0.9;
   }
 
+  /* Ограничиваем побуквенную обёртку шириной заголовка. Если отдельное
+     длинное слово или склеенная типографикой фраза шире строки, разрешаем
+     перенос внутри неё вместо обрезания справа. */
+  .case-hero h1 .text-roll {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .case-hero h1 .text-roll-word {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
   .case-hero__lead {
     max-width: 320px;
     font-size: 18px;
