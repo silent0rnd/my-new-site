@@ -65,9 +65,9 @@
     };
   }
 
-  function caseImages(slug, count, extension, altPrefix) {
+  function caseImages(slug, count, extension, altPrefix, extensionsByIndex = {}) {
     return Array.from({ length: count }, (_, index) => ({
-      src: `assets/cases/${slug}-${index + 1}.${extension}`,
+      src: `assets/cases/${slug}-${index + 1}.${extensionsByIndex[index + 1] || extension}`,
       alt: `${altPrefix} ${index + 1}`,
     }));
   }
@@ -125,7 +125,7 @@
         }
       ],
       "conclusion": "В строительстве домов первые недели рекламы часто показывают завышенную стоимость лида: алгоритмам нужно время, чтобы собрать статистику. В этом проекте результат дали комбинация поиска и РСЯ, оптимизация после накопления данных и перераспределение бюджета в пользу работающих кампаний.",
-      "images": caseImages("house-construction-yandex-direct", 5, "jpg", "Скриншот кейса строительства домов")
+      "images": caseImages("house-construction-yandex-direct", 5, "webp", "Скриншот кейса строительства домов")
     },
     "krasnogorsk-park-real-estate-yandex-direct": {
       "intro": "Задача - удержать поток лидов для ЖК «Красногорск Парк» в период, когда рынок недвижимости резко подорожал и стал нестабильным.",
@@ -184,31 +184,31 @@
       "conclusion": "В недвижимости стоимость лида сильно зависит не только от рекламы, но и от ситуации на рынке. В этом проекте сохранить поток заявок помогли: разделение рекламы по типам недвижимости, тестирование разных гео, использование нескольких типов кампаний. Даже при росте стоимости лидов в несколько раз это позволило удержать рабочую экономику.",
       "images": [
         {
-          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-1.jpg",
+          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-1.webp",
           "alt": "Скриншот кейса ЖК Красногорск Парк 1"
         },
         {
-          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-2.jpg",
+          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-2.webp",
           "alt": "Скриншот кейса ЖК Красногорск Парк 2"
         },
         {
-          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-3.jpg",
+          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-3.webp",
           "alt": "Скриншот кейса ЖК Красногорск Парк 3"
         },
         {
-          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-4.jpg",
+          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-4.webp",
           "alt": "Скриншот кейса ЖК Красногорск Парк 4"
         },
         {
-          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-5.jpg",
+          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-5.webp",
           "alt": "Скриншот кейса ЖК Красногорск Парк 5"
         },
         {
-          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-6.jpg",
+          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-6.webp",
           "alt": "Скриншот кейса ЖК Красногорск Парк 6"
         },
         {
-          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-7.jpg",
+          "src": "assets/cases/krasnogorsk-park-real-estate-yandex-direct-7.webp",
           "alt": "Скриншот кейса ЖК Красногорск Парк 7"
         }
       ]
@@ -273,27 +273,27 @@
 	  
       "images": [
         {
-          "src": "assets/cases/moscow-studios-real-estate-yandex-direct-1.jpg",
+          "src": "assets/cases/moscow-studios-real-estate-yandex-direct-1.webp",
           "alt": "Скриншот кейса Продажа студий в Москве 1"
         },
         {
-          "src": "assets/cases/moscow-studios-real-estate-yandex-direct-2.jpg",
+          "src": "assets/cases/moscow-studios-real-estate-yandex-direct-2.webp",
           "alt": "Скриншот кейса Продажа студий в Москве 2"
         },
         {
-          "src": "assets/cases/moscow-studios-real-estate-yandex-direct-3.jpg",
+          "src": "assets/cases/moscow-studios-real-estate-yandex-direct-3.webp",
           "alt": "Скриншот кейса Продажа студий в Москве 3"
         },
         {
-          "src": "assets/cases/moscow-studios-real-estate-yandex-direct-4.jpg",
+          "src": "assets/cases/moscow-studios-real-estate-yandex-direct-4.webp",
           "alt": "Скриншот кейса Продажа студий в Москве 4"
         },
         {
-          "src": "assets/cases/moscow-studios-real-estate-yandex-direct-5.jpg",
+          "src": "assets/cases/moscow-studios-real-estate-yandex-direct-5.webp",
           "alt": "Скриншот кейса Продажа студий в Москве 5"
         },
         {
-          "src": "assets/cases/moscow-studios-real-estate-yandex-direct-6.jpg",
+          "src": "assets/cases/moscow-studios-real-estate-yandex-direct-6.webp",
           "alt": "Скриншот кейса Продажа студий в Москве 6"
         }
       ]
@@ -358,43 +358,43 @@
       "conclusion": "Даже в дорогой нише коммерческой недвижимости можно заметно снизить стоимость заявок, если вести трафик на конверсионную воронку (квиз), регулярно перерабатывать тексты и структуру, оптимизировать кампании по фактическим лидам. Но для максимального результата рекламе нужна стабильная работа без пауз, чтобы алгоритмы успевали обучаться.",
       "images": [
         {
-          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-1.jpg",
+          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-1.webp",
           "alt": "Скриншот кейса Коммерческая недвижимость, ЖК Ватутинки Парк 1"
         },
         {
-          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-2.jpg",
+          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-2.webp",
           "alt": "Скриншот кейса Коммерческая недвижимость, ЖК Ватутинки Парк 2"
         },
         {
-          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-3.jpg",
+          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-3.webp",
           "alt": "Скриншот кейса Коммерческая недвижимость, ЖК Ватутинки Парк 3"
         },
         {
-          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-4.jpg",
+          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-4.webp",
           "alt": "Скриншот кейса Коммерческая недвижимость, ЖК Ватутинки Парк 4"
         },
         {
-          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-5.jpg",
+          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-5.webp",
           "alt": "Скриншот кейса Коммерческая недвижимость, ЖК Ватутинки Парк 5"
         },
         {
-          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-6.jpg",
+          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-6.webp",
           "alt": "Скриншот кейса Коммерческая недвижимость, ЖК Ватутинки Парк 6"
         },
         {
-          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-7.jpg",
+          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-7.webp",
           "alt": "Скриншот кейса Коммерческая недвижимость, ЖК Ватутинки Парк 7"
         },
         {
-          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-8.jpg",
+          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-8.webp",
           "alt": "Скриншот кейса Коммерческая недвижимость, ЖК Ватутинки Парк 8"
         },
         {
-          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-9.jpg",
+          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-9.webp",
           "alt": "Скриншот кейса Коммерческая недвижимость, ЖК Ватутинки Парк 9"
         },
         {
-          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-10.jpg",
+          "src": "assets/cases/vatutinki-park-commercial-real-estate-yandex-direct-10.webp",
           "alt": "Скриншот кейса Коммерческая недвижимость, ЖК Ватутинки Парк 10"
         }
       ]
@@ -449,31 +449,31 @@
       "conclusion": "В недвижимости цена лида часто растет из-за двух ошибок: трафик ведут на неподготовленный сайт и опираются только на поиск, где клики самые дорогие. Здесь сработала другая логика: отдельный лендинг под рекламу, квиз для повышения конверсии, упор на РСЯ и оптимизация по микроконверсиям вместе с основной целью. Эта комбинация позволила получать заявки в 1,5-2 раза дешевле среднего по рынку.",
       "images": [
         {
-          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-1.png",
+          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-1.webp",
           "alt": "Скриншот кейса Агентство недвижимости, Trade-in 1"
         },
         {
-          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-2.png",
+          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-2.webp",
           "alt": "Скриншот кейса Агентство недвижимости, Trade-in 2"
         },
         {
-          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-3.png",
+          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-3.webp",
           "alt": "Скриншот кейса Агентство недвижимости, Trade-in 3"
         },
         {
-          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-4.png",
+          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-4.webp",
           "alt": "Скриншот кейса Агентство недвижимости, Trade-in 4"
         },
         {
-          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-5.png",
+          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-5.webp",
           "alt": "Скриншот кейса Агентство недвижимости, Trade-in 5"
         },
         {
-          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-6.png",
+          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-6.webp",
           "alt": "Скриншот кейса Агентство недвижимости, Trade-in 6"
         },
         {
-          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-7.jpg",
+          "src": "assets/cases/real-estate-agency-trade-in-yandex-direct-7.webp",
           "alt": "Скриншот кейса Агентство недвижимости, Trade-in 7"
         }
       ]
@@ -538,19 +538,19 @@
       "conclusion": "В сложной B2B-нише дешевые заявки появляются не за счет широкого охвата, а за счет точной семантики, нескольких форматов рекламы и компенсации слабых мест сайта. В этом проекте турбо-страницы помогли не терять мобильный трафик, а сегментированный поиск и РСЯ дали заявки дешевле 600₽.",
       "images": [
         {
-          "src": "assets/cases/industrial-crushers-supplier-yandex-direct-1.jpg",
+          "src": "assets/cases/industrial-crushers-supplier-yandex-direct-1.webp",
           "alt": "Скриншот кейса Поставщик промышленных дробилок 1"
         },
         {
-          "src": "assets/cases/industrial-crushers-supplier-yandex-direct-2.jpg",
+          "src": "assets/cases/industrial-crushers-supplier-yandex-direct-2.webp",
           "alt": "Скриншот кейса Поставщик промышленных дробилок 2"
         },
         {
-          "src": "assets/cases/industrial-crushers-supplier-yandex-direct-3.jpg",
+          "src": "assets/cases/industrial-crushers-supplier-yandex-direct-3.webp",
           "alt": "Скриншот кейса Поставщик промышленных дробилок 3"
         },
         {
-          "src": "assets/cases/industrial-crushers-supplier-yandex-direct-4.jpg",
+          "src": "assets/cases/industrial-crushers-supplier-yandex-direct-4.webp",
           "alt": "Скриншот кейса Поставщик промышленных дробилок 4"
         }
       ]
@@ -624,11 +624,11 @@
       "conclusion": "Если прямого спроса на услугу мало, нужно заходить через смежные намерения аудитории. В этом кейсе собрали широкую семантику вокруг выхода на маркетплейсы, обучения и запуска продаж, а стратегию выбрали не на минимальный CPL, а на максимальный поток заявок после потери других каналов.",
       "images": [
         {
-          "src": "assets/cases/ozon-yandex-market-partner-yandex-direct-1.jpg",
+          "src": "assets/cases/ozon-yandex-market-partner-yandex-direct-1.webp",
           "alt": "Скриншот кейса Партнер Ozon и Яндекс Маркета 1"
         },
         {
-          "src": "assets/cases/ozon-yandex-market-partner-yandex-direct-2.jpg",
+          "src": "assets/cases/ozon-yandex-market-partner-yandex-direct-2.webp",
           "alt": "Скриншот кейса Партнер Ozon и Яндекс Маркета 2"
         }
       ]
@@ -682,11 +682,11 @@
       "conclusion": "В юридическом консалтинге нельзя переносить логику потребительской рекламы на холодный трафик. Основной поток клиентов приходит из поиска, когда пользователь уже готов решать конкретную задачу. Поэтому ключевая стратегия - максимальное покрытие горячего поискового спроса и оптимизация по конверсиям.",
       "images": [
         {
-          "src": "assets/cases/legal-consulting-yandex-direct-1.png",
+          "src": "assets/cases/legal-consulting-yandex-direct-1.webp",
           "alt": "Скриншот кейса Юридический консалтинг 1"
         },
         {
-          "src": "assets/cases/legal-consulting-yandex-direct-2.png",
+          "src": "assets/cases/legal-consulting-yandex-direct-2.webp",
           "alt": "Скриншот кейса Юридический консалтинг 2"
         },
         {
@@ -755,15 +755,15 @@
       "conclusion": "Даже простой лендинг может дать стабильные заявки, если спрос резко растет, а рекламные форматы выбраны под быстрый запуск. В этом кейсе сработали Мастер-кампании, быстрые тесты гипотез и дополнительные цели для обучения алгоритмов.",
       "images": [
         {
-          "src": "assets/cases/business-setup-uae-yandex-direct-1.jpg",
+          "src": "assets/cases/business-setup-uae-yandex-direct-1.webp",
           "alt": "Скриншот кейса Открытие бизнеса в ОАЭ 1"
         },
         {
-          "src": "assets/cases/business-setup-uae-yandex-direct-2.jpg",
+          "src": "assets/cases/business-setup-uae-yandex-direct-2.webp",
           "alt": "Скриншот кейса Открытие бизнеса в ОАЭ 2"
         },
         {
-          "src": "assets/cases/business-setup-uae-yandex-direct-3.jpg",
+          "src": "assets/cases/business-setup-uae-yandex-direct-3.webp",
           "alt": "Скриншот кейса Открытие бизнеса в ОАЭ 3"
         }
       ]
@@ -829,23 +829,23 @@
       "conclusion": "В нишах со сложной услугой и длинным циклом сделки реклама работает не только через прямой поиск. Здесь результат дала комбинация РСЯ и Мастер-кампаний, а корректная оценка всех точек контакта показала реальную стоимость обращения около 2500₽ при бюджете 300 000₽ в неделю.",
       "images": [
         {
-          "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-1.jpg",
+          "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-1.webp",
           "alt": "Скриншот кейса Выкуп акций, высокий чек 1"
         },
         {
-          "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-2.jpg",
+          "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-2.webp",
           "alt": "Скриншот кейса Выкуп акций, высокий чек 2"
         },
         {
-          "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-3.jpg",
+          "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-3.webp",
           "alt": "Скриншот кейса Выкуп акций, высокий чек 3"
         },
         {
-          "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-4.jpg",
+          "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-4.webp",
           "alt": "Скриншот кейса Выкуп акций, высокий чек 4"
         },
         {
-          "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-5.jpg",
+          "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-5.webp",
           "alt": "Скриншот кейса Выкуп акций, высокий чек 5"
         }
       ]
@@ -904,31 +904,31 @@
       "conclusion": "В B2B-нишах стоимость лида часто растет не из-за самого спроса, а из-за неэффективного распределения бюджета. Здесь результат дали фиксация всех типов обращений, перераспределение бюджета между кампаниями и усиление работающих связок. Это снизило CPL с 1300 до 600₽ без увеличения бюджета.",
       "images": [
         {
-          "src": "assets/cases/superfood-promotion-yandex-direct-1.jpg",
+          "src": "assets/cases/superfood-promotion-yandex-direct-1.webp",
           "alt": "Скриншот кейса Продвижение суперфуда 1"
         },
         {
-          "src": "assets/cases/superfood-promotion-yandex-direct-2.jpg",
+          "src": "assets/cases/superfood-promotion-yandex-direct-2.webp",
           "alt": "Скриншот кейса Продвижение суперфуда 2"
         },
         {
-          "src": "assets/cases/superfood-promotion-yandex-direct-3.jpg",
+          "src": "assets/cases/superfood-promotion-yandex-direct-3.webp",
           "alt": "Скриншот кейса Продвижение суперфуда 3"
         },
         {
-          "src": "assets/cases/superfood-promotion-yandex-direct-4.jpg",
+          "src": "assets/cases/superfood-promotion-yandex-direct-4.webp",
           "alt": "Скриншот кейса Продвижение суперфуда 4"
         },
         {
-          "src": "assets/cases/superfood-promotion-yandex-direct-5.jpg",
+          "src": "assets/cases/superfood-promotion-yandex-direct-5.webp",
           "alt": "Скриншот кейса Продвижение суперфуда 5"
         },
         {
-          "src": "assets/cases/superfood-promotion-yandex-direct-6.jpg",
+          "src": "assets/cases/superfood-promotion-yandex-direct-6.webp",
           "alt": "Скриншот кейса Продвижение суперфуда 6"
         },
         {
-          "src": "assets/cases/superfood-promotion-yandex-direct-7.jpg",
+          "src": "assets/cases/superfood-promotion-yandex-direct-7.webp",
           "alt": "Скриншот кейса Продвижение суперфуда 7"
         }
       ]
@@ -996,7 +996,7 @@
       "conclusion": "В нишах с небольшим средним чеком важно искать не минимальный CPL любой ценой, а баланс между ценой лида и объемом заявок. Здесь сработали мастер-кампании, автотаргетинг и отдельная структура под разные виды наружной рекламы.",
       "images": [
         {
-          "src": "assets/cases/outdoor-advertising-yandex-direct-1.jpg",
+          "src": "assets/cases/outdoor-advertising-yandex-direct-1.webp",
           "alt": "Скриншот кейса Наружная реклама 1"
         }
       ]
@@ -1064,23 +1064,23 @@
       "conclusion": "В некоторых нишах поиск не всегда является основным источником лидов. Для таких товаров, как строительные бытовки, более эффективно работают: визуальные объявления, широкий охват, аудитории, реклама в РСЯ. Именно этот формат позволил получать лиды дешевле 1000₽. ",
       "images": [
         {
-          "src": "assets/cases/construction-cabins-sales-yandex-direct-1.jpg",
+          "src": "assets/cases/construction-cabins-sales-yandex-direct-1.webp",
           "alt": "Скриншот кейса Продажа строительных бытовок 1"
         },
         {
-          "src": "assets/cases/construction-cabins-sales-yandex-direct-2.jpg",
+          "src": "assets/cases/construction-cabins-sales-yandex-direct-2.webp",
           "alt": "Скриншот кейса Продажа строительных бытовок 2"
         },
         {
-          "src": "assets/cases/construction-cabins-sales-yandex-direct-3.jpg",
+          "src": "assets/cases/construction-cabins-sales-yandex-direct-3.webp",
           "alt": "Скриншот кейса Продажа строительных бытовок 3"
         },
         {
-          "src": "assets/cases/construction-cabins-sales-yandex-direct-4.jpg",
+          "src": "assets/cases/construction-cabins-sales-yandex-direct-4.webp",
           "alt": "Скриншот кейса Продажа строительных бытовок 4"
         },
         {
-          "src": "assets/cases/construction-cabins-sales-yandex-direct-5.jpg",
+          "src": "assets/cases/construction-cabins-sales-yandex-direct-5.webp",
           "alt": "Скриншот кейса Продажа строительных бытовок 5"
         }
       ]
@@ -1150,27 +1150,27 @@
       "conclusion": "В узкой дорогой нише попытка выкупать максимум трафика может резко ломать экономику. Рабочей моделью стала оптимизация по часто достигаемой автоцели плюс ограничение автотаргетинга, чтобы алгоритмы искали конверсии, но не уводили трафик в слишком широкие запросы.",
       "images": [
         {
-          "src": "assets/cases/norilsk-cargo-transport-yandex-direct-1.jpg",
+          "src": "assets/cases/norilsk-cargo-transport-yandex-direct-1.webp",
           "alt": "Скриншот кейса Грузоперевозки в Норильск 1"
         },
         {
-          "src": "assets/cases/norilsk-cargo-transport-yandex-direct-2.jpg",
+          "src": "assets/cases/norilsk-cargo-transport-yandex-direct-2.webp",
           "alt": "Скриншот кейса Грузоперевозки в Норильск 2"
         },
         {
-          "src": "assets/cases/norilsk-cargo-transport-yandex-direct-3.jpg",
+          "src": "assets/cases/norilsk-cargo-transport-yandex-direct-3.webp",
           "alt": "Скриншот кейса Грузоперевозки в Норильск 3"
         },
         {
-          "src": "assets/cases/norilsk-cargo-transport-yandex-direct-4.jpg",
+          "src": "assets/cases/norilsk-cargo-transport-yandex-direct-4.webp",
           "alt": "Скриншот кейса Грузоперевозки в Норильск 4"
         },
         {
-          "src": "assets/cases/norilsk-cargo-transport-yandex-direct-5.jpg",
+          "src": "assets/cases/norilsk-cargo-transport-yandex-direct-5.webp",
           "alt": "Скриншот кейса Грузоперевозки в Норильск 5"
         },
         {
-          "src": "assets/cases/norilsk-cargo-transport-yandex-direct-6.jpg",
+          "src": "assets/cases/norilsk-cargo-transport-yandex-direct-6.webp",
           "alt": "Скриншот кейса Грузоперевозки в Норильск 6"
         }
       ]
@@ -1234,27 +1234,27 @@
       "conclusion": "Для B2B-производства отдельные лендинги под конкретные направления оказались сильнее общего сайта. Основной результат дала РСЯ: $4 за лид при бюджете около $500 в месяц. Поиск дополнил систему качественными заявками на пошив, а направление готовой продукции требует дальнейшей оптимизации через микроконверсии и обучение алгоритмов.",
       "images": [
         {
-          "src": "assets/cases/kids-clothing-factory-yandex-direct-1.jpg",
+          "src": "assets/cases/kids-clothing-factory-yandex-direct-1.webp",
           "alt": "Скриншот кейса Фабрика детской одежды 1"
         },
         {
-          "src": "assets/cases/kids-clothing-factory-yandex-direct-2.jpg",
+          "src": "assets/cases/kids-clothing-factory-yandex-direct-2.webp",
           "alt": "Скриншот кейса Фабрика детской одежды 2"
         },
         {
-          "src": "assets/cases/kids-clothing-factory-yandex-direct-3.jpg",
+          "src": "assets/cases/kids-clothing-factory-yandex-direct-3.webp",
           "alt": "Скриншот кейса Фабрика детской одежды 3"
         },
         {
-          "src": "assets/cases/kids-clothing-factory-yandex-direct-4.jpg",
+          "src": "assets/cases/kids-clothing-factory-yandex-direct-4.webp",
           "alt": "Скриншот кейса Фабрика детской одежды 4"
         },
         {
-          "src": "assets/cases/kids-clothing-factory-yandex-direct-5.jpg",
+          "src": "assets/cases/kids-clothing-factory-yandex-direct-5.webp",
           "alt": "Скриншот кейса Фабрика детской одежды 5"
         },
         {
-          "src": "assets/cases/kids-clothing-factory-yandex-direct-6.jpg",
+          "src": "assets/cases/kids-clothing-factory-yandex-direct-6.webp",
           "alt": "Скриншот кейса Фабрика детской одежды 6"
         }
       ]
@@ -1318,23 +1318,23 @@
       "conclusion": "В B2B с длинным циклом сделки при ограниченном бюджете лучше начинать с поиска, а не распыляться на все форматы сразу. Дополнительный лайфхак кейса: шаблоны в объявлениях подставляли ключевые фразы, повышали релевантность, CTR и снижали стоимость клика.",
       "images": [
         {
-          "src": "assets/cases/sewing-production-organization-yandex-direct-1.jpg",
+          "src": "assets/cases/sewing-production-organization-yandex-direct-1.webp",
           "alt": "Скриншот кейса Организация швейного производства 1"
         },
         {
-          "src": "assets/cases/sewing-production-organization-yandex-direct-2.jpg",
+          "src": "assets/cases/sewing-production-organization-yandex-direct-2.webp",
           "alt": "Скриншот кейса Организация швейного производства 2"
         },
         {
-          "src": "assets/cases/sewing-production-organization-yandex-direct-3.jpg",
+          "src": "assets/cases/sewing-production-organization-yandex-direct-3.webp",
           "alt": "Скриншот кейса Организация швейного производства 3"
         },
         {
-          "src": "assets/cases/sewing-production-organization-yandex-direct-4.jpg",
+          "src": "assets/cases/sewing-production-organization-yandex-direct-4.webp",
           "alt": "Скриншот кейса Организация швейного производства 4"
         },
         {
-          "src": "assets/cases/sewing-production-organization-yandex-direct-5.jpg",
+          "src": "assets/cases/sewing-production-organization-yandex-direct-5.webp",
           "alt": "Скриншот кейса Организация швейного производства 5"
         }
       ]
@@ -1403,47 +1403,47 @@
       "conclusion": "В B2B-опте лучше работают не корзина и быстрые покупки, а заявки на расчет, запрос прайса и квиз-формы. В этом проекте масштаб дал не поиск, а РСЯ: она помогла получать тысячи заявок по цене ниже KPI клиента.",
       "images": [
         {
-          "src": "assets/cases/led-lighting-wholesale-yandex-direct-1.jpg",
+          "src": "assets/cases/led-lighting-wholesale-yandex-direct-1.webp",
           "alt": "Скриншот кейса Оптовые продажи LED-светильников 1"
         },
         {
-          "src": "assets/cases/led-lighting-wholesale-yandex-direct-2.jpg",
+          "src": "assets/cases/led-lighting-wholesale-yandex-direct-2.webp",
           "alt": "Скриншот кейса Оптовые продажи LED-светильников 2"
         },
         {
-          "src": "assets/cases/led-lighting-wholesale-yandex-direct-3.jpg",
+          "src": "assets/cases/led-lighting-wholesale-yandex-direct-3.webp",
           "alt": "Скриншот кейса Оптовые продажи LED-светильников 3"
         },
         {
-          "src": "assets/cases/led-lighting-wholesale-yandex-direct-4.jpg",
+          "src": "assets/cases/led-lighting-wholesale-yandex-direct-4.webp",
           "alt": "Скриншот кейса Оптовые продажи LED-светильников 4"
         },
         {
-          "src": "assets/cases/led-lighting-wholesale-yandex-direct-5.jpg",
+          "src": "assets/cases/led-lighting-wholesale-yandex-direct-5.webp",
           "alt": "Скриншот кейса Оптовые продажи LED-светильников 5"
         },
         {
-          "src": "assets/cases/led-lighting-wholesale-yandex-direct-6.jpg",
+          "src": "assets/cases/led-lighting-wholesale-yandex-direct-6.webp",
           "alt": "Скриншот кейса Оптовые продажи LED-светильников 6"
         },
         {
-          "src": "assets/cases/led-lighting-wholesale-yandex-direct-7.jpg",
+          "src": "assets/cases/led-lighting-wholesale-yandex-direct-7.webp",
           "alt": "Скриншот кейса Оптовые продажи LED-светильников 7"
         },
         {
-          "src": "assets/cases/led-lighting-wholesale-yandex-direct-8.jpg",
+          "src": "assets/cases/led-lighting-wholesale-yandex-direct-8.webp",
           "alt": "Скриншот кейса Оптовые продажи LED-светильников 8"
         },
         {
-          "src": "assets/cases/led-lighting-wholesale-yandex-direct-9.jpg",
+          "src": "assets/cases/led-lighting-wholesale-yandex-direct-9.webp",
           "alt": "Скриншот кейса Оптовые продажи LED-светильников 9"
         },
         {
-          "src": "assets/cases/led-lighting-wholesale-yandex-direct-10.jpg",
+          "src": "assets/cases/led-lighting-wholesale-yandex-direct-10.webp",
           "alt": "Скриншот кейса Оптовые продажи LED-светильников 10"
         },
         {
-          "src": "assets/cases/led-lighting-wholesale-yandex-direct-11.jpg",
+          "src": "assets/cases/led-lighting-wholesale-yandex-direct-11.webp",
           "alt": "Скриншот кейса Оптовые продажи LED-светильников 11"
         }
       ]
@@ -1515,23 +1515,23 @@
       "conclusion": "В найме для чувствительных ниш важны не только лиды, но и аккуратная упаковка оффера. Нейтральная посадочная помогла пройти модерацию, а РСЯ и Мастер-кампании дали стабильный поток кандидатов по 384₽ за заявку.",
       "images": [
         {
-          "src": "assets/cases/strip-club-hiring-yandex-direct-1.png",
+          "src": "assets/cases/strip-club-hiring-yandex-direct-1.webp",
           "alt": "Скриншот кейса Найм персонала в стриптиз-клуб 1"
         },
         {
-          "src": "assets/cases/strip-club-hiring-yandex-direct-2.jpg",
+          "src": "assets/cases/strip-club-hiring-yandex-direct-2.webp",
           "alt": "Скриншот кейса Найм персонала в стриптиз-клуб 2"
         },
         {
-          "src": "assets/cases/strip-club-hiring-yandex-direct-3.jpg",
+          "src": "assets/cases/strip-club-hiring-yandex-direct-3.webp",
           "alt": "Скриншот кейса Найм персонала в стриптиз-клуб 3"
         },
         {
-          "src": "assets/cases/strip-club-hiring-yandex-direct-4.jpg",
+          "src": "assets/cases/strip-club-hiring-yandex-direct-4.webp",
           "alt": "Скриншот кейса Найм персонала в стриптиз-клуб 4"
         },
         {
-          "src": "assets/cases/strip-club-hiring-yandex-direct-5.jpg",
+          "src": "assets/cases/strip-club-hiring-yandex-direct-5.webp",
           "alt": "Скриншот кейса Найм персонала в стриптиз-клуб 5"
         }
       ]
@@ -1594,31 +1594,31 @@
       "conclusion": "Сначала нужно считать реальные заявки, а не декоративные автоцели Яндекса. В этом кейсе результат появился после настройки нормальной аналитики, чистки семантики и запуска поиска на горячий спрос при ограниченном бюджете.",
       "images": [
         {
-          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-1.jpg",
+          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-1.webp",
           "alt": "Скриншот кейса Центр психологии в Липецке 1"
         },
         {
-          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-2.png",
+          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-2.webp",
           "alt": "Скриншот кейса Центр психологии в Липецке 2"
         },
         {
-          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-3.jpg",
+          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-3.webp",
           "alt": "Скриншот кейса Центр психологии в Липецке 3"
         },
         {
-          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-4.jpg",
+          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-4.webp",
           "alt": "Скриншот кейса Центр психологии в Липецке 4"
         },
         {
-          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-5.jpg",
+          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-5.webp",
           "alt": "Скриншот кейса Центр психологии в Липецке 5"
         },
         {
-          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-6.jpg",
+          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-6.webp",
           "alt": "Скриншот кейса Центр психологии в Липецке 6"
         },
         {
-          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-7.jpg",
+          "src": "assets/cases/psychology-center-lipetsk-yandex-direct-7.webp",
           "alt": "Скриншот кейса Центр психологии в Липецке 7"
         }
       ]
@@ -1683,11 +1683,11 @@
       "conclusion": "В нише визовых услуг стоимость заявки сильно зависит от структуры рекламных кампаний и качества семантики. В этом проекте результат дали три действия: гиперсегментация ключевых запросов, разделение кампаний по странам, фильтрация неэффективных регионов. Это позволило снизить стоимость заявки с 1290 до 434₽ всего за месяц.",
       "images": [
         {
-          "src": "assets/cases/visa-services-yandex-direct-1.jpg",
+          "src": "assets/cases/visa-services-yandex-direct-1.webp",
           "alt": "Скриншот кейса Визовые услуги 1"
         },
         {
-          "src": "assets/cases/visa-services-yandex-direct-2.jpg",
+          "src": "assets/cases/visa-services-yandex-direct-2.webp",
           "alt": "Скриншот кейса Визовые услуги 2"
         }
       ]
@@ -1757,19 +1757,19 @@
       "conclusion": "В локальной нише с понятным спросом не всегда нужно агрессивно выкупать верхние позиции. В этом кейсе сработала связка: усиление посадочной страницы, точная семантика по направлениям поездок и контроль доли трафика, чтобы не переплачивать за клики.",
       "images": [
         {
-          "src": "assets/cases/crimea-taxi-fleet-yandex-direct-1.jpg",
+          "src": "assets/cases/crimea-taxi-fleet-yandex-direct-1.webp",
           "alt": "Скриншот кейса Таксопарк в Крыму 1"
         },
         {
-          "src": "assets/cases/crimea-taxi-fleet-yandex-direct-2.jpg",
+          "src": "assets/cases/crimea-taxi-fleet-yandex-direct-2.webp",
           "alt": "Скриншот кейса Таксопарк в Крыму 2"
         },
         {
-          "src": "assets/cases/crimea-taxi-fleet-yandex-direct-3.jpg",
+          "src": "assets/cases/crimea-taxi-fleet-yandex-direct-3.webp",
           "alt": "Скриншот кейса Таксопарк в Крыму 3"
         },
         {
-          "src": "assets/cases/crimea-taxi-fleet-yandex-direct-4.jpg",
+          "src": "assets/cases/crimea-taxi-fleet-yandex-direct-4.webp",
           "alt": "Скриншот кейса Таксопарк в Крыму 4"
         }
       ]
@@ -1834,23 +1834,23 @@
       "conclusion": "Канал коммуникации должен соответствовать устройству пользователя. В этом кейсе заявка была завязана на WhatsApp, поэтому мобильный поиск оказался самым коротким путем до обращения: за два месяца получили заявки по 162₽ при конверсии сайта 21,5%.",
       "images": [
         {
-          "src": "assets/cases/pregnancy-photoshoots-yandex-direct-1.jpg",
+          "src": "assets/cases/pregnancy-photoshoots-yandex-direct-1.webp",
           "alt": "Скриншот кейса Фотосессии для беременных 1"
         },
         {
-          "src": "assets/cases/pregnancy-photoshoots-yandex-direct-2.jpg",
+          "src": "assets/cases/pregnancy-photoshoots-yandex-direct-2.webp",
           "alt": "Скриншот кейса Фотосессии для беременных 2"
         },
         {
-          "src": "assets/cases/pregnancy-photoshoots-yandex-direct-3.jpg",
+          "src": "assets/cases/pregnancy-photoshoots-yandex-direct-3.webp",
           "alt": "Скриншот кейса Фотосессии для беременных 3"
         },
         {
-          "src": "assets/cases/pregnancy-photoshoots-yandex-direct-4.jpg",
+          "src": "assets/cases/pregnancy-photoshoots-yandex-direct-4.webp",
           "alt": "Скриншот кейса Фотосессии для беременных 4"
         },
         {
-          "src": "assets/cases/pregnancy-photoshoots-yandex-direct-5.jpg",
+          "src": "assets/cases/pregnancy-photoshoots-yandex-direct-5.webp",
           "alt": "Скриншот кейса Фотосессии для беременных 5"
         }
       ]
@@ -1916,31 +1916,31 @@
       "conclusion": "В туристической нише результат зависит от сезонности, быстрых способов связи и гибкой оптимизации кампаний под текущий спрос. Если отдельно учитывать формы, чаты и звонки, проще видеть реальную стоимость обращения и поддерживать поток заявок даже в конкурентный сезон.",
       "images": [
         {
-          "src": "assets/cases/saint-petersburg-tours-yandex-direct-1.jpg",
+          "src": "assets/cases/saint-petersburg-tours-yandex-direct-1.webp",
           "alt": "Скриншот кейса Экскурсии по Санкт-Петербургу 1"
         },
         {
-          "src": "assets/cases/saint-petersburg-tours-yandex-direct-2.jpg",
+          "src": "assets/cases/saint-petersburg-tours-yandex-direct-2.webp",
           "alt": "Скриншот кейса Экскурсии по Санкт-Петербургу 2"
         },
         {
-          "src": "assets/cases/saint-petersburg-tours-yandex-direct-3.jpg",
+          "src": "assets/cases/saint-petersburg-tours-yandex-direct-3.webp",
           "alt": "Скриншот кейса Экскурсии по Санкт-Петербургу 3"
         },
         {
-          "src": "assets/cases/saint-petersburg-tours-yandex-direct-4.jpg",
+          "src": "assets/cases/saint-petersburg-tours-yandex-direct-4.webp",
           "alt": "Скриншот кейса Экскурсии по Санкт-Петербургу 4"
         },
         {
-          "src": "assets/cases/saint-petersburg-tours-yandex-direct-5.jpg",
+          "src": "assets/cases/saint-petersburg-tours-yandex-direct-5.webp",
           "alt": "Скриншот кейса Экскурсии по Санкт-Петербургу 5"
         },
         {
-          "src": "assets/cases/saint-petersburg-tours-yandex-direct-6.jpg",
+          "src": "assets/cases/saint-petersburg-tours-yandex-direct-6.webp",
           "alt": "Скриншот кейса Экскурсии по Санкт-Петербургу 6"
         },
         {
-          "src": "assets/cases/saint-petersburg-tours-yandex-direct-7.jpg",
+          "src": "assets/cases/saint-petersburg-tours-yandex-direct-7.webp",
           "alt": "Скриншот кейса Экскурсии по Санкт-Петербургу 7"
         }
       ]
@@ -2001,11 +2001,11 @@
       "conclusion": "Даже в конкурентной медицине РСЯ может давать стабильный поток заявок, если уже есть рабочая посадочная и накопленная статистика. Но главный резерв роста здесь не только в рекламе, а в доработке лендинга, УТП и подключении новых форматов вроде мастер-кампаний.",
       "images": [
         {
-          "src": "assets/cases/dental-prosthetics-moscow-yandex-direct-1.jpg",
+          "src": "assets/cases/dental-prosthetics-moscow-yandex-direct-1.webp",
           "alt": "Скриншот кейса Протезирование зубов в Москве 1"
         },
         {
-          "src": "assets/cases/dental-prosthetics-moscow-yandex-direct-2.jpg",
+          "src": "assets/cases/dental-prosthetics-moscow-yandex-direct-2.webp",
           "alt": "Скриншот кейса Протезирование зубов в Москве 2"
         },
         {
@@ -2025,11 +2025,11 @@
           "alt": "Скриншот кейса Протезирование зубов в Москве 6"
         },
         {
-          "src": "assets/cases/dental-prosthetics-moscow-yandex-direct-7.jpg",
+          "src": "assets/cases/dental-prosthetics-moscow-yandex-direct-7.webp",
           "alt": "Скриншот кейса Протезирование зубов в Москве 7"
         },
         {
-          "src": "assets/cases/dental-prosthetics-moscow-yandex-direct-8.jpg",
+          "src": "assets/cases/dental-prosthetics-moscow-yandex-direct-8.webp",
           "alt": "Скриншот кейса Протезирование зубов в Москве 8"
         }
       ]
@@ -2102,27 +2102,27 @@
       "conclusion": "Даже при работе с многостраничным сайтом удалось снизить стоимость лида, увеличить количество заявок, вывести рекламу в прибыль. При внедрении лендингов и отслеживания звонков показатели могут стать ещё лучше.",
       "images": [
         {
-          "src": "assets/cases/doctor-dzidzaria-medical-service-yandex-direct-1.jpg",
+          "src": "assets/cases/doctor-dzidzaria-medical-service-yandex-direct-1.webp",
           "alt": "Скриншот кейса Медицинский сервис доктора Дзидзарии 1"
         },
         {
-          "src": "assets/cases/doctor-dzidzaria-medical-service-yandex-direct-2.jpg",
+          "src": "assets/cases/doctor-dzidzaria-medical-service-yandex-direct-2.webp",
           "alt": "Скриншот кейса Медицинский сервис доктора Дзидзарии 2"
         },
         {
-          "src": "assets/cases/doctor-dzidzaria-medical-service-yandex-direct-3.jpg",
+          "src": "assets/cases/doctor-dzidzaria-medical-service-yandex-direct-3.webp",
           "alt": "Скриншот кейса Медицинский сервис доктора Дзидзарии 3"
         },
         {
-          "src": "assets/cases/doctor-dzidzaria-medical-service-yandex-direct-4.jpg",
+          "src": "assets/cases/doctor-dzidzaria-medical-service-yandex-direct-4.webp",
           "alt": "Скриншот кейса Медицинский сервис доктора Дзидзарии 4"
         },
         {
-          "src": "assets/cases/doctor-dzidzaria-medical-service-yandex-direct-5.jpg",
+          "src": "assets/cases/doctor-dzidzaria-medical-service-yandex-direct-5.webp",
           "alt": "Скриншот кейса Медицинский сервис доктора Дзидзарии 5"
         },
         {
-          "src": "assets/cases/doctor-dzidzaria-medical-service-yandex-direct-6.jpg",
+          "src": "assets/cases/doctor-dzidzaria-medical-service-yandex-direct-6.webp",
           "alt": "Скриншот кейса Медицинский сервис доктора Дзидзарии 6"
         }
       ]
@@ -2177,23 +2177,23 @@
       "conclusion": "В локальных сервисах результат часто зависит не только от настроек кампаний, но и от оффера на сайте. Простая акция для новых клиентов повысила конверсию и снизила стоимость лида с 900-1100₽ до 543₽.",
       "images": [
         {
-          "src": "assets/cases/dry-cleaning-chain-yandex-direct-1.jpg",
+          "src": "assets/cases/dry-cleaning-chain-yandex-direct-1.webp",
           "alt": "Скриншот кейса Сеть химчисток 1"
         },
         {
-          "src": "assets/cases/dry-cleaning-chain-yandex-direct-2.jpg",
+          "src": "assets/cases/dry-cleaning-chain-yandex-direct-2.webp",
           "alt": "Скриншот кейса Сеть химчисток 2"
         },
         {
-          "src": "assets/cases/dry-cleaning-chain-yandex-direct-3.jpg",
+          "src": "assets/cases/dry-cleaning-chain-yandex-direct-3.webp",
           "alt": "Скриншот кейса Сеть химчисток 3"
         },
         {
-          "src": "assets/cases/dry-cleaning-chain-yandex-direct-4.jpg",
+          "src": "assets/cases/dry-cleaning-chain-yandex-direct-4.webp",
           "alt": "Скриншот кейса Сеть химчисток 4"
         },
         {
-          "src": "assets/cases/dry-cleaning-chain-yandex-direct-5.jpg",
+          "src": "assets/cases/dry-cleaning-chain-yandex-direct-5.webp",
           "alt": "Скриншот кейса Сеть химчисток 5"
         }
       ]
@@ -2260,55 +2260,55 @@
       "conclusion": "В небольших городах можно получать дешевые заявки, если глубоко дробить семантику и делать объявления максимально релевантными запросу. Для автосервиса сработала гиперсегментация на поиске, а РСЯ использовали шире, чтобы ловить аудиторию, у которой проблема уже есть, но спрос ещё не сформирован.",
       "images": [
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-1.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-1.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 1"
         },
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-2.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-2.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 2"
         },
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-3.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-3.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 3"
         },
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-4.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-4.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 4"
         },
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-5.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-5.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 5"
         },
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-6.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-6.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 6"
         },
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-7.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-7.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 7"
         },
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-8.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-8.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 8"
         },
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-9.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-9.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 9"
         },
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-10.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-10.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 10"
         },
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-11.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-11.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 11"
         },
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-12.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-12.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 12"
         },
         {
-          "src": "assets/cases/rybinsk-car-service-yandex-direct-13.jpg",
+          "src": "assets/cases/rybinsk-car-service-yandex-direct-13.webp",
           "alt": "Скриншот кейса Автосервис в Рыбинске 13"
         }
       ]
@@ -2360,7 +2360,7 @@
         },
       ],
       conclusion: "Иногда масштабирование упирается не в оффер и не в продукт, а в архитектуру рекламных кампаний. Чем больше качественной статистики внутри кампании, тем быстрее обучается алгоритм и тем дешевле масштаб.",
-      images: caseImages("photoschool-scaling-yandex-direct", 5, "jpg", "Скриншот кейса фотошколы"),
+      images: caseImages("photoschool-scaling-yandex-direct", 5, "webp", "Скриншот кейса фотошколы"),
     },
     {
       title: "Воронка кондитера",
@@ -2404,7 +2404,7 @@
         },
       ],
       conclusion: "Дешевый лид не равен хорошему лиду. В этом кейсе качество выросло не за счет ставок или креативов, а за счет смены намерения аудитории: отсекли лишних и оставили тех, кто готов учиться.",
-      images: caseImages("confectioner-webinar-funnel-yandex-direct", 5, "jpg", "Скриншот кейса вебинара кондитера"),
+      images: caseImages("confectioner-webinar-funnel-yandex-direct", 5, "webp", "Скриншот кейса вебинара кондитера"),
     },
     {
       title: "Курс по лозоплетению",
@@ -2448,7 +2448,7 @@
         },
       ],
       conclusion: "Бесплатный курс работает не как «прогрев ради прогрева», а как инструмент прибыли, если есть достаточный охват, алгоритмы получают объем, а посадочная страница усиливает интерес. В этом кейсе сошлись все три фактора.",
-      images: caseImages("wickerwork-course-yandex-direct", 6, "jpg", "Скриншот кейса курса по лозоплетению"),
+      images: caseImages("wickerwork-course-yandex-direct", 6, "webp", "Скриншот кейса курса по лозоплетению"),
     },
     {
       title: "Эфиры топ-шеф-повара",
@@ -2493,7 +2493,7 @@
         },
       ],
       conclusion: "Если у эксперта уже есть имя, реклама должна усиливать личность, а не заменять ее красивыми картинками. В сетях выигрывают лицо, эмоция и конкретная польза.",
-      images: caseImages("chef-live-streams-yandex-direct", 5, "jpg", "Скриншот кейса эфиров шеф-повара"),
+      images: caseImages("chef-live-streams-yandex-direct", 5, "webp", "Скриншот кейса эфиров шеф-повара", { 1: "jpg", 3: "jpg" }),
     },
     {
       title: "Курсы преподавателей Цигун",
@@ -2538,7 +2538,7 @@
         },
       ],
       conclusion: "В узкой нише выигрывает не тот, кто расширяет охват, а тот, кто точнее отбирает намерение. Когда продукт дорогой, главная задача рекламы - фильтровать.",
-      images: caseImages("qigong-teacher-courses-yandex-direct", 8, "png", "Скриншот кейса курсов преподавателей Цигун"),
+      images: caseImages("qigong-teacher-courses-yandex-direct", 8, "webp", "Скриншот кейса курсов преподавателей Цигун"),
     },
     {
       title: "Курсы по йоге Сурья Намаскар",
@@ -2584,7 +2584,7 @@
         },
       ],
       conclusion: "Иногда лучшая оптимизация - не трогать кампанию в фазе обучения. Если задать корректную целевую стоимость и дать алгоритму пространство, он может выйти на результат значительно ниже планового KPI.",
-      images: caseImages("master-campaign-online-education-yandex-direct", 3, "jpg", "Скриншот кейса Сурья Намаскар"),
+      images: caseImages("master-campaign-online-education-yandex-direct", 3, "webp", "Скриншот кейса Сурья Намаскар"),
     },
     {
       title: "Школа массажа в Москве",
@@ -2631,7 +2631,7 @@
         },
       ],
       conclusion: "Когда бренд уже известен, задача рекламы - защищать свой трафик, не переплачивать за перегретый поиск и системно обучать алгоритмы в сетях. Рост эффективности здесь дал не больший охват, а грамотная концентрация.",
-      images: caseImages("massage-school-moscow-yandex-direct", 9, "jpg", "Скриншот кейса школы массажа"),
+      images: caseImages("massage-school-moscow-yandex-direct", 9, "webp", "Скриншот кейса школы массажа"),
     },
     {
       title: "Обучение Васту. Трафик на бот",
@@ -2681,7 +2681,7 @@
         },
       ],
       conclusion: "В узких нишах нельзя начинать с терминологии для своих. Лучше заходить через понятную боль и бытовой язык: алгоритму проще масштабировать тему гармоничного дома, чем мини-курс по Васту.",
-      images: caseImages("vastu-bot-launch-yandex-direct", 5, "jpg", "Скриншот кейса обучения Васту"),
+      images: caseImages("vastu-bot-launch-yandex-direct", 5, "webp", "Скриншот кейса обучения Васту"),
     },
     {
       title: "Воронка 18+ в чувствительной нише",
@@ -2730,7 +2730,7 @@
         },
       ],
       conclusion: "Даже в чувствительной тематике можно держать низкую стоимость лида, проходить модерацию и получать качественный трафик. Ключевое - корректная формулировка оффера, аккуратные креативы и правильная фиксация событий.",
-      images: caseImages("sensitive-18-funnel-yandex-direct", 6, "png", "Скриншот кейса чувствительной ниши"),
+      images: caseImages("sensitive-18-funnel-yandex-direct", 6, "webp", "Скриншот кейса чувствительной ниши"),
     },
     {
       title: "Строительство домов",
@@ -3104,7 +3104,7 @@
         },
       ],
       conclusion: "Для интернет-магазинов результат обычно дают не отдельные кампании, а комбинация форматов. В этом проекте продажи обеспечили поисковые кампании, товарные объявления по фиду, смарт-баннеры, РСЯ и Мастер кампании. Такой подход позволил получить 656 000₽ выручки при бюджете 64 000₽ всего за 20 дней.",
-      images: caseImages("japanese-cosmetics-store-yandex-direct", 2, "jpg", "Скриншот кейса интернет-магазина японской косметики"),
+      images: caseImages("japanese-cosmetics-store-yandex-direct", 2, "webp", "Скриншот кейса интернет-магазина японской косметики"),
     },
     {
       title: "Интернет-магазин «Мясницкий ряд»",
@@ -3168,7 +3168,7 @@
         },
       ],
       conclusion: "Для интернет-магазинов важна не только реклама, но и правильная работа с воронкой продаж. В этом проекте результат дали три решения: товарные кампании по фиду, оптимизация по поведенческим целям воронки и распределение бюджета между разными форматами рекламы. Это позволило снизить стоимость заказа до 408₽ при KPI 1000₽ - и получить результат даже без ретаргетинга.",
-      images: caseImages("myasnitsky-ryad-store-yandex-direct", 5, "jpg", "Скриншот кейса интернет-магазина «Мясницкий ряд»"),
+      images: caseImages("myasnitsky-ryad-store-yandex-direct", 5, "webp", "Скриншот кейса интернет-магазина «Мясницкий ряд»"),
     },
   ];
 
@@ -3226,13 +3226,13 @@
       ],
       conclusion: "В Telegram Ads результат дала не автоматическая оптимизация, а объем аккуратных тестов: каналы, короткие тексты, форматы объявлений и контроль стоимости показов. В этом проекте ручная проверка гипотез позволила получить регистрации по 1€ и подписчиков по 1.3€.",
       images: [
-        { src: "assets/cases/yoga-qigong-telegram-ads-1.jpg", alt: "Скриншот результата по курсам йоги и цигун" },
-        { src: "assets/cases/yoga-qigong-telegram-ads-2.jpg", alt: "Скриншот Telegram Ads для йоги и цигун" },
-        { src: "assets/cases/yoga-qigong-telegram-ads-3.jpg", alt: "Скриншот рекламной кампании йоги и цигун" },
-        { src: "assets/cases/yoga-qigong-telegram-ads-4.jpg", alt: "Скриншот теста каналов по йоге" },
-        { src: "assets/cases/yoga-qigong-telegram-ads-5.jpg", alt: "Скриншот объявлений йога и цигун" },
-        { src: "assets/cases/yoga-qigong-telegram-ads-6.jpg", alt: "Скриншот статистики йога и цигун" },
-        { src: "assets/cases/yoga-qigong-telegram-ads-7.jpg", alt: "Дополнительный скриншот кейса йога и цигун" },
+        { src: "assets/cases/yoga-qigong-telegram-ads-1.webp", alt: "Скриншот результата по курсам йоги и цигун" },
+        { src: "assets/cases/yoga-qigong-telegram-ads-2.webp", alt: "Скриншот Telegram Ads для йоги и цигун" },
+        { src: "assets/cases/yoga-qigong-telegram-ads-3.webp", alt: "Скриншот рекламной кампании йоги и цигун" },
+        { src: "assets/cases/yoga-qigong-telegram-ads-4.webp", alt: "Скриншот теста каналов по йоге" },
+        { src: "assets/cases/yoga-qigong-telegram-ads-5.webp", alt: "Скриншот объявлений йога и цигун" },
+        { src: "assets/cases/yoga-qigong-telegram-ads-6.webp", alt: "Скриншот статистики йога и цигун" },
+        { src: "assets/cases/yoga-qigong-telegram-ads-7.webp", alt: "Дополнительный скриншот кейса йога и цигун" },
       ],
     },
     {
@@ -3289,15 +3289,15 @@
       ],
       conclusion: "В медицинской тематике важно сначала пройти модерацию, а уже потом масштабировать рабочие связки. Спокойные информационные тексты оказались надежнее прямых формулировок про лечение.",
       images: [
-        { src: "assets/cases/medcenter-telegram-ads-1.png", alt: "Скриншот результата медицинского центра" },
-        { src: "assets/cases/medcenter-telegram-ads-2.jpg", alt: "Скриншот Telegram Ads медицинского центра" },
-        { src: "assets/cases/medcenter-telegram-ads-3.jpg", alt: "Скриншот рекламного кабинета медицинского центра" },
-        { src: "assets/cases/medcenter-telegram-ads-4.png", alt: "Скриншот модерации медицинской рекламы" },
-        { src: "assets/cases/medcenter-telegram-ads-5.jpg", alt: "Скриншот объявления медицинского центра" },
-        { src: "assets/cases/medcenter-telegram-ads-6.jpg", alt: "Скриншот статистики медицинского центра" },
-        { src: "assets/cases/medcenter-telegram-ads-7.jpg", alt: "Дополнительный скриншот медицинского кейса" },
-        { src: "assets/cases/medcenter-telegram-ads-8.jpg", alt: "Скриншот локального размещения медицинского центра" },
-        { src: "assets/cases/medcenter-telegram-ads-9.jpg", alt: "Скриншот кампании медицинского центра" },
+        { src: "assets/cases/medcenter-telegram-ads-1.webp", alt: "Скриншот результата медицинского центра" },
+        { src: "assets/cases/medcenter-telegram-ads-2.webp", alt: "Скриншот Telegram Ads медицинского центра" },
+        { src: "assets/cases/medcenter-telegram-ads-3.webp", alt: "Скриншот рекламного кабинета медицинского центра" },
+        { src: "assets/cases/medcenter-telegram-ads-4.webp", alt: "Скриншот модерации медицинской рекламы" },
+        { src: "assets/cases/medcenter-telegram-ads-5.webp", alt: "Скриншот объявления медицинского центра" },
+        { src: "assets/cases/medcenter-telegram-ads-6.webp", alt: "Скриншот статистики медицинского центра" },
+        { src: "assets/cases/medcenter-telegram-ads-7.webp", alt: "Дополнительный скриншот медицинского кейса" },
+        { src: "assets/cases/medcenter-telegram-ads-8.webp", alt: "Скриншот локального размещения медицинского центра" },
+        { src: "assets/cases/medcenter-telegram-ads-9.webp", alt: "Скриншот кампании медицинского центра" },
       ],
     },
     {
@@ -3352,9 +3352,9 @@
       ],
       conclusion: "Для образовательного продукта Telegram-бот хорошо работает как входная точка. Он дает контент, сохраняет контакт с человеком и мягко ведет его к покупке обучения.",
       images: [
-        { src: "assets/cases/marketplace-managers-telegram-ads-1.jpg", alt: "Скриншот запуска бота для обучения менеджеров маркетплейсов" },
-        { src: "assets/cases/marketplace-managers-telegram-ads-2.jpg", alt: "Скриншот воронки Telegram-бота" },
-        { src: "assets/cases/marketplace-managers-telegram-ads-3.jpg", alt: "Скриншот контента внутри бота" },
+        { src: "assets/cases/marketplace-managers-telegram-ads-1.webp", alt: "Скриншот запуска бота для обучения менеджеров маркетплейсов" },
+        { src: "assets/cases/marketplace-managers-telegram-ads-2.webp", alt: "Скриншот воронки Telegram-бота" },
+        { src: "assets/cases/marketplace-managers-telegram-ads-3.webp", alt: "Скриншот контента внутри бота" },
       ],
     },
     {
@@ -3411,9 +3411,9 @@
       conclusion: "Для VPN-сервиса связка Telegram Ads и бота с тестовым периодом дала управляемую воронку: дешевый вход, понятную аналитику и оплату подписки ниже целевого KPI.",
       images: [
         { src: "assets/cases/vpn-telegram-ads-1.png", alt: "Скриншот результата продвижения VPN" },
-        { src: "assets/cases/vpn-telegram-ads-2.png", alt: "Скриншот Telegram-бота VPN" },
-        { src: "assets/cases/vpn-telegram-ads-3.png", alt: "Скриншот аналитики VPN-бота" },
-        { src: "assets/cases/vpn-telegram-ads-4.png", alt: "Скриншот рекламного размещения VPN" },
+        { src: "assets/cases/vpn-telegram-ads-2.webp", alt: "Скриншот Telegram-бота VPN" },
+        { src: "assets/cases/vpn-telegram-ads-3.webp", alt: "Скриншот аналитики VPN-бота" },
+        { src: "assets/cases/vpn-telegram-ads-4.webp", alt: "Скриншот рекламного размещения VPN" },
       ],
     },
     {
@@ -3453,12 +3453,12 @@
             },
           ],
           images: [
-            { src: "assets/cases/geoservices-autolombard-01.jpg", alt: "Статистика продвижения автоломбарда" },
-            { src: "assets/cases/geoservices-autolombard-02.jpg", alt: "Настройки кампании автоломбарда" },
-            { src: "assets/cases/geoservices-autolombard-03.jpg", alt: "Размещение автоломбарда в галерее" },
-            { src: "assets/cases/geoservices-autolombard-04.jpg", alt: "Размещение автоломбарда на Картах" },
-            { src: "assets/cases/geoservices-autolombard-05.jpg", alt: "Целевые действия автоломбарда в Метрике" },
-            { src: "assets/cases/geoservices-autolombard-06.jpg", alt: "Статистика целевых действий автоломбарда" },
+            { src: "assets/cases/geoservices-autolombard-01.webp", alt: "Статистика продвижения автоломбарда" },
+            { src: "assets/cases/geoservices-autolombard-02.webp", alt: "Настройки кампании автоломбарда" },
+            { src: "assets/cases/geoservices-autolombard-03.webp", alt: "Размещение автоломбарда в галерее" },
+            { src: "assets/cases/geoservices-autolombard-04.webp", alt: "Размещение автоломбарда на Картах" },
+            { src: "assets/cases/geoservices-autolombard-05.webp", alt: "Целевые действия автоломбарда в Метрике" },
+            { src: "assets/cases/geoservices-autolombard-06.webp", alt: "Статистика целевых действий автоломбарда" },
           ],
         },
         {
@@ -3500,10 +3500,10 @@
             },
           ],
           images: [
-            { src: "assets/cases/geoservices-stretching-01.png", alt: "Результаты студии растяжки в Яндекс Картах 1" },
-            { src: "assets/cases/geoservices-stretching-02.png", alt: "Результаты студии растяжки в Яндекс Картах 2" },
-            { src: "assets/cases/geoservices-stretching-03.png", alt: "Результаты студии растяжки в Яндекс Картах 3" },
-            { src: "assets/cases/geoservices-stretching-04.png", alt: "Результаты студии растяжки в Яндекс Картах 4" },
+            { src: "assets/cases/geoservices-stretching-01.webp", alt: "Результаты студии растяжки в Яндекс Картах 1" },
+            { src: "assets/cases/geoservices-stretching-02.webp", alt: "Результаты студии растяжки в Яндекс Картах 2" },
+            { src: "assets/cases/geoservices-stretching-03.webp", alt: "Результаты студии растяжки в Яндекс Картах 3" },
+            { src: "assets/cases/geoservices-stretching-04.webp", alt: "Результаты студии растяжки в Яндекс Картах 4" },
           ],
         },
         {
@@ -3538,10 +3538,10 @@
             },
           ],
           images: [
-            { src: "assets/cases/geoservices-sup-01.png", alt: "Результаты SUP-прогулок в Яндекс Картах 1" },
-            { src: "assets/cases/geoservices-sup-02.png", alt: "Результаты SUP-прогулок в Яндекс Картах 2" },
-            { src: "assets/cases/geoservices-sup-03.png", alt: "Результаты SUP-прогулок в Яндекс Картах 3" },
-            { src: "assets/cases/geoservices-sup-04.png", alt: "Результаты SUP-прогулок в Яндекс Картах 4" },
+            { src: "assets/cases/geoservices-sup-01.webp", alt: "Результаты SUP-прогулок в Яндекс Картах 1" },
+            { src: "assets/cases/geoservices-sup-02.webp", alt: "Результаты SUP-прогулок в Яндекс Картах 2" },
+            { src: "assets/cases/geoservices-sup-03.webp", alt: "Результаты SUP-прогулок в Яндекс Картах 3" },
+            { src: "assets/cases/geoservices-sup-04.webp", alt: "Результаты SUP-прогулок в Яндекс Картах 4" },
           ],
         },
         {
@@ -3577,16 +3577,16 @@
             },
           ],
           images: [
-            { src: "assets/cases/geoservices-cosmetics-01.png", alt: "Результаты магазина косметики в Яндекс Картах 1" },
-            { src: "assets/cases/geoservices-cosmetics-02.png", alt: "Результаты магазина косметики в Яндекс Картах 2" },
-            { src: "assets/cases/geoservices-cosmetics-03.png", alt: "Результаты магазина косметики в Яндекс Картах 3" },
-            { src: "assets/cases/geoservices-cosmetics-04.png", alt: "Результаты магазина косметики в Яндекс Картах 4" },
-            { src: "assets/cases/geoservices-cosmetics-05.png", alt: "Результаты магазина косметики в Яндекс Картах 5" },
-            { src: "assets/cases/geoservices-cosmetics-06.png", alt: "Результаты магазина косметики в Яндекс Картах 6" },
-            { src: "assets/cases/geoservices-cosmetics-07.png", alt: "Результаты магазина косметики в Яндекс Картах 7" },
-            { src: "assets/cases/geoservices-cosmetics-08.png", alt: "Результаты магазина косметики в Яндекс Картах 8" },
-            { src: "assets/cases/geoservices-cosmetics-09.png", alt: "Результаты магазина косметики в Яндекс Картах 9" },
-            { src: "assets/cases/geoservices-cosmetics-10.png", alt: "Результаты магазина косметики в Яндекс Картах 10" },
+            { src: "assets/cases/geoservices-cosmetics-01.webp", alt: "Результаты магазина косметики в Яндекс Картах 1" },
+            { src: "assets/cases/geoservices-cosmetics-02.webp", alt: "Результаты магазина косметики в Яндекс Картах 2" },
+            { src: "assets/cases/geoservices-cosmetics-03.webp", alt: "Результаты магазина косметики в Яндекс Картах 3" },
+            { src: "assets/cases/geoservices-cosmetics-04.webp", alt: "Результаты магазина косметики в Яндекс Картах 4" },
+            { src: "assets/cases/geoservices-cosmetics-05.webp", alt: "Результаты магазина косметики в Яндекс Картах 5" },
+            { src: "assets/cases/geoservices-cosmetics-06.webp", alt: "Результаты магазина косметики в Яндекс Картах 6" },
+            { src: "assets/cases/geoservices-cosmetics-07.webp", alt: "Результаты магазина косметики в Яндекс Картах 7" },
+            { src: "assets/cases/geoservices-cosmetics-08.webp", alt: "Результаты магазина косметики в Яндекс Картах 8" },
+            { src: "assets/cases/geoservices-cosmetics-09.webp", alt: "Результаты магазина косметики в Яндекс Картах 9" },
+            { src: "assets/cases/geoservices-cosmetics-10.webp", alt: "Результаты магазина косметики в Яндекс Картах 10" },
           ],
         },
         {
@@ -3615,10 +3615,10 @@
             },
           ],
           images: [
-            { src: "assets/cases/geoservices-permanent-01.png", alt: "Результаты перманентного макияжа в Яндекс Картах 1" },
-            { src: "assets/cases/geoservices-permanent-02.png", alt: "Результаты перманентного макияжа в Яндекс Картах 2" },
-            { src: "assets/cases/geoservices-permanent-03.png", alt: "Результаты перманентного макияжа в Яндекс Картах 3" },
-            { src: "assets/cases/geoservices-permanent-04.png", alt: "Результаты перманентного макияжа в Яндекс Картах 4" },
+            { src: "assets/cases/geoservices-permanent-01.webp", alt: "Результаты перманентного макияжа в Яндекс Картах 1" },
+            { src: "assets/cases/geoservices-permanent-02.webp", alt: "Результаты перманентного макияжа в Яндекс Картах 2" },
+            { src: "assets/cases/geoservices-permanent-03.webp", alt: "Результаты перманентного макияжа в Яндекс Картах 3" },
+            { src: "assets/cases/geoservices-permanent-04.webp", alt: "Результаты перманентного макияжа в Яндекс Картах 4" },
           ],
         },
       ],
