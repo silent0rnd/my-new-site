@@ -726,8 +726,8 @@ if (workCards.length > 0) {
     card.querySelectorAll(".work-card__result > span").forEach((result) => result.classList.add("is-underlined"));
   };
 
-  const revealWorkTick = (item) => {
-    item.classList.add("is-ticked");
+  const revealWorkTicks = (list) => {
+    list.classList.add("is-ticked");
   };
 
   const skipWorkCardAnimation =
@@ -743,8 +743,8 @@ if (workCards.length > 0) {
 
             if (!entry.isIntersecting && !hasPassedActivationLine) return;
 
-            if (entry.target.matches(".work-card li")) {
-              revealWorkTick(entry.target);
+            if (entry.target.matches(".work-card ul")) {
+              revealWorkTicks(entry.target);
             } else {
               revealWorkCard(entry.target);
             }
@@ -756,14 +756,14 @@ if (workCards.length > 0) {
       );
 
   workCards.forEach((card) => {
-    const items = card.querySelectorAll("li");
+    const lists = card.querySelectorAll("ul");
 
     if (skipWorkCardAnimation) {
       revealWorkCard(card);
-      items.forEach(revealWorkTick);
+      lists.forEach(revealWorkTicks);
     } else {
       workUnderlineObserver.observe(card);
-      items.forEach((item) => workUnderlineObserver.observe(item));
+      lists.forEach((list) => workUnderlineObserver.observe(list));
     }
   });
 }
