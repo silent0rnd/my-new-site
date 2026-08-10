@@ -754,14 +754,6 @@ h1 {
   --tick-tilt: -5deg;
 }
 
-.work-card li:nth-child(1) { --tick-delay: 0ms; }
-.work-card li:nth-child(2) { --tick-delay: 135ms; }
-.work-card li:nth-child(3) { --tick-delay: 270ms; }
-.work-card li:nth-child(4) { --tick-delay: 405ms; }
-.work-card li:nth-child(5) { --tick-delay: 540ms; }
-.work-card li:nth-child(6) { --tick-delay: 675ms; }
-.work-card li:nth-child(7) { --tick-delay: 810ms; }
-
 .work-tick__path {
   fill: none;
   stroke: #FF9800;
@@ -771,10 +763,9 @@ h1 {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   transition: stroke-dashoffset 780ms cubic-bezier(.25, .85, .35, 1);
-  transition-delay: var(--tick-delay, 0ms);
 }
 
-.work-card ul.is-ticked .work-tick__path {
+.work-card li.is-ticked .work-tick__path {
   stroke-dashoffset: 0;
 }
 

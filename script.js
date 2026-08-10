@@ -2,7 +2,7 @@
   const CONSENT_KEY = "naklikayCookieConsent";
   const CONSENT_TTL_MS = 365 * 24 * 60 * 60 * 1000;
   const COOKIE_CONSENT_DELAY_MS = 6000;
-  const COOKIE_CONSENT_MOBILE_DELAY_MS = 6000;
+  const COOKIE_CONSENT_MOBILE_DELAY_MS = 7000;
   const COOKIE_CONSENT_ANIMATION_MS = 360;
   const YANDEX_METRIKA_ID = 110564693;
   const YANDEX_METRIKA_SRC = "https://mc.yandex.ru/metrika/tag.js?id=110564693";
@@ -724,7 +724,10 @@ if (workCards.length > 0) {
 
   const revealWorkCard = (card) => {
     card.querySelectorAll(".work-card__result > span").forEach((result) => result.classList.add("is-underlined"));
-    card.querySelectorAll("ul").forEach((list) => list.classList.add("is-ticked"));
+  };
+
+  const revealWorkTick = (item) => {
+    item.classList.add("is-ticked");
   };
 
   const skipWorkCardAnimation =
@@ -735,20 +738,32 @@ if (workCards.length > 0) {
     : new IntersectionObserver(
         (entries, observer) => {
           entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
+            const activationLine = entry.rootBounds?.bottom ?? window.innerHeight * 0.6;
+            const hasPassedActivationLine = entry.boundingClientRect.top < activationLine;
 
-            revealWorkCard(entry.target);
+            if (!entry.isIntersecting && !hasPassedActivationLine) return;
+
+            if (entry.target.matches(".work-card li")) {
+              revealWorkTick(entry.target);
+            } else {
+              revealWorkCard(entry.target);
+            }
+
             observer.unobserve(entry.target);
           });
         },
-        { rootMargin: "0px 0px -18% 0px", threshold: 0.25 }
+        { rootMargin: "0px 0px -40% 0px", threshold: 0.1 }
       );
 
   workCards.forEach((card) => {
+    const items = card.querySelectorAll("li");
+
     if (skipWorkCardAnimation) {
       revealWorkCard(card);
+      items.forEach(revealWorkTick);
     } else {
       workUnderlineObserver.observe(card);
+      items.forEach((item) => workUnderlineObserver.observe(item));
     }
   });
 }
