@@ -1,7 +1,7 @@
 (() => {
   const CONSENT_KEY = "naklikayCookieConsent";
   const CONSENT_TTL_MS = 365 * 24 * 60 * 60 * 1000;
-  const COOKIE_CONSENT_DELAY_MS = 5000;
+  const COOKIE_CONSENT_DELAY_MS = 6000;
   const COOKIE_CONSENT_MOBILE_DELAY_MS = 6000;
   const COOKIE_CONSENT_ANIMATION_MS = 360;
   const YANDEX_METRIKA_ID = 110564693;
