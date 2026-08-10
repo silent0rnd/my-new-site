@@ -280,6 +280,9 @@ const LETTER_DELAY_MS = 63;
 // 63 × 0.75: на страницах кейсов перекат заголовков идёт на четверть быстрее.
 // Парное правило - animation-duration у .case-detail в styles.css.
 const CASE_LETTER_DELAY_MS = 47;
+const MOBILE_CASE_TITLE_QUERY = "(max-width: 560px)";
+const CASE_TITLE_MIN_FONT_SIZE_PX = 32;
+const CASE_TITLE_MAX_FONT_SIZE_PX = 64;
 const ANIMATION_DURATION_MS = 588;
 const GLOBAL_ANIMATION_DELAY_MS = 3000;
 const AFTER_STATS_PAUSE_MS = 0;
@@ -637,6 +640,38 @@ function buildTextRoll(element, baseDelay = 0, letterDelay = LETTER_DELAY_MS, hi
   }
 }
 
+function fitMobileCaseTitle(title) {
+  if (!title) return;
+
+  if (!window.matchMedia(MOBILE_CASE_TITLE_QUERY).matches) {
+    title.style.removeProperty("--case-title-font-size");
+    return;
+  }
+
+  const words = Array.from(title.querySelectorAll(".text-roll-word"));
+  if (words.length === 0 || title.clientWidth <= 0) return;
+
+  const currentFontSize = parseFloat(window.getComputedStyle(title).fontSize) || CASE_TITLE_MAX_FONT_SIZE_PX;
+  const widestWordAtCurrentSize = words.reduce(
+    (widest, word) => Math.max(widest, word.getBoundingClientRect().width),
+    0,
+  );
+
+  if (widestWordAtCurrentSize <= 0) return;
+
+  const widestWordAtMaxSize = widestWordAtCurrentSize * (CASE_TITLE_MAX_FONT_SIZE_PX / currentFontSize);
+  const availableWidth = Math.max(0, title.clientWidth - 1);
+  const fittedSize = Math.min(
+    CASE_TITLE_MAX_FONT_SIZE_PX,
+    Math.max(
+      CASE_TITLE_MIN_FONT_SIZE_PX,
+      Math.floor((CASE_TITLE_MAX_FONT_SIZE_PX * availableWidth * 10) / widestWordAtMaxSize) / 10,
+    ),
+  );
+
+  title.style.setProperty("--case-title-font-size", `${fittedSize}px`);
+}
+
 let maxStatsLetters = 0;
 
 if (shouldRunHeroIntroAnimation()) {
@@ -943,19 +978,36 @@ function getFooterSignatureAnimationSource(sourceUrl) {
 }
 
 function initFooterSignatureReveal() {
-  if (
-    !footerSignature ||
-    prefersReducedMotion.matches ||
-    !("IntersectionObserver" in window)
-  ) {
+  const signaturePendingRoot = document.documentElement;
+
+  if (!footerSignature) {
+    signaturePendingRoot.classList.remove("is-signature-pending");
     return;
   }
 
   const staticSignature = footerSignature.querySelector("img.site-footer__signature-image");
-  if (!staticSignature) return;
+  if (!staticSignature) {
+    signaturePendingRoot.classList.remove("is-signature-pending");
+    return;
+  }
 
   const originalSource = staticSignature.getAttribute("src");
-  if (!originalSource) return;
+  if (!originalSource) {
+    signaturePendingRoot.classList.remove("is-signature-pending");
+    return;
+  }
+
+  const showSignature = () => {
+    signaturePendingRoot.classList.remove("is-signature-pending");
+    footerSignature.classList.remove("is-signature-idle");
+  };
+
+  footerSignature.classList.add("is-signature-idle");
+
+  if (prefersReducedMotion.matches || !("IntersectionObserver" in window)) {
+    showSignature();
+    return;
+  }
 
   const animationSource = getFooterSignatureAnimationSource(originalSource);
   const animationPreload = new Image();
@@ -965,9 +1017,6 @@ function initFooterSignatureReveal() {
 
   // Пока анимация не началась, место подписи держим пустым: иначе на медленной
   // мобильной сети сначала видно готовую подпись, а потом она заново рисуется.
-  const showSignature = () => footerSignature.classList.remove("is-signature-idle");
-  footerSignature.classList.add("is-signature-idle");
-
   const finishDrawing = () => {
     staticSignature.src = originalSource;
     footerSignature.classList.remove("is-signature-writing");
@@ -1799,6 +1848,24 @@ sectionTitles.forEach((title) => {
   title.classList.add("is-roll-paused");
   buildTextRoll(title, 0, title.closest(".case-detail") ? CASE_LETTER_DELAY_MS : LETTER_DELAY_MS);
 });
+
+const caseHeroTitle = document.querySelector(".case-detail .case-hero h1");
+let caseTitleFitFrame = 0;
+
+function queueCaseTitleFit() {
+  if (!caseHeroTitle) return;
+
+  window.cancelAnimationFrame(caseTitleFitFrame);
+  caseTitleFitFrame = window.requestAnimationFrame(() => fitMobileCaseTitle(caseHeroTitle));
+}
+
+fitMobileCaseTitle(caseHeroTitle);
+
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(queueCaseTitleFit).catch(() => {});
+}
+
+window.addEventListener("resize", queueCaseTitleFit);
 
 document.documentElement.classList.remove("is-section-titles-pending");
 
