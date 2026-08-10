@@ -885,7 +885,7 @@ h1 {
     content: "";
     position: absolute;
     inset: 0;
-    background: url("assets/about-portrait-color.webp") 50% 22% / cover no-repeat;
+    background: url("assets/about-portrait-color.jpg") 50% 22% / cover no-repeat;
     mix-blend-mode: color;
     -webkit-mask-image: radial-gradient(
       circle var(--about-spot-r, 170px) at var(--about-spot-x, 50%) var(--about-spot-y, -40%),
