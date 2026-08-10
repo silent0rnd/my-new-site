@@ -286,6 +286,36 @@ a {
   isolation: isolate;
 }
 
+/* Дымка: заливка цветом фона, которой вместо ровной формы задана рваная
+   "облачная" маска - фон наплывает на фото пятнами, и граница перестаёт
+   читаться как ровная линия. Шум считается браузером один раз при первой
+   отрисовке (квадрат 500x500, дальше плиткой) и при скролле не пересчитывается.
+   Слой 3: над фото (2), под текстом (.stats и .intro на 4). */
+.hero::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  width: 64vw;
+  height: 38svh;
+  background: var(--bg);
+  /* Сама облачность. Вторая маска (радиальная) нужна, чтобы у дымки не было
+     собственных краёв: она плотная в нижнем правом углу и сходит на нет к тексту. */
+  --fog-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='f' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008' numOctaves='4' seed='7'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='gamma' amplitude='1.6' exponent='1.4' offset='-0.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='500' height='500' filter='url(%23f)'/%3E%3C/svg%3E");
+  --fog-shape: radial-gradient(120% 100% at 100% 100%, #000 0, rgb(0 0 0 / 0.55) 42%, transparent 78%);
+  -webkit-mask-image: var(--fog-noise), var(--fog-shape);
+  mask-image: var(--fog-noise), var(--fog-shape);
+  -webkit-mask-size: 500px 500px, 100% 100%;
+  mask-size: 500px 500px, 100% 100%;
+  -webkit-mask-repeat: repeat, no-repeat;
+  mask-repeat: repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .topbar {
   position: relative;
   z-index: 5;
@@ -563,8 +593,29 @@ h1 {
   margin: 0;
   overflow: hidden;
   background: var(--bg) url("assets/maxim-portrait-video-frame-first.jpg") 50% 25% / cover no-repeat;
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 13%);
-  mask-image: linear-gradient(to right, transparent 0, #000 13%);
+  /* Растворяем сам снимок по всем четырём краям, а не заклеиваем его плёнками
+     сверху: плёнки оставляли ступеньки на стыках и букву "Г" в углах.
+     Промежуточные точки внутри каждого градиента превращают прямой отвес в
+     дугу - без них видно, где переход "включается".
+     Направление читается наоборот: "to top" гасит НИЖНИЙ край (у него точка 0
+     внизу), "to right" - ЛЕВЫЙ. Нижний уход самый длинный (38%) - это и есть
+     шов, который видно при прокрутке. */
+  /* Левый край вынесен в переменную: на телефонах фото сдвинуто и заходит под
+     текст, там ему нужен более растянутый уход - переопределяется одной
+     строкой в медиазапросе, без повтора всех четырёх слоёв. */
+  --portrait-fade-left: linear-gradient(to right, transparent 0, rgb(0 0 0 / 0.35) 8%, #000 22%);
+  -webkit-mask-image:
+    var(--portrait-fade-left),
+    linear-gradient(to left, transparent 0, rgb(0 0 0 / 0.4) 5%, #000 15%),
+    linear-gradient(to bottom, transparent 0, rgb(0 0 0 / 0.45) 6%, #000 18%),
+    linear-gradient(to top, transparent 0, rgb(0 0 0 / 0.1) 8%, rgb(0 0 0 / 0.5) 19%, #000 38%);
+  mask-image:
+    var(--portrait-fade-left),
+    linear-gradient(to left, transparent 0, rgb(0 0 0 / 0.4) 5%, #000 15%),
+    linear-gradient(to bottom, transparent 0, rgb(0 0 0 / 0.45) 6%, #000 18%),
+    linear-gradient(to top, transparent 0, rgb(0 0 0 / 0.1) 8%, rgb(0 0 0 / 0.5) 19%, #000 38%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
 .portrait::before {
@@ -572,20 +623,9 @@ h1 {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background:
-    linear-gradient(to bottom, rgb(243 243 241 / 0.72) 0, rgb(243 243 241 / 0.26) 5%, rgb(243 243 241 / 0) 15%),
-    linear-gradient(to left, rgb(243 243 241 / 0.64) 0, rgb(243 243 241 / 0.24) 5%, rgb(243 243 241 / 0) 14%),
-    radial-gradient(ellipse at 0 100%, rgb(243 243 241 / 0.46) 0, rgb(243 243 241 / 0.23) 28%, rgb(243 243 241 / 0) 58%);
-  pointer-events: none;
-}
-
-.portrait::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  z-index: 3;
-  height: 17%;
-  background: linear-gradient(to bottom, rgb(243 243 241 / 0), var(--bg));
+  /* Остался только подсвет в нижнем левом углу - он разгружает зону под текстом.
+     Верх и правый край теперь гасит маска самого .portrait. */
+  background: radial-gradient(ellipse at 0 100%, rgb(243 243 241 / 0.46) 0, rgb(243 243 241 / 0.23) 28%, rgb(243 243 241 / 0) 58%);
   pointer-events: none;
 }
 
@@ -2937,8 +2977,12 @@ h1 {
     min-width: 0;
     height: 62svh;
     opacity: 1;
-    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18%);
-    mask-image: linear-gradient(to right, transparent 0, #000 18%);
+    --portrait-fade-left: linear-gradient(to right, transparent 0, rgb(0 0 0 / 0.3) 8%, #000 26%);
+  }
+
+  .hero::after {
+    width: 92vw;
+    height: 30svh;
   }
 
   .scroll-note {
@@ -3313,15 +3357,13 @@ h1 {
     width: min(104vw, 390px);
     min-width: 0;
     height: 58svh;
-    -webkit-mask-image: linear-gradient(to right, transparent 0, rgb(0 0 0 / 0.28) 24%, #000 42%);
-    mask-image: linear-gradient(to right, transparent 0, rgb(0 0 0 / 0.28) 24%, #000 42%);
+    --portrait-fade-left: linear-gradient(to right, transparent 0, rgb(0 0 0 / 0.28) 24%, #000 42%);
   }
 
   .portrait::before {
-    background:
-      linear-gradient(to right, var(--bg) 0, rgb(243 243 241 / 0.86) 24%, rgb(243 243 241 / 0) 48%),
-      linear-gradient(to bottom, rgb(243 243 241 / 0.7) 0, rgb(243 243 241 / 0.2) 8%, rgb(243 243 241 / 0) 22%),
-      radial-gradient(ellipse at 0 45%, rgb(243 243 241 / 0.62) 0, rgb(243 243 241 / 0.26) 34%, rgb(243 243 241 / 0) 64%);
+    /* На узком экране фото заходит прямо под текст - подсвет сдвинут к середине
+       левого края, чтобы буквы не ложились на тёмное. */
+    background: radial-gradient(ellipse at 0 45%, rgb(243 243 241 / 0.62) 0, rgb(243 243 241 / 0.26) 34%, rgb(243 243 241 / 0) 64%);
   }
 
   .scroll-note {
