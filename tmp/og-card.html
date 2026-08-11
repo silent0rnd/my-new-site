@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face {
+    font-family: "TT Masters";
+    src: url("file:///C:/Users/user/Desktop/my new site/assets/fonts/TTMasters-Regular.ttf") format("truetype");
+    font-weight: 300 700;
+    font-display: block;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden; position: relative;
+    background: #f3f3f1; color: #2b2b2b;
+    font-family: "TT Masters", Arial, sans-serif;
+  }
+
+  .portrait {
+    position: absolute; z-index: 1; top: -30px; right: -10px; bottom: -10px; width: 620px;
+    background: #f3f3f1 url("file:///C:/Users/user/Desktop/my new site/assets/maxim-portrait-video-frame-first.jpg") 50% 20% / cover no-repeat;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0, rgb(0 0 0 / 0.35) 8%, #000 26%),
+      linear-gradient(to left, transparent 0, rgb(0 0 0 / 0.4) 4%, #000 13%),
+      linear-gradient(to bottom, transparent 0, rgb(0 0 0 / 0.45) 5%, #000 16%),
+      linear-gradient(to top, transparent 0, rgb(0 0 0 / 0.1) 6%, rgb(0 0 0 / 0.5) 15%, #000 30%);
+    -webkit-mask-composite: source-in;
+  }
+
+  .orb { position: absolute; z-index: 0; top: 136px; left: 34px; width: 476px; height: 172px; }
+  .orb path { fill: none; stroke: #FF9800; stroke-width: 2; stroke-linecap: round; opacity: 0.55; }
+
+  .text { position: relative; z-index: 2; height: 100%; padding: 66px 0 60px 76px;
+          display: flex; flex-direction: column; justify-content: center; }
+
+  .eyebrow { color: #4c4c4a; font-size: 19px; font-weight: 500; margin-bottom: 14px; }
+  .eyebrow::before { content: ""; display: inline-block; width: 19px; height: 1px;
+                     margin-right: 8px; vertical-align: middle; background: #4d4d4b; }
+
+  .name { font-size: 72px; font-weight: 300; line-height: 0.94; }
+
+  .role { position: relative; display: inline-block; align-self: flex-start;
+          margin-top: 30px; color: #202020; font-size: 24px; font-weight: 500; }
+  .role svg { position: absolute; left: 0; right: -6px; bottom: -13px; width: calc(100% + 6px); height: 14px; }
+  .role path { fill: none; stroke: #FF9800; stroke-width: 2.4; stroke-linecap: round; }
+
+  .channels { margin-top: 26px; color: #61615f; font-size: 21px; font-weight: 500; }
+
+  .stats { display: flex; gap: 56px; margin-top: 46px; }
+  .stats div { display: grid; gap: 8px; }
+  .stats strong { font-size: 46px; font-weight: 300; line-height: 0.95; }
+  .stats span { color: #61615f; font-size: 19px; font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="portrait"></div>
+  <svg class="orb" viewBox="0 0 420 420" preserveAspectRatio="none" aria-hidden="true">
+    <path vector-effect="non-scaling-stroke" d="M216 22 C313 17 389 91 397 190 C406 289 343 377 247 398 C151 418 52 354 25 258 C-1 160 62 62 158 31 C172 26 187 23 202 23" />
+  </svg>
+
+  <div class="text">
+    <p class="eyebrow">Меня зовут</p>
+    <div class="name">Максим<br />Мирошников</div>
+    <p class="role">
+      Специалист по платному трафику
+      <svg viewBox="0 0 260 18" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M3 12 C44 5.8 90 5 132 6 C181 7.1 220 6.1 257 11.4" />
+      </svg>
+    </p>
+    <p class="channels">Яндекс Директ / Telegram Ads / Avito Ads</p>
+    <div class="stats">
+      <div><strong>10+</strong><span>лет в трафике</span></div>
+      <div><strong>200+</strong><span>млн бюджета</span></div>
+      <div><strong>40+</strong><span>кейсов</span></div>
+    </div>
+  </div>
+</body>
+</html>
