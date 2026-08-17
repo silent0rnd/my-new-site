@@ -9,8 +9,12 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://naklikay.ru/blog/" />
     <link rel="preload" href="../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="../styles.css?v=20260817-blog-2" />
-    <script src="../script.js?v=20260817-blog-2" defer></script>
+    <link rel="stylesheet" href="../styles.css?v=20260817-blog-6" />
+    <script src="../script.js?v=20260817-blog-4" defer></script>
+
+    <!-- Карточки блога спрятаны до появления при скролле. Показывать их выводит JS,
+         поэтому без него текст статей остался бы невидимым. -->
+    <noscript><style>.case-card-reveal { opacity: 1; filter: none; transform: none; }</style></noscript>
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Максим Мирошников" />
@@ -44,180 +48,248 @@
         </p>
 
         <div class="blog-list">
-          <article class="blog-card">
-            <a class="blog-card__media" href="kak-dat-dostup-k-yandex-metrike/" tabindex="-1" aria-hidden="true">
-              <picture>
-                <source srcset="7.2.webp" type="image/webp" />
-                <img
-                  src="7.2.jpg"
-                  alt=""
-                  width="1448"
-                  height="1086"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
-            </a>
-            <div class="blog-card__body">
-              <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
-              <h2 class="blog-card__title">
-                <a href="kak-dat-dostup-k-yandex-metrike/">Как дать доступ к Яндекс Метрике</a>
-              </h2>
-              <p class="blog-card__text">
-                Индивидуальный доступ по логину Яндекса: путь «Настройки» - «Доступ» - «Добавить пользователя», разбор прав «Только просмотр», «Аналитика» и «Редактирование» и отличие от представительского доступа.
-              </p>
-            </div>
-          </article>
+          <div class="case-card-reveal">
+            <article class="blog-card">
+              <a class="blog-card__media blog-card__media--portrait" href="kontekstnaya-reklama-rostov/" tabindex="-1" aria-hidden="true">
+                <picture>
+                  <source srcset="blog-foto.webp" type="image/webp" />
+                  <img
+                    src="blog-foto.jpg"
+                    alt=""
+                    width="1254"
+                    height="1254"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <div class="blog-card__body">
+                <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
+                <h2 class="blog-card__title">
+                  <a href="kontekstnaya-reklama-rostov/">Контекстная реклама в Ростове-на-Дону</a>
+                </h2>
+                <p class="blog-card__text">
+                  Почему экономику проекта считают до объявлений, как посадочная страница влияет на цену обращения и какие показатели полезны бизнесу, а какие только диагностике.
+                </p>
+              </div>
+            </article>
+          </div>
 
-          <article class="blog-card">
-            <a class="blog-card__media" href="kak-proverit-tsel-v-yandex-metrike/" tabindex="-1" aria-hidden="true">
-              <picture>
-                <source srcset="6.1.webp" type="image/webp" />
-                <img
-                  src="6.1.jpg"
-                  alt=""
-                  width="1672"
-                  height="941"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
-            </a>
-            <div class="blog-card__body">
-              <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
-              <h2 class="blog-card__title">
-                <a href="kak-proverit-tsel-v-yandex-metrike/">Как проверить цель в Яндекс Метрике</a>
-              </h2>
-              <p class="blog-card__text">
-                Быстрая проверка без ожидания отчетов: параметр _ym_debug=2, встроенная панель отладки, вкладки Events и Console и разбор причин, почему цель не срабатывает.
-              </p>
-            </div>
-          </article>
+          <div class="case-card-reveal">
+            <article class="blog-card">
+              <a class="blog-card__media blog-card__media--portrait" href="yandex-direct-rostov-na-donu/" tabindex="-1" aria-hidden="true">
+                <picture>
+                  <source srcset="blog-foto.webp" type="image/webp" />
+                  <img
+                    src="blog-foto.jpg"
+                    alt=""
+                    width="1254"
+                    height="1254"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <div class="blog-card__body">
+                <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
+                <h2 class="blog-card__title">
+                  <a href="yandex-direct-rostov-na-donu/">Яндекс Директ в Ростове-на-Дону</a>
+                </h2>
+                <p class="blog-card__text">
+                  С чего начинается настройка, почему география важна для локального бизнеса и по каким показателям стоит оценивать результат рекламы.
+                </p>
+              </div>
+            </article>
+          </div>
 
-          <article class="blog-card">
-            <a class="blog-card__media" href="tseli-yandex-metriki-tilda/" tabindex="-1" aria-hidden="true">
-              <picture>
-                <source srcset="5.2.webp" type="image/webp" />
-                <img
-                  src="5.2.jpg"
-                  alt=""
-                  width="849"
-                  height="596"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
-            </a>
-            <div class="blog-card__body">
-              <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
-              <h2 class="blog-card__title">
-                <a href="tseli-yandex-metriki-tilda/">Как настроить цели Яндекс Метрики на Tilda</a>
-              </h2>
-              <p class="blog-card__text">
-                Одна цель на отправку всех форм по регулярному выражению, отслеживание шагов квиза QZ101 и проверка настройки тестовой заявкой.
-              </p>
-            </div>
-          </article>
+          <div class="case-card-reveal">
+            <article class="blog-card">
+              <a class="blog-card__media" href="kak-dat-dostup-k-yandex-metrike/" tabindex="-1" aria-hidden="true">
+                <picture>
+                  <source srcset="7.2.webp" type="image/webp" />
+                  <img
+                    src="7.2.jpg"
+                    alt=""
+                    width="1448"
+                    height="1086"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <div class="blog-card__body">
+                <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
+                <h2 class="blog-card__title">
+                  <a href="kak-dat-dostup-k-yandex-metrike/">Как дать доступ к Яндекс Метрике</a>
+                </h2>
+                <p class="blog-card__text">
+                  Индивидуальный доступ по логину Яндекса: путь «Настройки» - «Доступ» - «Добавить пользователя», разбор прав «Только просмотр», «Аналитика» и «Редактирование» и отличие от представительского доступа.
+                </p>
+              </div>
+            </article>
+          </div>
 
-          <article class="blog-card">
-            <a class="blog-card__media" href="predstavitel-v-yandex-direct/" tabindex="-1" aria-hidden="true">
-              <picture>
-                <source srcset="4.1.webp" type="image/webp" />
-                <img
-                  src="4.1.jpg"
-                  alt=""
-                  width="1672"
-                  height="941"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
-            </a>
-            <div class="blog-card__body">
-              <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
-              <h2 class="blog-card__title">
-                <a href="predstavitel-v-yandex-direct/">Как добавить представителя в Яндекс Директ</a>
-              </h2>
-              <p class="blog-card__text">
-                Где найти раздел «Ваши представители», какой логин Яндекса подойдет, какие права выдать подрядчику и почему система иногда не принимает пользователя.
-              </p>
-            </div>
-          </article>
+          <div class="case-card-reveal">
+            <article class="blog-card">
+              <a class="blog-card__media" href="kak-proverit-tsel-v-yandex-metrike/" tabindex="-1" aria-hidden="true">
+                <picture>
+                  <source srcset="6.1.webp" type="image/webp" />
+                  <img
+                    src="6.1.jpg"
+                    alt=""
+                    width="1672"
+                    height="941"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <div class="blog-card__body">
+                <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
+                <h2 class="blog-card__title">
+                  <a href="kak-proverit-tsel-v-yandex-metrike/">Как проверить цель в Яндекс Метрике</a>
+                </h2>
+                <p class="blog-card__text">
+                  Быстрая проверка без ожидания отчетов: параметр _ym_debug=2, встроенная панель отладки, вкладки Events и Console и разбор причин, почему цель не срабатывает.
+                </p>
+              </div>
+            </article>
+          </div>
 
-          <article class="blog-card">
-            <a class="blog-card__media" href="upravlyayushchiy-akkaunt-yandex-direct/" tabindex="-1" aria-hidden="true">
-              <picture>
-                <source srcset="3.1.webp" type="image/webp" />
-                <img
-                  src="3.1.jpg"
-                  alt=""
-                  width="1672"
-                  height="941"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
-            </a>
-            <div class="blog-card__body">
-              <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
-              <h2 class="blog-card__title">
-                <a href="upravlyayushchiy-akkaunt-yandex-direct/">Как добавить управляющий аккаунт в Яндекс Директ</a>
-              </h2>
-              <p class="blog-card__text">
-                Пошаговая инструкция: где найти раздел «Ваши представители», как выдать доступ директологу и какой уровень прав выбрать.
-              </p>
-            </div>
-          </article>
+          <div class="case-card-reveal">
+            <article class="blog-card">
+              <a class="blog-card__media" href="tseli-yandex-metriki-tilda/" tabindex="-1" aria-hidden="true">
+                <picture>
+                  <source srcset="5.2.webp" type="image/webp" />
+                  <img
+                    src="5.2.jpg"
+                    alt=""
+                    width="849"
+                    height="596"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <div class="blog-card__body">
+                <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
+                <h2 class="blog-card__title">
+                  <a href="tseli-yandex-metriki-tilda/">Как настроить цели Яндекс Метрики на Tilda</a>
+                </h2>
+                <p class="blog-card__text">
+                  Одна цель на отправку всех форм по регулярному выражению, отслеживание шагов квиза QZ101 и проверка настройки тестовой заявкой.
+                </p>
+              </div>
+            </article>
+          </div>
 
-          <article class="blog-card">
-            <a class="blog-card__media" href="cpa-v-yandex-direct/" tabindex="-1" aria-hidden="true">
-              <picture>
-                <source srcset="2.2.webp" type="image/webp" />
-                <img
-                  src="2.2.jpg"
-                  alt=""
-                  width="1672"
-                  height="941"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
-            </a>
-            <div class="blog-card__body">
-              <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
-              <h2 class="blog-card__title">
-                <a href="cpa-v-yandex-direct/">CPA в Яндекс Директе: что это и как считать стоимость конверсии</a>
-              </h2>
-              <p class="blog-card__text">
-                Как считать стоимость целевого действия, чем фактический CPA отличается от целевой цены конверсии и почему дешевый клик еще не значит дешевую заявку.
-              </p>
-            </div>
-          </article>
+          <div class="case-card-reveal">
+            <article class="blog-card">
+              <a class="blog-card__media" href="predstavitel-v-yandex-direct/" tabindex="-1" aria-hidden="true">
+                <picture>
+                  <source srcset="4.1.webp" type="image/webp" />
+                  <img
+                    src="4.1.jpg"
+                    alt=""
+                    width="1672"
+                    height="941"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <div class="blog-card__body">
+                <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
+                <h2 class="blog-card__title">
+                  <a href="predstavitel-v-yandex-direct/">Как добавить представителя в Яндекс Директ</a>
+                </h2>
+                <p class="blog-card__text">
+                  Где найти раздел «Ваши представители», какой логин Яндекса подойдет, какие права выдать подрядчику и почему система иногда не принимает пользователя.
+                </p>
+              </div>
+            </article>
+          </div>
 
-          <article class="blog-card">
-            <a class="blog-card__media" href="kak-rabotaet-yandex-direct/" tabindex="-1" aria-hidden="true">
-              <picture>
-                <source srcset="1.1.webp" type="image/webp" />
-                <img
-                  src="1.1.jpg"
-                  alt=""
-                  width="1672"
-                  height="941"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
-            </a>
-            <div class="blog-card__body">
-              <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
-              <h2 class="blog-card__title">
-                <a href="kak-rabotaet-yandex-direct/">Как работает Яндекс Директ: простое объяснение для новичков</a>
-              </h2>
-              <p class="blog-card__text">
-                Чем отличаются Поиск и РСЯ, как Яндекс решает, кому показать объявление, и какой путь проходит человек от рекламы до заявки.
-              </p>
-            </div>
-          </article>
+          <div class="case-card-reveal">
+            <article class="blog-card">
+              <a class="blog-card__media" href="upravlyayushchiy-akkaunt-yandex-direct/" tabindex="-1" aria-hidden="true">
+                <picture>
+                  <source srcset="3.1.webp" type="image/webp" />
+                  <img
+                    src="3.1.jpg"
+                    alt=""
+                    width="1672"
+                    height="941"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <div class="blog-card__body">
+                <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
+                <h2 class="blog-card__title">
+                  <a href="upravlyayushchiy-akkaunt-yandex-direct/">Как добавить управляющий аккаунт в Яндекс Директ</a>
+                </h2>
+                <p class="blog-card__text">
+                  Пошаговая инструкция: где найти раздел «Ваши представители», как выдать доступ директологу и какой уровень прав выбрать.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="case-card-reveal">
+            <article class="blog-card">
+              <a class="blog-card__media" href="cpa-v-yandex-direct/" tabindex="-1" aria-hidden="true">
+                <picture>
+                  <source srcset="2.2.webp" type="image/webp" />
+                  <img
+                    src="2.2.jpg"
+                    alt=""
+                    width="1672"
+                    height="941"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <div class="blog-card__body">
+                <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
+                <h2 class="blog-card__title">
+                  <a href="cpa-v-yandex-direct/">CPA в Яндекс Директе: что это и как считать стоимость конверсии</a>
+                </h2>
+                <p class="blog-card__text">
+                  Как считать стоимость целевого действия, чем фактический CPA отличается от целевой цены конверсии и почему дешевый клик еще не значит дешевую заявку.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="case-card-reveal">
+            <article class="blog-card">
+              <a class="blog-card__media" href="kak-rabotaet-yandex-direct/" tabindex="-1" aria-hidden="true">
+                <picture>
+                  <source srcset="1.1.webp" type="image/webp" />
+                  <img
+                    src="1.1.jpg"
+                    alt=""
+                    width="1672"
+                    height="941"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </a>
+              <div class="blog-card__body">
+                <p class="blog-card__meta"><time datetime="2026-08-17">17 августа 2026</time></p>
+                <h2 class="blog-card__title">
+                  <a href="kak-rabotaet-yandex-direct/">Как работает Яндекс Директ: простое объяснение для новичков</a>
+                </h2>
+                <p class="blog-card__text">
+                  Чем отличаются Поиск и РСЯ, как Яндекс решает, кому показать объявление, и какой путь проходит человек от рекламы до заявки.
+                </p>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </main>

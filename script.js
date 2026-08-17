@@ -1132,6 +1132,28 @@ function resetCaseCard(event) {
   event.currentTarget.style.transform = "";
 }
 
+// Карточки блога не наклоняются: в них лежат скриншоты с мелким текстом, а любой
+// сдвиг заставляет браузер пересчитать пиксели, и текст мылится. Вместо движения
+// под курсором ходит тень. Свет как будто идёт от курсора, поэтому тень падает в
+// противоположную сторону. Постоянные 8px вниз держат карточку лежащей на бумаге
+// даже когда курсор у верхнего края.
+function moveBlogCardShadow(event) {
+  if (!canTiltCaseCard()) return;
+
+  const card = event.currentTarget;
+  const rect = card.getBoundingClientRect();
+  const x = (event.clientX - rect.left) / rect.width - 0.5;
+  const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+  card.style.setProperty("--shadow-x", `${(x * -18).toFixed(1)}px`);
+  card.style.setProperty("--shadow-y", `${(y * -14 + 8).toFixed(1)}px`);
+}
+
+function resetBlogCardShadow(event) {
+  event.currentTarget.style.removeProperty("--shadow-x");
+  event.currentTarget.style.removeProperty("--shadow-y");
+}
+
 // Отсчёт цифр в карточке кейса при наведении. Числа один раз оборачиваются в span,
 // дальше hover гоняет по ним общий rAF-цикл.
 // В TT Masters цифры пропорциональные: при 45px "1" занимает 14px, а "8" и "0" - 22px.
@@ -1555,6 +1577,22 @@ renderCases();
 // Похожие кейсы на странице кейса: case-page.js рендерит их синхронно и выполняется
 // раньше script.js, так что к этому моменту карточки уже в DOM.
 document.querySelectorAll(".related-card").forEach(prepareCountUp);
+
+// Блог: карточки лежат прямо в разметке, поэтому эффекты вешаем здесь - появление
+// при скролле и тень под курсором. Наклона кейсов тут намеренно нет, причина - в
+// комментарии у moveBlogCardShadow. Отсчёт цифр тоже не нужен: чисел в карточках
+// блога нет.
+const blogList = document.querySelector(".blog-list");
+
+if (blogList) {
+  blogList.querySelectorAll(".blog-card").forEach((card) => {
+    card.addEventListener("mousemove", moveBlogCardShadow);
+    card.addEventListener("mouseleave", resetBlogCardShadow);
+  });
+
+  // shouldReset = false: наблюдатель общий с главной, сбрасывать его нечего.
+  observeCaseCards(blogList.querySelectorAll(".case-card-reveal"), false);
+}
 
 function setHandDrawnNavIcon(button, direction) {
   const arrowPath = direction === "prev"

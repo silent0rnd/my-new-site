@@ -503,6 +503,7 @@ a {
 
   .about__orb,
   .about__orb-path,
+  .article-portrait__ring-path,
   .case-sketch-orb {
     animation: none !important;
   }
@@ -4649,6 +4650,74 @@ h1 {
   max-width: 520px;
 }
 
+/* Портрет автора внутри статьи. Обтекание текстом, поэтому снимок не разрывает
+   вступление на две части. */
+.article-portrait {
+  float: right;
+  width: 330px;
+  max-width: 100%;
+  margin: 2px 0 20px 40px;
+}
+
+.article-portrait__frame {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Неровная «клякса» вместо прямоугольника: восьмизначный border-radius даёт
+   рукописную форму и тянется вместе с картинкой. Лёгкий наклон - чтобы снимок
+   выглядел положенным от руки, а не вставленным по сетке. */
+.article-portrait__photo {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 66% 34% 41% 59% / 44% 57% 43% 56%;
+  transform: rotate(-2.5deg);
+}
+
+/* Тот же набросок от руки, что и у блока «Обо мне»: круг обводит портрет и
+   выходит за его края. */
+.article-portrait__ring {
+  position: absolute;
+  top: -14%;
+  left: -11%;
+  width: 122%;
+  height: 122%;
+  z-index: 0;
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.article-portrait__ring-path {
+  fill: none;
+  stroke: #FF9800;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 0.88 0.12;
+  animation: about-orb-line 12000ms linear infinite;
+}
+
+/* Отступ больше обычного: круг выходит за нижний край снимка и иначе
+   перечеркнул бы подпись. */
+.article-portrait figcaption {
+  margin-top: 34px;
+  color: #7d7d7a;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+/* На узком экране обтекание оставило бы колонку текста в 2-3 слова. */
+@media (max-width: 720px) {
+  .article-portrait {
+    float: none;
+    width: 260px;
+    margin: 6px auto 26px;
+  }
+}
+
 /* Виртуальные адреса Tilda и регулярные выражения набираем моноширинным
    шрифтом. anywhere нужен, чтобы длинная строка переносилась, а не тянула
    страницу вбок на телефоне. */
@@ -4761,51 +4830,156 @@ h1 {
 
 .blog-list {
   display: grid;
-  gap: 28px;
-  max-width: 860px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
   margin-top: 40px;
 }
 
+/* Появление при скролле - то же, что у карточек кейсов, и живёт на обёртке
+   .case-card-reveal. Реакция на курсор - на самой карточке: иначе она подхватила
+   бы медленный переход появления.
+   perspective здесь нет намеренно: карточки блога не наклоняются в 3D. */
 .blog-card {
+  position: relative;
   display: grid;
-  gap: 20px;
+  align-content: start;
+  gap: 16px;
+  height: 100%;
   padding: 20px;
   border: 1px solid var(--line, #d9d9d4);
   border-radius: 16px;
   background: #fbfbfa;
+  box-shadow: 0 2px 6px rgb(32 32 32 / 0.05);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 200ms ease;
 }
 
+/* Тень падает в сторону от курсора - карточка читается приподнятой, но стоит на
+   месте. Тень рисуется снаружи, содержимого карточки она не касается. Смещение
+   считает moveBlogCardShadow в script.js. */
+.blog-card:hover {
+  border-color: #b8b8b2;
+  background: #fff;
+  box-shadow: var(--shadow-x, 0px) var(--shadow-y, 10px) 26px -10px rgb(60 48 32 / 0.3);
+}
+
+/* Скриншот в покое приглушён светлой вуалью, при наведении она уходит и картинка
+   оживает. Вуаль - отдельный плоский слой поверх картинки. Саму картинку не
+   фильтруем и не масштабируем, поэтому её резкость измениться не может. */
+.blog-card__media {
+  position: relative;
+  display: block;
+  line-height: 0;
+}
+
+.blog-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: #fbfbfa;
+  opacity: 0.24;
+  transition: opacity 260ms ease;
+  pointer-events: none;
+}
+
+.blog-card:hover .blog-card__media::after,
+.blog-card:focus-within .blog-card__media::after {
+  opacity: 0;
+}
+
+/* Обёртка появления держит filter даже после анимации (blur(0)). Из-за него
+   браузер рисует карточку в текстуру и наклоняет уже картинку - мелкий текст
+   на скриншотах мылится. На время наведения фильтр снимаем; blur(0) и none
+   выглядят одинаково, скачка не будет. */
+@media (hover: hover) and (pointer: fine) {
+  .blog-list .case-card-reveal:hover {
+    filter: none;
+  }
+}
+
+/* Скриншоты в карточках разного формата (1672x941, 1448x1086, 849x596).
+   Общий кроп 16:9 держит ряды одной высоты. */
 .blog-card__media img {
   display: block;
   width: 100%;
+  /* height: auto обязателен: без него высота берётся из атрибута height у <img>
+     и aspect-ratio не применяется. */
   height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
   border-radius: 12px;
   border: 1px solid var(--line, #d9d9d4);
   background: #fff;
 }
 
+/* Портрет квадратный, а карточка режет его под 16:9. По центру срезало бы
+   голову, поэтому окно кадра поднято вверх. */
+.blog-card__media--portrait img {
+  object-position: 50% 18%;
+}
+
 .legal-document .blog-card__meta {
   margin: 0 0 10px;
   color: #7d7d7a;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .legal-document .blog-card__title {
   margin: 0 0 12px;
-  font-size: clamp(24px, 3.2vw, 34px);
-  line-height: 1.08;
+  font-size: 23px;
+  line-height: 1.12;
   font-weight: 500;
 }
 
+/* Подчёркивание заголовка: та же рисованная линия, что у .delayed-underline-path
+   на главной, но фоном. Отдельным SVG нельзя - заголовок переносится на две
+   строки, а фон повторяется на каждой. box-decoration-break: clone даёт каждой
+   строке свою линию во всю её ширину, иначе браузер режет одну общую. */
+.legal-document .blog-card__title a {
+  padding-bottom: 0.1em;
+  border-bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 18' preserveAspectRatio='none'%3E%3Cpath d='M3 12C44 5.8 90 5 132 6C181 7.1 220 6.1 257 11.4' fill='none' stroke='%23FF9800' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 0.34em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 420ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.blog-card:hover .blog-card__title a,
+.legal-document .blog-card__title a:focus-visible {
+  background-size: 100% 0.34em;
+}
+
+/* Отдельный блок, а не общий в начале файла: там правило стоит выше основного
+   и при равной силе селектора проигрывает ему. Линия появляется сразу. */
+@media (prefers-reduced-motion: reduce) {
+  .legal-document .blog-card__title a {
+    transition: none;
+  }
+}
+
 .legal-document .blog-card__text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin: 0;
   color: #4a4a47;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 @media (max-width: 720px) {
   .article-figure {
     margin: 28px 0 26px;
+  }
+
+  .blog-list {
+    grid-template-columns: 1fr;
   }
 
   /* Тот же приём, что у ссылок в футере: сама ссылка остаётся мелкой,
