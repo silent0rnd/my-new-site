@@ -56,6 +56,26 @@ $articles = @(
       "Настройка цели отправки всех форм Tilda в Яндекс Метрике",
       "Настройка целей квиза Tilda QZ101 в Яндекс Метрике"
     )
+  },
+  @{
+    Slug  = "kak-proverit-tsel-v-yandex-metrike"
+    Title = "Как проверить цель в Яндекс Метрике: отладчик _ym_debug=2"
+    Desc  = "параметр _ym_debug=2, встроенная панель отладки, вкладки Events и Console"
+    Images = @("6.1", "6.2")
+    Alts  = @(
+      "Проверка цели Яндекс Метрики через _ym_debug=2",
+      "Расширение Yandex Metrica Debugger для проверки целей Яндекс Метрики"
+    )
+  },
+  @{
+    Slug  = "kak-dat-dostup-k-yandex-metrike"
+    Title = "Как дать доступ к Яндекс Метрике: пошаговая инструкция"
+    Desc  = "«Настройки» - «Доступ» - «Добавить пользователя», какие права выбрать"
+    Images = @("7.1", "7.2")
+    Alts  = @(
+      "Раздел «Настройки» и пункт «Доступ» в Яндекс Метрике",
+      "Добавление пользователя с правами «Редактирование» в Яндекс Метрике"
+    )
   }
 )
 
@@ -84,7 +104,8 @@ function Assert-SingleH1($content, $label) {
 
 function Assert-NoDuplicateMetrika($content, $label) {
   # Метрика подключается только через общий script.js, второго счётчика быть не должно.
-  if ($content -match "mc\.yandex\.ru") {
+  # Ищем именно загрузку счётчика (mc.yandex.ru/metrika/...), а не упоминание домена в тексте.
+  if ($content -match "mc\.yandex\.ru/metrika") {
     throw "Yandex Metrika must not be duplicated on $label"
   }
   $scripts = ([regex]::Matches($content, 'src="[^"]*script\.js')).Count
