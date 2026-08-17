@@ -4580,3 +4580,307 @@ h1 {
     font-size: 14px;
   }
 }
+
+/* Страницы блога. Надстройка над .legal-document: типографика заголовков и текста
+   берётся оттуда, здесь только то, чего в юридических страницах не было -
+   хлебные крошки, картинки, таблица сравнения, карточка автора и список статей. */
+.article-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  color: #7d7d7a;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.article-breadcrumbs a {
+  color: inherit;
+  border-bottom: 1px solid rgb(125 125 122 / 0.35);
+  padding-bottom: 1px;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.article-breadcrumbs a:hover,
+.article-breadcrumbs a:focus-visible {
+  color: #1c1c1c;
+  border-color: #FF9800;
+  outline: 0;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 30px;
+  color: #676762;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.article-page .article-lead {
+  max-width: 780px;
+  margin: 0 0 8px;
+  font-size: clamp(21px, 2.4vw, 25px);
+  line-height: 1.42;
+}
+
+.article-figure {
+  max-width: 860px;
+  margin: 36px 0 34px;
+}
+
+/* width/height у <img> заданы в разметке, поэтому браузер резервирует место
+   до загрузки файла и текст под картинкой не прыгает. */
+.article-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--line, #d9d9d4);
+  background: #fff;
+}
+
+.article-figure figcaption {
+  margin-top: 12px;
+  color: #7d7d7a;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+/* Запасной вариант для очень узких экранов: таблица уезжает внутри своей
+   обёртки, а не тянет за собой всю страницу. На мобильных строки
+   перестраиваются в карточки, и скролл обычно не нужен. */
+.article-table-wrap {
+  max-width: 820px;
+  margin: 26px 0 24px;
+  overflow-x: auto;
+}
+
+.article-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.article-table th,
+.article-table td {
+  padding: 14px 18px 14px 0;
+  border-bottom: 1px solid rgb(43 43 43 / 0.12);
+  vertical-align: top;
+  font-weight: 400;
+}
+
+.article-table thead th {
+  color: #676762;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.article-table tbody th {
+  width: 27%;
+  color: #676762;
+}
+
+.article-table td:last-child,
+.article-table th:last-child {
+  padding-right: 0;
+}
+
+.article-author {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  max-width: 780px;
+  margin: 56px 0 0;
+  padding: 24px;
+  border: 1px solid var(--line, #d9d9d4);
+  border-radius: 16px;
+  background: #fbfbfa;
+}
+
+.article-author__photo {
+  flex: 0 0 auto;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 22%;
+}
+
+.article-author__body {
+  min-width: 0;
+}
+
+.legal-document .article-author p {
+  margin: 0;
+  font-size: 18px;
+}
+
+.legal-document .article-author__label {
+  margin-bottom: 6px;
+  color: #7d7d7a;
+  font-size: 15px;
+}
+
+.legal-document .article-author__name {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.legal-document .article-author__role {
+  margin-bottom: 10px;
+  color: #676762;
+  font-size: 17px;
+}
+
+.legal-document .article-author__link {
+  margin-top: 12px;
+}
+
+.blog-list {
+  display: grid;
+  gap: 28px;
+  max-width: 860px;
+  margin-top: 40px;
+}
+
+.blog-card {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid var(--line, #d9d9d4);
+  border-radius: 16px;
+  background: #fbfbfa;
+}
+
+.blog-card__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--line, #d9d9d4);
+  background: #fff;
+}
+
+.legal-document .blog-card__meta {
+  margin: 0 0 10px;
+  color: #7d7d7a;
+  font-size: 15px;
+}
+
+.legal-document .blog-card__title {
+  margin: 0 0 12px;
+  font-size: clamp(24px, 3.2vw, 34px);
+  line-height: 1.08;
+  font-weight: 500;
+}
+
+.legal-document .blog-card__text {
+  margin: 0;
+  color: #4a4a47;
+  font-size: 18px;
+}
+
+@media (max-width: 720px) {
+  .article-figure {
+    margin: 28px 0 26px;
+  }
+
+  /* Тот же приём, что у ссылок в футере: сама ссылка остаётся мелкой,
+     но палец попадает в невидимую область 44px. */
+  .article-breadcrumbs a,
+  .article-author__link a {
+    position: relative;
+  }
+
+  .article-breadcrumbs a::after,
+  .article-author__link a::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 44px);
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+
+  .article-author {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .article-author__photo {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* На узком экране трёхколоночная таблица нечитаема. Каждая строка становится
+   отдельной карточкой, а названия колонок подставляются из data-label. */
+@media (max-width: 620px) {
+  .article-table-wrap {
+    overflow-x: visible;
+  }
+
+  .article-table,
+  .article-table tbody,
+  .article-table tr,
+  .article-table tbody th,
+  .article-table td {
+    display: block;
+    width: auto;
+  }
+
+  .article-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .article-table tr {
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgb(43 43 43 / 0.12);
+  }
+
+  .article-table tr:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .article-table tbody th,
+  .article-table td {
+    padding: 0;
+    border-bottom: 0;
+    font-size: 17px;
+  }
+
+  .article-table tbody th {
+    margin-bottom: 8px;
+    color: var(--ink, #2b2b2b);
+    font-size: 19px;
+    font-weight: 500;
+  }
+
+  .article-table td + td {
+    margin-top: 10px;
+  }
+
+  .article-table td::before {
+    content: attr(data-label);
+    display: block;
+    color: #7d7d7a;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+}

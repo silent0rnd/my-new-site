@@ -212,6 +212,7 @@
       </div>
 
       <div class="site-footer__legal">
+        <a href="${SITE_ROOT}blog/">Блог</a>
         <a href="${SITE_ROOT}personal-data-consent/" target="_blank" rel="noopener noreferrer">Согласие на обработку персональных данных</a>
         <a href="${SITE_ROOT}cookie-policy/" target="_blank" rel="noopener noreferrer">Cookie</a>
       </div>
