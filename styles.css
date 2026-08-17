@@ -4643,6 +4643,24 @@ h1 {
   background: #fff;
 }
 
+/* Скриншот вертикальный: на всю ширину колонки его пришлось бы растягивать
+   выше исходного размера, и он стал бы мыльным. */
+.article-figure--narrow {
+  max-width: 520px;
+}
+
+/* Виртуальные адреса Tilda и регулярные выражения набираем моноширинным
+   шрифтом. anywhere нужен, чтобы длинная строка переносилась, а не тянула
+   страницу вбок на телефоне. */
+.legal-document code {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgb(43 43 43 / 0.06);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  overflow-wrap: anywhere;
+}
+
 .article-figure figcaption {
   margin-top: 12px;
   color: #7d7d7a;
