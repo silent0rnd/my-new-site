@@ -4835,6 +4835,34 @@ h1 {
   margin-top: 40px;
 }
 
+.blog-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 32px;
+  font-size: 15px;
+}
+
+.blog-pagination a,
+.blog-pagination span {
+  min-width: 32px;
+  padding: 6px 9px;
+  border: 1px solid var(--line, #d9d9d4);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.blog-pagination [aria-current="page"] {
+  border-color: #ff9800;
+  background: #fff7ed;
+}
+
+.blog-pagination__previous,
+.blog-pagination__next {
+  min-width: auto !important;
+}
+
 /* Появление при скролле - то же, что у карточек кейсов, и живёт на обёртке
    .case-card-reveal. Реакция на курсор - на самой карточке: иначе она подхватила
    бы медленный переход появления.

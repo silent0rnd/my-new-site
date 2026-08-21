@@ -9,13 +9,9 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://naklikay.ru/blog/" />
     <link rel="preload" href="../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="../styles.css?v=20260817-blog-6" />
-    <script src="../script.js?v=20260817-blog-4" defer></script>
-
-    <!-- Карточки блога спрятаны до появления при скролле. Показывать их выводит JS,
-         поэтому без него текст статей остался бы невидимым. -->
+    <link rel="stylesheet" href="../styles.css?v=20260821-blog-pagination-1" />
+    <script src="../script.js?v=20260821-blog-pagination-1" defer></script>
     <noscript><style>.case-card-reveal { opacity: 1; filter: none; transform: none; }</style></noscript>
-
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Максим Мирошников" />
     <meta property="og:url" content="https://naklikay.ru/blog/" />
@@ -32,23 +28,18 @@
         <a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">Макс</a>
       </nav>
     </header>
-
     <main class="legal-shell">
       <div class="legal-document">
         <nav class="article-breadcrumbs" aria-label="Хлебные крошки">
           <a href="../">Главная</a>
           <span aria-hidden="true">/</span>
-          <span aria-current="page">Блог</span>
+          <a href="/blog/">Блог</a>
         </nav>
-
         <p class="legal-kicker">Блог о платном трафике</p>
         <h1>Блог</h1>
-        <p class="article-lead">
-          Разбираю рекламу простым языком: как устроен Яндекс Директ, за что уходит бюджет и что смотреть в отчетах, чтобы реклама приносила заявки.
-        </p>
-
-        <div class="blog-list">
-          <div class="case-card-reveal">
+        <p class="article-lead">Разбираю рекламу простым языком: как устроен Яндекс Директ, за что уходит бюджет и что смотреть в отчетах, чтобы реклама приносила заявки.</p>
+        <div class="blog-list" data-blog-archive data-blog-page="1">
+<div class="case-card-reveal">
             <article class="blog-card">
               <a class="blog-card__media blog-card__media--portrait" href="targetirovannaya-reklama-rostov/" tabindex="-1" aria-hidden="true">
                 <picture>
@@ -75,7 +66,7 @@
             </article>
           </div>
 
-          <div class="case-card-reveal">
+<div class="case-card-reveal">
             <article class="blog-card">
               <a class="blog-card__media blog-card__media--portrait" href="targetolog-rostov-na-donu/" tabindex="-1" aria-hidden="true">
                 <picture>
@@ -102,7 +93,7 @@
             </article>
           </div>
 
-          <div class="case-card-reveal">
+<div class="case-card-reveal">
             <article class="blog-card">
               <a class="blog-card__media blog-card__media--portrait" href="reklama-na-avito-rostov/" tabindex="-1" aria-hidden="true">
                 <picture>
@@ -129,7 +120,7 @@
             </article>
           </div>
 
-          <div class="case-card-reveal">
+<div class="case-card-reveal">
             <article class="blog-card">
               <a class="blog-card__media blog-card__media--portrait" href="kontekstnaya-reklama-rostov/" tabindex="-1" aria-hidden="true">
                 <picture>
@@ -156,7 +147,7 @@
             </article>
           </div>
 
-          <div class="case-card-reveal">
+<div class="case-card-reveal">
             <article class="blog-card">
               <a class="blog-card__media blog-card__media--portrait" href="yandex-direct-rostov-na-donu/" tabindex="-1" aria-hidden="true">
                 <picture>
@@ -183,7 +174,7 @@
             </article>
           </div>
 
-          <div class="case-card-reveal">
+<div class="case-card-reveal">
             <article class="blog-card">
               <a class="blog-card__media" href="kak-dat-dostup-k-yandex-metrike/" tabindex="-1" aria-hidden="true">
                 <picture>
@@ -210,7 +201,7 @@
             </article>
           </div>
 
-          <div class="case-card-reveal">
+<div class="case-card-reveal">
             <article class="blog-card">
               <a class="blog-card__media" href="kak-proverit-tsel-v-yandex-metrike/" tabindex="-1" aria-hidden="true">
                 <picture>
@@ -237,7 +228,7 @@
             </article>
           </div>
 
-          <div class="case-card-reveal">
+<div class="case-card-reveal">
             <article class="blog-card">
               <a class="blog-card__media" href="tseli-yandex-metriki-tilda/" tabindex="-1" aria-hidden="true">
                 <picture>
@@ -264,7 +255,7 @@
             </article>
           </div>
 
-          <div class="case-card-reveal">
+<div class="case-card-reveal">
             <article class="blog-card">
               <a class="blog-card__media" href="predstavitel-v-yandex-direct/" tabindex="-1" aria-hidden="true">
                 <picture>
@@ -291,7 +282,7 @@
             </article>
           </div>
 
-          <div class="case-card-reveal">
+<div class="case-card-reveal">
             <article class="blog-card">
               <a class="blog-card__media" href="upravlyayushchiy-akkaunt-yandex-direct/" tabindex="-1" aria-hidden="true">
                 <picture>
@@ -318,7 +309,7 @@
             </article>
           </div>
 
-          <div class="case-card-reveal">
+<div class="case-card-reveal">
             <article class="blog-card">
               <a class="blog-card__media" href="cpa-v-yandex-direct/" tabindex="-1" aria-hidden="true">
                 <picture>
@@ -345,7 +336,7 @@
             </article>
           </div>
 
-          <div class="case-card-reveal">
+<div class="case-card-reveal">
             <article class="blog-card">
               <a class="blog-card__media" href="kak-rabotaet-yandex-direct/" tabindex="-1" aria-hidden="true">
                 <picture>

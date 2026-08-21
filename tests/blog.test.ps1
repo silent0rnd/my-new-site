@@ -214,4 +214,56 @@ foreach ($article in $articles) {
   }
 }
 
+# --- SEO-пагинация архива ---
+
+$generatorPath = Join-Path $root "scripts/generate-blog-archive.js"
+if (-not (Test-Path $generatorPath)) {
+  throw "Missing blog archive generator"
+}
+
+$generator = Get-Content -Raw -Encoding UTF8 -LiteralPath $generatorPath
+Assert-Contains $generator 'const pageSize = 15;' "Blog page size must stay 15"
+Assert-Contains $generator 'blog/page/${page}/' "Archive generator must create clean paginated URLs"
+Assert-Contains $generator 'rel="canonical"' "Archive generator must emit self-canonicals"
+
+$allArticleSlugs = Get-ChildItem -LiteralPath $root/blog -Directory |
+  Where-Object { $_.Name -ne "page" } |
+  Where-Object { Test-Path (Join-Path $_.FullName "index.html") } |
+  Select-Object -ExpandProperty Name
+
+foreach ($slug in $allArticleSlugs) {
+  Assert-Contains $sitemap "<loc>https://naklikay.ru/blog/$slug/</loc>" "Sitemap is missing article $slug"
+}
+
+$archivePageCount = [math]::Ceiling($allArticleSlugs.Count / 15.0)
+for ($page = 1; $page -le $archivePageCount; $page++) {
+  $archivePath = if ($page -eq 1) { $blogPath } else { Join-Path $root "blog/page/$page/index.html" }
+  if (-not (Test-Path $archivePath)) {
+    throw "Missing archive page $page"
+  }
+
+  $archive = Get-Content -Raw -Encoding UTF8 -LiteralPath $archivePath
+  $expectedCanonical = if ($page -eq 1) { "https://naklikay.ru/blog/" } else { "https://naklikay.ru/blog/page/$page/" }
+  Assert-Contains $archive "<link rel=`"canonical`" href=`"$expectedCanonical`" />" "Archive page $page needs a self-canonical"
+  if ($archive -match "noindex") {
+    throw "Archive page $page must stay indexable"
+  }
+
+  $cards = ([regex]::Matches($archive, '<article class="blog-card">')).Count
+  if ($cards -lt 1 -or $cards -gt 15) {
+    throw "Archive page $page must contain 1 to 15 cards, found $cards"
+  }
+  if ($cards -ne ([regex]::Matches($archive, '<h2 class="blog-card__title">\s*<a href="')).Count) {
+    throw "Archive page $page has a card without a crawlable article link"
+  }
+}
+
+if ($archivePageCount -gt 1) {
+  Assert-Contains $blog 'class="blog-pagination"' "Blog index needs HTML pagination links"
+  Assert-Contains $blog 'href="/blog/page/2/"' "Blog index must link to page 2"
+  Assert-Contains $sitemap "<loc>https://naklikay.ru/blog/page/2/</loc>" "Sitemap is missing page 2"
+} elseif (Test-Path (Join-Path $root "blog/page/2/index.html")) {
+  throw "Page 2 must not exist while the archive has 15 or fewer articles"
+}
+
 Write-Output "blog checks passed"

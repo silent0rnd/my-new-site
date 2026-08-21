@@ -1592,6 +1592,63 @@ if (blogList) {
 
   // shouldReset = false: наблюдатель общий с главной, сбрасывать его нечего.
   observeCaseCards(blogList.querySelectorAll(".case-card-reveal"), false);
+
+  let isBlogLoading = false;
+
+  const observeNextPage = () => {
+    const pagination = document.querySelector(".blog-pagination");
+    const nextLink = pagination?.querySelector(".blog-pagination__next");
+    if (!nextLink || isBlogLoading) return;
+    if (!("IntersectionObserver" in window)) return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        observer.disconnect();
+        isBlogLoading = true;
+        fetch(nextLink.href, { credentials: "same-origin" })
+          .then((response) => {
+            if (!response.ok) throw new Error(`Blog page request failed: ${response.status}`);
+            return response.text();
+          })
+          .then((html) => {
+            const documentFragment = new DOMParser().parseFromString(html, "text/html");
+            const nextList = documentFragment.querySelector(".blog-list");
+            const nextPagination = documentFragment.querySelector(".blog-pagination");
+            if (!nextList) throw new Error("Blog page has no article list.");
+            const knownArticles = new Set([...blogList.querySelectorAll(".blog-card__title a")].map((link) => link.href));
+            const newCards = [...nextList.children].filter((item) => {
+              const link = item.querySelector(".blog-card__title a");
+              return link && !knownArticles.has(link.href);
+            });
+            newCards.forEach((card) => {
+              card.querySelectorAll("[href], [src], [srcset]").forEach((element) => {
+                for (const attribute of ["href", "src", "srcset"]) {
+                  const value = element.getAttribute(attribute);
+                  if (value) element.setAttribute(attribute, new URL(value, nextLink.href).pathname);
+                }
+              });
+            });
+            newCards.forEach((card) => blogList.append(card));
+            newCards.forEach((card) => card.querySelectorAll(".blog-card").forEach((item) => {
+              item.addEventListener("mousemove", moveBlogCardShadow);
+              item.addEventListener("mouseleave", resetBlogCardShadow);
+            }));
+            observeCaseCards(newCards, false);
+            const loadedPage = Number(nextList.dataset.blogPage);
+            if (Number.isInteger(loadedPage) && loadedPage > 1) history.replaceState(null, "", `/blog/page/${loadedPage}/`);
+            if (nextPagination) pagination.replaceWith(nextPagination);
+            else pagination.remove();
+          })
+          .catch((error) => console.error(error))
+          .finally(() => {
+            isBlogLoading = false;
+            observeNextPage();
+          });
+      }
+    }, { rootMargin: "420px 0px" });
+    observer.observe(pagination);
+  };
+
+  observeNextPage();
 }
 
 function setHandDrawnNavIcon(button, direction) {

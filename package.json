@@ -8,7 +8,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:blog": "node scripts/generate-blog-archive.js",
+    "test:blog": "powershell -ExecutionPolicy Bypass -File tests/blog.test.ps1"
   },
   "keywords": [],
   "author": "",
