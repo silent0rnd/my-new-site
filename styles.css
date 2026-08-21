@@ -4929,7 +4929,8 @@ h1 {
 }
 
 /* Скриншоты в карточках разного формата (1672x941, 1448x1086, 849x596).
-   Общий кроп 16:9 держит ряды одной высоты. */
+   Единое окно 16:9 держит ряды одной высоты, а contain сохраняет весь кадр
+   на любой ширине без обрезки. */
 .blog-card__media img {
   display: block;
   width: 100%;
@@ -4937,7 +4938,7 @@ h1 {
      и aspect-ratio не применяется. */
   height: auto;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 12px;
   border: 1px solid var(--line, #d9d9d4);
   background: #fff;

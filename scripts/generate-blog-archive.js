@@ -72,7 +72,7 @@ function pagination(page, total) {
 
 function pageHtml(cards, page, total) {
   const depth = page === 1 ? 0 : 2;
-  const assetPrefix = depth === 0 ? "../" : "../../";
+  const assetPrefix = depth === 0 ? "../" : "../../../";
   const canonicalPath = page === 1 ? "/blog/" : `/blog/page/${page}/`;
   const cardsHtml = cards.map((card) => normalizeCard(card, depth)).join("\n\n");
   return `<!doctype html>
@@ -87,7 +87,7 @@ function pageHtml(cards, page, total) {
     <link rel="canonical" href="${siteUrl}${canonicalPath}" />
     <link rel="preload" href="${assetPrefix}assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="stylesheet" href="${assetPrefix}styles.css?v=20260821-blog-pagination-1" />
-    <script src="${assetPrefix}script.js?v=20260821-blog-pagination-1" defer></script>
+    <script src="${assetPrefix}script.js?v=20260821-blog-pagination-2" defer></script>
     <noscript><style>.case-card-reveal { opacity: 1; filter: none; transform: none; }</style></noscript>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Максим Мирошников" />
@@ -110,10 +110,10 @@ function pageHtml(cards, page, total) {
         <nav class="article-breadcrumbs" aria-label="Хлебные крошки">
           <a href="${assetPrefix}">Главная</a>
           <span aria-hidden="true">/</span>
-          <a href="/blog/">Блог</a>${page > 1 ? `\n          <span aria-hidden="true">/</span>\n          <span aria-current="page">Страница ${page}</span>` : ""}
+          <span aria-current="page">Блог</span>
         </nav>
         <p class="legal-kicker">Блог о платном трафике</p>
-        <h1>Блог${page > 1 ? ` - страница ${page}` : ""}</h1>
+        <h1>Блог</h1>
         <p class="article-lead">Разбираю рекламу простым языком: как устроен Яндекс Директ, за что уходит бюджет и что смотреть в отчетах, чтобы реклама приносила заявки.</p>
         <div class="blog-list" data-blog-archive data-blog-page="${page}">
 ${cardsHtml}

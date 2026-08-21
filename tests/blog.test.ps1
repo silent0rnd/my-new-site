@@ -8,6 +8,136 @@ $robotsPath = Join-Path $root "robots.txt"
 # Каждая статья блога описывается одной записью. Новая статья - новая запись.
 $articles = @(
   @{
+    Slug  = "kak-ostanovit-kampaniyu-v-yandex-direct"
+    Title = "Как остановить кампанию в Яндекс Директе - пошаговая инструкция"
+    Desc  = "Как быстро остановить рекламную кампанию в Яндекс Директе, что произойдет с показами и бюджетом, как поставить рекламу на паузу и чем остановка отличается от архивации и удаления."
+    Images = @("kak-ostanovit-kampaniyu-v-yandex-direct-1", "kak-ostanovit-kampaniyu-v-yandex-direct-2")
+    Alts  = @(
+      "Как остановить кампанию в Яндекс Директе через меню действий",
+      "Разница между остановкой архивированием и удалением кампании в Яндекс Директе"
+    )
+  },
+  @{
+    Slug  = "chto-takoe-fid-v-yandex-direct"
+    Title = "Что такое фид в Яндекс Директ и для чего он нужен"
+    Desc  = "Простыми словами о том, что такое фид в Яндекс Директе, какие данные в нем хранятся, как он используется для товарной рекламы и когда без него можно обойтись."
+    Images = @("feed-yandex-direct-1", "feed-yandex-direct-2", "feed-yandex-direct-3")
+    Alts  = @(
+      "Схема работы фида в Яндекс Директе",
+      "Пример полей товарного фида YML",
+      "Раздел добавления фида в Яндекс Директе"
+    )
+  },
+  @{
+    Slug  = "vozvrat-deneg-yandex-direct"
+    Title = "Яндекс Директ: можно ли вывести деньги и как вернуть остаток со счета"
+    Desc  = "Можно ли вернуть деньги с Яндекс Директа после остановки рекламы или блокировки аккаунта. Пошаговая процедура возврата, документы, сроки и правила для физлиц, ИП и компаний."
+    Images = @("1-vozvrat-sredstv-yandex-direct", "2-vozvrat-pri-blokirovke-yandex-direct", "3-kuda-vozvrashayutsya-dengi-yandex-direct")
+    Alts  = @(
+      "Форма возврата денежных средств из Яндекс Директа",
+      "Как вернуть деньги из заблокированного аккаунта Яндекс Директа",
+      "Куда возвращаются деньги с Яндекс Директа"
+    )
+  },
+  @{
+    Slug  = "chto-takoe-rsya-v-yandex-direct"
+    Title = "Что такое РСЯ в Яндекс Директ и как она работает"
+    Desc  = "РСЯ простыми словами: где показывается реклама, как Яндекс подбирает аудиторию, чем РСЯ отличается от поиска и когда этот формат подходит бизнесу."
+    Images = @("chto-takoe-rsya-v-yandex-direct-1", "chto-takoe-rsya-v-yandex-direct-2", "chto-takoe-rsya-v-yandex-direct-3")
+    Alts  = @(
+      "Схема работы Рекламной сети Яндекса",
+      "Сравнение рекламы в поиске Яндекса и в РСЯ",
+      "Настройка показа РСЯ и комбинаторного объявления в Единой перфоманс-кампании"
+    )
+  },
+  @{
+    Slug  = "konversiya-v-yandex-direct"
+    Title = "Конверсия в Яндекс Директ: что это, как считать CR и оценивать рекламу"
+    Desc  = "Простое объяснение конверсии в Яндекс Директе: что считается конверсией, как рассчитывается CR, чем он отличается от CPA и как использовать эти показатели для оценки рекламы."
+    Images = @("konversiya-yandex-direct-1", "konversiya-yandex-direct-2", "konversiya-yandex-direct-3")
+    Alts  = @(
+      "Расчет коэффициента конверсии: 10 заявок из 200 кликов дают CR 5 процентов",
+      "Сравнение показателей CR и CPA в Яндекс Директе",
+      "Как Яндекс Директ использует данные о конверсиях для оптимизации рекламной кампании"
+    )
+  },
+  @{
+    Slug  = "reklama-v-max-cherez-yandex-direct"
+    Title = "Реклама в MAX через Яндекс Директ: способы запуска и отслеживания"
+    Desc  = "Как запустить рекламу в MAX через Яндекс Директ: нативные посты в каналах, РСЯ через лендинг, передача запусков бота и подписок в Метрику."
+    Images = @("01-reklama-max-cherez-yandex-direct", "02-nastroyka-reklamy-max-yandex-direct", "03-peredacha-zapuska-bota-max")
+    Alts  = @(
+      "Два способа рекламы MAX через Яндекс Директ",
+      "Настройка рекламы в MAX через Яндекс Директ",
+      "Передача запуска бота MAX в Яндекс Метрику"
+    )
+  },
+  @{
+    Slug  = "yandex-business-vs-yandex-direct"
+    Title = "Чем отличается Яндекс Бизнес от Яндекс Директа и что выбрать"
+    Desc  = "Разбираю разницу между Яндекс Бизнесом и Яндекс Директом. Когда локальному бизнесу важнее продвижение в Картах, а когда нужен полноценный рекламный кабинет."
+    Images = @("1-yandex-business-vs-direct", "2-yandex-maps-local-business", "3-yandex-business-and-direct-together")
+    Alts  = @(
+      "Сравнение возможностей Яндекс Бизнеса и Яндекс Директа",
+      "Возможности карточки локального бизнеса в Яндекс Картах",
+      "Совместная работа Яндекс Бизнеса и Яндекс Директа"
+    )
+  },
+  @{
+    Slug  = "kombinatornye-obyavleniya-yandex-direct"
+    Title = "Комбинаторные объявления в Яндекс Директе: что это и как настроить в 2026 году"
+    Desc  = "Что такое комбинаторные объявления в Яндекс Директе, как они работают, сколько заголовков, текстов и креативов можно добавить, как настроить и оценивать результаты."
+    Images = @("kominatornye-obyavleniya-yandex-direct-nastroyka", "kak-rabotayut-kombinatornye-obyavleniya", "master-otchetov-kombinatornye-obyavleniya")
+    Alts  = @(
+      "Настройка комбинаторного объявления в Яндекс Директе",
+      "Как алгоритм Яндекс Директа комбинирует элементы объявления",
+      "Отчет по комбинаторным объявлениям в Мастере отчетов Яндекс Директа"
+    )
+  },
+  @{
+    Slug  = "prognoz-byudzheta-yandex-direct"
+    Title = "Прогноз бюджета Яндекс Директ: как рассчитать расходы, клики и заявки"
+    Desc  = "Как сделать прогноз бюджета в Яндекс Директе, оценить стоимость кликов и перевести данные Яндекса в прогноз заявок, продаж, CPL, CPO и ДРР."
+    Images = @("prognoz-byudzheta-yandex-direct", "raschet-byudzheta-yandex-direct")
+    Alts  = @(
+      "Настройка прогноза бюджета в Яндекс Директе",
+      "Таблица расчета бюджета, заявок и продаж в Яндекс Директе"
+    )
+  },
+  @{
+    Slug  = "operatory-yandex-direct"
+    Title = "Операторы Яндекс Директ: !, кавычки, скобки, плюс и минус-слова"
+    Desc  = "Как работают операторы Яндекс Директ: восклицательный знак, кавычки, квадратные скобки, плюс, минус и другие символы."
+    Images = @("shpargalka-po-operatoram-yandex-direct", "kavychki-i-kvadratnye-skobki-sravnenie")
+    Alts  = @(
+      "Шпаргалка по операторам Яндекс Директ",
+      "Сравнение кавычек и квадратных скобок в операторах Яндекс Директ"
+    )
+  },
+  @{
+    Slug  = "kak-nastroit-yandex-direct"
+    Title = "Как настроить рекламу в Яндекс Директ в 2026 году: инструкция"
+    Desc  = "Как настроить рекламу в Яндекс Директ в 2026 году:"
+    Images = @("01-smeshannyi-zapusk-yandex-direct", "02-kategorii-avtotargetinga-yandex-direct", "03-minus-frazy-poiskovye-zaprosy-yandex-direct", "04-kontrol-kampanii-yandex-direct")
+    Alts  = @(
+      "Схема показов Мастера кампаний в поиске, РСЯ и Яндекс Картах",
+      "Пять категорий автотаргетинга в Яндекс Директе",
+      "Добавление поискового запроса в минус-фразы Яндекс Директа",
+      "Что проверять после запуска рекламы в Яндекс Директе"
+    )
+  },
+  @{
+    Slug  = "minus-frazy-yandex-direct"
+    Title = "Минус-фразы для Яндекс Директа: как собрать список и правильно добавить"
+    Desc  = "Как подобрать минус-фразы для Яндекс Директа через Вордстат, добавить их на уровне кампании или группы и регулярно очищать поисковые запросы после запуска рекламы."
+    Images = @("minus-frazy-yandex-direct-1", "minus-frazy-yandex-direct-2", "minus-frazy-yandex-direct-3")
+    Alts  = @(
+      "Подбор минус-фраз через Яндекс Вордстат",
+      "Массовое добавление минус-фраз в кампании Яндекс Директа",
+      "Добавление минус-фраз из отчёта по поисковым запросам Яндекс Директа"
+    )
+  },
+  @{
     Slug  = "kak-rabotaet-yandex-direct"
     Title = "Как работает Яндекс Директ: Поиск, РСЯ и заявки"
     Desc  = "Как работает Яндекс Директ простыми словами."
@@ -88,6 +218,16 @@ foreach ($path in @($blogPath, $sitemapPath, $robotsPath)) {
 $blog = Get-Content -Raw -Encoding UTF8 -LiteralPath $blogPath
 $sitemap = Get-Content -Raw -Encoding UTF8 -LiteralPath $sitemapPath
 $robots = Get-Content -Raw -Encoding UTF8 -LiteralPath $robotsPath
+$archiveContent = $blog
+$archivePageRoot = Join-Path $root "blog/page"
+if (Test-Path $archivePageRoot) {
+  Get-ChildItem -LiteralPath $archivePageRoot -Directory | ForEach-Object {
+    $archivePath = Join-Path $_.FullName "index.html"
+    if (Test-Path $archivePath) {
+      $archiveContent += Get-Content -Raw -Encoding UTF8 -LiteralPath $archivePath
+    }
+  }
+}
 
 function Assert-Contains($content, $needle, $message) {
   if (-not $content.Contains($needle)) {
@@ -189,7 +329,9 @@ foreach ($article in $articles) {
   }
 
   Assert-Contains $sitemap "<loc>$url</loc>" "Sitemap is missing $slug"
-  Assert-Contains $blog "href=`"$slug/`"" "Blog index must link to $slug"
+  if ($archiveContent -notmatch "href=`"(?:\.\./\.\./)?$([regex]::Escape($slug))/`"") {
+    throw "Blog archive must link to $slug"
+  }
 
   # JSON-LD должен разбираться как валидный JSON.
   $ldMatch = [regex]::Match($html, '<script type="application/ld\+json">([\s\S]*?)</script>')
@@ -212,6 +354,14 @@ foreach ($article in $articles) {
   if ($posting.author.name -ne "Максим Мирошников") {
     throw "JSON-LD author changed on $slug"
   }
+
+  if ($slug -eq "prognoz-byudzheta-yandex-direct") {
+    $downloadPath = Join-Path $root "blog/$slug/raschet-byudzheta-yandex-direct.xlsx"
+    if (-not (Test-Path $downloadPath)) {
+      throw "Budget forecast article is missing the Excel download file"
+    }
+    Assert-Contains $html 'href="raschet-byudzheta-yandex-direct.xlsx" download' "Budget forecast article is missing the Excel download link"
+  }
 }
 
 # --- SEO-пагинация архива ---
@@ -225,6 +375,11 @@ $generator = Get-Content -Raw -Encoding UTF8 -LiteralPath $generatorPath
 Assert-Contains $generator 'const pageSize = 15;' "Blog page size must stay 15"
 Assert-Contains $generator 'blog/page/${page}/' "Archive generator must create clean paginated URLs"
 Assert-Contains $generator 'rel="canonical"' "Archive generator must emit self-canonicals"
+
+$siteScript = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root "script.js")
+if ($siteScript -match 'history\.replaceState\(null, "", `/blog/page/' -or $siteScript -match 'observeNextPage') {
+  throw "Blog pagination must remain direct HTML navigation without automatic page loading"
+}
 
 $allArticleSlugs = Get-ChildItem -LiteralPath $root/blog -Directory |
   Where-Object { $_.Name -ne "page" } |
@@ -244,7 +399,16 @@ for ($page = 1; $page -le $archivePageCount; $page++) {
 
   $archive = Get-Content -Raw -Encoding UTF8 -LiteralPath $archivePath
   $expectedCanonical = if ($page -eq 1) { "https://naklikay.ru/blog/" } else { "https://naklikay.ru/blog/page/$page/" }
+  $expectedAssetPrefix = if ($page -eq 1) { "../" } else { "../../../" }
+  $expectedStylesheet = 'href="' + $expectedAssetPrefix + 'styles.css'
+  $expectedScript = 'src="' + $expectedAssetPrefix + 'script.js'
   Assert-Contains $archive "<link rel=`"canonical`" href=`"$expectedCanonical`" />" "Archive page $page needs a self-canonical"
+  Assert-Contains $archive $expectedStylesheet "Archive page $page must load the shared stylesheet"
+  Assert-Contains $archive $expectedScript "Archive page $page must load the shared script"
+  Assert-Contains $archive '<h1>Блог</h1>' "Archive page $page must keep the single blog heading"
+  if ($archive -match 'Блог - страница|Страница \d+</span>') {
+    throw "Archive page $page must not expose its technical page number outside the pagination control"
+  }
   if ($archive -match "noindex") {
     throw "Archive page $page must stay indexable"
   }
