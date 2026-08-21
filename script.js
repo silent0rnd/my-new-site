@@ -2046,7 +2046,6 @@ function initScrollToTopButton() {
     <svg class="scroll-to-top__art" viewBox="0 0 48 56" aria-hidden="true" focusable="false">
       <path class="scroll-to-top__line" d="M24.7 48.2C24.4 37.7 24.8 27.1 24.2 16.7" />
       <path class="scroll-to-top__line" d="M12.4 27.1C16.5 22.5 20.4 18.1 24.2 12.4C28.1 18.4 32.5 22.8 36.5 27.2" />
-      <path class="scroll-to-top__echo" d="M27.3 47.7C26.9 37.8 27.3 27.7 26.8 17.8" />
     </svg>`;
   document.body.append(scrollToTopButton);
 

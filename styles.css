@@ -5138,21 +5138,12 @@ h1 {
   overflow: visible;
 }
 
-.scroll-to-top__line,
-.scroll-to-top__echo {
+.scroll-to-top__line {
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
-}
-
-.scroll-to-top__line {
-  stroke-width: 2.7;
-}
-
-.scroll-to-top__echo {
-  stroke-width: 1.15;
-  opacity: 0.42;
+  stroke-width: 2.45;
 }
 
 .scroll-to-top:hover,
