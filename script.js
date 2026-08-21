@@ -14,6 +14,30 @@
   const rootScript = document.currentScript || document.querySelector('script[src*="script.js"]');
   const SITE_ROOT = new URL(".", rootScript ? rootScript.src : location.href).href;
 
+  function openBlogLinksInNewTab() {
+    if (!/^\/blog(?:\/|$)/.test(window.location.pathname)) return;
+
+    const prepareLink = (link) => {
+      link.target = "_blank";
+      link.relList.add("noopener", "noreferrer");
+    };
+
+    document.querySelectorAll("a[href]").forEach(prepareLink);
+
+    new MutationObserver((records) => {
+      records.forEach((record) => {
+        record.addedNodes.forEach((node) => {
+          if (!(node instanceof Element)) return;
+
+          if (node.matches("a[href]")) prepareLink(node);
+          node.querySelectorAll("a[href]").forEach(prepareLink);
+        });
+      });
+    }).observe(document.body, { childList: true, subtree: true });
+  }
+
+  openBlogLinksInNewTab();
+
   function readCookieConsent() {
     try {
       const storedValue = window.localStorage.getItem(CONSENT_KEY);
@@ -1889,6 +1913,36 @@ if (reviewsGallery && reviewsData.length > 0) {
 // отрисованы, на странице кейса case-page.js уже собрал контент.
 applyTypography(document);
 
+// Все таблицы внутри статей приводим к одному адаптивному представлению.
+// На телефоне CSS превращает строки в карточки, а подписи колонок берутся
+// из data-label, чтобы сравнение не превращалось в неясный набор строк.
+function prepareArticleTables() {
+  document.querySelectorAll(".article-page .legal-document table").forEach((table) => {
+    table.classList.add("article-table");
+
+    if (!table.parentElement.classList.contains("article-table-wrap")) {
+      const wrap = document.createElement("div");
+      wrap.className = "article-table-wrap";
+      table.before(wrap);
+      wrap.append(table);
+    }
+
+    const labels = Array.from(table.querySelectorAll("thead th"), (heading) =>
+      heading.textContent.trim()
+    );
+
+    table.querySelectorAll("tbody tr").forEach((row) => {
+      Array.from(row.children).forEach((cell, index) => {
+        if (cell.tagName === "TD" && labels[index]) {
+          cell.dataset.label = labels[index];
+        }
+      });
+    });
+  });
+}
+
+prepareArticleTables();
+
 // Заголовки секций перекатываются по буквам, как хиро. Разбор идёт здесь, сразу после
 // типографики и до первой отрисовки: буквы уже стоят в DOM невидимые и на паузе, а
 // IntersectionObserver только снимает паузу. Разбирать под скроллом нельзя - переписывать
@@ -1982,3 +2036,46 @@ if (countBlocks.length > 0 && !prefersReducedMotion.matches) {
 
 // Файл дошёл до конца, всё спрятанное уже показано штатно - страховка не нужна.
 clearTimeout(animationFailsafe);
+
+function initScrollToTopButton() {
+  const scrollToTopButton = document.createElement("button");
+  scrollToTopButton.className = "scroll-to-top";
+  scrollToTopButton.type = "button";
+  scrollToTopButton.setAttribute("aria-label", "Вернуться в начало страницы");
+  scrollToTopButton.innerHTML = `
+    <svg class="scroll-to-top__art" viewBox="0 0 48 56" aria-hidden="true" focusable="false">
+      <path class="scroll-to-top__line" d="M24.7 48.2C24.4 37.7 24.8 27.1 24.2 16.7" />
+      <path class="scroll-to-top__line" d="M12.4 27.1C16.5 22.5 20.4 18.1 24.2 12.4C28.1 18.4 32.5 22.8 36.5 27.2" />
+      <path class="scroll-to-top__echo" d="M27.3 47.7C26.9 37.8 27.3 27.7 26.8 17.8" />
+    </svg>`;
+  document.body.append(scrollToTopButton);
+
+  let isScrollTicking = false;
+
+  const updateScrollToTopButton = () => {
+    scrollToTopButton.classList.toggle("is-visible", getCurrentScrollY() > window.innerHeight * 0.75);
+    isScrollTicking = false;
+  };
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (isScrollTicking) return;
+
+      isScrollTicking = true;
+      window.requestAnimationFrame(updateScrollToTopButton);
+    },
+    { passive: true }
+  );
+
+  scrollToTopButton.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth"
+    });
+  });
+
+  updateScrollToTopButton();
+}
+
+initScrollToTopButton();

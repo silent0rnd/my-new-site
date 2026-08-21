@@ -464,6 +464,11 @@ if ($siteScript -match 'history\.replaceState\(null, "", `/blog/page/' -or $site
   throw "Blog pagination must remain direct HTML navigation without automatic page loading"
 }
 
+Assert-Contains $siteScript 'function openBlogLinksInNewTab()' "Shared script must open blog links in new tabs"
+Assert-Contains $siteScript 'document.querySelectorAll("a[href]")' "Shared script must cover every blog link"
+Assert-Contains $siteScript 'link.target = "_blank"' "Shared script must set the new-tab target for blog links"
+Assert-Contains $siteScript 'new MutationObserver' "Shared script must cover links added after page load"
+
 $allArticleSlugs = Get-ChildItem -LiteralPath $root/blog -Directory |
   Where-Object { $_.Name -ne "page" } |
   Where-Object { Test-Path (Join-Path $_.FullName "index.html") } |
