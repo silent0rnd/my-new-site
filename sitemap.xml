@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://naklikay.ru/blog/kak-sgenerirovat-utm-metki-dlya-yandex-direkta/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/strategiya-v-yandex-direct/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/lending-v-yandex-direct/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/kakoy-ctr-schitaetsya-horoshim-v-yandex-direkt/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/kak-posmotret-obyavlenie-v-yandex-direct/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/kak-izmenit-obekt-prodvizheniya-v-yandex-direkte/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/reklama-telegram-kanala-v-yandex-direkte/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/oplata-za-konversii-yandex-direct/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/blog/kak-ostanovit-kampaniyu-v-yandex-direct/</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -101,6 +148,12 @@
     <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/cena-za-klik-v-yandex-direkte/</loc>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://naklikay.ru/blog/kak-nastroit-yandex-direct/</loc>
@@ -434,6 +487,11 @@
   </url>
   <url>
     <loc>https://naklikay.ru/blog/page/2/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/page/3/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
