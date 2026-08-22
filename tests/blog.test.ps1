@@ -302,6 +302,18 @@ $articles = @(
       "Этапы работы с рекламой от разбора бизнеса до отчета и новых гипотез"
     )
   }
+  ,@{
+    Slug  = "specialist-po-yandex-direct"
+    Title = "Специалист по Яндекс Директ: настройка и ведение рекламы для бизнеса"
+    Desc  = "Что делает специалист по Яндекс Директ, какие задачи берет на себя, как оценить опыт и выбрать подрядчика для настройки и ведения рекламы."
+    Images = @("specialist-po-yandex-direct-1", "specialist-po-yandex-direct-2", "specialist-po-yandex-direct-3")
+    CardImage = "specialist-po-yandex-direct"
+    Alts  = @(
+      "Специалист анализирует рекламные кампании в Яндекс Директ",
+      "Этапы работы специалиста по Яндекс Директ",
+      "Чек-лист выбора специалиста по Яндекс Директ"
+    )
+  }
 )
 
 foreach ($path in @($blogPath, $sitemapPath, $robotsPath)) {
