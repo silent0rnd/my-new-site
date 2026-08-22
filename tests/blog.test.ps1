@@ -289,6 +289,18 @@ $articles = @(
       "Раздел «Настройки» и пункт «Доступ» в Яндекс Метрике",
       "Добавление пользователя с правами «Редактирование» в Яндекс Метрике"
     )
+  },
+  @{
+    Slug  = "chastnyj-specialist-yandex-direct"
+    Title = "Частный специалист по Яндекс Директ - настройка и ведение рекламы"
+    Desc  = "Частный специалист по Яндекс Директ: настройка, ведение, аналитика и оптимизация рекламы. Работаю лично, по договору как ИП. Кейсы и условия сотрудничества."
+    Images = @("chastnyj-specialist-yandex-direct-1", "chastnyj-specialist-yandex-direct-2", "chastnyj-specialist-yandex-direct-3")
+    CardImage = "chastnyj-specialist-yandex-direct-1"
+    Alts  = @(
+      "Частный специалист по Яндекс Директ работает с рекламными кампаниями",
+      "Проверка опыта, кейсов и аналитики при выборе специалиста по Яндекс Директ",
+      "Этапы работы с рекламой от разбора бизнеса до отчета и новых гипотез"
+    )
   }
 )
 
@@ -373,13 +385,18 @@ foreach ($article in $articles) {
     throw "Missing article: $articlePath"
   }
 
-  # У каждой картинки должны быть и исходный JPG, и WebP.
+  # Все иллюстрации статьи хранятся в исходном JPG. WebP нужен для обложки
+  # карточки, а в старых статьях может быть подготовлен для каждой иллюстрации.
   foreach ($name in $article.Images) {
-    foreach ($ext in @("jpg", "webp")) {
-      if (-not (Test-Path (Join-Path $root "blog/$name.$ext"))) {
-        throw "Missing blog image: $name.$ext"
-      }
+    if (-not (Test-Path (Join-Path $root "blog/$name.jpg"))) {
+      throw "Missing blog image: $name.jpg"
     }
+    if (-not $article.CardImage -and -not (Test-Path (Join-Path $root "blog/$name.webp"))) {
+      throw "Missing blog image: $name.webp"
+    }
+  }
+  if ($article.CardImage -and -not (Test-Path (Join-Path $root "blog/$($article.CardImage).webp"))) {
+    throw "Missing blog card image: $($article.CardImage).webp"
   }
 
   $html = Get-Content -Raw -Encoding UTF8 -LiteralPath $articlePath
