@@ -314,6 +314,17 @@ $articles = @(
       "Чек-лист выбора специалиста по Яндекс Директ"
     )
   }
+  ,@{
+    Slug  = "reklama-proizvodstvennoy-kompanii"
+    Title = "Реклама производственной компании: как привлекать B2B-клиентов"
+    Desc  = "Как настроить рекламу производственной компании: Яндекс Директ, поиск и РСЯ, посадочные страницы, аналитика и реальные примеры из производственных проектов."
+    Images = @("reklama-proizvodstvennoy-kompanii-1", "reklama-proizvodstvennoy-kompanii-2")
+    CardImage = "reklama-proizvodstvennoy-kompanii"
+    Alts  = @(
+      "Реклама производственной компании и привлечение B2B-клиентов",
+      "Особенности продвижения производственной компании"
+    )
+  }
 )
 
 foreach ($path in @($blogPath, $sitemapPath, $robotsPath)) {
