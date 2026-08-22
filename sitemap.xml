@@ -7,6 +7,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://naklikay.ru/blog/reklama-optovoy-kompanii/</loc>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/blog/reklama-proizvodstvennoy-kompanii/</loc>
     <lastmod>2026-08-22</lastmod>
     <changefreq>monthly</changefreq>
@@ -653,6 +659,11 @@
   </url>
   <url>
     <loc>https://naklikay.ru/blog/page/4/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/page/5/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
