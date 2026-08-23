@@ -674,6 +674,10 @@
         renderLightbox(),
       ];
 
+      if (Array.isArray(currentCase.faq) && currentCase.faq.length > 0) {
+        pageBlocks.splice(pageBlocks.length - 1, 0, renderFaq(currentCase.faq));
+      }
+
       root.append(...pageBlocks);
       initCaseSketchOrbs();
       return;

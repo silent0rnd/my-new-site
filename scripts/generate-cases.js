@@ -258,7 +258,7 @@ function bodyHtml(caseItem, cases) {
       const variant = index === 0 ? "upper" : index === middle ? "middle" : index === lower ? "lower" : "";
       return projectHtml(project, index, variant);
     });
-    return heroHtml(caseItem) + blocks.join("") + lightboxHtml();
+    return heroHtml(caseItem) + blocks.join("") + faqHtml(caseItem.faq) + lightboxHtml();
   }
 
   const sections = caseItem.sections || [];
@@ -372,7 +372,7 @@ function pageHtml(caseItem, cases) {
     <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="stylesheet" href="../../styles.css?v=20260810-mobile-layout" />
     <script src="../../cases-data.js?v=20260808" defer></script>
-    <script src="../../case-page.js?v=20260809-case-orbs-v2" defer></script>
+    <script src="../../case-page.js?v=20260823-collection-faq" defer></script>
     <script src="../../script.js?v=20260810-mobile-layout" defer></script>
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="${attr(author)}" />

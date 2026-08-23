@@ -253,7 +253,8 @@ node -e "const fs=require('fs');const h=fs.readFileSync('cases/<slug>/index.html
 Готово полностью:
 
 - `business-setup-uae-yandex-direct` (образец, смотри его первым);
-- `confectioner-webinar-funnel-yandex-direct`.
+- `confectioner-webinar-funnel-yandex-direct`;
+- `dental-prosthetics-moscow-yandex-direct`.
 
 Описание собралось слишком коротким, нужен ручной `seoDescription`:
 
