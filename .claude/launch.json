@@ -18,6 +18,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "4321"],
       "port": 4321
+    },
+    {
+      "name": "site-alt3",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "4322"],
+      "port": 4322
     }
   ]
 }

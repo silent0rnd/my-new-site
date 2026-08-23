@@ -254,13 +254,13 @@ node -e "const fs=require('fs');const h=fs.readFileSync('cases/<slug>/index.html
 
 - `business-setup-uae-yandex-direct` (образец, смотри его первым);
 - `confectioner-webinar-funnel-yandex-direct`;
-- `dental-prosthetics-moscow-yandex-direct`.
+- `dental-prosthetics-moscow-yandex-direct`;
+- `moscow-studios-real-estate-yandex-direct`.
 
 Описание собралось слишком коротким, нужен ручной `seoDescription`:
 
 - `medcenter-telegram-ads` - 55 знаков
 - `psychology-center-lipetsk-yandex-direct` - 61
-- `moscow-studios-real-estate-yandex-direct` - 66
 - `construction-cabins-sales-yandex-direct` - 69
 - `saint-petersburg-tours-yandex-direct` - 69
 - `sewing-production-organization-yandex-direct` - 69

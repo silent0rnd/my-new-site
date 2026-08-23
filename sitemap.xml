@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://naklikay.ru/blog/yandex-direct-kommercheskaya-nedvizhimost/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/blog/reklama-kommercheskih-pomescheniy/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -86,6 +91,12 @@
   <url>
     <loc>https://naklikay.ru/blog/yandex-direct-dlya-proizvodstva/</loc>
     <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/yandex-direct-dlya-internet-magazina/</loc>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -819,9 +830,33 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://naklikay.ru/blog/yandex-direct-dlya-zastroyshchika/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/blog/yandex-direct-dlya-agentstva-nedvizhimosti/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/yandex-direct-dlya-online-shkoly/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/yandex-direct-dlya-stroitelnoy-kompanii/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/yandex-direct-stroitelstvo-domov/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://naklikay.ru/blog/page/2/</loc>
@@ -845,6 +880,11 @@
   </url>
   <url>
     <loc>https://naklikay.ru/blog/page/6/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/page/7/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
