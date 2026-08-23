@@ -502,6 +502,26 @@
     return overlay;
   }
 
+  // Повтор faqHtml() из scripts/generate-cases.js: статичная сборка рисует блок
+  // для робота, а этот код возвращает его после перерисовки для человека.
+  // Новый блок на странице кейса добавляем сразу в оба файла.
+  function renderFaq(faq) {
+    const section = createElement("section", "case-content-section case-faq");
+    const copy = createElement("div", "case-content-section__copy");
+
+    section.append(createElement("h2", "", "Частые вопросы"));
+
+    faq.forEach((entry) => {
+      const item = createElement("div", "case-faq__item");
+      item.append(createElement("h3", "case-faq__question", entry.question));
+      item.append(createElement("p", "", entry.answer));
+      copy.append(item);
+    });
+
+    section.append(copy);
+    return section;
+  }
+
   function renderConclusion() {
     const section = createElement("section", "case-conclusion");
     section.append(createElement("h2", "", "Вывод"));
@@ -672,6 +692,10 @@
 
     if (hasImages(currentCase.images)) {
       pageBlocks.push(renderGallery(currentCase.images));
+    }
+
+    if (Array.isArray(currentCase.faq) && currentCase.faq.length > 0) {
+      pageBlocks.push(renderFaq(currentCase.faq));
     }
 
     pageBlocks.push(renderConclusion(), renderRelatedCases());

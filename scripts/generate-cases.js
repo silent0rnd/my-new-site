@@ -185,6 +185,23 @@ function lightboxHtml() {
   ].join("");
 }
 
+// Блок вопросов обязан быть видимым: разметка FAQPage без текста на странице
+// считается обманом и снимается поисковиком.
+function faqHtml(faq = []) {
+  if (faq.length === 0) return "";
+
+  const items = faq
+    .map((entry) => `<div class="case-faq__item"><h3 class="case-faq__question">${esc(entry.question)}</h3><p>${esc(entry.answer)}</p></div>`)
+    .join("");
+
+  return [
+    `<section class="case-content-section case-faq">`,
+    `<h2>Частые вопросы</h2>`,
+    `<div class="case-content-section__copy">${items}</div>`,
+    `</section>`,
+  ].join("");
+}
+
 function conclusionHtml(caseItem) {
   return [
     `<section class="case-conclusion has-case-sketch-orb">`,
@@ -254,6 +271,7 @@ function bodyHtml(caseItem, cases) {
     factsHtml(caseItem.facts),
     sectionsHtml(sections, "h2", { 0: "upper", [middle]: "middle" }),
     hasImages ? galleryHtml(caseItem.images) : "",
+    faqHtml(caseItem.faq),
     conclusionHtml(caseItem),
     relatedHtml(caseItem, cases),
     hasImages ? lightboxHtml() : "",

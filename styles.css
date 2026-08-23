@@ -2128,6 +2128,33 @@ h1 {
   align-content: start;
 }
 
+/* Вопросы стоят в правой колонке рядом с текстом, поэтому кегль обычный,
+   а не как у заголовков разделов слева. Разделитель и приглушённый ответ -
+   те же, что у списка фактов выше по странице. */
+.case-faq__item {
+  display: grid;
+  gap: 8px;
+  padding-top: 22px;
+  border-top: 1px solid rgb(217 217 212 / 0.62);
+}
+
+.case-faq__item:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.case-faq__question {
+  margin: 0;
+  color: #202020;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.case-faq .case-content-section__copy p {
+  color: #61615f;
+}
+
 .case-content-section p,
 .case-conclusion p {
   max-width: 680px;
