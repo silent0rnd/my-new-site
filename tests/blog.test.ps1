@@ -325,6 +325,18 @@ $articles = @(
       "Особенности продвижения производственной компании"
     )
   }
+  ,@{
+    Slug  = "kontekstnaya-reklama-agentstva-nedvizhimosti"
+    Title = "Контекстная реклама агентства недвижимости: как получать заявки из Яндекс Директа"
+    Desc  = "Как настроить контекстную рекламу агентства недвижимости: структура кампаний, Поиск и РСЯ, посадочные страницы, аналитика и реальные кейсы из Яндекс Директа."
+    Images = @("kontekstnaya-reklama-agentstva-nedvizhimosti-1", "kontekstnaya-reklama-agentstva-nedvizhimosti-2", "kontekstnaya-reklama-agentstva-nedvizhimosti-3")
+    CardImage = "kontekstnaya-reklama-agentstva-nedvizhimosti"
+    Alts  = @(
+      "Направления контекстной рекламы для агентства недвижимости",
+      "Путь лида от клика до сделки в рекламе недвижимости",
+      "Сценарии и экономика рекламы недвижимости"
+    )
+  }
 )
 
 foreach ($path in @($blogPath, $sitemapPath, $robotsPath)) {
