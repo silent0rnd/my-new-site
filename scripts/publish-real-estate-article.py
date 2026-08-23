@@ -24,7 +24,7 @@ def figure(index):
 
 def article_body(source):
     lines = source.splitlines()
-    rendered, i, figure_index = [], 4, 0
+    rendered, i, inserted = [], 4, set()
     while i < len(lines):
         line = lines[i].strip()
         if not line:
@@ -36,7 +36,7 @@ def article_body(source):
             heading = line[3:]
             rendered.append(f"<h2>{html.escape(heading)}</h2>")
             if heading == "Как разделять рекламу недвижимости":
-                rendered.append(figure(0)); figure_index = 1
+                rendered.append(figure(0)); inserted.add(0)
         elif line.startswith("### "):
             rendered.append(f"<h3>{html.escape(line[4:])}</h3>")
         elif line.startswith("|") and i + 1 < len(lines) and lines[i + 1].strip().startswith("|---"):
@@ -64,13 +64,16 @@ def article_body(source):
             rendered.append("<ol>" + "".join(items) + "</ol>")
             continue
         else:
+            if line.startswith("Автор:"):
+                i += 1
+                continue
             rendered.append(f"<p>{linkify(line)}</p>")
             if line.startswith("Клик → заявка → дозвон"):
-                rendered.append(figure(1)); figure_index = 2
+                rendered.append(figure(1)); inserted.add(1)
             elif line.startswith("Сам по себе дешевый клик"):
-                rendered.append(figure(2)); figure_index = 3
+                rendered.append(figure(2)); inserted.add(2)
         i += 1
-    if figure_index != 3:
+    if len(inserted) != 3:
         raise RuntimeError("All three infographics were not inserted")
     return "\n".join(rendered)
 

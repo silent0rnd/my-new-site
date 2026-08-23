@@ -59,6 +59,19 @@ def icon_arrows(draw, cx, cy):
     draw.polygon([(cx+4, cy-60), (cx+80, cy+2), (cx+4, cy+64)], fill=ORANGE)
     draw.polygon([(cx-15, cy-60), (cx-89, cy+2), (cx-15, cy+64)], fill=INK)
 
+def icon_lead_check(draw, cx, cy):
+    draw.rounded_rectangle((cx-57, cy-54, cx+57, cy+62), 14, fill=INK)
+    draw.ellipse((cx-22, cy-31, cx+2, cy-7), fill=WHITE)
+    draw.rounded_rectangle((cx-34, cy+2, cx+14, cy+26), 7, fill=WHITE)
+    draw.ellipse((cx+21, cy+17, cx+71, cy+67), fill=ORANGE)
+    draw.line((cx+32, cy+42, cx+43, cy+53, cx+61, cy+31), fill=WHITE, width=8)
+
+def icon_keys(draw, cx, cy):
+    draw.ellipse((cx-51, cy-38, cx-2, cy+11), outline=INK, width=13)
+    draw.line((cx-8, cy+4, cx+64, cy+76), fill=INK, width=14)
+    draw.line((cx+41, cy+53, cx+66, cy+28), fill=ORANGE, width=14)
+    draw.line((cx+56, cy+68, cx+81, cy+43), fill=ORANGE, width=14)
+
 def structure():
     img = Image.new("RGBA", (W, H), BG)
     d = ImageDraw.Draw(img)
@@ -77,25 +90,24 @@ def funnel():
     img = Image.new("RGBA", (W, H), BG)
     d = ImageDraw.Draw(img)
     title(d, "Воронка аналитики", "От клика до сделки")
-    labels = ["Клик", "Заявка", "Квалификация", "Показ", "Сделка"]
-    xs = [72, 367, 662, 957, 1252]
+    labels = ["Клик", "Заявка", "Проверка лида", "Показ", "Сделка"]
+    xs = [90, 380, 670, 960, 1250]
     for idx, (x, label) in enumerate(zip(xs, labels)):
-        box = (x, 355, x+212, 800)
+        box = (x, 410, x+196, 730)
         shadowed_card(img, box)
-        cx = x + 106
+        cx = x + 98
         if idx == 0:
-            d.polygon([(cx-38, 450), (cx+42, 496), (cx+5, 506), (cx+33, 552), (cx+10, 566), (cx-20, 519), (cx-42, 545)], fill=ORANGE)
+            d.polygon([(cx-30, 466), (cx+35, 502), (cx+4, 511), (cx+28, 550), (cx+8, 562), (cx-17, 523), (cx-34, 544)], fill=ORANGE)
         elif idx == 1:
-            d.rounded_rectangle((cx-45, 437, cx+45, 558), 12, fill=INK); d.rectangle((cx-23, 470, cx+24, 479), fill=WHITE); d.rectangle((cx-23, 496, cx+14, 505), fill=WHITE)
+            d.rounded_rectangle((cx-39, 453, cx+39, 557), 12, fill=INK); d.rectangle((cx-20, 481, cx+20, 489), fill=WHITE); d.rectangle((cx-20, 506, cx+11, 514), fill=WHITE)
         elif idx == 2:
-            d.ellipse((cx-36, 435, cx+36, 507), fill=INK); d.line((cx-58, 566, cx, 507, cx+58, 566), fill=ORANGE, width=15)
-        elif idx == 3: icon_house(d, cx, 486)
-        else:
-            d.line((cx-47, 505, cx-10, 542, cx+55, 448), fill=INK, width=19); d.line((cx-47, 505, cx-10, 542), fill=ORANGE, width=7)
-        center(d, (x+12, 635, x+200, 700), label, 27)
+            icon_lead_check(d, cx-8, 503)
+        elif idx == 3: icon_house(d, cx, 506)
+        else: icon_keys(d, cx-8, 500)
+        center(d, (x+8, 615, x+188, 676), label, 23 if idx == 2 else 27)
         if idx < 4:
-            ax = x + 225
-            d.polygon([(ax, 564), (ax+46, 564), (ax+46, 548), (ax+76, 577), (ax+46, 606), (ax+46, 590), (ax, 590)], fill=ORANGE)
+            ax = x + 208
+            d.polygon([(ax, 548), (ax+32, 548), (ax+32, 536), (ax+58, 561), (ax+32, 586), (ax+32, 574), (ax, 574)], fill=ORANGE)
     footer(d, "Оптимизируйте по качественным действиям")
     return img
 
