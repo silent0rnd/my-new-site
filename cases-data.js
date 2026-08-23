@@ -19,7 +19,6 @@
       categoryLabel: caseItem.categoryLabel,
       shortResult: caseItem.shortResult,
       channel: "Яндекс.Директ",
-      sourceUrl: caseItem.sourceUrl,
       href: `/cases/${caseItem.slug}`,
       intro: caseDetails.intro || caseItem.intro || `Кейс в категории «${caseItem.categoryLabel}» по Яндекс.Директу.`,
       facts: caseDetails.facts || caseItem.facts || [
@@ -2322,7 +2321,6 @@
       category: "education",
       categoryLabel: "Образование",
       shortResult: "2500 лидов в месяц по 126₽ вместо 350₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/2500-lidov-v-mesyats-po-126-vmesto-350-kak-my-masshtabirovali-fotoshkolu-bez-rosta-stoimosti-zayavki",
       metrics: [
         { value: "2500", label: "лидов в месяц" },
         { value: "126₽", label: "цена лида" },
@@ -2368,7 +2366,6 @@
       category: "education",
       categoryLabel: "Образование",
       shortResult: "Регистрация на вебинар по 31₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/registratsiya-na-vebinar-po-31--kak-my-protestirovali-novuyu-voronku-konditera-na-byudzhete-15-000--v-nedelyu",
       metrics: [
         { value: "31₽", label: "регистрация на вебинар" },
       ],
@@ -2412,7 +2409,6 @@
       category: "education",
       categoryLabel: "Образование",
       shortResult: "ROMI 271% за месяц",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/romi-271-za-mesyats-kak-my-sobrali-auditoriyu-na-besplatnyy-kurs-po-lozopleteniyu-i-vyveli-ego-v-pribyl",
       metrics: [
         { value: "271%", label: "ROMI за месяц" },
       ],
@@ -2456,7 +2452,6 @@
       category: "education",
       categoryLabel: "Образование",
       shortResult: "1500+ регистраций по ≤150₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/1500-registratsiy-po-150--kak-my-zapolnili-pryamye-efiry-top-shef-povara-za-3-mesyatsa",
       metrics: [
         { value: "1500+", label: "регистраций" },
         { value: "≤150₽", label: "цена регистрации" },
@@ -2501,7 +2496,6 @@
       category: "education",
       categoryLabel: "Образование",
       shortResult: "80 заявок по 2049₽ в узкой нише",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/80-zayavok-po-2049--v-uzkoy-nishe-kak-my-privlekli-lidy-na-kursy-budushchikh-prepodavateley-tsigun",
       metrics: [
         { value: "80", label: "заявок" },
         { value: "2049₽", label: "цена заявки" },
@@ -2546,7 +2540,6 @@
       category: "education",
       categoryLabel: "Образование",
       shortResult: "400+ лидов по 96₽ при KPI 300₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/400-lidov-po-96--pri-kpi-300--kak-master-kampaniya-razognalas-bez-lishnikh-pravok",
       metrics: [
         { value: "400+", label: "лидов" },
         { value: "96₽", label: "цена лида" },
@@ -2592,7 +2585,6 @@
       category: "education",
       categoryLabel: "Образование",
       shortResult: "402 лида по 819₽ вместо 2000₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/402-lida-po-819--vmesto-2000--kak-my-usilili-brend-i-obuchili-rsya-dlya-shkoly-massazha-v-moskve",
       metrics: [
         { value: "402", label: "лида" },
         { value: "819₽", label: "цена лида" },
@@ -2639,7 +2631,6 @@
       category: "education",
       categoryLabel: "Образование",
       shortResult: "201 запуск Telegram-бота по 203₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/201-zapusk-telegram-bota-po-203-v-nishe-vastu-kak-my-raspakovali-uzkiy-spros-i-dali-algoritmu-masshtab",
       metrics: [
         { value: "201", label: "запуск Telegram-бота" },
         { value: "203₽", label: "цена запуска" },
@@ -2689,7 +2680,6 @@
       category: "education",
       categoryLabel: "Образование",
       shortResult: "Лиды по 50₽ в чувствительной нише",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/lidy-po-50-v-chuvstvitelnoy-nishe-kak-my-zapustili-voronku-18-na-byudzhete-20-000--v-nedelyu",
       metrics: [
         { value: "50₽", label: "цена лида" },
       ],
@@ -2738,7 +2728,6 @@
       category: "real-estate",
       categoryLabel: "Недвижимость",
       shortResult: "Снизили CPA в 2 раза",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/kak-snizili-stoimost-zayavki-na-stroitelstvo-domov-pochti-v-2-raza-za-mesyats",
       metrics: [
         { value: "В 2 раза", label: "снижение стоимости заявки" },
       ],
@@ -2749,7 +2738,6 @@
       category: "real-estate",
       categoryLabel: "Недвижимость",
       shortResult: "Удержали поток лидов во время турбулентности рынка",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/kak-uderzhali-potok-lidov-v-nedvizhimosti-vo-vremya-turbulentnosti-rynka-keys-zhk-krasnogorsk-park",
       metrics: [
         { value: "Лиды", label: "поток удержан во время турбулентности рынка" },
       ],
@@ -2760,7 +2748,6 @@
       category: "real-estate",
       categoryLabel: "Недвижимость",
       shortResult: "528₽ за лид в Москве",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/528-rubley-za-zayavku-v-nedvizhimosti-moskvy-keys-po-prodazhe-studiy-10-20-m",
       metrics: [
         { value: "528₽", label: "цена заявки" },
       ],
@@ -2771,7 +2758,6 @@
       category: "real-estate",
       categoryLabel: "Недвижимость",
       shortResult: "Снизили стоимость лида в 3,5 раза",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/kak-snizit-stoimost-lida-v-35-raza-v-kommercheskoy-nedvizhimosti-keys-zhk-vatutinki-park",
       metrics: [
         { value: "3,5 раза", label: "снижение стоимости лида" },
       ],
@@ -2782,7 +2768,6 @@
       category: "real-estate",
       categoryLabel: "Недвижимость",
       shortResult: "Заявки на trade-in по 1500₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/lidy-dlya-agentstva-nedvizhimosti-zayavki-na-trade-in-po-1500-rubley-keys-iz-ekaterinburga",
       metrics: [
         { value: "1500₽", label: "заявка на trade-in" },
       ],
@@ -2793,7 +2778,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "64 заявки по 546₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/64-zayavki-po-546-rub-dlya-postavshchika-promyshlennykh-drobilok-2018g",
       metrics: [
         { value: "64", label: "заявки" },
         { value: "546₽", label: "цена заявки" },
@@ -2805,7 +2789,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "175 заявок по 540₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/175-zayavok-po-540-rub-dlya-tekhnologicheskogo-partnera-ozon-i-yandeks-marketa",
       metrics: [
         { value: "175", label: "заявок" },
         { value: "540₽", label: "цена заявки" },
@@ -2817,7 +2800,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Лиды от 150₽ при бюджете более 18 млн рублей",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/bolee-18-mln-rub-reklamnogo-byudzheta-i-lidy-ot-150-rub-v-nishe-yuridicheskogo-konsaltinga-keys-yandeks-direkt",
       metrics: [
         { value: "от 150₽", label: "цена лида" },
         { value: "18 млн рублей", label: "рекламный бюджет" },
@@ -2829,7 +2811,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "215 заявок по 1775₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/215-zayavok-po-1775-rub-na-uslugu-otkrytiya-biznesa-v-oae-2022-god",
       metrics: [
         { value: "215", label: "заявок" },
         { value: "1775₽", label: "цена заявки" },
@@ -2841,7 +2822,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Лиды по 2500₽ для услуги с чеком в несколько миллионов",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/lidy-po-2500-rubley-dlya-uslugi-s-chekom-v-neskolko-millionov-vykup-aktsy",
       metrics: [
         { value: "2500₽", label: "цена лида" },
       ],
@@ -2852,7 +2832,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Снизили стоимость лида в 2 раза, с 1300₽ до 600₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/kak-snizili-stoimost-lida-v-2-raza-v-nishe-superfuda-s-1300-do-600-rubley",
       metrics: [
         { value: "2 раза", label: "снижение стоимости лида" },
         { value: "600₽", label: "цена лида после оптимизации" },
@@ -2864,7 +2843,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Снизили стоимость лида с 1500₽ до 400₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/snizili-stoimost-lida-s-1500-do-400-rub-v-nishe-naruzhnoy-reklamy",
       metrics: [
         { value: "400₽", label: "цена лида после оптимизации" },
         { value: "1500₽", label: "цена лида до оптимизации" },
@@ -2876,7 +2854,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Лиды дешевле 1000₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/lidy-deshevle-1000-rub-dlya-prodazhi-stroitelnykh-bytovok",
       metrics: [
         { value: "<1000₽", label: "цена лида" },
       ],
@@ -2887,7 +2864,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Снизили стоимость лида с 11 090₽ до 3684₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/snizili-stoimost-lida-s-11-090-do-3684-rub-v-nishe-gruzoperevozok-v-norilsk-keys-yandeks-direkt",
       metrics: [
         { value: "3684₽", label: "цена лида после оптимизации" },
         { value: "11 090₽", label: "цена лида до оптимизации" },
@@ -2899,7 +2875,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Лиды по 4$ для швейного производства",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/lidy-po-4-dlya-fabriki-detskoy-odezhdy-keys-yandeks-direkt-dlya-proizvodstva-v-kyrgyzstane",
       metrics: [
         { value: "4$", label: "цена лида" },
       ],
@@ -2910,7 +2885,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Лиды по 1500₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/lidy-po-1500-rub-v-nishe-organizatsii-shveynogo-proizvodstva",
       metrics: [
         { value: "1500₽", label: "цена лида" },
       ],
@@ -2921,7 +2895,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "3074 лида по 1649₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/3074-lida-po-1649-rub-dlya-optovykh-prodazh-led-svetilnikov-iz-yandeks-direkt",
       metrics: [
         { value: "3074", label: "лида" },
         { value: "1649₽", label: "цена лида" },
@@ -2933,7 +2906,6 @@
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "330 заявок на работу по 384₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/330-zayavok-na-rabotu-v-striptiz-klube-po-384-rub-keys-yandeks-direkt",
       metrics: [
         { value: "330", label: "заявок на работу" },
         { value: "384₽", label: "цена заявки" },
@@ -2945,7 +2917,6 @@
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Лиды по 700₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/lidy-po-700-rub-dlya-tsentra-psikhologii-v-lipetske",
       metrics: [
         { value: "700₽", label: "цена лида" },
       ],
@@ -2956,7 +2927,6 @@
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Снизили стоимость заявки в 3 раза: с 1290₽ до 434₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/kak-snizili-stoimost-zayavki-na-vizovye-uslugi-v-3-raza-s-1290-do-434-rubley-2019g",
       metrics: [
         { value: "3 раза", label: "снижение стоимости заявки" },
         { value: "434₽", label: "цена заявки после оптимизации" },
@@ -2968,7 +2938,6 @@
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Снизили стоимость лида с 282₽ до 170₽ и увеличили поток в 2 раза",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/keys-taksoparka-v-krymu-snizili-stoimost-lida-s-282-do-170-rub-i-uvelichili-potok-zayavok-pochti-v-2-raza",
       metrics: [
         { value: "170₽", label: "цена лида после оптимизации" },
         { value: "2 раза", label: "рост потока заявок" },
@@ -2980,7 +2949,6 @@
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Заявки по 162₽ в Санкт-Петербурге",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/zayavki-po-162-rub-na-fotosessii-dlya-beremennykh-v-sankt-peterburge-keys-yandeks-direkt",
       metrics: [
         { value: "162₽", label: "цена заявки" },
       ],
@@ -2991,7 +2959,6 @@
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Лиды дешевле 500₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/lidy-deshevle-500-rub-dlya-ekskursiy-po-sankt-peterburgu-keys-yandeks-direkt",
       metrics: [
         { value: "<500₽", label: "цена лида" },
       ],
@@ -3002,7 +2969,6 @@
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "482 заявки на протезирование зубов из РСЯ",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/482-zayavki-na-protezirovaniye-zubov-iz-rsya-keys-yandeks-direkt-dlya-stomatology",
       metrics: [
         { value: "482", label: "заявки" },
       ],
@@ -3013,7 +2979,6 @@
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Снижение стоимости лида в 2 раза",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/snizheniye-stoimosti-lida-v-2-raza-dlya-meditsinskogo-servisa-blogera-i-vracha-aleksandra-dzidzarii",
       metrics: [
         { value: "2 раза", label: "снижение стоимости лида" },
       ],
@@ -3024,7 +2989,6 @@
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Снизили стоимость лида с 1100₽ до 543₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/snizili-stoimost-lida-s-1100-do-543-rub-dlya-seti-khimchistok",
       metrics: [
         { value: "543₽", label: "цена лида после оптимизации" },
         { value: "1100₽", label: "цена лида до оптимизации" },
@@ -3036,7 +3000,6 @@
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "500+ заявок по 210₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/500-zayavok-po-210-rubley-dlya-avtoservisa-v-nebolshom-gorode-keys-iz-rybinska-2020",
       metrics: [
         { value: "500+", label: "заявок" },
         { value: "210₽", label: "цена заявки" },
@@ -3048,7 +3011,6 @@
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "656 000₽ выручки при бюджете 64 000₽ за 20 дней",
-      sourceUrl: "https://реклама.мирошников-директ.рф/kejs-internet-magazina-yaponskoj-kosmetiki/",
       metrics: [
         { value: "656 000₽", label: "выручка по электронной коммерции" },
         { value: "64 000₽", label: "рекламный бюджет" },
@@ -3112,7 +3074,6 @@
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "69 покупок по 408₽ при KPI 1000₽",
-      sourceUrl: "https://реклама.мирошников-директ.рф/kejs-internet-magazina-myasnickij-ryad-v-moskve/",
       metrics: [
         { value: "408₽", label: "стоимость заказа за 3 недели" },
         { value: "69", label: "покупок за 3 недели" },
@@ -3181,7 +3142,6 @@
       categoryLabel: "TG Ads",
       shortResult: "71 лид с сайта по 1€ и подписчики по 1.3€",
       channel: "Telegram Ads",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/71-lid-s-sayta-po-1--i-podpischiki-po-13--keys-prodvizheniya-kursov-yogi-i-tsigun-v-telegram-ads",
       href: "/cases/yoga-qigong-telegram-ads",
       intro: "Задача - привести регистрации на бесплатный онлайн-марафон по йоге и цигун и параллельно увеличить Telegram-канал проекта через Telegram Ads.",
       facts: [
@@ -3243,7 +3203,6 @@
       categoryLabel: "TG Ads",
       shortResult: "Подписчики по 2€",
       channel: "Telegram Ads",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/62-podpischika-po-2--dlya-telegram-kanala-meditsinskogo-tsentra-iz-telegram-ads",
       href: "/cases/medcenter-telegram-ads",
       intro: "Задача - привлечь подписчиков в Telegram-канал медицинского центра в узкой локальной географии и пройти строгую медицинскую модерацию.",
       facts: [
@@ -3308,7 +3267,6 @@
       categoryLabel: "TG Ads",
       shortResult: "Запуск бота по 1,4€",
       channel: "Telegram Ads",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/zapusk-bota-po-14--v-nishe-obucheniya-menedzherov-marketpleysov-keys-telegram-ads",
       href: "/cases/marketplace-managers-telegram-ads",
       intro: "Задача - приводить пользователей в Telegram-бот образовательного проекта, где человек знакомится с профессией менеджера маркетплейсов и прогревается до покупки.",
       facts: [
@@ -3365,7 +3323,6 @@
       categoryLabel: "TG Ads",
       shortResult: "Подписки на VPN дешевле 800₽",
       channel: "Telegram Ads",
-      sourceUrl: "https://реклама.мирошников-директ.рф/1/podpiski-na-vpn-deshevle-800-rub-cherez-telegram-ads-keys-prodvizheniya-bota",
       href: "/cases/vpn-telegram-ads",
       intro: "Продвижение Telegram-бота VPN-сервиса с 14-дневным тестовым периодом и оплатой подписки после пробного доступа.",
       facts: [

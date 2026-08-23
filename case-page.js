@@ -97,10 +97,6 @@
     return Array.isArray(images) && images.length > 0;
   }
 
-  function getCaseTitleSuffix(caseItem) {
-    return caseItem.channel === "Telegram Ads" ? "кейс Telegram Ads" : "кейс Яндекс.Директ";
-  }
-
   function createGalleryItems(images) {
     return images.map((image, index) => ({
       image: assetPath(image.src),
@@ -633,8 +629,8 @@
       return;
     }
 
-    document.title =
-      currentCase.caseType === "collection" ? `${currentCase.title} - кейсы` : `${currentCase.title} - ${getCaseTitleSuffix(currentCase)}`;
+    // Заголовок вкладки приходит из статичной сборки (scripts/generate-cases.js):
+    // там он длиннее и с цифрой результата, перезаписывать его нечем.
     root.textContent = "";
 
     if (currentCase.caseType === "collection") {

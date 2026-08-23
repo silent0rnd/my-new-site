@@ -9,6 +9,8 @@
   },
   "scripts": {
     "build:blog": "node scripts/generate-blog-archive.js",
+    "build:cases": "node scripts/generate-cases.js",
+    "test:cases": "powershell -ExecutionPolicy Bypass -File tests/cases.test.ps1",
     "test:blog": "powershell -ExecutionPolicy Bypass -File tests/blog.test.ps1"
   },
   "keywords": [],
