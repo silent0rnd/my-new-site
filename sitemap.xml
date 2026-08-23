@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://naklikay.ru/blog/reklama-kommercheskih-pomescheniy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/reklama-domov-pod-klyuch/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/blog/prodvizhenie-reklamnogo-proizvodstva/</loc>
     <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -761,6 +772,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://naklikay.ru/blog/reklama-internet-magazina-v-yandekse/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/blog/page/2/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -784,5 +800,11 @@
     <loc>https://naklikay.ru/blog/page/6/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/reklama-kvartir-v-novostroyke/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

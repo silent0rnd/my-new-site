@@ -432,6 +432,18 @@ $articles = @(
       "Воронка аналитики контекстной рекламы коммерческой недвижимости"
     )
   }
+  ,@{
+    Slug  = "reklama-internet-magazina-v-yandekse"
+    Title = "Реклама интернет-магазина в Яндексе: как получать продажи через Директ"
+    Desc  = "Как настроить рекламу интернет-магазина в Яндексе: товарные кампании, ЕПК, фид, поиск, РСЯ, аналитика, ДРР и реальные примеры рекламы интернет-магазинов."
+    Images = @("reklama-internet-magazina-v-yandekse-1", "reklama-internet-magazina-v-yandekse-2", "reklama-internet-magazina-v-yandekse-3")
+    CardImage = "reklama-internet-magazina-v-yandekse"
+    Alts  = @(
+      "Товарная кампания и ЕПК для рекламы интернет-магазина в Яндекс Директ",
+      "Как товарный фид используется для рекламы интернет-магазина в Яндексе",
+      "Воронка рекламы интернет-магазина от клика до покупки"
+    )
+  }
 )
 
 foreach ($path in @($blogPath, $sitemapPath, $robotsPath)) {
