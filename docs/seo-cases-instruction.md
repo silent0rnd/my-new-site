@@ -250,7 +250,10 @@ node -e "const fs=require('fs');const h=fs.readFileSync('cases/<slug>/index.html
 
 ## 11. Что уже готово и что в очереди
 
-Готово полностью: `business-setup-uae-yandex-direct` (образец, смотри его первым).
+Готово полностью:
+
+- `business-setup-uae-yandex-direct` (образец, смотри его первым);
+- `confectioner-webinar-funnel-yandex-direct`.
 
 Описание собралось слишком коротким, нужен ручной `seoDescription`:
 
