@@ -360,6 +360,18 @@ $articles = @(
       "Результаты контекстной рекламы недвижимости в двух проектах"
     )
   }
+  ,@{
+    Slug  = "kontekstnaya-reklama-kommercheskoy-nedvizhimosti"
+    Title = "Контекстная реклама коммерческой недвижимости: как получать заявки из Яндекс Директа"
+    Desc  = "Как настроить Яндекс Директ для продажи и аренды коммерческой недвижимости: сегментация спроса, Поиск, РСЯ, посадочные страницы, аналитика и реальные кейсы."
+    Images = @("kontekstnaya-reklama-kommercheskoy-nedvizhimosti-1", "kontekstnaya-reklama-kommercheskoy-nedvizhimosti-2", "kontekstnaya-reklama-kommercheskoy-nedvizhimosti-3")
+    CardImage = "kontekstnaya-reklama-kommercheskoy-nedvizhimosti"
+    Alts  = @(
+      "Сегментация рекламы коммерческой недвижимости по типам объектов",
+      "Снижение стоимости лида в рекламе коммерческой недвижимости с 6000 до 1700 рублей",
+      "Воронка аналитики контекстной рекламы коммерческой недвижимости"
+    )
+  }
 )
 
 foreach ($path in @($blogPath, $sitemapPath, $robotsPath)) {
