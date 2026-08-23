@@ -31,13 +31,21 @@ const SEO_CHANNEL = {
   "Геосервисы": "Яндекс Карты",
 };
 
-function loadCases() {
+function loadSite() {
   const sandbox = { window: {} };
   vm.createContext(sandbox);
   vm.runInContext(fs.readFileSync(path.join(root, "cases-data.js"), "utf8"), sandbox);
   const cases = sandbox.window.siteCases;
   if (!Array.isArray(cases) || cases.length === 0) throw new Error("cases-data.js не отдал siteCases.");
-  return cases;
+  return { cases, categories: sandbox.window.caseCategories || [] };
+}
+
+function plural(count, one, few, many) {
+  const tail = count % 10;
+  const hundred = count % 100;
+  if (tail === 1 && hundred !== 11) return one;
+  if (tail >= 2 && tail <= 4 && (hundred < 12 || hundred > 14)) return few;
+  return many;
 }
 
 function esc(value) {
@@ -306,7 +314,8 @@ function buildSchema(caseItem, pageUrl, images, title, description) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Главная", item: `${siteUrl}/` },
-      { "@type": "ListItem", position: 2, name: caseItem.title, item: pageUrl },
+      { "@type": "ListItem", position: 2, name: "Кейсы", item: `${siteUrl}/cases/` },
+      { "@type": "ListItem", position: 3, name: caseItem.title, item: pageUrl },
     ],
   };
 
@@ -359,8 +368,123 @@ function pageHtml(caseItem, cases) {
   </head>
   <body class="case-detail-page">
     <main class="case-shell" data-case-slug="${attr(caseItem.slug)}">
-      <a class="case-back-link" href="../../index.html">← Вернуться на главную</a>
+      <nav class="case-breadcrumbs article-breadcrumbs" aria-label="Хлебные крошки">
+        <a href="../../">Главная</a>
+        <span aria-hidden="true">/</span>
+        <a href="../">Кейсы</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">${esc(caseItem.title)}</span>
+      </nav>
       <div class="case-detail" data-case-root>${bodyHtml(caseItem, cases)}</div>
+    </main>
+  </body>
+</html>
+`;
+}
+
+// Раздел /cases/ - узел перелинковки: с него уходят ссылки на все кейсы сразу.
+// Список статический, без скриптов: главная показывает по 4 карточки за раз,
+// а здесь роботу и человеку нужен полный перечень.
+function indexHtml(cases, categories) {
+  const pageUrl = `${siteUrl}/cases/`;
+  const count = cases.length;
+  const title = `Кейсы контекстной рекламы: ${count} ${plural(count, "проект", "проекта", "проектов")} - Яндекс Директ и Telegram Ads`;
+  const description = `${count} ${plural(count, "кейс", "кейса", "кейсов")} по платному трафику: Яндекс Директ, Telegram Ads и Яндекс Карты. Ниша, бюджет, стоимость заявки и что именно сделали в каждом проекте.`;
+
+  const order = categories.filter((category) => category.id !== "all");
+  const known = new Set(order.map((category) => category.id));
+  // Категория может не попасть в фильтр главной - тогда подпись берём у самого кейса.
+  const extra = [...new Set(cases.filter((caseItem) => !known.has(caseItem.category)).map((caseItem) => caseItem.category))];
+  const groups = [
+    ...order,
+    ...extra.map((id) => ({ id, label: (cases.find((caseItem) => caseItem.category === id) || {}).categoryLabel || id })),
+  ];
+
+  const blocks = groups
+    .map((group) => {
+      const items = cases.filter((caseItem) => caseItem.category === group.id);
+      if (items.length === 0) return "";
+      const list = items
+        .map((caseItem) => `<li><a href="${attr(caseItem.slug)}/">${esc(caseItem.title)}</a> - ${esc(caseItem.shortResult)}. Канал: ${esc(caseItem.channel)}.</li>`)
+        .join("");
+      return `<h2>${esc(group.label)}</h2><ul>${list}</ul>`;
+    })
+    .join("");
+
+  const schema = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${pageUrl}#page`,
+        url: pageUrl,
+        name: title,
+        description,
+        inLanguage: "ru-RU",
+        author: { "@type": "Person", name: author, url: `${siteUrl}/` },
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: cases.length,
+          itemListElement: cases.map((caseItem, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: caseItem.title,
+            url: `${siteUrl}/cases/${caseItem.slug}/`,
+          })),
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Главная", item: `${siteUrl}/` },
+          { "@type": "ListItem", position: 2, name: "Кейсы", item: pageUrl },
+        ],
+      },
+    ],
+  });
+
+  return `<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
+    <title>${esc(title)}</title>
+    <meta name="description" content="${attr(description)}" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="${pageUrl}" />
+    <link rel="preload" href="../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=20260810-mobile-layout" />
+    <script src="../script.js?v=20260810-mobile-layout" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="${attr(author)}" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:url" content="${pageUrl}" />
+    <meta property="og:title" content="${attr(title)}" />
+    <meta property="og:description" content="${attr(description)}" />
+    <meta property="og:image" content="${siteUrl}/assets/avatar-donut.svg" />
+    <script type="application/ld+json">${schema}</script>
+  </head>
+  <body class="legal-page article-page">
+    <header class="legal-topbar">
+      <a class="legal-home-link" href="../">${esc(author)}</a>
+      <nav class="messenger-links" aria-label="Мессенджеры">
+        <a href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">Макс</a>
+      </nav>
+    </header>
+    <main class="legal-shell">
+      <div class="legal-document">
+        <nav class="article-breadcrumbs" aria-label="Хлебные крошки">
+          <a href="../">Главная</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Кейсы</span>
+        </nav>
+        <p class="legal-kicker">Платный трафик: результаты проектов</p>
+        <h1>Кейсы</h1>
+        <p class="article-lead">${esc(description)}</p>
+        ${blocks}
+      </div>
     </main>
   </body>
 </html>
@@ -369,7 +493,7 @@ function pageHtml(caseItem, cases) {
 
 const onlyIndex = process.argv.indexOf("--only");
 const only = onlyIndex === -1 ? null : process.argv[onlyIndex + 1];
-const cases = loadCases();
+const { cases, categories } = loadSite();
 const targets = only ? cases.filter((caseItem) => caseItem.slug === only) : cases;
 
 if (only && targets.length === 0) throw new Error(`Кейс «${only}» не найден в cases-data.js.`);
@@ -380,4 +504,6 @@ for (const caseItem of targets) {
   fs.writeFileSync(file, pageHtml(caseItem, cases), "utf8");
 }
 
-console.log(`Собрано страниц кейсов: ${targets.length}.`);
+fs.writeFileSync(path.join(casesDir, "index.html"), indexHtml(cases, categories), "utf8");
+
+console.log(`Собрано страниц кейсов: ${targets.length}. Раздел /cases/ обновлён.`);

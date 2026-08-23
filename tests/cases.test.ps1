@@ -124,7 +124,8 @@ foreach ($slug in $slugs) {
   Assert-PathExists $pagePath "Case page missing $slug"
   $page = Get-Content -Raw -Encoding UTF8 -LiteralPath $pagePath
   Assert-Match $page "data-case-slug=`"$slug`"" "Case page slug hook missing $slug"
-  Assert-Match $page "case-back-link" "Back link missing $slug"
+  Assert-Match $page "case-breadcrumbs" "Breadcrumbs missing $slug"
+  Assert-Match $page 'href="\.\./"' "Breadcrumb link to /cases/ missing $slug"
   Assert-Match $page "../../cases-data\.js" "Case data script missing $slug"
   Assert-Match $page "../../case-page\.js" "Case page script missing $slug"
   Assert-NotMatch $page ([char]0x2014) "Case page contains long dash $slug"
@@ -140,7 +141,16 @@ Assert-PathExists (Join-Path $root "assets\cases\medcenter-telegram-ads-1.webp")
 Assert-PathExists (Join-Path $root "assets\cases\marketplace-managers-telegram-ads-1.webp") "Marketplace case image missing"
 Assert-PathExists (Join-Path $root "assets\cases\vpn-telegram-ads-1.png") "VPN case image missing"
 Assert-PathExists (Join-Path $root "assets\cases\vpn-telegram-ads-2.webp") "VPN second image missing"
-Assert-PathMissing (Join-Path $root "cases\index.html") "Separate /cases catalog must not exist"
+# Раздел /cases/ появился ради SEO: главная показывает по 4 карточки за раз,
+# а роботу и человеку нужен один адрес со ссылками на все кейсы сразу.
+$casesIndexPath = Join-Path $root "cases\index.html"
+Assert-PathExists $casesIndexPath "Cases catalog page is missing"
+$casesIndex = Get-Content -Raw -Encoding UTF8 -LiteralPath $casesIndexPath
+$sitemap = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root "sitemap.xml")
+foreach ($slug in $slugs) {
+  Assert-Match $casesIndex "href=`"$slug/`"" "Cases catalog does not link $slug"
+}
+Assert-Match $sitemap 'https://naklikay\.ru/cases/</loc>' "Cases catalog URL is missing from sitemap"
 
 Assert-Match $data "category:\s*`"tg-ads`"" "TG Ads category missing"
 Assert-Match $data "categoryLabel:\s*`"TG Ads`"" "TG Ads label missing"

@@ -1829,19 +1829,11 @@ h1 {
   padding: 28px 28px 108px;
 }
 
-.case-back-link {
-  display: inline-block;
+/* Крошки кейса. Вид берём у статей блога (.article-breadcrumbs), здесь только
+   отступ под левую колонку .case-detail. */
+.case-breadcrumbs {
   margin-left: 104px;
-  color: #1c1c1c;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.25;
-  border-bottom: 1px solid transparent;
-  transition: border-color 180ms ease, opacity 180ms ease;
-}
-
-.case-back-link:hover {
-  border-color: currentColor;
+  margin-bottom: 0;
 }
 
 .case-detail {
@@ -3165,7 +3157,7 @@ h1 {
     padding: 22px 18px 90px;
   }
 
-  .case-back-link,
+  .case-breadcrumbs,
   .case-detail {
     margin-left: 0;
     padding-left: 0;
@@ -3689,10 +3681,6 @@ h1 {
 
   .case-shell {
     padding: 20px 18px 78px;
-  }
-
-  .case-back-link {
-    font-size: 16px;
   }
 
   .case-hero {

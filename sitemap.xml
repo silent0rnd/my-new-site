@@ -342,6 +342,12 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://naklikay.ru/cases/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/cases/business-setup-uae-yandex-direct/</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
