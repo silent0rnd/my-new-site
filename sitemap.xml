@@ -714,6 +714,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://naklikay.ru/blog/nastroyka-reklamy-onlayn-shkoly/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/blog/kontekstnaya-reklama-dlya-onlayn-shkoly/</loc>
     <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -724,6 +730,11 @@
     <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/contextnaya-reklama-internet-magazina/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://naklikay.ru/blog/page/2/</loc>
