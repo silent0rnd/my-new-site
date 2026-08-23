@@ -801,6 +801,23 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://naklikay.ru/blog/reklama-stroitelnoy-kompanii/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/reklama-zhk-yandex-direct/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/yandex-direct-dlya-agentstva-nedvizhimosti/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/blog/page/2/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
