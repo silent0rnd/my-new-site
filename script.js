@@ -302,9 +302,9 @@ function applyTypography(root) {
 }
 
 const LETTER_DELAY_MS = 63;
-// 63 × 0.75: на страницах кейсов перекат заголовков идёт на четверть быстрее.
+// 63 × 0.45: на страницах кейсов перекат заголовков идёт заметно быстрее.
 // Парное правило - animation-duration у .case-detail в styles.css.
-const CASE_LETTER_DELAY_MS = 47;
+const CASE_LETTER_DELAY_MS = 28;
 const MOBILE_CASE_TITLE_QUERY = "(max-width: 560px)";
 const CASE_TITLE_MIN_FONT_SIZE_PX = 32;
 const CASE_TITLE_MAX_FONT_SIZE_PX = 64;

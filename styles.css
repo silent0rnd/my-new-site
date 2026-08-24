@@ -96,10 +96,10 @@ body.cookie-consent-open {
   animation-play-state: paused;
 }
 
-/* На кейсе заголовков много и они длинные, перекат идёт на четверть быстрее: 588 × 0.75.
+/* На кейсе заголовков много и они длинные, перекат идёт заметно быстрее: 588 × 0.45.
    Парная константа - CASE_LETTER_DELAY_MS в script.js, ужимать надо оба слагаемых. */
 .case-detail .text-roll-letter > span {
-  animation-duration: 441ms;
+  animation-duration: 265ms;
 }
 
 a {
