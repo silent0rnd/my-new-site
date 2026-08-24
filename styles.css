@@ -4844,6 +4844,84 @@ h1 {
   margin-top: 12px;
 }
 
+/* Поиск по статьям. Подсказки лежат в потоке под полем на абсолюте, поэтому
+   список карточек не прыгает, когда они появляются. */
+.blog-search {
+  position: relative;
+  margin-top: 32px;
+}
+
+.blog-search__label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #6b6b66;
+}
+
+.blog-search__input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--line, #d9d9d4);
+  border-radius: 12px;
+  background: #fbfbfa;
+  font: inherit;
+  font-size: 16px;
+  color: inherit;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.blog-search__input::placeholder {
+  color: #a3a39d;
+}
+
+.blog-search__input:focus {
+  outline: none;
+  border-color: #ff9800;
+  box-shadow: 0 0 0 3px rgb(255 152 0 / 0.15);
+}
+
+.blog-search__results {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 6px);
+  right: 0;
+  left: 0;
+  display: grid;
+  overflow: hidden auto;
+  max-height: 340px;
+  border: 1px solid var(--line, #d9d9d4);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgb(32 32 32 / 0.12);
+}
+
+.blog-search__result {
+  padding: 11px 16px;
+  font-size: 16px;
+  line-height: 1.35;
+  text-decoration: none;
+  color: inherit;
+}
+
+.blog-search__result + .blog-search__result {
+  border-top: 1px solid var(--line, #d9d9d4);
+}
+
+.blog-search__result:hover,
+.blog-search__result:focus-visible {
+  outline: none;
+  background: #fff7ed;
+}
+
+.blog-search__empty {
+  margin: 0;
+  padding: 11px 16px;
+  font-size: 16px;
+  color: #6b6b66;
+}
+
 .blog-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -1618,6 +1618,86 @@ if (blogList) {
 
 }
 
+// Поиск по статьям. Список заголовков лежит прямо в странице (data-blog-index),
+// поэтому подсказки появляются без запроса к серверу и ищут по всему архиву, а
+// не только по текущей странице пагинации.
+const blogSearch = document.querySelector("[data-blog-search]");
+const blogIndexScript = document.querySelector("[data-blog-index]");
+
+if (blogSearch && blogIndexScript) {
+  const searchInput = blogSearch.querySelector(".blog-search__input");
+  const searchResults = blogSearch.querySelector("[data-blog-search-results]");
+  const searchIndex = JSON.parse(blogIndexScript.textContent);
+  // Приводим к нижнему регистру и убираем "ё": иначе "еще" не найдёт "ещё".
+  const normalize = (text) => text.toLowerCase().replace(/ё/g, "е");
+
+  const renderSearchResults = () => {
+    const words = normalize(searchInput.value.trim()).split(/\s+/).filter(Boolean);
+
+    if (!words.length) {
+      searchResults.hidden = true;
+      searchResults.textContent = "";
+      return;
+    }
+
+    const found = searchIndex
+      .filter((item) => words.every((word) => normalize(item.t).includes(word)))
+      .slice(0, 8);
+
+    searchResults.hidden = false;
+    searchResults.textContent = "";
+
+    if (!found.length) {
+      const empty = document.createElement("p");
+      empty.className = "blog-search__empty";
+      empty.textContent = "Ничего не нашлось";
+      searchResults.append(empty);
+      return;
+    }
+
+    for (const item of found) {
+      const link = document.createElement("a");
+      link.className = "blog-search__result";
+      link.href = item.u;
+      link.textContent = item.t;
+      searchResults.append(link);
+    }
+  };
+
+  searchInput.addEventListener("input", renderSearchResults);
+
+  // Стрелками ходим по подсказкам обычным фокусом: браузер сам откроет ссылку
+  // по Enter, отдельная обработка выбора не нужна.
+  blogSearch.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      searchResults.hidden = true;
+      searchInput.focus();
+      return;
+    }
+
+    if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+
+    const items = [searchInput, ...searchResults.querySelectorAll(".blog-search__result")];
+    const current = items.indexOf(document.activeElement);
+    if (current === -1) return;
+
+    const next = items[current + (event.key === "ArrowDown" ? 1 : -1)];
+    if (!next) return;
+
+    event.preventDefault();
+    next.focus();
+  });
+
+  blogSearch.addEventListener("focusout", () => {
+    // Ждём кадр: иначе подсказки исчезнут раньше, чем сработает клик по ссылке.
+    requestAnimationFrame(() => {
+      if (!blogSearch.contains(document.activeElement)) searchResults.hidden = true;
+    });
+  });
+
+  searchInput.addEventListener("focus", renderSearchResults);
+}
+
 function setHandDrawnNavIcon(button, direction) {
   const arrowPath = direction === "prev"
     ? "M29.4 15.7C26.7 18.3 23.5 21.1 20.4 24.3C23.1 27.1 26 30 28.8 32.6"

@@ -44,6 +44,12 @@ function cardKey(card) {
   return match[1];
 }
 
+function cardTitle(card) {
+  const match = card.match(/<h2 class="blog-card__title">\s*<a [^>]*>([\s\S]*?)<\/a>/);
+  if (!match) throw new Error("A blog card is missing its title.");
+  return match[1].trim();
+}
+
 function cardDate(card) {
   const match = card.match(/<time datetime="(\d{4}-\d{2}-\d{2})">/);
   return match ? match[1] : "0000-00-00";
@@ -70,7 +76,14 @@ function pagination(page, total) {
   return `\n        <nav class="blog-pagination" aria-label="Страницы блога">${previous}\n${links.join("\n")}${next}\n        </nav>`;
 }
 
-function pageHtml(cards, page, total) {
+// Поиск ищет по всем статьям сразу, поэтому список заголовков кладём в каждую
+// страницу архива целиком: отдельный запрос не нужен, поиск работает мгновенно.
+function searchIndexJson(allCards) {
+  const items = allCards.map((card) => ({ t: cardTitle(card), u: `/blog/${cardKey(card)}/` }));
+  return JSON.stringify(items).replace(/</g, "\\u003c");
+}
+
+function pageHtml(cards, page, total, allCards) {
   const depth = page === 1 ? 0 : 2;
   const assetPrefix = depth === 0 ? "../" : "../../../";
   const canonicalPath = page === 1 ? "/blog/" : `/blog/page/${page}/`;
@@ -92,8 +105,8 @@ function pageHtml(cards, page, total) {
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="${siteUrl}${canonicalPath}" />
     <link rel="preload" href="${assetPrefix}assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="${assetPrefix}styles.css?v=20260821-blog-pagination-1" />
-    <script src="${assetPrefix}script.js?v=20260821-blog-pagination-2" defer></script>
+    <link rel="stylesheet" href="${assetPrefix}styles.css?v=20260824-blog-search-1" />
+    <script src="${assetPrefix}script.js?v=20260824-blog-search-1" defer></script>
     <noscript><style>.case-card-reveal { opacity: 1; filter: none; transform: none; }</style></noscript>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Максим Мирошников" />
@@ -121,6 +134,12 @@ function pageHtml(cards, page, total) {
         <p class="legal-kicker">Блог о платном трафике</p>
         <h1>Блог</h1>
         <p class="article-lead">Разбираю рекламу простым языком: как устроен Яндекс Директ, за что уходит бюджет и что смотреть в отчетах, чтобы реклама приносила заявки.</p>
+        <div class="blog-search" data-blog-search>
+          <label class="blog-search__label" for="blog-search-input">Поиск по статьям</label>
+          <input class="blog-search__input" id="blog-search-input" type="search" autocomplete="off" placeholder="Начните вводить название статьи" />
+          <div class="blog-search__results" data-blog-search-results hidden></div>
+        </div>
+        <script type="application/json" data-blog-index>${searchIndexJson(allCards)}</script>
         <div class="blog-list" data-blog-archive data-blog-page="${page}">
 ${cardsHtml}
         </div>${pagination(page, total)}
@@ -139,8 +158,8 @@ const cards = [...cardsBySlug.values()].sort((a, b) => cardDate(b).localeCompare
 if (!cards.length) throw new Error("No blog cards found.");
 
 const pages = Array.from({ length: Math.ceil(cards.length / pageSize) }, (_, index) => cards.slice(index * pageSize, (index + 1) * pageSize));
-write(path.join(blogDir, "index.html"), pageHtml(pages[0], 1, pages.length));
-for (let index = 1; index < pages.length; index += 1) write(path.join(blogDir, "page", String(index + 1), "index.html"), pageHtml(pages[index], index + 1, pages.length));
+write(path.join(blogDir, "index.html"), pageHtml(pages[0], 1, pages.length, cards));
+for (let index = 1; index < pages.length; index += 1) write(path.join(blogDir, "page", String(index + 1), "index.html"), pageHtml(pages[index], index + 1, pages.length, cards));
 
 const pageRoot = path.join(blogDir, "page");
 if (fs.existsSync(pageRoot)) {
