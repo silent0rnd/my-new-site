@@ -1,0 +1,28 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "bounce-easing",
+        "value": "hand-drawn-bounce",
+        "createdAt": "2026-08-24T14:34:01.896Z",
+        "reason": "User confirmed hand-drawn-bounce is intentional"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(0.18, 1.45, 0.36, 1)",
+        "createdAt": "2026-08-24T14:34:01.983Z",
+        "reason": "User confirmed cubic-bezier(0.18, 1.45, 0.36, 1) is intentional"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "styles.css"
+        ],
+        "createdAt": "2026-08-24T14:34:02.070Z"
+      }
+    ]
+  }
+}

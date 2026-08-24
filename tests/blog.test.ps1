@@ -407,6 +407,14 @@ $articles = @(
     )
   },
   @{
+    Slug  = "celi-dlya-marquiza-v-yandex-metrike"
+    Title = "Цели для Марквиза в Метрике: идентификаторы Marquiz"
+    Desc  = "Готовые цели Marquiz для Яндекс Метрики: marquiz-start, marquiz-step1, marquiz-form, marquiz-finish. Как настроить цели и отслеживать прохождение квиза."
+    Images = @("celi-dlya-marquiza-v-yandex-metrike-1")
+    CardImage = "celi-dlya-marquiza-v-yandex-metrike"
+    Alts  = @("Цели Marquiz в Яндекс Метрике: идентификаторы событий и воронка прохождения квиза")
+  },
+  @{
     Slug  = "chastnyj-specialist-yandex-direct"
     Title = "Частный специалист по Яндекс Директ - настройка и ведение рекламы"
     Desc  = "Частный специалист по Яндекс Директ: настройка, ведение, аналитика и оптимизация рекламы. Работаю лично, по договору как ИП. Кейсы и условия сотрудничества."

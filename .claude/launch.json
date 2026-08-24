@@ -24,6 +24,24 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "4322"],
       "port": 4322
+    },
+    {
+      "name": "site-alt4",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "4323"],
+      "port": 4323
+    },
+    {
+      "name": "site-alt5",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "4324"],
+      "port": 4324
+    },
+    {
+      "name": "site-alt6",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "4325"],
+      "port": 4325
     }
   ]
 }

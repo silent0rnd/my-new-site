@@ -1,0 +1,7 @@
+const test = require("node:test");
+const assert = require("node:assert");
+const XLSX = require("xlsx");
+const { calculateTotals, createTemplateRows, createWorkbook } = require("../tools/mediaplan/mediaplan.js");
+test("шаблон повторяет итоговые цифры исходного медиаплана", () => { const { totals } = calculateTotals(createTemplateRows(), "8,5"); assert.ok(Math.abs(totals.budget - 497500) < 0.01); assert.ok(Math.abs(totals.registrations - 310) < 0.01); assert.ok(Math.abs(totals.leads - 55) < 0.01); assert.ok(Math.abs(totals.commission - 42287.5) < 0.01); assert.ok(Math.abs(totals.total - 539787.5) < 0.01); });
+test("нулевой CPC и CTR не дают бесконечность", () => { const { rows, totals } = calculateTotals([{ budget: "5000", cpc: "0", ctr: "0", registrationCr: "5", leadCr: "10" }], "8,5"); assert.strictEqual(rows[0].clicks, 0); assert.strictEqual(rows[0].impressions, 0); assert.strictEqual(totals.total, 5425); });
+test("Excel содержит медиаплан, запросы и итоговые формулы", () => { const workbook = createWorkbook(XLSX, { projectName: "Тест", website: "https://site.ru", period: "Сентябрь", commissionPercent: "8,5", priorityQueries: "маркетинг\nреклама", rows: createTemplateRows() }); assert.deepStrictEqual(workbook.SheetNames, ["Медиаплан", "Приоритетные запросы"]); assert.ok(workbook.Sheets["Медиаплан"].F14.f.startsWith("SUM(")); assert.strictEqual(workbook.Sheets["Приоритетные запросы"].A3.v, "маркетинг"); });

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
+    <title>Генератор UTM-меток для Яндекс Директа, Авито Ads и Telegram Ads</title>
+    <meta name="description" content="Генератор UTM-меток с готовыми шаблонами площадок, вводом по-русски и размножением метки на десятки объявлений. Готовая ссылка видна сразу, работает в браузере, без регистрации." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://naklikay.ru/tools/utm/" />
+    <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="../../styles.css?v=20260824-utm-multi" />
+    <script src="../../script.js?v=20260824-utm-multi" defer></script>
+    <script src="utm.js?v=20260824-utm-multi" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Максим Мирошников" />
+    <meta property="og:url" content="https://naklikay.ru/tools/utm/" />
+    <meta property="og:title" content="Генератор UTM-меток для Яндекс Директа, Авито Ads и Telegram Ads" />
+    <meta property="og:description" content="Шаблоны площадок, расшифровка «что придет в отчет», ввод по-русски и размножение метки на десятки объявлений." />
+    <meta property="og:image" content="https://naklikay.ru/assets/og-cover.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Генератор UTM-меток Максима Мирошникова" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Генератор UTM-меток","url":"https://naklikay.ru/tools/utm/","applicationCategory":"BusinessApplication","operatingSystem":"Any","inLanguage":"ru-RU","offers":{"@type":"Offer","price":"0","priceCurrency":"RUB"},"author":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://naklikay.ru/"},{"@type":"ListItem","position":2,"name":"Сервисы","item":"https://naklikay.ru/tools/"},{"@type":"ListItem","position":3,"name":"Генератор UTM-меток","item":"https://naklikay.ru/tools/utm/"}]}]}
+    </script>
+  </head>
+  <body class="legal-page article-page utm-page">
+    <header class="legal-topbar">
+      <a class="legal-home-link" href="../../">Максим Мирошников</a>
+      <nav class="messenger-links" aria-label="Мессенджеры">
+        <a href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">Макс</a>
+      </nav>
+    </header>
+
+    <main class="legal-shell">
+      <article class="legal-document" data-utm>
+        <nav class="article-breadcrumbs" aria-label="Хлебные крошки">
+          <a href="../../">Главная</a><span aria-hidden="true">/</span><a href="../">Сервисы</a><span aria-hidden="true">/</span><span aria-current="page">Генератор UTM-меток</span>
+        </nav>
+
+        <div class="utm-head">
+          <div>
+            <p class="legal-kicker">Инструмент</p>
+            <h1>Генератор UTM-меток</h1>
+          </div>
+          <button class="utm-button utm-button--ghost utm-head__share" type="button" data-utm-share-tool>Поделиться сервисом</button>
+        </div>
+        <p class="article-lead">
+          Заполняете поля слева — готовая ссылка сразу видна справа. Все считается в браузере, ничего никуда не отправляется.
+        </p>
+
+        <div class="utm-workbench">
+          <section class="utm-block utm-workbench__form">
+            <h2>1. Соберите метку</h2>
+
+            <div class="utm-presets" data-utm-presets aria-label="Шаблоны площадок"></div>
+            <p class="utm-note" data-utm-preset-note></p>
+
+            <label class="utm-label" for="utm-url">Адрес страницы</label>
+            <input class="utm-input utm-input--wide" id="utm-url" type="url" inputmode="url" placeholder="https://site.ru/usluga/" data-utm-url />
+
+            <div class="utm-fields">
+              <label class="utm-field">
+                <span class="utm-field__name">utm_source</span>
+                <span class="utm-field__hint">источник трафика</span>
+                <input class="utm-input" type="text" data-utm-field="utm_source" placeholder="yandex" />
+              </label>
+              <label class="utm-field">
+                <span class="utm-field__name">utm_medium</span>
+                <span class="utm-field__hint">тип трафика</span>
+                <input class="utm-input" type="text" data-utm-field="utm_medium" placeholder="cpc" />
+              </label>
+              <label class="utm-field">
+                <span class="utm-field__name">utm_campaign</span>
+                <span class="utm-field__hint">кампания</span>
+                <input class="utm-input" type="text" data-utm-field="utm_campaign" placeholder="{campaign_id}" />
+              </label>
+              <label class="utm-field">
+                <span class="utm-field__name">utm_content</span>
+                <span class="utm-field__hint">объявление и детали</span>
+                <input class="utm-input" type="text" data-utm-field="utm_content" placeholder="{ad_id}" />
+              </label>
+              <label class="utm-field">
+                <span class="utm-field__name">utm_term</span>
+                <span class="utm-field__hint">ключевая фраза</span>
+                <input class="utm-input" type="text" data-utm-field="utm_term" placeholder="{keyword}" />
+              </label>
+            </div>
+
+            <p class="utm-note">
+              Поля можно писать по-русски. Как только перейдете в другое поле, буквы станут английскими, а пробелы — дефисом.
+            </p>
+          </section>
+
+          <section class="utm-block utm-workbench__result">
+            <h2>2. Готовая ссылка</h2>
+
+            <div class="utm-output">
+              <code class="utm-output__code" data-utm-result></code>
+              <div class="utm-output__actions">
+                <button class="utm-button" type="button" data-utm-copy="[data-utm-result]">Скопировать ссылку</button>
+                <button class="utm-button utm-button--ghost" type="button" data-utm-share>Ссылка на этот шаблон</button>
+                <span class="utm-length" data-utm-length></span>
+              </div>
+            </div>
+
+            <p class="utm-label">Что придет в отчет</p>
+            <div class="article-table-wrap">
+              <table class="article-table utm-table">
+                <thead>
+                  <tr>
+                    <th>Строка отчета</th>
+                    <th>Что стоит в метке</th>
+                  </tr>
+                </thead>
+                <tbody data-utm-table></tbody>
+              </table>
+            </div>
+
+            <p class="utm-label">Пример ссылки после клика — числа здесь выдуманы</p>
+            <code class="utm-output__code utm-output__code--muted" data-utm-preview></code>
+          </section>
+        </div>
+
+        <section class="utm-block">
+          <h2>3. Размножьте метку на все объявления</h2>
+          <p>
+            Ссылка одна, а каналов или объявлений двадцать. Чтобы потом разобрать отчет, метки должны отличаться. Впишите список в то поле, которое меняется. Можно списком строк, можно номерами. Список можно вставить прямо из таблицы — строками, через запятую или через табуляцию. Русские названия сами станут английскими.
+          </p>
+
+          <div class="utm-multi" data-utm-multi-rules>
+            <div class="utm-multi__rule is-list" data-multi-rule="utm_source">
+              <p class="utm-multi__head">Меняется <code>utm_source</code> — канал</p>
+              <div class="utm-multi__body">
+                <label class="utm-multi__cell">
+                  <span>Правило</span>
+                  <select class="utm-input" data-multi-type>
+                    <option value="list" selected>Список строк</option>
+                    <option value="number">Номера</option>
+                  </select>
+                </label>
+                <label class="utm-multi__cell utm-multi__cell--number">
+                  <span>Приставка</span>
+                  <input class="utm-input" type="text" data-multi-prefix placeholder="kanal-" />
+                </label>
+                <label class="utm-multi__cell utm-multi__cell--number">
+                  <span>От</span>
+                  <input class="utm-input" type="number" data-multi-from placeholder="1" />
+                </label>
+                <label class="utm-multi__cell utm-multi__cell--number">
+                  <span>До</span>
+                  <input class="utm-input" type="number" data-multi-to placeholder="20" />
+                </label>
+                <label class="utm-multi__cell utm-multi__cell--list">
+                  <span>Список каналов, по одному в строке</span>
+                  <textarea class="utm-input utm-textarea" rows="6" data-multi-items placeholder="telegram&#10;vk&#10;avito&#10;Яндекс Директ"></textarea>
+                </label>
+              </div>
+            </div>
+
+            <div class="utm-multi__rule" data-multi-rule="utm_campaign">
+              <p class="utm-multi__head">Меняется <code>utm_campaign</code></p>
+              <div class="utm-multi__body">
+                <label class="utm-multi__cell">
+                  <span>Правило</span>
+                  <select class="utm-input" data-multi-type>
+                    <option value="number">Номера</option>
+                    <option value="list">Список строк</option>
+                  </select>
+                </label>
+                <label class="utm-multi__cell utm-multi__cell--number">
+                  <span>Приставка</span>
+                  <input class="utm-input" type="text" data-multi-prefix placeholder="kampaniya-" />
+                </label>
+                <label class="utm-multi__cell utm-multi__cell--number">
+                  <span>От</span>
+                  <input class="utm-input" type="number" data-multi-from placeholder="1" />
+                </label>
+                <label class="utm-multi__cell utm-multi__cell--number">
+                  <span>До</span>
+                  <input class="utm-input" type="number" data-multi-to placeholder="20" />
+                </label>
+                <label class="utm-multi__cell utm-multi__cell--list">
+                  <span>Список, по одной строке на объявление</span>
+                  <textarea class="utm-input utm-textarea" rows="4" data-multi-items placeholder="divany&#10;kresla&#10;stoly"></textarea>
+                </label>
+              </div>
+            </div>
+
+            <div class="utm-multi__rule" data-multi-rule="utm_content">
+              <p class="utm-multi__head">Меняется <code>utm_content</code></p>
+              <div class="utm-multi__body">
+                <label class="utm-multi__cell">
+                  <span>Правило</span>
+                  <select class="utm-input" data-multi-type>
+                    <option value="number">Номера</option>
+                    <option value="list">Список строк</option>
+                  </select>
+                </label>
+                <label class="utm-multi__cell utm-multi__cell--number">
+                  <span>Приставка</span>
+                  <input class="utm-input" type="text" data-multi-prefix placeholder="ad-" />
+                </label>
+                <label class="utm-multi__cell utm-multi__cell--number">
+                  <span>От</span>
+                  <input class="utm-input" type="number" data-multi-from placeholder="1" />
+                </label>
+                <label class="utm-multi__cell utm-multi__cell--number">
+                  <span>До</span>
+                  <input class="utm-input" type="number" data-multi-to placeholder="20" />
+                </label>
+                <label class="utm-multi__cell utm-multi__cell--list">
+                  <span>Список, по одной строке на объявление</span>
+                  <textarea class="utm-input utm-textarea" rows="4" data-multi-items placeholder="foto-1&#10;foto-2&#10;video"></textarea>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <label class="utm-multi__mode">
+            <input type="checkbox" data-multi-combine />
+            <span>Все сочетания</span>
+          </label>
+          <p class="utm-note">
+            Без галочки значения идут парами: первая строка одного списка встает в один ряд с первой строкой другого. С галочкой каждое значение соединяется с каждым: 20 каналов и 3 объявления дадут 60 ссылок.
+          </p>
+
+          <div class="utm-actions">
+            <button class="utm-button" type="button" data-utm-multi-run>Размножить</button>
+            <button class="utm-button utm-button--ghost" type="button" data-utm-multi-copy>Скопировать все</button>
+            <button class="utm-button utm-button--ghost" type="button" data-utm-multi-csv>Скачать CSV</button>
+            <button class="utm-button utm-button--ghost" type="button" data-utm-multi-clear>Очистить список</button>
+            <span class="utm-length" data-utm-multi-count></span>
+          </div>
+
+          <div class="utm-result" data-utm-multi-result></div>
+        </section>
+
+        <section class="utm-block">
+          <h2>4. Пакет ссылок</h2>
+          <p>Обратная задача: адресов много, метка одна. Вставьте список адресов, по одному в строке.</p>
+
+          <textarea class="utm-input utm-textarea" rows="5" placeholder="https://site.ru/divany/&#10;https://site.ru/kresla/" data-utm-bulk-input aria-label="Список адресов"></textarea>
+          <div class="utm-actions">
+            <button class="utm-button" type="button" data-utm-bulk-run>Разметить все</button>
+            <button class="utm-button utm-button--ghost" type="button" data-utm-bulk-copy>Скопировать все</button>
+            <button class="utm-button utm-button--ghost" type="button" data-utm-bulk-csv>Скачать CSV</button>
+            <button class="utm-button utm-button--ghost" type="button" data-utm-bulk-clear>Очистить список</button>
+          </div>
+
+          <div class="utm-result" data-utm-bulk-result></div>
+        </section>
+
+        <section class="utm-block">
+          <h2>Как этим пользоваться в работе</h2>
+          <p>
+            Разметку стоит завести один раз и держать одинаковой во всех кампаниях. Иначе один источник разъедется в отчетах на несколько строк, и сравнивать будет нечего.
+          </p>
+          <p>
+            Кнопка «Ссылка на этот шаблон» кладет все настройки прямо в адрес страницы. Такую ссылку можно отправить подрядчику или коллеге: у него откроются те же поля. Кнопка «Поделиться сервисом» наверху копирует чистый адрес инструмента, без ваших настроек.
+          </p>
+          <p>
+            Подробный разбор параметров, динамических значений и частых ошибок — в статье
+            <a href="../../blog/kak-sgenerirovat-utm-metki-dlya-yandex-direkta/">как сгенерировать UTM-метки для Яндекс Директа</a>.
+            Как проверить, что данные дошли до аналитики, — в статье
+            <a href="../../blog/kak-proverit-tsel-v-yandex-metrike/">о проверке целей в Яндекс Метрике</a>.
+          </p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

@@ -1120,8 +1120,13 @@ h1 {
     transform 180ms ease;
 }
 
+/* Перо для кнопок. Кроме фильтров кейсов этой же механикой обведены кнопки
+   инструмента UTM (/tools/utm/): рисунок овала лежит здесь в одном месте,
+   а страницы только подставляют свой --case-filter-ring. */
 .case-filter::before,
-.cases-load-more::before {
+.cases-load-more::before,
+.utm-button::before,
+.utm-preset::before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -1141,7 +1146,9 @@ h1 {
 
 @media (hover: hover) and (pointer: fine) {
   .case-filter:hover::before,
-  .cases-load-more:hover::before {
+  .cases-load-more:hover::before,
+  .utm-button:hover::before,
+  .utm-preset:hover::before {
     animation: case-filter-wiggle 760ms ease-in-out infinite;
   }
 }
@@ -5273,3 +5280,771 @@ h1 {
     transform: none;
   }
 }
+
+/* Инструмент UTM (/tools/utm/). Надстройка над .legal-document: тот же бумажный
+   лист, те же токены цвета и линий, добавлены только формы и таблицы вывода.
+
+   Рисунок здесь один и тот же во всём разделе. Кнопки обведены пером - тем же
+   овалом, что у фильтров кейсов на главной (см. --case-filter-ring, styles.css
+   выше). Поля и карточки обведены карандашом: восьмизначный border-radius даёт
+   гуляющие углы при любой ширине, как у портрета в статье. SVG для них не
+   годится - на широком поле штрих растягивается и толщина плывёт. */
+.utm-page {
+  /* Три набора кривизны. Раздаются разным типам блоков, чтобы соседние рамки
+     не выглядели скошенными под одну копирку. */
+  --utm-wobble-1: 20px 6px 16px 9px / 7px 18px 8px 15px;
+  --utm-wobble-2: 7px 19px 8px 15px / 16px 6px 18px 9px;
+  --utm-wobble-3: 12px 5px 14px 7px / 6px 13px 5px 11px;
+  --utm-pencil: #55534f;
+  --utm-pencil-soft: rgba(85, 83, 79, 0.34);
+
+  /* Перо для второстепенных кнопок: тонкий серый овал в два штриха. */
+  --utm-ring-muted: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 42' preserveAspectRatio='none'%3E%3Cpath d='M4.3 21.5C4.2 9.7 14.2 3.6 29.4 3.4C48.5 2.5 80.7 2.4 93.4 8.9C101.3 13 98.4 30.5 91.3 35.8C78.1 40.6 43 40.2 23.7 39.4C10.7 39.1 3.7 32.2 4.3 21.5Z' fill='none' stroke='%237d7d7a' stroke-linecap='round' stroke-linejoin='round' stroke-width='.45'/%3E%3Cpath d='M5.5 21.2C5.3 10.7 14.8 4.7 30.1 4.5C50.7 3.5 79.4 3.5 92.3 9.8C99.2 14.4 97.5 29.3 90.2 34.8C76.3 39.2 43.4 38.8 24.3 38.2C12.1 37.8 4.8 31.4 5.5 21.2Z' fill='none' stroke='%237d7d7a' stroke-linecap='round' stroke-linejoin='round' stroke-opacity='.38' stroke-width='.1875'/%3E%3C/svg%3E");
+
+  /* Перо для главного действия: тот же овал, но нажим сильнее. */
+  --utm-ring-ink: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 42' preserveAspectRatio='none'%3E%3Cpath d='M4.3 21.5C4.2 9.7 14.2 3.6 29.4 3.4C48.5 2.5 80.7 2.4 93.4 8.9C101.3 13 98.4 30.5 91.3 35.8C78.1 40.6 43 40.2 23.7 39.4C10.7 39.1 3.7 32.2 4.3 21.5Z' fill='none' stroke='%23202020' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.35'/%3E%3Cpath d='M5.5 21.2C5.3 10.7 14.8 4.7 30.1 4.5C50.7 3.5 79.4 3.5 92.3 9.8C99.2 14.4 97.5 29.3 90.2 34.8C76.3 39.2 43.4 38.8 24.3 38.2C12.1 37.8 4.8 31.4 5.5 21.2Z' fill='none' stroke='%23202020' stroke-linecap='round' stroke-linejoin='round' stroke-opacity='.44' stroke-width='.55'/%3E%3C/svg%3E");
+}
+
+/* Шапка инструмента ужата: заголовок сайта в 104px съедал весь первый экран,
+   а на нём должны помещаться и поля, и готовая ссылка. */
+.utm-page .legal-shell {
+  padding-top: 20px;
+}
+
+.utm-page .legal-document {
+  max-width: 1180px;
+}
+
+.utm-page .legal-document h1 {
+  margin: 2px 0 10px;
+  font-size: clamp(30px, 3.2vw, 44px);
+}
+
+/* Слово «Инструмент» над заголовком - лишняя строка на первом экране. */
+.utm-page .legal-kicker {
+  display: none;
+}
+
+.utm-page .article-breadcrumbs {
+  margin-bottom: 14px;
+}
+
+.utm-page .article-lead {
+  max-width: 760px;
+  margin-bottom: 4px;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+/* Внутри верстака всё ужато: заголовки, подписи и промежутки. Иначе поля и
+   готовая ссылка не помещаются на экран ноутбука вдвоём. */
+.legal-document .utm-workbench .utm-block h2 {
+  margin: 0 0 12px;
+  font-size: 24px;
+}
+
+.utm-page .legal-document .utm-workbench .utm-note {
+  margin: 6px 0 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.utm-page .legal-document .utm-workbench .utm-label {
+  margin: 14px 0 6px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+
+.utm-workbench .utm-presets {
+  margin-top: 12px;
+}
+
+.utm-workbench .utm-fields {
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.utm-workbench .utm-input {
+  min-height: 40px;
+  padding: 9px 12px;
+}
+
+.utm-workbench .utm-output {
+  margin-top: 12px;
+}
+
+/* Таблица отчёта не тянет карточку вниз: длинный список прокручивается внутри. */
+.utm-workbench__result .article-table-wrap {
+  max-height: 26vh;
+  margin: 12px 0 0;
+  overflow-y: auto;
+}
+
+.utm-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.utm-head__share {
+  margin-bottom: 10px;
+}
+
+/* Сборка и результат стоят рядом: правая карточка липнет к верху экрана,
+   чтобы готовая ссылка не уезжала при заполнении полей. */
+@media (min-width: 1080px) {
+  .utm-workbench {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.85fr);
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* Карточка липнет к верху и никогда не выше экрана: если содержимое длиннее,
+     оно прокручивается внутри карточки, а не уезжает за нижний край страницы. */
+  /* Селектор с двумя классами: иначе position: relative из .utm-block идёт
+     ниже по файлу и отменяет липучесть, а top: 16px просто сдвигает карточку
+     вниз - от этого заголовки блоков стояли на разной высоте. */
+  .utm-workbench .utm-workbench__result {
+    position: sticky;
+    top: 16px;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+  }
+}
+
+.utm-workbench .utm-block {
+  margin-top: 14px;
+  padding-top: 0;
+}
+
+.utm-workbench .utm-block::before {
+  content: none;
+}
+
+/* Карточка результата обведена тем же карандашом, что и поля. */
+.utm-workbench__result {
+  padding: 4px 22px 24px;
+  border: 1.5px solid var(--utm-pencil);
+  border-width: 1.5px 2.5px 2px 1.5px;
+  border-radius: var(--utm-wobble-2);
+  box-shadow: 2px 2.5px 0 -0.5px var(--utm-pencil-soft);
+  background: #fff;
+}
+
+/* Два класса: иначе padding-top: 0 из .utm-workbench .utm-block перебивает
+   отступ карточки и заголовок упирается в рамку. Карточку поднимаем на ту же
+   величину, что добавили сверху, - заголовки колонок стоят на одной высоте. */
+.utm-workbench .utm-workbench__result {
+  margin-top: -8px;
+  padding-top: 22px;
+}
+
+/* Разделитель между блоками - не линейка, а волнистая черта той же маской,
+   что и точки галереи отзывов. */
+.utm-block {
+  position: relative;
+  margin-top: 56px;
+  padding-top: 32px;
+}
+
+.utm-block::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--line);
+  -webkit-mask: var(--hand-drawn-line-mask) center / 100% 100% no-repeat;
+  mask: var(--hand-drawn-line-mask) center / 100% 100% no-repeat;
+}
+
+
+/* Заголовок блока подчёркнут от руки - тот же приём, что у заголовков сайта. */
+.legal-document .utm-block h2 {
+  position: relative;
+  display: inline-block;
+}
+
+.legal-document .utm-block h2::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  bottom: -6px;
+  width: calc(100% + 4px);
+  height: 5px;
+  background: #FF9800;
+  opacity: 0.75;
+  -webkit-mask: var(--hand-drawn-line-mask) center / 100% 100% no-repeat;
+  mask: var(--hand-drawn-line-mask) center / 100% 100% no-repeat;
+}
+
+.utm-label {
+  margin: 26px 0 10px;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+.utm-note {
+  margin: 8px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* Поле обведено карандашом: углы гуляют, а второй слабый штрих со смещением
+   изображает, что перо прошло по контуру дважды. */
+.utm-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 11px 14px;
+  /* Разная толщина сторон - неровный нажим карандаша. */
+  border-width: 1.5px 2px 2.5px 1.5px;
+  border-style: solid;
+  border-color: var(--utm-pencil);
+  border-radius: var(--utm-wobble-1);
+  box-shadow: 2px 2.5px 0 -1px var(--utm-pencil-soft);
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--text-font);
+  font-size: 16px;
+}
+
+.utm-input:hover {
+  border-color: var(--ink);
+}
+
+.utm-input:focus-visible {
+  border-color: var(--ink);
+  outline: 2px solid #FF9800;
+  outline-offset: 2px;
+}
+
+.utm-fields .utm-input {
+  border-radius: var(--utm-wobble-2);
+}
+
+.utm-input--wide {
+  margin-bottom: 8px;
+}
+
+/* Крестик очистки живёт поверх правого края поля. Появляется только когда в
+   поле есть текст, чтобы не мозолить глаза на пустой форме. */
+.utm-clearable {
+  position: relative;
+  display: block;
+}
+
+.utm-clearable .utm-input {
+  padding-right: 36px;
+}
+
+.utm-clear {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  display: none;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--text-font);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.utm-clearable.is-filled .utm-clear {
+  display: block;
+}
+
+.utm-clear:hover {
+  color: var(--ink);
+}
+
+.utm-clear:focus-visible {
+  outline: 2px solid #FF9800;
+  outline-offset: 2px;
+}
+
+.utm-textarea {
+  min-height: 88px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.utm-fields {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 22px;
+}
+
+.utm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.utm-field__name {
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.utm-field__hint {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.utm-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+/* Шаблон площадки обведён пером. Выбранный - тот же овал, но с сильным нажимом,
+   ровно как активный фильтр кейсов на главной. */
+.utm-preset {
+  --case-filter-ring: var(--utm-ring-muted);
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  min-height: 44px;
+  padding: 10px 16px 11px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.utm-preset:hover,
+.utm-preset:focus-visible {
+  color: var(--ink);
+  outline: 0;
+}
+
+.utm-preset:focus-visible {
+  --case-filter-ring: var(--utm-ring-ink);
+}
+
+.utm-preset.is-active {
+  --case-filter-ring: var(--utm-ring-ink);
+  color: #202020;
+  font-weight: 500;
+}
+
+.utm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* Заливок на сайте нет. Главное действие отличается от второстепенного нажимом
+   пера и весом шрифта, а не цветной плашкой. */
+.utm-button {
+  --case-filter-ring: var(--utm-ring-ink);
+  appearance: none;
+  position: relative;
+  isolation: isolate;
+  min-height: 44px;
+  padding: 12px 20px 13px;
+  border: 0;
+  background: transparent;
+  color: #202020;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.utm-button:focus-visible {
+  outline: 0;
+}
+
+.utm-button--ghost {
+  --case-filter-ring: var(--utm-ring-muted);
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.utm-button--ghost:hover,
+.utm-button--ghost:focus-visible {
+  color: var(--ink);
+}
+
+.utm-button--ghost:focus-visible {
+  --case-filter-ring: var(--utm-ring-ink);
+}
+
+.utm-output {
+  margin-top: 18px;
+}
+
+.utm-output__code {
+  display: block;
+  padding: 16px 18px;
+  border: 1.5px solid var(--utm-pencil);
+  border-width: 2px 1.5px 2.5px 2px;
+  border-radius: var(--utm-wobble-3);
+  box-shadow: 2px 2.5px 0 -0.5px var(--utm-pencil-soft);
+  background: #fff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  word-break: break-all;
+}
+
+.utm-output__code--muted {
+  border-radius: var(--utm-wobble-1);
+  border-style: dashed;
+  border-color: var(--utm-pencil-soft);
+  box-shadow: none;
+  background: transparent;
+  color: var(--muted);
+}
+
+.utm-output__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.utm-length {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Таблица отчёта ужата: она стоит в правой колонке и должна умещаться в экран
+   вместе с готовой ссылкой. */
+.legal-document .utm-table code {
+  word-break: break-all;
+}
+
+.legal-document .utm-table th,
+.legal-document .utm-table td {
+  padding: 7px 10px 7px 0;
+  font-size: 14px;
+}
+
+/* Подпись под значением: что площадка подставит вместо макроса. */
+.utm-table__hint {
+  display: block;
+  margin-top: 3px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* Калькулятор стоимости лида (/tools/stoimost-lida/). Он использует те же
+   бумагу и карандаш, что UTM-инструмент, но результат читается как ответ, а
+   не как технический вывод. */
+.lead-cost-workbench {
+  display: grid;
+  gap: 32px;
+  align-items: start;
+}
+
+.lead-cost-workbench .utm-block {
+  margin-top: 28px;
+}
+
+.lead-cost-workbench .utm-block::before {
+  content: none;
+}
+
+.lead-cost-fields {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.lead-cost-fields .utm-field {
+  gap: 6px;
+}
+
+.lead-cost-fields .utm-field__name {
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.lead-cost-fields .utm-field__hint {
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.lead-cost-workbench__result {
+  padding: 22px;
+  border: 1.5px solid var(--utm-pencil);
+  border-width: 1.5px 2.5px 2px 1.5px;
+  border-radius: var(--utm-wobble-2);
+  box-shadow: 2px 2.5px 0 -0.5px var(--utm-pencil-soft);
+  background: #fff;
+}
+
+.lead-cost-empty,
+.lead-cost-error {
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.lead-cost-error {
+  color: #9e3a2d;
+}
+
+.lead-cost-answer,
+.lead-cost-limit {
+  display: grid;
+  gap: 4px;
+}
+
+.lead-cost-answer {
+  margin-top: 14px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--line);
+}
+
+.lead-cost-answer span,
+.lead-cost-limit span {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.lead-cost-answer strong,
+.lead-cost-limit strong {
+  color: var(--ink);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.lead-cost-limit {
+  margin-top: 20px;
+}
+
+.lead-cost-answer small,
+.lead-cost-limit small {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.lead-cost-steps {
+  display: grid;
+  gap: 10px;
+  margin: 28px 0 0;
+  padding: 18px 0 0 22px;
+  border-top: 1px dashed var(--utm-pencil-soft);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.lead-cost-steps b {
+  font-weight: 500;
+}
+
+.lead-cost-explanation {
+  max-width: 820px;
+}
+
+@media (min-width: 900px) {
+  .lead-cost-workbench {
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 0.8fr);
+    gap: 44px;
+  }
+
+  .lead-cost-workbench__result {
+    position: sticky;
+    top: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .lead-cost-workbench__result {
+    padding: 18px;
+  }
+
+  .lead-cost-steps {
+    font-size: 14px;
+  }
+}
+
+.utm-multi {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.utm-multi__rule {
+  padding: 18px;
+  border: 1.5px solid var(--utm-pencil);
+  border-width: 1.5px 2.5px 2px 1.5px;
+  border-radius: var(--utm-wobble-1);
+  box-shadow: 2px 2.5px 0 -0.5px var(--utm-pencil-soft);
+  background: #fff;
+}
+
+.utm-multi__rule:nth-child(even) {
+  border-radius: var(--utm-wobble-2);
+}
+
+.utm-multi__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 16px;
+}
+
+.utm-multi__body {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  margin-top: 12px;
+}
+
+.utm-multi__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.utm-multi__cell--check {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+}
+
+.utm-multi__cell--check input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--ink);
+}
+
+.utm-multi__cell--list {
+  display: none;
+  grid-column: 1 / -1;
+}
+
+.utm-multi__rule.is-list .utm-multi__cell--number {
+  display: none;
+}
+
+.utm-multi__rule.is-list .utm-multi__cell--list {
+  display: flex;
+}
+
+.utm-multi__mode {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.utm-multi__mode input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--ink);
+}
+
+.utm-result {
+  margin-top: 18px;
+}
+
+.utm-rows {
+  margin: 0;
+  padding-left: 28px;
+  display: grid;
+  gap: 6px;
+}
+
+.utm-rows__label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.utm-rows code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.utm-empty {
+  margin: 0;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+@media (max-width: 620px) {
+  .utm-block {
+    margin-top: 40px;
+  }
+
+  .utm-output__code {
+    font-size: 13px;
+  }
+}
+
+/* Список готовых ссылок - тоже листок, а не таблица. */
+.utm-rows:not(:empty) {
+  padding: 16px 18px 16px 44px;
+  border: 1.5px dashed var(--utm-pencil-soft);
+  border-radius: var(--utm-wobble-3);
+  background: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .utm-button:hover::before,
+  .utm-preset:hover::before {
+    animation: none;
+  }
+}
+
+/* Медиаплан: те же бумага и карандаш, что у остальных сервисов. */
+.mediaplan-page .legal-document { max-width: 1400px; }
+.mediaplan-details__grid { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.mediaplan-section-head, .mediaplan-adds, .mediaplan-actions { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+.mediaplan-section-head h2 { margin-bottom: 4px; }
+.mediaplan-plan .utm-note { margin: 0; }
+.mediaplan-table-wrap { overflow-x: auto; margin-top: 18px; border: 1.5px solid var(--utm-pencil); border-radius: var(--utm-wobble-2); background: #fff; }
+.mediaplan-table { width: 100%; min-width: 2050px; border-collapse: collapse; }
+.mediaplan-table th, .mediaplan-table td { padding: 9px; border-bottom: 1px solid rgb(85 83 79 / 0.2); text-align: left; vertical-align: top; font-size: 13px; line-height: 1.25; }
+.mediaplan-table th { position: sticky; top: 0; z-index: 1; background: #f3f0e9; font-weight: 500; }
+.mediaplan-table td { min-width: 100px; }.mediaplan-table td:nth-child(4) { min-width: 180px; }.mediaplan-table td:nth-child(1), .mediaplan-table td:nth-child(2), .mediaplan-table td:nth-child(3) { min-width: 145px; }
+.mediaplan-input-wrap { display: block; }.mediaplan-input { min-width: 90px; width: 100%; padding: 7px 9px; font-size: 13px; }
+.mediaplan-row-actions { display: grid; gap: 6px; min-width: 102px; }
+.mediaplan-row-button, .mediaplan-clear { border: 0; padding: 0; color: var(--utm-pencil); background: transparent; font: inherit; font-size: 13px; text-align: left; text-decoration: underline; text-decoration-style: dashed; cursor: pointer; }
+.mediaplan-row-button:hover, .mediaplan-row-button:focus-visible, .mediaplan-clear:hover, .mediaplan-clear:focus-visible { color: #202020; outline: 0; }
+.mediaplan-summary { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+.mediaplan-stat { min-width: 0; padding: 14px; border: 1.5px solid var(--utm-pencil); border-radius: var(--utm-wobble-1); background: #fff; }.mediaplan-stat span { display: block; color: var(--muted); font-size: 13px; line-height: 1.3; }.mediaplan-stat strong { display: block; margin-top: 8px; font-size: 20px; font-weight: 500; line-height: 1.1; overflow-wrap: anywhere; }
+.mediaplan-queries__field { max-width: 760px; margin-top: 14px; }.mediaplan-queries .utm-textarea { min-height: 170px; }.mediaplan-print-queries { display: none; white-space: pre-line; }.mediaplan-actions { margin-top: 36px; align-items: center; justify-content: flex-start; }
+@media (max-width: 900px) { .mediaplan-details__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }.mediaplan-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .mediaplan-details__grid, .mediaplan-summary { grid-template-columns: 1fr; }.mediaplan-table-wrap { overflow: visible; border: 0; background: transparent; }.mediaplan-table, .mediaplan-table tbody, .mediaplan-table tr, .mediaplan-table td { display: block; min-width: 0; width: 100%; }.mediaplan-table thead { display: none; }.mediaplan-table tr { margin-bottom: 18px; padding: 8px 14px; border: 1.5px solid var(--utm-pencil); border-radius: var(--utm-wobble-2); background: #fff; }.mediaplan-table td { display: grid; grid-template-columns: minmax(112px, .8fr) minmax(0, 1.2fr); gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid rgb(85 83 79 / 0.15); }.mediaplan-table td::before { content: attr(data-label); color: var(--muted); font-size: 12px; }.mediaplan-table td:last-child { border-bottom: 0; }.mediaplan-row-actions { display: flex !important; gap: 14px; }.mediaplan-adds { width: 100%; }.mediaplan-adds .utm-button { flex: 1 1 auto; padding-inline: 11px; } }
+@media print { .legal-topbar, .article-breadcrumbs, .mediaplan-adds, .mediaplan-row-actions, .mediaplan-actions, .utm-note { display: none !important; }.legal-shell { padding: 0 !important; }.mediaplan-page .legal-document { max-width: none; }.mediaplan-table-wrap { overflow: visible; border: 0; }.mediaplan-table { min-width: 0; font-size: 8px; }.mediaplan-table th, .mediaplan-table td { padding: 3px; font-size: 8px; }.mediaplan-table th { position: static; }.mediaplan-input-wrap > input, .mediaplan-input-wrap > textarea { display: none; }.mediaplan-input-wrap::after { content: attr(data-print-value); white-space: pre-line; }.mediaplan-print-queries { display: block; }.mediaplan-summary { grid-template-columns: repeat(6, 1fr); }.mediaplan-stat { padding: 7px; }.mediaplan-stat strong { font-size: 13px; } }
