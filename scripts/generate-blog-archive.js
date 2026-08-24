@@ -74,6 +74,12 @@ function pageHtml(cards, page, total) {
   const depth = page === 1 ? 0 : 2;
   const assetPrefix = depth === 0 ? "../" : "../../../";
   const canonicalPath = page === 1 ? "/blog/" : `/blog/page/${page}/`;
+  const title = page === 1
+    ? "Блог о платном трафике - Максим Мирошников"
+    : `Блог о платном трафике - страница ${page} - Максим Мирошников`;
+  const description = page === 1
+    ? "Статьи о Яндекс Директе и платном трафике простым языком: как устроена реклама, чем отличаются Поиск и РСЯ, что смотреть в аналитике."
+    : `Статьи о Яндекс Директе и платном трафике простым языком. Страница ${page} из ${total} в архиве блога.`;
   const cardsHtml = cards.map((card) => normalizeCard(card, depth)).join("\n\n");
   return `<!doctype html>
 <html lang="ru">
@@ -81,8 +87,8 @@ function pageHtml(cards, page, total) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
-    <title>Блог о платном трафике - Максим Мирошников</title>
-    <meta name="description" content="Статьи о Яндекс Директе и платном трафике простым языком: как устроена реклама, чем отличаются Поиск и РСЯ, что смотреть в аналитике." />
+    <title>${title}</title>
+    <meta name="description" content="${description}" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="${siteUrl}${canonicalPath}" />
     <link rel="preload" href="${assetPrefix}assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
@@ -92,8 +98,8 @@ function pageHtml(cards, page, total) {
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Максим Мирошников" />
     <meta property="og:url" content="${siteUrl}${canonicalPath}" />
-    <meta property="og:title" content="Блог о платном трафике - Максим Мирошников" />
-    <meta property="og:description" content="Статьи о Яндекс Директе и платном трафике простым языком: как устроена реклама, чем отличаются Поиск и РСЯ, что смотреть в аналитике." />
+    <meta property="og:title" content="${title}" />
+    <meta property="og:description" content="${description}" />
     <meta property="og:image" content="${siteUrl}/assets/og-cover.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
