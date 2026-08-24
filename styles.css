@@ -4915,7 +4915,15 @@ h1 {
 .blog-card__media {
   position: relative;
   display: block;
+  aspect-ratio: 16 / 9;
   line-height: 0;
+  overflow: hidden;
+}
+
+.blog-card__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .blog-card__media::after {
@@ -4950,10 +4958,7 @@ h1 {
 .blog-card__media img {
   display: block;
   width: 100%;
-  /* height: auto обязателен: без него высота берётся из атрибута height у <img>
-     и aspect-ratio не применяется. */
-  height: auto;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: contain;
   border-radius: 12px;
   border: 1px solid var(--line, #d9d9d4);
