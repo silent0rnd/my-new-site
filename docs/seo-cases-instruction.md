@@ -255,7 +255,8 @@ node -e "const fs=require('fs');const h=fs.readFileSync('cases/<slug>/index.html
 - `business-setup-uae-yandex-direct` (образец, смотри его первым);
 - `confectioner-webinar-funnel-yandex-direct`;
 - `dental-prosthetics-moscow-yandex-direct`;
-- `moscow-studios-real-estate-yandex-direct`.
+- `moscow-studios-real-estate-yandex-direct`;
+- `sewing-production-organization-yandex-direct`.
 
 Описание собралось слишком коротким, нужен ручной `seoDescription`:
 
@@ -263,6 +264,5 @@ node -e "const fs=require('fs');const h=fs.readFileSync('cases/<slug>/index.html
 - `psychology-center-lipetsk-yandex-direct` - 61
 - `construction-cabins-sales-yandex-direct` - 69
 - `saint-petersburg-tours-yandex-direct` - 69
-- `sewing-production-organization-yandex-direct` - 69
 
 Остальные 36 кейсов ждут очереди. Порядок любой, но разумно начать с ниш, где больше спроса: юруслуги, недвижимость, строительство, медицина.
