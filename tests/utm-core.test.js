@@ -9,6 +9,7 @@ const {
   describeMacros,
   buildUtmUrl,
   previewMacros,
+  cleanRuleValue,
   buildRuleValues,
   multiplyUtm,
   buildBulkUrls,
@@ -100,6 +101,29 @@ test("размножение даёт по ссылке на объявлени�
   assert.ok(rows[0].url.includes("utm_source=yandex"));
 });
 
+test("из ссылки на канал остаётся только имя канала", () => {
+  assert.strictEqual(cleanRuleValue("https://t.me/kaktus_mediakg"), "kaktus_mediakg");
+  assert.strictEqual(cleanRuleValue("t.me/news24kg/"), "news24kg");
+  assert.strictEqual(cleanRuleValue("@akipress"), "akipress");
+  assert.strictEqual(cleanRuleValue("https://site.ru/divany/?utm_source=x"), "divany");
+  // Голый домен: имени страницы нет, берём сам домен.
+  assert.strictEqual(cleanRuleValue("https://site.ru/"), "site-ru");
+  // Обычные значения и макросы площадок не портятся.
+  assert.strictEqual(cleanRuleValue("telegram-ads"), "telegram-ads");
+  assert.strictEqual(cleanRuleValue("{ad_id}.{source_type}"), "{ad_id}.{source_type}");
+  assert.strictEqual(cleanRuleValue("Кактус Медиа"), "kaktus-media");
+});
+
+test("список ссылок на каналы едет в метку без мусора", () => {
+  const rows = multiplyUtm("https://nsk.kg/", [{ key: "utm_source", value: "telegram-ads" }], [
+    { key: "utm_campaign", type: "list", items: "https://t.me/kaktus_mediakg\nhttps://t.me/news24kg" },
+  ]);
+
+  assert.strictEqual(rows.length, 2);
+  assert.ok(!rows[0].url.includes("%"), rows[0].url);
+  assert.strictEqual(rows[0].url, "https://nsk.kg/?utm_source=telegram-ads&utm_campaign=kaktus_mediakg");
+});
+
 test("нетронутое правило молчит: пустые поля не дают значений", () => {
   assert.deepStrictEqual(buildRuleValues({ type: "number", prefix: "", from: "", to: "" }), []);
   assert.deepStrictEqual(buildRuleValues({ type: "list", items: "  \n " }), []);
@@ -141,6 +165,23 @@ test("все сочетания: каждый канал умножается н
   assert.strictEqual(combined[0].label, "tg / foto");
   // Каждая ссылка своя: 6 разных строк, а не 6 копий.
   assert.strictEqual(new Set(combined.map((row) => row.url)).size, 6);
+});
+
+test("11 каналов и номера 1-2 дают 22 ссылки, а не 11", () => {
+  const channels = Array.from({ length: 11 }, (item, index) => `kanal${index + 1}`).join("\n");
+  const rules = [
+    { key: "utm_campaign", type: "list", items: channels },
+    { key: "utm_content", type: "number", prefix: "ad-", from: 1, to: 2, pad: false },
+  ];
+
+  const combined = multiplyUtm("https://nsk.kg/", BASE_PARAMS, rules, true);
+  assert.strictEqual(combined.length, 22);
+  // Каждый канал встречается дважды: с ad-1 и с ad-2.
+  assert.ok(combined[0].url.includes("utm_campaign=kanal1") && combined[0].url.includes("utm_content=ad-1"));
+  assert.ok(combined[1].url.includes("utm_campaign=kanal1") && combined[1].url.includes("utm_content=ad-2"));
+  assert.strictEqual(new Set(combined.map((row) => row.url)).size, 22);
+
+  assert.strictEqual(multiplyUtm("https://nsk.kg/", BASE_PARAMS, rules, false).length, 11);
 });
 
 test("два правила идут парами построчно, а не всеми сочетаниями", () => {

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
+    <title>Калькулятор окупаемости рекламы - ROMI и прибыль</title>
+    <meta name="description" content="Калькулятор окупаемости рекламы: рассчитайте заявки, продажи, выручку, чистую прибыль, ROMI и предельный CPL с учетом рекламного бюджета." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://naklikay.ru/tools/okupaemost-reklamy/" />
+    <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="../../styles.css?v=20260824-ad-roi" />
+    <script src="../../script.js?v=20260824-ad-roi" defer></script>
+    <script src="ad-roi.js?v=20260824-ad-roi" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Максим Мирошников" />
+    <meta property="og:url" content="https://naklikay.ru/tools/okupaemost-reklamy/" />
+    <meta property="og:title" content="Калькулятор окупаемости рекламы" />
+    <meta property="og:description" content="Посчитайте прибыль, ROMI и предельный CPL для своей рекламы." />
+    <meta property="og:image" content="https://naklikay.ru/assets/og-cover.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Калькулятор окупаемости рекламы Максима Мирошникова" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Калькулятор окупаемости рекламы","description":"Бесплатный калькулятор ROMI, чистой прибыли и предельной стоимости лида для оценки окупаемости рекламы.","url":"https://naklikay.ru/tools/okupaemost-reklamy/","applicationCategory":"BusinessApplication","operatingSystem":"Any","inLanguage":"ru-RU","isAccessibleForFree":true,"featureList":["Расчет ROMI","Расчет чистой прибыли","Расчет предельного CPL"],"offers":{"@type":"Offer","price":"0","priceCurrency":"RUB"},"author":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://naklikay.ru/"},{"@type":"ListItem","position":2,"name":"Сервисы","item":"https://naklikay.ru/tools/"},{"@type":"ListItem","position":3,"name":"Калькулятор окупаемости рекламы","item":"https://naklikay.ru/tools/okupaemost-reklamy/"}]}]}
+    </script>
+  </head>
+  <body class="legal-page article-page utm-page advertising-roi-page">
+    <header class="legal-topbar">
+      <a class="legal-home-link" href="../../">Максим Мирошников</a>
+      <nav class="messenger-links" aria-label="Мессенджеры">
+        <a href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">Макс</a>
+      </nav>
+    </header>
+
+    <main class="legal-shell">
+      <article class="legal-document" data-advertising-roi>
+        <nav class="article-breadcrumbs" aria-label="Хлебные крошки">
+          <a href="../../">Главная</a><span aria-hidden="true">/</span><a href="../">Сервисы</a><span aria-hidden="true">/</span><span aria-current="page">Калькулятор окупаемости рекламы</span>
+        </nav>
+
+        <p class="legal-kicker">Инструмент</p>
+        <h1>Калькулятор окупаемости рекламы</h1>
+        <p class="article-lead">Введите показатели за один период - сервис покажет, окупается ли реклама, сколько она приносит чистой прибыли и какой CPL ещё остаётся безопасным.</p>
+
+        <div class="advertising-roi-workbench">
+          <section class="utm-block advertising-roi-workbench__form" aria-labelledby="advertising-roi-form-title">
+            <h2 id="advertising-roi-form-title">Данные для расчёта</h2>
+            <div class="advertising-roi-fields">
+              <label class="utm-field" for="ad-budget">
+                <span class="utm-field__name">Рекламный бюджет за период, ₽</span>
+                <span class="utm-field__hint">Сколько планируете или уже потратили на размещение рекламы.</span>
+                <input class="utm-input" id="ad-budget" name="ad-budget" type="text" inputmode="decimal" autocomplete="off" placeholder="100 000" data-advertising-roi-input />
+              </label>
+              <label class="utm-field" for="cost-per-lead">
+                <span class="utm-field__name">Стоимость заявки - CPL, ₽</span>
+                <span class="utm-field__hint">Средняя цена одной заявки из рекламной кампании.</span>
+                <input class="utm-input" id="cost-per-lead" name="cost-per-lead" type="text" inputmode="decimal" autocomplete="off" placeholder="2 000" data-advertising-roi-input />
+              </label>
+              <label class="utm-field" for="lead-to-sale-percent">
+                <span class="utm-field__name">Конверсия лида в продажу, %</span>
+                <span class="utm-field__hint">Какая доля заявок в итоге оплачивает заказ.</span>
+                <input class="utm-input" id="lead-to-sale-percent" name="lead-to-sale-percent" type="text" inputmode="decimal" autocomplete="off" placeholder="15" data-advertising-roi-input />
+              </label>
+              <label class="utm-field" for="average-check">
+                <span class="utm-field__name">Средний чек, ₽</span>
+                <span class="utm-field__hint">Сколько в среднем платит один покупатель.</span>
+                <input class="utm-input" id="average-check" name="average-check" type="text" inputmode="decimal" autocomplete="off" placeholder="200 000" data-advertising-roi-input />
+              </label>
+              <label class="utm-field" for="margin-percent">
+                <span class="utm-field__name">Маржа, %</span>
+                <span class="utm-field__hint">Часть выручки, которая остаётся после себестоимости заказа.</span>
+                <input class="utm-input" id="margin-percent" name="margin-percent" type="text" inputmode="decimal" autocomplete="off" placeholder="20" data-advertising-roi-input />
+              </label>
+              <label class="utm-field" for="specialist-fee">
+                <span class="utm-field__name">Оплата специалиста, ₽</span>
+                <span class="utm-field__hint">Необязательно. Оставьте пустым, если её не нужно учитывать.</span>
+                <input class="utm-input" id="specialist-fee" name="specialist-fee" type="text" inputmode="decimal" autocomplete="off" placeholder="30 000" data-advertising-roi-input />
+              </label>
+            </div>
+            <p class="utm-note">Можно вводить дробные значения через запятую. Расчёт идёт только в браузере - данные никуда не отправляются.</p>
+          </section>
+
+          <section class="utm-block advertising-roi-workbench__result" aria-live="polite" aria-atomic="true">
+            <h2>Результат</h2>
+            <div class="advertising-roi-empty" data-advertising-roi-empty>Заполните пять обязательных полей слева, чтобы увидеть расчёт.</div>
+            <p class="advertising-roi-error" data-advertising-roi-error hidden>Введите суммы больше нуля, маржу и конверсию от 0 до 100%, а оплату специалиста - ноль или больше.</p>
+            <div data-advertising-roi-result hidden>
+              <div class="advertising-roi-answer" data-advertising-roi-answer>
+                <span data-advertising-roi-status-label></span>
+                <strong data-advertising-roi-status></strong>
+                <small data-advertising-roi-status-hint></small>
+              </div>
+              <dl class="advertising-roi-metrics">
+                <div><dt>Заявки</dt><dd data-advertising-roi-leads></dd></div>
+                <div><dt>Продажи</dt><dd data-advertising-roi-sales></dd></div>
+                <div><dt>Выручка</dt><dd data-advertising-roi-revenue></dd></div>
+                <div><dt>Валовая прибыль</dt><dd data-advertising-roi-gross-profit></dd></div>
+                <div><dt>Затраты на маркетинг</dt><dd data-advertising-roi-marketing-costs></dd></div>
+                <div><dt>Чистая прибыль</dt><dd data-advertising-roi-net-profit></dd></div>
+                <div><dt>ROMI</dt><dd data-advertising-roi-romi></dd></div>
+                <div><dt>Предельный CPL</dt><dd data-advertising-roi-maximum-cpl></dd></div>
+              </dl>
+              <p class="advertising-roi-note" data-advertising-roi-note></p>
+            </div>
+          </section>
+        </div>
+
+        <section class="utm-block advertising-roi-explanation">
+          <h2>Как считается окупаемость</h2>
+          <p>Сначала сервис определяет количество заявок и продаж. Затем считает выручку и валовую прибыль. Из неё полностью вычитаются рекламный бюджет и оплата специалиста - так получается чистая прибыль от рекламы.</p>
+          <p>ROMI показывает доходность маркетинговых затрат. Предельный CPL - максимальная цена заявки, при которой реклама выйдет в ноль с учётом указанных расходов.</p>
+          <p>Для планового расчёта подставляйте средние показатели за одинаковый период. После запуска кампании сравните прогноз с фактическими расходами, заявками и продажами - это покажет, какие настройки требуют корректировки.</p>
+          <p>Не знаете CPL? Сначала воспользуйтесь <a href="../stoimost-lida/">калькулятором стоимости лида</a>.</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

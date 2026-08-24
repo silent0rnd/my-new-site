@@ -9,9 +9,9 @@
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href="https://naklikay.ru/tools/utm/" />
     <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="../../styles.css?v=20260824-utm-multi" />
-    <script src="../../script.js?v=20260824-utm-multi" defer></script>
-    <script src="utm.js?v=20260824-utm-multi" defer></script>
+    <link rel="stylesheet" href="../../styles.css?v=20260824-utm-combine" />
+    <script src="../../script.js?v=20260824-utm-combine" defer></script>
+    <script src="utm.js?v=20260824-utm-combine" defer></script>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Максим Мирошников" />
     <meta property="og:url" content="https://naklikay.ru/tools/utm/" />
@@ -155,8 +155,8 @@
                   <input class="utm-input" type="number" data-multi-to placeholder="20" />
                 </label>
                 <label class="utm-multi__cell utm-multi__cell--list">
-                  <span>Список каналов, по одному в строке</span>
-                  <textarea class="utm-input utm-textarea" rows="6" data-multi-items placeholder="telegram&#10;vk&#10;avito&#10;Яндекс Директ"></textarea>
+                  <span>Список каналов, по одному в строке. Можно вставлять готовые ссылки — лишнее уберется само</span>
+                  <textarea class="utm-input utm-textarea" rows="6" data-multi-items placeholder="https://t.me/kaktus_mediakg&#10;@news24kg&#10;avito&#10;Яндекс Директ"></textarea>
                 </label>
               </div>
             </div>
@@ -220,13 +220,23 @@
             </div>
           </div>
 
-          <label class="utm-multi__mode">
-            <input type="checkbox" data-multi-combine />
-            <span>Все сочетания</span>
-          </label>
-          <p class="utm-note">
-            Без галочки значения идут парами: первая строка одного списка встает в один ряд с первой строкой другого. С галочкой каждое значение соединяется с каждым: 20 каналов и 3 объявления дадут 60 ссылок.
-          </p>
+          <div class="utm-multi__mode">
+            <p class="utm-multi__head">Как соединять значения</p>
+            <label class="utm-multi__choice">
+              <input type="radio" name="multi-mode" value="combine" checked />
+              <span>
+                <b>Все сочетания</b>
+                <em>Каждое значение соединится с каждым. 11 каналов и 2 номера дадут 22 ссылки.</em>
+              </span>
+            </label>
+            <label class="utm-multi__choice">
+              <input type="radio" name="multi-mode" value="pairs" />
+              <span>
+                <b>Парами построчно</b>
+                <em>Первая строка одного списка встанет в один ряд с первой строкой другого. 11 каналов и 2 номера дадут 11 ссылок.</em>
+              </span>
+            </label>
+          </div>
 
           <div class="utm-actions">
             <button class="utm-button" type="button" data-utm-multi-run>Размножить</button>

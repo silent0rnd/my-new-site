@@ -31,7 +31,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://naklikay.ru/tools/okupaemost-reklamy/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/tools/mediaplan/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/tools/raschet-byudzheta-reklamy/</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -929,5 +941,11 @@
     <loc>https://naklikay.ru/blog/page/7/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/tools/kombinator-klyuchevyh-fraz/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

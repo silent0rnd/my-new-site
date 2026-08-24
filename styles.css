@@ -5305,6 +5305,22 @@ h1 {
   --utm-ring-ink: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 42' preserveAspectRatio='none'%3E%3Cpath d='M4.3 21.5C4.2 9.7 14.2 3.6 29.4 3.4C48.5 2.5 80.7 2.4 93.4 8.9C101.3 13 98.4 30.5 91.3 35.8C78.1 40.6 43 40.2 23.7 39.4C10.7 39.1 3.7 32.2 4.3 21.5Z' fill='none' stroke='%23202020' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.35'/%3E%3Cpath d='M5.5 21.2C5.3 10.7 14.8 4.7 30.1 4.5C50.7 3.5 79.4 3.5 92.3 9.8C99.2 14.4 97.5 29.3 90.2 34.8C76.3 39.2 43.4 38.8 24.3 38.2C12.1 37.8 4.8 31.4 5.5 21.2Z' fill='none' stroke='%23202020' stroke-linecap='round' stroke-linejoin='round' stroke-opacity='.44' stroke-width='.55'/%3E%3C/svg%3E");
 }
 
+/* Комбинатор ключевых фраз (/tools/kombinator-klyuchevyh-fraz/). */
+.keyword-combiner-page .legal-document { max-width: 1180px; }
+.keyword-combiner__workbench { margin-top: 30px; padding: 26px; border: 2px solid var(--utm-pencil); border-radius: var(--utm-wobble-1); background: #fff; }
+.keyword-combiner__lists { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.keyword-combiner__list { display: grid; gap: 7px; }
+.keyword-combiner__list > span, .keyword-combiner__result-label { font-size: 18px; font-weight: 500; }
+.keyword-combiner__list small { color: #7d7d7a; }
+.keyword-combiner__options { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 22px 0; }
+.keyword-combiner__options label { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+.keyword-combiner__options input { inline-size: 18px; block-size: 18px; accent-color: #ff9800; }
+.keyword-combiner__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 20px; }
+.keyword-combiner__result-label { display: block; margin-bottom: 8px; }
+.keyword-combiner__result { width: 100%; resize: vertical; font-family: "TT Masters", monospace; line-height: 1.45; }
+.keyword-combiner__seo { max-width: 840px; }
+@media (max-width: 760px) { .keyword-combiner__workbench { padding: 18px; } .keyword-combiner__lists { grid-template-columns: 1fr; } }
+
 /* Шапка инструмента ужата: заголовок сайта в 104px съедал весь первый экран,
    а на нём должны помещаться и поля, и готовая ссылка. */
 .utm-page .legal-shell {
@@ -5867,6 +5883,161 @@ h1 {
   max-width: 820px;
 }
 
+/* Калькулятор окупаемости рекламы (/tools/okupaemost-reklamy/). Продолжает
+   форму калькулятора CPL, но выводит структуру доходности как краткий отчёт. */
+.advertising-roi-workbench {
+  display: grid;
+  gap: 32px;
+  align-items: start;
+}
+
+.advertising-roi-workbench .utm-block {
+  margin-top: 28px;
+}
+
+.advertising-roi-workbench .utm-block::before {
+  content: none;
+}
+
+.advertising-roi-fields {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.advertising-roi-fields .utm-field {
+  gap: 6px;
+}
+
+.advertising-roi-fields .utm-field__name {
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.advertising-roi-fields .utm-field__hint {
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.advertising-roi-workbench__result {
+  padding: 22px;
+  border: 1.5px solid var(--utm-pencil);
+  border-width: 1.5px 2.5px 2px 1.5px;
+  border-radius: var(--utm-wobble-2);
+  box-shadow: 2px 2.5px 0 -0.5px var(--utm-pencil-soft);
+  background: #fff;
+}
+
+.advertising-roi-empty,
+.advertising-roi-error {
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.advertising-roi-error {
+  color: #9e3a2d;
+}
+
+.advertising-roi-answer {
+  display: grid;
+  gap: 4px;
+  margin-top: 14px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--line);
+}
+
+.advertising-roi-answer span,
+.advertising-roi-metrics dt {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.advertising-roi-answer strong {
+  color: var(--ink);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.advertising-roi-answer small {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.advertising-roi-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+  margin: 20px 0 0;
+}
+
+.advertising-roi-metrics div {
+  display: grid;
+  gap: 3px;
+  padding: 11px 0;
+  border-bottom: 1px dashed var(--utm-pencil-soft);
+}
+
+.advertising-roi-metrics dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.advertising-roi-note {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.advertising-roi-explanation {
+  max-width: 820px;
+}
+
+/* Расчёт бюджета рекламы (/tools/raschet-byudzheta-reklamy/). */
+.ad-budget-guide,
+.ad-budget-explanation,
+.ad-budget-faq { max-width: 820px; }
+.ad-budget-guide ol { display: grid; gap: 16px; padding-left: 24px; }
+.ad-budget-guide li { padding-left: 4px; line-height: 1.55; }
+.ad-budget-workbench { display: grid; gap: 32px; align-items: start; }
+.ad-budget-workbench .utm-block { margin-top: 28px; }
+.ad-budget-workbench .utm-block::before { content: none; }
+.ad-budget-fields { display: grid; gap: 16px; margin-top: 18px; }
+.ad-budget-fields .utm-field { gap: 6px; }
+.ad-budget-fields .utm-field__name { font-size: 20px; line-height: 1.3; }
+.ad-budget-fields .utm-field__hint { font-size: 17px; line-height: 1.45; }
+.ad-budget-channel { margin-top: 26px; padding-top: 24px; border-top: 2px solid var(--line); }
+.ad-budget-channel:first-of-type { margin-top: 0; padding-top: 0; border-top: 0; }
+.ad-budget-channel h3 { margin: 0; font-size: 24px; }
+.ad-budget-channel .utm-note { margin: 8px 0 0; }
+.ad-budget-estimate { margin-top: 16px; }
+.ad-budget-vat { margin-top: 26px; }
+.ad-budget-toggle { margin-top: 22px; }
+.ad-budget-form [data-ad-budget-extended] { margin-top: 24px; padding-top: 22px; border-top: 2px solid var(--line); }
+.ad-budget-form [data-ad-budget-extended] h3,
+.ad-budget-result h3 { margin-bottom: 4px; font-size: 22px; }
+.ad-budget-result { padding: 22px; border: 1.5px solid var(--utm-pencil); border-width: 1.5px 2.5px 2px 1.5px; border-radius: var(--utm-wobble-2); box-shadow: 2px 2.5px 0 -0.5px var(--utm-pencil-soft); background: #fff; }
+.ad-budget-result > p { margin: 12px 0 0; color: var(--muted); line-height: 1.5; }
+.ad-budget-error { color: #9e3a2d !important; }
+.ad-budget-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; margin: 18px 0 0; }
+.ad-budget-metrics div { display: grid; gap: 3px; padding: 11px 0; border-bottom: 1px dashed var(--utm-pencil-soft); }
+.ad-budget-metrics dt { color: var(--muted); font-size: 15px; }
+.ad-budget-metrics dd { margin: 0; color: var(--ink); font-size: 20px; font-weight: 500; line-height: 1.25; }
+.ad-budget-result [data-ad-budget-economy-result] { margin-top: 25px; padding-top: 22px; border-top: 2px solid var(--line); }
+.ad-budget-results-grid { display: grid; gap: 22px; }
+.ad-budget-results-grid > section { padding: 0 0 6px; }
+.ad-budget-results-grid h3 { margin-top: 18px; }
+.ad-budget-total { margin-top: 24px; padding-top: 22px; border-top: 2px solid var(--line); }
+.ad-budget-result [data-ad-budget-copy] { margin-top: 25px; }
+.ad-budget-result [data-ad-budget-copy]:disabled { cursor: not-allowed; opacity: .45; }
+.ad-budget-faq h3 { margin: 28px 0 8px; font-size: 22px; }
+
 @media (min-width: 900px) {
   .lead-cost-workbench {
     grid-template-columns: minmax(0, 1fr) minmax(340px, 0.8fr);
@@ -5877,6 +6048,20 @@ h1 {
     position: sticky;
     top: 16px;
   }
+
+  .advertising-roi-workbench {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+    gap: 44px;
+  }
+
+  .advertising-roi-workbench__result {
+    position: sticky;
+    top: 16px;
+  }
+
+  .ad-budget-workbench { grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr); gap: 44px; }
+  .ad-budget-result { position: sticky; top: 16px; }
+  .ad-budget-results-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 }
 
 @media (max-width: 560px) {
@@ -5887,6 +6072,17 @@ h1 {
   .lead-cost-steps {
     font-size: 14px;
   }
+
+  .advertising-roi-workbench__result {
+    padding: 18px;
+  }
+
+  .advertising-roi-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-budget-result { padding: 18px; }
+  .ad-budget-metrics { grid-template-columns: 1fr; }
 }
 
 .utm-multi {
@@ -5957,20 +6153,47 @@ h1 {
   display: flex;
 }
 
+/* Режим счета - такая же карточка, как правило. Раньше тут была галочка,
+   ее не замечали и удивлялись, почему значения не перемножились. */
 .utm-multi__mode {
-  display: inline-flex;
-  align-items: center;
+  display: grid;
   gap: 10px;
-  min-height: 44px;
   margin-top: 14px;
-  font-size: 16px;
+  padding: 18px;
+  border: 1.5px solid var(--utm-pencil);
+  border-width: 1.5px 2.5px 2px 1.5px;
+  border-radius: var(--utm-wobble-3);
+  box-shadow: 2px 2.5px 0 -0.5px var(--utm-pencil-soft);
+  background: #fff;
+}
+
+.utm-multi__choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
   cursor: pointer;
 }
 
-.utm-multi__mode input {
+.utm-multi__choice input {
   width: 20px;
   height: 20px;
+  margin-top: 2px;
+  flex: 0 0 auto;
   accent-color: var(--ink);
+}
+
+.utm-multi__choice b {
+  display: block;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.utm-multi__choice em {
+  display: block;
+  margin-top: 2px;
+  font-style: normal;
+  font-size: 14px;
+  color: var(--muted);
 }
 
 .utm-result {
@@ -6048,3 +6271,42 @@ h1 {
 @media (max-width: 900px) { .mediaplan-details__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }.mediaplan-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 620px) { .mediaplan-details__grid, .mediaplan-summary { grid-template-columns: 1fr; }.mediaplan-table-wrap { overflow: visible; border: 0; background: transparent; }.mediaplan-table, .mediaplan-table tbody, .mediaplan-table tr, .mediaplan-table td { display: block; min-width: 0; width: 100%; }.mediaplan-table thead { display: none; }.mediaplan-table tr { margin-bottom: 18px; padding: 8px 14px; border: 1.5px solid var(--utm-pencil); border-radius: var(--utm-wobble-2); background: #fff; }.mediaplan-table td { display: grid; grid-template-columns: minmax(112px, .8fr) minmax(0, 1.2fr); gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid rgb(85 83 79 / 0.15); }.mediaplan-table td::before { content: attr(data-label); color: var(--muted); font-size: 12px; }.mediaplan-table td:last-child { border-bottom: 0; }.mediaplan-row-actions { display: flex !important; gap: 14px; }.mediaplan-adds { width: 100%; }.mediaplan-adds .utm-button { flex: 1 1 auto; padding-inline: 11px; } }
 @media print { .legal-topbar, .article-breadcrumbs, .mediaplan-adds, .mediaplan-row-actions, .mediaplan-actions, .utm-note { display: none !important; }.legal-shell { padding: 0 !important; }.mediaplan-page .legal-document { max-width: none; }.mediaplan-table-wrap { overflow: visible; border: 0; }.mediaplan-table { min-width: 0; font-size: 8px; }.mediaplan-table th, .mediaplan-table td { padding: 3px; font-size: 8px; }.mediaplan-table th { position: static; }.mediaplan-input-wrap > input, .mediaplan-input-wrap > textarea { display: none; }.mediaplan-input-wrap::after { content: attr(data-print-value); white-space: pre-line; }.mediaplan-print-queries { display: block; }.mediaplan-summary { grid-template-columns: repeat(6, 1fr); }.mediaplan-stat { padding: 7px; }.mediaplan-stat strong { font-size: 13px; } }
+
+/* Упрощённый медиаплан Яндекс Директа. */
+.mediaplan-page .legal-document { max-width: 1120px; }
+.mediaplan-instruction ol { max-width: 760px; margin: 0; padding-left: 25px; }
+.mediaplan-instruction li { margin-bottom: 8px; }
+.mediaplan-table { min-width: 900px; }
+.mediaplan-table td:nth-child(1) { min-width: 280px; }
+.mediaplan-table td:nth-child(2), .mediaplan-table td:nth-child(3), .mediaplan-table td:nth-child(4), .mediaplan-table td:nth-child(5) { min-width: 140px; }
+.mediaplan-summary { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 620px) { .mediaplan-summary { grid-template-columns: 1fr; } }
+@media print { .mediaplan-table td .mediaplan-input { border: 0; box-shadow: none; padding: 0; background: transparent; } .mediaplan-summary { grid-template-columns: repeat(4, 1fr); } }
+
+/* Поиск и РСЯ - самостоятельные блоки одной воронки. */
+.mediaplan-channel { padding-top: 6px; }
+.mediaplan-conversions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 1120px; margin-top: 18px; }
+.mediaplan-conversions .utm-field__name { font-size: 16px; }
+.mediaplan-table { min-width: 1120px; }
+.mediaplan-table td:nth-child(1) { min-width: 250px; }
+.mediaplan-summary--channel { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 18px; }
+@media (max-width: 620px) { .mediaplan-conversions, .mediaplan-summary--channel { grid-template-columns: 1fr; } }
+@media print { .mediaplan-conversions .utm-input { border: 0; box-shadow: none; padding: 0; background: transparent; } .mediaplan-summary--channel { grid-template-columns: repeat(3, 1fr); } }
+
+/* На широком экране таблица занимает доступную ширину, а не навязывает скролл. */
+@media (min-width: 621px) {
+  .mediaplan-table { width: 100% !important; min-width: 0; table-layout: fixed; }
+  .mediaplan-table th, .mediaplan-table td { min-width: 0; padding: 8px 6px; overflow-wrap: anywhere; }
+  .mediaplan-table th:nth-child(1), .mediaplan-table td:nth-child(1) { width: 22%; }
+  .mediaplan-table th:nth-child(2), .mediaplan-table td:nth-child(2) { width: 11%; }
+  .mediaplan-table th:nth-child(3), .mediaplan-table td:nth-child(3) { width: 10%; }
+  .mediaplan-table th:nth-child(4), .mediaplan-table td:nth-child(4) { width: 10%; }
+  .mediaplan-table th:nth-child(5), .mediaplan-table td:nth-child(5) { width: 8%; }
+  .mediaplan-table th:nth-child(6), .mediaplan-table td:nth-child(6) { width: 13%; }
+  .mediaplan-table th:nth-child(7), .mediaplan-table td:nth-child(7) { width: 10%; }
+  .mediaplan-table th:nth-child(8), .mediaplan-table td:nth-child(8) { width: 16%; }
+  .mediaplan-input { min-width: 0; }
+  .mediaplan-row-actions { display: table-cell; min-width: 0; overflow-wrap: normal; }
+  .mediaplan-row-actions .mediaplan-row-button { display: block; margin-bottom: 6px; }
+  .mediaplan-row-button { white-space: nowrap; }
+}

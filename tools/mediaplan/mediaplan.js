@@ -1,12 +1,247 @@
-const MEDIA_PLAN_COLUMNS = [["campaign","Кампания"],["channel","Рекламный канал"],["format","Формат"],["targeting","Таргетинги"],["unit","Единица закупки"],["impressions","Показы"],["clicks","Клики"],["ctr","CTR, %"],["cpc","CPC, ₽ с НДС"],["registrationCr","CR, % в регистрацию"],["registrations","Регистрации"],["registrationCost","Цена регистрации, ₽"],["leadCr","CR, % в лид"],["leads","Лиды"],["cpl","CPL, ₽"],["budget","Рекламный бюджет, ₽"],["commissionPercent","Агентская комиссия, %"],["commission","АК, ₽"],["total","Итого, ₽ с НДС и АК"]];
-const INPUT_COLUMNS = new Set(["campaign","channel","format","targeting","unit","ctr","cpc","registrationCr","leadCr","budget"]);
-function toNumber(value) { if (typeof value === "number") return value; if (typeof value !== "string") return Number.NaN; const normalized = value.replace(/[\s\u00a0]/g, "").replace(",", "."); return normalized === "" ? Number.NaN : Number(normalized); }
-function cleanNumber(value) { const number = toNumber(value); return Number.isFinite(number) && number >= 0 ? number : 0; }
-function calculateRow(row, commissionPercent) { const budget=cleanNumber(row.budget),cpc=cleanNumber(row.cpc),ctr=cleanNumber(row.ctr)/100,registrationCr=cleanNumber(row.registrationCr)/100,leadCr=cleanNumber(row.leadCr)/100,commissionRate=cleanNumber(commissionPercent)/100; const clicks=cpc>0?budget/cpc:0,impressions=ctr>0?clicks/ctr:0,registrations=clicks*registrationCr,leads=registrations*leadCr,commission=budget*commissionRate; return {...row,budget,cpc,ctr:ctr*100,registrationCr:registrationCr*100,leadCr:leadCr*100,impressions,clicks,registrations,leads,registrationCost:registrations>0?budget/registrations:0,cpl:leads>0?budget/leads:0,commissionPercent:commissionRate*100,commission,total:budget+commission}; }
-function calculateTotals(rows, commissionPercent) { const calculatedRows=rows.map((row)=>calculateRow(row,commissionPercent)); const totals=calculatedRows.reduce((sum,row)=>{["impressions","clicks","registrations","leads","budget","commission","total"].forEach((key)=>{sum[key]+=row[key];});return sum;},{impressions:0,clicks:0,registrations:0,leads:0,budget:0,commission:0,total:0}); totals.ctr=totals.impressions>0?totals.clicks/totals.impressions*100:0;totals.cpc=totals.clicks>0?totals.budget/totals.clicks:0;totals.registrationCr=totals.clicks>0?totals.registrations/totals.clicks*100:0;totals.registrationCost=totals.registrations>0?totals.budget/totals.registrations:0;totals.leadCr=totals.registrations>0?totals.leads/totals.registrations*100:0;totals.cpl=totals.leads>0?totals.budget/totals.leads:0;totals.commissionPercent=cleanNumber(commissionPercent);return {rows:calculatedRows,totals}; }
-function createTemplateRows() { const vkClicks=125000/220+45000/45+25000/50+7500/35,directClicks=200000/200+60000/35+30000/50+5000/45,vkReg=125/vkClicks*100,directReg=185/directClicks*100,vkLead=22/125*100,directLead=33/185*100; const make=(campaign,channel,format,targeting,unit,ctr,cpc,budget,registrationCr,leadCr)=>({id:`${campaign}-${format}-${budget}`.toLowerCase().replace(/\s+/g,"-"),campaign,channel,format,targeting,unit,ctr,cpc,budget,registrationCr,leadCr}); return [make("Таргетированная реклама","VK Реклама","Трафик на сайт","Ключевые слова, сообщества","1000 показов",5.5,220,125000,vkReg,vkLead),make("Таргетированная реклама","VK Реклама","Лидформы","Ключевые слова, интересы","1000 показов",0.2,45,45000,vkReg,vkLead),make("Таргетированная реклама","VK Реклама","Ретаргетинг","Аудитория сайта","1000 показов",0.2,50,25000,vkReg,vkLead),make("Таргетированная реклама","VK Реклама","Клипы","Сообщества","1000 показов",0.1,35,7500,vkReg,vkLead),make("Контекстная реклама","Яндекс Директ","Поиск","Ключевые слова","Клик",5.5,200,200000,directReg,directLead),make("Контекстная реклама","Яндекс Директ","РСЯ","Ключевые слова, интересы","Клик",0.2,35,60000,directReg,directLead),make("Контекстная реклама","Яндекс Директ","Ретаргетинг","look-alike, ретаргетинг","Клик",0.5,50,30000,directReg,directLead),make("Контекстная реклама","Яндекс Директ","Поиск+Сети","Мастер кампаний","Клик",0.4,45,5000,directReg,directLead)]; }
-function createBlankRow(preset) { return {id:`row-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,campaign:preset==="vk"?"Таргетированная реклама":preset==="direct"?"Контекстная реклама":"",channel:preset==="vk"?"VK Реклама":preset==="direct"?"Яндекс Директ":"",format:"",targeting:"",unit:"Клик",ctr:"",cpc:"",registrationCr:"",leadCr:"",budget:""}; }
-function excelFormula(row,key) { return {impressions:`IFERROR(G${row}/H${row},0)`,clicks:`IFERROR(P${row}/I${row},0)`,registrations:`G${row}*J${row}`,registrationCost:`IFERROR(P${row}/K${row},0)`,leads:`K${row}*M${row}`,cpl:`IFERROR(P${row}/N${row},0)`,commission:`P${row}*Q${row}`,total:`P${row}+R${row}`}[key]||null; }
-function createWorkbook(XLSX,state) { const {rows,totals}=calculateTotals(state.rows,state.commissionPercent), headers=MEDIA_PLAN_COLUMNS.map(([,label])=>label),aoa=[[state.projectName||"Медиаплан"],[state.website||""],[state.period||""],[],headers]; rows.forEach((row,index)=>{const n=index+6;aoa.push([row.campaign,row.channel,row.format,row.targeting,row.unit,row.impressions,row.clicks,row.ctr/100,row.cpc,row.registrationCr/100,row.registrations,row.registrationCost,row.leadCr/100,row.leads,row.cpl,row.budget,row.commissionPercent/100,row.commission,row.total]);["impressions","clicks","registrations","registrationCost","leads","cpl","commission","total"].forEach((key)=>{const c=MEDIA_PLAN_COLUMNS.findIndex(([name])=>name===key);aoa[n-1][c]={t:"n",v:row[key],f:excelFormula(n,key)};});}); const totalRow=rows.length+6;aoa.push(["ИТОГО","","","","",totals.impressions,totals.clicks,totals.ctr/100,totals.cpc,totals.registrationCr/100,totals.registrations,totals.registrationCost,totals.leadCr/100,totals.leads,totals.cpl,totals.budget,totals.commissionPercent/100,totals.commission,totals.total]);const sheet=XLSX.utils.aoa_to_sheet(aoa);["F","G","K","L","N","O","P","R","S"].forEach((letter)=>{const c=XLSX.utils.decode_col(letter),key=MEDIA_PLAN_COLUMNS[c][0];sheet[`${letter}${totalRow}`]={t:"n",v:totals[key],f:`SUM(${letter}6:${letter}${totalRow-1})`};});for(let row=6;row<=totalRow;row+=1){["H","J","M","Q"].forEach((letter)=>{if(sheet[`${letter}${row}`])sheet[`${letter}${row}`].z="0.0%";});["F","G","K","N"].forEach((letter)=>{if(sheet[`${letter}${row}`])sheet[`${letter}${row}`].z="#,##0";});["I","L","O","P","R","S"].forEach((letter)=>{if(sheet[`${letter}${row}`])sheet[`${letter}${row}`].z='#,##0.00 [$₽-419]';});}sheet["!merges"]=[{s:{r:0,c:0},e:{r:0,c:18}}];sheet["!cols"]=[18,16,16,28,15,13,13,10,14,14,15,17,14,12,14,17,15,14,19].map((wch)=>({wch}));const queries=String(state.priorityQueries||"").split(/\r?\n/).map((item)=>item.trim()).filter(Boolean),querySheet=XLSX.utils.aoa_to_sheet([["Приоритетные запросы"],[],...queries.map((item)=>[item])]);querySheet["!cols"]=[{wch:54}];const workbook=XLSX.utils.book_new();XLSX.utils.book_append_sheet(workbook,sheet,"Медиаплан");XLSX.utils.book_append_sheet(workbook,querySheet,"Приоритетные запросы");return workbook; }
-if(typeof module!=="undefined"&&module.exports)module.exports={MEDIA_PLAN_COLUMNS,INPUT_COLUMNS,toNumber,calculateRow,calculateTotals,createTemplateRows,createBlankRow,createWorkbook};
-if(typeof document!=="undefined")document.addEventListener("DOMContentLoaded",()=>{const root=document.querySelector("[data-mediaplan]");if(!root)return;const money=new Intl.NumberFormat("ru-RU",{maximumFractionDigits:2}),count=new Intl.NumberFormat("ru-RU",{maximumFractionDigits:0}),percent=new Intl.NumberFormat("ru-RU",{maximumFractionDigits:2}),form=root.querySelector("[data-mediaplan-details]"),rowsBox=root.querySelector("[data-mediaplan-rows]"),summary=root.querySelector("[data-mediaplan-summary]"),queries=root.querySelector("[data-mediaplan-queries]"),storage="naklikay-mediaplan-v1";let state={projectName:"",website:"",period:"",commissionPercent:"8,5",priorityQueries:"",rows:createTemplateRows()};try{const saved=JSON.parse(localStorage.getItem(storage)||"null");if(saved&&Array.isArray(saved.rows))state={...state,...saved};}catch(error){}const val=(v)=>v===0?"0":v||"",display=(key,v)=>["ctr","registrationCr","leadCr","commissionPercent"].includes(key)?`${percent.format(v)}%`:["impressions","clicks","registrations","leads"].includes(key)?count.format(v):`${money.format(v)} ₽`,save=()=>{try{localStorage.setItem(storage,JSON.stringify(state));}catch(error){}};function details(){["projectName","website","period","commissionPercent"].forEach((key)=>{const field=form.querySelector(`[name="${key}"]`);if(field)field.value=val(state[key]);});queries.value=state.priorityQueries||"";}function preparePrint(){root.querySelectorAll("[data-print-source]").forEach((wrap)=>{const field=wrap.querySelector("input, textarea");wrap.dataset.printValue=field?field.value:wrap.textContent;});root.querySelector("[data-print-queries]").textContent=state.priorityQueries||"-";}function render(){const {rows,totals}=calculateTotals(state.rows,state.commissionPercent);rowsBox.innerHTML="";rows.forEach((row,index)=>{const tr=document.createElement("tr");MEDIA_PLAN_COLUMNS.forEach(([key,label])=>{const td=document.createElement("td");td.dataset.label=label;if(INPUT_COLUMNS.has(key)){const wrap=document.createElement("span"),field=document.createElement("input");wrap.className="mediaplan-input-wrap";wrap.dataset.printSource="";field.className="utm-input mediaplan-input";field.dataset.rowId=state.rows[index].id;field.dataset.key=key;field.setAttribute("aria-label",`${label}, строка ${index+1}`);field.value=val(state.rows[index][key]);field.inputMode=["ctr","cpc","registrationCr","leadCr","budget"].includes(key)?"decimal":"text";wrap.append(field);td.append(wrap);}else td.textContent=display(key,row[key]);tr.append(td);});const actions=document.createElement("td");actions.className="mediaplan-row-actions";actions.dataset.label="Действия";[["duplicate","Дублировать"],["remove","Удалить"]].forEach(([action,label])=>{const b=document.createElement("button");b.type="button";b.className="mediaplan-row-button";b.dataset.action=action;b.dataset.rowId=state.rows[index].id;b.textContent=label;actions.append(b);});tr.append(actions);rowsBox.append(tr);});summary.innerHTML=[["Рекламный бюджет",totals.budget],["Регистрации",totals.registrations],["Лиды",totals.leads],["CPL",totals.cpl],["Комиссия",totals.commission],["Итого",totals.total]].map(([label,value])=>`<div class="mediaplan-stat"><span>${label}</span><strong>${["Регистрации","Лиды"].includes(label)?count.format(value):`${money.format(value)} ₽`}</strong></div>`).join("");save();}root.addEventListener("input",(e)=>{const field=e.target;if(field.matches("[data-row-id]")){const row=state.rows.find((item)=>item.id===field.dataset.rowId), rowId=field.dataset.rowId, key=field.dataset.key, cursor=field.selectionStart;if(row)row[key]=field.value;render();const replacement=root.querySelector(`[data-row-id="${rowId}"][data-key="${key}"]`);if(replacement){replacement.focus();replacement.setSelectionRange(cursor,cursor);}return;}if(field.name&&Object.hasOwn(state,field.name)){state[field.name]=field.value;render();}if(field===queries){state.priorityQueries=field.value;save();}});root.addEventListener("click",(e)=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.add!==undefined){state.rows.push(createBlankRow(b.dataset.add));render();return;}const index=state.rows.findIndex((row)=>row.id===b.dataset.rowId);if(index<0)return;if(b.dataset.action==="duplicate"){state.rows.splice(index+1,0,{...state.rows[index],id:createBlankRow().id});render();}if(b.dataset.action==="remove"&&window.confirm("Удалить заполненную строку медиаплана?")){state.rows.splice(index,1);render();}});root.querySelector("[data-mediaplan-clear]").addEventListener("click",()=>{if(window.confirm("Очистить проект, запросы и все строки медиаплана?")){state={projectName:"",website:"",period:"",commissionPercent:"8,5",priorityQueries:"",rows:[]};details();render();}});root.querySelector("[data-mediaplan-print]").addEventListener("click",()=>{preparePrint();window.print();});root.querySelector("[data-mediaplan-xlsx]").addEventListener("click",()=>{const book=createWorkbook(window.XLSX,state),name=(state.projectName||"mediaplan").replace(/[\\/:*?"<>|]+/g,"-").trim()||"mediaplan";window.XLSX.writeFile(book,`${name}.xlsx`,{compression:true});});window.addEventListener("beforeprint",preparePrint);details();render();});
+const ROW_COLUMNS = [["phrase", "Фраза или группа фраз"], ["frequency", "Частотность в месяц"], ["impressions", "Прогноз показов"], ["clicks", "Прогноз кликов"], ["ctr", "CTR, %"], ["cpc", "Средняя цена клика, ₽"], ["budget", "Бюджет, ₽"]];
+const INPUT_COLUMNS = new Set(["phrase", "frequency", "impressions", "clicks", "cpc"]);
+const CHANNEL_LABELS = { search: "Поиск", network: "РСЯ" };
+
+function toNumber(value) {
+  if (typeof value === "number") return value;
+  if (typeof value !== "string") return Number.NaN;
+  const normalized = value.replace(/[\s\u00a0]/g, "").replace(",", ".");
+  return normalized === "" ? Number.NaN : Number(normalized);
+}
+
+function number(value) {
+  const result = toNumber(value);
+  return Number.isFinite(result) && result >= 0 ? result : 0;
+}
+
+function calculateRow(row) {
+  const frequency = number(row.frequency);
+  const impressions = number(row.impressions);
+  const clicks = number(row.clicks);
+  const cpc = number(row.cpc);
+  return { ...row, frequency, impressions, clicks, cpc, ctr: impressions > 0 ? clicks / impressions * 100 : 0, budget: clicks * cpc };
+}
+
+function calculateSection(section) {
+  const rows = (section.rows || []).map(calculateRow);
+  const totals = rows.reduce((sum, row) => ({
+    frequency: sum.frequency + row.frequency,
+    impressions: sum.impressions + row.impressions,
+    clicks: sum.clicks + row.clicks,
+    budget: sum.budget + row.budget
+  }), { frequency: 0, impressions: 0, clicks: 0, budget: 0 });
+  const clickToApplication = number(section.clickToApplication) / 100;
+  const applicationToQualified = number(section.applicationToQualified) / 100;
+  const qualifiedToSale = number(section.qualifiedToSale) / 100;
+  totals.ctr = totals.impressions > 0 ? totals.clicks / totals.impressions * 100 : 0;
+  totals.cpc = totals.clicks > 0 ? totals.budget / totals.clicks : 0;
+  totals.applications = totals.clicks * clickToApplication;
+  totals.applicationCost = totals.applications > 0 ? totals.budget / totals.applications : 0;
+  totals.qualifiedLeads = totals.applications * applicationToQualified;
+  totals.qualifiedLeadCost = totals.qualifiedLeads > 0 ? totals.budget / totals.qualifiedLeads : 0;
+  totals.sales = totals.qualifiedLeads * qualifiedToSale;
+  totals.saleCost = totals.sales > 0 ? totals.budget / totals.sales : 0;
+  return { rows, totals, clickToApplication: clickToApplication * 100, applicationToQualified: applicationToQualified * 100, qualifiedToSale: qualifiedToSale * 100 };
+}
+
+function calculateTotals(sections) {
+  const calculated = {};
+  Object.entries(sections).forEach(([key, section]) => { calculated[key] = calculateSection(section); });
+  const totals = Object.values(calculated).reduce((sum, section) => {
+    ["frequency", "impressions", "clicks", "budget", "applications", "qualifiedLeads", "sales"].forEach((key) => { sum[key] += section.totals[key]; });
+    return sum;
+  }, { frequency: 0, impressions: 0, clicks: 0, budget: 0, applications: 0, qualifiedLeads: 0, sales: 0 });
+  totals.ctr = totals.impressions > 0 ? totals.clicks / totals.impressions * 100 : 0;
+  totals.cpc = totals.clicks > 0 ? totals.budget / totals.clicks : 0;
+  totals.applicationCost = totals.applications > 0 ? totals.budget / totals.applications : 0;
+  totals.qualifiedLeadCost = totals.qualifiedLeads > 0 ? totals.budget / totals.qualifiedLeads : 0;
+  totals.saleCost = totals.sales > 0 ? totals.budget / totals.sales : 0;
+  return { sections: calculated, totals };
+}
+
+function createBlankRow() {
+  return { id: `phrase-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, phrase: "", frequency: "", impressions: "", clicks: "", cpc: "" };
+}
+
+function defaultState() {
+  return {
+    search: { clickToApplication: "5", applicationToQualified: "40", qualifiedToSale: "", rows: [createBlankRow()] },
+    network: { clickToApplication: "2", applicationToQualified: "35", qualifiedToSale: "", rows: [createBlankRow()] }
+  };
+}
+
+function setCell(sheet, address, value, format, formula) {
+  sheet[address] = { t: "n", v: value, ...(format ? { z: format } : {}), ...(formula ? { f: formula } : {}) };
+}
+
+function appendMetric(sheet, row, label, value, formula) {
+  sheet[`A${row}`] = { t: "s", v: label };
+  const currency = label.includes("Цена") || label.includes("Стоимость") || label.includes("бюджет");
+  setCell(sheet, `B${row}`, value, currency ? '#,##0.00 [$₽-419]' : "#,##0.00", formula);
+}
+
+function appendSection(XLSX, sheet, row, label, section) {
+  const first = row;
+  const conversionRow = row + 2;
+  sheet[XLSX.utils.encode_cell({ r: row, c: 0 })] = { t: "s", v: label };
+  row += 1;
+  [["Конверсия клик → заявка", section.clickToApplication], ["Конверсия заявка → квалифицированный лид", section.applicationToQualified], ["Конверсия квалифицированный лид → продажа", section.qualifiedToSale]].forEach(([conversionLabel, conversion], index) => {
+    const column = index * 2;
+    sheet[XLSX.utils.encode_cell({ r: row, c: column })] = { t: "s", v: conversionLabel };
+    setCell(sheet, XLSX.utils.encode_cell({ r: row, c: column + 1 }), conversion / 100, "0.0%");
+  });
+  row += 2;
+  ROW_COLUMNS.forEach(([, columnLabel], column) => { sheet[XLSX.utils.encode_cell({ r: row, c: column })] = { t: "s", v: columnLabel }; });
+  row += 1;
+  section.rows.forEach((item) => {
+    const excelRow = row + 1;
+    const values = [item.phrase, item.frequency, item.impressions, item.clicks, item.ctr / 100, item.cpc, item.budget];
+    values.forEach((value, column) => { sheet[XLSX.utils.encode_cell({ r: row, c: column })] = typeof value === "number" ? { t: "n", v: value } : { t: "s", v: value || "" }; });
+    setCell(sheet, `E${excelRow}`, item.ctr / 100, "0.0%", `IFERROR(D${excelRow}/C${excelRow},0)`);
+    setCell(sheet, `G${excelRow}`, item.budget, '#,##0.00 [$₽-419]', `D${excelRow}*F${excelRow}`);
+    row += 1;
+  });
+  const totalRow = row + 1;
+  const firstDataRow = first + 5;
+  sheet[`A${totalRow}`] = { t: "s", v: `ИТОГО ${label.toUpperCase()}` };
+  [["B", "frequency"], ["C", "impressions"], ["D", "clicks"], ["G", "budget"]].forEach(([column, key]) => setCell(sheet, `${column}${totalRow}`, section.totals[key], undefined, `SUM(${column}${firstDataRow}:${column}${totalRow - 1})`));
+  setCell(sheet, `E${totalRow}`, section.totals.ctr / 100, "0.0%", `IFERROR(D${totalRow}/C${totalRow},0)`);
+  setCell(sheet, `F${totalRow}`, section.totals.cpc, '#,##0.00 [$₽-419]', `IFERROR(G${totalRow}/D${totalRow},0)`);
+  row += 2;
+  const conversionExcelRow = conversionRow;
+  const metrics = [
+    ["Заявки", section.totals.applications, `D${totalRow}*$B$${conversionExcelRow}`],
+    ["Цена заявки, ₽", section.totals.applicationCost, `IFERROR(G${totalRow}/(D${totalRow}*$B$${conversionExcelRow}),0)`],
+    ["Квалифицированные лиды", section.totals.qualifiedLeads, `D${totalRow}*$B$${conversionExcelRow}*$D$${conversionExcelRow}`],
+    ["Стоимость квалифицированного лида, ₽", section.totals.qualifiedLeadCost, `IFERROR(G${totalRow}/(D${totalRow}*$B$${conversionExcelRow}*$D$${conversionExcelRow}),0)`],
+    ["Продажи", section.totals.sales, `D${totalRow}*$B$${conversionExcelRow}*$D$${conversionExcelRow}*$F$${conversionExcelRow}`],
+    ["Стоимость продажи, ₽", section.totals.saleCost, `IFERROR(G${totalRow}/(D${totalRow}*$B$${conversionExcelRow}*$D$${conversionExcelRow}*$F$${conversionExcelRow}),0)`]
+  ];
+  metrics.forEach(([metricLabel, metricValue, formula]) => { appendMetric(sheet, row + 1, metricLabel, metricValue, formula); row += 1; });
+  return row + 2;
+}
+
+function createWorkbook(XLSX, state) {
+  const calculation = calculateTotals(state);
+  const sheet = {};
+  sheet.A1 = { t: "s", v: "Медиаплан Яндекс Директа" };
+  let row = 2;
+  row = appendSection(XLSX, sheet, row, "Поиск", calculation.sections.search);
+  row = appendSection(XLSX, sheet, row, "РСЯ", calculation.sections.network);
+  sheet[XLSX.utils.encode_cell({ r: row, c: 0 })] = { t: "s", v: "ОБЩИЙ ИТОГ" };
+  row += 1;
+  [["Показы", calculation.totals.impressions], ["Клики", calculation.totals.clicks], ["CTR", calculation.totals.ctr / 100], ["Средняя цена клика, ₽", calculation.totals.cpc], ["Заявки", calculation.totals.applications], ["Цена заявки, ₽", calculation.totals.applicationCost], ["Квалифицированные лиды", calculation.totals.qualifiedLeads], ["Стоимость квалифицированного лида, ₽", calculation.totals.qualifiedLeadCost], ["Продажи", calculation.totals.sales], ["Стоимость продажи, ₽", calculation.totals.saleCost], ["Общий бюджет, ₽", calculation.totals.budget]].forEach(([label, value]) => {
+    const format = label === "CTR" ? "0.0%" : label.includes("Цена") || label.includes("Стоимость") || label.includes("бюджет") ? '#,##0.00 [$₽-419]' : "#,##0.00";
+    setCell(sheet, XLSX.utils.encode_cell({ r: row, c: 1 }), value, format);
+    sheet[XLSX.utils.encode_cell({ r: row, c: 0 })] = { t: "s", v: label };
+    row += 1;
+  });
+  sheet["!merges"] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 6 } }];
+  sheet["!cols"] = [{ wch: 42 }, { wch: 21 }, { wch: 19 }, { wch: 18 }, { wch: 11 }, { wch: 33 }, { wch: 18 }];
+  sheet["!ref"] = `A1:G${row}`;
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, sheet, "Медиаплан");
+  return workbook;
+}
+
+if (typeof module !== "undefined" && module.exports) module.exports = { toNumber, calculateRow, calculateSection, calculateTotals, createBlankRow, defaultState, createWorkbook };
+
+if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded", () => {
+  const root = document.querySelector("[data-mediaplan]");
+  if (!root) return;
+  const storage = "naklikay-direct-mediaplan-v4";
+  const money = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 });
+  const count = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 0 });
+  const percent = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 });
+  let state = defaultState();
+  try {
+    const saved = JSON.parse(localStorage.getItem(storage) || localStorage.getItem("naklikay-direct-mediaplan-v3") || "null");
+    if (saved && saved.search && saved.network) state = saved;
+  } catch (error) {}
+  ["search", "network"].forEach((key) => {
+    if (typeof state[key].qualifiedToSale !== "string") state[key].qualifiedToSale = "";
+  });
+  const value = (item) => item === 0 ? "0" : item || "";
+  const show = (key, item) => ["frequency", "impressions", "clicks", "applications", "qualifiedLeads", "sales"].includes(key) ? count.format(item) : key === "ctr" ? `${percent.format(item)}%` : `${money.format(item)} ₽`;
+  const save = () => { try { localStorage.setItem(storage, JSON.stringify(state)); } catch (error) {} };
+  const metrics = [["Показы", "impressions"], ["Клики", "clicks"], ["CTR", "ctr"], ["Средняя цена клика", "cpc"], ["Заявки", "applications"], ["Цена заявки", "applicationCost"], ["Квалифицированные лиды", "qualifiedLeads"], ["Стоимость квалифицированного лида", "qualifiedLeadCost"], ["Продажи", "sales"], ["Стоимость продажи", "saleCost"], ["Бюджет", "budget"]];
+  function summary(box, totals) {
+    box.innerHTML = metrics.map(([label, key]) => `<div class="mediaplan-stat"><span>${label}</span><strong>${show(key, totals[key])}</strong></div>`).join("");
+  }
+  function render() {
+    const calculation = calculateTotals(state);
+    ["search", "network"].forEach((key) => {
+      const section = calculation.sections[key];
+      const box = root.querySelector(`[data-section-rows="${key}"]`);
+      box.innerHTML = "";
+      ["clickToApplication", "applicationToQualified", "qualifiedToSale"].forEach((conversion) => { root.querySelector(`[data-conversion="${key}:${conversion}"]`).value = value(state[key][conversion]); });
+      section.rows.forEach((row, index) => {
+        const tr = document.createElement("tr");
+        ROW_COLUMNS.forEach(([field, label]) => {
+          const td = document.createElement("td");
+          td.dataset.label = label;
+          if (INPUT_COLUMNS.has(field)) {
+            const input = document.createElement("input");
+            input.className = "utm-input mediaplan-input";
+            input.dataset.section = key;
+            input.dataset.rowId = state[key].rows[index].id;
+            input.dataset.key = field;
+            input.value = value(state[key].rows[index][field]);
+            input.inputMode = field === "phrase" ? "text" : "decimal";
+            input.setAttribute("aria-label", `${label}, ${CHANNEL_LABELS[key]}, строка ${index + 1}`);
+            td.append(input);
+          } else td.textContent = show(field, row[field]);
+          tr.append(td);
+        });
+        const actions = document.createElement("td");
+        actions.className = "mediaplan-row-actions";
+        actions.dataset.label = "Действия";
+        [["duplicate", "Дублировать"], ["remove", "Удалить"]].forEach(([action, label]) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "mediaplan-row-button";
+          button.dataset.action = action;
+          button.dataset.section = key;
+          button.dataset.rowId = state[key].rows[index].id;
+          button.textContent = label;
+          actions.append(button);
+        });
+        tr.append(actions);
+        box.append(tr);
+      });
+      summary(root.querySelector(`[data-section-summary="${key}"]`), section.totals);
+    });
+    summary(root.querySelector("[data-mediaplan-summary]"), calculation.totals);
+    save();
+  }
+  root.addEventListener("input", (event) => {
+    const field = event.target;
+    if (field.matches("[data-conversion]")) {
+      const [section, key] = field.dataset.conversion.split(":");
+      state[section][key] = field.value;
+      render();
+      return;
+    }
+    if (!field.matches("[data-row-id]")) return;
+    const row = state[field.dataset.section].rows.find((item) => item.id === field.dataset.rowId);
+    const cursor = field.selectionStart;
+    if (row) row[field.dataset.key] = field.value;
+    render();
+    const next = root.querySelector(`[data-section="${field.dataset.section}"][data-row-id="${field.dataset.rowId}"][data-key="${field.dataset.key}"]`);
+    if (next) { next.focus(); next.setSelectionRange(cursor, cursor); }
+  });
+  root.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if (!button) return;
+    if (button.dataset.addPhrase) { state[button.dataset.addPhrase].rows.push(createBlankRow()); render(); return; }
+    const section = button.dataset.section;
+    const index = section ? state[section].rows.findIndex((row) => row.id === button.dataset.rowId) : -1;
+    if (index < 0) return;
+    if (button.dataset.action === "duplicate") { state[section].rows.splice(index + 1, 0, { ...state[section].rows[index], id: createBlankRow().id }); render(); }
+    if (button.dataset.action === "remove" && window.confirm("Удалить эту фразу из медиаплана?")) { state[section].rows.splice(index, 1); render(); }
+  });
+  root.querySelector("[data-mediaplan-clear]").addEventListener("click", () => { if (window.confirm("Очистить оба блока медиаплана?")) { state = defaultState(); render(); } });
+  root.querySelector("[data-mediaplan-print]").addEventListener("click", () => window.print());
+  root.querySelector("[data-mediaplan-xlsx]").addEventListener("click", () => window.XLSX.writeFile(createWorkbook(window.XLSX, state), "mediaplan-yandex-direct.xlsx", { compression: true }));
+  render();
+});

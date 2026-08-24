@@ -183,6 +183,35 @@ function translit(text) {
     .replace(/\s+/g, "-");
 }
 
+// Строка из списка часто приходит готовой ссылкой на канал:
+// "https://t.me/kaktus_mediakg". В метке нужно только имя: "kaktus_mediakg".
+// Иначе двоеточие и косые черты уедут в ссылку как "%3A%2F%2F".
+function cleanRuleValue(value) {
+  let text = String(value || "").trim().replace(/^@/, "");
+
+  // Макрос площадки трогать нельзя: "{ad_id}.{source_type}" уже готов к работе.
+  if (text.includes("{")) {
+    return translit(text);
+  }
+
+  if (/^(https?:\/\/|www\.|[a-z0-9-]+\.[a-z]{2,}\/)/i.test(text)) {
+    const parts = text
+      .replace(/^https?:\/\//i, "")
+      .replace(/^www\./i, "")
+      .split(/[?#]/)[0]
+      .split("/")
+      .filter(Boolean);
+
+    // Есть путь - берем его хвост. Голый домен - меняем точки на дефис.
+    text = parts.length > 1 ? parts[parts.length - 1] : String(parts[0] || "").replace(/\./g, "-");
+  }
+
+  return translit(text)
+    .replace(/[^a-z0-9_.|{}-]+/gi, "-")
+    .replace(/-{2,}/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 // Что площадка подставит вместо макросов. Пустая строка - в поле обычный текст.
 function describeMacros(value) {
   const labels = (String(value || "").match(MACRO_PATTERN) || [])
@@ -233,11 +262,11 @@ function buildRuleValues(rule) {
 
   if (rule.type === "list") {
     // Список приходит откуда угодно: из таблицы (табы), из письма (запятые),
-    // из блокнота (строки). Режем по всему сразу и сразу переводим в латиницу -
-    // руками потом никто 50 каналов не перебивает.
+    // из блокнота (строки). Режем по всему сразу и сразу чистим - руками потом
+    // никто 50 каналов не перебивает.
     return String(rule.items || "")
       .split(/[\n,;\t]+/)
-      .map((line) => translit(line.trim()))
+      .map(cleanRuleValue)
       .filter(Boolean);
   }
 
@@ -403,7 +432,6 @@ if (typeof document !== "undefined") {
     const multiRules = root.querySelector("[data-utm-multi-rules]");
     const multiResult = root.querySelector("[data-utm-multi-result]");
     const multiCount = root.querySelector("[data-utm-multi-count]");
-    const multiCombine = root.querySelector("[data-multi-combine]");
     const bulkInput = root.querySelector("[data-utm-bulk-input]");
     const bulkResult = root.querySelector("[data-utm-bulk-result]");
 
@@ -526,6 +554,31 @@ if (typeof document !== "undefined") {
           pad: true,
           items: row.querySelector("[data-multi-items]").value,
         }));
+    }
+
+    function isCombineMode() {
+      const chosen = root.querySelector("[name='multi-mode']:checked");
+      return !chosen || chosen.value === "combine";
+    }
+
+    // Сколько ссылок выйдет - видно до нажатия кнопки. Иначе человек ждет
+    // умножения, получает пары и думает, что инструмент сломан.
+    function countMulti() {
+      const sizes = readMultiRules()
+        .map((rule) => buildRuleValues(rule).length)
+        .filter(Boolean);
+
+      if (!sizes.length) {
+        return 0;
+      }
+
+      const total = isCombineMode() ? sizes.reduce((all, size) => all * size, 1) : Math.max(...sizes);
+      return Math.min(total, MULTI_LIMIT);
+    }
+
+    function renderMultiCount() {
+      const total = countMulti();
+      multiCount.textContent = total ? `Получится ссылок: ${total}${total === MULTI_LIMIT ? " (это предел)" : ""}` : "";
     }
 
     async function copyText(text, button) {
@@ -657,12 +710,18 @@ if (typeof document !== "undefined") {
       syncType();
     });
 
+    // Счетчик пересчитываем на любое движение в блоке: и в полях, и в режиме.
+    multiRules.addEventListener("input", renderMultiCount);
+    multiRules.addEventListener("change", renderMultiCount);
+    root.querySelectorAll("[name='multi-mode']").forEach((radio) => {
+      radio.addEventListener("change", renderMultiCount);
+    });
+    renderMultiCount();
+
     root.querySelector("[data-utm-multi-run]").addEventListener("click", () => {
       const state = readState();
-      multiRows = multiplyUtm(state.url, state.params, readMultiRules(), multiCombine.checked);
-      multiCount.textContent = multiRows.length
-        ? `Готово ссылок: ${multiRows.length}${multiRows.length === MULTI_LIMIT ? " (это предел, сочетаний вышло больше)" : ""}`
-        : "";
+      multiRows = multiplyUtm(state.url, state.params, readMultiRules(), isCombineMode());
+      renderMultiCount();
       renderRows(multiResult, multiRows, "Впишите список или номера в нужное поле и нажмите «Размножить».");
     });
 
@@ -676,7 +735,7 @@ if (typeof document !== "undefined") {
 
     root.querySelector("[data-utm-multi-clear]").addEventListener("click", () => {
       multiRows = [];
-      multiCount.textContent = "";
+      renderMultiCount();
       renderRows(multiResult, multiRows, "Впишите список или номера в нужное поле и нажмите «Размножить».");
     });
 
@@ -750,6 +809,7 @@ if (typeof module !== "undefined" && module.exports) {
     MACRO_EXAMPLES,
     MACRO_LABELS,
     translit,
+    cleanRuleValue,
     describeMacros,
     buildUtmUrl,
     previewMacros,
