@@ -563,6 +563,13 @@ Assert-NoDuplicateMetrika $blog "blog index"
 Assert-Contains $blog '<link rel="canonical" href="https://naklikay.ru/blog/" />' "Blog index canonical is wrong or missing"
 Assert-Contains $sitemap "<loc>https://naklikay.ru/blog/</loc>" "Sitemap is missing the blog index"
 
+$sitemapUrls = [regex]::Matches($sitemap, '(?s)<url>.*?</url>')
+foreach ($sitemapUrl in $sitemapUrls) {
+  if ($sitemapUrl.Value -notmatch '<lastmod>\d{4}-\d{2}-\d{2}</lastmod>') {
+    throw "Every sitemap URL must contain a valid lastmod date: $($sitemapUrl.Value)"
+  }
+}
+
 if ($blog -match "noindex") {
   throw "Blog index must stay indexable"
 }

@@ -158,6 +158,10 @@ const cards = [...cardsBySlug.values()].sort((a, b) => cardDate(b).localeCompare
 if (!cards.length) throw new Error("No blog cards found.");
 
 const pages = Array.from({ length: Math.ceil(cards.length / pageSize) }, (_, index) => cards.slice(index * pageSize, (index + 1) * pageSize));
+const pageLastmod = (pageCards) => pageCards.reduce((latest, card) => {
+  const date = cardDate(card);
+  return date > latest ? date : latest;
+}, "0000-00-00");
 write(path.join(blogDir, "index.html"), pageHtml(pages[0], 1, pages.length, cards));
 for (let index = 1; index < pages.length; index += 1) write(path.join(blogDir, "page", String(index + 1), "index.html"), pageHtml(pages[index], index + 1, pages.length, cards));
 
@@ -171,7 +175,7 @@ if (fs.existsSync(pageRoot)) {
 
 const sitemapPath = path.join(root, "sitemap.xml");
 let sitemap = read(sitemapPath).replace(/\s*<url>\s*<loc>https:\/\/naklikay\.ru\/blog\/page\/\d+\/<\/loc>[\s\S]*?<\/url>/g, "");
-const generatedPages = pages.slice(1).map((_, index) => `  <url>\n    <loc>${siteUrl}/blog/page/${index + 2}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`).join("\n");
+const generatedPages = pages.slice(1).map((pageCards, index) => `  <url>\n    <loc>${siteUrl}/blog/page/${index + 2}/</loc>\n    <lastmod>${pageLastmod(pageCards)}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`).join("\n");
 if (generatedPages) sitemap = sitemap.replace("</urlset>", `${generatedPages}\n</urlset>`);
 write(sitemapPath, sitemap);
 console.log(`Generated ${pages.length} blog archive page(s) for ${cards.length} article(s).`);
