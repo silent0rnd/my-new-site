@@ -123,7 +123,10 @@
       saveCookieConsent();
       banner.classList.remove("is-visible");
       window.loadYandexMetrika();
-      setTimeout(() => banner.remove(), COOKIE_CONSENT_ANIMATION_MS);
+      setTimeout(() => {
+        banner.remove();
+        document.body.classList.remove("cookie-consent-open");
+      }, COOKIE_CONSENT_ANIMATION_MS);
     });
 
     banner.append(icon, text, button);
@@ -133,11 +136,13 @@
   function showCookieConsentBanner() {
     const existingBanner = document.querySelector(".cookie-consent");
     if (existingBanner) {
+      document.body.classList.add("cookie-consent-open");
       existingBanner.classList.add("is-visible");
       return;
     }
 
     const banner = createCookieConsentBanner();
+    document.body.classList.add("cookie-consent-open");
     document.body.append(banner);
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -2117,19 +2122,257 @@ if (countBlocks.length > 0 && !prefersReducedMotion.matches) {
 // Файл дошёл до конца, всё спрятанное уже показано штатно - страховка не нужна.
 clearTimeout(animationFailsafe);
 
+function createFloatingControlLabel(text) {
+  const label = document.createElement("span");
+  label.className = "floating-control-label";
+  label.setAttribute("aria-hidden", "true");
+
+  Array.from(text).forEach((character, index) => {
+    const letter = document.createElement("span");
+    const burstY = [-18, 20, -30, 27][index % 4];
+    letter.className = "floating-control-label__letter";
+    letter.style.setProperty("--floating-control-letter-index", String(index));
+    letter.style.setProperty("--floating-control-burst-x", `${-28 - index * 7}px`);
+    letter.style.setProperty("--floating-control-burst-x-end", `${-38 - index * 9}px`);
+    letter.style.setProperty("--floating-control-burst-y", `${burstY}px`);
+    letter.style.setProperty("--floating-control-burst-y-end", `${Math.round(burstY * 1.6)}px`);
+    letter.style.setProperty("--floating-control-burst-rotate", `${-30 + index * 9}deg`);
+    letter.style.setProperty("--floating-control-burst-rotate-end", `${-46 + index * 13}deg`);
+    letter.textContent = character;
+    label.append(letter);
+  });
+
+  return label;
+}
+
+function initFeedbackWidget() {
+  const widget = document.createElement("div");
+  const trigger = document.createElement("button");
+  const menu = document.createElement("nav");
+  const label = createFloatingControlLabel("Поговорим?");
+  const menuId = "feedback-widget-menu";
+
+  widget.className = "feedback-widget";
+  widget.setAttribute("data-feedback-widget", "");
+
+  trigger.className = "feedback-widget__trigger";
+  trigger.type = "button";
+  trigger.setAttribute("aria-expanded", "false");
+  trigger.setAttribute("aria-controls", menuId);
+  trigger.setAttribute("aria-label", "Открыть способы связи");
+  trigger.innerHTML = `
+    <svg class="feedback-widget__trigger-art" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <path class="feedback-widget__chat" d="M17 17C24 10 40 10 49 17C57 24 55 38 46 43C38 48 25 47 18 41L10 46L12.3 37C7.5 29 10.3 21 17 17Z" />
+      <circle class="feedback-widget__dot feedback-widget__dot--one" cx="24.6" cy="29.1" r="1.55" />
+      <circle class="feedback-widget__dot feedback-widget__dot--two" cx="31.7" cy="29.1" r="1.55" />
+      <circle class="feedback-widget__dot feedback-widget__dot--three" cx="38.8" cy="29.1" r="1.55" />
+    </svg>`;
+
+  menu.className = "feedback-widget__menu";
+  menu.id = menuId;
+  menu.setAttribute("aria-label", "Написать в мессенджере");
+  menu.setAttribute("aria-hidden", "true");
+  menu.innerHTML = `
+    <a
+      class="feedback-widget__option feedback-widget__option--telegram"
+      data-feedback-option="telegram"
+      href="https://t.me/miroshnikov_maxim"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Написать в Telegram"
+      tabindex="-1"
+    >
+      <span class="feedback-widget__label" aria-hidden="true">Telegram</span>
+      <span class="feedback-widget__option-circle" aria-hidden="true">
+        <svg class="feedback-widget__option-art" viewBox="0 0 52 52" focusable="false">
+          <path class="feedback-widget__option-ring" d="M26.5 3.8C38.8 3.3 47.8 11.5 48.2 24.8C48.8 38.3 40.7 47.3 26.8 48.1C13.8 48.6 4.6 40.7 4 27.1C3.6 13.8 12.5 4.3 26.5 3.8Z" />
+          <path class="feedback-widget__option-ring feedback-widget__option-ring--echo" d="M25.5 5C38.1 4.5 46.5 12.5 46.9 25.1C47.4 37.8 39.8 45.7 26.4 46.7C14 47.2 5.9 39.8 5.3 26.8C5 14.6 13.3 5.5 25.5 5Z" />
+          <path class="feedback-widget__brand-mark" d="M13.6 24.3 36.7 15c1.1-.4 2.1.6 1.7 1.7l-7.3 21.7c-.4 1.1-1.8 1.3-2.4.4l-5.8-8.3-9.3-3.8c-1.2-.5-1.2-2 0-2.4Z" />
+          <path class="feedback-widget__brand-mark" d="m23.1 30.5 8.9-10" />
+        </svg>
+      </span>
+    </a>
+    <a
+      class="feedback-widget__option feedback-widget__option--max"
+      data-feedback-option="max"
+      href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Написать в MAX"
+      tabindex="-1"
+    >
+      <span class="feedback-widget__label" aria-hidden="true">MAX</span>
+      <span class="feedback-widget__option-circle" aria-hidden="true">
+        <svg class="feedback-widget__option-art" viewBox="0 0 52 52" focusable="false">
+          <path class="feedback-widget__option-ring" d="M26.5 3.8C38.8 3.3 47.8 11.5 48.2 24.8C48.8 38.3 40.7 47.3 26.8 48.1C13.8 48.6 4.6 40.7 4 27.1C3.6 13.8 12.5 4.3 26.5 3.8Z" />
+          <path class="feedback-widget__option-ring feedback-widget__option-ring--echo" d="M25.5 5C38.1 4.5 46.5 12.5 46.9 25.1C47.4 37.8 39.8 45.7 26.4 46.7C14 47.2 5.9 39.8 5.3 26.8C5 14.6 13.3 5.5 25.5 5Z" />
+          <path class="feedback-widget__brand-mark feedback-widget__brand-mark--max" d="M27.2 10.6C18.6 10.6 13.4 16.1 13.4 24.8C13.4 33.7 18.2 39.8 26.5 39.8C29.3 39.8 31.6 39.2 33.5 38.1L38.5 42.6L37.4 35.9C40.1 33.1 41.2 29.3 41.2 24.8C41.2 16.1 35.8 10.6 27.2 10.6Z" />
+          <path class="feedback-widget__brand-mark feedback-widget__brand-mark--max" d="M24.1 20.8C26.6 18.8 30.3 18.9 32.6 21.1C34.8 23.3 34.9 26.9 32.9 29.3C31.2 31.2 28.6 31.9 26.2 31.1L22.1 33.5L22.9 29.4C21.2 27 21.6 22.8 24.1 20.8Z" />
+        </svg>
+      </span>
+    </a>`;
+
+  widget.append(label, menu, trigger);
+  document.body.append(widget);
+
+  const options = Array.from(menu.querySelectorAll(".feedback-widget__option"));
+  const AUTO_CLOSE_MS = 1000;
+  let isOpen = false;
+  let labelBurstTimer = 0;
+  let autoCloseTimer = 0;
+
+  const canShowLabel = () => window.matchMedia("(min-width: 721px) and (hover: hover) and (pointer: fine)").matches;
+  const canAnimateLabel = () => !prefersReducedMotion.matches && canShowLabel();
+
+  const setLabelVisible = (isVisible) => {
+    if (!canShowLabel()) return;
+    widget.classList.toggle("has-floating-control-label", isVisible && !isOpen);
+  };
+
+  const playLabelBurst = () => {
+    if (!canAnimateLabel()) return;
+
+    window.clearTimeout(labelBurstTimer);
+    widget.classList.remove("has-floating-control-label", "is-floating-control-label-burst");
+    void label.offsetWidth;
+    widget.classList.add("is-floating-control-label-burst");
+    labelBurstTimer = window.setTimeout(() => {
+      widget.classList.remove("is-floating-control-label-burst");
+    }, 460);
+  };
+
+  const clearAutoClose = () => {
+    window.clearTimeout(autoCloseTimer);
+    autoCloseTimer = 0;
+  };
+
+  const scheduleAutoClose = () => {
+    clearAutoClose();
+    if (!isOpen) return;
+
+    autoCloseTimer = window.setTimeout(() => {
+      if (isOpen && !widget.matches(":hover")) {
+        setOpen(false);
+      }
+    }, AUTO_CLOSE_MS);
+  };
+
+  const setOpen = (nextOpen, { returnFocus = false } = {}) => {
+    if (!nextOpen) {
+      clearAutoClose();
+    }
+
+    isOpen = nextOpen;
+    widget.classList.toggle("is-open", isOpen);
+    trigger.setAttribute("aria-expanded", String(isOpen));
+    trigger.setAttribute("aria-label", isOpen ? "Закрыть способы связи" : "Открыть способы связи");
+    menu.setAttribute("aria-hidden", String(!isOpen));
+    options.forEach((option) => {
+      option.tabIndex = isOpen ? 0 : -1;
+    });
+
+    if (returnFocus) {
+      trigger.focus();
+    }
+  };
+
+  const toggleWidget = () => {
+    if (isOpen) {
+      setOpen(false);
+      return;
+    }
+
+    playLabelBurst();
+    setOpen(true);
+  };
+
+  trigger.addEventListener("pointerenter", () => setLabelVisible(true));
+  trigger.addEventListener("pointerleave", () => setLabelVisible(false));
+  widget.addEventListener("pointerenter", clearAutoClose);
+  widget.addEventListener("pointerleave", (event) => {
+    if (event.pointerType === "mouse") {
+      scheduleAutoClose();
+    }
+  });
+  widget.addEventListener("focusin", (event) => {
+    const isKeyboardFocus = event.target instanceof HTMLElement && event.target.matches(":focus-visible");
+    setLabelVisible(isKeyboardFocus);
+  });
+  widget.addEventListener("focusout", (event) => {
+    if (!widget.contains(event.relatedTarget)) {
+      setLabelVisible(false);
+    }
+  });
+
+  trigger.addEventListener("click", toggleWidget);
+  trigger.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") {
+      return;
+    }
+
+    event.preventDefault();
+    toggleWidget();
+  });
+
+  options.forEach((option) => {
+    option.addEventListener("click", () => setOpen(false));
+  });
+
+  document.addEventListener("pointerdown", (event) => {
+    if (isOpen && !widget.contains(event.target)) {
+      setOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && isOpen) {
+      setOpen(false, { returnFocus: true });
+    }
+  });
+
+  new MutationObserver(() => {
+    if (document.body.classList.contains("cookie-consent-open")) {
+      setOpen(false);
+    }
+  }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+}
+
 function initScrollToTopButton() {
   const scrollToTopButton = document.createElement("button");
+  const label = createFloatingControlLabel("Вверх!");
   scrollToTopButton.className = "scroll-to-top";
   scrollToTopButton.type = "button";
   scrollToTopButton.setAttribute("aria-label", "Вернуться в начало страницы");
-  scrollToTopButton.innerHTML = `
+  scrollToTopButton.append(label);
+  scrollToTopButton.insertAdjacentHTML("beforeend", `
     <svg class="scroll-to-top__art" viewBox="0 0 48 56" aria-hidden="true" focusable="false">
       <path class="scroll-to-top__line" d="M24.7 48.2C24.4 37.7 24.8 27.1 24.2 16.7" />
       <path class="scroll-to-top__line" d="M12.4 27.1C16.5 22.5 20.4 18.1 24.2 12.4C28.1 18.4 32.5 22.8 36.5 27.2" />
-    </svg>`;
+    </svg>`);
   document.body.append(scrollToTopButton);
 
   let isScrollTicking = false;
+  let labelBurstTimer = 0;
+
+  const canShowLabel = () => window.matchMedia("(min-width: 721px) and (hover: hover) and (pointer: fine)").matches;
+  const canAnimateLabel = () => !prefersReducedMotion.matches && canShowLabel();
+
+  const setLabelVisible = (isVisible) => {
+    if (!canShowLabel()) return;
+    scrollToTopButton.classList.toggle("has-floating-control-label", isVisible);
+  };
+
+  const playLabelBurst = () => {
+    if (!canAnimateLabel()) return;
+
+    window.clearTimeout(labelBurstTimer);
+    scrollToTopButton.classList.remove("has-floating-control-label", "is-floating-control-label-burst");
+    void label.offsetWidth;
+    scrollToTopButton.classList.add("is-floating-control-label-burst");
+    labelBurstTimer = window.setTimeout(() => {
+      scrollToTopButton.classList.remove("is-floating-control-label-burst");
+    }, 460);
+  };
 
   const updateScrollToTopButton = () => {
     scrollToTopButton.classList.toggle("is-visible", getCurrentScrollY() > window.innerHeight * 0.75);
@@ -2147,7 +2390,13 @@ function initScrollToTopButton() {
     { passive: true }
   );
 
+  scrollToTopButton.addEventListener("pointerenter", () => setLabelVisible(true));
+  scrollToTopButton.addEventListener("pointerleave", () => setLabelVisible(false));
+  scrollToTopButton.addEventListener("focus", () => setLabelVisible(true));
+  scrollToTopButton.addEventListener("blur", () => setLabelVisible(false));
+
   scrollToTopButton.addEventListener("click", () => {
+    playLabelBurst();
     window.scrollTo({
       top: 0,
       behavior: prefersReducedMotion.matches ? "auto" : "smooth"
@@ -2157,4 +2406,5 @@ function initScrollToTopButton() {
   updateScrollToTopButton();
 }
 
+initFeedbackWidget();
 initScrollToTopButton();
