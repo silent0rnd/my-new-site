@@ -87,12 +87,18 @@ function pageHtml(cards, page, total, allCards) {
   const depth = page === 1 ? 0 : 2;
   const assetPrefix = depth === 0 ? "../" : "../../../";
   const canonicalPath = page === 1 ? "/blog/" : `/blog/page/${page}/`;
-  const title = page === 1
+  const archiveTitle = page === 1
     ? "Блог о платном трафике - Максим Мирошников"
     : `Блог о платном трафике - страница ${page} - Максим Мирошников`;
-  const description = page === 1
+  const archiveDescription = page === 1
     ? "Статьи о Яндекс Директе и платном трафике простым языком: как устроена реклама, чем отличаются Поиск и РСЯ, что смотреть в аналитике."
     : `Статьи о Яндекс Директе и платном трафике простым языком. Страница ${page} из ${total} в архиве блога.`;
+  const title = page === 1
+    ? archiveTitle
+    : `Блог о Яндекс Директ и платном трафике - страница ${page}`;
+  const description = page === 1
+    ? archiveDescription
+    : `Статьи о Яндекс Директ, контекстной рекламе и аналитике. Страница ${page} блога Максима Мирошникова о привлечении клиентов из платного трафика.`;
   const cardsHtml = cards.map((card) => normalizeCard(card, depth)).join("\n\n");
   return `<!doctype html>
 <html lang="ru">
@@ -111,8 +117,8 @@ function pageHtml(cards, page, total, allCards) {
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Максим Мирошников" />
     <meta property="og:url" content="${siteUrl}${canonicalPath}" />
-    <meta property="og:title" content="${title}" />
-    <meta property="og:description" content="${description}" />
+    <meta property="og:title" content="${archiveTitle}" />
+    <meta property="og:description" content="${archiveDescription}" />
     <meta property="og:image" content="${siteUrl}/assets/og-cover.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
