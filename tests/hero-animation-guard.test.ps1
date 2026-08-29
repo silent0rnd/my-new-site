@@ -34,6 +34,8 @@ Assert-Contains $script "const LETTER_DELAY_MS = 63;" "Hero letter stagger must 
 Assert-Contains $script "const ANIMATION_DURATION_MS = 588;" "Hero roll duration must be 30 percent faster"
 Assert-Contains $script "const TEXT_LETTER_DELAY_MS = 8;" "Hero text stagger must be faster"
 Assert-Contains $script "const GLOBAL_ANIMATION_DELAY_MS = 3000;" "Hero intro must keep the video timing intact"
+Assert-Contains $script "const heroAnimationDelay = hasHeroVideoPlayed ? 0 : GLOBAL_ANIMATION_DELAY_MS;" "Repeat visits must start hero text immediately"
+Assert-Contains $script "const heroHighlightDelay = hasHeroVideoPlayed ? HIGHLIGHT_DELAY_MS - GLOBAL_ANIMATION_DELAY_MS : HIGHLIGHT_DELAY_MS;" "Repeat visits must shift hero underlines with the text animation"
 Assert-Contains $styles "animation: text-roll-in 588ms" "Hero CSS roll duration must match JavaScript timing"
 Assert-Contains $script 'window.location.hash' "Hero animation guard must skip hash navigation"
 Assert-Contains $script "window.scrollY" "Hero animation guard must check restored scroll position"

@@ -9,6 +9,37 @@
       (function () {
         document.documentElement.classList.add("is-signature-pending");
 
+        var heroVideoWasPlayed = false;
+
+        try {
+          heroVideoWasPlayed = window.localStorage.getItem("heroVideoPlayed") === "true";
+        } catch (error) {}
+
+        if (heroVideoWasPlayed) {
+          document.documentElement.classList.add("is-hero-video-played");
+        }
+
+        function preloadHeroAsset(href, as, type) {
+          var link = document.createElement("link");
+          link.rel = "preload";
+          link.href = href;
+          link.as = as;
+          link.fetchPriority = "high";
+          if (type) link.type = type;
+          document.head.appendChild(link);
+        }
+
+        preloadHeroAsset(
+          heroVideoWasPlayed
+            ? "assets/maxim-portrait-video-frame-final.jpg"
+            : "assets/maxim-portrait-video-frame-first.jpg",
+          "image"
+        );
+
+        if (!heroVideoWasPlayed) {
+          preloadHeroAsset("assets/maxim-portrait-motion.mp4", "video", "video/mp4");
+        }
+
         try {
           var savedScroll = Number(sessionStorage.getItem("naklikayScrollY") || 0);
           if ((location.hash && location.hash !== "#") || savedScroll > 120) {
@@ -33,11 +64,9 @@
       })();
     </script>
     <link rel="preload" href="assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="preload" href="assets/maxim-portrait-video-frame-first.jpg" as="image" fetchpriority="high" />
-    <link rel="preload" href="assets/maxim-portrait-motion.mp4" as="video" type="video/mp4" fetchpriority="high" />
-    <link rel="stylesheet" href="styles.css?v=20260810-mobile-layout" />
+    <link rel="stylesheet" href="styles.css?v=20260829-hero-static-repeat" />
     <script src="cases-data.js?v=20260823" defer></script>
-    <script src="script.js?v=20260810-mobile-layout" defer></script>
+    <script src="script.js?v=20260829-hero-static-repeat" defer></script>
     <meta name="description" content="Настраиваю Яндекс Директ, Telegram Ads и Avito Ads так, чтобы бюджет работал на продажи. 10+ лет в трафике, 200+ млн бюджета, 40+ кейсов." />
     <link rel="canonical" href="https://naklikay.ru/" />
     <meta property="og:type" content="website" />
@@ -185,7 +214,6 @@
         <video
           class="portrait-video"
           src="assets/maxim-portrait-motion.mp4"
-          autoplay
           muted
           playsinline
           preload="auto"

@@ -673,6 +673,15 @@ h1 {
   opacity: 0;
 }
 
+html.is-hero-video-played .portrait {
+  background: var(--bg) url("assets/maxim-portrait-video-frame-final.jpg") 50% 25% / cover no-repeat;
+}
+
+html.is-hero-video-played .portrait-poster,
+html.is-hero-video-played .portrait-video {
+  visibility: hidden;
+}
+
 .work-scope {
   padding: 108px 28px 116px;
   background: var(--bg);

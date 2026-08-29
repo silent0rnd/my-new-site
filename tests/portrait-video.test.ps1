@@ -5,6 +5,7 @@ $html = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root "index.htm
 $css = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root "styles.css")
 $js = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root "script.js")
 $firstFramePath = Join-Path $root "assets\maxim-portrait-video-frame-first.jpg"
+$finalFramePath = Join-Path $root "assets\maxim-portrait-video-frame-final.jpg"
 
 function Assert-Match($value, $pattern, $message) {
   if ($value -notmatch $pattern) {
@@ -19,11 +20,15 @@ function Assert-NotMatch($value, $pattern, $message) {
 }
 
 Assert-NotMatch $html '<figure class="portrait"[\s\S]*<img[^>]+maxim-portrait-bg-match\.jpg' "Fallback portrait image must be removed"
-Assert-Match $html '<link[^>]+rel="preload"[^>]+href="assets/maxim-portrait-video-frame-first\.jpg"[^>]+as="image"' "Portrait first frame preload missing"
+Assert-Match $html 'window\.localStorage\.getItem\("heroVideoPlayed"\) === "true"' "Early hero localStorage check missing"
+Assert-Match $html 'document\.documentElement\.classList\.add\("is-hero-video-played"\)' "Repeat visit class must be added before CSS"
+Assert-Match $html '"assets/maxim-portrait-video-frame-final\.jpg"' "Final portrait frame preload missing"
+Assert-Match $html 'preloadHeroAsset\("assets/maxim-portrait-motion\.mp4", "video", "video/mp4"\)' "First visit video preload missing"
 Assert-Match $html '<img[^>]+class="portrait-poster"[^>]+src="assets/maxim-portrait-video-frame-first\.jpg"' "Portrait first frame image missing"
 Assert-Match $html '<img[^>]+class="portrait-poster"[^>]+width="928"[^>]+height="1080"' "Mobile portrait poster dimensions missing"
 Assert-Match $html '<video[^>]+class="portrait-video"' "Portrait video tag missing"
 Assert-Match $html '<video[^>]+src="assets/maxim-portrait-motion\.mp4"' "Portrait video source missing"
+Assert-NotMatch $html '<video[^>]+autoplay' "Portrait video must wait for the localStorage check before autoplay"
 Assert-NotMatch $html 'poster=' "Portrait video poster must not render with browser-specific mobile crop"
 Assert-NotMatch $html 'poster="assets/maxim-portrait-bg-match\.jpg"' "Heavy portrait poster must not be used"
 Assert-Match $html '<video[^>]+muted' "Portrait video must be muted for autoplay"
@@ -77,15 +82,17 @@ Assert-Match $css '@media \(max-width:\s*920px\)\s*\{[\s\S]*\.portrait-video\s*\
 Assert-Match $css '@media \(max-width:\s*920px\)\s*\{[\s\S]*\.portrait-video\s*\{[\s\S]*transform:\s*none' "Mobile video must match fallback sizing"
 Assert-Match $css '\.portrait-video\.is-ready\s*\{[\s\S]*opacity:\s*1' "Video ready state missing"
 Assert-Match $css '\.portrait\.is-ready\s+\.portrait-poster\s*\{[\s\S]*opacity:\s*0' "Portrait poster must fade out after video is ready"
+Assert-Match $css 'html\.is-hero-video-played \.portrait\s*\{[\s\S]*maxim-portrait-video-frame-final\.jpg' "Repeat visits must use the final portrait frame before paint"
+Assert-Match $css 'html\.is-hero-video-played \.portrait-poster,\s*html\.is-hero-video-played \.portrait-video\s*\{[\s\S]*visibility:\s*hidden' "Repeat visits must hide first frame and video"
 Assert-Match $css '\.portrait\s*\{[\s\S]*top:\s*-48px' "Portrait block must start above viewport to hide top seam"
 Assert-Match $css '\.portrait\s*\{[\s\S]*height:\s*auto' "Portrait block must stretch from top to bottom on desktop"
 Assert-Match $css '@media \(max-width:\s*920px\)\s*\{[\s\S]*\.portrait\s*\{[\s\S]*top:\s*auto' "Mobile portrait must keep height-based layout"
-Assert-Match $css '@media \(max-width:\s*560px\)\s*\{[\s\S]*mask-image:\s*linear-gradient\(to right, transparent 0, rgb\(0 0 0 / 0\.28\) 24%, #000 42%\)' "Small mobile portrait mask must hide left seam"
-Assert-Match $css '@media \(max-width:\s*560px\)\s*\{[\s\S]*\.portrait::before\s*\{[\s\S]*linear-gradient\(to right, var\(--bg\) 0, rgb\(243 243 241 / 0\.86\) 24%, rgb\(243 243 241 / 0\) 48%\)' "Small mobile left fade missing"
-Assert-Match $css '\.portrait::after\s*\{[\s\S]*linear-gradient\(to bottom' "Bottom fade missing"
+Assert-Match $css '@media \(max-width:\s*560px\)\s*\{[\s\S]*\.portrait\s*\{[\s\S]*--portrait-fade-left:\s*linear-gradient\(to right, transparent 0, rgb\(0 0 0 / 0\.28\) 24%, #000 42%\)' "Small mobile portrait mask must hide left seam"
+Assert-Match $css '@media \(max-width:\s*560px\)\s*\{[\s\S]*\.portrait::before\s*\{[\s\S]*radial-gradient\(ellipse at 0 45%, rgb\(243 243 241 / 0\.62\) 0, rgb\(243 243 241 / 0\.26\) 34%, rgb\(243 243 241 / 0\) 64%\)' "Small mobile left fade missing"
 Assert-Match $css '\.portrait::before\s*\{[\s\S]*radial-gradient' "Lower-left fade missing"
-Assert-Match $css '\.portrait::before\s*\{[\s\S]*linear-gradient\(to bottom' "Top edge fade missing"
-Assert-Match $css '\.portrait::before\s*\{[\s\S]*linear-gradient\(to left' "Right edge fade missing"
+Assert-Match $css '\.portrait\s*\{[\s\S]*linear-gradient\(to top' "Bottom mask fade missing"
+Assert-Match $css '\.portrait\s*\{[\s\S]*linear-gradient\(to bottom' "Top mask fade missing"
+Assert-Match $css '\.portrait\s*\{[\s\S]*linear-gradient\(to left' "Right mask fade missing"
 Assert-Match $css '\.portrait-video\s*\{[\s\S]*transform:\s*scale\(1\.02\)' "Video edge scale missing"
 Assert-Match $css '\.delayed-underline\s*\{[\s\S]*display:\s*inline-block[\s\S]*white-space:\s*nowrap' "Highlighted phrase must stay under one full underline"
 Assert-Match $css '\.delayed-underline-svg\s*\{[\s\S]*position:\s*absolute[\s\S]*width:\s*calc\(100% \+ 0\.06em\)' "Static underline SVG layer missing"
@@ -125,12 +132,16 @@ Assert-Match $css '\.page-menu__progress-path\s*\{[\s\S]*stroke-dashoffset:\s*ca
 Assert-Match $js 'function updateReadingProgress\(\)' "Scroll progress updater missing"
 Assert-Match $js 'link\.classList\.toggle\("is-passed"' "Passed menu state missing"
 Assert-Match $js 'link\.classList\.add\("is-reached"\)' "Reached menu point animation missing"
-Assert-Match $js 'setTimeout\(\(\) => \{[\s\S]*is-underlined[\s\S]*HIGHLIGHT_DELAY_MS' "Delayed underline timer missing"
-Assert-Match $js 'new IntersectionObserver' "Viewport return observer missing"
+Assert-Match $js 'setTimeout\(\(\) => \{[\s\S]*is-underlined[\s\S]*heroHighlightDelay' "Delayed underline timer missing"
 Assert-Match $js 'portraitVideo\.currentTime = 0' "Video reset missing"
 Assert-Match $js 'const revealPortraitVideo = \(\) => \{[\s\S]*is-ready' "Video ready reveal missing"
-Assert-Match $js 'portraitVideo\.readyState >= 2 && !portraitVideo\.paused' "Already-playing video ready check missing"
-Assert-Match $js 'portraitVideo\.addEventListener\("playing", revealPortraitVideo' "Portrait poster must wait for video playback before hiding"
+Assert-Match $js 'const HERO_VIDEO_PLAYED_KEY = "heroVideoPlayed"' "Hero video localStorage key missing"
+Assert-Match $js 'window\.localStorage\.getItem\(HERO_VIDEO_PLAYED_KEY\) === "true"' "Hero video localStorage read missing"
+Assert-Match $js 'window\.localStorage\.setItem\(HERO_VIDEO_PLAYED_KEY, "true"\)' "Hero video localStorage write missing"
+Assert-Match $js 'portraitVideo\.addEventListener\("playing", \(\) => \{[\s\S]*saveHeroVideoPlayed\(\);[\s\S]*revealPortraitVideo\(\);' "Portrait video must be marked played when playback starts"
+Assert-NotMatch $js 'showPortraitFinalFrame|loadedmetadata|addEventListener\("seeked"|portraitVideo\.duration - 0\.001' "Repeat visits must not seek the video for a final frame"
+Assert-Match $js 'if \(hasHeroVideoPlayed\) \{\s*portraitVideo\.pause\(\);' "Repeat visits must stop the video"
+Assert-NotMatch $js 'wasBelowHero|portraitObserver' "Portrait video must not restart when the hero returns to the viewport"
 Assert-NotMatch $js 'portraitVideo\.addEventListener\("loadeddata", revealPortraitVideo' "Loadeddata is too early to hide the portrait poster"
 Assert-Match $js 'requestVideoFrameCallback' "Video frame paint wait missing"
 Assert-Match $js 'portrait\?\.classList\.add\("is-ready"\)' "Portrait ready reveal missing"
@@ -141,6 +152,10 @@ if (-not (Test-Path -LiteralPath $firstFramePath)) {
   throw "Portrait first frame asset missing"
 }
 
+if (-not (Test-Path -LiteralPath $finalFramePath)) {
+  throw "Portrait final frame asset missing"
+}
+
 Add-Type -AssemblyName System.Drawing
 $mobilePoster = [System.Drawing.Image]::FromFile($firstFramePath)
 try {
@@ -149,6 +164,15 @@ try {
   }
 } finally {
   $mobilePoster.Dispose()
+}
+
+$finalPoster = [System.Drawing.Image]::FromFile($finalFramePath)
+try {
+  if ($finalPoster.Width -ne 928 -or $finalPoster.Height -ne 1080) {
+    throw "Portrait final frame must match video frame dimensions 928x1080"
+  }
+} finally {
+  $finalPoster.Dispose()
 }
 
 Write-Output "portrait video checks passed"

@@ -322,6 +322,7 @@ const TEXT_OVERLAP_MS = 1000;
 const HIGHLIGHT_DELAY_MS = 5600;
 const HERO_HIGHLIGHT_TEXT = "\u0447\u0442\u043e\u0431\u044b \u0431\u044e\u0434\u0436\u0435\u0442 \u0440\u0430\u0431\u043e\u0442\u0430\u043b \u043d\u0430 \u043f\u0440\u043e\u0434\u0430\u0436\u0438";
 const SCROLL_RESTORE_KEY = "naklikayScrollY";
+const HERO_VIDEO_PLAYED_KEY = "heroVideoPlayed";
 
 const statsTargets = document.querySelectorAll(".stats strong, .stats span");
 const messengerLinkTargets = document.querySelectorAll(".messenger-links a");
@@ -356,6 +357,22 @@ function saveCurrentScrollY() {
     window.sessionStorage.setItem(SCROLL_RESTORE_KEY, String(getCurrentScrollY()));
   } catch (error) {}
 }
+
+function readHeroVideoPlayed() {
+  try {
+    return window.localStorage.getItem(HERO_VIDEO_PLAYED_KEY) === "true";
+  } catch (error) {
+    return false;
+  }
+}
+
+function saveHeroVideoPlayed() {
+  try {
+    window.localStorage.setItem(HERO_VIDEO_PLAYED_KEY, "true");
+  } catch (error) {}
+}
+
+const hasHeroVideoPlayed = Boolean(hero && readHeroVideoPlayed());
 
 // Прокрутку помним только для главной. У кейсов своя вкладка, но хранилище общее,
 // поэтому без этой проверки кейс открывался с середины - на позиции главной страницы.
@@ -705,14 +722,17 @@ function fitMobileCaseTitle(title) {
 let maxStatsLetters = 0;
 
 if (shouldRunHeroIntroAnimation()) {
+  const heroAnimationDelay = hasHeroVideoPlayed ? 0 : GLOBAL_ANIMATION_DELAY_MS;
+  const heroHighlightDelay = hasHeroVideoPlayed ? HIGHLIGHT_DELAY_MS - GLOBAL_ANIMATION_DELAY_MS : HIGHLIGHT_DELAY_MS;
+
   statsTargets.forEach((element) => {
-    const count = buildTextRoll(element, GLOBAL_ANIMATION_DELAY_MS);
+    const count = buildTextRoll(element, heroAnimationDelay);
     maxStatsLetters = Math.max(maxStatsLetters, count);
   });
 
   const delayedStart = Math.max(
     0,
-    GLOBAL_ANIMATION_DELAY_MS + ANIMATION_DURATION_MS + maxStatsLetters * LETTER_DELAY_MS + AFTER_STATS_PAUSE_MS - TEXT_OVERLAP_MS
+    heroAnimationDelay + ANIMATION_DURATION_MS + maxStatsLetters * LETTER_DELAY_MS + AFTER_STATS_PAUSE_MS - TEXT_OVERLAP_MS
   );
 
   const subtitleLetters = subtitleTarget ? buildTextRoll(subtitleTarget, delayedStart, TEXT_LETTER_DELAY_MS) : 0;
@@ -723,7 +743,7 @@ if (shouldRunHeroIntroAnimation()) {
 
     setTimeout(() => {
       underlinedLink.classList.add("is-underlined");
-    }, HIGHLIGHT_DELAY_MS);
+    }, heroHighlightDelay);
   });
 
   if (heroCopyTarget) {
@@ -734,7 +754,7 @@ if (shouldRunHeroIntroAnimation()) {
     if (delayedUnderline) {
       setTimeout(() => {
         delayedUnderline.classList.add("is-underlined");
-      }, HIGHLIGHT_DELAY_MS);
+      }, heroHighlightDelay);
     }
   }
 }
@@ -883,21 +903,20 @@ if (hero && portraitVideo) {
       });
     };
 
-    if ("requestVideoFrameCallback" in portraitVideo) {
+    if ("requestVideoFrameCallback" in portraitVideo && !portraitVideo.paused) {
       portraitVideo.requestVideoFrameCallback(() => {
         requestAnimationFrame(markReady);
       });
       return;
     }
 
+    if (portraitVideo.paused) {
+      markReady();
+      return;
+    }
+
     markReadyOnNextPaint();
   };
-
-  if (portraitVideo.readyState >= 2 && !portraitVideo.paused) {
-    revealPortraitVideo();
-  } else {
-    portraitVideo.addEventListener("playing", revealPortraitVideo, { once: true });
-  }
 
   const playPortraitVideo = () => {
     portraitVideo.currentTime = 0;
@@ -908,31 +927,20 @@ if (hero && portraitVideo) {
     }
   };
 
+  portraitVideo.addEventListener("playing", () => {
+    saveHeroVideoPlayed();
+    revealPortraitVideo();
+  }, { once: true });
+
   portraitVideo.addEventListener("ended", () => {
     portraitVideo.pause();
   });
 
-  let wasBelowHero = false;
-
-  const portraitObserver = new IntersectionObserver(
-    ([entry]) => {
-      if (!entry) return;
-
-      if (entry.isIntersecting && wasBelowHero) {
-        playPortraitVideo();
-        wasBelowHero = false;
-        return;
-      }
-
-      if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
-        wasBelowHero = true;
-        portraitVideo.pause();
-      }
-    },
-    { threshold: 0.25 }
-  );
-
-  portraitObserver.observe(hero);
+  if (hasHeroVideoPlayed) {
+    portraitVideo.pause();
+  } else {
+    playPortraitVideo();
+  }
 }
 
 const casesShowcase = document.querySelector(".cases-showcase");
