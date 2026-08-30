@@ -2261,6 +2261,7 @@ function initFeedbackWidget() {
   const widget = document.createElement("div");
   const trigger = document.createElement("button");
   const menu = document.createElement("nav");
+  const heroTrigger = document.querySelector("[data-open-feedback-widget]");
   const label = createFloatingControlLabel("Поговорим?");
   const menuId = "feedback-widget-menu";
 
@@ -2330,6 +2331,7 @@ function initFeedbackWidget() {
   const options = Array.from(menu.querySelectorAll(".feedback-widget__option"));
   const AUTO_CLOSE_MS = 1000;
   let isOpen = false;
+  let returnFocusTarget = trigger;
   let labelBurstTimer = 0;
   let autoCloseTimer = 0;
 
@@ -2377,6 +2379,7 @@ function initFeedbackWidget() {
     isOpen = nextOpen;
     widget.classList.toggle("is-open", isOpen);
     trigger.setAttribute("aria-expanded", String(isOpen));
+    heroTrigger?.setAttribute("aria-expanded", String(isOpen));
     trigger.setAttribute("aria-label", isOpen ? "Закрыть способы связи" : "Открыть способы связи");
     menu.setAttribute("aria-hidden", String(!isOpen));
     options.forEach((option) => {
@@ -2384,7 +2387,7 @@ function initFeedbackWidget() {
     });
 
     if (returnFocus) {
-      trigger.focus();
+      returnFocusTarget.focus();
     }
   };
 
@@ -2394,9 +2397,22 @@ function initFeedbackWidget() {
       return;
     }
 
+    returnFocusTarget = trigger;
     playLabelBurst();
     setOpen(true);
   };
+
+  heroTrigger?.addEventListener("click", () => {
+    if (isOpen) {
+      setOpen(false);
+      return;
+    }
+
+    returnFocusTarget = heroTrigger;
+    playLabelBurst();
+    setOpen(true);
+    options[0]?.focus();
+  });
 
   trigger.addEventListener("pointerenter", () => setLabelVisible(true));
   trigger.addEventListener("pointerleave", () => setLabelVisible(false));
@@ -2431,7 +2447,7 @@ function initFeedbackWidget() {
   });
 
   document.addEventListener("pointerdown", (event) => {
-    if (isOpen && !widget.contains(event.target)) {
+    if (isOpen && !widget.contains(event.target) && !heroTrigger?.contains(event.target)) {
       setOpen(false);
     }
   });

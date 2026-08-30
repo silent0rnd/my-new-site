@@ -721,6 +721,28 @@ h1 {
   outline-offset: 3px;
 }
 
+.hero-feedback-trigger {
+  padding: 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hero-feedback-trigger::before {
+  content: "";
+  position: absolute;
+  inset: -9px -5px;
+}
+
+.hero-feedback-trigger:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
 .hero-copy-status {
   margin-left: 0.35em;
   color: #4c4c4a;

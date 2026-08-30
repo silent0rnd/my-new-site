@@ -3,6 +3,8 @@ $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 $script = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root "script.js")
 $css = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root "styles.css")
+$index = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root "index.html")
+$expectedHeroTriggerText = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('0J/QuNGI0Lgg0LIg0LvQuNGH0LrRgyE='))
 
 function Assert-Contains($value, $expected, $message) {
   if (-not $value.Contains($expected)) {
@@ -17,6 +19,15 @@ function Assert-Match($value, $pattern, $message) {
 }
 
 Assert-Contains $script 'function initFeedbackWidget()' "Feedback widget initializer is missing"
+Assert-Contains $index 'class="hero-feedback-trigger"' "Returning hero feedback button is missing"
+Assert-Match $index '<button[^>]*data-open-feedback-widget[^>]*aria-controls="feedback-widget-menu"[^>]*aria-expanded="false"[^>]*>[^<]+</button>' "Returning hero feedback button semantics are incomplete"
+Assert-Contains $index $expectedHeroTriggerText "Returning hero feedback button text is incorrect"
+Assert-Contains $script 'document.querySelector("[data-open-feedback-widget]")' "Returning hero feedback trigger binding is missing"
+Assert-Match $script 'heroTrigger\?\.addEventListener\("click", \(\) => \{[\s\S]*?if \(isOpen\) \{[\s\S]*?setOpen\(false\);[\s\S]*?return;' "Returning hero feedback trigger must close the open widget on a second click"
+Assert-Contains $script '!heroTrigger?.contains(event.target)' "Clicking the returning hero trigger must not be treated as an outside click"
+Assert-Match $script 'heroTrigger\?\.addEventListener\("click", \(\) => \{[\s\S]*?returnFocusTarget = heroTrigger;[\s\S]*?setOpen\(true\);[\s\S]*?options\[0\]\?\.focus\(\);' "Returning hero trigger must open the widget and focus the first option"
+Assert-Contains $script 'heroTrigger?.setAttribute("aria-expanded", String(isOpen))' "Returning hero trigger must mirror widget state"
+Assert-Contains $script 'returnFocusTarget.focus()' "Escape must return focus to the control that opened the widget"
 Assert-Contains $script 'https://t.me/miroshnikov_maxim' "Telegram profile link is missing"
 Assert-Contains $script 'https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE' "MAX profile link is missing"
 Assert-Match $script 'target="_blank"[\s\S]*?rel="noopener noreferrer"' "Messenger links must open safely in a new tab"
@@ -34,6 +45,8 @@ Assert-Match $script 'initFeedbackWidget\(\);\s*initScrollToTopButton\(\);' "Fee
 Assert-Match $css '--scroll-to-top-width:\s*48px;[\s\S]*?--scroll-to-top-height:\s*54px;[\s\S]*?--feedback-trigger-size:\s*48px;' "Mobile floating-control sizes are missing"
 Assert-Match $css '@media \(min-width:\s*561px\)[\s\S]*?--scroll-to-top-width:\s*58px;[\s\S]*?--scroll-to-top-height:\s*64px;[\s\S]*?--feedback-trigger-size:\s*58px;' "Desktop floating-control sizes are missing"
 Assert-Match $css '\.feedback-widget__option\s*\{[\s\S]*?min-height:\s*44px;' "Messenger options must have a 44px touch target"
+Assert-Match $css '\.hero-feedback-trigger::before\s*\{[\s\S]*?inset:\s*-9px -5px;' "Returning hero trigger must expose a 44px touch area"
+Assert-Match $css '\.hero-feedback-trigger:focus-visible\s*\{[\s\S]*?outline:\s*2px solid currentColor;' "Returning hero trigger needs a visible keyboard focus"
 Assert-Match $css '\.feedback-widget\.is-open \.feedback-widget__option--telegram\s*\{[\s\S]*?translate3d\(-\d+px,\s*-\d+px' "Telegram must open upward and left"
 Assert-Match $css '\.feedback-widget\.is-open \.feedback-widget__option--max\s*\{[\s\S]*?translate3d\(-\d+px,\s*-\d+px' "MAX must open upward and left"
 Assert-Match $css '@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.feedback-widget__option[\s\S]*?animation:\s*none;[\s\S]*?transition-duration:\s*0s;' "Reduced-motion fallback is missing"

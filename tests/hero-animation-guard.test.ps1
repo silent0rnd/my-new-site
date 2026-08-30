@@ -28,6 +28,10 @@ $root = Split-Path -Parent $PSScriptRoot
 $script = Get-Content -Raw -Encoding UTF8 (Join-Path $root "script.js")
 $index = Get-Content -Raw -Encoding UTF8 (Join-Path $root "index.html")
 $styles = Get-Content -Raw -Encoding UTF8 (Join-Path $root "styles.css")
+$expectedTrustCopy = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('0K8g0L3QtSDQtNCw0Y4g0L/Rg9GB0YLRi9GFINC+0LHQtdGJ0LDQvdC40LkuINCT0L7QstC+0YDRjiDQv9GA0Y/QvNC+LCDQtNCw0LbQtSDQtdGB0LvQuCDQv9GA0LDQstC00LAg0YLQtdCx0LUg0L3QtSDQv9C+0L3RgNCw0LLQuNGC0YHRjy4='))
+$expectedConsultationCopy = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('0JTQu9GPINGC0LXQsdGPINGN0YLQviDQsdGD0LTQtdGCINC+0LTQvdCwINC40Lcg0YHQsNC80YvRhSDQv9C+0LvQtdC30L3Ri9GFINC60L7QvdGB0YPQu9GM0YLQsNGG0LjQuSDQt9CwINC00L7Qu9Cz0L7QtSDQstGA0LXQvNGPLg=='))
+$removedTrustIntro = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('0KHRgNCw0LfRgyDQs9C+0LLQvtGA0Y4sINGPINC90LUg0LTQsNGOINC/0YPRgdGC0YvRhSDQvtCx0LXRidCw0L3QuNC5Lg=='))
+$removedTrustSentence = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('0JzQvtGPINC30LDQtNCw0YfQsCAtINC90LDQudGC0LgsINGH0YLQviDRgNC10LDQu9GM0L3QviDRgNCw0LHQvtGC0LDQtdGCLCDQsCDRh9GC0L4g0L3QtdGCLg=='))
 
 Assert-Contains $script "function shouldRunHeroIntroAnimation()" "Missing hero animation guard"
 Assert-Contains $script "const LETTER_DELAY_MS = 63;" "Hero letter stagger must be 30 percent faster"
@@ -68,6 +72,11 @@ Assert-Contains $styles '.is-hero-intro-pending .stats strong' "Missing CSS to h
 
 # Страховка: спрятанный ради анимации текст обязан показаться, даже если скрипт не отработал.
 Assert-Contains $index '}, 4000);' "Head must keep the failsafe that unhides text if script.js never loads"
+Assert-Contains $index $expectedTrustCopy "Returning hero trust copy is incorrect"
+Assert-Contains $index $expectedConsultationCopy "Returning hero consultation copy is incorrect"
+Assert-NotContains $index $removedTrustIntro "Returning hero must not keep the removed intro phrase"
+Assert-NotContains $index $removedTrustSentence "Returning hero must not keep the removed sentence"
+Assert-Contains $index 'data-open-feedback-widget' "Returning hero feedback trigger is missing"
 Assert-Contains $script 'const animationFailsafe = setTimeout' "Script must arm the animation failsafe before any animation setup"
 Assert-Contains $script 'clearTimeout(animationFailsafe);' "Script must cancel the failsafe only after a clean run"
 Assert-Contains $script 'document.querySelectorAll(".is-roll-paused")' "Failsafe must also unpause section and case titles"
