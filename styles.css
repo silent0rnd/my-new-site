@@ -556,6 +556,14 @@ h1 {
   line-height: 0.86;
 }
 
+.hero.is-returning-visitor h1 {
+  font-size: 140px;
+}
+
+.hero.is-returning-visitor .delayed-underline-path {
+  transition-duration: 1840ms;
+}
+
 .subtitle,
 .hero-copy {
   max-width: 480px;
@@ -569,6 +577,10 @@ h1 {
 .hero-copy {
   max-width: 500px;
   margin-top: 22px;
+}
+
+.hero-returning-login {
+  white-space: nowrap;
 }
 
 .scroll-note {
@@ -3005,6 +3017,10 @@ html.is-hero-video-played .portrait-video {
     font-size: 121px;
   }
 
+  .hero.is-returning-visitor h1 {
+    font-size: 100px;
+  }
+
   .subtitle,
   .hero-copy {
     max-width: 320px;
@@ -3383,6 +3399,10 @@ html.is-hero-video-played .portrait-video {
 
   h1 {
     font-size: 87px;
+  }
+
+  .hero.is-returning-visitor h1 {
+    font-size: 76px;
   }
 
   .subtitle,

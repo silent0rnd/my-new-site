@@ -373,6 +373,15 @@ function saveHeroVideoPlayed() {
 }
 
 const hasHeroVideoPlayed = Boolean(hero && readHeroVideoPlayed());
+const firstHeroCopy = document.querySelector('[data-hero-copy="first"]');
+const returningHeroCopy = document.querySelector('[data-hero-copy="returning"]');
+const returningHeroTitle = returningHeroCopy?.querySelector("h1");
+
+if (hasHeroVideoPlayed && firstHeroCopy && returningHeroCopy) {
+  firstHeroCopy.hidden = true;
+  returningHeroCopy.hidden = false;
+  hero.classList.add("is-returning-visitor");
+}
 
 // Прокрутку помним только для главной. У кейсов своя вкладка, но хранилище общее,
 // поэтому без этой проверки кейс открывался с середины - на позиции главной страницы.
@@ -760,6 +769,20 @@ if (shouldRunHeroIntroAnimation()) {
 }
 
 document.documentElement.classList.remove("is-hero-intro-pending");
+
+if (hasHeroVideoPlayed) {
+  if (returningHeroTitle && shouldRunHeroIntroAnimation()) {
+    buildTextRoll(returningHeroTitle);
+  }
+
+  document.querySelectorAll("[data-returning-hero-underline]").forEach((element) => {
+    const underlinedElement = attachDelayedUnderline(element);
+
+    requestAnimationFrame(() => {
+      underlinedElement.classList.add("is-underlined");
+    });
+  });
+}
 
 if (workCards.length > 0) {
   workResultTargets.forEach(attachDelayedUnderline);
