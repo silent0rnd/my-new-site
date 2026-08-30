@@ -489,6 +489,22 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero.is-returning-visitor .eyebrow,
+  .hero.is-returning-visitor .eyebrow::before {
+    animation: none;
+  }
+
+  .hero.is-returning-visitor .eyebrow {
+    color: #4c4c4a;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero.is-returning-visitor .eyebrow::before {
+    opacity: 1;
+    transform: none;
+  }
+
   .text-roll-letter > span {
     animation: none;
   }
@@ -531,6 +547,7 @@ a {
 }
 
 .eyebrow {
+  position: relative;
   margin: 0 0 6px;
   color: #4c4c4a;
   font-size: 19px;
@@ -545,6 +562,115 @@ a {
   margin-right: 8px;
   vertical-align: middle;
   background: #4d4d4b;
+}
+
+html.is-hero-video-played .hero .eyebrow::before {
+  display: none;
+}
+
+.hero.is-returning-visitor .eyebrow {
+  padding-left: 31px;
+}
+
+.hero.is-returning-visitor .eyebrow::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 22px;
+  height: 4px;
+  border-radius: 999px;
+  background: #FF9800;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+}
+
+.hero.is-returning-visitor .eyebrow.is-marker-drawn::after {
+  animation: returning-hero-eyebrow-marker 700ms cubic-bezier(.22, .8, .24, 1) both;
+}
+
+@keyframes returning-hero-eyebrow-marker {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1);
+  }
+}
+
+.hero-returning-question__screen-reader-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hero-returning-question__topic-wrap {
+  display: inline-block;
+  min-width: 7.2em;
+}
+
+.hero-returning-question__topic {
+  display: inline-block;
+  min-width: 7.2em;
+  white-space: nowrap;
+  will-change: clip-path, opacity;
+}
+
+.hero-returning-question__topic.is-erasing {
+  animation: returning-hero-topic-erase 260ms cubic-bezier(.42, 0, .82, .32) both;
+}
+
+.hero-returning-question__topic.is-writing {
+  animation: returning-hero-topic-write 520ms cubic-bezier(.18, .72, .2, 1) both;
+}
+
+@keyframes returning-hero-topic-erase {
+  from {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+
+  to {
+    opacity: 0;
+    clip-path: inset(0 0 0 100%);
+  }
+}
+
+@keyframes returning-hero-topic-write {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-returning-question__topic {
+    animation: none !important;
+  }
+
+  .hero.is-returning-visitor .eyebrow::after {
+    width: 22px;
+    height: 4px;
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1);
+    animation: none;
+  }
 }
 
 h1 {
@@ -580,6 +706,26 @@ h1 {
 }
 
 .hero-returning-login {
+  padding: 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  background: transparent;
+  cursor: copy;
+  white-space: nowrap;
+}
+
+.hero-returning-login:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.hero-copy-status {
+  margin-left: 0.35em;
+  color: #4c4c4a;
+  font-size: 0.72em;
+  font-weight: 500;
   white-space: nowrap;
 }
 

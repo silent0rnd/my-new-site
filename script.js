@@ -376,6 +376,11 @@ const hasHeroVideoPlayed = Boolean(hero && readHeroVideoPlayed());
 const firstHeroCopy = document.querySelector('[data-hero-copy="first"]');
 const returningHeroCopy = document.querySelector('[data-hero-copy="returning"]');
 const returningHeroTitle = returningHeroCopy?.querySelector("h1");
+const returningHeroEyebrow = returningHeroCopy?.querySelector(".eyebrow");
+const returningHeroTopic = returningHeroCopy?.querySelector("[data-returning-hero-topic]");
+const RETURNING_HERO_TOPICS = ["рекламе?", "бюджету?", "стратегии?", "сайту?", "окупаемости?", "офферу?", "аналитике?", "воронке?"];
+const RETURNING_HERO_TOPIC_INTERVAL_MS = 2000;
+const RETURNING_HERO_TOPIC_ERASE_MS = 260;
 
 if (hasHeroVideoPlayed && firstHeroCopy && returningHeroCopy) {
   firstHeroCopy.hidden = true;
@@ -770,16 +775,92 @@ if (shouldRunHeroIntroAnimation()) {
 
 document.documentElement.classList.remove("is-hero-intro-pending");
 
-if (hasHeroVideoPlayed) {
-  if (returningHeroTitle && shouldRunHeroIntroAnimation()) {
-    buildTextRoll(returningHeroTitle);
+function startReturningHeroTopicCycle() {
+  if (!returningHeroTopic || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let topicIndex = 0;
+
+  window.setInterval(() => {
+    returningHeroTopic.classList.remove("is-writing");
+    returningHeroTopic.classList.add("is-erasing");
+
+    window.setTimeout(() => {
+      topicIndex = (topicIndex + 1) % RETURNING_HERO_TOPICS.length;
+      returningHeroTopic.textContent = RETURNING_HERO_TOPICS[topicIndex];
+      returningHeroTopic.classList.remove("is-erasing");
+      void returningHeroTopic.offsetWidth;
+      returningHeroTopic.classList.add("is-writing");
+    }, RETURNING_HERO_TOPIC_ERASE_MS);
+  }, RETURNING_HERO_TOPIC_INTERVAL_MS);
+}
+
+async function copyTextToClipboard(text) {
+  if (navigator.clipboard?.writeText && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return;
   }
+
+  const temporaryInput = document.createElement("textarea");
+  temporaryInput.value = text;
+  temporaryInput.setAttribute("readonly", "");
+  temporaryInput.style.position = "fixed";
+  temporaryInput.style.opacity = "0";
+  document.body.append(temporaryInput);
+  temporaryInput.select();
+
+  const copied = document.execCommand("copy");
+  temporaryInput.remove();
+
+  if (!copied) throw new Error("Clipboard copy failed");
+}
+
+const copyLoginButton = document.querySelector("[data-copy-login]");
+const copyLoginStatus = document.querySelector("[data-copy-login-status]");
+let copyLoginStatusTimeout;
+
+if (copyLoginButton && copyLoginStatus) {
+  copyLoginButton.addEventListener("click", async () => {
+    const login = copyLoginButton.dataset.copyLogin;
+
+    try {
+      await copyTextToClipboard(login);
+      copyLoginStatus.textContent = "Скопировано";
+    } catch {
+      copyLoginStatus.textContent = "Не удалось скопировать";
+    }
+
+    copyLoginStatus.hidden = false;
+    window.clearTimeout(copyLoginStatusTimeout);
+    copyLoginStatusTimeout = window.setTimeout(() => {
+      copyLoginStatus.hidden = true;
+    }, 1800);
+  });
+}
+
+if (hasHeroVideoPlayed) {
+  let returningHeroTitleAnimationEndDelay = 0;
+
+  if (returningHeroTitle && shouldRunHeroIntroAnimation()) {
+    const titleLetterCount = buildTextRoll(returningHeroTitle);
+    returningHeroTitleAnimationEndDelay = ANIMATION_DURATION_MS + Math.max(0, titleLetterCount - 1) * LETTER_DELAY_MS;
+  }
+
+  if (returningHeroEyebrow) {
+    window.setTimeout(() => {
+      returningHeroEyebrow.classList.add("is-marker-drawn");
+    }, returningHeroTitleAnimationEndDelay || 750);
+  }
+
+  startReturningHeroTopicCycle();
 
   document.querySelectorAll("[data-returning-hero-underline]").forEach((element) => {
     const underlinedElement = attachDelayedUnderline(element);
+    const underlineDelay = returningHeroTitleAnimationEndDelay;
 
     requestAnimationFrame(() => {
-      underlinedElement.classList.add("is-underlined");
+      window.setTimeout(() => {
+        underlinedElement.classList.add("is-underlined");
+      }, underlineDelay);
     });
   });
 }
