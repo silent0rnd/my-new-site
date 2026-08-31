@@ -2140,6 +2140,53 @@ function prepareArticleTables() {
 
 prepareArticleTables();
 
+// Декоративные контуры добавляются только в полные статьи. Архив блога использует
+// div.legal-document, поэтому на /blog/ и /blog/page/N/ этот код не срабатывает.
+function initArticleSketchOrbs() {
+  const article = document.querySelector("article.legal-document");
+
+  if (!article) return;
+
+  const paths = {
+    upper: "M107 12C156 14 196 52 198 101C199 151 163 194 112 198C61 201 17 166 12 114C7 62 47 15 95 13",
+    middle: "M105 11C158 9 198 46 200 98C203 149 167 190 117 200C65 211 19 177 10 124C2 72 40 25 91 13",
+    lower: "M100 14C149 8 190 40 199 89C207 140 171 185 122 198C72 210 24 178 13 130C0 79 35 27 83 16",
+  };
+
+  const orbs = Object.entries(paths).map(([variant, pathData]) => {
+    const orb = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+    orb.classList.add("article-sketch-orb", `article-sketch-orb--${variant}`);
+    orb.setAttribute("viewBox", "0 0 210 210");
+    orb.setAttribute("aria-hidden", "true");
+    orb.setAttribute("focusable", "false");
+    orb.dataset.articleSketchOrb = variant;
+    path.setAttribute("d", pathData);
+    path.setAttribute("vector-effect", "non-scaling-stroke");
+    orb.append(path);
+    article.append(orb);
+    return orb;
+  });
+
+  article.classList.add("has-article-sketch-orbs");
+
+  if (prefersReducedMotion.matches || !("IntersectionObserver" in window)) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("is-animated", entry.isIntersecting);
+      });
+    },
+    { rootMargin: "300px 0px" },
+  );
+
+  orbs.forEach((orb) => observer.observe(orb));
+}
+
+initArticleSketchOrbs();
+
 // Заголовки секций перекатываются по буквам, как хиро. Разбор идёт здесь, сразу после
 // типографики и до первой отрисовки: буквы уже стоят в DOM невидимые и на паузе, а
 // IntersectionObserver только снимает паузу. Разбирать под скроллом нельзя - переписывать

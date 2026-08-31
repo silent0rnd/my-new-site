@@ -699,6 +699,15 @@ Assert-Contains $siteScript 'function openBlogLinksInNewTab()' "Shared script mu
 Assert-Contains $siteScript 'document.querySelectorAll("a[href]")' "Shared script must cover every blog link"
 Assert-Contains $siteScript 'link.target = "_blank"' "Shared script must set the new-tab target for blog links"
 Assert-Contains $siteScript 'new MutationObserver' "Shared script must cover links added after page load"
+Assert-Contains $siteScript 'function initArticleSketchOrbs()' "Shared script must create article sketch orbs"
+Assert-Contains $siteScript 'document.querySelector("article.legal-document")' "Sketch orbs must target full articles only"
+Assert-Contains $siteScript 'rootMargin: "300px 0px"' "Article sketch orbs must animate only near the viewport"
+Assert-Contains $siteScript 'prefersReducedMotion.matches' "Article sketch orbs must respect reduced motion"
+
+$siteStyles = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root "styles.css")
+Assert-Contains $siteStyles '.article-sketch-orb {' "Article sketch orb styles are missing"
+Assert-Contains $siteStyles '.article-sketch-orb--upper.is-animated' "Article sketch orb animation styles are missing"
+Assert-Contains $siteStyles '.has-article-sketch-orbs' "Article sketch orbs need an isolated background layer"
 
 $allArticleSlugs = Get-ChildItem -LiteralPath $root/blog -Directory |
   Where-Object { $_.Name -ne "page" } |
@@ -725,6 +734,9 @@ for ($page = 1; $page -le $archivePageCount; $page++) {
   Assert-Contains $archive $expectedStylesheet "Archive page $page must load the shared stylesheet"
   Assert-Contains $archive $expectedScript "Archive page $page must load the shared script"
   Assert-Contains $archive '<h1>Блог</h1>' "Archive page $page must keep the single blog heading"
+  if ($archive -match '<article class="legal-document"') {
+    throw "Archive page $page must not be marked as a full article"
+  }
   if ($archive -match 'Блог - страница|Страница \d+</span>') {
     throw "Archive page $page must not expose its technical page number outside the pagination control"
   }

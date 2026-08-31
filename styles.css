@@ -520,7 +520,8 @@ a {
   .about__orb,
   .about__orb-path,
   .article-portrait__ring-path,
-  .case-sketch-orb {
+  .case-sketch-orb,
+  .article-sketch-orb {
     animation: none !important;
   }
 
@@ -4846,6 +4847,100 @@ html.is-hero-video-played .portrait-video {
   margin: 0 0 8px;
   font-size: clamp(21px, 2.4vw, 25px);
   line-height: 1.42;
+}
+
+.article-page article.legal-document.has-article-sketch-orbs {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.article-page article.legal-document.has-article-sketch-orbs > :not(.article-sketch-orb) {
+  position: relative;
+  z-index: 1;
+}
+
+.article-sketch-orb {
+  position: absolute;
+  z-index: 0;
+  width: 177px;
+  height: 177px;
+  color: #FF9800;
+  opacity: 0.2925;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0) rotate(-1deg);
+  transform-origin: 50% 50%;
+  animation-play-state: paused;
+}
+
+.article-sketch-orb path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.article-sketch-orb--upper {
+  top: 24%;
+  right: clamp(16px, 8%, 76px);
+}
+
+.article-sketch-orb--middle {
+  top: 53%;
+  left: clamp(126px, 28%, 290px);
+}
+
+.article-sketch-orb--lower {
+  top: 81%;
+  right: clamp(42px, 19%, 180px);
+}
+
+.article-sketch-orb--upper.is-animated {
+  will-change: transform;
+  animation: case-sketch-orb-upper 18s linear -9s infinite;
+}
+
+.article-sketch-orb--middle.is-animated {
+  will-change: transform;
+  animation: case-sketch-orb-middle 21s linear -7s infinite;
+}
+
+.article-sketch-orb--lower.is-animated {
+  will-change: transform;
+  animation: case-sketch-orb-lower 23s linear -14s infinite;
+}
+
+@media (max-width: 920px) {
+  .article-sketch-orb {
+    width: 120px;
+    height: 120px;
+  }
+
+  .article-sketch-orb--middle {
+    left: auto;
+    right: 42px;
+  }
+}
+
+@media (max-width: 560px) {
+  .article-sketch-orb {
+    width: 89px;
+    height: 89px;
+    opacity: 0.2475;
+  }
+
+  .article-sketch-orb--upper {
+    right: 12px;
+  }
+
+  .article-sketch-orb--middle {
+    right: 18px;
+  }
+
+  .article-sketch-orb--lower {
+    right: 28px;
+  }
 }
 
 .article-figure {
