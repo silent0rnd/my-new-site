@@ -1,0 +1,4 @@
+interface:
+  display_name: "Публикация статьи"
+  short_description: "Добавляет SEO-статью в блог Naklikay"
+  default_prompt: "Use $blog to publish the supplied approved article and images in the Naklikay blog."
