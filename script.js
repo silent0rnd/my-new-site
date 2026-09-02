@@ -1076,6 +1076,7 @@ const FOOTER_SIGNATURE_DRAW_DURATION_MS = 1400;
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const footerSignature = document.querySelector(".site-footer__signature");
 let caseRevealObserver = null;
+let caseRevealFallbackFrame = 0;
 
 let activeCaseCategory = "all";
 let visibleCaseCount = 4;
@@ -1547,6 +1548,47 @@ function createCaseCard(caseItem) {
   return wrapper;
 }
 
+function revealVisibleCaseCard(item, observer = caseRevealObserver) {
+  if (item.classList.contains("is-visible")) return;
+
+  item.classList.add("is-visible");
+  startMobileCountUp(item.querySelector(".case-card"));
+
+  if (observer) observer.unobserve(item);
+}
+
+function checkVisibleMobileCaseCards() {
+  caseRevealFallbackFrame = 0;
+
+  if (!casesGrid || !mobileCaseViewport.matches || prefersReducedMotion.matches) return;
+
+  const revealViewportBottom = window.innerHeight * 0.88;
+
+  casesGrid.querySelectorAll(".case-card-reveal:not(.is-visible)").forEach((item) => {
+    const rect = item.getBoundingClientRect();
+    const visibleHeight = Math.max(
+      0,
+      Math.min(rect.bottom, revealViewportBottom) - Math.max(rect.top, 0),
+    );
+    const visibleRatio = rect.height > 0 ? visibleHeight / rect.height : 0;
+
+    if (visibleRatio >= 0.14) revealVisibleCaseCard(item);
+  });
+}
+
+function queueVisibleMobileCaseCardsCheck() {
+  if (
+    !casesGrid ||
+    !mobileCaseViewport.matches ||
+    prefersReducedMotion.matches ||
+    caseRevealFallbackFrame
+  ) {
+    return;
+  }
+
+  caseRevealFallbackFrame = window.requestAnimationFrame(checkVisibleMobileCaseCards);
+}
+
 function observeCaseCards(revealItems = casesGrid ? casesGrid.querySelectorAll(".case-card-reveal:not(.is-visible)") : [], shouldReset = true) {
   const items = Array.from(revealItems);
 
@@ -1569,9 +1611,7 @@ function observeCaseCards(revealItems = casesGrid ? casesGrid.querySelectorAll("
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
 
-          entry.target.classList.add("is-visible");
-          startMobileCountUp(entry.target.querySelector(".case-card"));
-          observer.unobserve(entry.target);
+          revealVisibleCaseCard(entry.target, observer);
         });
       },
       { rootMargin: "0px 0px -12% 0px", threshold: 0.14 }
@@ -1587,6 +1627,8 @@ function observeCaseCards(revealItems = casesGrid ? casesGrid.querySelectorAll("
       caseRevealObserver.observe(item);
     }
   });
+
+  queueVisibleMobileCaseCardsCheck();
 }
 
 function appendCaseCards(caseItems, startIndex = 0) {
@@ -1711,6 +1753,11 @@ if (casesLoadMoreButton) {
     updateCasesControls(filteredCases);
     animateCasesLoadMore();
   });
+}
+
+if (casesGrid) {
+  window.addEventListener("scroll", queueVisibleMobileCaseCardsCheck, { passive: true });
+  window.addEventListener("resize", queueVisibleMobileCaseCardsCheck);
 }
 
 renderCases();
