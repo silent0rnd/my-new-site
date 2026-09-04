@@ -721,19 +721,80 @@ Assert-Contains $siteScript 'function initArticleSketchOrbs()' "Shared script mu
 Assert-Contains $siteScript 'document.querySelector("article.legal-document")' "Sketch orbs must target full articles only"
 Assert-Contains $siteScript 'rootMargin: "300px 0px"' "Article sketch orbs must animate only near the viewport"
 Assert-Contains $siteScript 'prefersReducedMotion.matches' "Article sketch orbs must respect reduced motion"
+Assert-Contains $siteScript 'function initRelatedArticleCardsHover()' "Shared script must initialize related article hover"
+Assert-Contains $siteScript 'document.querySelectorAll(".related-article-card")' "Related article hover must target only article cards"
 
 $siteStyles = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $root "styles.css")
 Assert-Contains $siteStyles '.article-sketch-orb {' "Article sketch orb styles are missing"
 Assert-Contains $siteStyles '.article-sketch-orb--upper.is-animated' "Article sketch orb animation styles are missing"
 Assert-Contains $siteStyles '.has-article-sketch-orbs' "Article sketch orbs need an isolated background layer"
+Assert-Contains $siteStyles '.related-articles {' "Related article layout styles are missing"
+Assert-Contains $siteStyles '.related-article-card:hover' "Related article hover styles are missing"
+Assert-Contains $siteStyles '.related-article-card__description' "Related article description styles are missing"
 
 $allArticleSlugs = Get-ChildItem -LiteralPath $root/blog -Directory |
   Where-Object { $_.Name -ne "page" } |
   Where-Object { Test-Path (Join-Path $_.FullName "index.html") } |
   Select-Object -ExpandProperty Name
 
+$relatedTopicsPath = Join-Path $root "scripts/blog-related-topics.json"
+if (-not (Test-Path $relatedTopicsPath)) {
+  throw "Related article topic index is missing"
+}
+$relatedTopics = Get-Content -Raw -Encoding UTF8 -LiteralPath $relatedTopicsPath | ConvertFrom-Json
+if ($relatedTopics.version -ne 1) {
+  throw "Related article topic index has an unsupported version"
+}
+if ($relatedTopics.articles.Count -ne $allArticleSlugs.Count) {
+  throw "Related article topic index must contain every article"
+}
+$topicSlugs = @($relatedTopics.articles | Select-Object -ExpandProperty slug)
+
 foreach ($slug in $allArticleSlugs) {
   Assert-Contains $sitemap "<loc>https://naklikay.ru/blog/$slug/</loc>" "Sitemap is missing article $slug"
+  if ($topicSlugs -notcontains $slug) {
+    throw "Related article topic index is missing $slug"
+  }
+
+  $articlePath = Join-Path $root "blog/$slug/index.html"
+  $html = Get-Content -Raw -Encoding UTF8 -LiteralPath $articlePath
+  $relatedSections = [regex]::Matches($html, '<section class="related-articles"')
+  if ($relatedSections.Count -ne 1) {
+    throw "Article $slug must contain exactly one related article section"
+  }
+
+  $authorIndex = $html.IndexOf('<aside class="article-author"')
+  $relatedIndex = $html.IndexOf('<!-- related-articles:start -->')
+  if ($authorIndex -lt 0 -or $relatedIndex -le $authorIndex) {
+    throw "Related articles must appear after the author on $slug"
+  }
+
+  $relatedCards = [regex]::Matches($html, '<a class="related-article-card" href="\.\./([^/]+)/" target="_blank" rel="noopener noreferrer">')
+  if ($relatedCards.Count -ne 3) {
+    throw "Article $slug must contain exactly three related article cards"
+  }
+
+  $relatedSlugs = @($relatedCards | ForEach-Object { $_.Groups[1].Value })
+  if (($relatedSlugs | Select-Object -Unique).Count -ne 3) {
+    throw "Related article links must be unique on $slug"
+  }
+  if ($relatedSlugs -contains $slug) {
+    throw "Article $slug must not link to itself in related articles"
+  }
+  foreach ($relatedSlug in $relatedSlugs) {
+    if (-not (Test-Path (Join-Path $root "blog/$relatedSlug/index.html"))) {
+      throw "Related article target is missing on $slug`: $relatedSlug"
+    }
+  }
+
+  foreach ($className in @("related-article-card__topic", "related-article-card__title", "related-article-card__description")) {
+    if (([regex]::Matches($html, "class=`"$className`"")).Count -ne 3) {
+      throw "Every related article card needs $className on $slug"
+    }
+  }
+  if ($html -match 'related-article-card__result|data-related-tags') {
+    throw "Article $slug must not expose number-roll fields or service tags"
+  }
 }
 
 $archivePageCount = [math]::Ceiling($allArticleSlugs.Count / 15.0)

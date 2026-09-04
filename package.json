@@ -12,6 +12,7 @@
     "build:cases": "node scripts/generate-cases.js",
     "test:cases": "powershell -ExecutionPolicy Bypass -File tests/cases.test.ps1",
     "test:blog": "powershell -ExecutionPolicy Bypass -File tests/blog.test.ps1",
+    "test:related-articles": "node tests/related-articles.test.js",
     "test:mediaplan": "node --test tests/mediaplan.test.js",
     "test:ad-budget": "node --test tests/ad-budget.test.js"
   },

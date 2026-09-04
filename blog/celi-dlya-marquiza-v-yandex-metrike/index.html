@@ -9,8 +9,8 @@
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike/" />
     <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="../../styles.css?v=20260824-blog-search-1" />
-    <script src="../../script.js?v=20260824-blog-search-1" defer></script>
+    <link rel="stylesheet" href="../../styles.css?v=20260904-related-articles-1" />
+    <script src="../../script.js?v=20260904-related-articles-1" defer></script>
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Максим Мирошников" />
     <meta property="og:url" content="https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike/" />
@@ -68,6 +68,27 @@ marquiz-step6
 marquiz-step7</code></pre></section>
       <section><h2>Частые вопросы</h2><h3>Какой идентификатор цели отвечает за запуск Marquiz?</h3><p>Для запуска квиза используется:</p><p><code>marquiz-start</code></p><h3>Как настроить цель на первый вопрос Marquiz?</h3><p>Используйте идентификатор:</p><p><code>marquiz-step1</code></p><p>Для второго вопроса - <code>marquiz-step2</code>, для третьего - <code>marquiz-step3</code> и далее по аналогии.</p><h3>Какая цель показывает, что пользователь дошёл до формы контактов?</h3><p>Используйте:</p><p><code>marquiz-form</code></p><p>Она показывает переход к форме сбора контактных данных, но ещё не означает успешную отправку заявки.</p><h3>Какая цель Marquiz отвечает за завершение квиза?</h3><p>Для финального этапа используется:</p><p><code>marquiz-finish</code></p><p>Именно эту цель обычно имеет смысл использовать как основную конверсию при оценке заявок из квиза.</p><h3>Нужно ли создавать цели на каждый вопрос?</h3><p>Не обязательно. Если требуется только считать заявки, достаточно основных целей. Промежуточные <code>marquiz-stepN</code> полезны, когда нужно анализировать воронку и находить вопросы, на которых пользователи чаще всего прекращают прохождение квиза.</p></section>
       <section><h2>Итог</h2><p>Базовый набор целей Marquiz в Яндекс Метрике выглядит так:</p><p><code>marquiz-start</code> - запуск квиза<br /><code>marquiz-step1</code> - первый вопрос<br /><code>marquiz-step2</code> - второй вопрос<br /><code>marquiz-step3</code> - третий вопрос<br /><code>marquiz-form</code> - переход к форме контактов<br /><code>marquiz-finish</code> - завершение квиза</p><p>Для анализа рекламы наиболее важны <code>marquiz-start</code>, <code>marquiz-form</code> и <code>marquiz-finish</code>. Цели <code>marquiz-stepN</code> позволяют дополнительно посмотреть прохождение каждого вопроса и понять, на каком этапе квиз теряет пользователей.</p></section>
-    <aside class="article-author" aria-label="Об авторе"><img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников, специалист по платному трафику" width="192" height="192" loading="lazy" decoding="async" /><div class="article-author__body"><p class="article-author__label">Автор</p><p class="article-author__name">Максим Мирошников</p><p class="article-author__role">Специалист по платному трафику и Яндекс Директу</p><p class="article-author__text">Занимаюсь интернет-рекламой более 10 лет. Работаю как ИП и веду проекты напрямую: запускаю рекламу, создаю сайты и воронки, помогаю выстраивать связь между маркетингом, заявками и продажами.</p><p class="article-author__link"><a href="../../#about">Подробнее обо мне</a></p></div></aside></article></main>
+    <aside class="article-author" aria-label="Об авторе"><img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников, специалист по платному трафику" width="192" height="192" loading="lazy" decoding="async" /><div class="article-author__body"><p class="article-author__label">Автор</p><p class="article-author__name">Максим Мирошников</p><p class="article-author__role">Специалист по платному трафику и Яндекс Директу</p><p class="article-author__text">Занимаюсь интернет-рекламой более 10 лет. Работаю как ИП и веду проекты напрямую: запускаю рекламу, создаю сайты и воронки, помогаю выстраивать связь между маркетингом, заявками и продажами.</p><p class="article-author__link"><a href="../../#about">Подробнее обо мне</a></p></div></aside><!-- related-articles:start -->
+<section class="related-articles" aria-labelledby="related-articles-title">
+  <h2 id="related-articles-title">Похожие статьи</h2>
+  <div class="related-articles__list">
+        <a class="related-article-card" href="../tseli-yandex-metriki-tilda/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Аналитика</span>
+          <span class="related-article-card__title">Как настроить цели Яндекс Метрики на Tilda</span>
+          <span class="related-article-card__description">Одна цель на отправку всех форм по регулярному выражению, отслеживание шагов квиза QZ101 и проверка настройки тестовой заявкой.</span>
+        </a>
+        <a class="related-article-card" href="../kak-dat-dostup-k-yandex-metrike/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Аналитика</span>
+          <span class="related-article-card__title">Как дать доступ к Яндекс Метрике</span>
+          <span class="related-article-card__description">Индивидуальный доступ по логину Яндекса: путь «Настройки» - «Доступ» - «Добавить пользователя», разбор прав «Только просмотр», «Аналитика» и «Редактирование» и отличие от представительского доступа.</span>
+        </a>
+        <a class="related-article-card" href="../master-otchetov-yandex-direct/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Аналитика</span>
+          <span class="related-article-card__title">Мастер отчетов Яндекс Директ: как смотреть статистику в 2026 году</span>
+          <span class="related-article-card__description">Как пользоваться новым Мастером отчетов Яндекс Директа: группировки, метрики, фильтры, поисковые запросы, площадки РСЯ, цели, CPA и новые функции 2026 года.</span>
+        </a>
+  </div>
+</section>
+<!-- related-articles:end --></article></main>
   </body>
 </html>

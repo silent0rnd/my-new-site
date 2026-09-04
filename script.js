@@ -2187,6 +2187,55 @@ function prepareArticleTables() {
 
 prepareArticleTables();
 
+// Похожие статьи уже лежат в HTML, чтобы ссылки были доступны без JavaScript.
+// Здесь только hover-отклик карточек: числовые и текстовые роллы не подключаются.
+function initRelatedArticleCardsHover() {
+  const cards = document.querySelectorAll(".related-article-card");
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+  if (cards.length === 0 || prefersReducedMotion.matches || !canHover.matches) return;
+
+  cards.forEach((card) => {
+    let frame = null;
+
+    const resetCard = () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      frame = null;
+      card.style.setProperty("--related-article-hover-x", "0px");
+      card.style.setProperty("--related-article-hover-y", "0px");
+      card.style.setProperty("--related-article-hover-rotate-x", "0deg");
+      card.style.setProperty("--related-article-hover-rotate-y", "0deg");
+    };
+
+    card.addEventListener("pointermove", (event) => {
+      if (event.pointerType === "touch") return;
+      if (frame) window.cancelAnimationFrame(frame);
+
+      frame = window.requestAnimationFrame(() => {
+        frame = null;
+        const rect = card.getBoundingClientRect();
+        const relativeX = (event.clientX - rect.left) / rect.width;
+        const relativeY = (event.clientY - rect.top) / rect.height;
+        const moveX = Math.max(0, (relativeX - 0.5) * 3);
+        const moveY = (relativeY - 0.5) * 4;
+        const rotateX = (0.5 - relativeY) * 3;
+        const rotateY = (relativeX - 0.5) * 4;
+
+        card.style.setProperty("--related-article-hover-x", `${moveX.toFixed(2)}px`);
+        card.style.setProperty("--related-article-hover-y", `${moveY.toFixed(2)}px`);
+        card.style.setProperty("--related-article-hover-rotate-x", `${rotateX.toFixed(2)}deg`);
+        card.style.setProperty("--related-article-hover-rotate-y", `${rotateY.toFixed(2)}deg`);
+      });
+    });
+
+    card.addEventListener("pointerleave", resetCard);
+    card.addEventListener("pointercancel", resetCard);
+    card.addEventListener("blur", resetCard);
+  });
+}
+
+initRelatedArticleCardsHover();
+
 // Декоративные контуры добавляются только в полные статьи. Архив блога использует
 // div.legal-document, поэтому на /blog/ и /blog/page/N/ этот код не срабатывает.
 function initArticleSketchOrbs() {

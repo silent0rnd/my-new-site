@@ -1,0 +1,1577 @@
+{
+  "version": 1,
+  "articles": [
+    {
+      "slug": "stoimost-privlecheniya-klienta-cac",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "economics",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "master-otchetov-yandex-direct",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "economics",
+        "search"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "dinamicheskie-mesta-na-poiske",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "search",
+        "ad-formats"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-dlya-stomatologii",
+      "topic": "healthcare",
+      "topicLabel": "Медицина и здоровье",
+      "tags": [
+        "healthcare",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "local"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "uslugi-reklamy",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "analytics",
+        "automation",
+        "campaign-setup",
+        "specialist",
+        "telegram"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "reklama-v-yandex-kartah",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "campaign-setup",
+        "local"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "master-kampanii-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "search",
+        "automation",
+        "campaign-setup"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "retargeting-v-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "search",
+        "campaign-setup",
+        "ad-formats"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "tovarnaya-kampaniya-yandex-direct",
+      "topic": "ecommerce",
+      "topicLabel": "Интернет-магазины",
+      "tags": [
+        "ecommerce",
+        "economics",
+        "campaign-setup"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "zapusk-telegram-ads-2026",
+      "topic": "social-ads",
+      "topicLabel": "Реклама в соцсетях",
+      "tags": [
+        "economics",
+        "telegram"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "skvoznaya-analitika-yandex-direkt",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "masshtabirovanie-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "economics"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "obuchenie-strategii-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "analytics",
+        "economics",
+        "automation"
+      ],
+      "intent": "problem"
+    },
+    {
+      "slug": "kolltreking-dlya-yandeks-direkt",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kakaya-reklama-samaya-effektivnaya",
+      "topic": "channel-choice",
+      "topicLabel": "Выбор рекламного канала",
+      "tags": [
+        "comparison",
+        "telegram",
+        "avito",
+        "seo"
+      ],
+      "intent": "comparison"
+    },
+    {
+      "slug": "seo-ili-kontekstnaya-reklama",
+      "topic": "channel-choice",
+      "topicLabel": "Выбор рекламного канала",
+      "tags": [
+        "analytics",
+        "economics",
+        "website",
+        "comparison",
+        "seo"
+      ],
+      "intent": "comparison"
+    },
+    {
+      "slug": "yandex-direct-bez-saita",
+      "topic": "sites",
+      "topicLabel": "Сайты и конверсия",
+      "tags": [
+        "website",
+        "telegram"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-vk-ili-yandex-direct",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "economics",
+        "comparison"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-uslug-v-internete",
+      "topic": "channel-choice",
+      "topicLabel": "Выбор рекламного канала",
+      "tags": [
+        "specialist",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "kontekstnaya-ili-targetirovannaya-reklama",
+      "topic": "channel-choice",
+      "topicLabel": "Выбор рекламного канала",
+      "tags": [
+        "comparison",
+        "telegram",
+        "avito",
+        "lead-generation"
+      ],
+      "intent": "comparison"
+    },
+    {
+      "slug": "avito-ili-yandex-direct",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "economics",
+        "comparison",
+        "avito",
+        "lead-generation"
+      ],
+      "intent": "comparison"
+    },
+    {
+      "slug": "analiz-reklamy-konkurentov",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "economics"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "cps-v-marketinge",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "utp-v-marketinge",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "analytics",
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "lidogeneraciya-chto-eto-i-kak-rabotaet",
+      "topic": "sites",
+      "topicLabel": "Сайты и конверсия",
+      "tags": [
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "explanation"
+    },
+    {
+      "slug": "jtbd-v-marketinge",
+      "topic": "sites",
+      "topicLabel": "Сайты и конверсия",
+      "tags": [
+        "ad-formats",
+        "website"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "roas-v-marketinge",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "economics"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kakaya-konversiya-reklamy-schitaetsya-horoshey",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "analytics",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "roi-v-marketinge",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "economics"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "offline-conversions-yandex-direct",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "pochemu-net-pokazov-v-yandex-direct",
+      "topic": "traffic-quality",
+      "topicLabel": "Качество трафика",
+      "tags": [
+        "economics",
+        "traffic-quality",
+        "website"
+      ],
+      "intent": "problem"
+    },
+    {
+      "slug": "drr-v-reklame",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "economics"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "boty-v-rsya",
+      "topic": "traffic-quality",
+      "topicLabel": "Качество трафика",
+      "tags": [
+        "analytics",
+        "traffic-quality"
+      ],
+      "intent": "problem"
+    },
+    {
+      "slug": "poisk-ili-rsya-v-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "search",
+        "comparison",
+        "lead-generation"
+      ],
+      "intent": "comparison"
+    },
+    {
+      "slug": "kak-ocenit-effektivnost-yandex-direct",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "analytics",
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "necelevye-lidy-yandex-direct",
+      "topic": "traffic-quality",
+      "topicLabel": "Качество трафика",
+      "tags": [
+        "campaign-setup",
+        "traffic-quality",
+        "lead-generation"
+      ],
+      "intent": "problem"
+    },
+    {
+      "slug": "yandex-direct-ne-daet-zayavki",
+      "topic": "traffic-quality",
+      "topicLabel": "Качество трафика",
+      "tags": [
+        "lead-generation"
+      ],
+      "intent": "problem"
+    },
+    {
+      "slug": "yandex-direct-slivaet-byudzhet",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "automation",
+        "traffic-quality",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "problem"
+    },
+    {
+      "slug": "sklikivanie-yandex-direct",
+      "topic": "traffic-quality",
+      "topicLabel": "Качество трафика",
+      "tags": [
+        "analytics",
+        "economics",
+        "traffic-quality"
+      ],
+      "intent": "problem"
+    },
+    {
+      "slug": "minus-ploshchadki-dlya-rsya",
+      "topic": "traffic-quality",
+      "topicLabel": "Качество трафика",
+      "tags": [
+        "analytics",
+        "economics",
+        "traffic-quality"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "primery-prodayushchih-saytov",
+      "topic": "sites",
+      "topicLabel": "Сайты и конверсия",
+      "tags": [
+        "analytics",
+        "website"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "celi-dlya-marquiza-v-yandex-metrike",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "campaign-setup",
+        "website"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-dlya-internet-magazina",
+      "topic": "ecommerce",
+      "topicLabel": "Интернет-магазины",
+      "tags": [
+        "ecommerce",
+        "analytics",
+        "automation",
+        "campaign-setup",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-kommercheskaya-nedvizhimost",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "commercial-real-estate",
+        "analytics",
+        "economics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-stroitelstvo-domov",
+      "topic": "construction",
+      "topicLabel": "Строительство",
+      "tags": [
+        "house-building",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-dlya-zastroyshchika",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "residential-real-estate",
+        "analytics",
+        "campaign-setup",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-dlya-stroitelnoy-kompanii",
+      "topic": "construction",
+      "topicLabel": "Строительство",
+      "tags": [
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-dlya-online-shkoly",
+      "topic": "education",
+      "topicLabel": "Онлайн-образование",
+      "tags": [
+        "education",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-dlya-nedvizhimosti",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-dlya-agentstva-nedvizhimosti",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "real-estate-agency",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "specialist",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-zhk-yandex-direct",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "residential-real-estate",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-stroitelnoy-kompanii",
+      "topic": "construction",
+      "topicLabel": "Строительство",
+      "tags": [
+        "analytics",
+        "search",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-nedvizhimosti-v-yandex-direct",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-shkoly-massazha",
+      "topic": "education",
+      "topicLabel": "Онлайн-образование",
+      "tags": [
+        "education",
+        "analytics",
+        "search",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-kvartir-v-novostroyke",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "residential-real-estate",
+        "analytics",
+        "search",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-internet-magazina-v-yandekse",
+      "topic": "ecommerce",
+      "topicLabel": "Интернет-магазины",
+      "tags": [
+        "ecommerce",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-kommercheskih-pomescheniy",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "commercial-real-estate",
+        "analytics",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-domov-pod-klyuch",
+      "topic": "construction",
+      "topicLabel": "Строительство",
+      "tags": [
+        "house-building",
+        "analytics",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "reklama-agentstva-nedvizhimosti",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "real-estate-agency",
+        "analytics",
+        "search",
+        "website",
+        "specialist",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-psihologicheskogo-centra",
+      "topic": "healthcare",
+      "topicLabel": "Медицина и здоровье",
+      "tags": [
+        "healthcare",
+        "analytics",
+        "search",
+        "website"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-psihologicheskogo-centra",
+      "topic": "healthcare",
+      "topicLabel": "Медицина и здоровье",
+      "tags": [
+        "healthcare",
+        "analytics",
+        "website",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "nastroyka-direkta-dlya-internet-magazina",
+      "topic": "ecommerce",
+      "topicLabel": "Интернет-магазины",
+      "tags": [
+        "ecommerce",
+        "analytics",
+        "automation",
+        "campaign-setup",
+        "ad-formats",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "contextnaya-reklama-internet-magazina",
+      "topic": "ecommerce",
+      "topicLabel": "Интернет-магазины",
+      "tags": [
+        "ecommerce",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "nastroyka-reklamy-onlayn-shkoly",
+      "topic": "education",
+      "topicLabel": "Онлайн-образование",
+      "tags": [
+        "education",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "kontekstnaya-reklama-kommercheskoy-nedvizhimosti",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "commercial-real-estate",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "nastroyka-reklamy-nedvizhimosti",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "kontekstnaya-reklama-dlya-onlayn-shkoly",
+      "topic": "education",
+      "topicLabel": "Онлайн-образование",
+      "tags": [
+        "education",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kontekstnaya-reklama-novostroek",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "residential-real-estate",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kontekstnaya-reklama-dlya-nedvizhimosti",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-reklamnogo-proizvodstva",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "manufacturing",
+        "b2b",
+        "analytics",
+        "website",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kontekstnaya-reklama-agentstva-nedvizhimosti",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "real-estate-agency",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "specialist",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-yuridicheskih-uslug",
+      "topic": "legal",
+      "topicLabel": "Юридические услуги",
+      "tags": [
+        "legal",
+        "analytics",
+        "search",
+        "website",
+        "specialist",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "kontekstnaya-reklama-dlya-yuridicheskoy-kompanii",
+      "topic": "legal",
+      "topicLabel": "Юридические услуги",
+      "tags": [
+        "legal",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-dlya-yuridicheskih-uslug",
+      "topic": "legal",
+      "topicLabel": "Юридические услуги",
+      "tags": [
+        "legal",
+        "campaign-setup",
+        "specialist",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "reklama-proizvodstva-odezhdy",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "manufacturing",
+        "b2b",
+        "analytics",
+        "search",
+        "website"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-shveynogo-proizvodstva",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "manufacturing",
+        "b2b",
+        "analytics",
+        "search",
+        "website"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-promyshlennogo-oborudovaniya",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "manufacturing",
+        "b2b",
+        "analytics",
+        "search",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-optovoy-kompanii",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "b2b",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-b2b-kompanii",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "b2b",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "nastroyka-yandex-direct-b2b",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "b2b",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "kontekstnaya-reklama-dlya-b2b",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "b2b",
+        "analytics",
+        "search",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-dlya-b2b",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "b2b",
+        "search",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-proizvodstvennoy-kompanii",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "manufacturing",
+        "b2b",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "nastroyka-yandex-direct-dlya-proizvodstva",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "manufacturing",
+        "b2b",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "kontekstnaya-reklama-dlya-proizvodstva",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "manufacturing",
+        "b2b",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-dlya-proizvodstva",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "manufacturing",
+        "b2b",
+        "analytics",
+        "search",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "zakazat-vedenie-yandex-direct",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "specialist-po-yandex-direct",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "direktolog-dlya-biznesa",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "chastnyy-direktolog",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "chastnyj-specialist-yandex-direct",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "analytics",
+        "campaign-setup",
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "uslugi-direktologa",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "direktolog-ili-agentstvo",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "economics",
+        "specialist",
+        "comparison"
+      ],
+      "intent": "comparison"
+    },
+    {
+      "slug": "kak-vybrat-direktologa",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "analytics",
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "zakazat-kontekstnuyu-reklamu",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "analytics",
+        "campaign-setup",
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "stoimost-kontekstnoy-reklamy",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "audit-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "analytics",
+        "economics",
+        "search",
+        "automation",
+        "campaign-setup",
+        "ad-formats",
+        "website"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "stoimost-uslug-direktologa",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "economics",
+        "campaign-setup",
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "vedenie-yandex-direct-cena",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "economics",
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "vedenie-yandex-direct",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "nastroyka-yandex-direct-pod-klyuch",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "campaign-setup",
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "nastroyka-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "campaign-setup"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "nastroyka-yandex-direct-cena",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "economics",
+        "campaign-setup",
+        "specialist"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "kontekstnaya-reklama-pod-klyuch",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "analytics",
+        "economics",
+        "campaign-setup",
+        "traffic-quality",
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "kak-sgenerirovat-utm-metki-dlya-yandex-direkta",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "traffic-quality"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "kakoy-ctr-schitaetsya-horoshim-v-yandex-direkt",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "search",
+        "traffic-quality"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "strategiya-v-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "analytics",
+        "automation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "cena-za-klik-v-yandex-direkte",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "economics"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "kak-izmenit-obekt-prodvizheniya-v-yandex-direkte",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "account-management",
+        "ad-formats"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "kak-posmotret-obyavlenie-v-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "search",
+        "ad-formats"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "lending-v-yandex-direct",
+      "topic": "sites",
+      "topicLabel": "Сайты и конверсия",
+      "tags": [
+        "website"
+      ],
+      "intent": "explanation"
+    },
+    {
+      "slug": "reklama-telegram-kanala-v-yandex-direkte",
+      "topic": "social-ads",
+      "topicLabel": "Реклама в соцсетях",
+      "tags": [
+        "analytics",
+        "telegram"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "oplata-za-konversii-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "analytics",
+        "automation",
+        "lead-generation"
+      ],
+      "intent": "explanation"
+    },
+    {
+      "slug": "kak-ostanovit-kampaniyu-v-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "economics"
+      ],
+      "intent": "problem"
+    },
+    {
+      "slug": "chto-takoe-fid-v-yandex-direct",
+      "topic": "ecommerce",
+      "topicLabel": "Интернет-магазины",
+      "tags": [
+        "ecommerce"
+      ],
+      "intent": "explanation"
+    },
+    {
+      "slug": "kak-otklyuchit-avtotargeting-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "automation"
+      ],
+      "intent": "problem"
+    },
+    {
+      "slug": "minus-frazy-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "search"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "vozvrat-deneg-yandex-direct",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics"
+      ],
+      "intent": "problem"
+    },
+    {
+      "slug": "chto-takoe-rsya-v-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "search"
+      ],
+      "intent": "explanation"
+    },
+    {
+      "slug": "konversiya-v-yandex-direct",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "analytics",
+        "economics"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-business-vs-yandex-direct",
+      "topic": "channel-choice",
+      "topicLabel": "Выбор рекламного канала",
+      "tags": [
+        "comparison",
+        "local"
+      ],
+      "intent": "comparison"
+    },
+    {
+      "slug": "reklama-v-max-cherez-yandex-direct",
+      "topic": "social-ads",
+      "topicLabel": "Реклама в соцсетях",
+      "tags": [
+        "analytics",
+        "website"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kombinatornye-obyavleniya-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "campaign-setup",
+        "ad-formats"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prognoz-byudzheta-yandex-direct",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "search",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "operatory-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "traffic-quality"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kak-nastroit-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "analytics",
+        "economics",
+        "automation",
+        "campaign-setup"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "targetirovannaya-reklama-rostov",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "telegram",
+        "local"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "targetolog-rostov-na-donu",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "telegram",
+        "local"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-na-avito-rostov",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "ad-formats",
+        "avito",
+        "local",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kak-rabotaet-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "search",
+        "ad-formats",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "kontekstnaya-reklama-rostov",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "ad-formats",
+        "website",
+        "local"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-rostov-na-donu",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "campaign-setup",
+        "local"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kak-dat-dostup-k-yandex-metrike",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "campaign-setup",
+        "account-management"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "kak-proverit-tsel-v-yandex-metrike",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "tseli-yandex-metriki-tilda",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "campaign-setup",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "predstavitel-v-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "account-management"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "upravlyayushchiy-akkaunt-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "account-management",
+        "specialist"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "cpa-v-yandex-direct",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "analytics",
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "kak-otlichit-tovarnye-obyavleniya-s-kartinkoy-v-poiske",
+      "topic": "ecommerce",
+      "topicLabel": "Интернет-магазины",
+      "tags": [
+        "ecommerce",
+        "search",
+        "ad-formats"
+      ],
+      "intent": "instruction"
+    }
+  ]
+}
