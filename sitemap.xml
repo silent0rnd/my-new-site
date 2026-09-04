@@ -1105,8 +1105,45 @@
   </url>
   <url><loc>https://naklikay.ru/blog/retargeting-v-yandex-direct/</loc><lastmod>2026-09-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url>
+    <loc>https://naklikay.ru/blog/master-kampanii-yandex-direct/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/reklama-v-yandex-kartah/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url><loc>https://naklikay.ru/blog/uslugi-reklamy/</loc><lastmod>2026-09-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://naklikay.ru/blog/dinamicheskie-mesta-na-poiske/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/yandex-direct-dlya-stomatologii/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/master-otchetov-yandex-direct/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/stoimost-privlecheniya-klienta-cac/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/blog/page/2/</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1148,7 +1185,13 @@
   </url>
   <url>
     <loc>https://naklikay.ru/blog/page/9/</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/page/10/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
