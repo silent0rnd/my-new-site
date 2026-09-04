@@ -12,7 +12,7 @@ const blogDir = path.join(root, "blog");
 const relatedTopicsPath = path.join(__dirname, "blog-related-topics.json");
 const pageSize = 15;
 const siteUrl = "https://naklikay.ru";
-const blogAssetVersion = "20260904-related-articles-1";
+const blogAssetVersion = "20260904-blog-glyph-fix-1";
 
 function read(file) {
   return fs.readFileSync(file, "utf8");
@@ -247,14 +247,17 @@ function relatedScore(article, candidate) {
 }
 
 function relatedArticlesFor(article, articles) {
-  return articles
+  const rankedCandidates = articles
     .filter((candidate) => candidate.slug !== article.slug)
     .map((candidate) => ({ candidate, score: relatedScore(article, candidate) }))
     .sort((a, b) => b.score - a.score
       || b.candidate.date.localeCompare(a.candidate.date)
-      || a.candidate.slug.localeCompare(b.candidate.slug))
-    .slice(0, 3)
-    .map(({ candidate }) => candidate);
+      || a.candidate.slug.localeCompare(b.candidate.slug));
+
+  const sameTopic = rankedCandidates.filter(({ candidate }) => candidate.topic === article.topic).slice(0, 2);
+  const otherTopic = rankedCandidates.filter(({ candidate }) => candidate.topic !== article.topic).slice(0, 1);
+
+  return [...sameTopic, ...otherTopic].map(({ candidate }) => candidate);
 }
 
 function relatedArticlesHtml(article, articles) {

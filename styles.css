@@ -4852,7 +4852,6 @@ html.is-hero-video-played .portrait-video {
 .article-page article.legal-document.has-article-sketch-orbs {
   position: relative;
   isolation: isolate;
-  overflow: clip;
 }
 
 .article-page article.legal-document.has-article-sketch-orbs > :not(.article-sketch-orb) {
