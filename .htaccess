@@ -1,5 +1,16 @@
 RewriteEngine On
 
+# 1. Точные канонические URL. Выполняются до DirectorySlash, чтобы прокси не
+#    возвращал HTTP-адрес после принудительного перехода на HTTPS.
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^index\.html$ https://naklikay.ru/ [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+blog[\s?] [NC]
+RewriteRule ^blog$ https://naklikay.ru/blog/ [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+blog/reklama-internet-magazina-v-yandekse[\s?] [NC]
+RewriteRule ^blog/reklama-internet-magazina-v-yandekse$ https://naklikay.ru/blog/reklama-internet-magazina-v-yandekse/ [R=301,L]
+
 # 1. www.naklikay.ru -> naklikay.ru (301)
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]

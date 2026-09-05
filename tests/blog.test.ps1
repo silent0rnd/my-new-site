@@ -568,6 +568,27 @@ function Assert-NoDuplicateMetrika($content, $label) {
   }
 }
 
+# --- Адресные регрессии из SEO-аудита ---
+
+$internetShopArticlePath = Join-Path $root "blog/reklama-internet-magazina-v-yandekse/index.html"
+$internetShopArticle = Get-Content -Raw -Encoding UTF8 -LiteralPath $internetShopArticlePath
+$internetShopLdMatch = [regex]::Match($internetShopArticle, '<script type="application/ld\+json">([\s\S]*?)</script>')
+if (-not $internetShopLdMatch.Success) {
+  throw "Internet-shop article is missing JSON-LD"
+}
+try {
+  $null = $internetShopLdMatch.Groups[1].Value | ConvertFrom-Json
+} catch {
+  throw "Internet-shop article JSON-LD must be valid JSON: $($_.Exception.Message)"
+}
+
+$developerArticlePath = Join-Path $root "blog/yandex-direct-dlya-zastroyshchika/index.html"
+$developerArticle = Get-Content -Raw -Encoding UTF8 -LiteralPath $developerArticlePath
+Assert-Contains $developerArticle '<a href="../../">naklikay.ru</a>' "Developer article homepage link is wrong or missing"
+if ($developerArticle.Contains('https://naklikay.ru/).') -or $developerArticle.Contains('[naklikay.ru](')) {
+  throw "Developer article contains a malformed Markdown link"
+}
+
 # --- Страница блога ---
 
 Assert-SingleH1 $blog "blog index"
