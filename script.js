@@ -184,9 +184,27 @@
               <a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">MAX: ссылка на профиль</a>
             </address>
 
-            <section class="site-footer__channels" aria-labelledby="footer-channels-title">
-              <h3 class="site-footer__channels-title" id="footer-channels-title">Мои каналы</h3>
-              <div class="site-footer__channels-grid">
+            <section class="site-footer__channels" aria-labelledby="footer-resources-title">
+              <h3 class="site-footer__channels-title" id="footer-resources-title">Полезные материалы</h3>
+              <div class="site-footer__materials-grid">
+                <a class="site-footer__channel-link site-footer__material-link" href="${SITE_ROOT}blog/" target="_blank" rel="noopener noreferrer">
+                  <svg class="site-footer__channel-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+                    <rect x="6" y="3.5" width="20" height="25" rx="3" stroke="currentColor" stroke-width="2" />
+                    <path d="M10.5 10h11M10.5 15h11M10.5 20h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  <span>Блог</span>
+                </a>
+                <a class="site-footer__channel-link site-footer__material-link" href="${SITE_ROOT}tools/" target="_blank" rel="noopener noreferrer">
+                  <svg class="site-footer__channel-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+                    <rect x="5" y="3.5" width="22" height="25" rx="4" stroke="currentColor" stroke-width="2" />
+                    <path d="M10 10h12M10 16h3M16 16h3M22 16h.01M10 22h3M16 22h3M22 22h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  <span>Полезные сервисы</span>
+                </a>
+              </div>
+              <div class="site-footer__channels-group" aria-labelledby="footer-channels-title">
+                <h4 class="site-footer__channels-subtitle" id="footer-channels-title">Каналы</h4>
+                <div class="site-footer__channels-grid">
                 <a class="site-footer__channel-link" href="https://max.ru/id616509115086_biz" target="_blank" rel="noopener noreferrer">
                   <svg class="site-footer__channel-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
                     <rect x="3.5" y="3.5" width="25" height="25" rx="7" stroke="currentColor" stroke-width="2.25" />
@@ -215,6 +233,7 @@
                   </svg>
                   <span>RuTube-канал</span>
                 </a>
+                </div>
               </div>
             </section>
 
@@ -241,7 +260,6 @@
       </div>
 
       <div class="site-footer__legal">
-        <a href="${SITE_ROOT}blog/">Блог</a>
         <a href="${SITE_ROOT}personal-data-consent/" target="_blank" rel="noopener noreferrer">Согласие на обработку персональных данных</a>
         <a href="${SITE_ROOT}cookie-policy/" target="_blank" rel="noopener noreferrer">Cookie</a>
       </div>

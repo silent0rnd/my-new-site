@@ -4586,10 +4586,25 @@ html.is-hero-video-played .portrait-video {
   line-height: 1.3;
 }
 
+.site-footer__materials-grid,
 .site-footer__channels-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px 20px;
+}
+
+.site-footer__channels-group {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line, #d8d8d3);
+}
+
+.site-footer__channels-subtitle {
+  margin: 0 0 10px;
+  color: var(--muted, #7d7d7a);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
 }
 
 .site-footer--contacts .site-footer__channel-link {
@@ -4780,9 +4795,15 @@ html.is-hero-video-played .portrait-video {
     font-size: 18px;
   }
 
+  .site-footer__materials-grid,
   .site-footer__channels-grid {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+
+  .site-footer__channels-group {
+    margin-top: 18px;
+    padding-top: 16px;
   }
 
   .site-footer--contacts .site-footer__channel-link {
