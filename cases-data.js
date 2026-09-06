@@ -5921,6 +5921,153 @@
     },
   ];
 
+  const casePageEnhancements = {
+    "yoga-qigong-telegram-ads": {
+      h1Title: "Продвижение курсов йоги и цигун",
+    },
+    "medcenter-telegram-ads": {
+      h1Title: "Продвижение медицинского центра",
+    },
+    "marketplace-managers-telegram-ads": {
+      h1Title: "Продвижение обучения менеджеров маркетплейсов",
+    },
+    "vpn-telegram-ads": {
+      h1Title: "Продвижение VPN-сервиса",
+    },
+    "geoservices-promotion": {
+      h1Title: "Продвижение в геосервисах",
+      intro: "Продвижение пяти проектов офлайн-бизнеса в Яндекс Картах, поиске и карточках организаций. Результат - рост позиций, звонков, переходов на сайт и построений маршрутов.",
+    },
+    "photoschool-scaling-yandex-direct": {
+      h1Title: "Продвижение и масштабирование фотошколы",
+    },
+    "confectioner-webinar-funnel-yandex-direct": {
+      h1Title: "Продвижение вебинарной воронки кондитера",
+    },
+    "wickerwork-course-yandex-direct": {
+      h1Title: "Продвижение курса по лозоплетению",
+    },
+    "chef-live-streams-yandex-direct": {
+      h1Title: "Продвижение эфиров топ-шеф-повара",
+    },
+    "qigong-teacher-courses-yandex-direct": {
+      h1Title: "Продвижение курсов для преподавателей цигун",
+    },
+    "master-campaign-online-education-yandex-direct": {
+      h1Title: "Продвижение курсов по йоге Сурья Намаскар",
+    },
+    "massage-school-moscow-yandex-direct": {
+      h1Title: "Продвижение школы массажа в Москве",
+    },
+    "vastu-bot-launch-yandex-direct": {
+      h1Title: "Продвижение обучения Васту: трафик на бот",
+    },
+    "sensitive-18-funnel-yandex-direct": {
+      h1Title: "Продвижение воронки 18+ в чувствительной нише",
+    },
+    "house-construction-yandex-direct": {
+      h1Title: "Продвижение строительства домов",
+    },
+    "krasnogorsk-park-real-estate-yandex-direct": {
+      h1Title: "Продвижение ЖК «Красногорск Парк»",
+    },
+    "moscow-studios-real-estate-yandex-direct": {
+      h1Title: "Продвижение студий в Москве",
+    },
+    "vatutinki-park-commercial-real-estate-yandex-direct": {
+      h1Title: "Продвижение коммерческой недвижимости в ЖК «Ватутинки Парк»",
+    },
+    "real-estate-agency-trade-in-yandex-direct": {
+      h1Title: "Продвижение агентства недвижимости: Trade-in",
+    },
+    "industrial-crushers-supplier-yandex-direct": {
+      h1Title: "Продвижение промышленных дробилок",
+    },
+    "ozon-yandex-market-partner-yandex-direct": {
+      h1Title: "Продвижение услуг партнера Ozon и Яндекс Маркета",
+    },
+    "legal-consulting-yandex-direct": {
+      h1Title: "Продвижение юридического консалтинга",
+    },
+    "business-setup-uae-yandex-direct": {
+      h1Title: "Продвижение услуг по открытию бизнеса в ОАЭ",
+    },
+    "stock-buyout-high-ticket-yandex-direct": {
+      h1Title: "Продвижение услуги выкупа акций с высоким чеком",
+    },
+    "superfood-promotion-yandex-direct": {
+      h1Title: "Продвижение суперфуда",
+    },
+    "outdoor-advertising-yandex-direct": {
+      h1Title: "Продвижение услуг наружной рекламы",
+    },
+    "construction-cabins-sales-yandex-direct": {
+      h1Title: "Продвижение строительных бытовок",
+    },
+    "norilsk-cargo-transport-yandex-direct": {
+      h1Title: "Продвижение грузоперевозок в Норильск",
+    },
+    "kids-clothing-factory-yandex-direct": {
+      h1Title: "Продвижение фабрики детской одежды",
+    },
+    "sewing-production-organization-yandex-direct": {
+      h1Title: "Продвижение услуг по организации швейного производства",
+    },
+    "led-lighting-wholesale-yandex-direct": {
+      h1Title: "Продвижение оптовых продаж LED-светильников",
+    },
+    "strip-club-hiring-yandex-direct": {
+      h1Title: "Продвижение вакансий стриптиз-клуба",
+    },
+    "psychology-center-lipetsk-yandex-direct": {
+      h1Title: "Продвижение центра психологии в Липецке",
+    },
+    "visa-services-yandex-direct": {
+      h1Title: "Продвижение визовых услуг",
+    },
+    "crimea-taxi-fleet-yandex-direct": {
+      h1Title: "Продвижение таксопарка в Крыму",
+    },
+    "pregnancy-photoshoots-yandex-direct": {
+      h1Title: "Продвижение фотосессий для беременных",
+    },
+    "saint-petersburg-tours-yandex-direct": {
+      h1Title: "Продвижение экскурсий по Санкт-Петербургу",
+    },
+    "dental-prosthetics-moscow-yandex-direct": {
+      h1Title: "Продвижение услуг протезирования зубов в Москве",
+    },
+    "doctor-dzidzaria-medical-service-yandex-direct": {
+      h1Title: "Продвижение медицинского сервиса доктора Дзидзарии",
+    },
+    "dry-cleaning-chain-yandex-direct": {
+      h1Title: "Продвижение сети химчисток",
+    },
+    "rybinsk-car-service-yandex-direct": {
+      h1Title: "Продвижение автосервиса в Рыбинске",
+    },
+    "japanese-cosmetics-store-yandex-direct": {
+      h1Title: "Продвижение интернет-магазина японской косметики",
+    },
+    "myasnitsky-ryad-store-yandex-direct": {
+      h1Title: "Продвижение интернет-магазина «Мясницкий ряд»",
+    },
+  };
+
+  function casePeriod(caseItem) {
+    const fact = (caseItem.facts || []).find((item) => /^Период(?: работы| отчета| замера)?:/.test(item));
+    return fact ? fact.replace(":", " -") : "";
+  }
+
+  function buildCaseIntro(caseItem, h1Title) {
+    const period = casePeriod(caseItem);
+    const result = caseItem.shortResult.charAt(0).toLowerCase() + caseItem.shortResult.slice(1);
+    const channel = caseItem.channel === "Геосервисы"
+      ? "в Яндекс Картах и поиске"
+      : `через ${caseItem.channel === "Яндекс.Директ" ? "Яндекс Директ" : caseItem.channel}`;
+    return `${h1Title} ${channel}.${period ? ` ${period}` : ""} Результат - ${result}.`;
+  }
+
   const caseItems = [
     {
       id: "yoga-qigong-telegram-ads",
@@ -6669,5 +6816,16 @@
   ];
 
   window.caseCategories = caseCategories;
-  window.siteCases = caseItems;
+  window.siteCases = caseItems.map((caseItem) => {
+    const enhancement = casePageEnhancements[caseItem.slug];
+    if (!enhancement) return caseItem;
+
+    const h1Title = enhancement.h1Title || caseItem.title;
+    return {
+      ...caseItem,
+      ...enhancement,
+      h1Title,
+      intro: enhancement.intro || buildCaseIntro(caseItem, h1Title),
+    };
+  });
 })();

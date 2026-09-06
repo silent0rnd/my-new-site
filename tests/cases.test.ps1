@@ -77,7 +77,10 @@ $slugs = @(
   "dental-prosthetics-moscow-yandex-direct",
   "doctor-dzidzaria-medical-service-yandex-direct",
   "dry-cleaning-chain-yandex-direct",
-  "rybinsk-car-service-yandex-direct"
+  "rybinsk-car-service-yandex-direct",
+  "geoservices-promotion",
+  "japanese-cosmetics-store-yandex-direct",
+  "myasnitsky-ryad-store-yandex-direct"
 )
 
 Assert-Match $index "cases-data\.js" "Cases data script missing on homepage"
@@ -90,7 +93,7 @@ Assert-Match $index "data-cases-load-more" "Load more hook missing"
 Assert-Match $index "data-case-filter=`"all`"" "All cases filter missing"
 Assert-Match $index "data-case-filter=`"tg-ads`"" "TG Ads filter missing"
 Assert-Match $css '\.case-filter \{[\s\S]*?--case-filter-ring:[\s\S]*?%237d7d7a[\s\S]*?stroke-width=''\.45''[\s\S]*?stroke-width=''\.1875''[\s\S]*?border:\s*0;[\s\S]*?color:\s*#202020;' "Inactive case filters must use a thin muted hand-drawn outline"
-Assert-Match $css '\.case-filter::before,\s*\.cases-load-more::before \{[\s\S]*?background-image:\s*var\(--case-filter-ring\);' "Case controls must render the shared hand-drawn outline"
+Assert-Match $css '\.case-filter::before,\s*\.cases-load-more::before,[\s\S]*?\{[\s\S]*?background-image:\s*var\(--case-filter-ring\);' "Case controls must render the shared hand-drawn outline"
 Assert-Match $css '\.cases-load-more \{[\s\S]*?%237d7d7a[\s\S]*?stroke-width=''\.45''[\s\S]*?border:\s*0;[\s\S]*?color:\s*#202020;' "Inactive load more button must use a thin muted hand-drawn outline"
 Assert-Match $css '\.case-filter\.is-active \{[\s\S]*?stroke-width=''1\.35''[\s\S]*?stroke-width=''\.55''' "Active case filter must use a thicker hand-drawn outline"
 Assert-Match $css '@keyframes case-filter-wiggle' "Case filters must wiggle on hover"
@@ -114,6 +117,7 @@ Assert-Match $homeJs 'function addCaseControlRays' "Case control ray decoration 
 Assert-Match $homeJs 'index < 3' "Case controls must receive three decorative rays"
 Assert-Match $css '\.case-filter:focus-visible::before,\s*\.cases-load-more:focus-visible::before \{[\s\S]*?filter:\s*drop-shadow\(0 0 1\.5px rgb\(32 32 32 / 0\.8\)\);' "Case controls must retain a visible keyboard focus state"
 Assert-Match $css '@media \(max-width: 560px\)[\s\S]*?\.case-filters \{[\s\S]*?flex-wrap:\s*wrap;[\s\S]*?overflow-x:\s*visible;' "Mobile case filters must wrap without horizontal scrolling"
+$promotionWord = -join ([char[]](0x041F, 0x0440, 0x043E, 0x0434, 0x0432, 0x0438, 0x0436, 0x0435, 0x043D, 0x0438, 0x0435))
 if ($index.IndexOf('<section class="about"') -gt $index.IndexOf('<section class="cases-showcase"')) {
   throw "About block must be above cases block"
 }
@@ -128,6 +132,10 @@ foreach ($slug in $slugs) {
   Assert-Match $page 'href="\.\./"' "Breadcrumb link to /cases/ missing $slug"
   Assert-Match $page "../../cases-data\.js" "Case data script missing $slug"
   Assert-Match $page "../../case-page\.js" "Case page script missing $slug"
+  Assert-Match $page ("<h1>" + $promotionWord) "Case page H1 must use the promotion title $slug"
+  Assert-Match $page 'class="article-author case-author"' "Visible case author is missing $slug"
+  Assert-NotMatch $page 'class="case-cta"' "Case CTA block must be absent $slug"
+  Assert-Match $page 'https://naklikay\.ru/#maxim-miroshnikov' "Article schema must link the author entity $slug"
   Assert-NotMatch $page ([char]0x2014) "Case page contains long dash $slug"
 }
 
@@ -166,6 +174,12 @@ Assert-PathExists $generatorPath "Static case generator is missing"
 $generator = Get-Content -Raw -Encoding UTF8 -LiteralPath $generatorPath
 Assert-Match $generator 'function buildTitle' "Case title builder missing from the generator"
 Assert-Match $generator '<title>\$\{esc\(title\)\}</title>' "Generated pages must carry a static title"
+Assert-Match $generator 'caseItem\.h1Title \|\| caseItem\.title' "Case H1 must have a separate data field"
+Assert-Match $generator 'function datesHtml' "Visible case dates template is missing"
+Assert-Match $generator 'function authorHtml' "Visible case author template is missing"
+Assert-NotMatch $generator 'function ctaHtml' "Case CTA template must be removed"
+Assert-Match $caseJs 'case-gallery__caption' "Visible gallery caption is missing"
+Assert-Match $caseJs 'case-lightbox__counter' "Separate lightbox counter is missing"
 Assert-NotMatch $caseJs 'document\.title\s*=' "Case script must not overwrite the static SEO title"
 $sourceMaterialResultPhrase = -join ([char[]](0x0412, 0x0020, 0x0438, 0x0441, 0x0445, 0x043E, 0x0434, 0x043D, 0x043E, 0x043C, 0x0020, 0x043C, 0x0430, 0x0442, 0x0435, 0x0440, 0x0438, 0x0430, 0x043B, 0x0435, 0x0020, 0x0437, 0x0430, 0x0444, 0x0438, 0x043A, 0x0441, 0x0438, 0x0440, 0x043E, 0x0432, 0x0430, 0x043D, 0x0020, 0x0440, 0x0435, 0x0437, 0x0443, 0x043B, 0x044C, 0x0442, 0x0430, 0x0442))
 $sourceGuideFact = -join ([char[]](0x041E, 0x0441, 0x043D, 0x043E, 0x0432, 0x0430, 0x0020, 0x0434, 0x0430, 0x043D, 0x043D, 0x044B, 0x0445, 0x003A, 0x0020, 0x0438, 0x0441, 0x0445, 0x043E, 0x0434, 0x043D, 0x044B, 0x0439, 0x0020, 0x043A, 0x0435, 0x0439, 0x0441, 0x0020, 0x0438, 0x0437, 0x0020, 0x0441, 0x043F, 0x0440, 0x0430, 0x0432, 0x043E, 0x0447, 0x043D, 0x0438, 0x043A, 0x0430))

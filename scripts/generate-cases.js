@@ -76,7 +76,7 @@ function heroHtml(caseItem) {
   return [
     `<section class="case-hero">`,
     `<p class="case-hero__meta">${esc(caseItem.categoryLabel)}</p>`,
-    `<h1>${esc(caseItem.title)}</h1>`,
+    `<h1>${esc(caseItem.h1Title || caseItem.title)}</h1>`,
     `<p class="case-hero__lead">${esc(caseItem.intro)}</p>`,
     `<p class="case-hero__result">${esc(caseItem.shortResult)}</p>`,
     `</section>`,
@@ -146,9 +146,10 @@ function galleryHtml(images, headingTag = "h2") {
     .map((image, index) => {
       const style = coverflowStyle(index, images.length);
       const alt = image.alt || `Скриншот ${index + 1}`;
+      const caption = image.caption || alt;
       return [
         `<figure class="case-gallery__item" style="z-index: ${style.zIndex};">`,
-        `<button class="case-gallery__button" type="button" data-lightbox-index="${index}"`,
+        `<button class="case-gallery__button" type="button" data-lightbox-index="${index}" data-caption="${attr(caption)}"`,
         ` aria-label="${attr(`Открыть скриншот ${index + 1} из ${images.length}`)}"`,
         ` aria-current="${style.current}" tabindex="${style.tabIndex}" style="${attr(style.button)}">`,
         `<img src="${attr(assetPath(image.src))}" alt="${attr(alt)}" loading="lazy" decoding="async">`,
@@ -169,6 +170,7 @@ function galleryHtml(images, headingTag = "h2") {
     `<button class="case-gallery__nav case-gallery__nav--prev hand-drawn-nav hand-drawn-nav--prev" type="button" aria-label="Предыдущий скриншот">${navIcon("prev")}</button>`,
     `<button class="case-gallery__nav case-gallery__nav--next hand-drawn-nav hand-drawn-nav--next" type="button" aria-label="Следующий скриншот">${navIcon("next")}</button>`,
     `<div class="case-gallery__progress">${dots}</div>`,
+    `<p class="case-gallery__caption" aria-live="polite">${esc(images[0].caption || images[0].alt || "Скриншот 1")}</p>`,
     `</div></section>`,
   ].join("");
 }
@@ -177,7 +179,7 @@ function lightboxHtml() {
   return [
     `<div class="case-lightbox" hidden role="dialog" aria-modal="true" aria-label="Просмотр скриншотов">`,
     `<button class="case-lightbox__backdrop" type="button" aria-label="Закрыть скриншот"></button>`,
-    `<figure class="case-lightbox__figure"><img class="case-lightbox__image" decoding="async" alt=""><figcaption class="case-lightbox__caption"></figcaption></figure>`,
+    `<figure class="case-lightbox__figure"><img class="case-lightbox__image" decoding="async" alt=""><figcaption class="case-lightbox__caption"><span class="case-lightbox__caption-text"></span><span class="case-lightbox__counter"></span></figcaption></figure>`,
     `<button class="case-lightbox__button case-lightbox__button--prev hand-drawn-nav hand-drawn-nav--prev" type="button" aria-label="Предыдущий скриншот">${navIcon("prev")}</button>`,
     `<button class="case-lightbox__button case-lightbox__button--next hand-drawn-nav hand-drawn-nav--next" type="button" aria-label="Следующий скриншот">${navIcon("next")}</button>`,
     `<button class="case-lightbox__close" type="button" aria-label="Закрыть">×</button>`,
@@ -209,6 +211,32 @@ function conclusionHtml(caseItem) {
     `<p>${esc(caseItem.conclusion)}</p>`,
     orb("lower"),
     `</section>`,
+  ].join("");
+}
+
+function formatCaseDate(value) {
+  if (!value) return "";
+  return new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${value}T00:00:00Z`));
+}
+
+function datesHtml(caseItem) {
+  const rows = [];
+  if (caseItem.datePublished) rows.push(`<div><dt>Опубликовано</dt><dd><time datetime="${attr(caseItem.datePublished)}">${esc(formatCaseDate(caseItem.datePublished))}</time></dd></div>`);
+  if (caseItem.dateModified) rows.push(`<div><dt>Обновлено</dt><dd><time datetime="${attr(caseItem.dateModified)}">${esc(formatCaseDate(caseItem.dateModified))}</time></dd></div>`);
+  return rows.length > 0 ? `<dl class="case-dates" aria-label="Даты кейса">${rows.join("")}</dl>` : "";
+}
+
+function authorHtml() {
+  return [
+    `<aside class="article-author case-author" aria-label="Об авторе кейса">`,
+    `<img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников, специалист по платному трафику" width="192" height="192" loading="lazy" decoding="async">`,
+    `<div class="article-author__body">`,
+    `<p class="article-author__label">Автор кейса</p>`,
+    `<p class="article-author__name">Максим Мирошников</p>`,
+    `<p class="article-author__role">Специалист по платному трафику и Яндекс Директу</p>`,
+    `<p class="article-author__text">Занимаюсь интернет-рекламой более 10 лет. Работаю как ИП и веду проекты напрямую: запускаю рекламу, создаю сайты и воронки, помогаю выстраивать связь между маркетингом, заявками и продажами.</p>`,
+    `<p class="article-author__link"><a href="../../#about">Подробнее обо мне</a></p>`,
+    `</div></aside>`,
   ].join("");
 }
 
@@ -258,7 +286,7 @@ function bodyHtml(caseItem, cases) {
       const variant = index === 0 ? "upper" : index === middle ? "middle" : index === lower ? "lower" : "";
       return projectHtml(project, index, variant);
     });
-    return heroHtml(caseItem) + blocks.join("") + faqHtml(caseItem.faq) + lightboxHtml();
+    return heroHtml(caseItem) + datesHtml(caseItem) + blocks.join("") + faqHtml(caseItem.faq) + authorHtml() + relatedHtml(caseItem, cases) + lightboxHtml();
   }
 
   const sections = caseItem.sections || [];
@@ -267,12 +295,14 @@ function bodyHtml(caseItem, cases) {
 
   return [
     heroHtml(caseItem),
+    datesHtml(caseItem),
     metricsHtml(caseItem.metrics),
     factsHtml(caseItem.facts),
     sectionsHtml(sections, "h2", { 0: "upper", [middle]: "middle" }),
     hasImages ? galleryHtml(caseItem.images) : "",
     faqHtml(caseItem.faq),
     conclusionHtml(caseItem),
+    authorHtml(),
     relatedHtml(caseItem, cases),
     hasImages ? lightboxHtml() : "",
   ].join("");
@@ -309,19 +339,21 @@ function buildImages(caseItem) {
 }
 
 function buildSchema(caseItem, pageUrl, images, title, description) {
+  const caseName = caseItem.h1Title || caseItem.title;
+  const authorId = `${siteUrl}/#maxim-miroshnikov`;
   const article = {
     "@type": "Article",
     "@id": `${pageUrl}#article`,
     headline: title,
-    name: caseItem.title,
+    name: caseName,
     description,
     url: pageUrl,
     image: images,
     inLanguage: "ru-RU",
     mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
-    author: { "@type": "Person", name: author, url: `${siteUrl}/` },
-    publisher: { "@type": "Person", name: author, url: `${siteUrl}/` },
-    about: caseItem.title,
+    author: { "@type": "Person", "@id": authorId, name: author, url: `${siteUrl}/` },
+    publisher: { "@type": "Person", "@id": authorId, name: author, url: `${siteUrl}/` },
+    about: caseName,
     articleSection: caseItem.categoryLabel,
   };
 
@@ -370,9 +402,9 @@ function pageHtml(caseItem, cases) {
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="${pageUrl}" />
     <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="../../styles.css?v=20260810-mobile-layout" />
-    <script src="../../cases-data.js?v=20260823" defer></script>
-    <script src="../../case-page.js?v=20260823-collection-faq" defer></script>
+    <link rel="stylesheet" href="../../styles.css?v=20260906-case-seo" />
+    <script src="../../cases-data.js?v=20260906-case-seo" defer></script>
+    <script src="../../case-page.js?v=20260906-case-seo" defer></script>
     <script src="../../script.js?v=20260810-mobile-layout" defer></script>
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="${attr(author)}" />
@@ -405,9 +437,8 @@ function pageHtml(caseItem, cases) {
 // а здесь роботу и человеку нужен полный перечень.
 function indexHtml(cases, categories) {
   const pageUrl = `${siteUrl}/cases/`;
-  const count = cases.length;
-  const title = `Кейсы контекстной рекламы: ${count} ${plural(count, "проект", "проекта", "проектов")} - Яндекс Директ и Telegram Ads`;
-  const description = `${count} ${plural(count, "кейс", "кейса", "кейсов")} по платному трафику: Яндекс Директ, Telegram Ads и Яндекс Карты. Ниша, бюджет, стоимость заявки и что именно сделали в каждом проекте.`;
+  const title = "Кейсы контекстной рекламы - Яндекс Директ и Telegram Ads";
+  const description = "Кейсы по платному трафику: Яндекс Директ, Telegram Ads и Яндекс Карты. Ниша, бюджет, стоимость заявки и что именно сделали в каждом проекте.";
 
   const order = categories.filter((category) => category.id !== "all");
   const known = new Set(order.map((category) => category.id));
@@ -442,7 +473,6 @@ function indexHtml(cases, categories) {
         author: { "@type": "Person", name: author, url: `${siteUrl}/` },
         mainEntity: {
           "@type": "ItemList",
-          numberOfItems: cases.length,
           itemListElement: cases.map((caseItem, index) => ({
             "@type": "ListItem",
             position: index + 1,

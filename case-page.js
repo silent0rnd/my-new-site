@@ -20,6 +20,8 @@
   let lightbox = null;
   let lightboxImage = null;
   let lightboxCaption = null;
+  let lightboxCaptionText = null;
+  let lightboxCounter = null;
   let lightboxCloseButton = null;
   let lightboxHideTimer = null;
   let lastFocusedElement = null;
@@ -101,6 +103,7 @@
     return images.map((image, index) => ({
       image: assetPath(image.src),
       text: image.alt || `Скриншот ${index + 1}`,
+      caption: image.caption || image.alt || `Скриншот ${index + 1}`,
       index,
     }));
   }
@@ -116,15 +119,16 @@
   }
 
   function showLightboxImage(images, index) {
-    if (!lightboxImage || !lightboxCaption || images.length === 0) {
+    if (!lightboxImage || !lightboxCaption || !lightboxCaptionText || !lightboxCounter || images.length === 0) {
       return;
     }
 
     const nextImage = getLightboxImage(images, index);
     activeLightboxIndex = nextImage.index;
     lightboxImage.src = assetPath(nextImage.image.src);
-    lightboxImage.alt = nextImage.image.alt;
-    lightboxCaption.textContent = `${activeLightboxIndex + 1} / ${images.length}`;
+    lightboxImage.alt = nextImage.image.alt || `Скриншот ${activeLightboxIndex + 1}`;
+    lightboxCaptionText.textContent = nextImage.image.caption || lightboxImage.alt;
+    lightboxCounter.textContent = `${activeLightboxIndex + 1} / ${images.length}`;
     lightbox.classList.toggle(
       "is-loading",
       !(lightboxImage.complete && lightboxImage.naturalWidth > 0)
@@ -205,7 +209,7 @@
   function renderHero() {
     const hero = createElement("section", "case-hero");
     const meta = createElement("p", "case-hero__meta", currentCase.categoryLabel);
-    const title = createElement("h1", "", currentCase.title);
+    const title = createElement("h1", "", currentCase.h1Title || currentCase.title);
     const lead = createElement("p", "case-hero__lead", currentCase.intro);
     const result = createElement("p", "case-hero__result", currentCase.shortResult);
 
@@ -240,6 +244,31 @@
     });
 
     return list;
+  }
+
+  function formatCaseDate(value) {
+    return new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
+      .format(new Date(`${value}T00:00:00Z`));
+  }
+
+  function renderDates() {
+    const list = createElement("dl", "case-dates");
+    list.setAttribute("aria-label", "Даты кейса");
+
+    [
+      ["Опубликовано", currentCase.datePublished],
+      ["Обновлено", currentCase.dateModified],
+    ].forEach(([label, value]) => {
+      if (!value) return;
+      const row = createElement("div", "");
+      const time = createElement("time", "", formatCaseDate(value));
+      time.dateTime = value;
+      row.append(createElement("dt", "", label), createElement("dd", ""));
+      row.lastElementChild.append(time);
+      list.append(row);
+    });
+
+    return list.children.length > 0 ? list : null;
   }
 
   function renderSections(sections, headingTag = "h2", decorationVariants = {}) {
@@ -286,6 +315,8 @@
     const activeIndex = (nextIndex + imageCount) % imageCount;
 
     gallery.dataset.activeIndex = String(activeIndex);
+    const caption = gallery.querySelector(".case-gallery__caption");
+    if (caption) caption.textContent = buttons[activeIndex].dataset.caption || `Скриншот ${activeIndex + 1}`;
 
     buttons.forEach((button, index) => {
       const rawOffset = index - activeIndex;
@@ -383,6 +414,7 @@
     const previousButton = createElement("button", "case-gallery__nav case-gallery__nav--prev");
     const nextButton = createElement("button", "case-gallery__nav case-gallery__nav--next");
     const progress = createElement("div", "case-gallery__progress");
+    const caption = createElement("p", "case-gallery__caption");
     const galleryItems = createGalleryItems(images);
 
     stage.setAttribute("aria-label", "Галерея скриншотов");
@@ -400,6 +432,7 @@
 
       button.type = "button";
       button.setAttribute("data-lightbox-index", String(galleryItem.index));
+      button.dataset.caption = galleryItem.caption;
       button.setAttribute("aria-label", `Открыть скриншот ${galleryItem.index + 1} из ${galleryItems.length}`);
       button.addEventListener("click", () => openLightbox(images, galleryItem.index, button));
       img.src = galleryItem.image;
@@ -420,7 +453,8 @@
 
     previousButton.addEventListener("click", () => setCoverflowIndex(gallery, Number(gallery.dataset.activeIndex || "0") - 1));
     nextButton.addEventListener("click", () => setCoverflowIndex(gallery, Number(gallery.dataset.activeIndex || "0") + 1));
-    gallery.append(stage, previousButton, nextButton, progress);
+    caption.setAttribute("aria-live", "polite");
+    gallery.append(stage, previousButton, nextButton, progress, caption);
     updateCoverflowGallery(gallery, 0);
     bindCoverflowHoverTilt(gallery);
     return gallery;
@@ -466,6 +500,8 @@
     const closeButton = createElement("button", "case-lightbox__close", "×");
     const image = document.createElement("img");
     const caption = createElement("figcaption", "case-lightbox__caption");
+    const captionText = createElement("span", "case-lightbox__caption-text");
+    const counter = createElement("span", "case-lightbox__counter");
 
     overlay.hidden = true;
     overlay.setAttribute("role", "dialog");
@@ -489,6 +525,8 @@
     lightbox = overlay;
     lightboxImage = image;
     lightboxCaption = caption;
+    lightboxCaptionText = captionText;
+    lightboxCounter = counter;
     lightboxCloseButton = closeButton;
 
     backdrop.addEventListener("click", closeLightbox);
@@ -497,6 +535,7 @@
     closeButton.addEventListener("click", closeLightbox);
     document.addEventListener("keydown", handleLightboxKeydown);
 
+    caption.append(captionText, counter);
     figure.append(image, caption);
     overlay.append(backdrop, figure, previousButton, nextButton, closeButton);
     return overlay;
@@ -528,6 +567,34 @@
     section.append(createElement("p", "", currentCase.conclusion));
     addCaseSketchOrb(section, "lower");
     return section;
+  }
+
+  function renderAuthor() {
+    const aside = createElement("aside", "article-author case-author");
+    const photo = document.createElement("img");
+    const body = createElement("div", "article-author__body");
+    const linkLine = createElement("p", "article-author__link");
+    const link = createElement("a", "", "Подробнее обо мне");
+
+    aside.setAttribute("aria-label", "Об авторе кейса");
+    photo.className = "article-author__photo";
+    photo.src = "../../assets/author-avatar.jpg";
+    photo.alt = "Максим Мирошников, специалист по платному трафику";
+    photo.width = 192;
+    photo.height = 192;
+    photo.loading = "lazy";
+    photo.decoding = "async";
+    link.href = "../../#about";
+    linkLine.append(link);
+    body.append(
+      createElement("p", "article-author__label", "Автор кейса"),
+      createElement("p", "article-author__name", "Максим Мирошников"),
+      createElement("p", "article-author__role", "Специалист по платному трафику и Яндекс Директу"),
+      createElement("p", "article-author__text", "Занимаюсь интернет-рекламой более 10 лет. Работаю как ИП и веду проекты напрямую: запускаю рекламу, создаю сайты и воронки, помогаю выстраивать связь между маркетингом, заявками и продажами."),
+      linkLine,
+    );
+    aside.append(photo, body);
+    return aside;
   }
 
   function initCaseSketchOrbs() {
@@ -674,9 +741,14 @@
         renderLightbox(),
       ];
 
+      const dates = renderDates();
+      if (dates) pageBlocks.splice(1, 0, dates);
+
       if (Array.isArray(currentCase.faq) && currentCase.faq.length > 0) {
         pageBlocks.splice(pageBlocks.length - 1, 0, renderFaq(currentCase.faq));
       }
+
+      pageBlocks.splice(pageBlocks.length - 1, 0, renderAuthor(), renderRelatedCases());
 
       root.append(...pageBlocks);
       initCaseSketchOrbs();
@@ -694,6 +766,9 @@
       }),
     ];
 
+    const dates = renderDates();
+    if (dates) pageBlocks.splice(1, 0, dates);
+
     if (hasImages(currentCase.images)) {
       pageBlocks.push(renderGallery(currentCase.images));
     }
@@ -702,7 +777,7 @@
       pageBlocks.push(renderFaq(currentCase.faq));
     }
 
-    pageBlocks.push(renderConclusion(), renderRelatedCases());
+    pageBlocks.push(renderConclusion(), renderAuthor(), renderRelatedCases());
 
     if (hasImages(currentCase.images)) {
       pageBlocks.push(renderLightbox());
