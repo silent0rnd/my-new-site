@@ -2,6 +2,77 @@
   "version": 1,
   "articles": [
     {
+      "slug": "bidder-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kreativy-yandex-direct",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "ad-formats"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "moderaciya-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "ad-formats"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kvalifikaciya-lidov-v-prodazhah",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "korrektirovki-stavok-v-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "campaign-setup"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "banner-na-poiske",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "search"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "ecommerce-yandex-metrika",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "ecommerce",
+        "analytics",
+        "campaign-setup",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "korrektirovki-po-regionam-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [],
+      "intent": "strategy"
+    },
+    {
       "slug": "stoimost-privlecheniya-klienta-cac",
       "topic": "metrics",
       "topicLabel": "Показатели рекламы",
@@ -1437,6 +1508,18 @@
       "intent": "instruction"
     },
     {
+      "slug": "reklama-na-avito-rostov",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "ad-formats",
+        "avito",
+        "local",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "targetirovannaya-reklama-rostov",
       "topic": "local-promotion",
       "topicLabel": "Локальное продвижение",
@@ -1453,18 +1536,6 @@
       "tags": [
         "telegram",
         "local"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "reklama-na-avito-rostov",
-      "topic": "local-promotion",
-      "topicLabel": "Локальное продвижение",
-      "tags": [
-        "ad-formats",
-        "avito",
-        "local",
-        "lead-generation"
       ],
       "intent": "strategy"
     },
@@ -1570,6 +1641,17 @@
         "ecommerce",
         "search",
         "ad-formats"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "segmenty-v-yandex-metrike",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "metrika",
+        "retargeting"
       ],
       "intent": "instruction"
     }
