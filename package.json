@@ -16,7 +16,8 @@
     "test:related-articles": "node tests/related-articles.test.js",
     "test:mediaplan": "node --test tests/mediaplan.test.js",
     "test:ad-budget": "node --test tests/ad-budget.test.js",
-    "test:png-to-jpg": "node --test tests/png-to-jpg.test.js"
+    "test:png-to-jpg": "node --test tests/png-to-jpg.test.js",
+    "test:percent-calculator": "node --test tests/percent-calculator.test.js"
   },
   "keywords": [],
   "author": "",

@@ -21,13 +21,13 @@ function createWorkerForTest() {
 }
 
 test("распознаёт русские и английские названия колонок", () => {
-  assert.deepStrictEqual(detectColumns(["Телефон", "E-mail"]), { phone: 0, email: 1 });
-  assert.deepStrictEqual(detectColumns(["client", "mail"]), { phone: null, email: 1 });
+  assert.deepStrictEqual(detectColumns(["Телефон", "E-mail"]), { phone: 0, email: 1, mixed: null });
+  assert.deepStrictEqual(detectColumns(["client", "mail"]), { phone: null, email: 1, mixed: null });
 });
 
 test("распознаёт список email без строки заголовков", () => {
   const rows = [["savchenko-sa@mail.ru"], ["ve sti17.ie@gmail.com"], ["zao,esv@mail.ru"], ["kenstroycorp.com"]];
-  assert.deepStrictEqual(detectColumns(["Колонка 1"], rows), { phone: null, email: 0 });
+  assert.deepStrictEqual(detectColumns(["Колонка 1"], rows), { phone: null, email: 0, mixed: null });
   const output = processRows(rows, { phone: null, email: 0 });
   assert.deepStrictEqual(output.records, [{ phone: "", email: "savchenko-sa@mail.ru" }]);
   assert.strictEqual(output.metrics.errors, 3);
@@ -42,7 +42,19 @@ test("Worker читает выбранный CSV из переданного Arr
   const worker = createWorkerForTest();
   const buffer = new TextEncoder().encode("email\nuser@example.ru").buffer;
   await worker.context.self.onmessage({ data: { type: "read", file: { name: "contacts.csv" }, buffer } });
-  assert.deepStrictEqual(JSON.parse(JSON.stringify(worker.messages[0])), { type: "parsed", headers: ["email"], rows: [["user@example.ru"]], suggestedMapping: { phone: null, email: 0 } });
+  assert.deepStrictEqual(JSON.parse(JSON.stringify(worker.messages[0])), { type: "parsed", headers: ["email"], rows: [["user@example.ru"]], suggestedMapping: { phone: null, email: 0, mixed: null } });
+});
+
+test("разделяет смешанный список из одной колонки", () => {
+  const rows = [["savchenko-sa@mail.ru"], ["8 900 235-61-58"], ["ykytenok@mail.ru"]];
+  assert.deepStrictEqual(detectColumns(["Контакты"], rows), { phone: null, email: null, mixed: 0 });
+  const output = processRows(rows, { phone: null, email: null, mixed: 0 });
+  assert.deepStrictEqual(output.records, [
+    { phone: "", email: "savchenko-sa@mail.ru" },
+    { phone: "79002356158", email: "" },
+    { phone: "", email: "ykytenok@mail.ru" }
+  ]);
+  assert.strictEqual(toCsv(output.records), "phone,email\r\n,savchenko-sa@mail.ru\r\n79002356158,\r\n,ykytenok@mail.ru");
 });
 
 test("нормализует российские телефоны и не меняет международный", () => {

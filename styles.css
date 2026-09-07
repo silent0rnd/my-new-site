@@ -6846,6 +6846,232 @@ html.is-hero-video-played .portrait-video {
   max-width: 820px;
 }
 
+/* Калькулятор процентов (/tools/calculator-procentov/). */
+.percent-main {
+  margin-top: 30px;
+}
+
+.percent-main__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.percent-main__head p {
+  margin: 14px 0 0;
+  color: var(--muted);
+}
+
+.percent-main__head .utm-button {
+  flex: 0 0 auto;
+  margin-top: -9px;
+}
+
+.percent-main__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.82fr);
+  gap: 34px;
+  align-items: stretch;
+  margin-top: 24px;
+}
+
+.percent-main__fields {
+  display: grid;
+  gap: 15px;
+}
+
+.percent-main__fields .utm-field {
+  gap: 7px;
+}
+
+.percent-main__fields .utm-field__name {
+  font-size: 18px;
+}
+
+.percent-input-wrap {
+  position: relative;
+  display: block;
+}
+
+.percent-input-wrap .utm-input {
+  padding-right: 42px;
+}
+
+.percent-input-wrap > span {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  color: var(--muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.percent-error {
+  margin: 0;
+  color: #9e3a2d;
+  font-size: 14px;
+}
+
+.percent-main__result {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 24px;
+  border: 1.5px solid var(--utm-pencil);
+  border-width: 1.5px 2.5px 2px 1.5px;
+  border-radius: var(--utm-wobble-2);
+  box-shadow: 2px 2.5px 0 -0.5px var(--utm-pencil-soft);
+  background: #fff;
+}
+
+.percent-breakdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+}
+
+.percent-breakdown div {
+  min-width: 0;
+}
+
+.percent-breakdown dt {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.percent-breakdown dd {
+  margin: 5px 0 0;
+  font-size: clamp(21px, 2.4vw, 30px);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.percent-total {
+  display: grid;
+  gap: 6px;
+  margin-top: 24px;
+  padding: 20px 0 17px;
+  border-top: 2px solid #FF9800;
+  border-bottom: 1px dashed var(--utm-pencil-soft);
+}
+
+.percent-total span {
+  color: var(--muted);
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.percent-total strong {
+  color: var(--ink);
+  font-size: clamp(38px, 5vw, 62px);
+  font-weight: 500;
+  line-height: 0.98;
+  overflow-wrap: anywhere;
+}
+
+.percent-expression {
+  margin: auto 0 0;
+  padding-top: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.percent-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.percent-card {
+  min-width: 0;
+  padding: 20px;
+  border: 1.5px solid var(--utm-pencil-soft);
+  border-radius: var(--utm-wobble-3);
+  background: #fff;
+}
+
+.legal-document .percent-card h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.percent-card__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 17px;
+}
+
+.percent-card__result {
+  display: block;
+  min-height: 34px;
+  margin-top: 17px;
+  color: var(--ink);
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.percent-card__result.is-error {
+  color: #9e3a2d;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.percent-explanation {
+  max-width: 820px;
+}
+
+.legal-document .percent-explanation h2:not(:first-child) {
+  margin-top: 38px;
+}
+
+@media (max-width: 820px) {
+  .percent-main__layout,
+  .percent-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .percent-main__head {
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 520px) {
+  .percent-main__head {
+    display: block;
+  }
+
+  .percent-main__head .utm-button {
+    margin: 12px 0 0 -10px;
+  }
+
+  .percent-main__layout {
+    gap: 22px;
+  }
+
+  .percent-main__result,
+  .percent-card {
+    padding: 18px;
+  }
+
+  .percent-breakdown,
+  .percent-card__fields {
+    grid-template-columns: 1fr;
+  }
+
+  .percent-total strong {
+    font-size: clamp(34px, 12vw, 50px);
+  }
+}
+
 /* Калькулятор окупаемости рекламы (/tools/okupaemost-reklamy/). Продолжает
    форму калькулятора CPL, но выводит структуру доходности как краткий отчёт. */
 .advertising-roi-workbench {
@@ -7255,6 +7481,29 @@ html.is-hero-video-played .portrait-video {
 .mediaplan-summary--channel { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 18px; }
 @media (max-width: 620px) { .mediaplan-conversions, .mediaplan-summary--channel { grid-template-columns: 1fr; } }
 @media print { .mediaplan-conversions .utm-input { border: 0; box-shadow: none; padding: 0; background: transparent; } .mediaplan-summary--channel { grid-template-columns: repeat(3, 1fr); } }
+
+/* Каталог интересов Яндекс Директ */
+.interests-catalog { margin-top: 32px; }
+.interests-catalog__search { display: grid; gap: 9px; margin: 22px 0; font-weight: 700; }
+.interests-catalog__types, .interests-catalog__controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+.interests-catalog__types[hidden] { display: none; }
+.interests-catalog__updated, .interests-catalog__status, .interests-catalog__meta, .interests-catalog__path { color: var(--muted, #5f6673); font-size: .94rem; }
+.interests-catalog__tree { display: grid; gap: 10px; margin-top: 18px; }
+.interests-catalog__branch { border: 1px solid rgba(20, 33, 52, .16); border-radius: 16px; background: rgba(255,255,255,.72); overflow: hidden; }
+.interests-catalog__branch summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; padding: 16px 18px; font-weight: 700; }
+.interests-catalog__branch summary::marker { color: #ff7112; }
+.interests-catalog__count { min-width: 28px; padding: 2px 8px; border-radius: 999px; background: rgba(255,113,18,.12); color: #ba4800; text-align: center; font-size: .84rem; }
+.interests-catalog__children { display: grid; gap: 10px; padding: 0 14px 14px 28px; }
+.interests-catalog__description { margin: 0 4px; color: var(--muted, #5f6673); }
+.interests-catalog__item { padding: 16px 18px; border-radius: 13px; background: #fff; border: 1px solid rgba(20,33,52,.1); }
+.interests-catalog__item h3 { margin: 0; font-size: 1.05rem; }
+.interests-catalog__item p { margin: 8px 0 0; }
+.interests-catalog__results { display: grid; gap: 10px; }
+@media (max-width: 620px) {
+  .interests-catalog__controls .utm-button { width: 100%; }
+  .interests-catalog__children { padding-left: 12px; }
+  .interests-catalog__branch summary { padding: 14px; }
+}
 
 /* На широком экране таблица занимает доступную ширину, а не навязывает скролл. */
 @media (min-width: 621px) {

@@ -1,0 +1,3511 @@
+{
+  "updatedAt": "2026-06-16T13:16:09Z",
+  "source": "Yandex Direct API",
+  "count": 438,
+  "items": [
+    {
+      "Id": "xlsx-1",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Бизнес",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-2",
+      "InterestKey": null,
+      "ParentId": "xlsx-1",
+      "Name": "Бухгалтерские услуги",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-3",
+      "InterestKey": null,
+      "ParentId": "xlsx-1",
+      "Name": "Владельцы бизнеса",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-4",
+      "InterestKey": null,
+      "ParentId": "xlsx-1",
+      "Name": "Грузоперевозки и транспортные услуги",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-5",
+      "InterestKey": null,
+      "ParentId": "xlsx-1",
+      "Name": "Лизинг",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-6",
+      "InterestKey": null,
+      "ParentId": "xlsx-1",
+      "Name": "Малый и средний бизнес",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-7",
+      "InterestKey": null,
+      "ParentId": "xlsx-1",
+      "Name": "Открытие бизнеса",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-8",
+      "InterestKey": null,
+      "ParentId": "xlsx-1",
+      "Name": "Планируют открыть бизнес",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-9",
+      "InterestKey": null,
+      "ParentId": "xlsx-1",
+      "Name": "Реклама",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-10",
+      "InterestKey": null,
+      "ParentId": "xlsx-1",
+      "Name": "Создание и продвижение сайтов",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-11",
+      "InterestKey": null,
+      "ParentId": "xlsx-1",
+      "Name": "Франчайзинг",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-12",
+      "InterestKey": null,
+      "ParentId": "xlsx-1",
+      "Name": "Юридическая поддержка",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-13",
+      "InterestKey": null,
+      "ParentId": "xlsx-1",
+      "Name": "Юридические лица",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-14",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Бытовая техника",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-15",
+      "InterestKey": null,
+      "ParentId": "xlsx-14",
+      "Name": "Крупная техника для кухни",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-16",
+      "InterestKey": null,
+      "ParentId": "xlsx-15",
+      "Name": "Встраиваемые духовые шкафы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-17",
+      "InterestKey": null,
+      "ParentId": "xlsx-15",
+      "Name": "Встраиваемые рабочие поверхности",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-18",
+      "InterestKey": null,
+      "ParentId": "xlsx-15",
+      "Name": "Кухонные вытяжки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-19",
+      "InterestKey": null,
+      "ParentId": "xlsx-15",
+      "Name": "Кухонные плиты",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-20",
+      "InterestKey": null,
+      "ParentId": "xlsx-15",
+      "Name": "Посудомоечные машины",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-21",
+      "InterestKey": null,
+      "ParentId": "xlsx-15",
+      "Name": "Холодильники",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-22",
+      "InterestKey": null,
+      "ParentId": "xlsx-14",
+      "Name": "Мелкая техника для кухни",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-23",
+      "InterestKey": null,
+      "ParentId": "xlsx-22",
+      "Name": "Блендеры",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-24",
+      "InterestKey": null,
+      "ParentId": "xlsx-22",
+      "Name": "Кофеварки и кофемашины",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-25",
+      "InterestKey": null,
+      "ParentId": "xlsx-22",
+      "Name": "Мультиварки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-26",
+      "InterestKey": null,
+      "ParentId": "xlsx-22",
+      "Name": "Мясорубки, кухонные комбайны и измельчители",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-27",
+      "InterestKey": null,
+      "ParentId": "xlsx-22",
+      "Name": "Пароварки, аэрогрили, мини-печи и ростеры, хлебопечки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-28",
+      "InterestKey": null,
+      "ParentId": "xlsx-22",
+      "Name": "Соковыжималки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-29",
+      "InterestKey": null,
+      "ParentId": "xlsx-14",
+      "Name": "Техника для дома",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-30",
+      "InterestKey": null,
+      "ParentId": "xlsx-29",
+      "Name": "Климатическое оборудование для дома",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-31",
+      "InterestKey": null,
+      "ParentId": "xlsx-30",
+      "Name": "Настенные кондиционеры и сплит-системы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-32",
+      "InterestKey": null,
+      "ParentId": "xlsx-29",
+      "Name": "Пылесосы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-33",
+      "InterestKey": null,
+      "ParentId": "xlsx-29",
+      "Name": "Стиральные машины",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-34",
+      "InterestKey": null,
+      "ParentId": "xlsx-29",
+      "Name": "Техника для красоты и здоровья",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-35",
+      "InterestKey": null,
+      "ParentId": "xlsx-34",
+      "Name": "Женские электробритвы и эпиляторы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-36",
+      "InterestKey": null,
+      "ParentId": "xlsx-34",
+      "Name": "Мужские электробритвы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-37",
+      "InterestKey": null,
+      "ParentId": "xlsx-34",
+      "Name": "Приборы для укладки волос",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-38",
+      "InterestKey": null,
+      "ParentId": "xlsx-34",
+      "Name": "Устройства для ухода за полостью рта",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-39",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Еда и напитки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-40",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Вегетарианцы и веганы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-41",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Доставка воды",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-42",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Доставка готовых блюд",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-43",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Доставка продуктов",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-44",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Итальянская кухня",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-45",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Кавказская кухня",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-46",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Китайская кухня",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-47",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Кофе",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-48",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Кулинария",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-49",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Органические продукты питания",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-50",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Русская кухня",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-51",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Фастфуд",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-52",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Чай",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-53",
+      "InterestKey": null,
+      "ParentId": "xlsx-39",
+      "Name": "Японская кухня",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-54",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Животные",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-55",
+      "InterestKey": null,
+      "ParentId": "xlsx-54",
+      "Name": "Грызуны и рептилии",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-56",
+      "InterestKey": null,
+      "ParentId": "xlsx-54",
+      "Name": "Корма для животных",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-57",
+      "InterestKey": null,
+      "ParentId": "xlsx-56",
+      "Name": "Корма для грызунов",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-58",
+      "InterestKey": null,
+      "ParentId": "xlsx-56",
+      "Name": "Корма для кошек",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-59",
+      "InterestKey": null,
+      "ParentId": "xlsx-56",
+      "Name": "Корма для птиц",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-60",
+      "InterestKey": null,
+      "ParentId": "xlsx-56",
+      "Name": "Корма для рыб",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-61",
+      "InterestKey": null,
+      "ParentId": "xlsx-56",
+      "Name": "Корма для собак",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-62",
+      "InterestKey": null,
+      "ParentId": "xlsx-54",
+      "Name": "Кошки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-63",
+      "InterestKey": null,
+      "ParentId": "xlsx-54",
+      "Name": "Птицы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-64",
+      "InterestKey": null,
+      "ParentId": "xlsx-54",
+      "Name": "Рыбы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-65",
+      "InterestKey": null,
+      "ParentId": "xlsx-54",
+      "Name": "Собаки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-66",
+      "InterestKey": null,
+      "ParentId": "xlsx-54",
+      "Name": "Товары для животных",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-67",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Канцелярские товары",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-68",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Красота и здоровье",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-69",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Декоративная косметика",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-70",
+      "InterestKey": null,
+      "ParentId": "xlsx-69",
+      "Name": "Декоративная косметика для глаз",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-71",
+      "InterestKey": null,
+      "ParentId": "xlsx-69",
+      "Name": "Декоративная косметика для губ",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-72",
+      "InterestKey": null,
+      "ParentId": "xlsx-69",
+      "Name": "Декоративная косметика для лица",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-73",
+      "InterestKey": null,
+      "ParentId": "xlsx-69",
+      "Name": "Декоративная косметика для ногтей",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-74",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Здоровое питание",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-75",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Клиники",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-76",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Маникюр и педикюр",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-77",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Медцинские товары",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-78",
+      "InterestKey": null,
+      "ParentId": "xlsx-77",
+      "Name": "Аптеки и лекарства",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-79",
+      "InterestKey": null,
+      "ParentId": "xlsx-77",
+      "Name": "Витамины и БАДы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-80",
+      "InterestKey": null,
+      "ParentId": "xlsx-77",
+      "Name": "Диагностическое оборудование",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-81",
+      "InterestKey": null,
+      "ParentId": "xlsx-77",
+      "Name": "Контактные линзы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-82",
+      "InterestKey": null,
+      "ParentId": "xlsx-77",
+      "Name": "Лекарства от аллергии",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-83",
+      "InterestKey": null,
+      "ParentId": "xlsx-77",
+      "Name": "Лекарства от простуды и гриппа",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-84",
+      "InterestKey": null,
+      "ParentId": "xlsx-77",
+      "Name": "Обезболивающие",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-85",
+      "InterestKey": null,
+      "ParentId": "xlsx-77",
+      "Name": "Ортопедия, ортопедические изделия",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-86",
+      "InterestKey": null,
+      "ParentId": "xlsx-77",
+      "Name": "Успокоительные",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-87",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Парфюмерия",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-88",
+      "InterestKey": null,
+      "ParentId": "xlsx-87",
+      "Name": "Женская парфюмерия",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-89",
+      "InterestKey": null,
+      "ParentId": "xlsx-87",
+      "Name": "Мужская парфюмерия",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-90",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Профессиональная косметика для волос",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-91",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Профессиональная косметика для лица",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-92",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Профессиональная косметика для тела",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-93",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Стоматология",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-94",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Уход за волосами",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-95",
+      "InterestKey": null,
+      "ParentId": "xlsx-94",
+      "Name": "Окрашивание волос",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-96",
+      "InterestKey": null,
+      "ParentId": "xlsx-94",
+      "Name": "Укладка волос",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-97",
+      "InterestKey": null,
+      "ParentId": "xlsx-94",
+      "Name": "Уход после мытья волос",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-98",
+      "InterestKey": null,
+      "ParentId": "xlsx-94",
+      "Name": "Шампуни для волос",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-99",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Уход за лицом",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-100",
+      "InterestKey": null,
+      "ParentId": "xlsx-68",
+      "Name": "Уход за телом",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-101",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Недвижимость",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-102",
+      "InterestKey": null,
+      "ParentId": "xlsx-101",
+      "Name": "Аренда недвижимости",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-103",
+      "InterestKey": null,
+      "ParentId": "xlsx-102",
+      "Name": "Аренда загородной недвижимости",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-104",
+      "InterestKey": null,
+      "ParentId": "xlsx-102",
+      "Name": "Аренда помещений для мероприятий",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-105",
+      "InterestKey": null,
+      "ParentId": "xlsx-102",
+      "Name": "Долгосрочная аренда квартир и комнат",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-106",
+      "InterestKey": null,
+      "ParentId": "xlsx-102",
+      "Name": "Коммерческая аренда",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-107",
+      "InterestKey": null,
+      "ParentId": "xlsx-102",
+      "Name": "Посуточная аренда загородной недвижимости",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-108",
+      "InterestKey": null,
+      "ParentId": "xlsx-102",
+      "Name": "Посуточная и почасовая аренда квартир",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-109",
+      "InterestKey": null,
+      "ParentId": "xlsx-101",
+      "Name": "Жилая недвижимость",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-110",
+      "InterestKey": null,
+      "ParentId": "xlsx-101",
+      "Name": "Жилая недвижимость в новостройках",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-111",
+      "InterestKey": null,
+      "ParentId": "xlsx-101",
+      "Name": "Жилая недвижимость премиум-класса",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-112",
+      "InterestKey": null,
+      "ParentId": "xlsx-101",
+      "Name": "Загородная недвижимость",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-113",
+      "InterestKey": null,
+      "ParentId": "xlsx-101",
+      "Name": "Коммерческая недвижимость",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-114",
+      "InterestKey": null,
+      "ParentId": "xlsx-101",
+      "Name": "Недавно переехали",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-115",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Образование",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-116",
+      "InterestKey": null,
+      "ParentId": "xlsx-115",
+      "Name": "Вуз",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-117",
+      "InterestKey": null,
+      "ParentId": "xlsx-115",
+      "Name": "Дополнительное образование и курсы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-118",
+      "InterestKey": null,
+      "ParentId": "xlsx-115",
+      "Name": "Дополнительные курсы для детей",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-119",
+      "InterestKey": null,
+      "ParentId": "xlsx-115",
+      "Name": "Изучение программирования",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-120",
+      "InterestKey": null,
+      "ParentId": "xlsx-115",
+      "Name": "Изучение языков",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-121",
+      "InterestKey": null,
+      "ParentId": "xlsx-115",
+      "Name": "Обучение за рубежом",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-122",
+      "InterestKey": null,
+      "ParentId": "xlsx-115",
+      "Name": "Школа",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-123",
+      "InterestKey": null,
+      "ParentId": "xlsx-115",
+      "Name": "Изучение рекламы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-124",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Одежда, обувь и аксессуары",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-125",
+      "InterestKey": null,
+      "ParentId": "xlsx-124",
+      "Name": "Аксессуары",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-126",
+      "InterestKey": null,
+      "ParentId": "xlsx-125",
+      "Name": "Очки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-127",
+      "InterestKey": null,
+      "ParentId": "xlsx-125",
+      "Name": "Сумки и чемоданы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-128",
+      "InterestKey": null,
+      "ParentId": "xlsx-125",
+      "Name": "Часы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-129",
+      "InterestKey": null,
+      "ParentId": "xlsx-125",
+      "Name": "Ювелирные украшения",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-130",
+      "InterestKey": null,
+      "ParentId": "xlsx-129",
+      "Name": "Золотые украшения",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-131",
+      "InterestKey": null,
+      "ParentId": "xlsx-129",
+      "Name": "Серебряные украшения",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-132",
+      "InterestKey": null,
+      "ParentId": "xlsx-129",
+      "Name": "Украшения с бриллиантами",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-133",
+      "InterestKey": null,
+      "ParentId": "xlsx-124",
+      "Name": "Обувь",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-134",
+      "InterestKey": null,
+      "ParentId": "xlsx-133",
+      "Name": "Детская обувь",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-135",
+      "InterestKey": null,
+      "ParentId": "xlsx-133",
+      "Name": "Женская обувь",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-136",
+      "InterestKey": null,
+      "ParentId": "xlsx-133",
+      "Name": "Мужская обувь",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-137",
+      "InterestKey": null,
+      "ParentId": "xlsx-133",
+      "Name": "Спортивная обувь",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-138",
+      "InterestKey": null,
+      "ParentId": "xlsx-124",
+      "Name": "Одежда",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-139",
+      "InterestKey": null,
+      "ParentId": "xlsx-138",
+      "Name": "Верхняя одежда",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-140",
+      "InterestKey": null,
+      "ParentId": "xlsx-138",
+      "Name": "Детская одежда",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-141",
+      "InterestKey": null,
+      "ParentId": "xlsx-138",
+      "Name": "Женская одежда",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-142",
+      "InterestKey": null,
+      "ParentId": "xlsx-138",
+      "Name": "Мужская одежда",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-143",
+      "InterestKey": null,
+      "ParentId": "xlsx-138",
+      "Name": "Одежда для малышей",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-144",
+      "InterestKey": null,
+      "ParentId": "xlsx-138",
+      "Name": "Спортивная одежда",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-145",
+      "InterestKey": null,
+      "ParentId": "xlsx-124",
+      "Name": "Одежда, обувь и аксессуары премиум-класса",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-146",
+      "InterestKey": null,
+      "ParentId": "xlsx-124",
+      "Name": "Пляжная одежда",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-147",
+      "InterestKey": null,
+      "ParentId": "xlsx-124",
+      "Name": "Секонд-хенды",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-148",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Отдых и путешествия",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-149",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Авиабилеты",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-150",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Автовокзалы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-151",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Билеты на поезд",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-152",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Горнолыжный отдых",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-153",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Детский отдых",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-154",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Круизы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-155",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в Австралии и Океании",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-156",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в Азии",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-157",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в Америке",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-158",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в Африке",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-159",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в Европе",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-160",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в Екатеринбурге",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-161",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в Казани",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-162",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в Калининградской области",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-163",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в Москве",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-164",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в Мурманской области",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-165",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в России и СНГ",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-166",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в Санкт-Петербурге",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-167",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в Сочи",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-168",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых в городах Золотого кольца",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-169",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отдых на Алтае",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-170",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Отели",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-171",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Походы и спортивный туризм",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-172",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Прокат автомобилей",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-173",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Свадебный отдых",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-174",
+      "InterestKey": null,
+      "ParentId": "xlsx-148",
+      "Name": "Страхование путешественников",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-175",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Подарки и цветы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-176",
+      "InterestKey": null,
+      "ParentId": "xlsx-175",
+      "Name": "Подарки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-177",
+      "InterestKey": null,
+      "ParentId": "xlsx-176",
+      "Name": "Подарки для женщин",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-178",
+      "InterestKey": null,
+      "ParentId": "xlsx-176",
+      "Name": "Подарки для мужчин",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-179",
+      "InterestKey": null,
+      "ParentId": "xlsx-175",
+      "Name": "Цветы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-180",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Работа",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-181",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: IT",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-182",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: бухгалтерский учет и финансы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-183",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: здравоохранение и медицина",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-184",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: образование",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-185",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: отдых и туризм",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-186",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: продажи и маркетинг",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-187",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: производство",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-188",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: розничные продажи",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-189",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: сельское хозяйство",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-190",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: строительство",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-191",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: транспорт и коммунальные услуги",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-192",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: управление и менеджмент",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-193",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Вакансии: юриспруденция",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-194",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Подработка",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-195",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Поиск работы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-196",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Работа за рубежом",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-197",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Работа на дому",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-198",
+      "InterestKey": null,
+      "ParentId": "xlsx-180",
+      "Name": "Стажировка",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-199",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Развлечения и досуг",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-200",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Декор",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-201",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Игры",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-202",
+      "InterestKey": null,
+      "ParentId": "xlsx-201",
+      "Name": "Sony PlayStation, Xbox или Nintendo Switch",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-203",
+      "InterestKey": null,
+      "ParentId": "xlsx-201",
+      "Name": "Киберспорт",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-204",
+      "InterestKey": null,
+      "ParentId": "xlsx-201",
+      "Name": "Компьютерные игры",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-205",
+      "InterestKey": null,
+      "ParentId": "xlsx-201",
+      "Name": "Консольные игры",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-206",
+      "InterestKey": null,
+      "ParentId": "xlsx-201",
+      "Name": "Мобильные игры",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-207",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Кино",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-208",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Билеты в кино",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-209",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Биографии",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-210",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Боевики",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-211",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Детективы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-212",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Детские фильмы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-213",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Документальные фильмы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-214",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Драмы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-215",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Исторические фильмы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-216",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Комедии",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-217",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Мелодрамы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-218",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Мюзиклы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-219",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Приключения",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-220",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Семейное кино и мультфильмы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-221",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Сериалы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-222",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Триллеры",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-223",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Ужасы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-224",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Фантастика",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-225",
+      "InterestKey": null,
+      "ParentId": "xlsx-207",
+      "Name": "Ходят в кино",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-226",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Книги",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-227",
+      "InterestKey": null,
+      "ParentId": "xlsx-226",
+      "Name": "Книги: классическая литература",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-228",
+      "InterestKey": null,
+      "ParentId": "xlsx-226",
+      "Name": "Книги: комиксы и манга",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-229",
+      "InterestKey": null,
+      "ParentId": "xlsx-226",
+      "Name": "Книги: фэнтези и фантастика",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-230",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Музеи",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-231",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Музыка",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-232",
+      "InterestKey": null,
+      "ParentId": "xlsx-231",
+      "Name": "Концерты",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-233",
+      "InterestKey": null,
+      "ParentId": "xlsx-231",
+      "Name": "Музыкальные инструменты",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-234",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Охота",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-235",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Платная подписка на стриминговые сервисы (фильмы, музыка, книги или игры)",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-236",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Рестораны",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-237",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Рыбалка",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-238",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Танцы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-239",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Театры",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-240",
+      "InterestKey": null,
+      "ParentId": "xlsx-199",
+      "Name": "Телевидение",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-241",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Сельскохозяйственное оборудование и техника",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-242",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Семья и дети",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-243",
+      "InterestKey": null,
+      "ParentId": "xlsx-242",
+      "Name": "Беременность и роды",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-244",
+      "InterestKey": null,
+      "ParentId": "xlsx-242",
+      "Name": "Детское питание",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-245",
+      "InterestKey": null,
+      "ParentId": "xlsx-242",
+      "Name": "Свадьба",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-246",
+      "InterestKey": null,
+      "ParentId": "xlsx-242",
+      "Name": "Товары для детей",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-247",
+      "InterestKey": null,
+      "ParentId": "xlsx-246",
+      "Name": "Детские велосипеды",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-248",
+      "InterestKey": null,
+      "ParentId": "xlsx-246",
+      "Name": "Детские игрушки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-249",
+      "InterestKey": null,
+      "ParentId": "xlsx-246",
+      "Name": "Детские книги",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-250",
+      "InterestKey": null,
+      "ParentId": "xlsx-246",
+      "Name": "Детские коляски",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-251",
+      "InterestKey": null,
+      "ParentId": "xlsx-246",
+      "Name": "Детские самокаты",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-252",
+      "InterestKey": null,
+      "ParentId": "xlsx-246",
+      "Name": "Игрушки для малышей",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-253",
+      "InterestKey": null,
+      "ParentId": "xlsx-246",
+      "Name": "Подгузники",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-254",
+      "InterestKey": null,
+      "ParentId": "xlsx-246",
+      "Name": "Покупки к школе",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-255",
+      "InterestKey": null,
+      "ParentId": "xlsx-242",
+      "Name": "Услуги няни",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-256",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Скидки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-257",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Спорт",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-258",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Автоспорт",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-259",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Баскетбол",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-260",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Большой теннис",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-261",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Велоспорт",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-262",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Волейбол",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-263",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Дайвинг",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-264",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Единоборства",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-265",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Йога",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-266",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Конный спорт",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-267",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Лыжный спорт",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-268",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Настольный теннис",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-269",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Парусный спорт",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-270",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Плавание",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-271",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Роликовые коньки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-272",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Силовые виды спорта",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-273",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Скалолазание и альпинизм",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-274",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Скейтбординг",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-275",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Сноубординг",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-276",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Спортивное питание",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-277",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Спортивные товары",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-278",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Стрельба",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-279",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Фигурное катание",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-280",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Фитнес",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-281",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Футбол",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-282",
+      "InterestKey": null,
+      "ParentId": "xlsx-257",
+      "Name": "Хоккей",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-283",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Строительство, обустройство и ремонт",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-284",
+      "InterestKey": null,
+      "ParentId": "xlsx-283",
+      "Name": "Дача и сад",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-285",
+      "InterestKey": null,
+      "ParentId": "xlsx-284",
+      "Name": "Растения и семена",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-286",
+      "InterestKey": null,
+      "ParentId": "xlsx-284",
+      "Name": "Садовая техника",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-287",
+      "InterestKey": null,
+      "ParentId": "xlsx-284",
+      "Name": "Садовый инвентарь",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-288",
+      "InterestKey": null,
+      "ParentId": "xlsx-283",
+      "Name": "Дизайн интерьера",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-289",
+      "InterestKey": null,
+      "ParentId": "xlsx-283",
+      "Name": "Мебель",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-290",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Кровати",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-291",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Матрасы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-292",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Мебель для ванной",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-293",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Мебель для гостиной",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-294",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Мебель для детской",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-295",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Мебель для кухни",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-296",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Мебель для офиса и кабинета",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-297",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Мебель для прихожей",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-298",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Мебель для спальни",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-299",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Мягкая мебель",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-300",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Столы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-301",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Стулья",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-302",
+      "InterestKey": null,
+      "ParentId": "xlsx-289",
+      "Name": "Шкафы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-303",
+      "InterestKey": null,
+      "ParentId": "xlsx-283",
+      "Name": "Планируют ремонт",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-304",
+      "InterestKey": null,
+      "ParentId": "xlsx-283",
+      "Name": "Ремонт",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-305",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Ворота",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-306",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Двери",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-307",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Заборы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-308",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Кровля и водосток",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-309",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Лакокрасочные материалы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-310",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Напольные покрытия",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-311",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Натяжные потолки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-312",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Обои",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-313",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Окна",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-314",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Плитка",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-315",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Сайдинг и фасадные панели",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-316",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Сантехника",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-317",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Строительные инструменты",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-318",
+      "InterestKey": null,
+      "ParentId": "xlsx-304",
+      "Name": "Электрические инструменты",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-319",
+      "InterestKey": null,
+      "ParentId": "xlsx-283",
+      "Name": "Системы «умный дом»",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-320",
+      "InterestKey": null,
+      "ParentId": "xlsx-283",
+      "Name": "Системы охраны и сигнализации",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-321",
+      "InterestKey": null,
+      "ParentId": "xlsx-283",
+      "Name": "Товары для дома",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-322",
+      "InterestKey": null,
+      "ParentId": "xlsx-321",
+      "Name": "Ковры",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-323",
+      "InterestKey": null,
+      "ParentId": "xlsx-321",
+      "Name": "Освещение",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-324",
+      "InterestKey": null,
+      "ParentId": "xlsx-321",
+      "Name": "Посуда",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-325",
+      "InterestKey": null,
+      "ParentId": "xlsx-321",
+      "Name": "Системы для хранения мелочей",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-326",
+      "InterestKey": null,
+      "ParentId": "xlsx-321",
+      "Name": "Текстиль",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-327",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Телеком",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-328",
+      "InterestKey": null,
+      "ParentId": "xlsx-327",
+      "Name": "Доступ в интернет",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-329",
+      "InterestKey": null,
+      "ParentId": "xlsx-327",
+      "Name": "Мобильная связь",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-330",
+      "InterestKey": null,
+      "ParentId": "xlsx-327",
+      "Name": "Спутниковое и кабельное телевидение",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-331",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Транспорт",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-332",
+      "InterestKey": null,
+      "ParentId": "xlsx-331",
+      "Name": "Авто",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-333",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Audi",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-334",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "BMW",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-335",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Chery",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-336",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Chevrolet",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-337",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Citroёn",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-338",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Ford",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-339",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Geely",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-340",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Haval",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-341",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Honda",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-342",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Hyundai",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-343",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Infinity",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-344",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Jeep",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-345",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Kia",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-346",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Lada",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-347",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Land Rover",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-348",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Lexus",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-349",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Mazda",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-350",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Mercedes-Benz",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-351",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Mini",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-352",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Mitsubishi",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-353",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Nissan",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-354",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Opel",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-355",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Peugeot",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-356",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Renault",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-357",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Skoda",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-358",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Subaru",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-359",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Suzuki",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-360",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Toyota",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-361",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Volkswagen",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-362",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Volvo",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-363",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Автозапчасти и аксессуары",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-364",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Автомобили",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-365",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Автомобили малого класса",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-366",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Автомобили бизнес-класса",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-367",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Автомобили представительского класса",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-368",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Автомобили с открытым верхом",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-369",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Автомобили среднего класса",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-370",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Автострахование",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-371",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Автострахование КАСКО",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-372",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Внедорожники",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-373",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Городские автомобили",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-374",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Детские автокресла",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-375",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Компактвэны",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-376",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Кроссоверы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-377",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Лизинг автомобилей и спецтехники",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-378",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Минивэны",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-379",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Моторные масла",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-380",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "ОСАГО",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-381",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Пикапы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-382",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Подготовка водителей",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-383",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Подержанные автомобили",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-384",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Семейные автомобили",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-385",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Спортивные автомобили",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-386",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Техобслуживание автомобилей",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-387",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Универсалы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-388",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Фургоны",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-389",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Фуры",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-390",
+      "InterestKey": null,
+      "ParentId": "xlsx-332",
+      "Name": "Шины и диски",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-391",
+      "InterestKey": null,
+      "ParentId": "xlsx-331",
+      "Name": "Мото",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-392",
+      "InterestKey": null,
+      "ParentId": "xlsx-391",
+      "Name": "Квадроциклы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-393",
+      "InterestKey": null,
+      "ParentId": "xlsx-391",
+      "Name": "Мопеды",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-394",
+      "InterestKey": null,
+      "ParentId": "xlsx-391",
+      "Name": "Мотоциклы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-395",
+      "InterestKey": null,
+      "ParentId": "xlsx-391",
+      "Name": "Скутеры",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-396",
+      "InterestKey": null,
+      "ParentId": "xlsx-391",
+      "Name": "Снегоходы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-397",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Финансы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-398",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Автокредит",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-399",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Банковские вклады",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-400",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Дебетовая карта",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-401",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Денежные переводы в страны СНГ",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-402",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Инвестиции",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-403",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Интернет-банкинг",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-404",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Ипотека",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-405",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Кредитные карты",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-406",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Кредиты",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-407",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Микрофинансовые организации",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-408",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Потребительский кредит",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-409",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Рассрочка",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-410",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Рефинансирование кредитов",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-411",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Современные платежные технологии",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-412",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Финансовые услуги для бизнеса",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-413",
+      "InterestKey": null,
+      "ParentId": "xlsx-412",
+      "Name": "Депозиты для бизнеса",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-414",
+      "InterestKey": null,
+      "ParentId": "xlsx-412",
+      "Name": "Кредиты для бизнеса",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-415",
+      "InterestKey": null,
+      "ParentId": "xlsx-412",
+      "Name": "Расчетно-кассовое обслуживание",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-416",
+      "InterestKey": null,
+      "ParentId": "xlsx-397",
+      "Name": "Форекс",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-417",
+      "InterestKey": null,
+      "ParentId": null,
+      "Name": "Электроника",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-418",
+      "InterestKey": null,
+      "ParentId": "xlsx-417",
+      "Name": "Аудио- и видеотехника",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-419",
+      "InterestKey": null,
+      "ParentId": "xlsx-418",
+      "Name": "Наушники",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-420",
+      "InterestKey": null,
+      "ParentId": "xlsx-418",
+      "Name": "Портативная аудиотехника",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-421",
+      "InterestKey": null,
+      "ParentId": "xlsx-418",
+      "Name": "Стационарная аудиотехника",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-422",
+      "InterestKey": null,
+      "ParentId": "xlsx-418",
+      "Name": "Телевизоры и плазменные панели",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-423",
+      "InterestKey": null,
+      "ParentId": "xlsx-417",
+      "Name": "Игровые приставки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-424",
+      "InterestKey": null,
+      "ParentId": "xlsx-417",
+      "Name": "Клавиатуры и манипуляторы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-425",
+      "InterestKey": null,
+      "ParentId": "xlsx-417",
+      "Name": "Компьютерная техника",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-426",
+      "InterestKey": null,
+      "ParentId": "xlsx-425",
+      "Name": "Мониторы",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-427",
+      "InterestKey": null,
+      "ParentId": "xlsx-425",
+      "Name": "Настольные компьютеры",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-428",
+      "InterestKey": null,
+      "ParentId": "xlsx-425",
+      "Name": "Ноутбуки",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-429",
+      "InterestKey": null,
+      "ParentId": "xlsx-425",
+      "Name": "Планшеты",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-430",
+      "InterestKey": null,
+      "ParentId": "xlsx-417",
+      "Name": "Мобильные телефоны и смартфоны",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-431",
+      "InterestKey": null,
+      "ParentId": "xlsx-430",
+      "Name": "Мобильные телефоны и смартфоны до 15 тыс. руб.",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-432",
+      "InterestKey": null,
+      "ParentId": "xlsx-430",
+      "Name": "Мобильные телефоны и смартфоны за 15-25 тыс. руб.",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-433",
+      "InterestKey": null,
+      "ParentId": "xlsx-430",
+      "Name": "Мобильные телефоны и смартфоны за 25-35 тыс. руб.",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-434",
+      "InterestKey": null,
+      "ParentId": "xlsx-430",
+      "Name": "Мобильные телефоны и смартфоны за 35-50 тыс. руб.",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-435",
+      "InterestKey": null,
+      "ParentId": "xlsx-430",
+      "Name": "Мобильные телефоны и смартфоны от 50 тыс. руб.",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-436",
+      "InterestKey": null,
+      "ParentId": "xlsx-417",
+      "Name": "Принтеры и МФУ",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-437",
+      "InterestKey": null,
+      "ParentId": "xlsx-417",
+      "Name": "Умные часы и браслеты",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    },
+    {
+      "Id": "xlsx-438",
+      "InterestKey": null,
+      "ParentId": "xlsx-417",
+      "Name": "Фото- и видеокамеры",
+      "Description": "",
+      "InterestType": "SHORT_TERM"
+    }
+  ]
+}

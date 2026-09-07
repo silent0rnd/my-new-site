@@ -7,8 +7,22 @@ function cleanHeader(value) {
 
 function detectColumns(headers, rows = []) {
   const findByHeader = (pattern) => headers.reduce((found, header, index) => found !== null || !pattern.test(cleanHeader(header)) ? found : index, null);
-  const result = { phone: findByHeader(PHONE_HEADER_PATTERN), email: findByHeader(EMAIL_HEADER_PATTERN) };
+  const result = { phone: findByHeader(PHONE_HEADER_PATTERN), email: findByHeader(EMAIL_HEADER_PATTERN), mixed: null };
   const samples = rows.slice(0, 50);
+  if (result.phone === null && result.email === null) {
+    const mixedColumn = headers.reduce((best, header, index) => {
+      const score = samples.reduce((total, row) => {
+        const value = String(row[index] || "").trim();
+        if (!value) return total;
+        return {
+          phone: total.phone + Number(normalizePhone(value).valid),
+          email: total.email + Number(normalizeEmail(value).valid)
+        };
+      }, { phone: 0, email: 0 });
+      return score.phone && score.email && score.phone + score.email > best.score ? { index, score: score.phone + score.email } : best;
+    }, { index: null, score: 0 }).index;
+    if (mixedColumn !== null) return { phone: null, email: null, mixed: mixedColumn };
+  }
   const findByValues = (field) => headers.reduce((best, header, index) => {
     if (index === result.phone || index === result.email) return best;
     const score = samples.reduce((total, row) => {
@@ -71,14 +85,20 @@ function processRows(rows, mapping, options = {}) {
   const issues = [];
   const seen = new Set();
   rows.forEach((row, index) => {
-    const phone = normalizePhone(mapping.phone === null ? "" : row[mapping.phone], options.rowPolicy === "repair");
-    const email = normalizeEmail(mapping.email === null ? "" : row[mapping.email], options.rowPolicy === "repair");
+    const repair = options.rowPolicy === "repair";
+    const mixedValue = mapping.mixed === null || mapping.mixed === undefined ? "" : row[mapping.mixed];
+    const mixedPhone = normalizePhone(mixedValue, repair);
+    const mixedEmail = normalizeEmail(mixedValue, repair);
+    const phone = mapping.mixed === null || mapping.mixed === undefined ? normalizePhone(mapping.phone === null ? "" : row[mapping.phone], repair) : mixedPhone;
+    const email = mapping.mixed === null || mapping.mixed === undefined ? normalizeEmail(mapping.email === null ? "" : row[mapping.email], repair) : mixedEmail;
     const rowIssues = [];
-    if (!phone.valid || !email.valid) rowIssues.push("некорректные данные");
-    const record = { phone: phone.valid ? phone.value : "", email: email.valid ? email.value : "" };
+    const record = mapping.mixed === null || mapping.mixed === undefined
+      ? { phone: phone.valid ? phone.value : "", email: email.valid ? email.value : "" }
+      : { phone: mixedPhone.valid ? mixedPhone.value : "", email: mixedEmail.valid ? mixedEmail.value : "" };
+    if (mapping.mixed === null || mapping.mixed === undefined ? (!phone.valid || !email.valid) : (!record.phone && !record.email)) rowIssues.push("некорректные данные");
     if (!record.phone && !record.email) rowIssues.push("нет корректного телефона или email");
-    if (phone.changed && phone.valid) metrics.phonesFixed += 1;
-    if (email.changed && email.valid) metrics.emailsFixed += 1;
+    if (record.phone && phone.changed && phone.valid) metrics.phonesFixed += 1;
+    if (record.email && email.changed && email.valid) metrics.emailsFixed += 1;
     if (rowIssues.length) {
       metrics.errors += 1;
       const suggestions = [["телефон", phone.suggestion], ["email", email.suggestion]].filter(([, value]) => value).map(([label, value]) => `${label}: ${value}`);
@@ -129,13 +149,13 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
   let workerFailed = window.location.protocol === "file:";
   let worker = null;
   if (!workerFailed) {
-    try { worker = new Worker("audience-worker.js?v=20260907-11"); }
+    try { worker = new Worker("audience-worker.js?v=20260907-12"); }
     catch (error) { workerFailed = true; }
   }
 
   const setStatus = (message, error = false) => { status.textContent = message; status.hidden = !message; status.classList.toggle("audience-status--error", error); };
   const reset = () => { source = null; result = null; fileInput.value = ""; pasteBox.value = ""; mappingBox.hidden = true; resultBox.hidden = true; root.querySelector("[data-audience-reset]").hidden = true; setStatus(""); };
-  const mapping = () => Object.fromEntries(["phone", "email"].map((key) => [key, Number.parseInt(mappingBox.querySelector(`[data-audience-map="${key}"]`).value, 10)]).map(([key, value]) => [key, Number.isInteger(value) && value >= 0 ? value : null]));
+  const mapping = () => Object.fromEntries(["phone", "email", "mixed"].map((key) => [key, Number.parseInt(mappingBox.querySelector(`[data-audience-map="${key}"]`).value, 10)]).map(([key, value]) => [key, Number.isInteger(value) && value >= 0 ? value : null]));
   const parsePastedSource = (text) => {
     const rows = text.includes("\t") ? text.split(/\r?\n/).filter((line) => line.trim()).map((line) => line.split("\t").map((cell) => cell.trim())) : text.split(/\r?\n/).filter((line) => line.trim()).map((line) => [line.trim()]);
     const width = Math.max(...rows.map((row) => row.length));
@@ -160,8 +180,9 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
   };
   const process = async () => {
     const selected = mapping();
-    if (selected.phone === null && selected.email === null) { setStatus("Выберите хотя бы колонку телефона или email.", true); return; }
-    if (selected.phone !== null && selected.phone === selected.email) { setStatus("Телефон и email должны быть разными колонками.", true); return; }
+    if (selected.phone === null && selected.email === null && selected.mixed === null) { setStatus("Выберите колонку телефона, email или общую колонку.", true); return; }
+    const selectedColumns = [selected.phone, selected.email, selected.mixed].filter((value) => value !== null);
+    if (new Set(selectedColumns).size !== selectedColumns.length) { setStatus("Одна колонка может использоваться только для одного типа данных.", true); return; }
     setStatus("Обрабатываем данные только в браузере.");
     setProcessing(true);
     await new Promise((resolve) => requestAnimationFrame(resolve));
@@ -176,8 +197,9 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
   const renderMapping = () => {
     const detected = source.suggestedMapping || AudienceToolCore.detectColumns(source.headers, source.rows);
     const options = ['<option value="">Не использовать</option>', ...source.headers.map((header, index) => `<option value="${index}">${header}</option>`)].join("");
-    mappingBox.innerHTML = ["phone", "email"].map((key) => `<label class="utm-field"><span class="utm-field__name">${key === "phone" ? "Колонка телефона" : "Колонка email"}</span><select class="utm-input" data-audience-map="${key}">${options}</select></label>`).join("") + '<button class="utm-button" type="button" data-audience-process>Обработать таблицу</button>';
-    ["phone", "email"].forEach((key) => { if (detected[key] !== null) mappingBox.querySelector(`[data-audience-map="${key}"]`).value = detected[key]; });
+    const labels = { phone: "Колонка телефона", email: "Колонка email", mixed: "Общая колонка с телефонами и email" };
+    mappingBox.innerHTML = ["phone", "email", "mixed"].map((key) => `<label class="utm-field"><span class="utm-field__name">${labels[key]}</span><select class="utm-input" data-audience-map="${key}">${options}</select></label>`).join("") + '<button class="utm-button" type="button" data-audience-process>Обработать таблицу</button>';
+    ["phone", "email", "mixed"].forEach((key) => { if (detected[key] !== null) mappingBox.querySelector(`[data-audience-map="${key}"]`).value = detected[key]; });
     mappingBox.hidden = false;
     root.querySelector("[data-audience-reset]").hidden = false;
     setStatus(`Найдено строк: ${source.rows.length}. Проверьте назначение колонок.`);
@@ -220,7 +242,7 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
         source = data;
         pendingPaste = "";
         renderMapping();
-        if (data.suggestedMapping && (data.suggestedMapping.phone !== null || data.suggestedMapping.email !== null)) process();
+        if (data.suggestedMapping && (data.suggestedMapping.phone !== null || data.suggestedMapping.email !== null || data.suggestedMapping.mixed !== null)) process();
       } else if (data.type === "processed") renderResult(data);
       else if (data.type === "error") { setProcessing(false); setStatus(data.message, true); }
     };

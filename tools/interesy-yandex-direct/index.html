@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
+  <title>Интересы Яндекс Директ - полный список таргетингов</title>
+  <meta name="description" content="Полный список интересов Яндекс Директ с категориями, подкатегориями, описаниями и быстрым поиском. Данные из справочника Яндекс Директ API." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://naklikay.ru/tools/interesy-yandex-direct/" />
+  <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="stylesheet" href="../../styles.css?v=20260907-interests" />
+  <script src="../../script.js?v=20260907-interests" defer></script>
+  <script src="interests.js?v=20260907-static-catalog-3" defer></script>
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Максим Мирошников" />
+  <meta property="og:url" content="https://naklikay.ru/tools/interesy-yandex-direct/" />
+  <meta property="og:title" content="Интересы Яндекс Директ - полный список таргетингов" />
+  <meta property="og:description" content="Каталог интересов Яндекс Директ с категориями, описаниями и поиском." />
+  <meta property="og:image" content="https://naklikay.ru/assets/og-cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+<body class="legal-page article-page utm-page">
+  <header class="legal-topbar">
+    <a class="legal-home-link" href="../../">Максим Мирошников</a>
+  </header>
+  <main class="legal-shell">
+    <article class="legal-document" data-interests-catalog>
+      <nav class="article-breadcrumbs" aria-label="Хлебные крошки">
+        <a href="../../">Главная</a><span aria-hidden="true">/</span>
+        <a href="../">Сервисы</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Интересы Яндекс Директ</span>
+      </nav>
+      <p class="legal-kicker">Инструмент</p>
+      <h1>Интересы Яндекс Директ</h1>
+      <p class="article-lead">Полный список интересов для таргетинга в Яндекс Директе. Используйте поиск или раскрывайте категории, чтобы посмотреть доступные интересы и их описания.</p>
+      <section class="interests-catalog" aria-labelledby="interests-catalog-title">
+        <h2 id="interests-catalog-title">Каталог интересов</h2>
+        <label class="interests-catalog__search" for="interests-search">
+          Поиск по названию и описанию
+          <input class="utm-input utm-input--wide" id="interests-search" type="search" placeholder="Найти интерес, например: недвижимость, авто, путешествия" data-interests-search />
+        </label>
+        <div class="interests-catalog__types" data-interests-types aria-label="Типы интересов"></div>
+        <div class="interests-catalog__controls">
+          <button class="utm-button utm-button--ghost" type="button" data-interests-expand>Развернуть все</button>
+          <button class="utm-button utm-button--ghost" type="button" data-interests-collapse>Свернуть все</button>
+        </div>
+        <p class="interests-catalog__updated" data-interests-updated></p>
+        <p class="interests-catalog__status" data-interests-status role="status">Загружаю каталог…</p>
+        <div class="interests-catalog__tree" data-interests-tree></div>
+      </section>
+    </article>
+  </main>
+</body>
+</html>

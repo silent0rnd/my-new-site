@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
+    <title>Калькулятор процентов онлайн - рассчитать процент от суммы</title>
+    <meta name="description" content="Онлайн-калькулятор процентов: рассчитать процент от суммы, прибавить фиксированную сумму, увеличить или уменьшить число на процент и узнать процент одного числа от другого." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://naklikay.ru/tools/calculator-procentov/" />
+    <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="../../styles.css?v=20260907-percent-calculator" />
+    <script src="../../script.js?v=20260907-percent-calculator" defer></script>
+    <script src="percent-calculator.js?v=20260907-percent-calculator" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Максим Мирошников" />
+    <meta property="og:url" content="https://naklikay.ru/tools/calculator-procentov/" />
+    <meta property="og:title" content="Калькулятор процентов онлайн - рассчитать процент от суммы" />
+    <meta property="og:description" content="Рассчитайте процент от суммы, процент плюс фикс, увеличение или уменьшение числа и долю одного числа от другого." />
+    <meta property="og:image" content="https://naklikay.ru/assets/og-cover.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Калькулятор процентов Максима Мирошникова" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Калькулятор процентов","url":"https://naklikay.ru/tools/calculator-procentov/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"ru-RU","offers":{"@type":"Offer","price":"0","priceCurrency":"RUB"},"author":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://naklikay.ru/"},{"@type":"ListItem","position":2,"name":"Сервисы","item":"https://naklikay.ru/tools/"},{"@type":"ListItem","position":3,"name":"Калькулятор процентов","item":"https://naklikay.ru/tools/calculator-procentov/"}]}]}
+    </script>
+  </head>
+  <body class="legal-page article-page utm-page percent-calculator-page">
+    <header class="legal-topbar">
+      <a class="legal-home-link" href="../../">Максим Мирошников</a>
+      <nav class="messenger-links" aria-label="Мессенджеры">
+        <a href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">Макс</a>
+      </nav>
+    </header>
+
+    <main class="legal-shell">
+      <article class="legal-document" data-percent-calculator>
+        <nav class="article-breadcrumbs" aria-label="Хлебные крошки">
+          <a href="../../">Главная</a><span aria-hidden="true">/</span><a href="../">Сервисы</a><span aria-hidden="true">/</span><span aria-current="page">Калькулятор процентов</span>
+        </nav>
+
+        <p class="legal-kicker">Инструмент</p>
+        <h1>Калькулятор процентов</h1>
+        <p class="article-lead">Калькулятор позволяет быстро посчитать процент от суммы, прибавить к результату фиксированное значение, увеличить или уменьшить число на заданный процент.</p>
+
+        <section class="utm-block percent-main" aria-labelledby="percent-main-title">
+          <div class="percent-main__head">
+            <div>
+              <h2 id="percent-main-title">Процент от суммы плюс фиксированная сумма</h2>
+              <p>Укажите сумму, процент и фиксированную часть - итог обновится автоматически.</p>
+            </div>
+            <button class="utm-button utm-button--ghost" type="button" data-percent-reset>Сбросить</button>
+          </div>
+
+          <div class="percent-main__layout">
+            <div class="percent-main__fields">
+              <label class="utm-field" for="percent-base">
+                <span class="utm-field__name">Сумма</span>
+                <span class="percent-input-wrap"><input class="utm-input" id="percent-base" name="percent-base" type="text" inputmode="decimal" autocomplete="off" data-main-input /><span aria-hidden="true">₽</span></span>
+              </label>
+              <label class="utm-field" for="percent-rate">
+                <span class="utm-field__name">Процент</span>
+                <span class="percent-input-wrap"><input class="utm-input" id="percent-rate" name="percent-rate" type="text" inputmode="decimal" autocomplete="off" value="5" data-main-input /><span aria-hidden="true">%</span></span>
+              </label>
+              <label class="utm-field" for="percent-fixed">
+                <span class="utm-field__name">Фиксированная сумма</span>
+                <span class="percent-input-wrap"><input class="utm-input" id="percent-fixed" name="percent-fixed" type="text" inputmode="decimal" autocomplete="off" data-main-input /><span aria-hidden="true">₽</span></span>
+              </label>
+              <p class="percent-error" data-main-error hidden>Введите неотрицательные числа. Можно использовать пробелы, точку или запятую.</p>
+            </div>
+
+            <div class="percent-main__result" aria-live="polite" aria-atomic="true">
+              <dl class="percent-breakdown">
+                <div><dt>Процент от суммы</dt><dd data-main-percent>0 ₽</dd></div>
+                <div><dt>Фикс</dt><dd data-main-fixed>0 ₽</dd></div>
+              </dl>
+              <div class="percent-total">
+                <span>Итого</span>
+                <strong data-main-total>0 ₽</strong>
+              </div>
+              <p class="percent-expression" data-main-expression>Введите сумму</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="utm-block percent-other" aria-labelledby="percent-other-title">
+          <h2 id="percent-other-title">Другие расчёты с процентами</h2>
+          <div class="percent-card-grid">
+            <section class="percent-card" data-percent-mode="percent-of">
+              <h3>Сколько составляет X% от числа Y</h3>
+              <div class="percent-card__fields">
+                <label class="utm-field"><span class="utm-field__name">Процент X</span><span class="percent-input-wrap"><input class="utm-input" name="x" type="text" inputmode="decimal" autocomplete="off" /><span aria-hidden="true">%</span></span></label>
+                <label class="utm-field"><span class="utm-field__name">Число Y</span><input class="utm-input" name="y" type="text" inputmode="decimal" autocomplete="off" /></label>
+              </div>
+              <output class="percent-card__result" aria-live="polite">Введите значения</output>
+            </section>
+
+            <section class="percent-card" data-percent-mode="what-percent">
+              <h3>Сколько процентов составляет X от Y</h3>
+              <div class="percent-card__fields">
+                <label class="utm-field"><span class="utm-field__name">Число X</span><input class="utm-input" name="x" type="text" inputmode="decimal" autocomplete="off" /></label>
+                <label class="utm-field"><span class="utm-field__name">Число Y</span><input class="utm-input" name="y" type="text" inputmode="decimal" autocomplete="off" /></label>
+              </div>
+              <output class="percent-card__result" aria-live="polite">Введите значения</output>
+            </section>
+
+            <section class="percent-card" data-percent-mode="add-percent">
+              <h3>Прибавить X% к числу Y</h3>
+              <div class="percent-card__fields">
+                <label class="utm-field"><span class="utm-field__name">Процент X</span><span class="percent-input-wrap"><input class="utm-input" name="x" type="text" inputmode="decimal" autocomplete="off" /><span aria-hidden="true">%</span></span></label>
+                <label class="utm-field"><span class="utm-field__name">Число Y</span><input class="utm-input" name="y" type="text" inputmode="decimal" autocomplete="off" /></label>
+              </div>
+              <output class="percent-card__result" aria-live="polite">Введите значения</output>
+            </section>
+
+            <section class="percent-card" data-percent-mode="subtract-percent">
+              <h3>Вычесть X% из числа Y</h3>
+              <div class="percent-card__fields">
+                <label class="utm-field"><span class="utm-field__name">Процент X</span><span class="percent-input-wrap"><input class="utm-input" name="x" type="text" inputmode="decimal" autocomplete="off" /><span aria-hidden="true">%</span></span></label>
+                <label class="utm-field"><span class="utm-field__name">Число Y</span><input class="utm-input" name="y" type="text" inputmode="decimal" autocomplete="off" /></label>
+              </div>
+              <output class="percent-card__result" aria-live="polite">Введите значения</output>
+            </section>
+          </div>
+        </section>
+
+        <section class="utm-block percent-explanation">
+          <h2>Как рассчитать процент от числа</h2>
+          <p>Умножьте число на нужный процент и разделите на 100. Например, 5% от 100 000 - это 100 000 × 5 / 100 = 5 000.</p>
+
+          <h2>Как прибавить процент к числу</h2>
+          <p>Сначала найдите процентную часть, затем прибавьте её к исходному числу. Так, 100 000 плюс 5% равно 105 000.</p>
+
+          <h2>Как вычесть процент из числа</h2>
+          <p>Найдите процентную часть и вычтите её из исходного числа. Например, 100 000 минус 5% равно 95 000.</p>
+
+          <h2>Как узнать, сколько процентов составляет одно число от другого</h2>
+          <p>Разделите первое число на второе и умножьте результат на 100. Например, 25 от 500 составляет 5%.</p>
+
+          <h2>Процент от суммы плюс фиксированная сумма</h2>
+          <p>Если оплата состоит из 30 000 ₽ фиксированной части и 5% от рекламного бюджета 500 000 ₽, процентная часть составит 25 000 ₽, а общая стоимость - 55 000 ₽.</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

@@ -43,6 +43,13 @@
       "intent": "explanation"
     },
     {
+      "slug": "interesy-i-privychki-yandex-direct",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [],
+      "intent": "strategy"
+    },
+    {
       "slug": "edinaya-perfomans-kampaniya-yandex-direct",
       "topic": "ecommerce",
       "topicLabel": "Интернет-магазины",
@@ -1374,84 +1381,6 @@
       "intent": "service"
     },
     {
-      "slug": "kak-sgenerirovat-utm-metki-dlya-yandex-direkta",
-      "topic": "analytics",
-      "topicLabel": "Аналитика",
-      "tags": [
-        "analytics",
-        "traffic-quality"
-      ],
-      "intent": "instruction"
-    },
-    {
-      "slug": "kakoy-ctr-schitaetsya-horoshim-v-yandex-direkt",
-      "topic": "metrics",
-      "topicLabel": "Показатели рекламы",
-      "tags": [
-        "search",
-        "traffic-quality"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "strategiya-v-yandex-direct",
-      "topic": "direct-management",
-      "topicLabel": "Настройка Яндекс Директа",
-      "tags": [
-        "analytics",
-        "automation"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "cena-za-klik-v-yandex-direkte",
-      "topic": "metrics",
-      "topicLabel": "Показатели рекламы",
-      "tags": [
-        "economics"
-      ],
-      "intent": "service"
-    },
-    {
-      "slug": "kak-izmenit-obekt-prodvizheniya-v-yandex-direkte",
-      "topic": "direct-tools",
-      "topicLabel": "Инструменты Яндекс Директа",
-      "tags": [
-        "account-management",
-        "ad-formats"
-      ],
-      "intent": "instruction"
-    },
-    {
-      "slug": "kak-posmotret-obyavlenie-v-yandex-direct",
-      "topic": "direct-tools",
-      "topicLabel": "Инструменты Яндекс Директа",
-      "tags": [
-        "search",
-        "ad-formats"
-      ],
-      "intent": "instruction"
-    },
-    {
-      "slug": "lending-v-yandex-direct",
-      "topic": "sites",
-      "topicLabel": "Сайты и конверсия",
-      "tags": [
-        "website"
-      ],
-      "intent": "explanation"
-    },
-    {
-      "slug": "reklama-telegram-kanala-v-yandex-direkte",
-      "topic": "social-ads",
-      "topicLabel": "Реклама в соцсетях",
-      "tags": [
-        "analytics",
-        "telegram"
-      ],
-      "intent": "strategy"
-    },
-    {
       "slug": "oplata-za-konversii-yandex-direct",
       "topic": "direct-tools",
       "topicLabel": "Инструменты Яндекс Директа",
@@ -1587,6 +1516,84 @@
         "campaign-setup"
       ],
       "intent": "instruction"
+    },
+    {
+      "slug": "kak-sgenerirovat-utm-metki-dlya-yandex-direkta",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "traffic-quality"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "kakoy-ctr-schitaetsya-horoshim-v-yandex-direkt",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "search",
+        "traffic-quality"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "strategiya-v-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "analytics",
+        "automation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "cena-za-klik-v-yandex-direkte",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "economics"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "kak-izmenit-obekt-prodvizheniya-v-yandex-direkte",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "account-management",
+        "ad-formats"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "kak-posmotret-obyavlenie-v-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "search",
+        "ad-formats"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "lending-v-yandex-direct",
+      "topic": "sites",
+      "topicLabel": "Сайты и конверсия",
+      "tags": [
+        "website"
+      ],
+      "intent": "explanation"
+    },
+    {
+      "slug": "reklama-telegram-kanala-v-yandex-direkte",
+      "topic": "social-ads",
+      "topicLabel": "Реклама в соцсетях",
+      "tags": [
+        "analytics",
+        "telegram"
+      ],
+      "intent": "strategy"
     },
     {
       "slug": "targetirovannaya-reklama-rostov",

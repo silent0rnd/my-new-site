@@ -1,4 +1,4 @@
-importScripts("audience.js?v=20260907-11", "../mediaplan/vendor/xlsx.full.min.js");
+importScripts("audience.js?v=20260907-12", "../mediaplan/vendor/xlsx.full.min.js");
 
 function decode(buffer) {
   try { return new TextDecoder("utf-8", { fatal: true }).decode(buffer); }
