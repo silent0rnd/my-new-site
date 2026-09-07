@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://naklikay.ru/blog/paketnaya-strategiya-yandex-direct/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/blog/tovarnaya-kampaniya-yandex-direct/</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
@@ -1154,6 +1160,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://naklikay.ru/blog/atributsiya-v-yandex-metrike/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url><loc>https://naklikay.ru/blog/korrektirovki-stavok-v-yandex-direct/</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://naklikay.ru/blog/moderaciya-yandex-direct/</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url>
@@ -1169,14 +1181,33 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://naklikay.ru/blog/segmenty-v-yandex-metrike/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/bidder-yandex-direct/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url><loc>https://naklikay.ru/blog/a-b-testirovanie-sayta/</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://naklikay.ru/blog/edinaya-perfomans-kampaniya-yandex-direct/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://naklikay.ru/blog/page/2/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://naklikay.ru/blog/page/3/</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1218,19 +1249,19 @@
   </url>
   <url>
     <loc>https://naklikay.ru/blog/page/10/</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://naklikay.ru/blog/segmenty-v-yandex-metrike/</loc>
-    <lastmod>2026-09-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://naklikay.ru/blog/page/11/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://naklikay.ru/blog/bidder-yandex-direct/</loc>
-    <lastmod>2026-09-06</lastmod>
+    <loc>https://naklikay.ru/blog/konversiya-lida-v-prodazhu/</loc>
+    <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

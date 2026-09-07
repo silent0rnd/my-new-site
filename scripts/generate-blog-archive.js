@@ -254,8 +254,8 @@ function relatedArticlesFor(article, articles) {
       || b.candidate.date.localeCompare(a.candidate.date)
       || a.candidate.slug.localeCompare(b.candidate.slug));
 
-  const sameTopic = rankedCandidates.filter(({ candidate }) => candidate.topic === article.topic).slice(0, 2);
-  const otherTopic = rankedCandidates.filter(({ candidate }) => candidate.topic !== article.topic).slice(0, 1);
+  const sameTopic = rankedCandidates.filter(({ candidate }) => candidate.topic === article.topic).slice(0, 3);
+  const otherTopic = rankedCandidates.filter(({ candidate }) => candidate.topic !== article.topic).slice(0, 3 - sameTopic.length);
 
   return [...sameTopic, ...otherTopic].map(({ candidate }) => candidate);
 }

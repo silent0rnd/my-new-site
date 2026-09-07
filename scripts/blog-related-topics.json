@@ -2,6 +2,65 @@
   "version": 1,
   "articles": [
     {
+      "slug": "konversiya-lida-v-prodazhu",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "analytics",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "paketnaya-strategiya-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "automation"
+      ],
+      "intent": "explanation"
+    },
+    {
+      "slug": "edinaya-perfomans-kampaniya-yandex-direct",
+      "topic": "ecommerce",
+      "topicLabel": "Интернет-магазины",
+      "tags": [
+        "search",
+        "ad-formats"
+      ],
+      "intent": "explanation"
+    },
+    {
+      "slug": "atributsiya-v-yandex-metrike",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "automation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "a-b-testirovanie-sayta",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "website"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "segmenty-v-yandex-metrike",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "campaign-setup",
+        "ad-formats"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "bidder-yandex-direct",
       "topic": "direct-management",
       "topicLabel": "Настройка Яндекс Директа",
@@ -1293,6 +1352,58 @@
       "intent": "service"
     },
     {
+      "slug": "reklama-v-max-cherez-yandex-direct",
+      "topic": "social-ads",
+      "topicLabel": "Реклама в соцсетях",
+      "tags": [
+        "analytics",
+        "website"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kombinatornye-obyavleniya-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "campaign-setup",
+        "ad-formats"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prognoz-byudzheta-yandex-direct",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "search",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "operatory-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "traffic-quality"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kak-nastroit-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "analytics",
+        "economics",
+        "automation",
+        "campaign-setup"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "kak-sgenerirovat-utm-metki-dlya-yandex-direkta",
       "topic": "analytics",
       "topicLabel": "Аналитика",
@@ -1456,70 +1567,6 @@
       "intent": "comparison"
     },
     {
-      "slug": "reklama-v-max-cherez-yandex-direct",
-      "topic": "social-ads",
-      "topicLabel": "Реклама в соцсетях",
-      "tags": [
-        "analytics",
-        "website"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "kombinatornye-obyavleniya-yandex-direct",
-      "topic": "direct-tools",
-      "topicLabel": "Инструменты Яндекс Директа",
-      "tags": [
-        "campaign-setup",
-        "ad-formats"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "prognoz-byudzheta-yandex-direct",
-      "topic": "budget",
-      "topicLabel": "Бюджет и стоимость",
-      "tags": [
-        "economics",
-        "search",
-        "lead-generation"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "operatory-yandex-direct",
-      "topic": "direct-tools",
-      "topicLabel": "Инструменты Яндекс Директа",
-      "tags": [
-        "traffic-quality"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "kak-nastroit-yandex-direct",
-      "topic": "direct-management",
-      "topicLabel": "Настройка Яндекс Директа",
-      "tags": [
-        "analytics",
-        "economics",
-        "automation",
-        "campaign-setup"
-      ],
-      "intent": "instruction"
-    },
-    {
-      "slug": "reklama-na-avito-rostov",
-      "topic": "local-promotion",
-      "topicLabel": "Локальное продвижение",
-      "tags": [
-        "ad-formats",
-        "avito",
-        "local",
-        "lead-generation"
-      ],
-      "intent": "strategy"
-    },
-    {
       "slug": "targetirovannaya-reklama-rostov",
       "topic": "local-promotion",
       "topicLabel": "Локальное продвижение",
@@ -1536,6 +1583,18 @@
       "tags": [
         "telegram",
         "local"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-na-avito-rostov",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "ad-formats",
+        "avito",
+        "local",
+        "lead-generation"
       ],
       "intent": "strategy"
     },
@@ -1641,17 +1700,6 @@
         "ecommerce",
         "search",
         "ad-formats"
-      ],
-      "intent": "instruction"
-    },
-    {
-      "slug": "segmenty-v-yandex-metrike",
-      "topic": "analytics",
-      "topicLabel": "Аналитика",
-      "tags": [
-        "analytics",
-        "metrika",
-        "retargeting"
       ],
       "intent": "instruction"
     }
