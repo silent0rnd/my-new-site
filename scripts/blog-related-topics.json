@@ -2,6 +2,28 @@
   "version": 1,
   "articles": [
     {
+      "slug": "internet-marketolog-rostov",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "b2b",
+        "analytics",
+        "website",
+        "telegram",
+        "local"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "bannernaya-slepota",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "ad-formats"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "konversiya-lida-v-prodazhu",
       "topic": "direct-management",
       "topicLabel": "Настройка Яндекс Директа",
@@ -1352,58 +1374,6 @@
       "intent": "service"
     },
     {
-      "slug": "reklama-v-max-cherez-yandex-direct",
-      "topic": "social-ads",
-      "topicLabel": "Реклама в соцсетях",
-      "tags": [
-        "analytics",
-        "website"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "kombinatornye-obyavleniya-yandex-direct",
-      "topic": "direct-tools",
-      "topicLabel": "Инструменты Яндекс Директа",
-      "tags": [
-        "campaign-setup",
-        "ad-formats"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "prognoz-byudzheta-yandex-direct",
-      "topic": "budget",
-      "topicLabel": "Бюджет и стоимость",
-      "tags": [
-        "economics",
-        "search",
-        "lead-generation"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "operatory-yandex-direct",
-      "topic": "direct-tools",
-      "topicLabel": "Инструменты Яндекс Директа",
-      "tags": [
-        "traffic-quality"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "kak-nastroit-yandex-direct",
-      "topic": "direct-management",
-      "topicLabel": "Настройка Яндекс Директа",
-      "tags": [
-        "analytics",
-        "economics",
-        "automation",
-        "campaign-setup"
-      ],
-      "intent": "instruction"
-    },
-    {
       "slug": "kak-sgenerirovat-utm-metki-dlya-yandex-direkta",
       "topic": "analytics",
       "topicLabel": "Аналитика",
@@ -1565,6 +1535,58 @@
         "local"
       ],
       "intent": "comparison"
+    },
+    {
+      "slug": "reklama-v-max-cherez-yandex-direct",
+      "topic": "social-ads",
+      "topicLabel": "Реклама в соцсетях",
+      "tags": [
+        "analytics",
+        "website"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kombinatornye-obyavleniya-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "campaign-setup",
+        "ad-formats"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prognoz-byudzheta-yandex-direct",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "search",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "operatory-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "traffic-quality"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kak-nastroit-yandex-direct",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "analytics",
+        "economics",
+        "automation",
+        "campaign-setup"
+      ],
+      "intent": "instruction"
     },
     {
       "slug": "targetirovannaya-reklama-rostov",
