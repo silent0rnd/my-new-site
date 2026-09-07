@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
+    <title>Конвертер PNG в JPG онлайн бесплатно | naklikay.ru</title>
+    <meta name="description" content="Бесплатный онлайн-конвертер PNG в JPG. Загружайте сразу несколько изображений, меняйте имена файлов, качество JPG и скачивайте результат одним архивом. Файлы обрабатываются в браузере." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://naklikay.ru/tools/png-to-jpg/" />
+    <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="../../styles.css?v=20260907-png-to-jpg" />
+    <script src="vendor/jszip.min.js?v=3.10.1" defer></script>
+    <script src="../../script.js?v=20260824-tools" defer></script>
+    <script src="png-to-jpg.js?v=20260907-2" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Максим Мирошников" />
+    <meta property="og:url" content="https://naklikay.ru/tools/png-to-jpg/" />
+    <meta property="og:title" content="Конвертер PNG в JPG онлайн бесплатно" />
+    <meta property="og:description" content="Пакетно конвертируйте PNG в JPG прямо в браузере. Изображения не загружаются на сервер." />
+    <meta property="og:image" content="https://naklikay.ru/assets/og-cover.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Конвертер PNG в JPG","description":"Бесплатный пакетный конвертер PNG в JPG, который работает локально в браузере.","url":"https://naklikay.ru/tools/png-to-jpg/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"ru-RU","isAccessibleForFree":true,"featureList":["Пакетная конвертация PNG в JPG","Настройка качества JPG","Выбор фона для прозрачных PNG","Скачивание JPG одним ZIP-архивом"],"offers":{"@type":"Offer","price":"0","priceCurrency":"RUB"},"author":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://naklikay.ru/"},{"@type":"ListItem","position":2,"name":"Сервисы","item":"https://naklikay.ru/tools/"},{"@type":"ListItem","position":3,"name":"Конвертер PNG в JPG","item":"https://naklikay.ru/tools/png-to-jpg/"}]}]}
+    </script>
+  </head>
+  <body class="legal-page article-page utm-page png-jpg-page">
+    <header class="legal-topbar">
+      <a class="legal-home-link" href="../../">Максим Мирошников</a>
+      <nav class="messenger-links" aria-label="Мессенджеры">
+        <a href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">Telegram</a>
+        <a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">Макс</a>
+      </nav>
+    </header>
+
+    <main class="legal-shell">
+      <article class="legal-document" data-png-to-jpg>
+        <nav class="article-breadcrumbs" aria-label="Хлебные крошки">
+          <a href="../../">Главная</a><span aria-hidden="true">/</span><a href="../">Сервисы</a><span aria-hidden="true">/</span><span aria-current="page">Конвертер PNG в JPG</span>
+        </nav>
+        <h1>Конвертер PNG в JPG</h1>
+        <p class="article-lead">Конвертируйте один или несколько PNG-файлов в JPG прямо в браузере. Изображения не загружаются на сервер.</p>
+        <p class="png-jpg-privacy">Файлы обрабатываются в вашем браузере и не загружаются на сервер.</p>
+
+        <section class="utm-block png-jpg-workbench" aria-label="Конвертер PNG в JPG">
+          <h2>Загрузите PNG</h2>
+          <input class="png-jpg-file-input" id="png-jpg-file-input" type="file" accept="image/png,.png" multiple data-png-file-input />
+          <div class="png-jpg-dropzone" data-png-dropzone>
+            <strong>Перетащите PNG сюда</strong>
+            <span>Можно выбрать сразу несколько изображений</span>
+            <label class="utm-button" for="png-jpg-file-input">Выбрать PNG</label>
+          </div>
+          <p class="png-jpg-status" data-png-status hidden aria-live="polite"></p>
+
+          <div class="png-jpg-controls" data-png-controls hidden>
+            <div class="png-jpg-batch-control">
+              <label class="utm-field png-jpg-batch-field"><span class="utm-field__name">Общее имя для всех файлов</span><span class="png-jpg-file__name-box"><input type="text" data-png-batch-name autocomplete="off" aria-label="Общее имя для всех JPG" /><span>.jpg</span></span></label>
+              <button class="utm-button utm-button--ghost" type="button" data-png-apply-batch>Переименовать</button>
+            </div>
+            <div class="png-jpg-quality-control"><label class="utm-field png-jpg-quality"><span class="utm-field__name">Качество JPG</span><input class="utm-input" type="range" min="60" max="100" value="98" data-png-quality aria-describedby="png-jpg-quality-value png-jpg-quality-help" /><output id="png-jpg-quality-value" data-png-quality-value>98% - почти максимум качества</output></label><div class="png-jpg-quality-scale" aria-hidden="true"><span>60<br /><small>минимальный вес</small></span><span>80<br /><small>рекомендовано</small></span><span>90<br /><small>высокое</small></span><span>100<br /><small>максимум</small></span></div><p id="png-jpg-quality-help" class="png-jpg-quality-help">Точный вес JPG рассчитывается автоматически после выбора качества. Скриншоты и графика могут весить меньше в PNG.</p></div>
+            <label class="utm-field png-jpg-background"><span class="utm-field__name">Фон прозрачных областей</span><span class="png-jpg-color-control"><input type="color" value="#ffffff" data-png-background /><output data-png-background-value>#FFFFFF</output></span></label>
+          </div>
+
+          <section class="png-jpg-size-summary" data-png-size-summary hidden aria-live="polite"><strong data-png-source-total></strong><span data-png-result-total></span></section>
+
+          <section class="png-jpg-list-section" data-png-list-section hidden aria-labelledby="png-jpg-list-title">
+            <div class="png-jpg-list-heading"><h2 id="png-jpg-list-title">Изображения</h2><button class="png-jpg-clear" type="button" data-png-clear>Очистить всё</button></div>
+            <div class="png-jpg-list" data-png-list></div>
+          </section>
+
+          <div class="png-jpg-actions" data-png-actions hidden>
+            <button class="utm-button utm-button--ghost" type="button" data-png-download-all hidden>Скачать все JPG</button>
+          </div>
+        </section>
+
+        <section class="png-jpg-seo">
+          <h2>Как перевести PNG в JPG</h2>
+          <ol><li>Загрузите один или несколько PNG.</li><li>При необходимости измените имена файлов.</li><li>Выберите качество JPG и фон.</li><li>Нажмите «Конвертировать» и скачайте результат.</li></ol>
+          <h2>Что происходит с прозрачностью PNG</h2>
+          <p>JPG не поддерживает прозрачность. Поэтому прозрачные области заменяются выбранным цветом - по умолчанию белым.</p>
+          <h2>Загружаются ли изображения на сервер</h2>
+          <p>Нет. Конвертация и создание ZIP-архива выполняются локально в вашем браузере.</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

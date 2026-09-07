@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
+    <title>Подготовка файла для Яндекс Аудиторий</title>
+    <meta name="description" content="Очистите телефоны и email, удалите дубли и скачайте CSV для загрузки в Яндекс Аудитории. Данные обрабатываются только в браузере." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://naklikay.ru/tools/podgotovka-fayla-dlya-yandex-auditoriy/" />
+    <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="../../styles.css?v=20260907-audience" />
+    <script src="../mediaplan/vendor/xlsx.full.min.js?v=0.18.5.1" defer></script>
+    <script src="../../script.js?v=20260824-tools" defer></script>
+    <script src="audience.js?v=20260907-11" defer></script>
+    <meta property="og:type" content="website" /><meta property="og:site_name" content="Максим Мирошников" /><meta property="og:url" content="https://naklikay.ru/tools/podgotovka-fayla-dlya-yandex-auditoriy/" /><meta property="og:title" content="Подготовка файла для Яндекс Аудиторий" /><meta property="og:description" content="Очистите телефоны и email и получите готовый CSV." /><meta property="og:image" content="https://naklikay.ru/assets/og-cover.jpg" /><meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Подготовка файла для Яндекс Аудиторий","url":"https://naklikay.ru/tools/podgotovka-fayla-dlya-yandex-auditoriy/","applicationCategory":"BusinessApplication","operatingSystem":"Any","inLanguage":"ru-RU","offers":{"@type":"Offer","price":"0","priceCurrency":"RUB"}}</script>
+  </head>
+  <body class="legal-page article-page utm-page audience-page">
+    <header class="legal-topbar"><a class="legal-home-link" href="../../">Максим Мирошников</a><nav class="messenger-links" aria-label="Мессенджеры"><a href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">Telegram</a><a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">Макс</a></nav></header>
+    <main class="legal-shell"><article class="legal-document" data-audience-tool>
+      <nav class="article-breadcrumbs" aria-label="Хлебные крошки"><a href="../../">Главная</a><span aria-hidden="true">/</span><a href="../">Сервисы</a><span aria-hidden="true">/</span><span aria-current="page">Подготовка файла для Яндекс Аудиторий</span></nav>
+      <h1>Подготовка файла для Яндекс Аудиторий</h1>
+      <p class="article-lead">Очистите телефоны и email, удалите дубли и скачайте готовый CSV для загрузки в Яндекс Аудитории.</p>
+      <p class="audience-privacy">Все данные обрабатываются только в вашем браузере. Файл не загружается на сервер и нигде не сохраняется.</p>
+      <section class="utm-block audience-workbench">
+        <h2>Загрузите файл с данными</h2>
+        <input class="audience-file-input" id="audience-file-input" type="file" accept=".csv,.txt,.xls,.xlsx,text/csv,text/plain,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" data-audience-file />
+        <div class="audience-dropzone" data-audience-dropzone><strong>Выберите CSV, XLSX или TXT</strong><span>Перетащите файл сюда или выберите его на компьютере</span><label class="utm-button" for="audience-file-input">Выбрать файл</label></div>
+        <details class="audience-paste-details"><summary>Вставить данные из таблицы вместо файла</summary><label class="utm-field audience-paste"><span class="utm-field__name">Вставьте скопированную таблицу</span><textarea class="utm-input utm-textarea" data-audience-paste placeholder="Вставьте данные из Excel или Google Sheets"></textarea></label><button class="utm-button utm-button--ghost" type="button" data-audience-paste-submit>Обработать вставленные данные</button></details>
+        <p class="audience-status" data-audience-status hidden aria-live="polite"></p>
+        <div class="audience-mapping" data-audience-mapping hidden></div>
+        <label class="utm-field audience-email-policy"><span class="utm-field__name">Некорректные строки</span><select class="utm-input" data-audience-row-policy><option value="exclude">Не включать некорректные данные в итоговый CSV</option><option value="repair">Удалять лишние пробелы и недопустимые символы</option></select><span class="utm-field__hint">Правило применяется к телефонам и email. Структурные ошибки сервис не исправляет автоматически.</span></label>
+        <label class="audience-hash"><input type="checkbox" data-audience-hash /> <span>Захешировать phone и email SHA-256</span></label>
+        <p class="utm-note">Если включите хеширование, при загрузке в Яндекс Аудитории выберите SHA-256.</p>
+        <button class="audience-reset" type="button" data-audience-reset hidden>Сбросить файл и начать заново</button>
+      </section>
+      <section class="utm-block audience-results" data-audience-results hidden>
+        <h2>Результат обработки</h2>
+        <div class="audience-metrics" data-audience-metrics></div>
+        <p class="audience-warning" data-audience-warning hidden>Для создания сегмента Яндекс Аудиторий требуется не менее 100 записей.</p>
+        <h3>Превью итогового файла</h3><pre class="audience-preview" data-audience-preview></pre>
+        <div data-audience-issues></div>
+        <button class="utm-button" type="button" data-audience-download>Скачать CSV для Яндекс Аудиторий</button>
+      </section>
+    </article></main>
+  </body>
+</html>
