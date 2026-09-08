@@ -1091,6 +1091,7 @@ const homepageCases = interleaveCasesByCategory(
   Array.isArray(window.siteCases) ? window.siteCases.filter((caseItem) => caseItem.isFeatured !== false) : [],
 );
 const FOOTER_SIGNATURE_DRAW_DURATION_MS = 1400;
+const FOOTER_SIGNATURE_PLAYED_KEY = "footerSignaturePlayed";
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const footerSignature = document.querySelector(".site-footer__signature");
 let caseRevealObserver = null;
@@ -1153,6 +1154,20 @@ function getFooterSignatureAnimationSource(sourceUrl) {
   return sourceUrl.replace("maxim-signature.svg", "maxim-signature-writing.webp");
 }
 
+function readFooterSignaturePlayed() {
+  try {
+    return window.localStorage.getItem(FOOTER_SIGNATURE_PLAYED_KEY) === "true";
+  } catch (error) {
+    return null;
+  }
+}
+
+function saveFooterSignaturePlayed() {
+  try {
+    window.localStorage.setItem(FOOTER_SIGNATURE_PLAYED_KEY, "true");
+  } catch (error) {}
+}
+
 function initFooterSignatureReveal() {
   const signaturePendingRoot = document.documentElement;
 
@@ -1177,6 +1192,12 @@ function initFooterSignatureReveal() {
     signaturePendingRoot.classList.remove("is-signature-pending");
     footerSignature.classList.remove("is-signature-idle");
   };
+
+  const signaturePlayed = readFooterSignaturePlayed();
+  if (signaturePlayed !== false) {
+    showSignature();
+    return;
+  }
 
   footerSignature.classList.add("is-signature-idle");
 
@@ -1206,6 +1227,7 @@ function initFooterSignatureReveal() {
     staticSignature.src = animationSource;
     showSignature();
     footerSignature.classList.add("is-signature-writing");
+    saveFooterSignaturePlayed();
     window.setTimeout(finishDrawing, FOOTER_SIGNATURE_DRAW_DURATION_MS);
   };
 

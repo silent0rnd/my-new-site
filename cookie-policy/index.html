@@ -7,7 +7,13 @@
     <title>Политика использования cookie - Максим Мирошников</title>
     <meta name="description" content="Политика использования файлов cookie на сайте naklikay.ru: какие файлы cookie собираются, зачем они нужны, как долго хранятся и как отключить их в браузере." />
     <link rel="canonical" href="https://naklikay.ru/cookie-policy/" />
-    <script>document.documentElement.classList.add("is-signature-pending");</script>
+    <script>
+      try {
+        if (window.localStorage.getItem("footerSignaturePlayed") !== "true") {
+          document.documentElement.classList.add("is-signature-pending");
+        }
+      } catch (error) {}
+    </script>
     <link rel="preload" href="../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="stylesheet" href="../styles.css?v=20260809-signature-idle" />
     <script src="../script.js?v=20260809-signature-idle" defer></script>

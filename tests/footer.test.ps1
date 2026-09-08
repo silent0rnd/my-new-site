@@ -26,6 +26,8 @@ function Assert-NotContains {
 
 $root = Split-Path -Parent $PSScriptRoot
 $index = Get-Content -Raw -Encoding UTF8 (Join-Path $root "index.html")
+$cookiePolicy = Get-Content -Raw -Encoding UTF8 (Join-Path $root "cookie-policy/index.html")
+$personalDataConsent = Get-Content -Raw -Encoding UTF8 (Join-Path $root "personal-data-consent/index.html")
 $styles = Get-Content -Raw -Encoding UTF8 (Join-Path $root "styles.css")
 $script = Get-Content -Raw -Encoding UTF8 (Join-Path $root "script.js")
 $signature = Get-Content -Raw -Encoding UTF8 (Join-Path $root "images/signature/maxim-signature.svg")
@@ -55,7 +57,10 @@ if ($channelLinkCount -ne 4) {
 Assert-Contains $index 'site-footer__lead-highlight' "Footer lead first word must be wrapped for underline"
 Assert-Contains $index 'images/signature/maxim-signature.svg' "Footer missing signature image path"
 Assert-Contains $index 'site-footer__signature-caption' "Footer missing signature caption element"
-Assert-Contains $index 'document.documentElement.classList.add("is-signature-pending")' "Footer signature must be hidden before deferred scripts run"
+Assert-Contains $index 'window.localStorage.getItem("footerSignaturePlayed") !== "true"' "Homepage must check whether the signature animation has already played"
+Assert-Contains $index 'document.documentElement.classList.add("is-signature-pending")' "New visitor signature must be hidden before deferred scripts run"
+Assert-Contains $cookiePolicy 'window.localStorage.getItem("footerSignaturePlayed") !== "true"' "Cookie policy must skip the early hidden state for returning visitors"
+Assert-Contains $personalDataConsent 'window.localStorage.getItem("footerSignaturePlayed") !== "true"' "Personal data consent must skip the early hidden state for returning visitors"
 Assert-Contains $index '"is-signature-pending"' "Early signature fallback class is missing"
 Assert-Contains $index 'https://naklikay.ru/personal-data-consent/' "Footer missing absolute personal-data legal link"
 Assert-Contains $index 'https://naklikay.ru/cookie-policy/' "Footer missing absolute cookie legal link"
@@ -86,6 +91,11 @@ Assert-Contains $script 'getFooterSignatureAnimationSource' "Footer signature mu
 Assert-Contains $script 'maxim-signature-writing.webp' "Footer signature must use the prepared WebP animation"
 Assert-Contains $script 'animationPreload' "Footer signature must preload its animation before playback"
 Assert-Contains $script 'FOOTER_SIGNATURE_DRAW_DURATION_MS = 1400' "Footer signature must draw for 1.4 seconds"
+Assert-Contains $script 'FOOTER_SIGNATURE_PLAYED_KEY = "footerSignaturePlayed"' "Footer signature must use its own persistent playback key"
+Assert-Contains $script 'readFooterSignaturePlayed' "Footer signature playback state reader is missing"
+Assert-Contains $script 'saveFooterSignaturePlayed' "Footer signature playback state writer is missing"
+Assert-Contains $script 'signaturePlayed !== false' "Returning visitors and unavailable storage must receive the static signature"
+Assert-Contains $script 'saveFooterSignaturePlayed();' "Footer signature must save playback only when drawing starts"
 Assert-Contains $script 'threshold: 0.2' "Footer signature reveal must start after entering the viewport"
 Assert-Contains $script 'prefersReducedMotion.matches' "Footer signature reveal must respect reduced motion"
 Assert-Contains $script 'is-signature-idle' "Footer signature must stay hidden until it starts drawing"

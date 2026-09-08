@@ -7,7 +7,15 @@
     <title>Максим Мирошников - специалист по платному трафику</title>
     <script>
       (function () {
-        document.documentElement.classList.add("is-signature-pending");
+        var footerSignatureCanAnimate = false;
+
+        try {
+          footerSignatureCanAnimate = window.localStorage.getItem("footerSignaturePlayed") !== "true";
+        } catch (error) {}
+
+        if (footerSignatureCanAnimate) {
+          document.documentElement.classList.add("is-signature-pending");
+        }
 
         var heroVideoWasPlayed = false;
 
