@@ -2179,7 +2179,7 @@ applyTypography(document);
 // На телефоне CSS превращает строки в карточки, а подписи колонок берутся
 // из data-label, чтобы сравнение не превращалось в неясный набор строк.
 function prepareArticleTables() {
-  document.querySelectorAll(".article-page .legal-document table:not(.mediaplan-table)").forEach((table) => {
+  document.querySelectorAll(".article-page .legal-document table:not(.mediaplan-table):not(.tgstat-table)").forEach((table) => {
     table.classList.add("article-table");
 
     if (!table.parentElement.classList.contains("article-table-wrap")) {
