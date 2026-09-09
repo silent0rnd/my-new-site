@@ -6,7 +6,7 @@ const { parseHTML } = require("linkedom");
 
 const root = path.resolve(__dirname, "..");
 const blogDir = path.join(root, "blog");
-const assetVersion = "20260908-article-toc-2";
+const assetVersion = "20260909-article-toc-3";
 const articleSlugs = fs.readdirSync(blogDir, { withFileTypes: true })
   .filter((item) => item.isDirectory() && item.name !== "page")
   .filter((item) => fs.existsSync(path.join(blogDir, item.name, "index.html")))
@@ -122,7 +122,7 @@ test("table of contents controls use local smooth navigation and reduced-motion 
   assert.match(script, /animation\.addEventListener\("finish"/);
   assert.match(styles, /\.article-toc\s*{/);
   assert.match(styles, /\.article-toc__toggle:focus-visible/);
-  assert.match(styles, /height: 1\.5px;[\s\S]*?clip-path: inset\(0 100% 0 0\);/);
+  assert.match(styles, /height: 2px;[\s\S]*?clip-path: inset\(0 100% 0 0\);/);
   assert.match(styles, /\.article-toc__link:hover::after,[\s\S]*?clip-path: inset\(0 0 0 0\);/);
   assert.doesNotMatch(styles, /\.article-toc__link:hover,[\s\S]*?transform: translateX\(3px\);/);
   assert.match(styles, /\.article-toc__sublist\.is-animating\s*{[\s\S]*?overflow: hidden;/);

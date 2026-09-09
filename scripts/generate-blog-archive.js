@@ -12,7 +12,7 @@ const blogDir = path.join(root, "blog");
 const relatedTopicsPath = path.join(__dirname, "blog-related-topics.json");
 const pageSize = 15;
 const siteUrl = "https://naklikay.ru";
-const blogAssetVersion = "20260908-article-toc-2";
+const blogAssetVersion = "20260909-article-toc-3";
 
 function read(file) {
   return fs.readFileSync(file, "utf8");

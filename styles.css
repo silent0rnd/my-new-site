@@ -5048,7 +5048,7 @@ html.is-hero-video-played .portrait-video {
   left: 0;
   right: 0;
   bottom: -3px;
-  height: 1.5px;
+  height: 2px;
   background: #FF9800;
   clip-path: inset(0 100% 0 0);
   transition: clip-path 180ms ease;
