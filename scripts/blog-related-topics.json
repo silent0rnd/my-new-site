@@ -2,6 +2,19 @@
   "version": 1,
   "articles": [
     {
+      "slug": "direktolog-rostov",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "analytics",
+        "campaign-setup",
+        "specialist",
+        "local",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
       "slug": "internet-marketolog-rostov",
       "topic": "local-promotion",
       "topicLabel": "Локальное продвижение",
