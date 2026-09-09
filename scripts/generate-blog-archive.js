@@ -12,7 +12,7 @@ const blogDir = path.join(root, "blog");
 const relatedTopicsPath = path.join(__dirname, "blog-related-topics.json");
 const pageSize = 15;
 const siteUrl = "https://naklikay.ru";
-const blogAssetVersion = "20260904-blog-glyph-fix-1";
+const blogAssetVersion = "20260908-article-toc-2";
 
 function read(file) {
   return fs.readFileSync(file, "utf8");
@@ -27,10 +27,11 @@ function archiveFiles() {
   const files = [path.join(blogDir, "index.html")];
   const pageDirectory = path.join(blogDir, "page");
   if (!fs.existsSync(pageDirectory)) return files;
-  for (const item of fs.readdirSync(pageDirectory, { withFileTypes: true })) {
-    if (item.isDirectory() && /^\d+$/.test(item.name)) {
-      files.push(path.join(blogDir, "page", item.name, "index.html"));
-    }
+  const pageDirectories = fs.readdirSync(pageDirectory, { withFileTypes: true })
+    .filter((item) => item.isDirectory() && /^\d+$/.test(item.name))
+    .sort((a, b) => Number(a.name) - Number(b.name));
+  for (const item of pageDirectories) {
+    files.push(path.join(blogDir, "page", item.name, "index.html"));
   }
   return files.filter(fs.existsSync);
 }
@@ -71,6 +72,10 @@ function decodeHtml(value) {
 
 function plainText(value) {
   return decodeHtml(value.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+}
+
+function inlineText(value) {
+  return decodeHtml(value.replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
 }
 
 function escapeHtml(value) {
@@ -277,6 +282,144 @@ ${cards}
 <!-- related-articles:end -->`;
 }
 
+const headingTransliteration = {
+  а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ё: "e", ж: "zh", з: "z", и: "i", й: "y",
+  к: "k", л: "l", м: "m", н: "n", о: "o", п: "p", р: "r", с: "s", т: "t", у: "u", ф: "f",
+  х: "h", ц: "ts", ч: "ch", ш: "sh", щ: "sch", ъ: "", ы: "y", ь: "", э: "e", ю: "yu", я: "ya",
+};
+
+function headingAnchor(text) {
+  const transliterated = Array.from(text.toLocaleLowerCase("ru"))
+    .map((character) => headingTransliteration[character] ?? character)
+    .join("")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 96)
+    .replace(/-+$/g, "");
+
+  return `section-${transliterated || "article"}`;
+}
+
+function uniqueHeadingAnchor(text, usedIds) {
+  const base = headingAnchor(text);
+  let candidate = base;
+  let suffix = 2;
+
+  while (usedIds.has(candidate)) {
+    candidate = `${base}-${suffix}`;
+    suffix += 1;
+  }
+
+  usedIds.add(candidate);
+  return candidate;
+}
+
+function articleTableOfContentsHtml(outline) {
+  const items = outline.map((section, index) => {
+    const sectionLink = `      <a class="article-toc__link article-toc__link--section" href="#${section.id}" data-article-anchor>${escapeHtml(section.text)}</a>`;
+    if (!section.children.length) return `    <li class="article-toc__item">\n${sectionLink}\n    </li>`;
+
+    const groupId = `article-toc-subsections-${index + 1}`;
+    const children = section.children.map((child) => `        <li><a class="article-toc__link article-toc__link--subsection" href="#${child.id}" data-article-anchor>${escapeHtml(child.text)}</a></li>`).join("\n");
+
+    return `    <li class="article-toc__item article-toc__item--has-children">
+      <div class="article-toc__section-row">
+${sectionLink}
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="${groupId}" aria-label="Показать подразделы: ${escapeHtml(section.text)}">
+          <span aria-hidden="true">${section.children.length}</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
+        </button>
+      </div>
+      <ol class="article-toc__sublist" id="${groupId}" hidden>
+${children}
+      </ol>
+    </li>`;
+  }).join("\n");
+
+  return `<!-- article-toc:start -->
+<nav class="article-toc" id="article-toc" aria-labelledby="article-toc-title">
+  <p class="article-toc__eyebrow">Навигация по статье</p>
+  <h2 class="article-toc__title" id="article-toc-title">Содержание</h2>
+  <ol class="article-toc__list">
+${items}
+  </ol>
+</nav>
+<!-- article-toc:end -->`;
+}
+
+function updateArticleTableOfContents(html, slug) {
+  const withoutExistingToc = html.replace(/\s*<!-- article-toc:start -->[\s\S]*?<!-- article-toc:end -->/g, "");
+  const articleOpen = withoutExistingToc.match(/<article class="legal-document"[^>]*>/);
+  const authorIndex = withoutExistingToc.indexOf('<aside class="article-author"');
+  if (!articleOpen || articleOpen.index === undefined) throw new Error(`Article document is missing: ${slug}`);
+  if (authorIndex < 0) throw new Error(`Article author block is missing: ${slug}`);
+
+  const contentStart = articleOpen.index + articleOpen[0].length;
+  const content = withoutExistingToc.slice(contentStart, authorIndex);
+  const headingMatches = [...content.matchAll(/<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi)];
+  if (!headingMatches.some((match) => match[1] === "2")) throw new Error(`Article H2 heading is missing: ${slug}`);
+  if (headingMatches[0][1] !== "2") throw new Error(`Article H3 appears before the first H2: ${slug}`);
+
+  const idCounts = new Map();
+  for (const match of withoutExistingToc.matchAll(/\sid=(["'])([^"']+)\1/gi)) {
+    idCounts.set(match[2], (idCounts.get(match[2]) || 0) + 1);
+  }
+  const usedIds = new Set(idCounts.keys());
+  for (const reservedId of ["article-toc", "article-toc-title"]) {
+    if (usedIds.has(reservedId)) throw new Error(`Article uses the reserved id "${reservedId}": ${slug}`);
+  }
+  usedIds.add("article-toc");
+  usedIds.add("article-toc-title");
+
+  const outline = [];
+  let currentSection = null;
+  const nextContent = content.replace(/<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi, (fullMatch, level, attributes, innerHtml) => {
+    const text = inlineText(innerHtml);
+    if (!text) throw new Error(`Article has an empty H${level}: ${slug}`);
+
+    const existingIdMatch = attributes.match(/\sid=(["'])([^"']+)\1/i);
+    let id = existingIdMatch ? existingIdMatch[2] : "";
+    if (id && (!/^[^\s"'<>]+$/.test(id) || idCounts.get(id) !== 1)) {
+      throw new Error(`Article has an invalid or duplicate heading id "${id}": ${slug}`);
+    }
+    if (!id) id = uniqueHeadingAnchor(text, usedIds);
+
+    const heading = { id, text, children: [] };
+    if (level === "2") {
+      outline.push(heading);
+      currentSection = heading;
+    } else {
+      if (!currentSection) throw new Error(`Article H3 appears before the first H2: ${slug}`);
+      currentSection.children.push(heading);
+    }
+
+    return existingIdMatch ? fullMatch : `<h${level}${attributes} id="${id}">${innerHtml}</h${level}>`;
+  });
+
+  outline.forEach((section, index) => {
+    if (!section.children.length) return;
+    const groupId = `article-toc-subsections-${index + 1}`;
+    if (usedIds.has(groupId)) throw new Error(`Article uses the reserved id "${groupId}": ${slug}`);
+    usedIds.add(groupId);
+  });
+
+  const firstHeadingIndex = headingMatches[0].index;
+  const lowerContent = content.toLowerCase();
+  const sectionOpenIndex = lowerContent.lastIndexOf("<section", firstHeadingIndex);
+  const sectionCloseIndex = lowerContent.lastIndexOf("</section>", firstHeadingIndex);
+  let insertionIndex = firstHeadingIndex;
+  if (sectionOpenIndex > sectionCloseIndex) {
+    const sectionTagEnd = content.indexOf(">", sectionOpenIndex) + 1;
+    const contentBeforeHeading = content.slice(sectionTagEnd, firstHeadingIndex).trim();
+    if (!contentBeforeHeading) insertionIndex = sectionOpenIndex;
+  }
+  const contentWithToc = `${nextContent.slice(0, insertionIndex)}\n${articleTableOfContentsHtml(outline)}\n${nextContent.slice(insertionIndex)}`;
+
+  return `${withoutExistingToc.slice(0, contentStart)}${contentWithToc}${withoutExistingToc.slice(authorIndex)}`;
+}
+
 function updateRelatedArticles(article, articles) {
   const articlePath = path.join(blogDir, article.slug, "index.html");
   if (!fs.existsSync(articlePath)) throw new Error(`Article page is missing: ${article.slug}`);
@@ -286,10 +429,11 @@ function updateRelatedArticles(article, articles) {
     .replace(/\s*<!-- related-articles:start -->[\s\S]*?<!-- related-articles:end -->/g, "")
     .replace(/\.\.\/\.\.\/styles\.css(?:\?v=[^"]*)?/g, `../../styles.css?v=${blogAssetVersion}`)
     .replace(/\.\.\/\.\.\/script\.js(?:\?v=[^"]*)?/g, `../../script.js?v=${blogAssetVersion}`);
-  const authorMatch = withoutExistingBlock.match(/<aside class="article-author"[\s\S]*?<\/aside>/);
+  const withTableOfContents = updateArticleTableOfContents(withoutExistingBlock, article.slug);
+  const authorMatch = withTableOfContents.match(/<aside class="article-author"[\s\S]*?<\/aside>/);
   if (!authorMatch) throw new Error(`Article author block is missing: ${article.slug}`);
 
-  const nextHtml = withoutExistingBlock.replace(authorMatch[0], `${authorMatch[0]}${relatedArticlesHtml(article, articles)}`);
+  const nextHtml = withTableOfContents.replace(authorMatch[0], `${authorMatch[0]}${relatedArticlesHtml(article, articles)}`);
   if (nextHtml !== currentHtml) write(articlePath, nextHtml);
 }
 

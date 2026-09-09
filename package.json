@@ -14,6 +14,7 @@
     "preview:tgstat": "node scripts/serve-tgstat-local.js",
     "test:cases": "powershell -ExecutionPolicy Bypass -File tests/cases.test.ps1 && node tests/cases-enhancements.test.js && powershell -ExecutionPolicy Bypass -File tests/favicon.test.ps1",
     "test:blog": "powershell -ExecutionPolicy Bypass -File tests/blog.test.ps1 && powershell -ExecutionPolicy Bypass -File tests/favicon.test.ps1",
+    "test:blog-toc": "node tests/blog-toc.test.js",
     "test:favicon": "powershell -ExecutionPolicy Bypass -File tests/favicon.test.ps1",
     "test:related-articles": "node tests/related-articles.test.js",
     "test:mediaplan": "node --test tests/mediaplan.test.js",

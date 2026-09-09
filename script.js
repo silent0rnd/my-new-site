@@ -18,6 +18,8 @@
     if (!/^\/blog(?:\/|$)/.test(window.location.pathname)) return;
 
     const prepareLink = (link) => {
+      if (link.hasAttribute("data-article-anchor")) return;
+
       link.target = "_blank";
       link.relList.add("noopener", "noreferrer");
     };
@@ -2433,11 +2435,190 @@ function createFloatingControlLabel(text) {
     letter.style.setProperty("--floating-control-burst-y-end", `${Math.round(burstY * 1.6)}px`);
     letter.style.setProperty("--floating-control-burst-rotate", `${-30 + index * 9}deg`);
     letter.style.setProperty("--floating-control-burst-rotate-end", `${-46 + index * 13}deg`);
-    letter.textContent = character;
+    letter.textContent = character === " " ? "\u00A0" : character;
     label.append(letter);
   });
 
   return label;
+}
+
+function scrollToArticleTarget(target, hash) {
+  if (!target) return;
+
+  if (window.location.hash !== hash) {
+    window.history.pushState(null, "", hash);
+  }
+
+  if (!target.hasAttribute("tabindex")) {
+    target.setAttribute("tabindex", "-1");
+    target.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
+  }
+
+  target.focus({ preventScroll: true });
+  target.scrollIntoView({
+    behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+    block: "start",
+  });
+}
+
+function initArticleTableOfContents() {
+  const tableOfContents = document.querySelector(".article-page .article-toc");
+  if (!tableOfContents) return;
+
+  const sublistAnimations = new WeakMap();
+
+  const setSublistExpanded = (sublist, shouldExpand) => {
+    const currentAnimation = sublistAnimations.get(sublist);
+    const wasHidden = sublist.hidden;
+    let startHeight = 0;
+    let startOpacity = 0;
+    let startMarginTop = 0;
+    let startMarginBottom = 0;
+
+    if (!wasHidden) {
+      const currentStyles = window.getComputedStyle(sublist);
+      startHeight = sublist.getBoundingClientRect().height;
+      startOpacity = Number.parseFloat(currentStyles.opacity) || 0;
+      startMarginTop = Number.parseFloat(currentStyles.marginTop) || 0;
+      startMarginBottom = Number.parseFloat(currentStyles.marginBottom) || 0;
+    }
+
+    if (currentAnimation) currentAnimation.cancel();
+    sublistAnimations.delete(sublist);
+
+    if (prefersReducedMotion.matches || typeof sublist.animate !== "function") {
+      sublist.classList.remove("is-animating");
+      sublist.hidden = !shouldExpand;
+      return;
+    }
+
+    sublist.hidden = false;
+    const expandedStyles = window.getComputedStyle(sublist);
+    const expandedMarginTop = Number.parseFloat(expandedStyles.getPropertyValue("--article-toc-sublist-margin-top")) || 0;
+    const expandedMarginBottom = Number.parseFloat(expandedStyles.getPropertyValue("--article-toc-sublist-margin-bottom")) || 0;
+    const endHeight = shouldExpand ? sublist.scrollHeight : 0;
+    const endOpacity = shouldExpand ? 1 : 0;
+    const endMarginTop = shouldExpand ? expandedMarginTop : 0;
+    const endMarginBottom = shouldExpand ? expandedMarginBottom : 0;
+
+    sublist.classList.add("is-animating");
+    const animation = sublist.animate([
+      {
+        height: `${startHeight}px`,
+        opacity: startOpacity,
+        marginTop: `${startMarginTop}px`,
+        marginBottom: `${startMarginBottom}px`,
+      },
+      {
+        height: `${endHeight}px`,
+        opacity: endOpacity,
+        marginTop: `${endMarginTop}px`,
+        marginBottom: `${endMarginBottom}px`,
+      },
+    ], {
+      duration: 280,
+      easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+      fill: "both",
+    });
+
+    sublistAnimations.set(sublist, animation);
+    animation.addEventListener("finish", () => {
+      if (sublistAnimations.get(sublist) !== animation) return;
+      sublistAnimations.delete(sublist);
+      sublist.classList.remove("is-animating");
+      sublist.hidden = !shouldExpand;
+      animation.cancel();
+    }, { once: true });
+  };
+
+  tableOfContents.querySelectorAll(".article-toc__toggle").forEach((toggle) => {
+    const listId = toggle.getAttribute("aria-controls");
+    const sublist = listId ? document.getElementById(listId) : null;
+    if (!sublist) return;
+
+    const sectionName = toggle.getAttribute("aria-label")?.replace(/^Показать подразделы:\s*/, "") || "раздела";
+    toggle.addEventListener("click", () => {
+      const shouldExpand = toggle.getAttribute("aria-expanded") !== "true";
+      toggle.setAttribute("aria-expanded", String(shouldExpand));
+      toggle.setAttribute("aria-label", `${shouldExpand ? "Скрыть" : "Показать"} подразделы: ${sectionName}`);
+      setSublistExpanded(sublist, shouldExpand);
+    });
+  });
+
+  tableOfContents.querySelectorAll("a[data-article-anchor]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const hash = link.hash;
+      const target = hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
+      if (!target) return;
+
+      event.preventDefault();
+      scrollToArticleTarget(target, hash);
+    });
+  });
+}
+
+function initArticleTocReturnButton() {
+  const tableOfContents = document.querySelector(".article-page .article-toc");
+  if (!tableOfContents) return;
+
+  const button = document.createElement("button");
+  const label = createFloatingControlLabel("К содержанию");
+  button.className = "article-toc-return";
+  button.type = "button";
+  button.setAttribute("aria-label", "Вернуться к содержанию статьи");
+  button.append(label);
+  button.insertAdjacentHTML("beforeend", `
+    <svg class="article-toc-return__art" viewBox="0 0 54 56" aria-hidden="true" focusable="false">
+      <circle class="article-toc-return__dot" cx="8" cy="14" r="1.7" />
+      <circle class="article-toc-return__dot" cx="8" cy="28" r="1.7" />
+      <circle class="article-toc-return__dot" cx="8" cy="42" r="1.7" />
+      <path class="article-toc-return__line" d="M15 14.2C24 13.5 34.2 14.5 46 13.9M15 28.2C25.2 27.5 36.5 28.7 46 28M15 42.1C25.5 41.5 35.2 42.5 46 41.8" />
+    </svg>`);
+  document.body.append(button);
+
+  let isScrollTicking = false;
+  let labelBurstTimer = 0;
+  const canShowLabel = () => window.matchMedia("(min-width: 721px) and (hover: hover) and (pointer: fine)").matches;
+  const canAnimateLabel = () => !prefersReducedMotion.matches && canShowLabel();
+
+  const setLabelVisible = (isVisible) => {
+    if (!canShowLabel()) return;
+    button.classList.toggle("has-floating-control-label", isVisible);
+  };
+
+  const playLabelBurst = () => {
+    if (!canAnimateLabel()) return;
+
+    window.clearTimeout(labelBurstTimer);
+    button.classList.remove("has-floating-control-label", "is-floating-control-label-burst");
+    void label.offsetWidth;
+    button.classList.add("is-floating-control-label-burst");
+    labelBurstTimer = window.setTimeout(() => {
+      button.classList.remove("is-floating-control-label-burst");
+    }, 460);
+  };
+
+  const updateVisibility = () => {
+    button.classList.toggle("is-visible", tableOfContents.getBoundingClientRect().bottom < 0);
+    isScrollTicking = false;
+  };
+
+  window.addEventListener("scroll", () => {
+    if (isScrollTicking) return;
+    isScrollTicking = true;
+    window.requestAnimationFrame(updateVisibility);
+  }, { passive: true });
+
+  button.addEventListener("pointerenter", () => setLabelVisible(true));
+  button.addEventListener("pointerleave", () => setLabelVisible(false));
+  button.addEventListener("focus", () => setLabelVisible(true));
+  button.addEventListener("blur", () => setLabelVisible(false));
+  button.addEventListener("click", () => {
+    playLabelBurst();
+    scrollToArticleTarget(tableOfContents, "#article-toc");
+  });
+
+  updateVisibility();
 }
 
 function initFeedbackWidget() {
@@ -2719,3 +2900,5 @@ function initScrollToTopButton() {
 
 initFeedbackWidget();
 initScrollToTopButton();
+initArticleTableOfContents();
+initArticleTocReturnButton();
