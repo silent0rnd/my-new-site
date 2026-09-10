@@ -1,9 +1,5 @@
 RewriteEngine On
 
-# Canonical URL for the call-tracking article. Preserve query parameters and
-# redirect both slash variants directly to the final HTTPS URL.
-RewriteRule ^blog/kolltreking-dlya-yandeks-direct/?$ https://naklikay.ru/blog/kolltreking-dlya-yandeks-direkt/ [R=301,L,NE]
-
 # 1. Точные канонические URL. Выполняются до DirectorySlash, чтобы прокси не
 #    возвращал HTTP-адрес после принудительного перехода на HTTPS.
 RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
