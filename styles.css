@@ -6762,6 +6762,24 @@ html.is-hero-video-played .portrait-video {
   mask: var(--hand-drawn-line-mask) center / 100% 100% no-repeat;
 }
 
+/* В каталоге сервисов заголовок-ссылка может занимать две строки. Рисуем
+   одинаковую оранжевую линию под каждой строкой вместо тонкой системной
+   границы ссылки и одной общей линии под всем заголовком. */
+.tools-catalog .utm-block h2::after {
+  content: none;
+}
+
+.legal-document.tools-catalog .utm-block h2 a {
+  padding-bottom: 0.1em;
+  border-bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 18' preserveAspectRatio='none'%3E%3Cpath d='M3 12C44 5.8 90 5 132 6C181 7.1 220 6.1 257 11.4' fill='none' stroke='%23FF9800' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.34em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
 .utm-label {
   margin: 26px 0 10px;
   font-size: 15px;
