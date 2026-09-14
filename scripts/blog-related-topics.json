@@ -2,6 +2,15 @@
   "version": 1,
   "articles": [
     {
+      "slug": "neiroset-dlya-reklamy",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "specialist"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "direktolog-rostov",
       "topic": "specialist",
       "topicLabel": "Работа со специалистом",
