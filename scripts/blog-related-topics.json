@@ -2,6 +2,19 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-kliningovyh-uslug",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "economics",
+        "specialist",
+        "avito",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
       "slug": "kak-ocenivat-keisy-po-reklame",
       "topic": "marketing",
       "topicLabel": "Маркетинг",
@@ -15,6 +28,18 @@
       "tags": [
         "economics",
         "ad-formats"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-onlayn-kursov-kitayskogo-yazyka-2026",
+      "topic": "social-ads",
+      "topicLabel": "Реклама в соцсетях",
+      "tags": [
+        "economics",
+        "telegram",
+        "avito",
+        "seo"
       ],
       "intent": "instruction"
     },
