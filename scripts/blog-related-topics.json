@@ -2,6 +2,59 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-ustanovki-zaborov-2026",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "analytics",
+        "economics",
+        "search",
+        "website",
+        "specialist",
+        "avito",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-ustanovki-vorot",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "analytics",
+        "economics",
+        "specialist",
+        "avito",
+        "seo"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "prodvizhenie-brenda-obuvi",
+      "topic": "ecommerce",
+      "topicLabel": "Интернет-магазины",
+      "tags": [
+        "ecommerce",
+        "economics",
+        "ad-formats",
+        "seo"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-ustanovki-kondicionerov",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "economics",
+        "search",
+        "website",
+        "specialist"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "prodvizhenie-kliningovyh-uslug",
       "topic": "production",
       "topicLabel": "Производство и B2B",
