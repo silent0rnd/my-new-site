@@ -20,6 +20,7 @@
     "test:mediaplan": "node --test tests/mediaplan.test.js",
     "test:ad-budget": "node --test tests/ad-budget.test.js",
     "test:png-to-jpg": "node --test tests/png-to-jpg.test.js",
+    "test:png-to-jpg:browser": "node tests/png-to-jpg-browser.test.js",
     "test:percent-calculator": "node --test tests/percent-calculator.test.js",
     "test:minus-cities": "node tests/minus-cities.test.js",
     "test:tgstat": "node --test tests/tgstat-parser.test.js tests/tgstat-tool.test.js",

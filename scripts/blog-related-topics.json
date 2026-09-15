@@ -2,6 +2,23 @@
   "version": 1,
   "articles": [
     {
+      "slug": "kak-ocenivat-keisy-po-reklame",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-biznes-foruma",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "economics",
+        "ad-formats"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "neiroset-dlya-reklamy",
       "topic": "marketing",
       "topicLabel": "Маркетинг",
