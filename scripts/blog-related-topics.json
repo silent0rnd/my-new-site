@@ -2,6 +2,157 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-stroitelnoy-kompanii-v-2026-godu",
+      "topic": "construction",
+      "topicLabel": "Строительство",
+      "tags": [
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-remonta-kvartir-v-2026-godu",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "residential-real-estate",
+        "analytics",
+        "economics",
+        "specialist",
+        "avito"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-gruzoperevozok-2026",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "b2b",
+        "analytics",
+        "economics",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-uslug-1c-v-2026-godu",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "economics",
+        "website",
+        "specialist",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "online-shkola-psihologii",
+      "topic": "education",
+      "topicLabel": "Онлайн-образование",
+      "tags": [
+        "education",
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kuhni-na-zakaz-2026",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "analytics",
+        "economics",
+        "search",
+        "automation",
+        "avito",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "import-iz-kitaya",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "specialist",
+        "telegram",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "franshizy-proizvodstva-produktov-i-napitkov",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "manufacturing",
+        "b2b",
+        "economics",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "bfl-bankrotstvo-fizicheskih-lits",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "economics",
+        "search",
+        "automation",
+        "specialist",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-badov",
+      "topic": "ecommerce",
+      "topicLabel": "Интернет-магазины",
+      "tags": [
+        "ecommerce",
+        "analytics",
+        "economics",
+        "search"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-ustanovki-lestnic-2026",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "analytics",
+        "economics",
+        "search",
+        "website",
+        "seo"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-avtosalona-2026",
+      "topic": "ecommerce",
+      "topicLabel": "Интернет-магазины",
+      "tags": [
+        "economics",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "prodvizhenie-ustanovki-zaborov-2026",
       "topic": "local-promotion",
       "topicLabel": "Локальное продвижение",
