@@ -2,6 +2,53 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-agentstva-nedvizhimosti",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "real-estate-agency",
+        "economics",
+        "specialist",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-restorana-i-dostavki-edy-v-2026-godu",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "analytics",
+        "economics",
+        "seo"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-medicinskoy-kliniki-2026",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "analytics",
+        "economics",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-novostroek-v-2026-godu",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "residential-real-estate",
+        "analytics",
+        "economics",
+        "website"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "prodvizhenie-stroitelnoy-kompanii-v-2026-godu",
       "topic": "construction",
       "topicLabel": "Строительство",
