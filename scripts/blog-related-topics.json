@@ -2,6 +2,117 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-plastikovyh-okon",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "analytics",
+        "economics",
+        "search"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-online-shkoly-angliyskogo",
+      "topic": "education",
+      "topicLabel": "Онлайн-образование",
+      "tags": [
+        "education",
+        "analytics",
+        "economics",
+        "search",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-buhgalterskih-uslug",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "campaign-setup",
+        "website",
+        "specialist",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "reklama-mebeli-na-zakaz-yandex-direct",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "analytics",
+        "economics",
+        "search",
+        "website"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-natyazhnyh-potolkov",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "economics",
+        "search",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-it-kompanii-saas",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "b2b",
+        "analytics",
+        "economics",
+        "search",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-avtoservisa-sto",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "economics",
+        "local",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-kottedzhnogo-poselka",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "analytics",
+        "economics",
+        "search",
+        "automation",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-fitnes-kluba",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "prodvizhenie-agentstva-nedvizhimosti",
       "topic": "real-estate",
       "topicLabel": "Недвижимость",
