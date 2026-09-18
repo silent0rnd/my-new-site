@@ -2,6 +2,91 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-otelya-bazy-otdyha",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "analytics",
+        "economics",
+        "search"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-salona-krasoty-kosmetologii-yandex-direct",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "analytics",
+        "economics",
+        "search",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-sportivnyh-sektsiy",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "analytics",
+        "economics",
+        "search"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-stomatologii",
+      "topic": "healthcare",
+      "topicLabel": "Медицина и здоровье",
+      "tags": [
+        "healthcare",
+        "economics",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-oborudovaniya",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "manufacturing",
+        "b2b",
+        "economics",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-kadrovogo-agentstva",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "search",
+        "campaign-setup",
+        "specialist"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-b2b-kompanii",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "b2b",
+        "analytics",
+        "economics",
+        "automation",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "prodvizhenie-plastikovyh-okon",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
