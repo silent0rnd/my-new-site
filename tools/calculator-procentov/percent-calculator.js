@@ -69,10 +69,38 @@ function calculateFixedPlusPercent(base, percent, fixed = 0) {
   };
 }
 
+function calculateProgressiveFee(budget) {
+  const parsedBudget = parseNumber(budget);
+  if (!Number.isFinite(parsedBudget) || parsedBudget < 100000) return null;
+
+  const tiers = [
+    { min: 100000, max: 300000, fixed: 30000, percent: 15, label: "100 000-300 000 ₽" },
+    { min: 300000, max: 700000, fixed: 60000, percent: 12, label: "300 000-700 000 ₽" },
+    { min: 700000, max: 1500000, fixed: 108000, percent: 7, label: "700 000-1 500 000 ₽" },
+    { min: 1500000, max: 3000000, fixed: 164000, percent: 4, label: "1 500 000-3 000 000 ₽" },
+    { min: 3000000, max: Number.POSITIVE_INFINITY, fixed: 224000, percent: 3, label: "От 3 000 000 ₽" },
+  ];
+  const tier = tiers.find(({ max }) => parsedBudget < max);
+  const excess = roundResult(parsedBudget - tier.min);
+  const percentPart = roundResult(excess * tier.percent / 100);
+
+  return {
+    budget: parsedBudget,
+    tier: tier.label,
+    threshold: tier.min,
+    fixed: tier.fixed,
+    percent: tier.percent,
+    excess,
+    percentPart,
+    total: roundResult(tier.fixed + percentPart),
+  };
+}
+
 if (typeof module !== "undefined") {
   module.exports = {
     addPercent,
     calculateFixedPlusPercent,
+    calculateProgressiveFee,
     calculatePercent,
     calculatePercentOf,
     formatNumber,
@@ -124,6 +152,50 @@ if (typeof document !== "undefined") {
       baseInput.focus();
     });
 
+    const progressiveInput = root.querySelector("[name=progressive-budget]");
+    const progressiveError = root.querySelector("[data-progressive-error]");
+
+    function setProgressiveText(selector, value) {
+      root.querySelector(selector).textContent = value;
+    }
+
+    function renderProgressive() {
+      const value = progressiveInput.value.trim();
+      const budget = parseNumber(progressiveInput.value);
+      const result = calculateProgressiveFee(progressiveInput.value);
+      let error = "";
+
+      if (value !== "") {
+        if (!Number.isFinite(budget) || budget < 0) error = "Введите неотрицательное число. Можно использовать пробелы, точку или запятую.";
+        else if (budget < 100000) error = "Введите бюджет от 100 000 ₽";
+      }
+
+      progressiveError.hidden = error === "";
+      progressiveError.textContent = error;
+
+      if (!result) {
+        setProgressiveText("[data-progressive-tier]", "—");
+        setProgressiveText("[data-progressive-fixed]", "0 ₽");
+        setProgressiveText("[data-progressive-percent]", "0 ₽");
+        setProgressiveText("[data-progressive-total]", "0 ₽");
+        setProgressiveText("[data-progressive-expression]", error || "Введите бюджет");
+        return;
+      }
+
+      setProgressiveText("[data-progressive-tier]", result.tier);
+      setProgressiveText("[data-progressive-fixed]", `${formatNumber(result.fixed)} ₽`);
+      setProgressiveText("[data-progressive-percent]", `${formatNumber(result.percentPart)} ₽`);
+      setProgressiveText("[data-progressive-total]", `${formatNumber(result.total)} ₽`);
+      setProgressiveText("[data-progressive-expression]", `${formatNumber(result.fixed)} + ${formatNumber(result.percent)}% × (${formatNumber(result.budget)} - ${formatNumber(result.threshold)}) = ${formatNumber(result.total)} ₽`);
+    }
+
+    progressiveInput.addEventListener("input", renderProgressive);
+    root.querySelector("[data-progressive-reset]").addEventListener("click", () => {
+      progressiveInput.value = "";
+      renderProgressive();
+      progressiveInput.focus();
+    });
+
     const modes = {
       "percent-of": (x, y) => calculatePercent(y, x),
       "what-percent": (x, y) => calculatePercentOf(x, y),
@@ -158,5 +230,6 @@ if (typeof document !== "undefined") {
     });
 
     renderMain();
+    renderProgressive();
   }
 }

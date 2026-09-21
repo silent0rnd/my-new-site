@@ -4,6 +4,7 @@ const assert = require("node:assert");
 const {
   addPercent,
   calculateFixedPlusPercent,
+  calculateProgressiveFee,
   calculatePercent,
   calculatePercentOf,
   formatNumber,
@@ -17,6 +18,15 @@ test("считает процент плюс фиксированную сумм
   assert.strictEqual(calculateFixedPlusPercent(100000, "2,5", 30000).total, 32500);
   assert.strictEqual(calculateFixedPlusPercent(0, 5, 30000).total, 30000);
   assert.strictEqual(calculateFixedPlusPercent("1 500 000", 5, "35 000").total, 110000);
+});
+
+test("считает вознаграждение по прогрессивной шкале на границах и между ними", () => {
+  assert.deepStrictEqual(calculateProgressiveFee(100000), { budget: 100000, tier: "100 000-300 000 ₽", threshold: 100000, fixed: 30000, percent: 15, excess: 0, percentPart: 0, total: 30000 });
+  assert.strictEqual(calculateProgressiveFee(300000).total, 60000);
+  assert.strictEqual(calculateProgressiveFee(500000).total, 84000);
+  assert.strictEqual(calculateProgressiveFee(700000).total, 108000);
+  assert.strictEqual(calculateProgressiveFee(1500000).total, 164000);
+  assert.strictEqual(calculateProgressiveFee(3000000).total, 224000);
 });
 
 test("принимает пробелы, точку и запятую и форматирует до двух знаков", () => {
@@ -42,4 +52,8 @@ test("корректно обрабатывает ноль, пустые и не
   assert.strictEqual(calculatePercent(100, -5), null);
   assert.strictEqual(calculatePercent(Number.MAX_VALUE, 200), null);
   assert.strictEqual(calculateFixedPlusPercent(100, 5, "").total, 5);
+  assert.strictEqual(calculateProgressiveFee(""), null);
+  assert.strictEqual(calculateProgressiveFee(99999.99), null);
+  assert.strictEqual(calculateProgressiveFee(-1), null);
+  assert.strictEqual(calculateProgressiveFee("не число"), null);
 });

@@ -102,19 +102,58 @@ function factsHtml(facts = []) {
   return `<dl class="case-facts">${rows}</dl>`;
 }
 
+function illustrationHtml(illustration) {
+  const marks = illustration.showMarks === false
+    ? ""
+    : [
+      `<span class="case-content-figure__mark case-content-figure__mark--top" aria-hidden="true"></span>`,
+      `<span class="case-content-figure__mark case-content-figure__mark--bottom" aria-hidden="true"></span>`,
+    ].join("");
+  return [
+    `<figure class="case-content-figure">`,
+    `<img src="${attr(assetPath(illustration.src))}" alt="${attr(illustration.alt)}" width="${attr(illustration.width)}" height="${attr(illustration.height)}" loading="${attr(illustration.loading)}" decoding="${attr(illustration.decoding)}">`,
+    marks,
+    `<span class="case-content-figure__accent" aria-hidden="true"></span>`,
+    `</figure>`,
+  ].join("");
+}
+
 function sectionsHtml(sections = [], headingTag = "h2", decorations = {}) {
   return sections
     .map((section, index) => {
-      const paragraphs = (section.paragraphs || []).map((text) => `<p>${esc(text)}</p>`).join("");
+      const paragraphHtml = (section.paragraphs || []).map((text) => `<p>${esc(text)}</p>`);
       const items = section.items && section.items.length > 0
         ? `<ul class="case-content-list">${section.items.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>`
         : "";
+      const illustration = section.illustration ? illustrationHtml(section.illustration) : "";
+      const inlineIllustrations = Array.isArray(section.illustrationsAfterParagraph)
+        ? section.illustrationsAfterParagraph
+        : section.illustrationAfterParagraph
+          ? [section.illustrationAfterParagraph]
+          : [];
+      let content = "";
+      if (inlineIllustrations.length > 0) {
+        let paragraphStart = 0;
+        inlineIllustrations.forEach((inlineItem) => {
+          const inlineIndex = Number.isInteger(inlineItem.index) ? inlineItem.index : paragraphStart;
+          const copyClass = paragraphStart === 0 ? "case-content-section__copy" : "case-content-section__copy case-content-section__copy--after-illustration";
+          content += `<div class="${copyClass}">${paragraphHtml.slice(paragraphStart, inlineIndex + 1).join("")}</div>${illustrationHtml(inlineItem)}`;
+          paragraphStart = inlineIndex + 1;
+        });
+        const remainingParagraphs = paragraphHtml.slice(paragraphStart).join("");
+        if (remainingParagraphs || items) {
+          content += `<div class="case-content-section__copy case-content-section__copy--after-illustration">${remainingParagraphs}${items}</div>`;
+        }
+      } else {
+        content = `<div class="case-content-section__copy">${paragraphHtml.join("")}${items}</div>`;
+      }
       const variant = decorations[index];
       const className = variant ? "case-content-section has-case-sketch-orb" : "case-content-section";
       return [
         `<section class="${className}">`,
         `<${headingTag}>${esc(section.heading)}</${headingTag}>`,
-        `<div class="case-content-section__copy">${paragraphs}${items}</div>`,
+        content,
+        illustration,
         variant ? orb(variant) : "",
         `</section>`,
       ].join("");
@@ -402,9 +441,9 @@ function pageHtml(caseItem, cases) {
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="${pageUrl}" />
     <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="../../styles.css?v=20260906-case-seo" />
-    <script src="../../cases-data.js?v=20260906-case-seo" defer></script>
-    <script src="../../case-page.js?v=20260906-case-seo" defer></script>
+    <link rel="stylesheet" href="../../styles.css?v=20260921-case-illustrations-layout" />
+    <script src="../../cases-data.js?v=20260921-case-illustrations-layout" defer></script>
+    <script src="../../case-page.js?v=20260921-case-illustrations-layout" defer></script>
     <script src="../../script.js?v=20260810-mobile-layout" defer></script>
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="${attr(author)}" />

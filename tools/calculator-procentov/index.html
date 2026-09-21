@@ -85,6 +85,52 @@
           </div>
         </section>
 
+        <section class="utm-block percent-progressive" aria-labelledby="percent-progressive-title">
+          <div class="percent-progressive__head">
+            <div>
+              <h2 id="percent-progressive-title">Вознаграждение по прогрессивной шкале</h2>
+              <p>Введите рекламный бюджет за месяц - калькулятор определит ступень и рассчитает сумму счёта.</p>
+            </div>
+            <button class="utm-button utm-button--ghost" type="button" data-progressive-reset>Сбросить</button>
+          </div>
+
+          <div class="percent-progressive__layout">
+            <div class="percent-progressive__content">
+              <label class="utm-field" for="progressive-budget">
+                <span class="utm-field__name">Рекламный бюджет за месяц</span>
+                <span class="percent-input-wrap"><input class="utm-input" id="progressive-budget" name="progressive-budget" type="text" inputmode="decimal" autocomplete="off" data-progressive-input /><span aria-hidden="true">₽</span></span>
+              </label>
+              <p class="percent-error" data-progressive-error hidden></p>
+
+              <table class="percent-progressive__tiers">
+                <thead>
+                  <tr><th scope="col">Рекламный бюджет</th><th scope="col">Вознаграждение</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>100 000-300 000 ₽</td><td>30 000 ₽ + 15% от суммы выше 100 000 ₽</td></tr>
+                  <tr><td>300 000-700 000 ₽</td><td>60 000 ₽ + 12% от суммы выше 300 000 ₽</td></tr>
+                  <tr><td>700 000-1 500 000 ₽</td><td>108 000 ₽ + 7% от суммы выше 700 000 ₽</td></tr>
+                  <tr><td>1 500 000-3 000 000 ₽</td><td>164 000 ₽ + 4% от суммы выше 1 500 000 ₽</td></tr>
+                  <tr><td>От 3 000 000 ₽</td><td>224 000 ₽ + 3% от суммы выше 3 000 000 ₽</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="percent-main__result" aria-live="polite" aria-atomic="true">
+              <dl class="percent-breakdown percent-progressive__breakdown">
+                <div><dt>Текущая ступень</dt><dd data-progressive-tier>—</dd></div>
+                <div><dt>Фиксированная часть</dt><dd data-progressive-fixed>0 ₽</dd></div>
+                <div><dt>Процент с превышения</dt><dd data-progressive-percent>0 ₽</dd></div>
+              </dl>
+              <div class="percent-total">
+                <span>Итого к оплате</span>
+                <strong data-progressive-total>0 ₽</strong>
+              </div>
+              <p class="percent-expression" data-progressive-expression>Введите бюджет</p>
+            </div>
+          </div>
+        </section>
+
         <section class="utm-block percent-other" aria-labelledby="percent-other-title">
           <h2 id="percent-other-title">Другие расчёты с процентами</h2>
           <div class="percent-card-grid">

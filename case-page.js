@@ -91,6 +91,25 @@
     });
   }
 
+  function createIllustration(illustration) {
+    const figure = createElement("figure", "case-content-figure");
+    const image = document.createElement("img");
+    const topMark = createElement("span", "case-content-figure__mark case-content-figure__mark--top");
+    const bottomMark = createElement("span", "case-content-figure__mark case-content-figure__mark--bottom");
+    const accent = createElement("span", "case-content-figure__accent");
+    image.src = assetPath(illustration.src);
+    image.alt = illustration.alt;
+    image.width = illustration.width;
+    image.height = illustration.height;
+    image.loading = illustration.loading;
+    image.decoding = illustration.decoding;
+    topMark.setAttribute("aria-hidden", "true");
+    bottomMark.setAttribute("aria-hidden", "true");
+    accent.setAttribute("aria-hidden", "true");
+    figure.append(image, topMark, bottomMark, accent);
+    return figure;
+  }
+
   function getRelatedCases() {
     return cases.filter((caseItem) => caseItem.category === currentCase.category && caseItem.slug !== currentCase.slug);
   }
@@ -277,21 +296,57 @@
     sections.forEach((sectionData, index) => {
       const section = createElement("section", "case-content-section");
       const title = createElement(headingTag, "", sectionData.heading);
-      const copy = createElement("div", "case-content-section__copy");
+      const paragraphs = sectionData.paragraphs || [];
+      const inlineIllustrations = Array.isArray(sectionData.illustrationsAfterParagraph)
+        ? sectionData.illustrationsAfterParagraph
+        : sectionData.illustrationAfterParagraph
+          ? [sectionData.illustrationAfterParagraph]
+          : [];
 
-      appendParagraphs(copy, sectionData.paragraphs);
+      section.append(title);
 
-      if (sectionData.items && sectionData.items.length > 0) {
-        const list = createElement("ul", "case-content-list");
-
-        sectionData.items.forEach((item) => {
-          list.append(createElement("li", "", item));
+      if (inlineIllustrations.length > 0) {
+        let paragraphStart = 0;
+        inlineIllustrations.forEach((inlineItem) => {
+          const inlineIndex = Number.isInteger(inlineItem.index) ? inlineItem.index : paragraphStart;
+          const copyClass = paragraphStart === 0
+            ? "case-content-section__copy"
+            : "case-content-section__copy case-content-section__copy--after-illustration";
+          const copy = createElement("div", copyClass);
+          appendParagraphs(copy, paragraphs.slice(paragraphStart, inlineIndex + 1));
+          section.append(copy, createIllustration(inlineItem));
+          paragraphStart = inlineIndex + 1;
         });
 
-        copy.append(list);
+        const remainingParagraphs = paragraphs.slice(paragraphStart);
+        if (remainingParagraphs.length > 0 || (sectionData.items && sectionData.items.length > 0)) {
+          const tailCopy = createElement("div", "case-content-section__copy case-content-section__copy--after-illustration");
+          appendParagraphs(tailCopy, remainingParagraphs);
+          if (sectionData.items && sectionData.items.length > 0) {
+            const list = createElement("ul", "case-content-list");
+            sectionData.items.forEach((item) => {
+              list.append(createElement("li", "", item));
+            });
+            tailCopy.append(list);
+          }
+          section.append(tailCopy);
+        }
+      } else {
+        const copy = createElement("div", "case-content-section__copy");
+        appendParagraphs(copy, paragraphs);
+        if (sectionData.items && sectionData.items.length > 0) {
+          const list = createElement("ul", "case-content-list");
+          sectionData.items.forEach((item) => {
+            list.append(createElement("li", "", item));
+          });
+          copy.append(list);
+        }
+        section.append(copy);
       }
 
-      section.append(title, copy);
+      if (sectionData.illustration) {
+        section.append(createIllustration(sectionData.illustration));
+      }
 
       const decorationVariant = decorationVariants[index];
 
