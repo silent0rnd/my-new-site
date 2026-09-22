@@ -103,17 +103,16 @@ function factsHtml(facts = []) {
 }
 
 function illustrationHtml(illustration) {
-  const marks = illustration.showMarks === false
+  const tapes = illustration.showMarks === false
     ? ""
     : [
-      `<span class="case-content-figure__mark case-content-figure__mark--top" aria-hidden="true"></span>`,
-      `<span class="case-content-figure__mark case-content-figure__mark--bottom" aria-hidden="true"></span>`,
+      `<span class="case-content-figure__tape case-content-figure__tape--top-left" aria-hidden="true"></span>`,
+      `<span class="case-content-figure__tape case-content-figure__tape--bottom-right" aria-hidden="true"></span>`,
     ].join("");
   return [
     `<figure class="case-content-figure">`,
     `<img src="${attr(assetPath(illustration.src))}" alt="${attr(illustration.alt)}" width="${attr(illustration.width)}" height="${attr(illustration.height)}" loading="${attr(illustration.loading)}" decoding="${attr(illustration.decoding)}">`,
-    marks,
-    `<span class="case-content-figure__accent" aria-hidden="true"></span>`,
+    tapes,
     `</figure>`,
   ].join("");
 }
@@ -131,6 +130,7 @@ function sectionsHtml(sections = [], headingTag = "h2", decorations = {}) {
         : section.illustrationAfterParagraph
           ? [section.illustrationAfterParagraph]
           : [];
+      const listIllustration = section.illustrationAfterListItem;
       let content = "";
       if (inlineIllustrations.length > 0) {
         let paragraphStart = 0;
@@ -143,6 +143,22 @@ function sectionsHtml(sections = [], headingTag = "h2", decorations = {}) {
         const remainingParagraphs = paragraphHtml.slice(paragraphStart).join("");
         if (remainingParagraphs || items) {
           content += `<div class="case-content-section__copy case-content-section__copy--after-illustration">${remainingParagraphs}${items}</div>`;
+        }
+      } else if (listIllustration && section.items && section.items.length > 0) {
+        const listIndex = Number.isInteger(listIllustration.index)
+          ? Math.max(-1, Math.min(listIllustration.index, section.items.length - 1))
+          : section.items.length - 1;
+        const beforeItems = section.items
+          .slice(0, listIndex + 1)
+          .map((item) => `<li>${esc(item)}</li>`)
+          .join("");
+        const afterItems = section.items
+          .slice(listIndex + 1)
+          .map((item) => `<li>${esc(item)}</li>`)
+          .join("");
+        content = `<div class="case-content-section__copy">${paragraphHtml.join("")}<ul class="case-content-list">${beforeItems}</ul></div>${illustrationHtml(listIllustration)}`;
+        if (afterItems) {
+          content += `<div class="case-content-section__copy case-content-section__copy--after-illustration"><ul class="case-content-list">${afterItems}</ul></div>`;
         }
       } else {
         content = `<div class="case-content-section__copy">${paragraphHtml.join("")}${items}</div>`;
@@ -441,7 +457,7 @@ function pageHtml(caseItem, cases) {
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="${pageUrl}" />
     <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="../../styles.css?v=20260921-case-illustrations-layout" />
+    <link rel="stylesheet" href="../../styles.css?v=20260922-case-tape-v4" />
     <script src="../../cases-data.js?v=20260921-case-illustrations-layout" defer></script>
     <script src="../../case-page.js?v=20260921-case-illustrations-layout" defer></script>
     <script src="../../script.js?v=20260810-mobile-layout" defer></script>

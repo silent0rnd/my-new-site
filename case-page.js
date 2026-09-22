@@ -91,22 +91,29 @@
     });
   }
 
+  function appendList(parent, items = []) {
+    if (!items.length) return;
+    const list = createElement("ul", "case-content-list");
+    items.forEach((item) => {
+      list.append(createElement("li", "", item));
+    });
+    parent.append(list);
+  }
+
   function createIllustration(illustration) {
     const figure = createElement("figure", "case-content-figure");
     const image = document.createElement("img");
-    const topMark = createElement("span", "case-content-figure__mark case-content-figure__mark--top");
-    const bottomMark = createElement("span", "case-content-figure__mark case-content-figure__mark--bottom");
-    const accent = createElement("span", "case-content-figure__accent");
+    const topLeftTape = createElement("span", "case-content-figure__tape case-content-figure__tape--top-left");
+    const bottomRightTape = createElement("span", "case-content-figure__tape case-content-figure__tape--bottom-right");
     image.src = assetPath(illustration.src);
     image.alt = illustration.alt;
     image.width = illustration.width;
     image.height = illustration.height;
     image.loading = illustration.loading;
     image.decoding = illustration.decoding;
-    topMark.setAttribute("aria-hidden", "true");
-    bottomMark.setAttribute("aria-hidden", "true");
-    accent.setAttribute("aria-hidden", "true");
-    figure.append(image, topMark, bottomMark, accent);
+    topLeftTape.setAttribute("aria-hidden", "true");
+    bottomRightTape.setAttribute("aria-hidden", "true");
+    figure.append(image, topLeftTape, bottomRightTape);
     return figure;
   }
 
@@ -302,6 +309,7 @@
         : sectionData.illustrationAfterParagraph
           ? [sectionData.illustrationAfterParagraph]
           : [];
+      const listIllustration = sectionData.illustrationAfterListItem;
 
       section.append(title);
 
@@ -331,16 +339,24 @@
           }
           section.append(tailCopy);
         }
+      } else if (listIllustration && sectionData.items && sectionData.items.length > 0) {
+        const copy = createElement("div", "case-content-section__copy");
+        appendParagraphs(copy, paragraphs);
+        const listIndex = Number.isInteger(listIllustration.index)
+          ? Math.max(-1, Math.min(listIllustration.index, sectionData.items.length - 1))
+          : sectionData.items.length - 1;
+        appendList(copy, sectionData.items.slice(0, listIndex + 1));
+        section.append(copy);
+        section.append(createIllustration(listIllustration));
+        if (listIndex + 1 < sectionData.items.length) {
+          const tailCopy = createElement("div", "case-content-section__copy case-content-section__copy--after-illustration");
+          appendList(tailCopy, sectionData.items.slice(listIndex + 1));
+          section.append(tailCopy);
+        }
       } else {
         const copy = createElement("div", "case-content-section__copy");
         appendParagraphs(copy, paragraphs);
-        if (sectionData.items && sectionData.items.length > 0) {
-          const list = createElement("ul", "case-content-list");
-          sectionData.items.forEach((item) => {
-            list.append(createElement("li", "", item));
-          });
-          copy.append(list);
-        }
+        appendList(copy, sectionData.items || []);
         section.append(copy);
       }
 

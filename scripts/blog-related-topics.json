@@ -2,6 +2,130 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-dorogih-tovarov-uslug",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "analytics",
+        "economics",
+        "ad-formats",
+        "website",
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "privlechenie-investiciy",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-septikov",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "reklama-turov-yandex-direct",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "analytics",
+        "economics",
+        "search"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-strahovyh-finansovykh-uslug",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "specialist",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "prodvizhenie-bureniya-skvazhin",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "website",
+        "avito",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-metalloprokata-metalloobrabotki",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "specialist"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-kreditov-mfo",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "specialist",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodazha-biletov-na-meropriyatie",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "economics",
+        "search",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "prodvizhenie-event-agentstva-yandex-direct",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "analytics",
+        "economics",
+        "search",
+        "website",
+        "specialist"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-detskih-centrov-kruzhkov-sekcij",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "search"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "prodvizhenie-otelya-bazy-otdyha",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
