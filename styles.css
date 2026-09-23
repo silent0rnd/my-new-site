@@ -5041,8 +5041,29 @@ html.is-hero-video-played .portrait-video {
   line-height: 1.42;
 }
 
+.article-page .legal-document > .section {
+  margin-top: 52px;
+}
+
+.article-page .legal-document > .section > h3[id] {
+  max-width: 760px;
+  margin: 0 0 16px;
+  font-size: clamp(28px, 3.2vw, 38px);
+  line-height: 1.08;
+  font-weight: 500;
+}
+
+.article-page .legal-document h4[id] {
+  max-width: 760px;
+  margin: 30px 0 12px;
+  font-size: clamp(21px, 2.2vw, 26px);
+  line-height: 1.15;
+  font-weight: 500;
+}
+
 .article-page .legal-document > section > h2[id],
 .article-page .legal-document > h2[id],
+.article-page .legal-document > .section > h2[id],
 .article-page .legal-document h3[id] {
   scroll-margin-top: 28px;
 }

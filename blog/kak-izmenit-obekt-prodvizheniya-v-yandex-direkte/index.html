@@ -21,6 +21,7 @@
     <meta property="og:image:height" content="941" />
     <meta property="og:image:alt" content="Массовая замена ссылок в объявлениях Яндекс Директа" />
     <meta property="article:published_time" content="2026-08-21" />
+    <meta property="article:modified_time" content="2026-09-23" />
     <meta property="article:author" content="Максим Мирошников" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Как изменить объект продвижения в Яндекс Директе и заменить ссылки" />
@@ -38,6 +39,7 @@
             "mainEntityOfPage": { "@type": "WebPage", "@id": "https://naklikay.ru/blog/kak-izmenit-obekt-prodvizheniya-v-yandex-direkte/" },
             "image": "https://naklikay.ru/blog/massovaya-zamena-ssylok-yandex-direct.jpg",
             "datePublished": "2026-08-21",
+            "dateModified": "2026-09-23",
             "inLanguage": "ru-RU",
             "author": { "@type": "Person", "name": "Максим Мирошников", "url": "https://naklikay.ru/", "jobTitle": "Специалист по платному трафику и Яндекс Директу" },
             "publisher": { "@type": "Person", "name": "Максим Мирошников", "url": "https://naklikay.ru/" }
@@ -69,12 +71,12 @@
         </nav>
         <p class="legal-kicker">Блог о платном трафике</p>
         <h1>Как изменить объект продвижения в Яндекс Директе</h1>
-        <p class="article-meta"><time datetime="2026-08-21">21 августа 2026</time><span aria-hidden="true">·</span><span>Максим Мирошников</span></p>
-        <p class="article-lead">При смене лендинга или домена в рекламе нужно изменить не только объект продвижения кампании, но и ссылки в самих объявлениях. Ниже - способы для одного объявления, массовой замены и работы через Директ Коммандер.</p>
+        <p class="article-meta"><time datetime="2026-08-21">21 августа 2026</time><span aria-hidden="true">·</span><span>обновлено 23 сентября 2026</span><span aria-hidden="true">·</span><span>Максим Мирошников</span></p>
+        <p class="article-lead">Если после запуска рекламы вы поменяли сайт или отдельную страницу, старый адрес может остаться в объявлениях. Разберем без сложных терминов, где его найти, как заменить и что проверить после сохранения.</p>
 
         <section>
-          <p>В обычных рекламных кампаниях страница, на которую пользователь попадает после клика, задается непосредственно в объявлениях. Ссылку можно поменять вручную, массово сразу в нескольких кампаниях или через Директ Коммандер.</p>
-          <p>В интерфейсе Директа есть поле «Ссылка на продвигаемую страницу», а в Директ Коммандере используется понятие «Объект продвижения». Указанный там сайт помогает системе подбирать связанные счетчики Метрики и другие данные, но не заменяет проверку ссылок в объявлениях.</p>
+          <p><strong>Коротко:</strong> если нужно направить одно объявление на другую страницу, поменяйте ссылку внутри объявления. Если объявлений много, используйте массовую замену. В Мастере кампаний сменить сам сайт после запуска нельзя - для нового сайта потребуется новая кампания.</p>
+          <p>Ссылка - это адрес страницы, которая откроется у человека после нажатия на объявление. Например, <code>site.ru</code> ведет на главную страницу, а <code>site.ru/usluga/</code> - на страницу конкретной услуги.</p>
         </section>
 
 <!-- article-toc:start -->
@@ -83,17 +85,21 @@
   <h2 class="article-toc__title" id="article-toc-title">Содержание</h2>
   <ol class="article-toc__list">
     <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-izmenit-sayt-v-yandex-direkte" data-article-anchor>Как изменить сайт в Яндекс Директе: что именно нужно поменять</a>
+    </li>
+    <li class="article-toc__item">
       <a class="article-toc__link article-toc__link--section" href="#section-kak-pomenyat-ssylku-v-odnom-obyavlenii" data-article-anchor>Как поменять ссылку в одном объявлении</a>
     </li>
     <li class="article-toc__item article-toc__item--has-children">
       <div class="article-toc__section-row">
       <a class="article-toc__link article-toc__link--section" href="#section-kak-massovo-zamenit-ssylki-v-yandeks-direkte" data-article-anchor>Как массово заменить ссылки в Яндекс Директе</a>
-        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-2" aria-label="Показать подразделы: Как массово заменить ссылки в Яндекс Директе">
-          <span aria-hidden="true">1</span>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-3" aria-label="Показать подразделы: Как массово заменить ссылки в Яндекс Директе">
+          <span aria-hidden="true">2</span>
           <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
         </button>
       </div>
-      <ol class="article-toc__sublist" id="article-toc-subsections-2" hidden>
+      <ol class="article-toc__sublist" id="article-toc-subsections-3" hidden>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-chto-delat-esli-sayt-pereehal-na-novyy-domen" data-article-anchor>Что делать, если сайт переехал на новый домен</a></li>
         <li><a class="article-toc__link article-toc__link--subsection" href="#section-kak-zamenit-ssylki-srazu-v-neskolkih-kampaniyah" data-article-anchor>Как заменить ссылки сразу в нескольких кампаниях</a></li>
       </ol>
     </li>
@@ -101,80 +107,204 @@
       <a class="article-toc__link article-toc__link--section" href="#section-zamena-ssylok-cherez-direkt-kommander" data-article-anchor>Замена ссылок через Директ Коммандер</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-chto-esche-proverit-pri-smene-sayta" data-article-anchor>Что еще проверить при смене сайта</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-mozhno-li-pomenyat-sayt-v-mastere-kampaniy" data-article-anchor>Можно ли поменять сайт в Мастере кампаний</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-chto-proishodit-s-obyavleniyami-posle-izmeneniya-ssylki" data-article-anchor>Что происходит с объявлениями после изменения ссылки</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-chto-proverit-posle-zameny" data-article-anchor>Что проверить после замены</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-mozhno-li-pomenyat-obekt-prodvizheniya-v-mastere-kampaniy" data-article-anchor>Можно ли поменять объект продвижения в Мастере кампаний</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-chto-proishodit-posle-sohraneniya" data-article-anchor>Что происходит после сохранения</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-kakoy-sposob-vybrat" data-article-anchor>Какой способ выбрать</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-chastye-oshibki-pri-zamene-sayta" data-article-anchor>Частые ошибки при замене сайта</a>
+    </li>
+    <li class="article-toc__item article-toc__item--has-children">
+      <div class="article-toc__section-row">
+      <a class="article-toc__link article-toc__link--section" href="#section-chastye-voprosy" data-article-anchor>Частые вопросы</a>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-9" aria-label="Показать подразделы: Частые вопросы">
+          <span aria-hidden="true">6</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
+        </button>
+      </div>
+      <ol class="article-toc__sublist" id="article-toc-subsections-9" hidden>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-nuzhno-li-sozdavat-novuyu-kampaniyu-esli-menyaetsya-odna-stranitsa" data-article-anchor>Нужно ли создавать новую кампанию, если меняется одна страница?</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-chto-delat-esli-menyaetsya-ves-sayt" data-article-anchor>Что делать, если меняется весь сайт?</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-ostanovyatsya-li-pokazy-posle-izmeneniya-ssylki" data-article-anchor>Остановятся ли показы после изменения ссылки?</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-sohranitsya-li-statistika" data-article-anchor>Сохранится ли статистика?</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-pochemu-posle-sohraneniya-vse-esche-otkryvaetsya-staryy-sayt" data-article-anchor>Почему после сохранения все еще открывается старый сайт?</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-kak-vernut-staruyu-ssylku" data-article-anchor>Как вернуть старую ссылку?</a></li>
+      </ol>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-korotkiy-itog" data-article-anchor>Короткий итог</a>
     </li>
   </ol>
 </nav>
 <!-- article-toc:end -->
 <section>
+          <h2 id="section-kak-izmenit-sayt-v-yandex-direkte">Как изменить сайт в Яндекс Директе: что именно нужно поменять</h2>
+          <p>В Директе пользователь может столкнуться с несколькими похожими понятиями. <strong>Объект продвижения</strong> сообщает системе, какой сайт рекламируется. <strong>Ссылка в объявлении</strong> или <strong>ссылка на продвигаемую страницу</strong> определяет конкретную страницу, которая откроется после клика. Поэтому при смене сайта недостаточно автоматически считать, что все ссылки в объявлениях тоже изменились.</p>
+          <figure class="article-figure">
+            <img src="../01-chto-nuzhno-izmenit.jpg" alt="Разница между объектом продвижения и ссылкой в объявлении Яндекс Директа" width="1920" height="1080" loading="lazy" decoding="async" />
+            <figcaption>Объект продвижения указывает рекламируемый сайт, а ссылка в объявлении ведет на конкретную страницу.</figcaption>
+          </figure>
+          <ul>
+            <li><strong>Нужно изменить одну страницу.</strong> Откройте нужное объявление и замените ссылку вручную.</li>
+            <li><strong>Сайт переехал на новый адрес.</strong> Проверьте все объявления и выполните массовую замену.</li>
+            <li><strong>Кампания создана через Мастер кампаний.</strong> Если меняется весь сайт, создайте новую кампанию.</li>
+          </ul>
+          <div class="article-table-wrap">
+            <table class="article-table article-table--scenarios">
+              <thead>
+                <tr><th scope="col">Что меняется</th><th scope="col">Что сделать</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Одна страница</th><td>Изменить ссылку в конкретном объявлении.</td></tr>
+                <tr><th scope="row">Сайт переехал на другой домен</th><td>Использовать массовую замену ссылок.</td></tr>
+                <tr><th scope="row">Сайт в Мастере кампаний</th><td>Создать новую кампанию.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Если вы не уверены, какой вариант у вас, начните с раздела «Объявления». Найдите там адрес старого сайта. Если он указан в объявлении, его обязательно нужно заменить.</p>
+        </section>
+
+        <section>
           <h2 id="section-kak-pomenyat-ssylku-v-odnom-obyavlenii">Как поменять ссылку в одном объявлении</h2>
-          <p>Если объявлений немного, проще всего изменить ссылку вручную.</p>
+          <p>Этот способ подходит, если нужно исправить одно или несколько объявлений. Ничего дополнительно устанавливать не потребуется.</p>
           <ol>
-            <li>Откройте Яндекс Директ и выберите нужную кампанию.</li>
-            <li>Перейдите к объявлениям и найдите нужное.</li>
-            <li>Откройте редактирование, измените ссылку на сайт и сохраните изменения.</li>
+            <li>Откройте Яндекс Директ.</li>
+            <li>Выберите кампанию, в которой находится нужное объявление.</li>
+            <li>Перейдите в раздел «Объявления».</li>
+            <li>Найдите объявление и откройте его редактирование.</li>
+            <li>Найдите поле «Ссылка на сайт» или «Ссылка на продвигаемую страницу».</li>
+            <li>Вставьте новый адрес, сохраните изменения и дождитесь проверки объявления.</li>
           </ol>
-          <p>Например, одно объявление можно перенаправить с <code>https://site.ru/</code> на отдельный лендинг <code>https://site.ru/service/</code>. Если объявлений десятки или сотни, вручную открывать каждое уже нет смысла.</p>
+          <figure class="article-figure">
+            <img src="../02-gde-izmenit-ssylku.jpg" alt="Где изменить ссылку на сайт в объявлении Яндекс Директа" width="1920" height="1080" loading="lazy" decoding="async" />
+            <figcaption>Откройте объявление, нажмите «Редактировать» и замените адрес в поле «Ссылка на сайт».</figcaption>
+          </figure>
+          <p>Например, объявление раньше вело на главную страницу <code>https://site.ru/</code>, а теперь должно вести на страницу услуги <code>https://site.ru/usluga/</code>. В поле со ссылкой замените первый адрес на второй.</p>
+          <p><strong>Важно:</strong> не путайте ссылку с названием сайта, которое показывается в тексте объявления. Изменить нужно именно адрес страницы, открывающейся после нажатия.</p>
         </section>
 
         <section>
           <h2 id="section-kak-massovo-zamenit-ssylki-v-yandeks-direkte">Как массово заменить ссылки в Яндекс Директе</h2>
-          <p>В веб-интерфейсе Директа есть массовое редактирование. Выберите кампании, перейдите во вкладку «Объявления», выделите нужные объявления и используйте «Действия» - «Поиск и замена».</p>
-          <p>Инструмент позволяет добавлять, удалять и заменять ссылки сразу во всех выделенных объявлениях. Если сайт переехал с <code>https://old-site.ru/catalog/</code> на <code>https://new-site.ru/catalog/</code>, достаточно найти старый домен и заменить его новым.</p>
+          <p>Если объявлений много, не нужно открывать каждое по отдельности. В кабинете Директа можно выбрать сразу несколько объявлений и заменить в них старый адрес.</p>
+          <ol>
+            <li>Откройте нужную кампанию или выберите несколько кампаний.</li>
+            <li>Перейдите в раздел «Объявления».</li>
+            <li>Отметьте объявления, в которых нужно поменять адрес.</li>
+            <li>Нажмите «Действия», затем выберите «Поиск и замена».</li>
+            <li>Укажите старую и новую часть адреса, посмотрите результат и подтвердите замену.</li>
+          </ol>
+          <p>Например, если сайт переехал с <code>old-site.ru</code> на <code>new-site.ru</code>, можно найти старое название сайта и заменить его новым сразу во всех выбранных объявлениях.</p>
           <figure class="article-figure">
             <img src="../massovaya-zamena-ssylok-yandex-direct.jpg" alt="Окно поиска и массовой замены ссылок в объявлениях Яндекс Директа" width="1672" height="941" loading="lazy" decoding="async" />
             <figcaption>Массовая замена удобна, когда структура адресов на новом сайте остается прежней.</figcaption>
           </figure>
+          <h3 id="section-chto-delat-esli-sayt-pereehal-na-novyy-domen">Что делать, если сайт переехал на новый домен</h3>
+          <p>Если структура страниц сохранилась, обычно достаточно заменить старый домен новым. Например:</p>
+          <p><code>old-site.ru/catalog/</code><br />→<br /><code>new-site.ru/catalog/</code></p>
+          <p>Если одновременно изменилась структура URL, простой замены домена недостаточно. Например:</p>
+          <p><code>old-site.ru/catalog/</code><br />→<br /><code>new-site.ru/products/</code></p>
+          <p>Такие адреса нужно проверить и изменить отдельно.</p>
           <h3 id="section-kak-zamenit-ssylki-srazu-v-neskolkih-kampaniyah">Как заменить ссылки сразу в нескольких кампаниях</h3>
-          <p>В общем списке можно отметить несколько кампаний, перейти к их объявлениям и выполнить замену. Перед применением внимательно проверьте область замены: при необходимости сначала отфильтруйте или выделите только нужные объявления.</p>
+          <p>В общем списке отметьте нужные кампании, затем перейдите к их объявлениям. Директ покажет объявления из всех выбранных кампаний, и массовую замену можно будет выполнить за один раз.</p>
+          <p><strong>Перед подтверждением проверьте список.</strong> Если случайно выбрать лишнее объявление, адрес изменится и в нем. После замены откройте несколько объявлений из разных кампаний и убедитесь, что указан правильный сайт.</p>
+          <p>Простая замена названия сайта подходит, когда адреса страниц остались прежними. Если раньше была страница <code>/catalog/</code>, а на новом сайте она называется <code>/products/</code>, такую ссылку нужно исправить отдельно.</p>
         </section>
 
         <section>
           <h2 id="section-zamena-ssylok-cherez-direkt-kommander">Замена ссылок через Директ Коммандер</h2>
-          <p>Для большого рекламного аккаунта удобнее использовать Директ Коммандер. В нем инструмент «Поиск и замена» работает с выбранными кампаниями, группами и объявлениями.</p>
+          <p>Директ Коммандер - отдельная программа для работы с большим количеством рекламы. Она нужна специалистам и владельцам крупных рекламных кабинетов. Если у вас несколько объявлений, проще выполнить замену в обычном кабинете Директа.</p>
+          <p>В Коммандере порядок действий следующий:</p>
           <ol>
-            <li>Получите с сервера актуальные данные рекламных кампаний.</li>
-            <li>Выберите кампании, перейдите к группам и объявлениям.</li>
-            <li>Выделите объявления, откройте «Заменить» или нажмите <kbd>Ctrl + R</kbd>.</li>
-            <li>Укажите старое и новое значение, проверьте результат и отправьте изменения на сервер.</li>
+            <li>Сначала загрузите в программу свежие данные из Директа.</li>
+            <li>Выберите кампании, группы и объявления, которые нужно изменить.</li>
+            <li>Нажмите «Заменить».</li>
+            <li>Укажите старый и новый адрес.</li>
+            <li>Проверьте результат и отправьте изменения обратно в Директ.</li>
           </ol>
           <figure class="article-figure">
             <img src="../zamena-ssylok-direct-commander.jpg" alt="Поиск и замена ссылок в Директ Коммандере" width="1672" height="941" loading="lazy" decoding="async" />
             <figcaption>В Коммандере можно заменить весь URL, домен или отдельную часть адреса.</figcaption>
           </figure>
-          <p>Перед редактированием получайте актуальные данные с сервера, чтобы не перезаписать более свежие изменения из рекламного кабинета. Если всем выбранным объявлениям нужна одинаковая ссылка, ее можно установить через Инспектор Коммандера.</p>
+          <p>Самое важное - не пропускайте первый и последний шаги. Если не загрузить свежие данные, можно работать со старой версией кампании. Если не отправить результат, изменения останутся только на компьютере.</p>
         </section>
 
         <section>
-          <h2 id="section-chto-esche-proverit-pri-smene-sayta">Что еще проверить при смене сайта</h2>
-          <p>Замена основной ссылки - только часть работы. Проверьте быстрые ссылки, ссылки в кнопках объявлений, UTM-метки и другие параметры URL. Убедитесь, что на новой странице установлен счетчик Метрики, работают цели стратегии и страницы открываются без ошибок и лишних редиректов.</p>
-          <p>Как проверить передачу целей после замены, разобрал в статье <a href="../kak-proverit-tsel-v-yandex-metrike/">«Как проверить цель в Яндекс Метрике»</a>. Базовую логику рекламного кабинета - в материале <a href="../kak-rabotaet-yandex-direct/">«Как работает Яндекс Директ»</a>.</p>
-          <p>В Единой перфоманс-кампании параметры URL могут задаваться на уровне кампании, группы или объявления и автоматически добавляться к ссылкам, быстрым ссылкам и кнопкам. Если изменился счетчик Метрики или набор целей, одной замены домена недостаточно - нужно проверить аналитику и настройки стратегии.</p>
+          <h2 id="section-mozhno-li-pomenyat-sayt-v-mastere-kampaniy">Можно ли поменять сайт в Мастере кампаний</h2>
+          <p>В Мастере кампаний сайт выбирается при создании рекламы. После запуска изменить этот сайт нельзя. Если вы начали работать с другим сайтом, создайте для него новую кампанию.</p>
+          <ol>
+            <li>Создайте новую кампанию и укажите новый сайт.</li>
+            <li>Проверьте объявления, страницы и форму заявки.</li>
+            <li>Запустите новую кампанию и убедитесь, что она работает.</li>
+            <li>Только после этого остановите старую кампанию.</li>
+          </ol>
+          <p>Подробнее устройство этого типа рекламы разобрано в статье <a href="../master-kampanii-yandex-direct/" target="_blank" rel="noopener noreferrer">«Мастер кампаний Яндекс Директ: что это и как настроить»</a>.</p>
         </section>
 
         <section>
-          <h2 id="section-chto-proishodit-s-obyavleniyami-posle-izmeneniya-ssylki">Что происходит с объявлениями после изменения ссылки</h2>
-          <p>После редактирования новая версия объявления проходит проверку Яндекса. Пока она не завершена, может продолжать показываться предыдущая версия. После массовой замены через некоторое время проверьте несколько объявлений и убедитесь, что новые URL применились и страницы открываются нормально.</p>
+          <h2 id="section-chto-proverit-posle-zameny">Что проверить после замены</h2>
+          <p>Не ограничивайтесь сообщением о сохранении. Откройте отредактированное объявление и проверьте результат:</p>
+          <ul>
+            <li>указана нужная страница нового сайта;</li>
+            <li>страница открывается и на ней показан нужный товар или услуга;</li>
+            <li>кнопки, телефон и форма заявки работают;</li>
+            <li>быстрые ссылки под объявлением не ведут на старый сайт;</li>
+            <li>параметры URL и UTM-метки ведут на новый сайт и не содержат старый домен;</li>
+            <li>новый адрес появился в нескольких объявлениях из разных кампаний.</li>
+          </ul>
+          <p>Проверять страницу лучше по адресу из редактора объявления, а не нажатием на собственную рекламу в поиске.</p>
+          <p>Если на сайте уже установлена Яндекс Метрика, отправьте тестовую заявку. Инструкция по проверке есть в статье <a href="../kak-proverit-tsel-v-yandex-metrike/" target="_blank" rel="noopener noreferrer">«Как проверить цель в Яндекс Метрике»</a>.</p>
         </section>
 
         <section>
-          <h2 id="section-mozhno-li-pomenyat-obekt-prodvizheniya-v-mastere-kampaniy">Можно ли поменять объект продвижения в Мастере кампаний</h2>
-          <p>В некоторых автоматизированных типах кампаний изменение самого сайта после создания ограничено. Например, в Мастере кампаний для продвижения сайта параметр «Сайт» после запуска изменить нельзя. Для продвижения другого сайта потребуется создать новую кампанию.</p>
+          <h2 id="section-chto-proishodit-posle-sohraneniya">Что происходит после сохранения</h2>
+          <p>После изменения ссылки объявление отправляется на проверку Яндекса. Пока проверка не закончилась, Директ может продолжать показывать старую версию объявления. Это нормально: новая ссылка появится после одобрения изменений.</p>
+          <figure class="article-figure">
+            <img src="../03-chto-posle-izmeneniya-ssylki.jpg" alt="Что происходит после изменения ссылки в объявлении Яндекс Директа" width="1920" height="1080" loading="lazy" decoding="async" />
+            <figcaption>После сохранения ссылка проходит проверку, и только затем новая версия объявления начинает работать.</figcaption>
+          </figure>
+          <p>Не исправляйте объявление повторно только потому, что сразу после сохранения видите старый адрес. Подождите завершения проверки, затем откройте несколько объявлений и убедитесь, что новый адрес применился.</p>
+          <p>Если Яндекс не принял изменения, рядом с объявлением появится причина. О сроках и возможных проблемах подробнее рассказано в статье <a href="../moderaciya-yandex-direct/" target="_blank" rel="noopener noreferrer">«Модерация Яндекс Директ»</a>.</p>
         </section>
 
         <section>
-          <h2 id="section-kakoy-sposob-vybrat">Какой способ выбрать</h2>
-          <p>Для одного или нескольких объявлений проще поменять ссылки вручную. Для десятков и сотен объявлений используйте массовое редактирование в веб-интерфейсе. Для большого аккаунта с множеством кампаний удобнее Директ Коммандер.</p>
-          <p>После смены объекта продвижения всегда проверяйте основной URL, быстрые ссылки, параметры, Метрику и цели стратегии.</p>
+          <h2 id="section-chastye-oshibki-pri-zamene-sayta">Частые ошибки при замене сайта</h2>
+          <ul>
+            <li><strong>Изменили только объект продвижения.</strong> Старые адреса могли остаться внутри объявлений.</li>
+            <li><strong>Забыли быстрые ссылки.</strong> Это дополнительные короткие ссылки, которые показываются под объявлением.</li>
+            <li><strong>Не проверили новую страницу.</strong> Сайт может открываться, но кнопка или форма заявки на нем не работает.</li>
+            <li><strong>Выбрали лишние объявления.</strong> Перед массовой заменой всегда просматривайте список.</li>
+            <li><strong>Слишком рано остановили старую кампанию.</strong> Сначала дождитесь запуска и проверки новой.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 id="section-chastye-voprosy">Частые вопросы</h2>
+          <h3 id="section-nuzhno-li-sozdavat-novuyu-kampaniyu-esli-menyaetsya-odna-stranitsa">Нужно ли создавать новую кампанию, если меняется одна страница?</h3>
+          <p>Нет. Откройте нужные объявления и замените в них старый адрес на новый.</p>
+          <h3 id="section-chto-delat-esli-menyaetsya-ves-sayt">Что делать, если меняется весь сайт?</h3>
+          <p>В обычной кампании можно заменить ссылки в существующих объявлениях. В Мастере кампаний для другого сайта потребуется новая кампания.</p>
+          <h3 id="section-ostanovyatsya-li-pokazy-posle-izmeneniya-ssylki">Остановятся ли показы после изменения ссылки?</h3>
+          <p>Обычно во время проверки продолжает показываться предыдущая версия объявления. Новая версия заменит ее после одобрения.</p>
+          <h3 id="section-sohranitsya-li-statistika">Сохранится ли статистика?</h3>
+          <p>Если вы редактируете объявления в существующей кампании, история кампании остается в ней. У новой кампании статистика начнет собираться отдельно.</p>
+          <h3 id="section-pochemu-posle-sohraneniya-vse-esche-otkryvaetsya-staryy-sayt">Почему после сохранения все еще открывается старый сайт?</h3>
+          <p>Проверка могла еще не закончиться, либо старый адрес остался в другом объявлении или быстрой ссылке. Сначала дождитесь завершения проверки, затем просмотрите объявления еще раз.</p>
+          <h3 id="section-kak-vernut-staruyu-ssylku">Как вернуть старую ссылку?</h3>
+          <p>Откройте объявление, верните прежний адрес и сохраните его. Эта версия также пройдет проверку Яндекса.</p>
+        </section>
+
+        <section>
+          <h2 id="section-korotkiy-itog">Короткий итог</h2>
+          <ol>
+            <li>Найдите старый адрес в объявлениях.</li>
+            <li>Замените его вручную или через массовое редактирование.</li>
+            <li>Проверьте страницу, форму заявки и быстрые ссылки.</li>
+            <li>Дождитесь проверки Яндекса и убедитесь, что новый адрес применился.</li>
+          </ol>
         </section>
       <aside class="article-author" aria-label="Об авторе"><img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников, специалист по платному трафику" width="192" height="192" loading="lazy" decoding="async" /><div class="article-author__body"><p class="article-author__label">Автор</p><p class="article-author__name">Максим Мирошников</p><p class="article-author__role">Специалист по платному трафику и Яндекс Директу</p><p class="article-author__text">Занимаюсь интернет-рекламой более 10 лет. Работаю как ИП и веду проекты напрямую: запускаю рекламу, создаю сайты и воронки, помогаю выстраивать связь между маркетингом, заявками и продажами.</p><p class="article-author__link"><a href="../../#about">Подробнее обо мне</a></p></div></aside><!-- related-articles:start -->
 <section class="related-articles" aria-labelledby="related-articles-title">

@@ -2,6 +2,16 @@
   "version": 1,
   "articles": [
     {
+      "slug": "srednie-pokazateli-po-industrii-yandex-metrika",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "website"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "prodvizhenie-dorogih-tovarov-uslug",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
@@ -396,11 +406,8 @@
       "topic": "production",
       "topicLabel": "Производство и B2B",
       "tags": [
-        "b2b",
-        "analytics",
         "economics",
-        "website",
-        "lead-generation"
+        "seo"
       ],
       "intent": "strategy"
     },
