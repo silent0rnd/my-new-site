@@ -101,7 +101,9 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
   const applyBatchButton = root.querySelector("[data-png-apply-batch]");
   const background = root.querySelector("[data-png-background]");
   const backgroundValue = root.querySelector("[data-png-background-value]");
-  const downloadAllButton = root.querySelector("[data-png-download-all]");
+  const primaryDownload = root.querySelector("[data-png-primary-download]");
+  const primaryDownloadInfo = root.querySelector("[data-png-primary-download-info]");
+  const downloadResultButtons = root.querySelectorAll("[data-png-download-results]");
   const sizeSummary = root.querySelector("[data-png-size-summary]");
   const sourceTotal = root.querySelector("[data-png-source-total]");
   const resultTotal = root.querySelector("[data-png-result-total]");
@@ -167,15 +169,23 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
 
   const render = () => {
     const nameErrors = getNameErrors(items);
-    const valid = validItems();
+    const converted = items.filter((item) => item.resultBlob);
+    const canDownloadResults = !processing && converted.length > 0;
     controls.hidden = !items.length;
     listSection.hidden = !items.length;
-    actions.hidden = !items.length;
+    actions.hidden = !canDownloadResults;
+    primaryDownload.hidden = !canDownloadResults;
+    primaryDownloadInfo.textContent = converted.length === 1
+      ? "1 JPG готов к скачиванию"
+      : `${converted.length} JPG будут скачаны ZIP-архивом`;
+    downloadResultButtons.forEach((button) => {
+      button.hidden = !canDownloadResults;
+      button.disabled = processing;
+    });
     batchName.disabled = processing || !items.length;
     applyBatchButton.disabled = processing || !items.length;
     quality.disabled = processing || !items.length;
     background.disabled = processing || !items.length;
-    downloadAllButton.hidden = valid.filter((item) => item.resultBlob).length < 2 || processing;
     renderSizeSummary();
     list.replaceChildren();
 
@@ -222,9 +232,9 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
         result.append(createText("span", `PNG: ${formatBytes(item.file.size)} → JPG: ${formatBytes(item.resultSize)} · ${sizeChangeText(item.file.size, item.resultSize)}`));
         const download = document.createElement("button");
         download.type = "button";
-        download.className = "png-jpg-download";
+        download.className = "utm-button utm-button--ghost png-jpg-download";
         download.dataset.pngDownload = String(item.id);
-        download.textContent = "Скачать";
+        download.textContent = "Скачать JPG";
         result.append(download);
         details.append(result);
       }
@@ -334,10 +344,21 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
       void convertAll(true);
     }, 350);
   };
-  const downloadAll = async () => {
+  const setDownloadResultsDisabled = (disabled) => {
+    downloadResultButtons.forEach((button) => { button.disabled = disabled; });
+  };
+  const downloadResults = async () => {
     const converted = items.filter((item) => item.resultBlob);
-    if (converted.length < 2 || !window.JSZip) { setStatus("Не удалось подготовить ZIP-архив.", true); return; }
-    downloadAllButton.disabled = true;
+    if (!converted.length) { setStatus("Нет готовых JPG для скачивания.", true); return; }
+    if (converted.length === 1) {
+      const [item] = converted;
+      download(item.resultBlob, outputFilename(item.outputName));
+      setStatus("JPG скачивается.");
+      track("png_to_jpg_single_download");
+      return;
+    }
+    if (!window.JSZip) { setStatus("Не удалось подготовить ZIP-архив.", true); return; }
+    setDownloadResultsDisabled(true);
     setStatus("Создаём ZIP-архив...");
     try {
       const zip = new window.JSZip();
@@ -346,7 +367,7 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
       setStatus(`ZIP-архив готов: ${converted.length} ${pluralImages(converted.length)}.`);
       track("png_to_jpg_zip_download");
     } catch (error) { setStatus("Не удалось создать ZIP-архив.", true); }
-    downloadAllButton.disabled = false;
+    setDownloadResultsDisabled(false);
   };
 
   input.addEventListener("change", () => { void addFiles(Array.from(input.files || [])); input.value = ""; });
@@ -360,7 +381,10 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
     const field = event.target.closest("[data-png-name]");
     if (!field) return;
     const item = items.find((entry) => entry.id === Number(field.dataset.pngName));
-    if (item) { item.outputName = normalizeOutputName(field.value); render(); }
+    if (item) {
+      item.outputName = normalizeOutputName(field.value);
+      scheduleCalculation("Обновляем JPG с новым именем...");
+    }
   });
   list.addEventListener("click", (event) => {
     const remove = event.target.closest("[data-png-remove]");
@@ -383,9 +407,8 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
     const names = buildBatchOutputNames(batchName.value, items.length);
     items.forEach((item, index) => { item.outputName = names[index]; });
     batchName.value = normalizeOutputName(batchName.value);
-    setStatus(`Общее имя применено к ${items.length} ${pluralImages(items.length)}.`);
-    render();
+    scheduleCalculation("Обновляем JPG с новыми именами...");
   });
-  downloadAllButton.addEventListener("click", () => { void downloadAll(); });
+  downloadResultButtons.forEach((button) => button.addEventListener("click", () => { void downloadResults(); }));
   render();
 });

@@ -15,12 +15,12 @@ function cspFromHtaccess() {
   return match[1];
 }
 
-test("PNG-конвертер загружает blob-превью и создаёт JPG при CSP сайта", async () => {
+test("PNG-конвертер показывает и скачивает единый результат при CSP сайта", async () => {
   const csp = cspFromHtaccess();
   assert.match(csp, /img-src 'self' data: https: blob:/);
 
   const browser = await chromium.launch({ headless: true });
-  const context = await browser.newContext();
+  const context = await browser.newContext({ viewport: { width: 375, height: 812 } });
   const errors = [];
   const page = await context.newPage();
   page.on("console", (message) => {
@@ -48,13 +48,48 @@ test("PNG-конвертер загружает blob-превью и созда�
 
   try {
     await page.goto("https://naklikay.ru/tools/png-to-jpg/");
+    assert.equal(await page.locator("[data-png-primary-download]").isHidden(), true);
     await page.locator("[data-png-file-input]").setInputFiles({ name: "valid.png", mimeType: "image/png", buffer: validPng });
     await page.locator(".png-jpg-file__preview").evaluate((image) => image.decode());
     await page.locator(".png-jpg-file__result").waitFor({ state: "visible" });
+    await page.locator("[data-png-primary-download]").waitFor({ state: "visible" });
 
     assert.equal(await page.locator(".png-jpg-file__preview").evaluate((image) => image.naturalWidth), 1);
     assert.equal(await page.locator(".png-jpg-file__error").count(), 0);
     assert.equal(await page.locator(".png-jpg-file__result").count(), 1);
+    assert.match(await page.locator("[data-png-primary-download-info]").textContent(), /1 JPG/);
+    assert.equal(await page.locator("[data-png-actions] [data-png-download-results]").isVisible(), true);
+    assert.ok((await page.locator("[data-png-primary-download]").boundingBox()).y < 812);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth), false);
+
+    await page.locator("[data-png-name]").fill("renamed");
+    await page.locator("[data-png-name]").press("Tab");
+    await page.locator("[data-png-primary-download]").waitFor({ state: "hidden" });
+    await page.locator("[data-png-primary-download]").waitFor({ state: "visible" });
+
+    const [jpgDownload] = await Promise.all([
+      page.waitForEvent("download"),
+      page.locator("[data-png-primary-download] [data-png-download-results]").click()
+    ]);
+    assert.equal(jpgDownload.suggestedFilename(), "renamed.jpg");
+
+    await page.locator("[data-png-clear]").click();
+    await page.locator("[data-png-primary-download]").waitFor({ state: "hidden" });
+
+    await page.locator("[data-png-file-input]").setInputFiles([
+      { name: "first.png", mimeType: "image/png", buffer: validPng },
+      { name: "second.png", mimeType: "image/png", buffer: validPng }
+    ]);
+    await page.locator(".png-jpg-file__result").nth(1).waitFor({ state: "visible" });
+    await page.waitForFunction(() => document.querySelector("[data-png-primary-download-info]")?.textContent?.includes("2 JPG"));
+    await page.locator("[data-png-primary-download]").waitFor({ state: "visible" });
+    assert.match(await page.locator("[data-png-primary-download-info]").textContent(), /2 JPG/);
+
+    const [zipDownload] = await Promise.all([
+      page.waitForEvent("download"),
+      page.locator("[data-png-primary-download] [data-png-download-results]").click()
+    ]);
+    assert.equal(zipDownload.suggestedFilename(), "png-to-jpg.zip");
     assert.equal(errors.some((message) => message.includes("blob:") && message.includes("img-src")), false);
   } finally {
     await context.close();

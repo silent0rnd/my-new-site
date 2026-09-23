@@ -9,10 +9,10 @@
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href="https://naklikay.ru/tools/png-to-jpg/" />
     <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="../../styles.css?v=20260907-png-to-jpg" />
+    <link rel="stylesheet" href="../../styles.css?v=20260923-png-download" />
     <script src="vendor/jszip.min.js?v=3.10.1" defer></script>
     <script src="../../script.js?v=20260824-tools" defer></script>
-    <script src="png-to-jpg.js?v=20260907-2" defer></script>
+    <script src="png-to-jpg.js?v=20260923-download" defer></script>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Максим Мирошников" />
     <meta property="og:url" content="https://naklikay.ru/tools/png-to-jpg/" />
@@ -52,6 +52,11 @@
           </div>
           <p class="png-jpg-status" data-png-status hidden aria-live="polite"></p>
 
+          <section class="png-jpg-primary-download" data-png-primary-download hidden aria-live="polite">
+            <div class="png-jpg-primary-download__copy"><strong>Результат готов</strong><span data-png-primary-download-info></span></div>
+            <button class="utm-button png-jpg-download-results png-jpg-download-results--primary" type="button" data-png-download-results>Скачать результат</button>
+          </section>
+
           <div class="png-jpg-controls" data-png-controls hidden>
             <div class="png-jpg-batch-control">
               <label class="utm-field png-jpg-batch-field"><span class="utm-field__name">Общее имя для всех файлов</span><span class="png-jpg-file__name-box"><input type="text" data-png-batch-name autocomplete="off" aria-label="Общее имя для всех JPG" /><span>.jpg</span></span></label>
@@ -69,7 +74,7 @@
           </section>
 
           <div class="png-jpg-actions" data-png-actions hidden>
-            <button class="utm-button utm-button--ghost" type="button" data-png-download-all hidden>Скачать все JPG</button>
+            <button class="utm-button utm-button--ghost png-jpg-download-results png-jpg-download-results--secondary" type="button" data-png-download-results hidden>Скачать результат</button>
           </div>
         </section>
 
