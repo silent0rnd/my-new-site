@@ -2,6 +2,25 @@
   "version": 1,
   "articles": [
     {
+      "slug": "ai-direktolog",
+      "topic": "specialist",
+      "topicLabel": "Работа со специалистом",
+      "tags": [
+        "specialist"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "prodvizhenie-prilozheniy-yandex-direct",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "economics"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "srednie-pokazateli-po-industrii-yandex-metrika",
       "topic": "analytics",
       "topicLabel": "Аналитика",
