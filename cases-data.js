@@ -8,6 +8,12 @@
     { id: "tg-ads", label: "TG Ads" },
   ];
 
+  function keyParagraph(text) {
+    if (text && typeof text === "object") return text;
+
+    return { text, emphasis: "key" };
+  }
+
   function buildYandexDirectCase(caseItem) {
     const caseDetails = yandexDirectCaseDetails[caseItem.slug] || {};
 
@@ -55,11 +61,11 @@
         {
           heading: "Результат",
           paragraphs: [
-            `Ключевой результат кейса - ${caseItem.shortResult}.`,
+            { text: `Ключевой результат кейса - ${caseItem.shortResult}.`, emphasis: "key" },
           ],
         },
       ],
-      conclusion: caseDetails.conclusion || caseItem.conclusion || `Кейс показывает, что в категории «${caseItem.categoryLabel}» результат зависит не только от настройки кабинета, но и от связки оффера, посадочной страницы, аналитики и регулярной оптимизации.`,
+      conclusion: keyParagraph(caseDetails.conclusion || caseItem.conclusion || `Кейс показывает, что в категории «${caseItem.categoryLabel}» результат зависит не только от настройки кабинета, но и от связки оффера, посадочной страницы, аналитики и регулярной оптимизации.`),
       images: caseDetails.images || caseItem.images || [],
       // Поля для статичной сборки (scripts/generate-cases.js). Необязательные:
       // без них заголовок и описание собираются автоматически.

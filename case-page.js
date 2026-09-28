@@ -85,9 +85,25 @@
     return `../${caseItem.slug}/`;
   }
 
+  function getParagraphData(value, defaultEmphasis = "") {
+    if (value && typeof value === "object") {
+      return {
+        text: value.text || "",
+        emphasis: value.emphasis || defaultEmphasis,
+      };
+    }
+
+    return {
+      text: value || "",
+      emphasis: defaultEmphasis,
+    };
+  }
+
   function appendParagraphs(parent, paragraphs = []) {
-    paragraphs.forEach((text) => {
-      parent.append(createElement("p", "", text));
+    paragraphs.forEach((value) => {
+      const paragraph = getParagraphData(value);
+      const className = paragraph.emphasis === "key" ? "content-key-point" : "";
+      parent.append(createElement("p", className, paragraph.text));
     });
   }
 
@@ -634,8 +650,9 @@
 
   function renderConclusion() {
     const section = createElement("section", "case-conclusion");
+    const conclusion = getParagraphData(currentCase.conclusion, "key");
     section.append(createElement("h2", "", "Вывод"));
-    section.append(createElement("p", "", currentCase.conclusion));
+    section.append(createElement("p", conclusion.emphasis === "key" ? "content-key-point" : "", conclusion.text));
     addCaseSketchOrb(section, "lower");
     return section;
   }

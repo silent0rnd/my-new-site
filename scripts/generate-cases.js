@@ -117,10 +117,30 @@ function illustrationHtml(illustration) {
   ].join("");
 }
 
+function getParagraphData(value, defaultEmphasis = "") {
+  if (value && typeof value === "object") {
+    return {
+      text: value.text || "",
+      emphasis: value.emphasis || defaultEmphasis,
+    };
+  }
+
+  return {
+    text: value || "",
+    emphasis: defaultEmphasis,
+  };
+}
+
+function paragraphHtml(value, defaultEmphasis = "") {
+  const paragraph = getParagraphData(value, defaultEmphasis);
+  const className = paragraph.emphasis === "key" ? ' class="content-key-point"' : "";
+  return `<p${className}>${esc(paragraph.text)}</p>`;
+}
+
 function sectionsHtml(sections = [], headingTag = "h2", decorations = {}) {
   return sections
     .map((section, index) => {
-      const paragraphHtml = (section.paragraphs || []).map((text) => `<p>${esc(text)}</p>`);
+      const paragraphs = (section.paragraphs || []).map((paragraph) => paragraphHtml(paragraph));
       const items = section.items && section.items.length > 0
         ? `<ul class="case-content-list">${section.items.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>`
         : "";
@@ -137,10 +157,10 @@ function sectionsHtml(sections = [], headingTag = "h2", decorations = {}) {
         inlineIllustrations.forEach((inlineItem) => {
           const inlineIndex = Number.isInteger(inlineItem.index) ? inlineItem.index : paragraphStart;
           const copyClass = paragraphStart === 0 ? "case-content-section__copy" : "case-content-section__copy case-content-section__copy--after-illustration";
-          content += `<div class="${copyClass}">${paragraphHtml.slice(paragraphStart, inlineIndex + 1).join("")}</div>${illustrationHtml(inlineItem)}`;
+          content += `<div class="${copyClass}">${paragraphs.slice(paragraphStart, inlineIndex + 1).join("")}</div>${illustrationHtml(inlineItem)}`;
           paragraphStart = inlineIndex + 1;
         });
-        const remainingParagraphs = paragraphHtml.slice(paragraphStart).join("");
+        const remainingParagraphs = paragraphs.slice(paragraphStart).join("");
         if (remainingParagraphs || items) {
           content += `<div class="case-content-section__copy case-content-section__copy--after-illustration">${remainingParagraphs}${items}</div>`;
         }
@@ -156,12 +176,12 @@ function sectionsHtml(sections = [], headingTag = "h2", decorations = {}) {
           .slice(listIndex + 1)
           .map((item) => `<li>${esc(item)}</li>`)
           .join("");
-        content = `<div class="case-content-section__copy">${paragraphHtml.join("")}<ul class="case-content-list">${beforeItems}</ul></div>${illustrationHtml(listIllustration)}`;
+        content = `<div class="case-content-section__copy">${paragraphs.join("")}<ul class="case-content-list">${beforeItems}</ul></div>${illustrationHtml(listIllustration)}`;
         if (afterItems) {
           content += `<div class="case-content-section__copy case-content-section__copy--after-illustration"><ul class="case-content-list">${afterItems}</ul></div>`;
         }
       } else {
-        content = `<div class="case-content-section__copy">${paragraphHtml.join("")}${items}</div>`;
+        content = `<div class="case-content-section__copy">${paragraphs.join("")}${items}</div>`;
       }
       const variant = decorations[index];
       const className = variant ? "case-content-section has-case-sketch-orb" : "case-content-section";
@@ -263,7 +283,7 @@ function conclusionHtml(caseItem) {
   return [
     `<section class="case-conclusion has-case-sketch-orb">`,
     `<h2>Вывод</h2>`,
-    `<p>${esc(caseItem.conclusion)}</p>`,
+    paragraphHtml(caseItem.conclusion, "key"),
     orb("lower"),
     `</section>`,
   ].join("");
@@ -457,7 +477,7 @@ function pageHtml(caseItem, cases) {
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="${pageUrl}" />
     <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="../../styles.css?v=20260922-case-tape-v4" />
+    <link rel="stylesheet" href="../../styles.css?v=20260928-case-tape-clearance-v5" />
     <script src="../../cases-data.js?v=20260921-case-illustrations-layout" defer></script>
     <script src="../../case-page.js?v=20260921-case-illustrations-layout" defer></script>
     <script src="../../script.js?v=20260810-mobile-layout" defer></script>
