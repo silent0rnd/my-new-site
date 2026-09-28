@@ -358,9 +358,10 @@
         "real-estate-agency",
         "economics",
         "specialist",
+        "seo",
         "lead-generation"
       ],
-      "intent": "instruction"
+      "intent": "strategy"
     },
     {
       "slug": "prodvizhenie-restorana-i-dostavki-edy-v-2026-godu",
@@ -580,10 +581,9 @@
       "tags": [
         "ecommerce",
         "economics",
-        "ad-formats",
         "seo"
       ],
-      "intent": "instruction"
+      "intent": "strategy"
     },
     {
       "slug": "prodvizhenie-ustanovki-kondicionerov",
