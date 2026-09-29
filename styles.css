@@ -8119,6 +8119,12 @@ html.is-hero-video-played .portrait-video {
   line-height: 1.28;
 }
 
+.legal-document aside.content-key-point > p,
+.legal-document aside.content-key-point > ul > li {
+  font-size: inherit;
+  line-height: inherit;
+}
+
 @media (max-width: 720px) {
   .article-page .article-lead,
   .case-hero__lead,
@@ -8135,4 +8141,5 @@ html.is-hero-video-played .portrait-video {
     font-size: 24px;
     line-height: 1.32;
   }
+
 }

@@ -17,16 +17,16 @@
     <meta property="og:url" content="https://naklikay.ru/blog/kak-proverit-tsel-v-yandex-metrike/" />
     <meta property="og:title" content="Как проверить цель в Яндекс Метрике: отладчик _ym_debug=2" />
     <meta property="og:description" content="Как проверить цель в Яндекс Метрике без ожидания отчетов: параметр _ym_debug=2, встроенная панель отладки, вкладки Events и Console, консоль браузера и частые причины, почему цель не срабатывает." />
-    <meta property="og:image" content="https://naklikay.ru/blog/6.1.jpg" />
-    <meta property="og:image:width" content="1672" />
-    <meta property="og:image:height" content="941" />
+    <meta property="og:image" content="https://naklikay.ru/blog/01-ym-debug-url.jpg" />
+    <meta property="og:image:width" content="2896" />
+    <meta property="og:image:height" content="2172" />
     <meta property="og:image:alt" content="Проверка цели Яндекс Метрики через _ym_debug=2" />
     <meta property="article:published_time" content="2026-08-17" />
     <meta property="article:author" content="Максим Мирошников" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Как проверить цель в Яндекс Метрике: отладчик _ym_debug=2" />
     <meta name="twitter:description" content="Как проверить цель в Яндекс Метрике без ожидания отчетов: параметр _ym_debug=2, встроенная панель отладки, вкладки Events и Console, консоль браузера и частые причины, почему цель не срабатывает." />
-    <meta name="twitter:image" content="https://naklikay.ru/blog/6.1.jpg" />
+    <meta name="twitter:image" content="https://naklikay.ru/blog/01-ym-debug-url.jpg" />
 
     <script type="application/ld+json">
       {
@@ -41,8 +41,9 @@
               "@type": "WebPage",
               "@id": "https://naklikay.ru/blog/kak-proverit-tsel-v-yandex-metrike/"
             },
-            "image": "https://naklikay.ru/blog/6.1.jpg",
+            "image": "https://naklikay.ru/blog/01-ym-debug-url.jpg",
             "datePublished": "2026-08-17",
+            "dateModified": "2026-09-29",
             "inLanguage": "ru-RU",
             "author": {
               "@type": "Person",
@@ -111,6 +112,12 @@
           <span>Максим Мирошников</span>
         </p>
 
+        <p class="article-updated"><time datetime="2026-09-29">Обновлено: 29 сентября 2026</time></p>
+
+        <p class="article-lead">
+          Чтобы проверить цель Яндекс Метрики сразу, добавьте к URL страницы <code>?_ym_debug=2</code>, выполните целевое действие и откройте панель отладки внизу страницы. Достижение цели видно во вкладке Events, подробности - во вкладке Console. Ждать появления конверсии в отчётах для первичной проверки не нужно.
+        </p>
+
         <p class="article-lead">
           После настройки цели я всегда проверяю ее сразу. Отправлять тестовую форму, а потом обновлять отчеты Яндекс Метрики и ждать, когда там появится конверсия, неудобно. Особенно если цель не сработала: вы просто теряете время и все равно не понимаете, где ошибка.
         </p>
@@ -139,6 +146,9 @@
       <a class="article-toc__link article-toc__link--section" href="#section-kak-proverit-otpravku-formy" data-article-anchor>Как проверить отправку формы</a>
     </li>
     <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-ponyat-rezultat-proverki" data-article-anchor>Как понять результат проверки</a>
+    </li>
+    <li class="article-toc__item">
       <a class="article-toc__link article-toc__link--section" href="#section-yandex-metrica-debugger-rasshirenie-dlya-brauzera" data-article-anchor>Yandex Metrica Debugger: расширение для браузера</a>
     </li>
     <li class="article-toc__item">
@@ -156,17 +166,14 @@
     <li class="article-toc__item article-toc__item--has-children">
       <div class="article-toc__section-row">
       <a class="article-toc__link article-toc__link--section" href="#section-chastye-voprosy" data-article-anchor>Частые вопросы</a>
-        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-9" aria-label="Показать подразделы: Частые вопросы">
-          <span aria-hidden="true">5</span>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-10" aria-label="Показать подразделы: Частые вопросы">
+          <span aria-hidden="true">2</span>
           <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
         </button>
       </div>
-      <ol class="article-toc__sublist" id="article-toc-subsections-9" hidden>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-kak-bystro-proverit-srabotala-li-tsel-v-yandeks-metrike" data-article-anchor>Как быстро проверить, сработала ли цель в Яндекс Метрике?</a></li>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-nuzhno-li-zhdat-poyavleniya-tseli-v-otchetah" data-article-anchor>Нужно ли ждать появления цели в отчетах?</a></li>
+      <ol class="article-toc__sublist" id="article-toc-subsections-10" hidden>
         <li><a class="article-toc__link article-toc__link--subsection" href="#section-chem-otlichayutsya-ym-debug-1-i-ym-debug-2" data-article-anchor>Чем отличаются _ym_debug=1 и _ym_debug=2?</a></li>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-pochemu-ym-debug-2-ne-pokazyvaet-panel" data-article-anchor>Почему _ym_debug=2 не показывает панель?</a></li>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-kak-proverit-javascript-tsel-reachgoal" data-article-anchor>Как проверить JavaScript-цель reachGoal?</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-kak-otklyuchit-otladchik-yandeks-metriki" data-article-anchor>Как отключить отладчик Яндекс Метрики?</a></li>
       </ol>
     </li>
   </ol>
@@ -190,27 +197,33 @@
             Если в URL уже есть параметры после знака <code>?</code>, новый параметр добавляется через <code>&amp;</code>:
           </p>
           <p><code>https://site.ru/?utm_source=test&amp;_ym_debug=2</code></p>
+
+          <figure class="article-figure">
+            <img src="../01-ym-debug-url.jpg" alt="Как добавить _ym_debug=2 к URL страницы для проверки цели Яндекс Метрики" width="2896" height="2172" loading="lazy" decoding="async" />
+            <figcaption>Добавляйте параметр через <code>?</code>, а если параметры уже есть - через <code>&amp;</code>.</figcaption>
+          </figure>
+
+          <ol>
+            <li>Добавьте <code>_ym_debug=2</code> к адресу нужной страницы.</li>
+            <li>Перезагрузите страницу.</li>
+            <li>Выполните целевое действие: отправьте форму, нажмите кнопку, позвоните по номеру или выполните другое действие, связанное с целью.</li>
+            <li>Нажмите значок отладчика внизу страницы.</li>
+            <li>Проверьте вкладки Events и Console.</li>
+          </ol>
           <p>
-            После загрузки страницы внизу появится значок отладчика Яндекс Метрики. Выполните нужное действие на сайте, например отправьте форму, нажмите кнопку или перейдите по номеру телефона, затем откройте панель отладки.
-          </p>
-          <p>
-            Яндекс показывает информацию о событиях на вкладках Events и Console. Console дает более подробные данные.
+            После загрузки страницы внизу появится значок отладчика Яндекс Метрики. Откройте его - в панели есть вкладки Events и Console.
           </p>
 
           <figure class="article-figure">
-            <img
-                src="../6.1.jpg"
-                alt="Проверка цели Яндекс Метрики через _ym_debug=2"
-                width="1672"
-                height="941"
-                loading="lazy"
-                decoding="async"
-              />
-            <figcaption>Панель открывается прямо на сайте, и достижение цели видно сразу после действия.</figcaption>
+            <img src="../02-ym-debug-panel.jpg" alt="Где находится отладчик Яндекс Метрики и вкладки Events и Console" width="2896" height="2172" loading="lazy" decoding="async" />
+            <figcaption>Значок находится внизу страницы, а события можно проверить во вкладках Events и Console.</figcaption>
           </figure>
 
           <p>
-            Это намного удобнее обычной проверки через отчеты. Вы сразу видите главное: событие вообще ушло в Метрику или нет.
+            Events - быстрый просмотр зафиксированных событий. Console - более подробная техническая информация.
+          </p>
+          <p>
+            Если после отправки формы страница перезагружается или открывается страница благодарности, включите Preserve log в отладчике. Иначе журнал событий может очиститься после перехода на новую страницу.
           </p>
         </section>
 
@@ -225,37 +238,37 @@
               <thead>
                 <tr>
                   <th scope="col">Тип цели</th>
-                  <th scope="col">Что искать при проверке</th>
+                  <th scope="col">Что искать</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">JavaScript-событие</th>
-                  <td data-label="Что искать при проверке">название цели, переданное через <code>reachGoal</code></td>
+                  <td data-label="Что искать"><code>Reach goal</code> и идентификатор цели</td>
                 </tr>
                 <tr>
                   <th scope="row">Отправка формы</th>
-                  <td data-label="Что искать при проверке">событие отправки формы</td>
+                  <td data-label="Что искать"><code>Form goal</code></td>
                 </tr>
                 <tr>
                   <th scope="row">Клик по кнопке</th>
-                  <td data-label="Что искать при проверке">событие нажатия на кнопку</td>
+                  <td data-label="Что искать"><code>Button goal</code></td>
                 </tr>
                 <tr>
                   <th scope="row">Посещение страницы</th>
-                  <td data-label="Что искать при проверке"><code>PageView</code></td>
+                  <td data-label="Что искать"><code>PageView</code></td>
                 </tr>
                 <tr>
                   <th scope="row">Клик по телефону</th>
-                  <td data-label="Что искать при проверке">событие с номером телефона</td>
+                  <td data-label="Что искать">событие клика по номеру</td>
                 </tr>
                 <tr>
                   <th scope="row">Клик по email</th>
-                  <td data-label="Что искать при проверке">событие с адресом электронной почты</td>
+                  <td data-label="Что искать">событие клика по email</td>
                 </tr>
                 <tr>
                   <th scope="row">Скачивание файла</th>
-                  <td data-label="Что искать при проверке">событие <code>File</code> и URL скачиваемого файла</td>
+                  <td data-label="Что искать"><code>File</code> и URL файла</td>
                 </tr>
               </tbody>
             </table>
@@ -265,22 +278,14 @@
             Для JavaScript-цели особенно удобно смотреть Console. Если на сайте вызывается, например:
           </p>
           <p><code>ym(12345678, 'reachGoal', 'send_form')</code></p>
-          <p>
-            после отправки формы в отладчике должно быть видно событие с идентификатором <code>send_form</code>.
-          </p>
-          <p>
-            Для цели типа «Отправка формы» во вкладке Events должна появиться информация об отправке формы. Аналогично проверяются кнопки, телефоны, email и другие стандартные цели Метрики.
+          <p class="content-key-point">
+            Если после действия в отладчике появилось нужное событие, сайт передал его в Метрику. Если события нет, ждать появления конверсии в отчётах бессмысленно: сначала нужно исправить отправку события, код счётчика или настройку цели.
           </p>
         </section>
 
         <section>
           <h2 id="section-kak-proverit-otpravku-formy">Как проверить отправку формы</h2>
-          <p>
-            Это один из самых частых случаев.
-          </p>
-          <p>
-            Допустим, на лендинге есть форма заявки. После ее настройки не нужно ждать появления тестовой конверсии в статистике.
-          </p>
+          <p>Для проверки формы откройте страницу с <code>_ym_debug=2</code>, отправьте тестовую заявку и проверьте появление события во вкладках Events и Console.</p>
           <p>
             Делайте так:
           </p>
@@ -292,8 +297,12 @@
             <li>Проверьте вкладки Events и Console.</li>
           </ol>
           <p>
-            Если событие отправки появилось, Метрика его получила. Дальше уже можно проверить, появилась ли сама конверсия в отчете.
+            Если событие отправки появилось, Метрика его получила.
           </p>
+          <figure class="article-figure">
+            <img src="../03-ym-debug-success.jpg" alt="Как выглядит успешное срабатывание цели в отладчике Яндекс Метрики" width="2896" height="2172" loading="lazy" decoding="async" />
+            <figcaption>Событие в Events подтверждает, что сайт передал его в Метрику.</figcaption>
+          </figure>
           <p>
             Если события нет вообще, ждать отчет бессмысленно. Проблема находится на уровне сайта, счетчика или настройки цели.
           </p>
@@ -303,41 +312,27 @@
         </section>
 
         <section>
+          <h2 id="section-kak-ponyat-rezultat-proverki">Как понять результат проверки</h2>
+          <ul>
+            <li>Событие появилось в Events или Console - сайт передал событие в Метрику.</li>
+            <li>События нет - проблема находится на уровне сайта, кода счетчика или настройки цели.</li>
+            <li>Событие есть, но достижения цели нет в отчете - проверьте настройку цели и обработку события в самой Метрике.</li>
+            <li>Если после действия происходит переход или перезагрузка страницы, используйте Preserve log.</li>
+          </ul>
+        </section>
+
+        <section>
           <h2 id="section-yandex-metrica-debugger-rasshirenie-dlya-brauzera">Yandex Metrica Debugger: расширение для браузера</h2>
           <p>
-            Есть еще один вариант - браузерное расширение Yandex Metrica Debugger. Оно показывает хиты, которые страница отправляет в Яндекс Метрику, включая <code>reachGoal</code>, просмотры страниц, параметры пользователей и ряд других событий.
-          </p>
-          <p>
-            Расширение неофициальное. На скриншоте как раз показана версия Yandex Metrica Debugger 0.0.2.
-          </p>
-
-          <figure class="article-figure">
-            <img
-                src="../6.2.jpg"
-                alt="Расширение Yandex Metrica Debugger для проверки целей Яндекс Метрики"
-                width="1672"
-                height="941"
-                loading="lazy"
-                decoding="async"
-              />
-            <figcaption>Карточка расширения в браузере: разработчик и версия указаны прямо здесь.</figcaption>
-          </figure>
-
-          <p>
-            С ним удобно работать через инструменты разработчика браузера: выполняете действие на сайте и смотрите, какой запрос был отправлен в Метрику.
-          </p>
-          <p>
-            Но здесь есть существенный нюанс. Расширение старое, а опубликованные материалы о нем указывают, что разработка больше не поддерживается. Поэтому в 2026 году я бы не делал его основным инструментом для проверки целей. Если оно у вас уже установлено и работает, пользоваться можно. Для обычной проверки проще и надежнее встроенный отладчик через <code>_ym_debug=2</code>.
-          </p>
-          <p>
-            Яндекс Браузер поддерживает установку совместимых расширений из Chrome Web Store, поэтому Chrome-расширения такого типа в принципе могут использоваться и в нем.
+            Yandex Metrica Debugger - неофициальное браузерное расширение для просмотра хитов и событий. Оно старое и не должно быть основным способом проверки в 2026 году: для большинства пользователей встроенный <code>_ym_debug=2</code> проще и надежнее.
           </p>
         </section>
 
         <section>
           <h2 id="section-chto-delat-esli-ym-debug-2-ne-rabotaet">Что делать, если <code>_ym_debug=2</code> не работает</h2>
+          <p>Если панель <code>_ym_debug=2</code> не появляется, сначала проверьте установку счётчика, блокировщики рекламы и доступность <code>mc.yandex.ru</code>. Для старого кода счётчика можно использовать <code>_ym_debug=1</code> и консоль браузера.</p>
           <p>
-            Параметр <code>_ym_debug=2</code> работает с новым кодом счетчика Яндекс Метрики. Если на сайте установлена старая версия или панель по какой-то причине не появляется, Яндекс рекомендует использовать консоль браузера.
+            Параметр <code>_ym_debug=2</code> работает с новым кодом счетчика Яндекс Метрики. Для старой версии используйте консоль браузера.
           </p>
           <p>
             Добавьте к адресу:
@@ -376,7 +371,9 @@
           </p>
           <ul>
             <li>счетчик не установлен на нужной странице;</li>
+            <li>на сайте используется старая версия кода счетчика;</li>
             <li>работу Метрики блокирует AdBlock или другое расширение;</li>
+            <li>браузер, сеть или файрвол блокирует домен <code>mc.yandex.ru</code>;</li>
             <li>на сайте установлены скрипты, мешающие загрузке счетчика;</li>
             <li>фильтры Метрики исключают ваш визит;</li>
             <li>для JavaScript-цели вообще не вызывается <code>reachGoal</code>;</li>
@@ -396,8 +393,9 @@
 
         <section>
           <h2 id="section-nuzhno-li-posle-etogo-proveryat-tsel-v-otchetah">Нужно ли после этого проверять цель в отчетах</h2>
+          <p>Да, но отчёт нужен как второй этап проверки. Сначала убедитесь через <code>_ym_debug=2</code>, что событие действительно было отправлено.</p>
           <p>
-            Да. Отладчик показывает, что событие было отправлено и зафиксировано счетчиком. После этого я обычно делаю еще одну проверку уже в самой Метрике.
+            После этого откройте отчет по конверсиям и убедитесь, что тестовое достижение цели появилось в статистике.
           </p>
           <p>
             Для этого можно открыть отчет по конверсиям и убедиться, что тестовое достижение цели появилось в статистике. Яндекс указывает, что данные в отчете начинают появляться через несколько минут после создания цели.
@@ -437,29 +435,14 @@
         <section>
           <h2 id="section-chastye-voprosy">Частые вопросы</h2>
 
-          <h3 id="section-kak-bystro-proverit-srabotala-li-tsel-v-yandeks-metrike">Как быстро проверить, сработала ли цель в Яндекс Метрике?</h3>
-          <p>
-            Добавьте к URL страницы <code>_ym_debug=2</code>, выполните целевое действие и откройте панель отладки. Информация о событиях отображается во вкладках Events и Console.
-          </p>
-
-          <h3 id="section-nuzhno-li-zhdat-poyavleniya-tseli-v-otchetah">Нужно ли ждать появления цели в отчетах?</h3>
-          <p>
-            Для первоначальной проверки - нет. Через отладчик можно сразу увидеть, отправилось ли событие. Отчет нужен уже для дополнительной проверки того, что достижение цели попало в статистику.
-          </p>
-
           <h3 id="section-chem-otlichayutsya-ym-debug-1-i-ym-debug-2">Чем отличаются <code>_ym_debug=1</code> и <code>_ym_debug=2</code>?</h3>
           <p>
             <code>_ym_debug=2</code> запускает встроенную панель отладки для нового кода счетчика. <code>_ym_debug=1</code> выводит отладочную информацию в консоль браузера и используется в том числе при старой версии счетчика.
           </p>
 
-          <h3 id="section-pochemu-ym-debug-2-ne-pokazyvaet-panel">Почему <code>_ym_debug=2</code> не показывает панель?</h3>
+          <h3 id="section-kak-otklyuchit-otladchik-yandeks-metriki">Как отключить отладчик Яндекс Метрики?</h3>
           <p>
-            Проверьте версию кода счетчика, блокировщики рекламы, наличие счетчика на странице и другие скрипты сайта. Яндекс также указывает среди возможных причин блокировку домена <code>mc.yandex.ru</code>.
-          </p>
-
-          <h3 id="section-kak-proverit-javascript-tsel-reachgoal">Как проверить JavaScript-цель <code>reachGoal</code>?</h3>
-          <p>
-            Включите отладчик, выполните действие, которое вызывает <code>reachGoal</code>, и посмотрите Console. Там должно отображаться название цели, переданное в вызове метода.
+            Удалите параметр <code>_ym_debug=2</code> из URL или откройте страницу с <code>_ym_debug=0</code>.
           </p>
         </section>
 
