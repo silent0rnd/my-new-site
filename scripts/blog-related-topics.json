@@ -2,6 +2,48 @@
   "version": 1,
   "articles": [
     {
+      "slug": "skolko-deneg-na-test-yandex-direct",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "analytics",
+        "economics"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "yandex-direct-net-zayavok",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "economics",
+        "automation",
+        "website"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "skolko-zayavok-dast-yandex-direct",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kakoy-byudzhet-nuzhen-yandex-direct",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "ai-direktolog",
       "topic": "specialist",
       "topicLabel": "Работа со специалистом",
