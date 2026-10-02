@@ -6,23 +6,29 @@
   const makeRows = (items, includeRegions) => includeRegions ? [["Название", "Тип", "Регион"], ...items.map((item) => [item.name, item.type === "region" ? "Регион" : "Город", item.region || ""])]: [["Город"], ...items.map((item) => [item.name])];
   const csvValue = (value) => `"${String(value).replace(/"/g, '""')}"`;
   const toCsv = (items, includeRegions) => makeRows(items, includeRegions).map((row) => row.map(csvValue).join(";")).join("\r\n");
+  const limits = { group: 4096, campaign: 20000 };
+  const exceedsLimit = (characters, maximum) => characters > maximum;
   function buildResult(data, selections, includeRegions) {
     const targetRegions = new Set(selections.filter((item) => item.kind === "region").map((item) => item.name));
     const targetCityNames = new Set(selections.filter((item) => item.kind === "city").map((item) => normalize(item.name)));
     const byName = new Map();
     data.cities.forEach((city) => { const nameKey = normalize(city.name); if (!targetRegions.has(city.region) && !targetCityNames.has(nameKey)) byName.set(nameKey, city); });
     const cities = [...byName.values()].sort((a, b) => compare(a.name, b.name));
-    const regions = includeRegions ? data.regions.filter((region) => !targetRegions.has(region.name)).sort((a, b) => compare(a.name, b.name)) : [];
+    const cityNames = new Set(cities.map((city) => normalize(city.name)));
+    const regions = includeRegions ? data.regions.filter((region) => {
+      const nameKey = normalize(region.name);
+      return !targetRegions.has(region.name) && !targetCityNames.has(nameKey) && !cityNames.has(nameKey);
+    }).sort((a, b) => compare(a.name, b.name)) : [];
     const items = [...cities, ...regions];
     const text = items.map((item) => item.name).join("\n");
     return { cities, regions, items, text, characters: text.replace(/\s/g, "").length };
   }
-  const api = { normalize, buildResult, toCsv, makeRows };
+  const api = { normalize, buildResult, toCsv, makeRows, limits, exceedsLimit };
   if (typeof window !== "undefined") window.NaklikayMinusCities = api;
   const root = document.querySelector("[data-minus-cities]");
   if (!root) return;
   const search = root.querySelector("[data-minus-search]"); const suggestions = root.querySelector("[data-minus-suggestions]"); const chips = root.querySelector("[data-minus-chips]"); const setting = root.querySelector("[data-minus-regions]"); const clear = root.querySelector("[data-minus-clear]");
-  const count = root.querySelector("[data-minus-count]"); const characters = root.querySelector("[data-minus-characters]"); const preview = root.querySelector("[data-minus-preview]"); const previewNote = root.querySelector("[data-minus-preview-note]"); const limit = root.querySelector("[data-minus-limit]"); const status = root.querySelector("[data-minus-status]"); const dataNote = root.querySelector("[data-minus-data-note]");
+  const cityCount = root.querySelector("[data-minus-city-count]"); const regionCount = root.querySelector("[data-minus-region-count]"); const totalCount = root.querySelector("[data-minus-total-count]"); const characters = root.querySelector("[data-minus-characters]"); const preview = root.querySelector("[data-minus-preview]"); const previewNote = root.querySelector("[data-minus-preview-note]"); const groupLimit = root.querySelector("[data-minus-group-limit]"); const campaignLimit = root.querySelector("[data-minus-campaign-limit]"); const status = root.querySelector("[data-minus-status]"); const dataNote = root.querySelector("[data-minus-data-note]");
   const number = new Intl.NumberFormat("ru-RU"); let data; let selections = []; let result; let shown = []; let activeIndex = -1; let duplicateNames = new Set();
   const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
   function currentOptions() {
@@ -34,7 +40,8 @@
   }
   function renderSuggestions() { shown = currentOptions(); activeIndex = -1; suggestions.hidden = !shown.length; search.setAttribute("aria-expanded", String(Boolean(shown.length))); suggestions.innerHTML = shown.map((item, index) => `<button type="button" role="option" class="minus-cities-suggestion" data-index="${index}" aria-selected="false"><span>${escapeHtml(item.label)}</span><small>${item.kind === "region" ? "Регион" : "Город"}</small></button>`).join(""); }
   function renderChips() { chips.innerHTML = selections.map((item) => `<span class="minus-cities-chip">${escapeHtml(item.label)}<button type="button" aria-label="Удалить ${escapeHtml(item.label)}" data-key="${escapeHtml(item.key)}">×</button></span>`).join(""); chips.hidden = !selections.length; }
-  function renderResult() { if (!data) return; result = buildResult(data, selections, setting.checked); count.textContent = `Готово: ${number.format(result.cities.length)} городов`; characters.textContent = `Символов без пробелов: ${number.format(result.characters)}`; const limitValue = 20000; limit.hidden = result.characters <= limitValue; if (!limit.hidden) limit.textContent = `Объём превышает лимит Яндекс Директа для минус-фраз на кампанию - ${number.format(limitValue)} символов без пробелов.`; const lines = result.text ? result.text.split("\n") : []; preview.textContent = lines.slice(0, 30).join("\n"); previewNote.textContent = `Показано ${number.format(Math.min(30, lines.length))} из ${number.format(lines.length)}`; }
+  function renderLimit(element, label, maximum) { const exceeded = exceedsLimit(result.characters, maximum); element.textContent = `${label}: ${number.format(result.characters)} из ${number.format(maximum)} - ${exceeded ? "лимит превышен" : "помещается"}`; element.classList.toggle("is-exceeded", exceeded); }
+  function renderResult() { if (!data) return; result = buildResult(data, selections, setting.checked); cityCount.textContent = number.format(result.cities.length); regionCount.textContent = number.format(result.regions.length); totalCount.textContent = number.format(result.items.length); characters.textContent = number.format(result.characters); renderLimit(groupLimit, "Для группы объявлений", limits.group); renderLimit(campaignLimit, "Для кампании", limits.campaign); preview.textContent = result.text; previewNote.textContent = `Показан весь список: ${number.format(result.items.length)} фраз`; }
   function add(item) { if (selections.some((selected) => selected.key === item.key)) return; selections.push(item); search.value = ""; suggestions.hidden = true; search.setAttribute("aria-expanded", "false"); renderChips(); renderResult(); search.focus(); }
   function download(content, type, filename) { const url = URL.createObjectURL(new Blob([content], { type })); const link = document.createElement("a"); link.href = url; link.download = filename; document.body.append(link); link.click(); link.remove(); window.setTimeout(() => URL.revokeObjectURL(url), 0); }
   async function copyText(text) { try { if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text); else { const area = document.createElement("textarea"); area.value = text; document.body.append(area); area.select(); document.execCommand("copy"); area.remove(); } status.textContent = "Список скопирован"; } catch { status.textContent = "Не удалось скопировать список. Скачайте TXT."; } }
