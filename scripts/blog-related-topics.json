@@ -1680,6 +1680,18 @@
       "intent": "strategy"
     },
     {
+      "slug": "reklama-proizvodstvennoy-kompanii",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "manufacturing",
+        "b2b",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "prodvizhenie-yuridicheskih-uslug",
       "topic": "legal",
       "topicLabel": "Юридические услуги",
@@ -1817,21 +1829,6 @@
       "tags": [
         "b2b",
         "search",
-        "lead-generation"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "reklama-proizvodstvennoy-kompanii",
-      "topic": "production",
-      "topicLabel": "Производство и B2B",
-      "tags": [
-        "manufacturing",
-        "b2b",
-        "analytics",
-        "search",
-        "campaign-setup",
-        "website",
         "lead-generation"
       ],
       "intent": "strategy"
