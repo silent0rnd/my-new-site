@@ -1316,11 +1316,11 @@
       "tags": [
         "ecommerce",
         "analytics",
+        "economics",
         "automation",
-        "campaign-setup",
-        "lead-generation"
+        "campaign-setup"
       ],
-      "intent": "strategy"
+      "intent": "instruction"
     },
     {
       "slug": "yandex-direct-kommercheskaya-nedvizhimost",
@@ -1558,20 +1558,6 @@
         "lead-generation"
       ],
       "intent": "strategy"
-    },
-    {
-      "slug": "nastroyka-direkta-dlya-internet-magazina",
-      "topic": "ecommerce",
-      "topicLabel": "Интернет-магазины",
-      "tags": [
-        "ecommerce",
-        "analytics",
-        "automation",
-        "campaign-setup",
-        "ad-formats",
-        "lead-generation"
-      ],
-      "intent": "instruction"
     },
     {
       "slug": "contextnaya-reklama-internet-magazina",

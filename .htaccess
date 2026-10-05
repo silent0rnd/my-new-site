@@ -1,5 +1,7 @@
 RewriteEngine On
 
+RewriteRule ^blog/nastroyka-direkta-dlya-internet-magazina/?$ /blog/yandex-direct-dlya-internet-magazina/ [R=301,L]
+
 # 1. Точные канонические URL. Выполняются до DirectorySlash, чтобы прокси не
 #    возвращал HTTP-адрес после принудительного перехода на HTTPS.
 RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
