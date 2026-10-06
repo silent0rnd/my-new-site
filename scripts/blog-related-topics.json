@@ -1960,8 +1960,10 @@
       "topicLabel": "Работа со специалистом",
       "tags": [
         "analytics",
+        "economics",
         "campaign-setup",
-        "specialist"
+        "specialist",
+        "lead-generation"
       ],
       "intent": "service"
     },
