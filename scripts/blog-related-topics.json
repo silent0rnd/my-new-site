@@ -1969,13 +1969,14 @@
     },
     {
       "slug": "stoimost-kontekstnoy-reklamy",
-      "topic": "budget",
-      "topicLabel": "Бюджет и стоимость",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
       "tags": [
         "economics",
-        "lead-generation"
+        "campaign-setup",
+        "specialist"
       ],
-      "intent": "service"
+      "intent": "strategy"
     },
     {
       "slug": "audit-yandex-direct",
