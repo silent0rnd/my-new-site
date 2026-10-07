@@ -6,11 +6,10 @@
       "topic": "social-ads",
       "topicLabel": "Реклама в соцсетях",
       "tags": [
-        "analytics",
         "automation",
-        "ad-formats"
+        "campaign-setup"
       ],
-      "intent": "explanation"
+      "intent": "instruction"
     },
     {
       "slug": "skolko-deneg-na-test-yandex-direct",
