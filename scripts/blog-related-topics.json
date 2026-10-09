@@ -208,12 +208,13 @@
     },
     {
       "slug": "prodvizhenie-otelya-bazy-otdyha",
-      "topic": "budget",
-      "topicLabel": "Бюджет и стоимость",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
       "tags": [
-        "analytics",
         "economics",
-        "search"
+        "automation",
+        "comparison",
+        "seo"
       ],
       "intent": "strategy"
     },
