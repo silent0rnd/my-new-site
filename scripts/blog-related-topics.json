@@ -292,12 +292,12 @@
     },
     {
       "slug": "prodvizhenie-plastikovyh-okon",
-      "topic": "budget",
-      "topicLabel": "Бюджет и стоимость",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
       "tags": [
-        "analytics",
         "economics",
-        "search"
+        "campaign-setup",
+        "lead-generation"
       ],
       "intent": "strategy"
     },
