@@ -2,6 +2,28 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-videoprodakshna",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-ar-vr-razrabotki",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "b2b",
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "prodvizhenie-umnogo-doma-pod-klyuch",
       "topic": "marketing",
       "topicLabel": "Маркетинг",
