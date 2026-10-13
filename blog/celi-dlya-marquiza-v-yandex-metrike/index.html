@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
-    <title>Цели для Марквиза в Метрике: идентификаторы Marquiz</title>
-    <meta name="description" content="Готовые цели Marquiz для Яндекс Метрики: marquiz-start, marquiz-step1, marquiz-form, marquiz-finish. Как настроить цели и отслеживать прохождение квиза." />
+    <title>Цели Marquiz в Яндекс Метрике: настройка и проверка</title>
+    <meta name="description" content="Как настроить цели Marquiz в Яндекс Метрике: идентификаторы marquiz-start, marquiz-form, marquiz-finish, автоматические цели и проверка ошибок." />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike/" />
     <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
@@ -14,31 +14,34 @@
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Максим Мирошников" />
     <meta property="og:url" content="https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike/" />
-    <meta property="og:title" content="Цели для Марквиза в Метрике: идентификаторы Marquiz" />
-    <meta property="og:description" content="Готовые цели Marquiz для Яндекс Метрики: marquiz-start, marquiz-step1, marquiz-form, marquiz-finish. Как настроить цели и отслеживать прохождение квиза." />
-    <meta property="og:image" content="https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike.webp" />
-    <meta property="og:image:width" content="1036" />
-    <meta property="og:image:height" content="690" />
-    <meta property="og:image:alt" content="Цели Marquiz в Яндекс Метрике: идентификаторы событий и воронка прохождения квиза" />
+    <meta property="og:title" content="Цели Marquiz в Яндекс Метрике: настройка и проверка" />
+    <meta property="og:description" content="Как настроить цели Marquiz в Яндекс Метрике: идентификаторы marquiz-start, marquiz-form, marquiz-finish, автоматические цели и проверка ошибок." />
+    <meta property="og:image" content="https://naklikay.ru/blog/01-celi-marquiz.jpg" />
+    <meta property="og:image:width" content="2896" />
+    <meta property="og:image:height" content="2172" />
+    <meta property="og:image:alt" content="Основные цели Marquiz в Яндекс Метрике: запуск квиза, форма контактов и завершение" />
     <meta property="article:published_time" content="2026-08-24" />
     <meta property="article:author" content="Максим Мирошников" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Цели для Марквиза в Метрике: идентификаторы Marquiz" />
-    <meta name="twitter:description" content="Готовые цели Marquiz для Яндекс Метрики: marquiz-start, marquiz-step1, marquiz-form, marquiz-finish. Как настроить цели и отслеживать прохождение квиза." />
-    <meta name="twitter:image" content="https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike.webp" />
-    <meta name="twitter:image:alt" content="Цели Marquiz в Яндекс Метрике: идентификаторы событий и воронка прохождения квиза" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","headline":"Цели для Марквиза в Метрике: идентификаторы Marquiz","description":"Готовые цели Marquiz для Яндекс Метрики: marquiz-start, marquiz-step1, marquiz-form, marquiz-finish. Как настроить цели и отслеживать прохождение квиза.","url":"https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike/","mainEntityOfPage":{"@type":"WebPage","@id":"https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike/"},"image":["https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike.webp","https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike-1.jpg"],"datePublished":"2026-08-24","dateModified":"2026-08-24","inLanguage":"ru-RU","author":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/","jobTitle":"Специалист по платному трафику и Яндекс Директу"},"publisher":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://naklikay.ru/"},{"@type":"ListItem","position":2,"name":"Блог","item":"https://naklikay.ru/blog/"},{"@type":"ListItem","position":3,"name":"Цели для Марквиза в Метрике: идентификаторы Marquiz","item":"https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike/"}]}]}</script>
+    <meta name="twitter:title" content="Цели Marquiz в Яндекс Метрике: настройка и проверка" />
+    <meta name="twitter:description" content="Как настроить цели Marquiz в Яндекс Метрике: идентификаторы marquiz-start, marquiz-form, marquiz-finish, автоматические цели и проверка ошибок." />
+    <meta name="twitter:image" content="https://naklikay.ru/blog/01-celi-marquiz.jpg" />
+    <meta name="twitter:image:alt" content="Основные цели Marquiz в Яндекс Метрике: запуск квиза, форма контактов и завершение" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","headline":"Цели Marquiz в Яндекс Метрике: идентификаторы, настройка и проверка","description":"Как настроить цели Marquiz в Яндекс Метрике: идентификаторы marquiz-start, marquiz-form, marquiz-finish, автоматические цели и проверка ошибок.","url":"https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike/","mainEntityOfPage":{"@type":"WebPage","@id":"https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike/"},"image":["https://naklikay.ru/blog/01-celi-marquiz.jpg"],"datePublished":"2026-08-24","dateModified":"2026-10-12","inLanguage":"ru-RU","author":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/","jobTitle":"Специалист по платному трафику и Яндекс Директу"},"publisher":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://naklikay.ru/"},{"@type":"ListItem","position":2,"name":"Блог","item":"https://naklikay.ru/blog/"},{"@type":"ListItem","position":3,"name":"Цели Marquiz в Яндекс Метрике: идентификаторы, настройка и проверка","item":"https://naklikay.ru/blog/celi-dlya-marquiza-v-yandex-metrike/"}]}]}</script>
   </head>
   <body class="legal-page article-page">
     <header class="legal-topbar"><a class="legal-home-link" href="../../">Максим Мирошников</a><nav class="messenger-links" aria-label="Мессенджеры"><a href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">Telegram</a><a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">Макс</a></nav></header>
     <main class="legal-shell"><article class="legal-document">
-      <nav class="article-breadcrumbs" aria-label="Хлебные крошки"><a href="../../">Главная</a><span aria-hidden="true">/</span><a href="../">Блог</a><span aria-hidden="true">/</span><span aria-current="page">Цели для Марквиза в Метрике: идентификаторы Marquiz</span></nav>
+      <nav class="article-breadcrumbs" aria-label="Хлебные крошки"><a href="../../">Главная</a><span aria-hidden="true">/</span><a href="../">Блог</a><span aria-hidden="true">/</span><span aria-current="page">Цели Marquiz в Яндекс Метрике: идентификаторы, настройка и проверка</span></nav>
       <p class="legal-kicker">Блог о платном трафике</p>
-      <h1>Цели для Марквиза в Метрике: идентификаторы Marquiz</h1>
+      <h1>Цели Marquiz в Яндекс Метрике: идентификаторы, настройка и проверка</h1>
       <p class="article-meta"><time datetime="2026-08-24">24 августа 2026</time><span aria-hidden="true">·</span><span>Максим Мирошников</span></p>
-      <p class="article-lead">Если на сайте установлен квиз Marquiz, в Яндекс Метрике можно отслеживать не только отправленные заявки, но и прохождение отдельных этапов квиза. Например, запуск квиза, переход к первому или второму вопросу, открытие формы контактов и успешное завершение.</p>
-      <p>Для этого в Метрике создаются цели с идентификаторами событий, которые передает Marquiz.</p>
-      <figure class="article-figure"><img src="../celi-dlya-marquiza-v-yandex-metrike-1.jpg" alt="Цели Marquiz в Яндекс Метрике: идентификаторы событий и воронка прохождения квиза" width="1036" height="690" loading="lazy" decoding="async" /><figcaption>Основные идентификаторы событий Marquiz для настройки целей и анализа воронки в Яндекс Метрике.</figcaption></figure>
+      <p class="article-lead">Для отслеживания квиза Marquiz (Марквиз) в Яндекс Метрике используются события <code>marquiz-start</code>, <code>marquiz-stepN</code>, <code>marquiz-form</code> и <code>marquiz-finish</code>. Они позволяют измерять запуск квиза, прохождение вопросов, переход к форме контактов и завершение квиза.</p>
+      <p>Часть целей создаётся автоматически после подключения Метрики. Дополнительные события можно настроить вручную через тип цели «Целевое событие».</p>
+      <p><strong>Основные идентификаторы:</strong></p>
+      <ul><li><code>marquiz-start</code> - посетитель открыл квиз.</li><li><code>marquiz-step1</code> - прошёл первый вопрос.</li><li><code>marquiz-form</code> - дошёл до формы контактов.</li><li><code>marquiz-finish</code> - завершил квиз по предусмотренному сценарию.</li></ul>
+      <p>Для анализа заявок чаще всего используется <code>marquiz-finish</code>, однако важно проверить, что именно вызывает это событие в конкретном квизе.</p>
+      <figure class="article-figure"><img src="../01-celi-marquiz.jpg" alt="Основные цели Marquiz в Яндекс Метрике: запуск квиза, форма контактов и завершение" width="2896" height="2172" loading="eager" decoding="async" /></figure>
 
 <!-- article-toc:start -->
 <nav class="article-toc" id="article-toc" aria-labelledby="article-toc-title">
@@ -46,43 +49,69 @@
   <h2 class="article-toc__title" id="article-toc-title">Содержание</h2>
   <ol class="article-toc__list">
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-osnovnye-tseli-marquiz-dlya-yandeks-metriki" data-article-anchor>Основные цели Marquiz для Яндекс Метрики</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-kakie-tseli-marquiz-sozdayutsya-avtomaticheski" data-article-anchor>Какие цели Marquiz создаются автоматически</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-kak-nastroit-tseli-marquiz-v-metrike" data-article-anchor>Как настроить цели Marquiz в Метрике</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-osnovnye-identifikatory-tseley-marquiz" data-article-anchor>Основные идентификаторы целей Marquiz</a>
+    </li>
+    <li class="article-toc__item article-toc__item--has-children">
+      <div class="article-toc__section-row">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-podklyuchit-yandeks-metriku-k-marquiz" data-article-anchor>Как подключить Яндекс Метрику к Marquiz</a>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-3" aria-label="Показать подразделы: Как подключить Яндекс Метрику к Marquiz">
+          <span aria-hidden="true">2</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
+        </button>
+      </div>
+      <ol class="article-toc__sublist" id="article-toc-subsections-3" hidden>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-avtomaticheskoe-podklyuchenie" data-article-anchor>Автоматическое подключение</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-ruchnaya-nastroyka-tseley-marquiz-v-metrike" data-article-anchor>Ручная настройка целей Marquiz в Метрике</a></li>
+      </ol>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-kakie-tseli-marquiz-ya-obychno-nastraivayu" data-article-anchor>Какие цели Marquiz я обычно настраиваю</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-kakaya-tsel-marquiz-otvechaet-za-otpravku-zayavki" data-article-anchor>Какая цель Marquiz отвечает за отправку заявки</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-zachem-otslezhivat-prohozhdenie-voprosov" data-article-anchor>Зачем отслеживать прохождение вопросов</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-zachem-otslezhivat-prohozhdenie-voprosov-kviza" data-article-anchor>Зачем отслеживать прохождение вопросов квиза</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-kakaya-tsel-marquiz-schitaetsya-zayavkoy" data-article-anchor>Какая цель Marquiz считается заявкой</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-kakie-tseli-marquiz-ispolzovat-v-yandeks-direkte" data-article-anchor>Какие цели Marquiz использовать в Яндекс Директе</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-kakie-tseli-ispolzovat-dlya-reklamy" data-article-anchor>Какие цели использовать для рекламы</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-proverit-rabotayut-li-tseli-marquiz-v-metrike" data-article-anchor>Как проверить, работают ли цели Marquiz в Метрике</a>
+    </li>
+    <li class="article-toc__item article-toc__item--has-children">
+      <div class="article-toc__section-row">
+      <a class="article-toc__link article-toc__link--section" href="#section-pochemu-tseli-marquiz-ne-srabatyvayut-v-yandeks-metrike" data-article-anchor>Почему цели Marquiz не срабатывают в Яндекс Метрике</a>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-8" aria-label="Показать подразделы: Почему цели Marquiz не срабатывают в Яндекс Метрике">
+          <span aria-hidden="true">6</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
+        </button>
+      </div>
+      <ol class="article-toc__sublist" id="article-toc-subsections-8" hidden>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-1-schetchik-ne-podklyuchen-k-samomu-kvizu" data-article-anchor>1. Счётчик не подключён к самому квизу</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-2-posle-podklyucheniya-integratsii-kviz-ne-opublikovan" data-article-anchor>2. После подключения интеграции квиз не опубликован</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-3-nepravilno-ukazan-identifikator-tseli" data-article-anchor>3. Неправильно указан идентификатор цели</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-4-ne-rabotaet-sostavnaya-tsel" data-article-anchor>4. Не работает составная цель</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-5-metrika-zablokirovana-brauzerom" data-article-anchor>5. Метрика заблокирована браузером</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-6-schetchik-pokazyvaet-status-ne-nayden" data-article-anchor>6. Счётчик показывает статус «Не найден»</a></li>
+      </ol>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-kak-proverit-rabotayut-li-tseli-marquiz" data-article-anchor>Как проверить, работают ли цели Marquiz</a>
-    </li>
-    <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-gotovyy-spisok-tseley-dlya-kopirovaniya" data-article-anchor>Готовый список целей для копирования</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-nastroit-tseli-dlya-neskolkih-kvizov-marquiz" data-article-anchor>Как настроить цели для нескольких квизов Marquiz</a>
     </li>
     <li class="article-toc__item article-toc__item--has-children">
       <div class="article-toc__section-row">
       <a class="article-toc__link article-toc__link--section" href="#section-chastye-voprosy" data-article-anchor>Частые вопросы</a>
-        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-9" aria-label="Показать подразделы: Частые вопросы">
-          <span aria-hidden="true">5</span>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-10" aria-label="Показать подразделы: Частые вопросы">
+          <span aria-hidden="true">4</span>
           <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
         </button>
       </div>
-      <ol class="article-toc__sublist" id="article-toc-subsections-9" hidden>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-kakoy-identifikator-tseli-otvechaet-za-zapusk-marquiz" data-article-anchor>Какой идентификатор цели отвечает за запуск Marquiz?</a></li>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-kak-nastroit-tsel-na-pervyy-vopros-marquiz" data-article-anchor>Как настроить цель на первый вопрос Marquiz?</a></li>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-kakaya-tsel-pokazyvaet-chto-polzovatel-doshel-do-formy-kontaktov" data-article-anchor>Какая цель показывает, что пользователь дошёл до формы контактов?</a></li>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-kakaya-tsel-marquiz-otvechaet-za-zavershenie-kviza" data-article-anchor>Какая цель Marquiz отвечает за завершение квиза?</a></li>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-nuzhno-li-sozdavat-tseli-na-kazhdyy-vopros" data-article-anchor>Нужно ли создавать цели на каждый вопрос?</a></li>
+      <ol class="article-toc__sublist" id="article-toc-subsections-10" hidden>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-nuzhno-li-vruchnuyu-sozdavat-vse-tseli-marquiz" data-article-anchor>Нужно ли вручную создавать все цели Marquiz?</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-pochemu-tsel-marquiz-form-srabatyvaet-a-zayavok-net" data-article-anchor>Почему цель marquiz-form срабатывает, а заявок нет?</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-mozhno-li-otslezhivat-otpravku-kontaktov-po-etapam" data-article-anchor>Можно ли отслеживать отправку контактов по этапам?</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-chto-delat-esli-marquiz-finish-srabatyvaet-a-zayavki-v-crm-net" data-article-anchor>Что делать, если marquiz-finish срабатывает, а заявки в CRM нет?</a></li>
       </ol>
     </li>
     <li class="article-toc__item">
@@ -91,35 +120,127 @@
   </ol>
 </nav>
 <!-- article-toc:end -->
-<section><h2 id="section-osnovnye-tseli-marquiz-dlya-yandeks-metriki">Основные цели Marquiz для Яндекс Метрики</h2><p>Для большинства квизов достаточно следующих целей:</p><div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Название цели в Метрике</th><th scope="col">Идентификатор</th></tr></thead><tbody><tr><td>Автоцель Marquiz: запуск квиза</td><td><code>marquiz-start</code></td></tr><tr><td>Квиз - вопрос 1</td><td><code>marquiz-step1</code></td></tr><tr><td>Квиз - вопрос 2</td><td><code>marquiz-step2</code></td></tr><tr><td>Квиз - вопрос 3</td><td><code>marquiz-step3</code></td></tr><tr><td>Квиз - дошёл до формы контактов</td><td><code>marquiz-form</code></td></tr><tr><td>Квиз - Страница «Спасибо»</td><td><code>marquiz-finish</code></td></tr></tbody></table></div><p>Если в квизе больше вопросов, используется тот же принцип:</p><p><code>marquiz-step4</code> - пользователь прошёл четвёртый вопрос.</p><p><code>marquiz-step5</code> - пользователь прошёл пятый вопрос.</p><p>И так далее.</p><p>То есть вместо создания одной цели только на отправку заявки можно отслеживать практически всю воронку прохождения квиза.</p></section>
-      <section><h2 id="section-kak-nastroit-tseli-marquiz-v-metrike">Как настроить цели Marquiz в Метрике</h2><p>Откройте нужный счётчик Яндекс Метрики и перейдите в раздел «Цели».</p><p>Нажмите «Добавить цель».</p><p>Выберите тип цели «JavaScript-событие».</p><p>В качестве идентификатора укажите:</p><p><code>marquiz-form</code></p><p>Сохраните цель.</p><p>Например, для отслеживания первого вопроса можно создать цель:</p><p><strong>Название:</strong> Квиз - вопрос 1<br /><strong>Идентификатор:</strong> <code>marquiz-step1</code></p><p>Для страницы благодарности:</p><p><strong>Название:</strong> Квиз - Страница «Спасибо»<br /><strong>Идентификатор:</strong> <code>marquiz-finish</code></p><p>Само название цели может быть любым. Главное, чтобы идентификатор события был указан правильно.</p></section>
-      <section><h2 id="section-kakie-tseli-marquiz-ya-obychno-nastraivayu">Какие цели Marquiz я обычно настраиваю</h2><p>Я обычно не ограничиваюсь только финальной отправкой формы. Для анализа рекламы удобнее видеть основные этапы прохождения квиза:</p><ol><li><code>marquiz-start</code> - человек запустил квиз.</li><li><code>marquiz-step1</code> - прошёл первый вопрос.</li><li><code>marquiz-step2</code> - прошёл второй вопрос.</li><li><code>marquiz-step3</code> - прошёл третий вопрос.</li><li><code>marquiz-form</code> - дошёл до формы с контактными данными.</li><li><code>marquiz-finish</code> - завершил квиз и дошёл до финального этапа.</li></ol><p>Количество целей <code>marquiz-stepN</code> зависит от количества вопросов в конкретном квизе.</p><p>Если вопросов семь, при необходимости можно создать цели от <code>marquiz-step1</code> до <code>marquiz-step7</code>.</p></section>
-      <section><h2 id="section-zachem-otslezhivat-prohozhdenie-voprosov">Зачем отслеживать прохождение вопросов</h2><p>Отслеживание целей позволяет увидеть, на каком этапе пользователь прекращает прохождение квиза.</p><p>Например:</p><ul><li>квиз открыли 1000 человек;</li><li>до первого вопроса дошли 800;</li><li>до формы контактов дошли 200;</li><li>заявку отправили 120.</li></ul><p>Если много людей запускают квиз, но не доходят до первого вопроса, возможно, проблема в первом экране или формулировке оффера.</p><p>Если пользователи проходят несколько вопросов, но не доходят до формы контактов, стоит посмотреть на структуру квиза, сложность вопросов и количество шагов.</p><p>Если люди доходят до формы, но не отправляют заявку, возможно, форма слишком длинная или вызывает недоверие.</p><p>Без промежуточных целей в Метрике будет видно только количество запусков и заявок. Причину низкой конверсии определить будет сложнее.</p></section>
-      <section><h2 id="section-kakaya-tsel-marquiz-schitaetsya-zayavkoy">Какая цель Marquiz считается заявкой</h2><p>Для оценки реальных заявок в первую очередь нужно смотреть на финальное событие:</p><p><code>marquiz-finish</code></p><p>Оно фиксирует завершение квиза после отправки контактных данных или прохождения предусмотренного финального сценария.</p><p>При этом <code>marquiz-form</code> не означает, что заявка уже отправлена. Эта цель показывает, что пользователь дошёл до формы контактов.</p><p>Поэтому эти две цели лучше не смешивать:</p><p><code>marquiz-form</code> - дошёл до формы.</p><p><code>marquiz-finish</code> - завершил квиз.</p><p>Так можно отдельно оценить конверсию из просмотра формы контактов в её отправку.</p></section>
-      <section><h2 id="section-kakie-tseli-ispolzovat-dlya-reklamy">Какие цели использовать для рекламы</h2><p>Для оптимизации рекламных кампаний не стоит без необходимости использовать каждый вопрос квиза как полноценную конверсию.</p><p><code>marquiz-step1</code>, <code>marquiz-step2</code> и другие промежуточные события полезны прежде всего для аналитики.</p><p>Основной целью для оценки качества рекламы обычно будет <code>marquiz-finish</code>.</p><p>Дополнительно можно анализировать:</p><ul><li><code>marquiz-start</code> - сколько пользователей действительно начали проходить квиз;</li><li><code>marquiz-form</code> - сколько пользователей дошли до этапа ввода контактов;</li><li><code>marquiz-finish</code> - сколько пользователей завершили квиз.</li></ul><p>Так получается простая воронка:</p><p><strong>переход на сайт → запуск квиза → прохождение вопросов → форма контактов → заявка.</strong></p></section>
-      <section><h2 id="section-kak-proverit-rabotayut-li-tseli-marquiz">Как проверить, работают ли цели Marquiz</h2><p>После настройки целей откройте сайт и самостоятельно пройдите квиз.</p><ol><li>Запустите квиз.</li><li>Пройдите несколько вопросов.</li><li>Дойдите до формы контактов.</li><li>Отправьте тестовую заявку.</li><li>Проверьте достижение целей в Яндекс Метрике.</li></ol><p>Если всё настроено правильно, Метрика должна зафиксировать соответствующие события.</p><p>Особенно важно проверить <code>marquiz-finish</code>, поскольку именно эта цель обычно используется как основная конверсия для рекламных кампаний.</p><p>Подробнее о проверке события после настройки - в статье <a href="../kak-proverit-tsel-v-yandex-metrike/">«Как проверить цель в Яндекс Метрике»</a>.</p></section>
-      <section><h2 id="section-gotovyy-spisok-tseley-dlya-kopirovaniya">Готовый список целей для копирования</h2><pre><code>Запуск квиза
-marquiz-start
-
-Вопрос 1
-marquiz-step1
-
-Вопрос 2
-marquiz-step2
-
-Вопрос 3
-marquiz-step3
-
-Дошёл до формы контактов
-marquiz-form
-
-Страница «Спасибо»
-marquiz-finish</code></pre><p>Если вопросов больше:</p><pre><code>marquiz-step4
-marquiz-step5
-marquiz-step6
-marquiz-step7</code></pre></section>
-      <section><h2 id="section-chastye-voprosy">Частые вопросы</h2><h3 id="section-kakoy-identifikator-tseli-otvechaet-za-zapusk-marquiz">Какой идентификатор цели отвечает за запуск Marquiz?</h3><p>Для запуска квиза используется:</p><p><code>marquiz-start</code></p><h3 id="section-kak-nastroit-tsel-na-pervyy-vopros-marquiz">Как настроить цель на первый вопрос Marquiz?</h3><p>Используйте идентификатор:</p><p><code>marquiz-step1</code></p><p>Для второго вопроса - <code>marquiz-step2</code>, для третьего - <code>marquiz-step3</code> и далее по аналогии.</p><h3 id="section-kakaya-tsel-pokazyvaet-chto-polzovatel-doshel-do-formy-kontaktov">Какая цель показывает, что пользователь дошёл до формы контактов?</h3><p>Используйте:</p><p><code>marquiz-form</code></p><p>Она показывает переход к форме сбора контактных данных, но ещё не означает успешную отправку заявки.</p><h3 id="section-kakaya-tsel-marquiz-otvechaet-za-zavershenie-kviza">Какая цель Marquiz отвечает за завершение квиза?</h3><p>Для финального этапа используется:</p><p><code>marquiz-finish</code></p><p>Именно эту цель обычно имеет смысл использовать как основную конверсию при оценке заявок из квиза.</p><h3 id="section-nuzhno-li-sozdavat-tseli-na-kazhdyy-vopros">Нужно ли создавать цели на каждый вопрос?</h3><p>Не обязательно. Если требуется только считать заявки, достаточно основных целей. Промежуточные <code>marquiz-stepN</code> полезны, когда нужно анализировать воронку и находить вопросы, на которых пользователи чаще всего прекращают прохождение квиза.</p></section>
-      <section><h2 id="section-itog">Итог</h2><p>Базовый набор целей Marquiz в Яндекс Метрике выглядит так:</p><p><code>marquiz-start</code> - запуск квиза<br /><code>marquiz-step1</code> - первый вопрос<br /><code>marquiz-step2</code> - второй вопрос<br /><code>marquiz-step3</code> - третий вопрос<br /><code>marquiz-form</code> - переход к форме контактов<br /><code>marquiz-finish</code> - завершение квиза</p><p>Для анализа рекламы наиболее важны <code>marquiz-start</code>, <code>marquiz-form</code> и <code>marquiz-finish</code>. Цели <code>marquiz-stepN</code> позволяют дополнительно посмотреть прохождение каждого вопроса и понять, на каком этапе квиз теряет пользователей.</p></section>
+<section><h2 id="section-kakie-tseli-marquiz-sozdayutsya-avtomaticheski">Какие цели Marquiz создаются автоматически</h2>
+      <p>Яндекс Метрика поддерживает автоматическое отслеживание четырёх событий Marquiz:</p>
+      <ul><li><code>marquiz-start</code> - открытие квиза.</li><li><code>marquiz-result</code> - показ результата квиза, если результаты подключены.</li><li><code>marquiz-finish</code> - завершение квиза с переходом к предусмотренному финальному действию.</li><li><code>marquiz-payment-success</code> - успешная оплата, если в квизе подключена оплата.</li></ul>
+      <p>Чтобы автоматические цели работали, необходимо подключить счётчик Яндекс Метрики к квизу и включить автоматические цели в настройках счётчика.</p>
+      <p>После первого соответствующего события автоматическая цель появится в Метрике. Если цель с таким же условием уже существует, отдельная автоматическая цель не создаётся.</p>
+      <p><strong>Важное отличие:</strong> события прохождения вопросов <code>marquiz-step1</code>, <code>marquiz-step2</code> и перехода к форме <code>marquiz-form</code> не входят в стандартный список четырёх автоцелей Метрики. Их можно подключить дополнительно.</p>
+      </section>
+      <section><h2 id="section-osnovnye-identifikatory-tseley-marquiz">Основные идентификаторы целей Marquiz</h2>
+      <p>Для отслеживания воронки квиза используются следующие события.</p>
+      <div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Действие посетителя</th><th scope="col">Идентификатор цели</th></tr></thead><tbody><tr><td>Открыл квиз</td><td><code>marquiz-start</code></td></tr><tr><td>Нажал кнопку стартовой страницы</td><td><code>marquiz-startquiz</code></td></tr><tr><td>Прошёл первый вопрос</td><td><code>marquiz-step1</code></td></tr><tr><td>Прошёл второй вопрос</td><td><code>marquiz-step2</code></td></tr><tr><td>Прошёл третий вопрос</td><td><code>marquiz-step3</code></td></tr><tr><td>Дошёл до формы контактов</td><td><code>marquiz-form</code></td></tr><tr><td>Увидел результат квиза</td><td><code>marquiz-result</code></td></tr><tr><td>Завершил квиз</td><td><code>marquiz-finish</code></td></tr><tr><td>Успешно оплатил заказ</td><td><code>marquiz-payment-success</code></td></tr></tbody></table></div>
+      <p>Если в квизе больше трёх вопросов, идентификаторы продолжаются по тому же принципу: <code>marquiz-step4</code>, <code>marquiz-step5</code> и далее.</p>
+      <p>Событие <code>marquiz-stepN</code> означает, что посетитель <strong>прошёл соответствующий вопрос</strong>, а не просто увидел его. Это важно при анализе отказов.</p>
+      <p>Дополнительные идентификаторы предусмотрены для двухшаговой формы контактов: <code>marquiz-contacts1</code> и <code>marquiz-contacts2</code>. Они позволяют отслеживать заполнение первого и второго шагов.</p>
+      <p>Для большинства рекламных проектов я рекомендую сначала настроить запуск квиза, переход к форме контактов и завершение. Цели на отдельные вопросы стоит добавлять, когда необходимо подробно изучать потери пользователей.</p>
+      </section>
+      <section><h2 id="section-kak-podklyuchit-yandeks-metriku-k-marquiz">Как подключить Яндекс Метрику к Marquiz</h2>
+      <p>В Marquiz есть автоматическая и ручная настройка интеграции.</p>
+      <h3 id="section-avtomaticheskoe-podklyuchenie">Автоматическое подключение</h3>
+      <ol><li>Откройте редактор нужного квиза в Marquiz.</li><li>Перейдите в раздел «Интеграции» и выберите Яндекс Метрику.</li><li>Выберите автоматическую настройку и подключите аккаунт Яндекса.</li><li>Укажите существующий счётчик Метрики или создайте новый.</li><li>Отметьте события, которые хотите отслеживать. В настройках также предусмотрено подключение всех доступных целей.</li><li>Нажмите «Опубликовать» в редакторе квиза.</li></ol>
+      <p>После этого проверьте, поступают ли данные в выбранный счётчик.</p>
+      <p>Если Marquiz встроен на сайт, удобно использовать тот же счётчик, который собирает данные основного сайта. Так проще сопоставлять рекламный трафик и прохождение квиза. При ручной настройке не забудьте добавить прямой адрес квиза в дополнительные адреса счётчика.</p>
+      <h3 id="section-ruchnaya-nastroyka-tseley-marquiz-v-metrike">Ручная настройка целей Marquiz в Метрике</h3>
+      <p>Если интеграция уже работает и требуется создать отдельную цель, выполните следующие действия:</p>
+      <ol><li>Откройте нужный счётчик Яндекс Метрики.</li><li>Перейдите в раздел «Цели».</li><li>Нажмите «Добавить цель».</li><li>Выберите тип «Целевое событие» (в прежнем интерфейсе - «JavaScript-событие»).</li><li>Введите понятное название, например «Marquiz - форма контактов».</li><li>Укажите условие «Совпадает» и идентификатор <code>marquiz-form</code>.</li><li>Сохраните цель.</li></ol>
+      <p>Аналогичным образом можно настроить <code>marquiz-step1</code> и другие события.</p>
+      <p>Название цели может быть произвольным. Главное, чтобы идентификатор соответствовал событию, которое передаёт Marquiz.</p>
+      <p>Если необходимо объединить несколько событий с общим фрагментом идентификатора, используется условие «Содержит». Но для раздельного отслеживания этапов лучше указывать точное совпадение.</p>
+      <p><strong>Отдельный вызов <code>reachGoal</code> в коде сайта не требуется</strong>, если событие уже передаётся штатной интеграцией Marquiz. Повторную отправку события на стороне сайта без необходимости настраивать не стоит.</p>
+      </section>
+      <section><h2 id="section-kakaya-tsel-marquiz-otvechaet-za-otpravku-zayavki">Какая цель Marquiz отвечает за отправку заявки</h2>
+      <p>Чаще всего основной целью для отслеживания заявок выбирают <code>marquiz-finish</code>.</p>
+      <p>Однако это событие нельзя во всех ситуациях автоматически приравнивать к новой заявке с контактными данными.</p>
+      <p>Его поведение зависит от структуры квиза:</p>
+      <ul><li><strong>Одношаговая форма контактов.</strong> Событие срабатывает после отправки формы.</li><li><strong>Двухшаговая форма.</strong> Если включено создание заявки после первого шага, <code>marquiz-finish</code> сработает уже после первого шага. В противном случае после второго.</li><li><strong>Квиз без формы контактов.</strong> Событие может сработать при открытии страницы «Спасибо» или переходе по настроенному сценарию, даже если телефон или email не собирались.</li></ul>
+      <p>Поэтому перед использованием <code>marquiz-finish</code> в Яндекс Директе я рекомендую отправить тестовую заявку и проверить её появление в Marquiz или CRM.</p>
+      <p>Событие <code>marquiz-form</code> фиксирует переход к форме контактов. Оно не подтверждает отправку заявки.</p>
+      </section>
+      <section><h2 id="section-zachem-otslezhivat-prohozhdenie-voprosov-kviza">Зачем отслеживать прохождение вопросов квиза</h2>
+      <p>Промежуточные события помогают понять, на каком этапе потенциальные клиенты прекращают прохождение квиза.</p>
+      <p>Допустим, за определённый период получены следующие результаты:</p>
+      <div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Этап</th><th scope="col">Пользователи</th></tr></thead><tbody><tr><td>Открыли квиз</td><td>1 000</td></tr><tr><td>Прошли первый вопрос</td><td>750</td></tr><tr><td>Дошли до формы контактов</td><td>300</td></tr><tr><td>Завершили квиз</td><td>180</td></tr></tbody></table></div>
+      <p><em>Цифры условные, для примера.</em></p>
+      <p>В этом случае до формы контактов дошли 30% пользователей, открывших квиз. Из посетителей, дошедших до формы, завершили квиз 60%.</p>
+      <figure class="article-figure"><img src="../02-voronka-marquiz.jpg" alt="Пример воронки Marquiz: 1000 открытий, 750 первых вопросов, 300 форм, 180 завершений" width="2896" height="2172" loading="lazy" decoding="async" /></figure>
+      <p>Что можно проверить:</p>
+      <ul><li>Большая потеря в начале квиза: привлекательность первого экрана, понятность предложения, необходимость нажимать дополнительную кнопку.</li><li>Потери между вопросами: сложность формулировок, количество шагов, удобство ответов на мобильных устройствах.</li><li>Потери на форме контактов: количество обязательных полей, условия обработки данных, удобство отправки.</li></ul>
+      <p>Важный момент: достижение промежуточной цели само по себе не доказывает причину отказов. Чтобы подтвердить гипотезу, необходимо дополнительно изучить поведение пользователей и протестировать изменения.</p>
+      </section>
+      <section><h2 id="section-kakie-tseli-marquiz-ispolzovat-v-yandeks-direkte">Какие цели Marquiz использовать в Яндекс Директе</h2>
+      <p>Для рекламных кампаний я разделяю цели на основные и вспомогательные.</p>
+      <p><strong>Основная конверсия</strong> - подтверждённая отправка заявки. В типовом квизе ей обычно соответствует <code>marquiz-finish</code>, если это подтверждено тестированием.</p>
+      <p><strong>Вспомогательные цели</strong> - <code>marquiz-start</code>, <code>marquiz-stepN</code> и <code>marquiz-form</code>. Они позволяют анализировать вовлечённость и находить слабые места воронки.</p>
+      <p>Не рекомендую без необходимости включать все промежуточные этапы в оптимизацию рекламной кампании. Большое количество открытий квиза ещё не означает, что реклама привлекает потенциальных покупателей.</p>
+      <p>Если заявок мало, промежуточные события помогают анализировать воронку. Но считать их равноценной заменой отправленной заявки неправильно.</p>
+      <p>Для оценки результата рекламы дополнительно необходимо сопоставлять цели Метрики с фактическими заявками и продажами.</p>
+      </section>
+      <section><h2 id="section-kak-proverit-rabotayut-li-tseli-marquiz-v-metrike">Как проверить, работают ли цели Marquiz в Метрике</h2>
+      <p>После настройки интеграции не ограничивайтесь проверкой списка целей. Необходимо убедиться, что события действительно поступают в Метрику.</p>
+      <p>Для этого используйте встроенную отладку Яндекс Метрики.</p>
+      <ol><li>Откройте страницу с квизом, добавив к адресу параметр <code>?_ym_debug=2</code>. Если URL уже содержит параметры, добавьте <code>&amp;_ym_debug=2</code>.</li><li>Запустите квиз и пройдите несколько вопросов.</li><li>Откройте появившуюся панель отладки Метрики.</li><li>Проверьте номер счётчика в разделе Counters.</li><li>Найдите события <code>marquiz-start</code>, <code>marquiz-step1</code>, <code>marquiz-form</code> и <code>marquiz-finish</code> в Events по мере прохождения квиза.</li><li>Убедитесь, что после отправки тестовой заявки появилось финальное событие.</li></ol>
+      <p>Если панель отладки не открывается, можно воспользоваться консолью браузера с параметром <code>_ym_debug=1</code>.</p>
+      <p>После проверки откройте в Метрике отчёт «Конверсии». Данные о достигнутых целях обычно появляются не мгновенно, а через несколько минут.</p>
+      <p>Подробнее о проверке событий: <a href="https://naklikay.ru/blog/kak-proverit-tsel-v-yandex-metrike/" target="_blank" rel="noopener noreferrer">Как проверить цель в Яндекс Метрике</a>.</p>
+      </section>
+      <section><h2 id="section-pochemu-tseli-marquiz-ne-srabatyvayut-v-yandeks-metrike">Почему цели Marquiz не срабатывают в Яндекс Метрике</h2>
+      <p>Если события Marquiz отсутствуют в Метрике, сначала определите, на каком этапе происходит ошибка: квиз не передаёт событие или Метрика не учитывает его как цель.</p>
+      <div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Проблема</th><th scope="col">Что проверить</th></tr></thead><tbody><tr><td>Не фиксируется ни одно событие</td><td>Подключён ли счётчик к квизу, правильный ли его номер, опубликованы ли изменения</td></tr><tr><td>В Метрике есть визиты, но нет целей</td><td>Включены ли автоцели, настроены ли нужные дополнительные события</td></tr><tr><td>Не срабатывает <code>marquiz-stepN</code></td><td>Правильно ли указан номер вопроса и проходит ли посетитель этот вопрос</td></tr><tr><td>Есть <code>marquiz-form</code>, но нет <code>marquiz-finish</code></td><td>Отправлена ли форма, как устроен финальный сценарий квиза</td></tr><tr><td>Не срабатывает составная цель</td><td>Правильно ли указана последовательность шагов, выполняются ли все условия</td></tr><tr><td>События видны в отладчике, но нет конверсий</td><td>Совпадает ли идентификатор с условием цели, верно ли выбран счётчик</td></tr><tr><td>События есть не у всех пользователей</td><td>Не блокируют ли Метрику расширения браузера, фильтры или другие скрипты</td></tr></tbody></table></div>
+      <figure class="article-figure"><img src="../03-proverka-celey-marquiz.jpg" alt="Проверка целей Marquiz: подключение счётчика, передача события и настройка цели" width="2896" height="2172" loading="lazy" decoding="async" /></figure>
+      <p>Рассмотрим наиболее распространённые причины подробнее.</p>
+      <h3 id="section-1-schetchik-ne-podklyuchen-k-samomu-kvizu">1. Счётчик не подключён к самому квизу</h3>
+      <p>Установка Яндекс Метрики на основной сайт ещё не гарантирует отслеживание событий встроенного Marquiz.</p>
+      <p>Проверьте настройки интеграции внутри редактора квиза. Номер счётчика должен совпадать с тем, в котором вы ожидаете увидеть цели.</p>
+      <p>Если используется счётчик основного сайта, добавьте прямую ссылку на квиз в дополнительные адреса счётчика Метрики.</p>
+      <h3 id="section-2-posle-podklyucheniya-integratsii-kviz-ne-opublikovan">2. После подключения интеграции квиз не опубликован</h3>
+      <p>Изменения настроек интеграции необходимо опубликовать.</p>
+      <p>Откройте редактор Marquiz, проверьте параметры Яндекс Метрики и нажмите «Опубликовать». Затем повторно проверьте события в браузере.</p>
+      <p>Это одна из первых проверок, которую стоит выполнить, прежде чем искать ошибки в коде.</p>
+      <h3 id="section-3-nepravilno-ukazan-identifikator-tseli">3. Неправильно указан идентификатор цели</h3>
+      <p>Идентификаторы чувствительны к точности записи.</p>
+      <p>Например, <code>marquiz-form</code> и <code>marquiz-finish</code> обозначают разные действия. Если в Метрике указана одна цель, а квиз передаёт другое событие, конверсия не будет зафиксирована по нужной цели.</p>
+      <p>Проверьте переданный идентификатор в отладчике и сравните его с условием цели в настройках счётчика.</p>
+      <h3 id="section-4-ne-rabotaet-sostavnaya-tsel">4. Не работает составная цель</h3>
+      <p>Составная цель учитывает прохождение заданных этапов в установленной последовательности.</p>
+      <p>Если один из обязательных шагов не выполнен, вся цепочка не будет считаться завершённой.</p>
+      <p>Например, не стоит добавлять <code>marquiz-contacts1</code> в составную цель для квиза с одношаговой формой контактов. Это событие предназначено для двухшаговой формы.</p>
+      <p>Проверьте каждое событие отдельно, прежде чем объединять их в составную цель.</p>
+      <h3 id="section-5-metrika-zablokirovana-brauzerom">5. Метрика заблокирована браузером</h3>
+      <p>На работу аналитики могут влиять блокировщики рекламы, настройки приватности, сетевые ограничения и ошибки загрузки скриптов.</p>
+      <p>Проверьте квиз в браузере без блокирующих расширений. Если в отладчике нет событий, сначала убедитесь, что загружается сам счётчик.</p>
+      <p>Также обратите внимание на фильтр «Не учитывать мои визиты». Для тестирования используйте режим инкогнито, если такой фильтр включён.</p>
+      <h3 id="section-6-schetchik-pokazyvaet-status-ne-nayden">6. Счётчик показывает статус «Не найден»</h3>
+      <p>Этот статус не всегда означает, что интеграция сломана.</p>
+      <p>В документации Marquiz указано, что иногда счётчик отображается как не найденный из-за особенностей интеграции.</p>
+      <p>Главный критерий проверки - фактическое поступление посещений и событий. Если данные приходят, один только статус «Не найден» не является достаточным основанием для переустановки счётчика.</p>
+      </section>
+      <section><h2 id="section-kak-nastroit-tseli-dlya-neskolkih-kvizov-marquiz">Как настроить цели для нескольких квизов Marquiz</h2>
+      <p>Если на одном сайте установлено несколько квизов, одинаковые идентификаторы могут объединять статистику по разным квизам.</p>
+      <p>Чтобы разделять их, в настройках интеграции Marquiz предусмотрена функция «Уникальные цели».</p>
+      <p>После её включения к идентификатору события добавляется ID конкретного квиза.</p>
+      <p>Например:</p>
+      <p><code>marquiz-start_5e5cd4bf4ab314004410b2e2</code></p>
+      <p>Это позволяет отдельно анализировать запуски и заявки каждого квиза.</p>
+      <p>При настройке такой цели проверяйте полный идентификатор события через отладчик. Если требуется отслеживать только один квиз, используйте условие точного совпадения идентификатора.</p>
+      </section>
+      <section><h2 id="section-chastye-voprosy">Частые вопросы</h2>
+      <h3 id="section-nuzhno-li-vruchnuyu-sozdavat-vse-tseli-marquiz">Нужно ли вручную создавать все цели Marquiz?</h3>
+      <p>Нет. Четыре основных события поддерживаются автоматическими целями Метрики. Для прохождения вопросов, показа формы контактов и других дополнительных действий можно подключить отдельные цели.</p>
+      <h3 id="section-pochemu-tsel-marquiz-form-srabatyvaet-a-zayavok-net">Почему цель marquiz-form срабатывает, а заявок нет?</h3>
+      <p>Потому что <code>marquiz-form</code> фиксирует достижение формы контактов, а не успешную отправку заявки. Посетитель может открыть форму и закрыть квиз, ничего не отправив.</p>
+      <h3 id="section-mozhno-li-otslezhivat-otpravku-kontaktov-po-etapam">Можно ли отслеживать отправку контактов по этапам?</h3>
+      <p>Да. Для двухшаговой формы предусмотрены события <code>marquiz-contacts1</code> и <code>marquiz-contacts2</code>. В одношаговой форме они не нужны.</p>
+      <h3 id="section-chto-delat-esli-marquiz-finish-srabatyvaet-a-zayavki-v-crm-net">Что делать, если marquiz-finish срабатывает, а заявки в CRM нет?</h3>
+      <p>Сначала проверьте, появилась ли заявка в самом Marquiz. Затем проверьте настройки отправки контактов и интеграцию с CRM. Также убедитесь, что событие <code>marquiz-finish</code> в вашем сценарии действительно означает отправку контактных данных.</p>
+      </section>
+      <section><h2 id="section-itog">Итог</h2>
+      <p>Для настройки целей Marquiz в Яндекс Метрике необходимо подключить счётчик к квизу, выбрать события для отслеживания и проверить их срабатывание через <code>_ym_debug=2</code>.</p>
+      <p>Основную информацию о заявках обычно даёт <code>marquiz-finish</code>. Промежуточные события позволяют анализировать прохождение квиза и находить этапы с высокой потерей пользователей.</p>
+      <p>При использовании целей в Яндекс Директе важно проверять не только количество конверсий в Метрике, но и фактическое получение заявок. Это помогает оптимизировать рекламу на реальные обращения, а не только на действия внутри квиза.</p>
+      <p><strong>Официальная документация:</strong></p>
+      <ul><li><a href="https://marquiz.ru/help/analitika/kak-ustanovit-yandeks-metriku-v-kviz/" target="_blank" rel="noopener noreferrer">Marquiz: подключение Яндекс Метрики и идентификаторы событий</a></li><li><a href="https://yandex.ru/support/metrica/ru/integrated-goal/marquiz" target="_blank" rel="noopener noreferrer">Яндекс Метрика: автоматические цели Marquiz</a></li><li><a href="https://yandex.ru/support/metrica/ru/general/check-goal.html" target="_blank" rel="noopener noreferrer">Яндекс Метрика: проверка целей</a></li></ul>
+      </section>
     <aside class="article-author" aria-label="Об авторе"><img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников, специалист по платному трафику" width="192" height="192" loading="lazy" decoding="async" /><div class="article-author__body"><p class="article-author__label">Автор</p><p class="article-author__name">Максим Мирошников</p><p class="article-author__role">Специалист по платному трафику и Яндекс Директу</p><p class="article-author__text">Занимаюсь интернет-рекламой более 10 лет. Работаю как ИП и веду проекты напрямую: запускаю рекламу, создаю сайты и воронки, помогаю выстраивать связь между маркетингом, заявками и продажами.</p><p class="article-author__link"><a href="../../#about">Подробнее обо мне</a></p></div></aside><!-- related-articles:start -->
 <section class="related-articles" aria-labelledby="related-articles-title">
   <h2 id="related-articles-title">Похожие статьи</h2>
@@ -129,15 +250,15 @@ marquiz-step7</code></pre></section>
           <span class="related-article-card__title">Как настроить цели Яндекс Метрики на Tilda</span>
           <span class="related-article-card__description">Одна цель на отправку всех форм по регулярному выражению, отслеживание шагов квиза QZ101 и проверка настройки тестовой заявкой.</span>
         </a>
-        <a class="related-article-card" href="../srednie-pokazateli-po-industrii-yandex-metrika/" target="_blank" rel="noopener noreferrer">
+        <a class="related-article-card" href="../segmenty-v-yandex-metrike/" target="_blank" rel="noopener noreferrer">
           <span class="related-article-card__topic">Аналитика</span>
-          <span class="related-article-card__title">Средние показатели по индустрии в Яндекс Метрике: как сравнить сайт с рынком</span>
-          <span class="related-article-card__description">Что показывает отчет «Средние показатели по индустрии» в Яндекс Метрике, как сравнить сайт с рынком и почему нельзя принимать решения только по бенчмаркам.</span>
+          <span class="related-article-card__title">Как создать сегмент в Яндекс Метрике: настройка и ретаргетинг</span>
+          <span class="related-article-card__description">Пошагово показываю, как создать и сохранить сегмент в Яндекс Метрике, какие условия использовать и как применять сегменты для анализа и ретаргетинга в Яндекс Директе.</span>
         </a>
-        <a class="related-article-card" href="../ecommerce-yandex-metrika/" target="_blank" rel="noopener noreferrer">
+        <a class="related-article-card" href="../kak-dat-dostup-k-yandex-metrike/" target="_blank" rel="noopener noreferrer">
           <span class="related-article-card__topic">Аналитика</span>
-          <span class="related-article-card__title">Электронная коммерция в Яндекс Метрике: что это и как настроить</span>
-          <span class="related-article-card__description">Что такое электронная коммерция в Яндекс Метрике, какие данные она передает, зачем нужна интернет-магазину и как правильно настроить Ecommerce для анализа продаж и Яндекс Директа.</span>
+          <span class="related-article-card__title">Как дать доступ к Яндекс Метрике</span>
+          <span class="related-article-card__description">Индивидуальный доступ по логину Яндекса: путь «Настройки» - «Доступ» - «Добавить пользователя», разбор прав «Только просмотр», «Аналитика» и «Редактирование» и отличие от представительского доступа.</span>
         </a>
   </div>
 </section>

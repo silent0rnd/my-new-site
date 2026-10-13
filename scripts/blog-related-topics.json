@@ -2,6 +2,28 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-umnogo-doma-pod-klyuch",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "economics",
+        "avito",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "prodvizhenie-manikyurnogo-salona",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "local",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "reklama-v-max-cherez-yandex-direct",
       "topic": "social-ads",
       "topicLabel": "Реклама в соцсетях",
@@ -112,9 +134,10 @@
       "topicLabel": "Маркетинг",
       "tags": [
         "economics",
+        "avito",
         "lead-generation"
       ],
-      "intent": "instruction"
+      "intent": "strategy"
     },
     {
       "slug": "reklama-turov-yandex-direct",
@@ -1316,7 +1339,7 @@
         "campaign-setup",
         "website"
       ],
-      "intent": "strategy"
+      "intent": "instruction"
     },
     {
       "slug": "yandex-direct-dlya-internet-magazina",
@@ -1366,8 +1389,8 @@
       "topicLabel": "Недвижимость",
       "tags": [
         "residential-real-estate",
-        "analytics",
-        "campaign-setup",
+        "economics",
+        "search",
         "lead-generation"
       ],
       "intent": "strategy"
