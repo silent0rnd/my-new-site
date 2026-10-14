@@ -200,8 +200,9 @@
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
       "tags": [
+        "b2b",
         "economics",
-        "specialist"
+        "lead-generation"
       ],
       "intent": "strategy"
     },
