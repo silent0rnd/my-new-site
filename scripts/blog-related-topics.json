@@ -269,9 +269,9 @@
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
       "tags": [
-        "analytics",
         "economics",
         "search",
+        "campaign-setup",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -621,16 +621,14 @@
     },
     {
       "slug": "prodvizhenie-ustanovki-lestnic-2026",
-      "topic": "production",
-      "topicLabel": "Производство и B2B",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
       "tags": [
-        "analytics",
         "economics",
         "search",
-        "website",
-        "seo"
+        "lead-generation"
       ],
-      "intent": "instruction"
+      "intent": "strategy"
     },
     {
       "slug": "prodvizhenie-avtosalona-2026",
@@ -1242,6 +1240,7 @@
       "topicLabel": "Качество трафика",
       "tags": [
         "economics",
+        "automation",
         "traffic-quality",
         "website"
       ],
