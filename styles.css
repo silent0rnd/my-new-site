@@ -5384,6 +5384,10 @@ html.is-hero-video-played .portrait-video {
   margin: 36px 0 34px;
 }
 
+.article-figure picture {
+  display: block;
+}
+
 /* width/height у <img> заданы в разметке, поэтому браузер резервирует место
    до загрузки файла и текст под картинкой не прыгает. */
 .article-figure img {
