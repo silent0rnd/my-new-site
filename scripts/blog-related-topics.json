@@ -1117,8 +1117,11 @@
       "topic": "channel-choice",
       "topicLabel": "Выбор рекламного канала",
       "tags": [
+        "economics",
         "specialist",
-        "lead-generation"
+        "comparison",
+        "telegram",
+        "avito"
       ],
       "intent": "service"
     },
@@ -1166,101 +1169,12 @@
       "intent": "service"
     },
     {
-      "slug": "utp-v-marketinge",
-      "topic": "marketing",
-      "topicLabel": "Маркетинг",
-      "tags": [
-        "analytics",
-        "economics",
-        "lead-generation"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "lidogeneraciya-chto-eto-i-kak-rabotaet",
-      "topic": "sites",
-      "topicLabel": "Сайты и конверсия",
-      "tags": [
-        "economics",
-        "lead-generation"
-      ],
-      "intent": "explanation"
-    },
-    {
-      "slug": "jtbd-v-marketinge",
-      "topic": "sites",
-      "topicLabel": "Сайты и конверсия",
-      "tags": [
-        "ad-formats",
-        "website"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "roas-v-marketinge",
-      "topic": "metrics",
-      "topicLabel": "Показатели рекламы",
-      "tags": [
-        "economics"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "kakaya-konversiya-reklamy-schitaetsya-horoshey",
-      "topic": "metrics",
-      "topicLabel": "Показатели рекламы",
-      "tags": [
-        "analytics",
-        "lead-generation"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "roi-v-marketinge",
-      "topic": "metrics",
-      "topicLabel": "Показатели рекламы",
-      "tags": [
-        "economics"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "offline-conversions-yandex-direct",
-      "topic": "analytics",
-      "topicLabel": "Аналитика",
-      "tags": [
-        "analytics",
-        "lead-generation"
-      ],
-      "intent": "strategy"
-    },
-    {
-      "slug": "pochemu-net-pokazov-v-yandex-direct",
-      "topic": "traffic-quality",
-      "topicLabel": "Качество трафика",
-      "tags": [
-        "economics",
-        "automation",
-        "traffic-quality",
-        "website"
-      ],
-      "intent": "problem"
-    },
-    {
-      "slug": "drr-v-reklame",
-      "topic": "marketing",
-      "topicLabel": "Маркетинг",
-      "tags": [
-        "economics"
-      ],
-      "intent": "strategy"
-    },
-    {
       "slug": "boty-v-rsya",
       "topic": "traffic-quality",
       "topicLabel": "Качество трафика",
       "tags": [
         "analytics",
+        "economics",
         "traffic-quality"
       ],
       "intent": "problem"
@@ -1516,9 +1430,8 @@
       "topicLabel": "Онлайн-образование",
       "tags": [
         "education",
-        "analytics",
+        "economics",
         "search",
-        "website",
         "lead-generation"
       ],
       "intent": "strategy"
