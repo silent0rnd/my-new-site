@@ -387,14 +387,13 @@
     },
     {
       "slug": "prodvizhenie-natyazhnyh-potolkov",
-      "topic": "analytics",
-      "topicLabel": "Аналитика",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
       "tags": [
-        "analytics",
         "economics",
         "search",
-        "website",
-        "lead-generation"
+        "campaign-setup",
+        "ad-formats"
       ],
       "intent": "instruction"
     },
