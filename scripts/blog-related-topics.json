@@ -2,6 +2,27 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-telegram-bota",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "telegram"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-mototekhniki",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "avito",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "prodvizhenie-videoprodakshna",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",

@@ -73,6 +73,17 @@ function resolveArticlePath(articleInput, blogRoot = BLOG_ROOT) {
   return articlePath;
 }
 
+function normalizeImageSelector(value) {
+  return normalizeUrlPath(String(value).split(/[?#]/, 1)[0]).replace(/^\.\//, "");
+}
+
+function imageMatchesSelector(src, selector) {
+  const normalizedSrc = normalizeImageSelector(src);
+  const normalizedSelector = normalizeImageSelector(selector);
+  return normalizedSrc === normalizedSelector
+    || path.posix.basename(normalizedSrc) === path.posix.basename(normalizedSelector);
+}
+
 async function createWebpVariants(sourcePath, widths) {
   const extension = path.extname(sourcePath);
   const basePath = sourcePath.slice(0, -extension.length);
@@ -114,15 +125,38 @@ async function optimizeArticle(articleInput, options = {}) {
   const initialHtml = fs.readFileSync(articlePath, "utf8");
   const figurePattern = /<figure\b[^>]*class=["'][^"']*\barticle-figure\b[^"']*["'][^>]*>[\s\S]*?<\/figure>/gi;
   const figures = [...initialHtml.matchAll(figurePattern)];
+  const imageInputs = [...new Set([
+    ...(Array.isArray(options.imageInputs) ? options.imageInputs : []),
+    ...(options.imageInput ? [options.imageInput] : []),
+  ].filter(Boolean))];
 
   if (figures.length === 0) {
     return { articlePath, figures: 0, images: [], changed: false };
   }
 
+  const selectedFigures = imageInputs.length === 0
+    ? figures
+    : figures.filter((figureMatch) => {
+      const imgMatch = figureMatch[0].match(/<img\b[^>]*>/i);
+      const src = imgMatch ? getAttribute(imgMatch[0], "src") : null;
+      return src && imageInputs.some((imageInput) => imageMatchesSelector(src, imageInput));
+    });
+
+  if (imageInputs.length > 0) {
+    const unmatchedInputs = imageInputs.filter((imageInput) => !selectedFigures.some((figureMatch) => {
+      const imgMatch = figureMatch[0].match(/<img\b[^>]*>/i);
+      const src = imgMatch ? getAttribute(imgMatch[0], "src") : null;
+      return src && imageMatchesSelector(src, imageInput);
+    }));
+    if (unmatchedInputs.length > 0) {
+      throw new Error(`Изображения не найдены в article-figure: ${unmatchedInputs.join(", ")}`);
+    }
+  }
+
   let html = initialHtml;
   const images = [];
 
-  for (const figureMatch of figures.reverse()) {
+  for (const figureMatch of [...selectedFigures].reverse()) {
     const figure = figureMatch[0];
     const imgMatch = figure.match(/<img\b[^>]*>/i);
     if (!imgMatch) continue;
@@ -161,19 +195,31 @@ async function optimizeArticle(articleInput, options = {}) {
 
   return {
     articlePath,
-    figures: figures.length,
+    figures: selectedFigures.length,
     images: images.reverse(),
     changed: html !== initialHtml,
   };
 }
 
-function readArticleArgument(argv) {
-  const articleIndex = argv.indexOf("--article");
-  return articleIndex === -1 ? null : argv[articleIndex + 1];
+function readArgumentValues(argv, name) {
+  const values = [];
+  for (let index = 0; index < argv.length; index += 1) {
+    if (argv[index] !== name) continue;
+    const value = argv[index + 1];
+    if (!value || value.startsWith("--")) {
+      throw new Error(`Укажите значение после ${name}.`);
+    }
+    values.push(value);
+    index += 1;
+  }
+  return values;
 }
 
 async function main() {
-  const result = await optimizeArticle(readArticleArgument(process.argv.slice(2)));
+  const argv = process.argv.slice(2);
+  const articleInputs = readArgumentValues(argv, "--article");
+  const imageInputs = readArgumentValues(argv, "--image");
+  const result = await optimizeArticle(articleInputs[0], { imageInputs });
   const variants = result.images.reduce((total, image) => total + image.variants.length, 0);
   console.log(`Статья: ${path.relative(PROJECT_ROOT, result.articlePath)}`);
   console.log(`Иллюстраций: ${result.images.length}`);
@@ -193,5 +239,6 @@ module.exports = {
   TARGET_WIDTHS,
   WEBP_QUALITY,
   candidateWidths,
+  imageMatchesSelector,
   optimizeArticle,
 };
