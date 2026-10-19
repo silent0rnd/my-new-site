@@ -1,0 +1,240 @@
+const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
+
+const PROJECT_ROOT = path.resolve(process.env.BLOG_REFRESH_PROJECT_ROOT || path.resolve(__dirname, ".."));
+const BLOG_ROOT = path.join(PROJECT_ROOT, "blog");
+
+function readArgumentValues(argv, name) {
+  const values = [];
+  for (let index = 0; index < argv.length; index += 1) {
+    if (argv[index] !== name) continue;
+    const value = argv[index + 1];
+    if (!value || value.startsWith("--")) throw new Error(`Укажите значение после ${name}.`);
+    values.push(value);
+    index += 1;
+  }
+  return values;
+}
+
+function readArgument(argv, name) {
+  return readArgumentValues(argv, name)[0] || "";
+}
+
+function resolveArticlePath(articleInput, blogRoot = BLOG_ROOT) {
+  if (!articleInput) throw new Error("Укажите статью: --article <slug или путь к index.html>.");
+  const candidate = path.isAbsolute(articleInput)
+    ? articleInput
+    : articleInput.includes("/") || articleInput.includes("\\")
+      ? path.resolve(PROJECT_ROOT, articleInput)
+      : path.join(blogRoot, articleInput, "index.html");
+  const articlePath = path.extname(candidate) ? candidate : path.join(candidate, "index.html");
+  const relative = path.relative(blogRoot, articlePath);
+  if (relative.startsWith("..") || path.isAbsolute(relative)) throw new Error("Статья должна находиться внутри blog.");
+  if (!fs.existsSync(articlePath)) throw new Error(`Статья не найдена: ${articlePath}`);
+  return articlePath;
+}
+
+function articleSlug(articlePath, blogRoot = BLOG_ROOT) {
+  return path.relative(blogRoot, path.dirname(articlePath)).split(path.sep)[0];
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function escapeAttribute(value) {
+  return escapeHtml(value).replace(/"/g, "&quot;");
+}
+
+function decodeHtml(value) {
+  return String(value)
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+    .replace(/&#x([\da-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">");
+}
+
+function plainText(value) {
+  return decodeHtml(String(value).replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+}
+
+function normalizeText(value) {
+  return plainText(value)
+    .replace(/\u00a0/g, " ")
+    .replace(/\u2011/g, "-")
+    .replace(/\s+([.,;:!?])/g, "$1")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractSource(source) {
+  const seoMatch = source.match(/<SEO-META>\s*([\s\S]*?)\s*<\/SEO-META>/i);
+  const bodyMatch = source.match(/<ARTICLE-BODY>\s*([\s\S]*?)\s*<\/ARTICLE-BODY>/i);
+  if (!seoMatch || !bodyMatch) throw new Error("В исходнике нужны секции SEO-META и ARTICLE-BODY.");
+  const seo = {};
+  for (const line of seoMatch[1].replace(/\r/g, "").split("\n")) {
+    const match = line.match(/^([a-z_]+):\s*(.+)$/i);
+    if (match) seo[match[1]] = match[2].trim();
+  }
+  for (const key of ["seo_title", "meta_description", "slug", "canonical", "date_published", "date_modified"]) {
+    if (!seo[key]) throw new Error(`В SEO-META отсутствует ${key}.`);
+  }
+  return { seo, body: bodyMatch[1].replace(/\r/g, "") };
+}
+
+function tableCells(line) {
+  return line.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map((value) => value.trim());
+}
+
+function isTableSeparator(line) {
+  return /^\|?\s*:?-{3,}/.test(line) && line.includes("|");
+}
+
+function parseMarkdown(body) {
+  const lines = body.split("\n");
+  const blocks = [];
+  for (let index = 0; index < lines.length;) {
+    const line = lines[index].trim();
+    if (!line) { index += 1; continue; }
+    const heading = line.match(/^(#{1,3})\s+(.+)$/);
+    if (heading) { blocks.push({ type: `h${heading[1].length}`, text: heading[2] }); index += 1; continue; }
+    const image = line.match(/^!\[([^\]]+)\]\(([^)]+)\)$/);
+    if (image) { blocks.push({ type: "image", alt: image[1], src: image[2] }); index += 1; continue; }
+    if (line.startsWith("|") && index + 1 < lines.length && isTableSeparator(lines[index + 1].trim())) {
+      const headers = tableCells(line);
+      const rows = [];
+      index += 2;
+      while (index < lines.length && lines[index].trim().startsWith("|")) {
+        const row = tableCells(lines[index]);
+        if (row.length !== headers.length) throw new Error(`В таблице строка содержит ${row.length} ячеек вместо ${headers.length}.`);
+        rows.push(row);
+        index += 1;
+      }
+      blocks.push({ type: "table", headers, rows });
+      continue;
+    }
+    if (/^\d+\.\s+/.test(line)) {
+      const items = [];
+      while (index < lines.length && /^\d+\.\s+/.test(lines[index].trim())) {
+        items.push(lines[index].trim().replace(/^\d+\.\s+/, ""));
+        index += 1;
+      }
+      blocks.push({ type: "ol", items });
+      continue;
+    }
+    if (/^-\s+/.test(line)) {
+      const items = [];
+      while (index < lines.length && /^-\s+/.test(lines[index].trim())) {
+        items.push(lines[index].trim().replace(/^-\s+/, ""));
+        index += 1;
+      }
+      blocks.push({ type: "ul", items });
+      continue;
+    }
+    const paragraph = [line];
+    index += 1;
+    while (index < lines.length) {
+      const next = lines[index].trim();
+      if (!next || /^(?:#{1,3}\s+|!\[|\d+\.\s+|-\s+)/.test(next)
+        || (next.startsWith("|") && index + 1 < lines.length && isTableSeparator(lines[index + 1].trim()))) break;
+      paragraph.push(next);
+      index += 1;
+    }
+    blocks.push({ type: "p", text: paragraph.join(" ") });
+  }
+  if (!blocks.length || blocks[0].type !== "h1") throw new Error("ARTICLE-BODY должен начинаться с одного H1.");
+  if (blocks.filter((block) => block.type === "h1").length !== 1) throw new Error("В ARTICLE-BODY должен быть ровно один H1.");
+  return blocks;
+}
+
+function inlineMarkdown(value) {
+  const links = [];
+  let text = String(value).replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
+    const token = `@@BLOG_LINK_${links.length}@@`;
+    links.push(`<a href="${escapeAttribute(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`);
+    return token;
+  });
+  text = escapeHtml(text)
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/(\d)-(\d)/g, "$1&#8209;$2")
+    .replace(/(\d) (\d{3})(?=\D|$)/g, "$1&nbsp;$2")
+    .replace(/(\d) ₽/g, "$1&nbsp;₽");
+  links.forEach((link, index) => { text = text.replace(`@@BLOG_LINK_${index}@@`, link); });
+  return text;
+}
+
+function renderBlock(block, imageNames = new Map()) {
+  if (block.type === "h2" || block.type === "h3") return `<${block.type}>${inlineMarkdown(block.text)}</${block.type}>`;
+  if (block.type === "p") {
+    const keyPoint = /^\*\*[^*]+\*\*$/.test(block.text);
+    return `<p${keyPoint ? ' class="content-key-point"' : ""}>${inlineMarkdown(block.text)}</p>`;
+  }
+  if (block.type === "ul" || block.type === "ol") {
+    return `<${block.type}>${block.items.map((item) => `<li>${inlineMarkdown(item)}</li>`).join("")}</${block.type}>`;
+  }
+  if (block.type === "image") {
+    const sourceName = path.posix.basename(block.src.replace(/\\/g, "/"));
+    const publishedName = imageNames.get(sourceName) || sourceName;
+    return `<figure class="article-figure"><img src="../${escapeAttribute(publishedName)}" alt="${escapeAttribute(block.alt)}" loading="lazy" decoding="async" /></figure>`;
+  }
+  if (block.type === "table") {
+    const head = block.headers.map((value) => `<th scope="col">${inlineMarkdown(value)}</th>`).join("");
+    const rows = block.rows.map((row) => `<tr>${row.map((value, index) => `<td data-label="${escapeAttribute(block.headers[index])}">${inlineMarkdown(value)}</td>`).join("")}</tr>`).join("");
+    return `<div class="article-table-wrap"><table class="article-table"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  }
+  throw new Error(`Неизвестный блок: ${block.type}`);
+}
+
+function sha256(filePath) {
+  return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
+}
+
+function htmlFilesUnderBlog(blogRoot = BLOG_ROOT) {
+  const files = [];
+  const visit = (directory) => {
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      const fullPath = path.join(directory, entry.name);
+      if (entry.isDirectory()) visit(fullPath);
+      else if (entry.isFile() && entry.name.endsWith(".html")) files.push(fullPath);
+    }
+  };
+  visit(blogRoot);
+  return files;
+}
+
+function filesReferencingAsset(assetName, excludedFile = "", blogRoot = BLOG_ROOT) {
+  return htmlFilesUnderBlog(blogRoot).filter((filePath) => filePath !== excludedFile && fs.readFileSync(filePath, "utf8").includes(assetName));
+}
+
+function imageDimensionsFromSharpMetadata(metadata) {
+  const swap = [5, 6, 7, 8].includes(metadata.orientation);
+  return { width: swap ? metadata.height : metadata.width, height: swap ? metadata.width : metadata.height };
+}
+
+module.exports = {
+  BLOG_ROOT,
+  PROJECT_ROOT,
+  articleSlug,
+  escapeAttribute,
+  escapeHtml,
+  extractSource,
+  filesReferencingAsset,
+  imageDimensionsFromSharpMetadata,
+  inlineMarkdown,
+  normalizeText,
+  parseMarkdown,
+  plainText,
+  readArgument,
+  readArgumentValues,
+  renderBlock,
+  resolveArticlePath,
+  sha256,
+};

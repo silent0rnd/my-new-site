@@ -10,6 +10,8 @@
   "scripts": {
     "build:blog": "node scripts/generate-blog-archive.js",
     "optimize:blog-images": "node scripts/optimize-blog-images.js",
+    "update:blog-article": "node scripts/update-blog-article.js",
+    "sync:blog-card": "node scripts/sync-blog-card.js",
     "build:cases": "node scripts/generate-cases.js",
     "build:tgstat": "node scripts/build-tgstat-bookmarklet.js",
     "preview:tgstat": "node scripts/serve-tgstat-local.js",
@@ -20,6 +22,9 @@
     "test:favicon": "powershell -ExecutionPolicy Bypass -File tests/favicon.test.ps1",
     "test:related-articles": "node tests/related-articles.test.js",
     "test:blog-article": "node tests/blog-article-target.test.js",
+    "test:blog-refresh-tools": "node tests/blog-refresh-tools.test.js",
+    "test:blog-refresh": "node tests/blog-refresh-target.test.js",
+    "test:blog-refresh:visual": "node tests/blog-refresh-visual.test.js",
     "test:mediaplan": "node --test tests/mediaplan.test.js",
     "test:ad-budget": "node --test tests/ad-budget.test.js",
     "test:png-to-jpg": "node --test tests/png-to-jpg.test.js",

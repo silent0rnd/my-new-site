@@ -2,6 +2,30 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-avtolizinga",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "analytics",
+        "economics",
+        "campaign-setup",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-montazha-ventilyacii",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "avito",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "prodvizhenie-kosmeticheskogo-brenda",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
@@ -1147,7 +1171,9 @@
       "topicLabel": "Маркетинг",
       "tags": [
         "economics",
-        "comparison"
+        "search",
+        "comparison",
+        "lead-generation"
       ],
       "intent": "strategy"
     },
@@ -1223,6 +1249,7 @@
       "topic": "direct-tools",
       "topicLabel": "Инструменты Яндекс Директа",
       "tags": [
+        "economics",
         "search",
         "comparison",
         "lead-generation"
@@ -1256,6 +1283,9 @@
       "topic": "traffic-quality",
       "topicLabel": "Качество трафика",
       "tags": [
+        "analytics",
+        "economics",
+        "website",
         "lead-generation"
       ],
       "intent": "problem"
@@ -1429,10 +1459,9 @@
       "topicLabel": "Недвижимость",
       "tags": [
         "residential-real-estate",
-        "analytics",
+        "economics",
         "search",
         "campaign-setup",
-        "website",
         "lead-generation"
       ],
       "intent": "strategy"

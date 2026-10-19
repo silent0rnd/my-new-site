@@ -1,0 +1,49 @@
+const assert = require("assert");
+const fs = require("fs");
+const os = require("os");
+const path = require("path");
+const sharp = require("sharp");
+
+const projectRoot = path.resolve(__dirname, "..");
+
+(async () => {
+  const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), "blog-refresh-"));
+  try {
+    process.env.BLOG_REFRESH_PROJECT_ROOT = fixtureRoot;
+    const { main: updateArticle } = require(path.join(projectRoot, "scripts/update-blog-article.js"));
+    const { main: syncCard } = require(path.join(projectRoot, "scripts/sync-blog-card.js"));
+    const blogRoot = path.join(fixtureRoot, "blog");
+    const articleRoot = path.join(blogRoot, "sample");
+    fs.mkdirSync(articleRoot, { recursive: true });
+    const article = `<!doctype html><html><head><title>Старое</title><meta name="description" content="Старое" /><link rel="canonical" href="https://naklikay.ru/blog/sample/" /><meta property="og:url" content="https://naklikay.ru/blog/sample/" /><meta property="og:title" content="Старое" /><meta property="og:description" content="Старое" /><meta property="og:image" content="https://naklikay.ru/blog/old.jpg" /><meta name="twitter:title" content="Старое" /><meta name="twitter:description" content="Старое" /><meta property="article:published_time" content="2025-01-01" /><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","headline":"Старое","mainEntityOfPage":{"@type":"WebPage","@id":"https://naklikay.ru/blog/sample/"}},{"@type":"BreadcrumbList","itemListElement":[]}]}</script></head><body><h1>Старое</h1><p class="article-lead">Старое введение.</p><!-- article-toc:start --><nav class="article-toc"><h2>Содержание</h2></nav><!-- article-toc:end --><h2 id="old">Старое</h2><aside class="article-author">Автор</aside><section><h2>Похожие статьи</h2></section></body></html>`;
+    fs.writeFileSync(path.join(articleRoot, "index.html"), article, "utf8");
+    fs.writeFileSync(path.join(blogRoot, "index.html"), `<div class="case-card-reveal"><article class="blog-card"><a class="blog-card__media" href="sample/"><img src="old.jpg" alt="" /></a><h2 class="blog-card__title"><a href="sample/">Старое</a></h2><p class="blog-card__text">Старое описание</p></article></div>`, "utf8");
+    const source = `<SEO-META>\nseo_title: Новое название\nmeta_description: Новое описание\nslug: sample\n</SEO-META>\n<ARTICLE-BODY>\n# Новый заголовок\n\nНовое введение.\n\n## Раздел\n\nТекст с **выделением**.\n\n![Схема](image.jpg)\n</ARTICLE-BODY>`;
+    const sourcePath = path.join(fixtureRoot, "article.txt");
+    const imagePath = path.join(fixtureRoot, "image.jpg");
+    fs.writeFileSync(sourcePath, source, "utf8");
+    await sharp({ create: { width: 320, height: 180, channels: 3, background: "#f26a21" } }).jpeg().toFile(imagePath);
+    fs.copyFileSync(imagePath, path.join(blogRoot, "old.jpg"));
+
+    const update = await updateArticle(["--article", "sample", "--source", sourcePath, "--image", imagePath, "--write"]);
+    assert.strictEqual(update.figures, 1);
+    const updated = fs.readFileSync(path.join(articleRoot, "index.html"), "utf8");
+    assert(updated.includes("<h1>Новый заголовок</h1>"));
+    assert(updated.includes('width="320" height="180"'));
+    assert(updated.includes('rel="canonical" href="https://naklikay.ru/blog/sample/"'));
+    assert(updated.includes('property="article:published_time" content="2025-01-01"'));
+    assert(!updated.includes('name="twitter:'));
+    assert(!updated.includes('class="article-meta"'));
+    assert.strictEqual((updated.match(/type="application\/ld\+json"/g) || []).length, 2);
+    assert(fs.existsSync(path.join(blogRoot, "image.jpg")));
+
+    const card = syncCard(["--article", "sample", "--write"]);
+    assert.strictEqual(card.changed, true);
+    const archive = fs.readFileSync(path.join(blogRoot, "index.html"), "utf8");
+    assert(archive.includes("Новый заголовок"));
+    assert(archive.includes("Новое описание"));
+    console.log(JSON.stringify({ tools: "ok", article: update.article, figures: update.figures, card: "ok" }));
+  } finally {
+    fs.rmSync(fixtureRoot, { recursive: true, force: true });
+  }
+})().catch((error) => { console.error(error.stack || error.message); process.exitCode = 1; });

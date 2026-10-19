@@ -1,0 +1,46 @@
+{
+  "name": "my-new-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "case-page.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "build:blog": "node scripts/generate-blog-archive.js",
+    "optimize:blog-images": "node scripts/optimize-blog-images.js",
+    "build:cases": "node scripts/generate-cases.js",
+    "build:tgstat": "node scripts/build-tgstat-bookmarklet.js",
+    "preview:tgstat": "node scripts/serve-tgstat-local.js",
+    "test:cases": "powershell -ExecutionPolicy Bypass -File tests/cases.test.ps1 && node tests/cases-enhancements.test.js && powershell -ExecutionPolicy Bypass -File tests/favicon.test.ps1",
+    "test:blog": "powershell -ExecutionPolicy Bypass -File tests/blog.test.ps1 && powershell -ExecutionPolicy Bypass -File tests/favicon.test.ps1",
+    "test:blog-toc": "node tests/blog-toc.test.js",
+    "test:blog-images": "node tests/blog-images.test.js",
+    "test:favicon": "powershell -ExecutionPolicy Bypass -File tests/favicon.test.ps1",
+    "test:related-articles": "node tests/related-articles.test.js",
+    "test:blog-article": "node tests/blog-article-target.test.js",
+    "test:mediaplan": "node --test tests/mediaplan.test.js",
+    "test:ad-budget": "node --test tests/ad-budget.test.js",
+    "test:png-to-jpg": "node --test tests/png-to-jpg.test.js",
+    "test:png-to-jpg:browser": "node tests/png-to-jpg-browser.test.js",
+    "test:percent-calculator": "node --test tests/percent-calculator.test.js",
+    "test:minus-cities": "node tests/minus-cities.test.js",
+    "test:tgstat": "node --test tests/tgstat-parser.test.js tests/tgstat-tool.test.js",
+    "test:tgstat:e2e": "node --test tests/tgstat-e2e.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "linkedom": "^0.18.12",
+    "sharp": "^0.35.5",
+    "terser": "^5.44.0"
+  },
+  "dependencies": {
+    "jszip": "3.10.1",
+    "xlsx": "0.18.5"
+  }
+}
