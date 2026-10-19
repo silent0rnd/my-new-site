@@ -2,6 +2,25 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-kosmeticheskogo-brenda",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "reklama-wildberries-ozon-yandex-direct",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "campaign-setup",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "prodvizhenie-telegram-bota",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",

@@ -1,0 +1,13 @@
+<div class="case-card-reveal">
+  <article class="blog-card">
+    <a class="blog-card__media" href="{{SLUG}}/" tabindex="-1" aria-hidden="true">
+      <picture><source srcset="{{CARD_WEBP}}" type="image/webp" /><img src="{{CARD_IMAGE}}" alt="{{CARD_ALT}}" width="{{IMAGE_WIDTH}}" height="{{IMAGE_HEIGHT}}" loading="lazy" decoding="async" /></picture>
+    </a>
+    <div class="blog-card__body">
+      <p class="blog-card__meta"><time datetime="{{DATE_ISO}}">{{DATE_RU}}</time></p>
+      <h2 class="blog-card__title"><a href="{{SLUG}}/">{{H1}}</a></h2>
+      <p class="blog-card__text">{{DESCRIPTION}}</p>
+      <a class="blog-card__link" href="{{SLUG}}/">Читать статью <span aria-hidden="true">→</span></a>
+    </div>
+  </article>
+</div>

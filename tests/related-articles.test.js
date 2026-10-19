@@ -12,27 +12,38 @@ const articleSlugs = fs.readdirSync(blogDir, { withFileTypes: true })
   .map((item) => item.name)
   .sort();
 const topicsBySlug = new Map(topicIndex.articles.map((article) => [article.slug, article]));
+const articleArgumentIndex = process.argv.indexOf("--article");
+const requestedSlug = articleArgumentIndex >= 0 ? process.argv[articleArgumentIndex + 1] : "";
+if (articleArgumentIndex >= 0 && !requestedSlug) throw new Error("Use --article <slug>.");
+const targetSlugs = requestedSlug ? [requestedSlug] : articleSlugs;
 
-test("service topic index covers every article", () => {
-  assert.equal(topicIndex.version, 1);
-  assert.equal(topicIndex.articles.length, articleSlugs.length);
-  assert.deepEqual([...topicsBySlug.keys()].sort(), articleSlugs);
+if (requestedSlug) {
+  test("service topic index covers the target article", () => {
+    assert.ok(articleSlugs.includes(requestedSlug), `${requestedSlug} article page is missing`);
+    assert.ok(topicsBySlug.has(requestedSlug), `${requestedSlug} is missing from the service topic index`);
+  });
+} else {
+  test("service topic index covers every article", () => {
+    assert.equal(topicIndex.version, 1);
+    assert.equal(topicIndex.articles.length, articleSlugs.length);
+    assert.deepEqual([...topicsBySlug.keys()].sort(), articleSlugs);
 
-  for (const article of topicIndex.articles) {
-    assert.ok(article.topic, `${article.slug} is missing its service topic`);
-    assert.ok(article.topicLabel, `${article.slug} is missing its visible topic label`);
-    assert.ok(Array.isArray(article.tags), `${article.slug} has invalid service tags`);
-    assert.ok(article.intent, `${article.slug} is missing its intent`);
-  }
-});
+    for (const article of topicIndex.articles) {
+      assert.ok(article.topic, `${article.slug} is missing its service topic`);
+      assert.ok(article.topicLabel, `${article.slug} is missing its visible topic label`);
+      assert.ok(Array.isArray(article.tags), `${article.slug} has invalid service tags`);
+      assert.ok(article.intent, `${article.slug} is missing its intent`);
+    }
+  });
+}
 
-test("every article has three valid related links after the author", () => {
+test(requestedSlug ? "target article has three valid related links after the author" : "every article has three valid related links after the author", () => {
   const topicCounts = new Map();
   for (const article of topicIndex.articles) {
     topicCounts.set(article.topic, (topicCounts.get(article.topic) || 0) + 1);
   }
 
-  for (const slug of articleSlugs) {
+  for (const slug of targetSlugs) {
     const html = fs.readFileSync(path.join(blogDir, slug, "index.html"), "utf8");
     assert.equal((html.match(/<section class="related-articles"/g) || []).length, 1, `${slug} needs one related section`);
     assert.ok(html.indexOf("<!-- related-articles:start -->") > html.indexOf('<aside class="article-author"'), `${slug} must place related articles after the author`);
@@ -47,9 +58,15 @@ test("every article has three valid related links after the author", () => {
       assert.ok(fs.existsSync(path.join(blogDir, relatedSlug, "index.html")), `${slug} links to missing article ${relatedSlug}`);
     }
 
-    const topic = topicsBySlug.get(slug).topic;
+    const topicRecord = topicsBySlug.get(slug);
+    assert.ok(topicRecord, `${slug} is missing from the service topic index`);
+    const topic = topicRecord.topic;
     const expectedSameTopic = Math.min(3, topicCounts.get(topic) - 1);
-    const actualSameTopic = relatedSlugs.filter((relatedSlug) => topicsBySlug.get(relatedSlug).topic === topic).length;
+    const actualSameTopic = relatedSlugs.filter((relatedSlug) => {
+      const relatedTopic = topicsBySlug.get(relatedSlug);
+      assert.ok(relatedTopic, `${relatedSlug} is missing from the service topic index`);
+      return relatedTopic.topic === topic;
+    }).length;
     assert.ok(actualSameTopic >= expectedSameTopic, `${slug} does not prioritize its topic`);
 
     for (const className of ["related-article-card__topic", "related-article-card__title", "related-article-card__description"]) {

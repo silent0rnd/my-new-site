@@ -1,7 +1,7 @@
 /*
  * Статический генератор архива блога.
  * Источник карточек - существующие страницы архива. Добавьте новую карточку в
- * /blog/, затем выполните `npm run build:blog`: страницы, ссылки и sitemap
+ * /blog/, затем выполните `npm run build:blog -- --article <slug>`: страницы, ссылки и sitemap
  * пересчитаются без ручного создания /blog/page/N/.
  */
 const fs = require("fs");
@@ -13,6 +13,9 @@ const relatedTopicsPath = path.join(__dirname, "blog-related-topics.json");
 const pageSize = 15;
 const siteUrl = "https://naklikay.ru";
 const blogAssetVersion = "20260909-article-toc-3";
+const articleArgumentIndex = process.argv.indexOf("--article");
+const targetArticleSlug = articleArgumentIndex >= 0 ? process.argv[articleArgumentIndex + 1] : "";
+if (articleArgumentIndex >= 0 && !targetArticleSlug) throw new Error("Use --article <slug>.");
 
 function read(file) {
   return fs.readFileSync(file, "utf8");
@@ -559,6 +562,9 @@ const articles = cards.map((card) => {
   return classifyArticle(article, articleHtml);
 });
 if (articles.length < 4) throw new Error("At least four articles are required to build related article cards.");
+if (targetArticleSlug && !articles.some((article) => article.slug === targetArticleSlug)) {
+  throw new Error(`Target article card is missing: ${targetArticleSlug}`);
+}
 
 const relatedTopics = {
   version: 1,
@@ -585,7 +591,13 @@ if (fs.existsSync(pageRoot)) {
 
 const sitemapPath = path.join(root, "sitemap.xml");
 let sitemap = read(sitemapPath).replace(/\s*<url>\s*<loc>https:\/\/naklikay\.ru\/blog\/page\/\d+\/<\/loc>[\s\S]*?<\/url>/g, "");
+const missingArticleEntries = articles
+  .filter((article) => article.slug === targetArticleSlug)
+  .filter((article) => !sitemap.includes(`<loc>${siteUrl}/blog/${article.slug}/</loc>`))
+  .map((article) => `  <url><loc>${siteUrl}/blog/${article.slug}/</loc><lastmod>${article.date}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`)
+  .join("\n");
 const generatedPages = pages.slice(1).map((pageCards, index) => `  <url>\n    <loc>${siteUrl}/blog/page/${index + 2}/</loc>\n    <lastmod>${pageLastmod(pageCards)}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`).join("\n");
-if (generatedPages) sitemap = sitemap.replace("</urlset>", `${generatedPages}\n</urlset>`);
+const generatedSitemapEntries = [missingArticleEntries, generatedPages].filter(Boolean).join("\n");
+if (generatedSitemapEntries) sitemap = sitemap.replace("</urlset>", `${generatedSitemapEntries}\n</urlset>`);
 write(sitemapPath, sitemap);
-console.log(`Generated ${pages.length} blog archive page(s) and related cards for ${cards.length} article(s).`);
+console.log(`Generated ${pages.length} blog archive page(s), related cards for ${cards.length} article(s), and ${missingArticleEntries ? missingArticleEntries.split("\n").length : 0} missing sitemap URL(s).`);
