@@ -974,6 +974,8 @@
       "topic": "marketing",
       "topicLabel": "Маркетинг",
       "tags": [
+        "economics",
+        "campaign-setup",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -2110,7 +2112,12 @@
       "topic": "direct-management",
       "topicLabel": "Настройка Яндекс Директа",
       "tags": [
-        "campaign-setup"
+        "analytics",
+        "economics",
+        "search",
+        "automation",
+        "campaign-setup",
+        "website"
       ],
       "intent": "instruction"
     },
@@ -2222,8 +2229,9 @@
       "topicLabel": "Инструменты Яндекс Директа",
       "tags": [
         "analytics",
+        "economics",
         "automation",
-        "lead-generation"
+        "campaign-setup"
       ],
       "intent": "explanation"
     },
@@ -2328,7 +2336,7 @@
       "topic": "direct-tools",
       "topicLabel": "Инструменты Яндекс Директа",
       "tags": [
-        "traffic-quality"
+        "automation"
       ],
       "intent": "strategy"
     },
