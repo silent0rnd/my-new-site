@@ -570,10 +570,10 @@
     },
     {
       "slug": "prodvizhenie-medicinskoy-kliniki-2026",
-      "topic": "local-promotion",
-      "topicLabel": "Локальное продвижение",
+      "topic": "healthcare",
+      "topicLabel": "Медицина и здоровье",
       "tags": [
-        "analytics",
+        "healthcare",
         "economics",
         "seo",
         "lead-generation"
@@ -896,9 +896,12 @@
     },
     {
       "slug": "interesy-i-privychki-yandex-direct",
-      "topic": "analytics",
-      "topicLabel": "Аналитика",
-      "tags": [],
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "website",
+        "comparison"
+      ],
       "intent": "strategy"
     },
     {
@@ -2265,7 +2268,8 @@
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
       "tags": [
-        "economics"
+        "economics",
+        "lead-generation"
       ],
       "intent": "problem"
     },

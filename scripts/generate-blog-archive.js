@@ -179,12 +179,15 @@ function classifyArticle(article, articleHtml) {
   const titleText = normalizeText(article.title);
   const searchText = normalizeText(`${article.title} ${article.title} ${article.description} ${articleHeadings(articleHtml)}`);
   const tagText = normalizeText(`${article.title} ${article.description}`);
-  const topic = topicDefinitions.find((item) => item.patterns.some((pattern) => pattern.test(titleText)))
+  const isMedicalClinicArticle = article.slug === "prodvizhenie-medicinskoy-kliniki-2026";
+  const topic = (isMedicalClinicArticle && { id: "healthcare", label: "Медицина и здоровье" })
+    || topicDefinitions.find((item) => item.patterns.some((pattern) => pattern.test(titleText)))
     || topicDefinitions.find((item) => item.patterns.some((pattern) => pattern.test(searchText)))
     || { id: "direct-management", label: "Настройка Яндекс Директа" };
   const tags = tagDefinitions
     .filter((item) => item.patterns.some((pattern) => pattern.test(tagText)))
     .map((item) => item.id);
+  if (isMedicalClinicArticle && !tags.includes("healthcare")) tags.unshift("healthcare");
 
   return { ...article, topic: topic.id, topicLabel: topic.label, tags, intent: intentFor(titleText) };
 }
