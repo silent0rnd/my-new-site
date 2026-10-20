@@ -2,6 +2,17 @@
   "version": 1,
   "articles": [
     {
+      "slug": "reklama-avto-pod-zakaz",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "economics",
+        "avito",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "prodvizhenie-avtolizinga",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
