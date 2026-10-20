@@ -2,6 +2,29 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-lazernoy-epilyacii",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "economics",
+        "local",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-deteylinga",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "economics",
+        "avito",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "reklama-avto-pod-zakaz",
       "topic": "marketing",
       "topicLabel": "Маркетинг",
