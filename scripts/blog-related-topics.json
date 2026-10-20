@@ -672,15 +672,14 @@
     },
     {
       "slug": "prodvizhenie-badov",
-      "topic": "ecommerce",
-      "topicLabel": "Интернет-магазины",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
       "tags": [
         "ecommerce",
-        "analytics",
         "economics",
         "search"
       ],
-      "intent": "instruction"
+      "intent": "strategy"
     },
     {
       "slug": "prodvizhenie-ustanovki-lestnic-2026",
