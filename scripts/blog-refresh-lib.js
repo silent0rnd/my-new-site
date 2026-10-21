@@ -140,7 +140,27 @@ function parseMarkdown(body) {
     const heading = line.match(/^(#{1,3})\s+(.+)$/);
     if (heading) { blocks.push({ type: `h${heading[1].length}`, text: heading[2] }); index += 1; continue; }
     const image = line.match(/^!\[([^\]]+)\]\(([^)]+)\)$/);
-    if (image) { blocks.push({ type: "image", alt: image[1], src: image[2] }); index += 1; continue; }
+    if (image) {
+      let nextIndex = index + 1;
+      while (nextIndex < lines.length && !lines[nextIndex].trim()) nextIndex += 1;
+      const marker = nextIndex < lines.length
+        ? lines[nextIndex].trim().match(/^Иллюстрация\s*№\s*\d+\s*(?:[.:]\s*(.*))?$/iu)
+        : null;
+      let caption = "";
+      if (marker) {
+        caption = (marker[1] || "").trim();
+        nextIndex += 1;
+        if (!caption) {
+          while (nextIndex < lines.length && !lines[nextIndex].trim()) nextIndex += 1;
+          const candidate = nextIndex < lines.length ? lines[nextIndex].trim() : "";
+          const startsBlock = /^(?:#{1,3}\s+|!\[|\d+\.\s+|-\s+|\|)/.test(candidate);
+          if (candidate && !startsBlock) { caption = candidate; nextIndex += 1; }
+        }
+      }
+      blocks.push({ type: "image", alt: image[1], src: image[2], caption });
+      index = marker ? nextIndex : index + 1;
+      continue;
+    }
     if (line.startsWith("|") && index + 1 < lines.length && isTableSeparator(lines[index + 1].trim())) {
       const headers = tableCells(line);
       const rows = [];
@@ -192,7 +212,20 @@ function inlineMarkdown(value) {
   const links = [];
   let text = String(value).replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
     const token = `@@BLOG_LINK_${links.length}@@`;
-    links.push(`<a href="${escapeAttribute(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`);
+    const normalizedHref = href.trim();
+    const hasProtocol = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(normalizedHref);
+    let internal = !hasProtocol;
+    if (hasProtocol) {
+      try {
+        const parsed = new URL(normalizedHref, "https://naklikay.ru/");
+        internal = ["http:", "https:"].includes(parsed.protocol) && parsed.hostname === "naklikay.ru";
+      } catch {
+        internal = false;
+      }
+    }
+    links.push(internal
+      ? `<a href="${escapeAttribute(normalizedHref)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`
+      : escapeHtml(label));
     return token;
   });
   text = escapeHtml(text)
@@ -216,7 +249,8 @@ function renderBlock(block, imageNames = new Map()) {
   if (block.type === "image") {
     const sourceName = path.posix.basename(block.src.replace(/\\/g, "/"));
     const publishedName = imageNames.get(sourceName) || sourceName;
-    return `<figure class="article-figure"><img src="../${escapeAttribute(publishedName)}" alt="${escapeAttribute(block.alt)}" loading="lazy" decoding="async" /></figure>`;
+    const caption = block.caption ? `<figcaption>${inlineMarkdown(block.caption)}</figcaption>` : "";
+    return `<figure class="article-figure"><img src="../${escapeAttribute(publishedName)}" alt="${escapeAttribute(block.alt)}" loading="lazy" decoding="async" />${caption}</figure>`;
   }
   if (block.type === "table") {
     const head = block.headers.map((value) => `<th scope="col">${inlineMarkdown(value)}</th>`).join("");

@@ -1123,8 +1123,9 @@
       "topic": "social-ads",
       "topicLabel": "Реклама в соцсетях",
       "tags": [
-        "economics",
-        "telegram"
+        "campaign-setup",
+        "telegram",
+        "lead-generation"
       ],
       "intent": "instruction"
     },
@@ -1915,7 +1916,9 @@
         "manufacturing",
         "b2b",
         "analytics",
+        "economics",
         "search",
+        "automation",
         "campaign-setup",
         "lead-generation"
       ],

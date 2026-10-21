@@ -21,6 +21,13 @@ assert(html.includes(`<title>${seo.seo_title}</title>`), "Title не совпа�
 assert(html.includes(`name="description" content="${seo.meta_description.replace(/&/g, "&amp;").replace(/"/g, "&quot;")}"`), "Description не совпадает с источником.");
 assert(html.includes(`rel="canonical" href="${seo.canonical}"`), "Canonical не совпадает с источником.");
 assert.strictEqual(count(/<figure class="article-figure">/g), blocks.filter((block) => block.type === "image").length, "Количество иллюстраций не совпадает.");
+assert.strictEqual(count(/<figcaption>/g, content), blocks.filter((block) => block.type === "image" && block.caption).length, "Количество подписей к иллюстрациям не совпадает.");
+assert(!/Иллюстрация\s*№\s*\d+/iu.test(content), "Служебный номер иллюстрации попал в статью.");
+for (const match of content.matchAll(/<a\b[^>]*href="([^"]+)"/gi)) {
+  if (!/^(?:https?:)?\/\//i.test(match[1])) continue;
+  const url = new URL(match[1], seo.canonical);
+  assert.strictEqual(url.hostname, "naklikay.ru", `В тексте осталась внешняя ссылка: ${match[1]}`);
+}
 assert.strictEqual(count(/<h[23](?:\s|>)/g, content), blocks.filter((block) => block.type === "h2" || block.type === "h3").length, "Количество заголовков не совпадает.");
 assert.strictEqual(count(/<div class="article-table-wrap"/g, content), blocks.filter((block) => block.type === "table").length, "Количество таблиц не совпадает.");
 for (const match of content.matchAll(/<img\b[^>]*src="([^"?]+)[^"]*"[^>]*>/g)) {
