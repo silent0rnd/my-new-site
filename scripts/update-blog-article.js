@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
+const { assertSourceImageCaptions } = require("./blog-figure-captions");
 const {
   BLOG_ROOT,
   articleSlug,
@@ -140,6 +141,7 @@ async function main(argv = process.argv.slice(2)) {
   const seo = resolveSeoMetadata(sourceSeo, articleHtml);
   if (seo.slug !== slug) throw new Error(`Slug исходника ${seo.slug} не совпадает с ${slug}.`);
   const blocks = parseMarkdown(body);
+  assertSourceImageCaptions(blocks, slug);
   const h1 = blocks[0].text;
   const { names, plan } = await prepareAssets({ articleHtml, articlePath, blocks, imageInputs: readArgumentValues(argv, "--image"), slug });
   const metaMatch = articleHtml.match(/<p class="article-meta">[\s\S]*?<\/p>/i);

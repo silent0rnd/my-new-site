@@ -5473,6 +5473,23 @@ html.is-hero-video-played .portrait-video {
   }
 }
 
+.article-portrait--centered {
+  float: none;
+  width: min(500px, 78vw);
+  margin: 38px auto 64px;
+}
+
+.article-portrait--centered figcaption {
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .article-portrait--centered {
+    width: min(340px, 82vw);
+    margin: 30px auto 48px;
+  }
+}
+
 /* Виртуальные адреса Tilda и регулярные выражения набираем моноширинным
    шрифтом. anywhere нужен, чтобы длинная строка переносилась, а не тянула
    страницу вбок на телефоне. */

@@ -2,6 +2,17 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-onlayn-shkoly-pohudeniya",
+      "topic": "education",
+      "topicLabel": "Онлайн-образование",
+      "tags": [
+        "education",
+        "economics",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "prodvizhenie-lazernoy-epilyacii",
       "topic": "marketing",
       "topicLabel": "Маркетинг",
@@ -627,13 +638,10 @@
     },
     {
       "slug": "prodvizhenie-uslug-1c-v-2026-godu",
-      "topic": "analytics",
-      "topicLabel": "Аналитика",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
       "tags": [
-        "analytics",
         "economics",
-        "website",
-        "specialist",
         "seo",
         "lead-generation"
       ],
@@ -791,9 +799,10 @@
     },
     {
       "slug": "prodvizhenie-kliningovyh-uslug",
-      "topic": "production",
-      "topicLabel": "Производство и B2B",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
       "tags": [
+        "b2b",
         "economics",
         "specialist",
         "avito",
@@ -2096,6 +2105,9 @@
       "topic": "specialist",
       "topicLabel": "Работа со специалистом",
       "tags": [
+        "analytics",
+        "economics",
+        "automation",
         "specialist"
       ],
       "intent": "service"
@@ -2360,6 +2372,10 @@
       "topic": "local-promotion",
       "topicLabel": "Локальное продвижение",
       "tags": [
+        "analytics",
+        "economics",
+        "campaign-setup",
+        "specialist",
         "telegram",
         "local"
       ],
@@ -2476,6 +2492,7 @@
       "tags": [
         "analytics",
         "economics",
+        "comparison",
         "lead-generation"
       ],
       "intent": "service"

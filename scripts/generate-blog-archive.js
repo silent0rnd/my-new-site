@@ -6,6 +6,7 @@
  */
 const fs = require("fs");
 const path = require("path");
+const { assertArticleFigureCaptions } = require("./blog-figure-captions");
 
 const root = path.resolve(__dirname, "..");
 const blogDir = path.join(root, "blog");
@@ -567,6 +568,10 @@ const articles = cards.map((card) => {
 if (articles.length < 4) throw new Error("At least four articles are required to build related article cards.");
 if (targetArticleSlug && !articles.some((article) => article.slug === targetArticleSlug)) {
   throw new Error(`Target article card is missing: ${targetArticleSlug}`);
+}
+if (targetArticleSlug) {
+  const targetArticlePath = path.join(blogDir, targetArticleSlug, "index.html");
+  assertArticleFigureCaptions(read(targetArticlePath), targetArticleSlug);
 }
 
 const relatedTopics = {

@@ -20,8 +20,10 @@ const projectRoot = path.resolve(__dirname, "..");
     fs.writeFileSync(path.join(blogRoot, "index.html"), `<div class="case-card-reveal"><article class="blog-card"><a class="blog-card__media" href="sample/"><img src="old.jpg" alt="" /></a><h2 class="blog-card__title"><a href="sample/">Старое</a></h2><p class="blog-card__text">Старое описание</p></article></div>`, "utf8");
     const source = `<SEO-META>\nseo_title: Новое название\nmeta_description: Новое описание\nslug: sample\n</SEO-META>\n<ARTICLE-BODY>\n# Новый заголовок\n\nНовое введение.\n\n## Раздел\n\nТекст с **выделением** и [внутренней ссылкой](/blog/internal/).\n\n![Схема производства](image.jpg)\n\nИллюстрация № 4\n\nПодпись со ссылкой на [внешнюю документацию](https://example.com/docs).\n</ARTICLE-BODY>`;
     const sourcePath = path.join(fixtureRoot, "article.txt");
+    const missingCaptionSourcePath = path.join(fixtureRoot, "article-without-caption.txt");
     const imagePath = path.join(fixtureRoot, "image.jpg");
     fs.writeFileSync(sourcePath, source, "utf8");
+    fs.writeFileSync(missingCaptionSourcePath, source.replace(/\n\nИллюстрация № 4\n\nПодпись со ссылкой на \[внешнюю документацию\]\(https:\/\/example\.com\/docs\)\./, ""), "utf8");
     await sharp({ create: { width: 320, height: 180, channels: 3, background: "#f26a21" } }).jpeg().toFile(imagePath);
     fs.copyFileSync(imagePath, path.join(blogRoot, "old.jpg"));
 
@@ -40,6 +42,10 @@ const projectRoot = path.resolve(__dirname, "..");
     assert(!updated.includes('class="article-meta"'));
     assert.strictEqual((updated.match(/type="application\/ld\+json"/g) || []).length, 2);
     assert(fs.existsSync(path.join(blogRoot, "image.jpg")));
+    await assert.rejects(
+      () => updateArticle(["--article", "sample", "--source", missingCaptionSourcePath, "--image", imagePath]),
+      /у каждой иллюстрации нужна непустая подпись/,
+    );
 
     const card = syncCard(["--article", "sample", "--write"]);
     assert.strictEqual(card.changed, true);

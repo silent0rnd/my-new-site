@@ -1,6 +1,7 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const { assertArticleFigureCaptions } = require("../scripts/blog-figure-captions");
 
 const root = path.resolve(__dirname, "..");
 const blogDir = path.join(root, "blog");
@@ -91,6 +92,7 @@ assert.ok(headingIds.length > 0, "article headings are missing");
 assert.deepEqual(tocIds, headingIds, "TOC links differ from H2/H3 headings");
 
 const figures = [...html.matchAll(/<figure class="article-figure">([\s\S]*?)<\/figure>/gi)];
+assertArticleFigureCaptions(articleContent, slug);
 for (const [, figure] of figures) {
   assert.match(figure, /<picture data-blog-responsive="true">/i, "article figure is not responsive");
   const img = figure.match(/<img\s+[^>]*src="([^"]+)"[^>]*>/i);

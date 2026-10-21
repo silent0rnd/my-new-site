@@ -1,6 +1,7 @@
 const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
+const { assertArticleFigureCaptions, assertSourceImageCaptions } = require("../scripts/blog-figure-captions");
 const { extractSource, parseMarkdown, readArgument, readArgumentValues, resolveArticlePath, resolveSeoMetadata } = require("../scripts/blog-refresh-lib");
 
 const argv = process.argv.slice(2);
@@ -11,17 +12,19 @@ const html = fs.readFileSync(articlePath, "utf8");
 const { seo: sourceSeo, body } = extractSource(fs.readFileSync(path.resolve(sourceInput), "utf8"));
 const seo = resolveSeoMetadata(sourceSeo, html);
 const blocks = parseMarkdown(body);
+assertSourceImageCaptions(blocks, seo.slug);
 const count = (pattern, value = html) => (value.match(pattern) || []).length;
 const contentStart = html.indexOf("<!-- article-toc:end -->");
 const contentEnd = html.indexOf('<aside class="article-author"');
 assert(contentStart >= 0 && contentEnd > contentStart, "Не найдены границы текста статьи.");
 const content = html.slice(contentStart, contentEnd);
+assertArticleFigureCaptions(content, seo.slug);
 assert.strictEqual(count(/<h1(?:\s|>)/g), 1, "H1 должен быть один.");
 assert(html.includes(`<title>${seo.seo_title}</title>`), "Title не совпадает с источником.");
 assert(html.includes(`name="description" content="${seo.meta_description.replace(/&/g, "&amp;").replace(/"/g, "&quot;")}"`), "Description не совпадает с источником.");
 assert(html.includes(`rel="canonical" href="${seo.canonical}"`), "Canonical не совпадает с источником.");
 assert.strictEqual(count(/<figure class="article-figure">/g), blocks.filter((block) => block.type === "image").length, "Количество иллюстраций не совпадает.");
-assert.strictEqual(count(/<figcaption>/g, content), blocks.filter((block) => block.type === "image" && block.caption).length, "Количество подписей к иллюстрациям не совпадает.");
+assert.strictEqual(count(/<figcaption>/g, content), blocks.filter((block) => block.type === "image").length, "У каждой иллюстрации должна быть подпись.");
 assert(!/Иллюстрация\s*№\s*\d+/iu.test(content), "Служебный номер иллюстрации попал в статью.");
 for (const match of content.matchAll(/<a\b[^>]*href="([^"]+)"/gi)) {
   if (!/^(?:https?:)?\/\//i.test(match[1])) continue;
