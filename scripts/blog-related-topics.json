@@ -2,6 +2,16 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-yuvelirnogo-magazina",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "avito"
+      ],
+      "intent": "service"
+    },
+    {
       "slug": "prodvizhenie-onlayn-shkoly-pohudeniya",
       "topic": "education",
       "topicLabel": "Онлайн-образование",
@@ -570,14 +580,12 @@
     },
     {
       "slug": "prodvizhenie-restorana-i-dostavki-edy-v-2026-godu",
-      "topic": "local-promotion",
-      "topicLabel": "Локальное продвижение",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
       "tags": [
-        "analytics",
-        "economics",
-        "seo"
+        "economics"
       ],
-      "intent": "instruction"
+      "intent": "strategy"
     },
     {
       "slug": "prodvizhenie-medicinskoy-kliniki-2026",
@@ -1012,9 +1020,9 @@
       "topic": "analytics",
       "topicLabel": "Аналитика",
       "tags": [
-        "ecommerce",
         "analytics",
         "campaign-setup",
+        "website",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -1145,6 +1153,7 @@
       "tags": [
         "analytics",
         "economics",
+        "campaign-setup",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -1208,8 +1217,12 @@
       "topic": "sites",
       "topicLabel": "Сайты и конверсия",
       "tags": [
+        "analytics",
+        "economics",
+        "campaign-setup",
         "website",
-        "telegram"
+        "telegram",
+        "lead-generation"
       ],
       "intent": "strategy"
     },
@@ -1243,6 +1256,7 @@
       "topic": "channel-choice",
       "topicLabel": "Выбор рекламного канала",
       "tags": [
+        "economics",
         "comparison",
         "telegram",
         "avito",
@@ -1453,10 +1467,9 @@
       "topic": "construction",
       "topicLabel": "Строительство",
       "tags": [
-        "analytics",
+        "economics",
         "search",
         "campaign-setup",
-        "website",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -1862,10 +1875,8 @@
       "topicLabel": "Производство и B2B",
       "tags": [
         "b2b",
-        "analytics",
+        "economics",
         "search",
-        "campaign-setup",
-        "website",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -2341,7 +2352,6 @@
       "topicLabel": "Бюджет и стоимость",
       "tags": [
         "economics",
-        "search",
         "lead-generation"
       ],
       "intent": "strategy"

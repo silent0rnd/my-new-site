@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
     <title>Электронная коммерция в Яндекс Метрике: настройка Ecommerce</title>
-    <meta name="description" content="Что такое электронная коммерция в Яндекс Метрике, какие данные она передает, зачем нужна интернет-магазину и как правильно настроить Ecommerce для анализа продаж и Яндекс Директа." />
+    <meta name="description" content="Как настроить электронную коммерцию в Яндекс Метрике: инструкция для Tilda и CMS, пример кода purchase, проверка dataLayer, ошибки и анализ продаж." />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href="https://naklikay.ru/blog/ecommerce-yandex-metrika/" />
     <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
@@ -15,29 +15,28 @@
     <meta property="og:site_name" content="Максим Мирошников" />
     <meta property="og:url" content="https://naklikay.ru/blog/ecommerce-yandex-metrika/" />
     <meta property="og:title" content="Электронная коммерция в Яндекс Метрике: настройка Ecommerce" />
-    <meta property="og:description" content="Что такое электронная коммерция в Яндекс Метрике, какие данные она передает, зачем нужна интернет-магазину и как правильно настроить Ecommerce для анализа продаж и Яндекс Директа." />
-    <meta property="og:image" content="https://naklikay.ru/blog/ecommerce-yandex-metrika.webp" />
-    <meta property="og:image:width" content="1920" />
-    <meta property="og:image:height" content="1080" />
-    <meta property="og:image:alt" content="Электронная коммерция Яндекс Метрики передает данные о товарах, заказах и доходе" />
-    <meta property="article:published_time" content="2026-09-06" />
+    <meta property="og:description" content="Как настроить электронную коммерцию в Яндекс Метрике: инструкция для Tilda и CMS, пример кода purchase, проверка dataLayer, ошибки и анализ продаж." />
+    <meta property="og:image" content="https://naklikay.ru/blog/01-ecommerce-yandex-metrika.jpg" />
+    <meta property="og:image:width" content="2896" />
+    <meta property="og:image:height" content="2172" />
+    <meta property="og:image:alt" content="Сравнение обычной цели Яндекс Метрики и Ecommerce на примере одного заказа стоимостью 4500 рублей." />
+    <meta property="article:published_time" content="2026-09-06" /><meta property="article:modified_time" content="2026-10-22" />
     <meta property="article:author" content="Максим Мирошников" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Электронная коммерция в Яндекс Метрике: настройка Ecommerce" />
-    <meta name="twitter:description" content="Что такое электронная коммерция в Яндекс Метрике, какие данные она передает, зачем нужна интернет-магазину и как правильно настроить Ecommerce для анализа продаж и Яндекс Директа." />
-    <meta name="twitter:image" content="https://naklikay.ru/blog/ecommerce-yandex-metrika.webp" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","headline":"Электронная коммерция в Яндекс Метрике: что это и как настроить","description":"Что такое электронная коммерция в Яндекс Метрике, какие данные она передает, зачем нужна интернет-магазину и как правильно настроить Ecommerce для анализа продаж и Яндекс Директа.","url":"https://naklikay.ru/blog/ecommerce-yandex-metrika/","mainEntityOfPage":{"@type":"WebPage","@id":"https://naklikay.ru/blog/ecommerce-yandex-metrika/"},"image":["https://naklikay.ru/blog/01-ecommerce-yandex-metrika.jpg","https://naklikay.ru/blog/02-ecommerce-yandex-metrika.jpg","https://naklikay.ru/blog/03-ecommerce-yandex-metrika.jpg"],"datePublished":"2026-09-06","dateModified":"2026-09-06","inLanguage":"ru-RU","author":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/","jobTitle":"Специалист по платному трафику и Яндекс Директу"},"publisher":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://naklikay.ru/"},{"@type":"ListItem","position":2,"name":"Блог","item":"https://naklikay.ru/blog/"},{"@type":"ListItem","position":3,"name":"Электронная коммерция в Яндекс Метрике: что это и как настроить","item":"https://naklikay.ru/blog/ecommerce-yandex-metrika/"}]}]}</script>
+    
+    
+    
+    
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Электронная коммерция в Яндекс Метрике: что это и как настроить","description":"Как настроить электронную коммерцию в Яндекс Метрике: инструкция для Tilda и CMS, пример кода purchase, проверка dataLayer, ошибки и анализ продаж.","url":"https://naklikay.ru/blog/ecommerce-yandex-metrika/","mainEntityOfPage":{"@type":"WebPage","@id":"https://naklikay.ru/blog/ecommerce-yandex-metrika/"},"image":["https://naklikay.ru/blog/01-ecommerce-yandex-metrika.jpg","https://naklikay.ru/blog/02-ecommerce-yandex-metrika.jpg","https://naklikay.ru/blog/03-ecommerce-yandex-metrika.jpg","https://naklikay.ru/blog/04-ecommerce-yandex-metrika.jpg","https://naklikay.ru/blog/05-ecommerce-yandex-metrika.jpg"],"datePublished":"2026-09-06","dateModified":"2026-10-22","inLanguage":"ru-RU","author":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/","jobTitle":"Специалист по платному трафику и Яндекс Директу"},"publisher":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://naklikay.ru/"},{"@type":"ListItem","position":2,"name":"Блог","item":"https://naklikay.ru/blog/"},{"@type":"ListItem","position":3,"name":"Электронная коммерция в Яндекс Метрике: что это и как настроить","item":"https://naklikay.ru/blog/ecommerce-yandex-metrika/"}]}</script>
   </head>
   <body class="legal-page article-page">
     <header class="legal-topbar"><a class="legal-home-link" href="../../">Максим Мирошников</a><nav class="messenger-links" aria-label="Мессенджеры"><a href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">Telegram</a><a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">Макс</a></nav></header>
     <main class="legal-shell"><article class="legal-document">
       <nav class="article-breadcrumbs" aria-label="Хлебные крошки"><a href="../../">Главная</a><span aria-hidden="true">/</span><a href="../">Блог</a><span aria-hidden="true">/</span><span aria-current="page">Электронная коммерция в Яндекс Метрике: что это и как настроить</span></nav>
       <p class="legal-kicker">Блог о платном трафике</p>
-      <h1>Электронная коммерция в Яндекс Метрике: что это и как настроить</h1>
-      <p class="article-meta"><time datetime="2026-09-06">6 сентября 2026</time><span aria-hidden="true">·</span><span>Максим Мирошников</span></p>
-      <p>Электронная коммерция в Яндекс Метрике позволяет видеть не просто факт оформления заказа, а реальные данные интернет-магазина: какие товары смотрели и добавляли в корзину, что купили, сколько товаров было в заказе и какой доход он принес.</p>
-      <p>Для интернет-магазина это одна из самых полезных настроек аналитики. Вместо обычной цели «заказ оформлен» Метрика получает информацию о конкретной покупке и ее стоимости. Эти данные можно анализировать в отчетах и передавать в Яндекс Директ для оценки и оптимизации рекламы.</p>
-      <p>Настройка электронной коммерции Яндекс Метрики при этом заметно сложнее создания обычной цели. В большинстве случаев недостаточно поставить галочку в счетчике. Сайт должен передавать события и данные о товарах в правильном формате, поэтому нередко требуется разработчик.</p>
+      <h1>Электронная коммерция в Яндекс Метрике: что это и как настроить</h1><p class="article-meta"><time datetime="2026-09-06">6 сентября 2026</time><span aria-hidden="true">·</span><span>Максим Мирошников</span></p>
+<p class="article-lead">Электронная коммерция (Ecommerce) в Яндекс Метрике - это инструмент аналитики интернет-магазина, который собирает данные о просмотрах товаров, добавлениях в корзину, заказах и доходе. Он помогает определить, какие товары покупают и сколько выручки приносят разные источники трафика, включая Яндекс Директ.</p>
+<p><strong>Чтобы настроить Ecommerce, нужно включить электронную коммерцию в счётчике Метрики, организовать передачу товарных событий с сайта и проверить корректность данных.</strong> Для Tilda и некоторых CMS доступны готовые интеграции. На самописных сайтах обычно требуется настройка через JavaScript и контейнер `dataLayer`.</p>
+<p>Главное преимущество Ecommerce перед обычной целью «Заказ оформлен» заключается в том, что можно анализировать не только количество покупок, но и их стоимость, состав и связь с рекламой.</p>
 
 <!-- article-toc:start -->
 <nav class="article-toc" id="article-toc" aria-labelledby="article-toc-title">
@@ -48,54 +47,60 @@
       <a class="article-toc__link article-toc__link--section" href="#section-chto-takoe-elektronnaya-kommertsiya-v-yandeks-metrike" data-article-anchor>Что такое электронная коммерция в Яндекс Метрике</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-kakie-dannye-mozhno-peredavat" data-article-anchor>Какие данные можно передавать</a>
-    </li>
-    <li class="article-toc__item article-toc__item--has-children">
-      <div class="article-toc__section-row">
-      <a class="article-toc__link article-toc__link--section" href="#section-zachem-elektronnaya-kommertsiya-internet-magazinu" data-article-anchor>Зачем электронная коммерция интернет-магазину</a>
-        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-3" aria-label="Показать подразделы: Зачем электронная коммерция интернет-магазину">
-          <span aria-hidden="true">3</span>
-          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
-        </button>
-      </div>
-      <ol class="article-toc__sublist" id="article-toc-subsections-3" hidden>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-vidno-otkuda-prihodyat-prodazhi" data-article-anchor>Видно, откуда приходят продажи</a></li>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-mozhno-otsenivat-kampanii-yandeks-direkta-po-dengam" data-article-anchor>Можно оценивать кампании Яндекс Директа по деньгам</a></li>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-dannye-mozhno-ispolzovat-v-yandeks-direkte" data-article-anchor>Данные можно использовать в Яндекс Директе</a></li>
-      </ol>
+      <a class="article-toc__link article-toc__link--section" href="#section-chem-ecommerce-otlichaetsya-ot-obychnoy-tseli-metriki" data-article-anchor>Чем Ecommerce отличается от обычной цели Метрики</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-mozhno-li-schitat-ecommerce-skvoznoy-analitikoy" data-article-anchor>Можно ли считать Ecommerce сквозной аналитикой</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-kakie-sobytiya-i-dannye-peredaet-ecommerce" data-article-anchor>Какие события и данные передаёт Ecommerce</a>
     </li>
     <li class="article-toc__item article-toc__item--has-children">
       <div class="article-toc__section-row">
       <a class="article-toc__link article-toc__link--section" href="#section-kak-nastroit-elektronnuyu-kommertsiyu-v-yandeks-metrike" data-article-anchor>Как настроить электронную коммерцию в Яндекс Метрике</a>
-        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-5" aria-label="Показать подразделы: Как настроить электронную коммерцию в Яндекс Метрике">
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-4" aria-label="Показать подразделы: Как настроить электронную коммерцию в Яндекс Метрике">
           <span aria-hidden="true">4</span>
           <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
         </button>
       </div>
+      <ol class="article-toc__sublist" id="article-toc-subsections-4" hidden>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-shag-1-vklyuchit-elektronnuyu-kommertsiyu-v-schetchike" data-article-anchor>Шаг 1. Включить электронную коммерцию в счётчике</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-shag-2-vybrat-sposob-podklyucheniya" data-article-anchor>Шаг 2. Выбрать способ подключения</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-shag-3-nastroit-peredachu-sobytiy" data-article-anchor>Шаг 3. Настроить передачу событий</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-shag-4-proverit-rezultat" data-article-anchor>Шаг 4. Проверить результат</a></li>
+      </ol>
+    </li>
+    <li class="article-toc__item article-toc__item--has-children">
+      <div class="article-toc__section-row">
+      <a class="article-toc__link article-toc__link--section" href="#section-nastroyka-ecommerce-na-tilda-wordpress-i-drugih-cms" data-article-anchor>Настройка Ecommerce на Tilda, WordPress и других CMS</a>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-5" aria-label="Показать подразделы: Настройка Ecommerce на Tilda, WordPress и других CMS">
+          <span aria-hidden="true">3</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
+        </button>
+      </div>
       <ol class="article-toc__sublist" id="article-toc-subsections-5" hidden>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-1-vklyuchit-ecommerce-v-schetchike" data-article-anchor>1. Включить Ecommerce в счетчике</a></li>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-2-vybrat-sposob-peredachi-dannyh" data-article-anchor>2. Выбрать способ передачи данных</a></li>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-3-nastroit-peredachu-sobytiy" data-article-anchor>3. Настроить передачу событий</a></li>
-        <li><a class="article-toc__link article-toc__link--subsection" href="#section-4-pravilno-peredat-pokupku" data-article-anchor>4. Правильно передать покупку</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-kak-podklyuchit-elektronnuyu-kommertsiyu-na-tilda" data-article-anchor>Как подключить электронную коммерцию на Tilda</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-nastroyka-cherez-plaginy-cms" data-article-anchor>Настройка через плагины CMS</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-nastroyka-na-samopisnom-sayte" data-article-anchor>Настройка на самописном сайте</a></li>
       </ol>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-kak-proverit-nastroyku" data-article-anchor>Как проверить настройку</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-primer-koda-ecommerce-dlya-peredachi-pokupki" data-article-anchor>Пример кода Ecommerce для передачи покупки</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-gde-smotret-dannye-elektronnoy-kommertsii" data-article-anchor>Где смотреть данные электронной коммерции</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-proverit-rabotaet-li-elektronnaya-kommertsiya" data-article-anchor>Как проверить, работает ли электронная коммерция</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-primer-iz-realnogo-proekta" data-article-anchor>Пример из реального проекта</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-pochemu-ecommerce-ne-rabotaet-oshibki-i-resheniya" data-article-anchor>Почему Ecommerce не работает: ошибки и решения</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-pochemu-obychnoy-tseli-zakaz-nedostatochno" data-article-anchor>Почему обычной цели «заказ» недостаточно</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-gde-smotret-elektronnuyu-kommertsiyu-v-metrike" data-article-anchor>Где смотреть электронную коммерцию в Метрике</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-chastye-oshibki-pri-nastroyke" data-article-anchor>Частые ошибки при настройке</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-ispolzovat-ecommerce-v-yandeks-direkte" data-article-anchor>Как использовать Ecommerce в Яндекс Директе</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-realnyy-primer-internet-magazin-yaponskoy-kosmetiki" data-article-anchor>Реальный пример: интернет-магазин японской косметики</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-mozhno-li-schitat-ecommerce-skvoznoy-analitikoy" data-article-anchor>Можно ли считать Ecommerce сквозной аналитикой</a>
     </li>
     <li class="article-toc__item">
       <a class="article-toc__link article-toc__link--section" href="#section-nuzhna-li-elektronnaya-kommertsiya-kazhdomu-internet-magazinu" data-article-anchor>Нужна ли электронная коммерция каждому интернет-магазину</a>
@@ -104,115 +109,141 @@
 </nav>
 <!-- article-toc:end -->
 <h2 id="section-chto-takoe-elektronnaya-kommertsiya-v-yandeks-metrike">Что такое электронная коммерция в Яндекс Метрике</h2>
-      <p>Обычная цель Метрики отвечает на простой вопрос: произошло действие или нет.</p>
-      <p>Например:</p>
-      <ul><li>пользователь оформил заказ;</li><li>цель сработала;</li><li>в статистике появилась одна конверсия.</li></ul>
-      <p>Но два заказа могут сильно отличаться. В одном человек купил товар на 2 000 рублей, в другом - на 25 000 рублей. Для обычной цели это две одинаковые конверсии.</p>
-      <p>Электронная коммерция передает дополнительные данные о самой покупке. Метрика может получить сведения о товарах, их стоимости, количестве, категории, бренде, составе заказа и его идентификаторе.</p>
-      <p>Для интернет-магазина разница принципиальная.</p>
-      <table><thead><tr><th>Обычная цель</th><th>Электронная коммерция</th></tr></thead><tbody><tr><td>Видит факт конверсии</td><td>Видит конкретный заказ</td></tr><tr><td>Все покупки считаются одинаково</td><td>Учитывается стоимость покупки</td></tr><tr><td>Не показывает состав заказа</td><td>Передает товары и их параметры</td></tr><tr><td>Подходит для подсчета заказов</td><td>Подходит для анализа продаж и выручки</td></tr><tr><td>Ограниченно показывает экономику рекламы</td><td>Позволяет связывать трафик с доходом</td></tr></tbody></table>
-      <figure class="article-figure"><img src="../01-ecommerce-yandex-metrika.jpg" alt="Электронная коммерция Яндекс Метрики передает данные о товарах, заказах и доходе" width="1920" height="1080" loading="lazy" decoding="async" /><figcaption>Ecommerce передает в Метрику данные о товарах, заказах и выручке.</figcaption></figure>
-      <p>Поэтому я бы не ограничивался обычной целью покупки, если сайт является полноценным интернет-магазином и технически позволяет настроить Ecommerce.</p>
-      <h2 id="section-kakie-dannye-mozhno-peredavat">Какие данные можно передавать</h2>
-      <p>Метрика поддерживает несколько типов действий пользователя с товаром:</p>
-      <ul><li>просмотр списка товаров;</li><li>клик по товару;</li><li>просмотр карточки;</li><li>добавление в корзину;</li><li>удаление из корзины;</li><li>покупка;</li><li>просмотр внутренней рекламы;</li><li>клик по внутренней рекламе.</li></ul>
-      <p>Для каждого товара можно передавать его идентификатор, название, стоимость, категорию, бренд, вариант, количество и другие предусмотренные форматом параметры.</p>
-      <p>Самое важное событие для рекламы - purchase, то есть покупка. Вместе с ним передается идентификатор заказа и информация о купленных товарах.</p>
-      <p>Если задача стоит только в том, чтобы видеть продажи и доход, именно корректная передача покупки имеет наибольший приоритет. Если нужна полноценная аналитика поведения покупателей, дополнительно стоит передавать просмотры товаров, добавления и удаления из корзины.</p>
-      <h2 id="section-zachem-elektronnaya-kommertsiya-internet-magazinu">Зачем электронная коммерция интернет-магазину</h2>
-      <p>Главная ценность Ecommerce не в количестве новых отчетов. Она позволяет перейти от анализа кликов и конверсий к анализу денег.</p>
-      <h3 id="section-vidno-otkuda-prihodyat-prodazhi">Видно, откуда приходят продажи</h3>
-      <p>В отчетах электронной коммерции можно определить, какие источники трафика привели заказы и какой доход они принесли. Яндекс отдельно предоставляет отчеты по источникам заказов, содержимому заказов, купленным товарам, категориям и брендам.</p>
-      <p>Например, можно сравнить:</p>
-      <ul><li>Яндекс Директ;</li><li>органический поиск;</li><li>прямые заходы;</li><li>другие рекламные источники.</li></ul>
-      <p>Причем сравнивать их уже не по посещаемости сайта, а по заказам и выручке.</p>
-      <h3 id="section-mozhno-otsenivat-kampanii-yandeks-direkta-po-dengam">Можно оценивать кампании Яндекс Директа по деньгам</h3>
-      <p>Для интернет-магазина количество заказов само по себе тоже может вводить в заблуждение.</p>
-      <p>Представим две кампании:</p>
-      <p>Кампания А принесла 20 заказов со средним чеком 2 000 рублей.</p>
-      <p>Кампания Б принесла 12 заказов со средним чеком 7 000 рублей.</p>
-      <p>Если смотреть только количество конверсий, первая выглядит лучше. Если смотреть выручку, картина меняется.</p>
-      <p>Именно поэтому при рекламе интернет-магазинов мне значительно интереснее видеть деньги, а не только цену условной цели.</p>
-      <p><a href="../kak-ocenit-effektivnost-yandex-direct/" target="_blank" rel="noopener noreferrer">Как оценить эффективность Яндекс Директа</a></p>
-      <h3 id="section-dannye-mozhno-ispolzovat-v-yandeks-direkte">Данные можно использовать в Яндекс Директе</h3>
-      <p>При передаче покупки Метрика создает Ecommerce-цель. В Директе она доступна как цель покупки, а переданный доход может использоваться в статистике. По целям с доходом Яндекс рассчитывает связанные показатели, включая ДРР, ROI и прибыль.</p>
-      <p>Цели электронной коммерции также можно использовать при оптимизации рекламных кампаний. В частности, Яндекс указывает Ecommerce как источник данных для стратегии «Максимум конверсий» с ограничением по доле рекламных расходов.</p>
-      <p>Получается принципиально другая логика:</p>
-      <p>Директ -&gt; переход на сайт -&gt; товар -&gt; корзина -&gt; заказ -&gt; доход</p>
-      <p>Алгоритм получает сигнал, максимально близкий к реальному результату бизнеса.</p>
-      <p><a href="../konversiya-v-yandex-direct/" target="_blank" rel="noopener noreferrer">Конверсия в Яндекс Директе: что это и как ее считать</a></p>
-      <figure class="article-figure"><img src="../02-ecommerce-yandex-metrika.jpg" alt="Цепочка от рекламы Яндекс Директа до заказа и выручки интернет-магазина" width="1920" height="1080" loading="lazy" decoding="async" /><figcaption>Ecommerce связывает рекламу с реальной выручкой магазина.</figcaption></figure>
-      <h2 id="section-mozhno-li-schitat-ecommerce-skvoznoy-analitikoy">Можно ли считать Ecommerce сквозной аналитикой</h2>
-      <p>В упрощенном виде - да.</p>
-      <p>Для интернет-магазина электронная коммерция позволяет связать рекламный переход с покупкой и выручкой. Внутри этой цепочки уже видно, сколько денег было потрачено на привлечение трафика и сколько выручки получили от заказов.</p>
-      <p>Но полноценная сквозная аналитика обычно идет дальше. Например, учитывает:</p>
-      <ul><li>отмены заказов;</li><li>возвраты;</li><li>фактическую оплату;</li><li>маржинальность;</li><li>повторные продажи;</li><li>данные CRM;</li><li>прибыль.</li></ul>
-      <p>Поэтому Ecommerce я бы называл базовой сквозной аналитикой интернет-магазина внутри веб-аналитики. Она связывает источник трафика с заказом и доходом, но сама по себе не заменяет CRM и финансовый учет.</p>
-      <p><a href="../skvoznaya-analitika-yandex-direkt/" target="_blank" rel="noopener noreferrer">Сквозная аналитика Яндекс Директ: как связать рекламу с заявками и продажами</a></p>
-      <h2 id="section-kak-nastroit-elektronnuyu-kommertsiyu-v-yandeks-metrike">Как настроить электронную коммерцию в Яндекс Метрике</h2>
-      <p>Есть несколько вариантов настройки. Конкретный способ зависит от CMS и устройства интернет-магазина.</p>
-      <h3 id="section-1-vklyuchit-ecommerce-v-schetchike">1. Включить Ecommerce в счетчике</h3>
-      <p>В настройках счетчика Яндекс Метрики нужно включить отправку данных электронной коммерции.</p>
-      <p>По умолчанию используется контейнер dataLayer. В коде счетчика появляется соответствующий параметр Ecommerce.</p>
-      <p>Но одной этой настройки недостаточно. Она разрешает Метрике принимать данные, а сайт еще должен начать их отправлять.</p>
-      <h3 id="section-2-vybrat-sposob-peredachi-dannyh">2. Выбрать способ передачи данных</h3>
-      <p>Самый простой вариант - готовая интеграция или плагин CMS.</p>
-      <p>Яндекс указывает официальные плагины электронной коммерции для популярных систем, включая WordPress, OpenCart и 1С-Битрикс. Полный список доступных решений находится в интеграциях Метрики.</p>
-      <p>Если готовой интеграции нет, Ecommerce настраивается вручную через JavaScript.</p>
-      <p>Есть еще один удобный сценарий. Если на сайте уже корректно настроена электронная торговля Google Analytics Enhanced Ecommerce или GA4 Ecommerce, Метрика поддерживает совместимый формат и в ряде случаев может получать эти данные без отдельной повторной разметки.</p>
-      <h3 id="section-3-nastroit-peredachu-sobytiy">3. Настроить передачу событий</h3>
-      <p>При ручной реализации сайт формирует Ecommerce-объекты и добавляет их в массив window.dataLayer.</p>
-      <p>Упрощенно происходит следующее: 1. Пользователь выполняет действие. 2. Сайт формирует данные об этом действии. 3. Объект отправляется в dataLayer. 4. Счетчик Метрики считывает информацию. 5. Данные появляются в отчетах.</p>
-      <p>Например, после добавления товара передается событие add, после покупки - purchase.</p>
-      <p>Здесь уже нужны знания HTML и JavaScript. Сам Яндекс рекомендует обращаться к разработчику или вебмастеру, если таких навыков нет.</p>
-      <p>Поэтому для владельца магазина настройка электронной коммерции обычно выглядит не как «зайти в Метрику и нажать несколько кнопок», а как небольшая техническая задача для сайта.</p>
-      <h3 id="section-4-pravilno-peredat-pokupku">4. Правильно передать покупку</h3>
-      <p>Особенно внимательно нужно настроить событие покупки.</p>
-      <p>Метрика должна получить его тогда, когда заказ действительно сформирован. Для покупки передается идентификатор заказа и список товаров.</p>
-      <p>Яндекс отдельно предупреждает не отправлять Ecommerce-событие в момент перехода пользователя на другую страницу, например непосредственно через onclick кнопки оформления. Новая страница может загрузиться раньше передачи данных, и событие потеряется.</p>
-      <p>Это одна из причин, почему готовую настройку обязательно нужно тестировать на настоящем сценарии заказа.</p>
-      <h2 id="section-kak-proverit-nastroyku">Как проверить настройку</h2>
-      <p>После внедрения я бы обязательно прошел весь путь покупателя самостоятельно: 1. Открыть категорию. 2. Перейти в карточку товара. 3. Добавить товар в корзину. 4. Оформить тестовый заказ. 5. Проверить переданные Ecommerce-события. 6. Убедиться, что заказ появился в отчетах Метрики.</p>
-      <p>Яндекс позволяет проверять передачу событий через инструменты отладки Метрики и консоль браузера. В настройках должны совпадать имя контейнера и параметр Ecommerce в счетчике. Если используется стандартный вариант, это dataLayer.</p>
-      <p>Статистика в обычных отчетах может появиться не моментально. Яндекс указывает, что после первой передачи данных отчеты электронной коммерции становятся доступны спустя несколько часов.</p>
-      <h2 id="section-gde-smotret-dannye-elektronnoy-kommertsii">Где смотреть данные электронной коммерции</h2>
-      <p>После настройки в Метрике появляется отдельная группа отчетов:</p>
-      <p>Отчеты -&gt; Электронная коммерция.</p>
-      <p>Там можно анализировать, например:</p>
-      <ul><li>источники заказов;</li><li>содержимое заказов;</li><li>заказанные товары;</li><li>популярные категории;</li><li>популярные бренды;</li><li>количество купленных товаров;</li><li>доход.</li></ul>
-      <p>Это уже позволяет отвечать на нормальные бизнес-вопросы.</p>
-      <p>Не «с какой кампании было больше кликов?», а:</p>
-      <ul><li>какая реклама принесла больше денег;</li><li>какие категории покупают после рекламы;</li><li>сколько стоит привлечение покупателя;</li><li>какой доход принес конкретный источник;</li><li>какие кампании получают заказы с более высоким средним чеком.</li></ul>
-      <h2 id="section-primer-iz-realnogo-proekta">Пример из реального проекта</h2>
-      <p>В моем кейсе интернет-магазина японской косметики электронная коммерция уже была настроена на момент запуска рекламы.</p>
-      <p>Поэтому результат оценивался не по кликам и даже не просто по количеству заказов, а по выручке. За первые 20 дней Яндекс Директ принес 656 806 рублей выручки при рекламном расходе 64 227 рублей. Было зафиксировано 46 покупок со средним чеком 14 278 рублей.</p>
-      <p>Без Ecommerce можно было бы увидеть переходы и настроить обычную цель заказа. Но для управления рекламой магазина гораздо полезнее видеть, сколько денег реально приносит каждый рекламный источник.</p>
-      <p>Интернет-магазин японской косметики</p>
-      <h2 id="section-pochemu-obychnoy-tseli-zakaz-nedostatochno">Почему обычной цели «заказ» недостаточно</h2>
-      <p>Обычная цель тоже нужна и может использоваться как дополнительный контроль. Но для полноценного интернет-магазина она слишком мало рассказывает о результате.</p>
-      <p>Представьте:</p>
-      <ul><li>заказ №1 - 1 500 рублей;</li><li>заказ №2 - 8 000 рублей;</li><li>заказ №3 - 35 000 рублей.</li></ul>
-      <p>Обычная цель покажет три конверсии.</p>
-      <p>Ecommerce покажет три заказа с разной стоимостью и составом.</p>
-      <p>Для оптимизации рекламы это намного более полезная информация. Особенно если ассортимент большой, средние чеки отличаются, а разные рекламные кампании продвигают разные категории товаров.</p>
-      <figure class="article-figure"><img src="../03-ecommerce-yandex-metrika.jpg" alt="Сравнение обычной цели Яндекс Метрики и данных электронной коммерции" width="1920" height="1080" loading="lazy" decoding="async" /><figcaption>Ecommerce передает состав заказа и доход, а не только факт конверсии.</figcaption></figure>
-      <h2 id="section-chastye-oshibki-pri-nastroyke">Частые ошибки при настройке</h2>
-      <p>Чаще всего проблема не в самой Метрике, а в том, какие данные отправляет сайт.</p>
-      <p>Ecommerce включили, но события не настроили. Галочка в счетчике сама по себе не заставляет произвольный интернет-магазин передавать товары и покупки.</p>
-      <p>Не совпадает название контейнера. Если сайт пишет данные в один массив, а счетчик ожидает другой, Метрика их не увидит.</p>
-      <p>Покупка передается в неправильный момент. Из-за этого часть заказов может теряться.</p>
-      <p>Передается только покупка, но ожидается полная товарная аналитика. Для анализа корзины и поведения до заказа нужны соответствующие события.</p>
-      <p>Настройку не проверили после внедрения. Сам факт наличия кода еще не означает, что реальные данные передаются правильно.</p>
-      <p>Появляются дубли заказов. Особенно опасна ситуация, когда один и тот же заказ повторно отправляется после обновления страницы. Тогда выручка и количество покупок в аналитике перестают соответствовать реальности.</p>
-      <p>Для рекламы плохие данные иногда хуже отсутствующих. Если Директ получает ошибочные конверсии или неправильный доход, решения алгоритма тоже строятся на этой статистике.</p>
-      <h2 id="section-nuzhna-li-elektronnaya-kommertsiya-kazhdomu-internet-magazinu">Нужна ли электронная коммерция каждому интернет-магазину</h2>
-      <p>Если магазин получает заметный объем заказов с рекламы, я бы считал Ecommerce практически обязательной частью аналитики.</p>
-      <p>Настроить обычную цель покупки проще. Но после этого вы будете знать в основном количество заказов.</p>
-      <p>Электронная коммерция дает следующий уровень:</p>
-      <p>рекламный источник -&gt; поведение с товарами -&gt; заказ -&gt; состав заказа -&gt; выручка.</p>
-      <p>Именно поэтому настройка электронной коммерции в Яндекс Метрике особенно важна для Яндекс Директа. Реклама интернет-магазина должна оцениваться по продажам и деньгам, а не по количеству кликов или красивому CTR.</p>
-      <p>Технически настройка может оказаться непростой и потребовать разработчика. Но после корректного внедрения Метрика превращается из обычного счетчика посещаемости в систему, где можно анализировать реальные продажи магазина и связывать их с рекламой.</p>
-      <aside class="article-author" aria-label="Об авторе"><img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников, специалист по платному трафику" width="192" height="192" loading="lazy" decoding="async" /><div class="article-author__body"><p class="article-author__label">Автор</p><p class="article-author__name">Максим Мирошников</p><p class="article-author__role">Специалист по платному трафику и Яндекс Директу</p><p class="article-author__text">Занимаюсь интернет-рекламой более 10 лет. Работаю как ИП и веду проекты напрямую: запускаю рекламу, создаю сайты и воронки, помогаю выстраивать связь между маркетингом, заявками и продажами.</p><p class="article-author__link"><a href="../../#about">Подробнее обо мне</a></p></div></aside><!-- related-articles:start -->
+<p>Электронная коммерция позволяет отслеживать действия покупателей и связывать их с конкретными товарами и заказами.</p>
+<p>Например, посетитель открыл карточку товара, добавил его в корзину и оформил заказ на 4&nbsp;500 рублей. При корректной настройке Метрика может получить информацию о каждом из этих действий, включая стоимость и количество купленных товаров.</p>
+<p>Эти сведения используются в отчётах по электронной коммерции, а данные о покупках и доходе могут учитываться при анализе и оптимизации кампаний Яндекс Директа.</p>
+<p>Важно учитывать ограничение: событие покупки отражает тот этап, на котором сайт его отправил. Если событие передаётся при оформлении заказа до оплаты, сумма в Метрике ещё не означает фактически полученные деньги.</p>
+<h2 id="section-chem-ecommerce-otlichaetsya-ot-obychnoy-tseli-metriki">Чем Ecommerce отличается от обычной цели Метрики</h2>
+<p>Обычная цель фиксирует выполнение определённого действия. Электронная коммерция передаёт информацию о самом заказе и его товарах.</p>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Обычная цель</th><th scope="col">Электронная коммерция</th></tr></thead><tbody><tr><td data-label="Обычная цель">Фиксирует факт заказа</td><td data-label="Электронная коммерция">Передаёт заказ и товары</td></tr><tr><td data-label="Обычная цель">Показывает количество конверсий</td><td data-label="Электронная коммерция">Позволяет анализировать заказы и доход</td></tr><tr><td data-label="Обычная цель">Не содержит состав корзины</td><td data-label="Электронная коммерция">Передаёт товары, цены и количество</td></tr><tr><td data-label="Обычная цель">Может использовать назначенную ценность цели</td><td data-label="Электронная коммерция">Получает стоимость из данных покупки</td></tr><tr><td data-label="Обычная цель">Подходит для контроля отдельных действий</td><td data-label="Электронная коммерция">Подходит для товарной аналитики</td></tr></tbody></table></div>
+<p>Предположим, один покупатель заказал товар на 2&nbsp;000 рублей, а другой - на 25&nbsp;000 рублей.</p>
+<p>Обычная цель покажет два достижения. Если передавать покупки через Ecommerce, можно дополнительно увидеть стоимость каждого заказа и выяснить, какой рекламный источник привёл более дорогую покупку.</p>
+<p>При этом обычная цель тоже может учитывать денежную ценность, если её правильно настроить. Отличие Ecommerce не только в сумме, но и в детализации товаров и заказов.</p>
+<p>Для полноценного интернет-магазина электронная коммерция обычно полезнее одной цели покупки, особенно когда ассортимент и средний чек существенно различаются.</p>
+<figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="../01-ecommerce-yandex-metrika-640.webp 640w, ../01-ecommerce-yandex-metrika-1080.webp 1080w, ../01-ecommerce-yandex-metrika-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../01-ecommerce-yandex-metrika.jpg" alt="Сравнение обычной цели Яндекс Метрики и Ecommerce на примере одного заказа стоимостью 4500 рублей." loading="lazy" decoding="async" width="2896" height="2172" /></picture><figcaption>Обычная цель фиксирует заказ, а Ecommerce дополнительно показывает его стоимость и товары.</figcaption></figure>
+<h2 id="section-kakie-sobytiya-i-dannye-peredaet-ecommerce">Какие события и данные передаёт Ecommerce</h2>
+<p>Яндекс Метрика поддерживает несколько типов событий электронной коммерции. Они позволяют анализировать путь покупателя от знакомства с товаром до заказа.</p>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Событие</th><th scope="col">Что фиксирует</th></tr></thead><tbody><tr><td data-label="Событие">`impressions`</td><td data-label="Что фиксирует">Просмотр списка товаров</td></tr><tr><td data-label="Событие">`click`</td><td data-label="Что фиксирует">Клик по товару в списке</td></tr><tr><td data-label="Событие">`detail`</td><td data-label="Что фиксирует">Просмотр карточки товара</td></tr><tr><td data-label="Событие">`add`</td><td data-label="Что фиксирует">Добавление в корзину</td></tr><tr><td data-label="Событие">`remove`</td><td data-label="Что фиксирует">Удаление из корзины</td></tr><tr><td data-label="Событие">`purchase`</td><td data-label="Что фиксирует">Покупку</td></tr><tr><td data-label="Событие">`promoView`</td><td data-label="Что фиксирует">Просмотр внутренней рекламы</td></tr><tr><td data-label="Событие">`promoClick`</td><td data-label="Что фиксирует">Клик по внутренней рекламе</td></tr></tbody></table></div>
+<p>В зависимости от события можно передавать идентификатор товара, название, цену, количество, категорию, бренд, вариант и другие параметры.</p>
+<p>Для рекламной аналитики наибольшее значение имеет <strong>`purchase` - событие покупки</strong>. Оно позволяет связать заказ с доходом.</p>
+<p>Если задача заключается только в оценке количества и стоимости заказов, настройку можно начать с покупки. Если нужно анализировать поведение покупателей и потери в товарной воронке, дополнительно потребуются события просмотра товаров, добавления и удаления из корзины.</p>
+<h2 id="section-kak-nastroit-elektronnuyu-kommertsiyu-v-yandeks-metrike">Как настроить электронную коммерцию в Яндекс Метрике</h2>
+<p>Настройка Ecommerce состоит из четырёх этапов: включения функции в счётчике, выбора способа передачи данных, настройки событий на сайте и проверки их корректности.</p>
+<h3 id="section-shag-1-vklyuchit-elektronnuyu-kommertsiyu-v-schetchike">Шаг 1. Включить электронную коммерцию в счётчике</h3>
+<ol><li>Откройте Яндекс Метрику.</li><li>Выберите счётчик интернет-магазина.</li><li>Перейдите в настройки счётчика.</li><li>Включите опцию «Электронная коммерция».</li><li>Убедитесь, что контейнер данных указан правильно. Стандартное название - `dataLayer`.</li><li>Сохраните изменения и проверьте актуальность кода счётчика на сайте.</li></ol>
+<p>В коде счётчика должен использоваться параметр `ecommerce: true` либо `ecommerce: "dataLayer"` с соответствующим именем контейнера.</p>
+<p>Сама по себе эта настройка не гарантирует поступление данных. Сайт должен формировать Ecommerce-события и передавать их в Метрику.</p>
+<h3 id="section-shag-2-vybrat-sposob-podklyucheniya">Шаг 2. Выбрать способ подключения</h3>
+<p>Способ внедрения зависит от платформы интернет-магазина.</p>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Платформа</th><th scope="col">Как подключать</th></tr></thead><tbody><tr><td data-label="Платформа">Tilda</td><td data-label="Как подключать">Через встроенную интеграцию</td></tr><tr><td data-label="Платформа">WordPress / WooCommerce</td><td data-label="Как подключать">Через совместимый плагин</td></tr><tr><td data-label="Платформа">1С-Битрикс</td><td data-label="Как подключать">Через модуль или готовую интеграцию</td></tr><tr><td data-label="Платформа">OpenCart</td><td data-label="Как подключать">Через модуль Метрики</td></tr><tr><td data-label="Платформа">Самописный магазин</td><td data-label="Как подключать">Через JavaScript и `dataLayer`</td></tr><tr><td data-label="Платформа">Сайт с GA4 Ecommerce</td><td data-label="Как подключать">Проверить совместимую передачу уже настроенных событий</td></tr></tbody></table></div>
+<p>Яндекс поддерживает совместимость с форматами Google Analytics Enhanced Ecommerce и GA4 Ecommerce. Если электронная торговля уже реализована, данные могут поступать в Метрику без дублирования всей разметки. Но фактическую передачу и правильность заказов всё равно необходимо проверить.</p>
+<p>Для ручной настройки понадобится доступ к коду сайта или помощь разработчика.</p>
+<h3 id="section-shag-3-nastroit-peredachu-sobytiy">Шаг 3. Настроить передачу событий</h3>
+<p>При ручной интеграции сайт передаёт информацию через JavaScript-массив `window.dataLayer`.</p>
+<p>Принцип работы следующий:</p>
+<ol><li>Посетитель выполняет действие с товаром.</li><li>Сайт формирует объект с параметрами действия.</li><li>JavaScript добавляет объект в `dataLayer`.</li><li>Счётчик Метрики обрабатывает данные.</li><li>Информация поступает в отчёты.</li></ol>
+<p>Для отправки объекта используется метод `push()`.</p>
+<p>Например, событие `add` должно возникать при фактическом добавлении товара в корзину, а `purchase` - после успешного формирования заказа.</p>
+<p>Не следует отправлять покупку только по нажатию кнопки оформления заказа. Пользователь может не завершить процесс, а переход на другую страницу способен прервать передачу данных.</p>
+<h3 id="section-shag-4-proverit-rezultat">Шаг 4. Проверить результат</h3>
+<p>После настройки необходимо создать тестовый заказ, проверить отправленные события и убедиться, что они учитываются в Метрике.</p>
+<p>Особенно важно сопоставить идентификатор заказа, количество товаров, цены и переданную сумму.</p>
+<h2 id="section-nastroyka-ecommerce-na-tilda-wordpress-i-drugih-cms">Настройка Ecommerce на Tilda, WordPress и других CMS</h2>
+<h3 id="section-kak-podklyuchit-elektronnuyu-kommertsiyu-na-tilda">Как подключить электронную коммерцию на Tilda</h3>
+<p>Для стандартного интернет-магазина на Tilda отдельная ручная JavaScript-интеграция обычно не требуется.</p>
+<p>По инструкции Яндекса достаточно:</p>
+<ol><li>Убедиться, что счётчик Метрики подключён к сайту.</li><li>Включить электронную коммерцию в настройках счётчика.</li><li>Переопубликовать все страницы сайта.</li><li>Выполнить тестовый заказ и проверить данные.</li></ol>
+<p>Чтобы получать статистику просмотров товаров, можно использовать каталог товаров Tilda.</p>
+<p>Для передачи добавлений в корзину у блока ST100 предусмотрена отдельная настройка отправки данных в системы аналитики.</p>
+<p>Эти рекомендации относятся к штатным возможностям Tilda. Если корзина или оформление заказа реализованы нестандартным кодом, потребуется дополнительная проверка событий.</p>
+<h3 id="section-nastroyka-cherez-plaginy-cms">Настройка через плагины CMS</h3>
+<p>Для популярных CMS Яндекс предлагает интеграции, включая WordPress, OpenCart и 1С-Битрикс.</p>
+<p>Обычно последовательность выглядит так:</p>
+<ol><li>Установить совместимый модуль.</li><li>Указать или подключить нужный счётчик.</li><li>Включить Ecommerce.</li><li>Проверить отправку покупок и товарных событий.</li></ol>
+<p>Не стоит одновременно включать несколько модулей, которые передают одни и те же покупки. Это может привести к дублированию событий.</p>
+<h3 id="section-nastroyka-na-samopisnom-sayte">Настройка на самописном сайте</h3>
+<p>Для собственного интернет-магазина разработчик должен определить, какие действия покупателей нужно отслеживать, какие данные доступны в момент события и каким способом они будут отправляться в `dataLayer`.</p>
+<p>Приоритет следует отдавать достоверной передаче покупки. На первом этапе важнее получить правильное количество заказов и их стоимость, чем настроить множество дополнительных товарных событий с ошибками.</p>
+<p>Выбор способа зависит от платформы и доступных технических возможностей.</p>
+<figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="../02-ecommerce-yandex-metrika-640.webp 640w, ../02-ecommerce-yandex-metrika-1080.webp 1080w, ../02-ecommerce-yandex-metrika-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../02-ecommerce-yandex-metrika.jpg" alt="Три способа подключения электронной коммерции к Яндекс Метрике через Tilda, CMS и JavaScript." loading="lazy" decoding="async" width="2896" height="2172" /></picture><figcaption>Для конструктора, CMS и самописного сайта доступны разные способы передачи товарных событий.</figcaption></figure>
+<h2 id="section-primer-koda-ecommerce-dlya-peredachi-pokupki">Пример кода Ecommerce для передачи покупки</h2>
+<p>При ручной настройке Ecommerce ключевым событием является `purchase`. В его объекте указываются идентификатор заказа и список купленных товаров.</p>
+<p>Ниже приведён упрощённый пример передачи одного заказа через `dataLayer`.</p>
+<p>```javascript window.dataLayer = window.dataLayer || [];</p>
+<p>window.dataLayer.push({ ecommerce: { currencyCode: "RUB", purchase: { actionField: { id: "ORDER-101", revenue: 4500 }, products: [ { id: "SKU-001", name: "Рюкзак", price: 2500, quantity: 1 }, { id: "SKU-002", name: "Термокружка", price: 1000, quantity: 2 } ] } } }); ```</p>
+<p>Это демонстрационный код, а не готовый скрипт для любого магазина. В рабочей интеграции идентификатор заказа, товары и суммы должны подставляться из данных сайта после подтверждения заказа.</p>
+<p>В данном примере:</p>
+<ul><li>`currencyCode` - валюта заказа, RUB.</li><li>`purchase` - событие покупки.</li><li>`actionField.id` - уникальный идентификатор заказа.</li><li>`revenue` - передаваемый доход, 4&nbsp;500 рублей.</li><li>`products` - список купленных товаров.</li><li>`price` - цена единицы товара.</li><li>`quantity` - количество единиц товара.</li></ul>
+<p>Покупатель приобрёл один рюкзак за 2&nbsp;500 рублей и две термокружки по 1&nbsp;000 рублей. Общая стоимость товаров составляет 4&nbsp;500 рублей.</p>
+<figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="../03-ecommerce-yandex-metrika-640.webp 640w, ../03-ecommerce-yandex-metrika-1080.webp 1080w, ../03-ecommerce-yandex-metrika-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../03-ecommerce-yandex-metrika.jpg" alt="Структура события purchase с идентификатором заказа, товарами, количеством и суммой 4500 рублей." loading="lazy" decoding="async" width="2896" height="2172" /></picture><figcaption>Событие purchase связывает номер заказа, купленные товары и переданный доход.</figcaption></figure>
+<p>Параметр `revenue` можно не передавать. Согласно документации Яндекса, тогда доход рассчитывается на основании стоимости товаров. Однако при наличии скидок, доставки и особенностей расчёта итоговой суммы лучше явно определить, какое значение магазин считает доходом заказа.</p>
+<p><strong>Важно:</strong> идентификатор заказа необходимо передавать корректно, а повторную отправку покупки при обновлении страницы или повторном выполнении скрипта предотвращать на стороне сайта. Это снижает риск искажения статистики.</p>
+<p>В документации Яндекса также указано ограничение на размер передаваемого контейнера данных - 8192 символа. Крупные заказы требуют отдельной обработки.</p>
+<h2 id="section-kak-proverit-rabotaet-li-elektronnaya-kommertsiya">Как проверить, работает ли электронная коммерция</h2>
+<p>Проверить Ecommerce можно через инструменты отладки Яндекс Метрики. В актуальной версии счётчика доступна специальная панель, которая показывает передаваемые события.</p>
+<p>Порядок проверки:</p>
+<ol><li>Откройте страницу магазина, добавив к URL параметр `_ym_debug=2`.</li><li>Выполните нужное действие, например добавьте товар в корзину.</li><li>Откройте появившуюся панель отладки.</li><li>Перейдите на вкладку Ecommerce.</li><li>Проверьте, что событие передано с корректными параметрами.</li><li>Оформите тестовый заказ и аналогично проверьте `purchase`.</li></ol>
+<p>Если новый отладчик недоступен, можно использовать консоль браузера и режим `_ym_debug=1`.</p>
+<p>Для просмотра данных контейнера в консоли используется команда:</p>
+<p>```javascript JSON.stringify(window.dataLayer) ```</p>
+<p>Если вместо данных возникает ошибка `dataLayer is not defined`, необходимо проверить, создан ли массив данных на странице.</p>
+<p>Если массив существует, но нужного события в нём нет, следует проверить код, который должен формировать и отправлять событие.</p>
+<p>После первой успешной передачи отчёты электронной коммерции обычно становятся доступны в течение нескольких часов. Отсутствие данных в обычном отчёте сразу после тестового заказа ещё не доказывает неисправность настройки.</p>
+<h2 id="section-pochemu-ecommerce-ne-rabotaet-oshibki-i-resheniya">Почему Ecommerce не работает: ошибки и решения</h2>
+<p>Если данные электронной коммерции не поступают в Яндекс Метрику, сначала нужно проверить счётчик, контейнер данных и момент отправки события.</p>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Проблема</th><th scope="col">Возможная причина</th><th scope="col">Что проверить</th></tr></thead><tbody><tr><td data-label="Проблема">Нет данных Ecommerce</td><td data-label="Возможная причина">Функция выключена или события не отправляются</td><td data-label="Что проверить">Настройки счётчика и `dataLayer`</td></tr><tr><td data-label="Проблема">Нет покупок</td><td data-label="Возможная причина">Не отправляется `purchase`</td><td data-label="Что проверить">Скрипт подтверждения заказа</td></tr><tr><td data-label="Проблема">Нет суммы заказа</td><td data-label="Возможная причина">Ошибка в `revenue` или ценах товаров</td><td data-label="Что проверить">Состав и стоимость заказа</td></tr><tr><td data-label="Проблема">Заказы задваиваются</td><td data-label="Возможная причина">Повторная отправка события</td><td data-label="Что проверить">Логику срабатывания скрипта</td></tr><tr><td data-label="Проблема">Есть покупки, но нет просмотров товаров</td><td data-label="Возможная причина">Передаётся только `purchase`</td><td data-label="Что проверить">События `detail` и `impressions`</td></tr><tr><td data-label="Проблема">Часть событий теряется</td><td data-label="Возможная причина">Переход со страницы происходит слишком быстро</td><td data-label="Что проверить">Момент отправки данных</td></tr><tr><td data-label="Проблема">Неполная товарная статистика</td><td data-label="Возможная причина">Неполные или некорректные поля</td><td data-label="Что проверить">Идентификаторы, названия, количество</td></tr></tbody></table></div>
+<p>При диагностике полезно сначала проверить один конкретный заказ и сопоставить данные сайта с объектом, попавшим в контейнер.</p>
+<figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="../04-ecommerce-yandex-metrika-640.webp 640w, ../04-ecommerce-yandex-metrika-1080.webp 1080w, ../04-ecommerce-yandex-metrika-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../04-ecommerce-yandex-metrika.jpg" alt="Диагностика ошибок электронной коммерции: передача purchase, контейнер dataLayer и дубли заказов." loading="lazy" decoding="async" width="2896" height="2172" /></picture><figcaption>При ошибках Ecommerce сначала проверяют само событие, контейнер данных и повторную отправку покупок.</figcaption></figure>
+<p><strong>Не стоит подключать оптимизацию Яндекс Директа по доходу, пока не проверена достоверность сумм покупок.</strong> Ошибки в передаче стоимости заказов способны исказить оценку эффективности рекламы.</p>
+<p>Отдельно следует проверить, не блокируется ли счётчик расширениями браузера и не мешают ли передаче события ошибки JavaScript или перенаправления.</p>
+<h2 id="section-gde-smotret-elektronnuyu-kommertsiyu-v-metrike">Где смотреть электронную коммерцию в Метрике</h2>
+<p>После поступления данных откройте раздел <strong>«Отчёты», затем «Электронная коммерция»</strong>.</p>
+<p>В нём доступны отчёты по источникам заказов, купленным товарам, содержимому корзины, популярным категориям, брендам и другим показателям.</p>
+<p>Для интернет-магазина наиболее полезны следующие направления анализа:</p>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Отчёт</th><th scope="col">Что можно узнать</th></tr></thead><tbody><tr><td data-label="Отчёт">Источники заказов</td><td data-label="Что можно узнать">Какие каналы приводят покупки и доход</td></tr><tr><td data-label="Отчёт">Содержимое заказов</td><td data-label="Что можно узнать">Какие товары входят в заказы</td></tr><tr><td data-label="Отчёт">Заказанные товары</td><td data-label="Что можно узнать">Что фактически заказывают посетители</td></tr><tr><td data-label="Отчёт">Товары в корзине</td><td data-label="Что можно узнать">Какие товары добавляют в корзину</td></tr><tr><td data-label="Отчёт">Популярные категории и бренды</td><td data-label="Что можно узнать">Какие товарные группы вызывают интерес</td></tr><tr><td data-label="Отчёт">Ecommerce-воронка</td><td data-label="Что можно узнать">На каких этапах возникают потери покупателей</td></tr></tbody></table></div>
+<p>Например, в отчёте по источникам заказов можно сравнивать результаты Яндекс Директа, органического поиска и других каналов.</p>
+<p>При анализе важно учитывать модель атрибуции, период и выбранные условия отчёта. Покупка может быть связана с несколькими посещениями сайта, поэтому доход не всегда правильно приписывать исключительно последнему рекламному переходу.</p>
+<p>Подробнее о различиях моделей: <a href="https://naklikay.ru/blog/atributsiya-v-yandex-metrike/" target="_blank" rel="noopener noreferrer">Атрибуция в Яндекс Метрике</a>.</p>
+<h2 id="section-kak-ispolzovat-ecommerce-v-yandeks-direkte">Как использовать Ecommerce в Яндекс Директе</h2>
+<p>Данные электронной коммерции позволяют оценивать рекламу интернет-магазина по заказам и доходу, а не только по кликам и количеству конверсий.</p>
+<p>При корректной передаче покупки Метрика формирует Ecommerce-цель, доступную для использования в Яндекс Директе. Доход от покупок помогает анализировать результативность рекламных кампаний.</p>
+<p>Один из основных показателей для интернет-магазина - ДРР, доля рекламных расходов в доходе.</p>
+<p class="content-key-point"><strong>ДРР = расходы на рекламу / доход от рекламы × 100%.</strong></p>
+<p>Предположим, магазин потратил на рекламную кампанию 30&nbsp;000 рублей, а переданные покупки принесли 150&nbsp;000 рублей дохода.</p>
+<p>ДРР составит 20%.</p>
+<p>Это означает, что рекламные расходы равны 20% от полученного дохода. Но сама по себе такая доля ещё не говорит о прибыльности: необходимо учитывать себестоимость, доставку, комиссии, налоги и другие затраты.</p>
+<p>Если электронная коммерция настроена корректно и кампания получает достаточно достоверных конверсий, данные о покупках могут использоваться в автоматических стратегиях Директа, в том числе при оптимизации по доле рекламных расходов.</p>
+<p>Подробнее: <a href="https://naklikay.ru/blog/drr-v-reklame/" target="_blank" rel="noopener noreferrer">ДРР в рекламе: как считать и оценивать</a>.</p>
+<h2 id="section-realnyy-primer-internet-magazin-yaponskoy-kosmetiki">Реальный пример: интернет-магазин японской косметики</h2>
+<p>В моём проекте интернет-магазина японской косметики электронная коммерция уже была настроена до запуска рекламных кампаний.</p>
+<p>Это позволило оценивать результат не только по количеству заказов, но и по переданной выручке.</p>
+<p>За первые 20 дней работы Яндекс Директа были получены следующие показатели:</p>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Показатель</th><th scope="col">Результат</th></tr></thead><tbody><tr><td data-label="Показатель">Расходы на рекламу</td><td data-label="Результат">64&nbsp;227&nbsp;₽</td></tr><tr><td data-label="Показатель">Доход от заказов</td><td data-label="Результат">656&nbsp;806&nbsp;₽</td></tr><tr><td data-label="Показатель">Покупки</td><td data-label="Результат">46</td></tr><tr><td data-label="Показатель">Средний чек</td><td data-label="Результат">14&nbsp;278&nbsp;₽</td></tr><tr><td data-label="Показатель">Средняя стоимость покупки</td><td data-label="Результат">1&nbsp;396&nbsp;₽</td></tr><tr><td data-label="Показатель">ДРР</td><td data-label="Результат">9,78%</td></tr><tr><td data-label="Показатель">ROAS</td><td data-label="Результат">10,23</td></tr></tbody></table></div>
+<p>Средняя стоимость покупки рассчитывается делением рекламных расходов на количество покупок:</p>
+<p>64&nbsp;227 / 46 = 1&nbsp;396 рублей.</p>
+<p>ДРР рассчитывается как 64&nbsp;227 / 656&nbsp;806 × 100% = 9,78%.</p>
+<p>ROAS показывает отношение дохода от рекламы к расходам: 656&nbsp;806 / 64&nbsp;227 = 10,23. То есть на каждый рубль рекламных расходов пришлось приблизительно 10,23 рубля дохода от заказов.</p>
+<p>Показатели ДРР, ROAS и стоимости покупки здесь рассчитаны по данным этого конкретного проекта, а не являются средними значениями рынка.</p>
+<figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="../05-ecommerce-yandex-metrika-640.webp 640w, ../05-ecommerce-yandex-metrika-1080.webp 1080w, ../05-ecommerce-yandex-metrika-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../05-ecommerce-yandex-metrika.jpg" alt="Результаты рекламы магазина японской косметики: расходы 64227 рублей, доход 656806 рублей и ДРР 9,78 процента." loading="lazy" decoding="async" width="2896" height="2172" /></picture><figcaption>Ecommerce позволяет оценивать рекламу по доходу от заказов и доле рекламных расходов.</figcaption></figure>
+<p>Без Ecommerce можно было бы подсчитывать достижения обычной цели оформления заказа. Но при работе с интернет-магазином гораздо полезнее анализировать и стоимость заказов, потому что разные кампании могут приводить покупателей с разным средним чеком.</p>
+<p>При этом зафиксированный доход от заказов не равен чистой прибыли и не подтверждает, что все заказы были оплачены и не возвращены.</p>
+<p>Полный разбор: <a href="https://naklikay.ru/cases/japanese-cosmetics-store-yandex-direct/" target="_blank" rel="noopener noreferrer">Кейс продвижения интернет-магазина японской косметики</a>.</p>
+<h2 id="section-mozhno-li-schitat-ecommerce-skvoznoy-analitikoy">Можно ли считать Ecommerce сквозной аналитикой</h2>
+<p>Электронная коммерция связывает источники трафика с заказами и доходом, но сама по себе не заменяет полноценную сквозную аналитику.</p>
+<p>Для интернет-магазина Ecommerce решает важную часть задачи: позволяет определить, какие рекламные каналы приводят покупателей, что они заказывают и сколько стоят покупки.</p>
+<p>Однако для расчёта реального финансового результата могут потребоваться дополнительные данные:</p>
+<ul><li>фактическая оплата заказов;</li><li>отмены и возвраты;</li><li>себестоимость товаров;</li><li>стоимость доставки;</li><li>комиссии и другие расходы;</li><li>повторные покупки;</li><li>информация из CRM и учётной системы.</li></ul>
+<p>Если магазин принимает заказы на сайте, но значительная часть из них оплачивается позже или отменяется, одного события `purchase` недостаточно для точного расчёта прибыли.</p>
+<p>Поэтому электронную коммерцию правильнее считать основой аналитики продаж на сайте, а не полноценной заменой финансового учёта.</p>
+<p>Подробнее: <a href="https://naklikay.ru/blog/skvoznaya-analitika-yandex-direkt/" target="_blank" rel="noopener noreferrer">Сквозная аналитика Яндекс Директа</a>.</p>
+<h2 id="section-nuzhna-li-elektronnaya-kommertsiya-kazhdomu-internet-magazinu">Нужна ли электронная коммерция каждому интернет-магазину</h2>
+<p>Ecommerce особенно полезна магазинам, которые привлекают платный трафик, продают товары с разной стоимостью и хотят анализировать рекламу по доходу.</p>
+<p>Если на сайте есть полноценная корзина и оформление заказа, рекомендую настроить как минимум корректную передачу покупок. Для более подробного анализа ассортимента и поведения покупателей стоит дополнительно отслеживать просмотры товаров и действия с корзиной.</p>
+<p>Для небольшого сайта услуг с одной формой заявки такая настройка может быть избыточной. Там зачастую достаточно правильно настроенных целей Метрики и передачи данных о продажах из CRM.</p>
+<p>Перед использованием Ecommerce в рекламных стратегиях необходимо убедиться, что:</p>
+<ul><li>покупки фиксируются однократно;</li><li>идентификаторы заказов передаются корректно;</li><li>суммы и количество товаров соответствуют заказам;</li><li>события не теряются при оформлении;</li><li>данные Метрики сопоставимы с учётной системой с поправкой на атрибуцию, блокировки и задержки.</li></ul>
+<p><strong>Главный вывод:</strong> настройка электронной коммерции в Яндекс Метрике нужна не ради дополнительных отчётов. Её задача - показать, какие товары и заказы приносит реклама, сколько дохода они формируют и какие кампании действительно имеют коммерческую ценность.</p>
+<aside class="article-author" aria-label="Об авторе"><img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников, специалист по платному трафику" width="192" height="192" loading="lazy" decoding="async" /><div class="article-author__body"><p class="article-author__label">Автор</p><p class="article-author__name">Максим Мирошников</p><p class="article-author__role">Специалист по платному трафику и Яндекс Директу</p><p class="article-author__text">Занимаюсь интернет-рекламой более 10 лет. Работаю как ИП и веду проекты напрямую: запускаю рекламу, создаю сайты и воронки, помогаю выстраивать связь между маркетингом, заявками и продажами.</p><p class="article-author__link"><a href="../../#about">Подробнее обо мне</a></p></div></aside><!-- related-articles:start -->
 <section class="related-articles" aria-labelledby="related-articles-title">
   <h2 id="related-articles-title">Похожие статьи</h2>
   <div class="related-articles__list">
@@ -221,15 +252,15 @@
           <span class="related-article-card__title">Как настроить цели Яндекс Метрики на Tilda</span>
           <span class="related-article-card__description">Одна цель на отправку всех форм по регулярному выражению, отслеживание шагов квиза QZ101 и проверка настройки тестовой заявкой.</span>
         </a>
-        <a class="related-article-card" href="../master-otchetov-yandex-direct/" target="_blank" rel="noopener noreferrer">
-          <span class="related-article-card__topic">Аналитика</span>
-          <span class="related-article-card__title">Мастер отчётов Яндекс Директ: как настроить и анализировать статистику в 2026 году</span>
-          <span class="related-article-card__description">Как пользоваться Мастером отчётов Яндекс Директа в 2026 году. Пошаговая настройка, готовые группировки и метрики, анализ расходов, запросов, РСЯ и CPA.</span>
-        </a>
         <a class="related-article-card" href="../skvoznaya-analitika-yandex-direkt/" target="_blank" rel="noopener noreferrer">
           <span class="related-article-card__topic">Аналитика</span>
-          <span class="related-article-card__title">Сквозная аналитика Яндекс Директ: как связать рекламу с заявками и продажами</span>
-          <span class="related-article-card__description">Как связать расходы в Яндекс Директе с заявками, CRM, продажами и выручкой с помощью Метрики, готового сервиса или собственного отчета.</span>
+          <span class="related-article-card__title">Сквозная аналитика Яндекс Директа: как связать рекламу с заявками и продажами</span>
+          <span class="related-article-card__description">Как настроить сквозную аналитику Яндекс Директа: UTM, ClientID, CRM, звонки, продажи и офлайн-конверсии. Пошаговая инструкция и расчёт окупаемости рекламы.</span>
+        </a>
+        <a class="related-article-card" href="../celi-dlya-marquiza-v-yandex-metrike/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Аналитика</span>
+          <span class="related-article-card__title">Цели Marquiz в Яндекс Метрике: настройка и проверка</span>
+          <span class="related-article-card__description">Как настроить цели Marquiz в Яндекс Метрике: идентификаторы marquiz-start, marquiz-form, marquiz-finish, автоматические цели и проверка ошибок.</span>
         </a>
   </div>
 </section>

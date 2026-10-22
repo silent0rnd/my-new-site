@@ -23,7 +23,7 @@ $articles = @(
     Slug  = "yandex-direct-dlya-stroitelnoy-kompanii"
     Title = "Яндекс Директ для строительной компании: как получать заявки на строительство"
     Desc  = "Как настроить Яндекс Директ для строительной компании: поиск, РСЯ, посадочные страницы, аналитика, квалификация лидов и реальные примеры рекламных проектов."
-    Images = @("01-kak-rabotaet-reklama-dlya-stroykompanii", "02-posadochnaya-stranitsa-dlya-stroykompanii", "03-kachestvo-zayavok-put-k-dogovoru")
+    Images = @("01-reklama-po-napravleniyam", "02-posadochnaya-stranitsa-stroitelnoi-kompanii", "03-ot-zayavki-do-dogovora", "04-raschet-stoimosti-zayavki")
     CardImage = "yandex-direct-dlya-stroitelnoy-kompanii"
     Alts  = @(
       "Как работает реклама для строительной компании: поиск, РСЯ и заявка",
