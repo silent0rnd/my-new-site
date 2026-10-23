@@ -9,7 +9,7 @@ vm.createContext(sandbox);
 vm.runInContext(fs.readFileSync(path.join(root, "cases-data.js"), "utf8"), sandbox);
 
 const cases = sandbox.window.siteCases;
-assert.strictEqual(cases.length, 43, "Expected all 43 cases");
+assert.strictEqual(cases.length, 44, "Expected all 44 cases");
 
 for (const caseItem of cases) {
   assert.ok(caseItem.h1Title.startsWith("Продвижение"), `${caseItem.slug}: H1 must describe promotion`);

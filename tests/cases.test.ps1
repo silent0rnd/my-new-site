@@ -38,6 +38,7 @@ function Assert-PathMissing($path, $message) {
 }
 
 $slugs = @(
+  "advokat-krasnodar-yandex-direct",
   "yoga-qigong-telegram-ads",
   "medcenter-telegram-ads",
   "marketplace-managers-telegram-ads",

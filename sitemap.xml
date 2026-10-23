@@ -378,7 +378,7 @@
   </url>
   <url>
     <loc>https://naklikay.ru/blog/yandex-direct-dlya-yuridicheskih-uslug/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -732,9 +732,15 @@
   </url>
   <url>
     <loc>https://naklikay.ru/cases/</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/cases/advokat-krasnodar-yandex-direct/</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://naklikay.ru/cases/business-setup-uae-yandex-direct/</loc>

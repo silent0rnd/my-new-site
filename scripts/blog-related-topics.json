@@ -1532,9 +1532,10 @@
       "topic": "construction",
       "topicLabel": "Строительство",
       "tags": [
-        "analytics",
-        "search",
-        "website",
+        "house-building",
+        "economics",
+        "ad-formats",
+        "comparison",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -1544,13 +1545,13 @@
       "topic": "real-estate",
       "topicLabel": "Недвижимость",
       "tags": [
-        "analytics",
+        "economics",
         "search",
         "campaign-setup",
-        "website",
+        "ad-formats",
         "lead-generation"
       ],
-      "intent": "strategy"
+      "intent": "instruction"
     },
     {
       "slug": "reklama-shkoly-massazha",
@@ -1809,13 +1810,13 @@
       "topicLabel": "Юридические услуги",
       "tags": [
         "legal",
-        "analytics",
+        "economics",
         "search",
         "campaign-setup",
-        "website",
+        "ad-formats",
         "lead-generation"
       ],
-      "intent": "strategy"
+      "intent": "instruction"
     },
     {
       "slug": "yandex-direct-dlya-yuridicheskih-uslug",

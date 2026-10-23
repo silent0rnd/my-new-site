@@ -67,7 +67,9 @@ assert.match(html, /<meta property="og:title" content="[^"]+"/i, "Open Graph tit
 assert.match(html, /<meta property="og:description" content="[^"]+"/i, "Open Graph description is missing");
 assert.match(html, /<meta property="og:image" content="[^"]+"/i, "Open Graph image is missing");
 
-const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/gi)].map((match) => JSON.parse(match[1]));
+const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/gi)]
+  .map((match) => JSON.parse(match[1]))
+  .flatMap((item) => (Array.isArray(item["@graph"]) ? item["@graph"] : [item]));
 const posting = jsonLd.find((item) => item["@type"] === "BlogPosting" || item["@type"] === "Article");
 const breadcrumbs = jsonLd.find((item) => item["@type"] === "BreadcrumbList");
 assert.ok(posting, "BlogPosting or Article JSON-LD is missing");
