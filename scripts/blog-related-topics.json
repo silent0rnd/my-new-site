@@ -755,15 +755,12 @@
     },
     {
       "slug": "prodvizhenie-ustanovki-zaborov-2026",
-      "topic": "local-promotion",
-      "topicLabel": "Локальное продвижение",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
       "tags": [
-        "analytics",
         "economics",
-        "search",
-        "website",
-        "specialist",
         "avito",
+        "seo",
         "lead-generation"
       ],
       "intent": "instruction"
@@ -828,11 +825,12 @@
     },
     {
       "slug": "prodvizhenie-biznes-foruma",
-      "topic": "analytics",
-      "topicLabel": "Аналитика",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
       "tags": [
         "economics",
-        "ad-formats"
+        "search",
+        "lead-generation"
       ],
       "intent": "instruction"
     },
@@ -907,9 +905,12 @@
       "topic": "direct-management",
       "topicLabel": "Настройка Яндекс Директа",
       "tags": [
-        "automation"
+        "analytics",
+        "economics",
+        "automation",
+        "campaign-setup"
       ],
-      "intent": "explanation"
+      "intent": "strategy"
     },
     {
       "slug": "interesy-i-privychki-yandex-direct",
@@ -2078,16 +2079,14 @@
     },
     {
       "slug": "audit-yandex-direct",
-      "topic": "direct-management",
-      "topicLabel": "Настройка Яндекс Директа",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
       "tags": [
         "analytics",
         "economics",
         "search",
         "automation",
-        "campaign-setup",
-        "ad-formats",
-        "website"
+        "campaign-setup"
       ],
       "intent": "instruction"
     },
@@ -2374,7 +2373,8 @@
         "analytics",
         "economics",
         "automation",
-        "campaign-setup"
+        "campaign-setup",
+        "ad-formats"
       ],
       "intent": "instruction"
     },
