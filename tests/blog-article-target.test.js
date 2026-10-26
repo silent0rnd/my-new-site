@@ -119,6 +119,7 @@ for (const [, table] of tables) {
 
 const articleBlock = html.match(/<article class="legal-document"[^>]*>([\s\S]*?)<\/article>/i);
 assert.ok(articleBlock, "article document is missing");
+assert.doesNotMatch(plainText(articleBlock[1]), new RegExp(String.fromCharCode(96), "u"), "article contains forbidden U+0060 quote");
 for (const match of articleBlock[1].matchAll(/<a\s+[^>]*href="([^"]+)"/gi)) {
   const target = localPathFromUrl(articleDirectory, match[1]);
   if (target) assert.ok(fs.existsSync(target), `internal link target is missing: ${match[1]}`);

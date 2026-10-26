@@ -683,16 +683,14 @@
     },
     {
       "slug": "import-iz-kitaya",
-      "topic": "budget",
-      "topicLabel": "Бюджет и стоимость",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
       "tags": [
         "economics",
-        "specialist",
-        "telegram",
-        "seo",
+        "search",
         "lead-generation"
       ],
-      "intent": "service"
+      "intent": "strategy"
     },
     {
       "slug": "franshizy-proizvodstva-produktov-i-napitkov",
@@ -1184,7 +1182,8 @@
       "topic": "analytics",
       "topicLabel": "Аналитика",
       "tags": [
-        "analytics"
+        "analytics",
+        "campaign-setup"
       ],
       "intent": "strategy"
     },
@@ -1382,11 +1381,11 @@
       "topic": "traffic-quality",
       "topicLabel": "Качество трафика",
       "tags": [
-        "analytics",
         "economics",
-        "traffic-quality"
+        "traffic-quality",
+        "website"
       ],
-      "intent": "strategy"
+      "intent": "instruction"
     },
     {
       "slug": "primery-prodayushchih-saytov",
@@ -1968,9 +1967,8 @@
       "tags": [
         "manufacturing",
         "b2b",
-        "analytics",
-        "search",
-        "campaign-setup",
+        "economics",
+        "ad-formats",
         "website",
         "lead-generation"
       ],
@@ -2245,9 +2243,12 @@
       "topicLabel": "Реклама в соцсетях",
       "tags": [
         "analytics",
+        "economics",
+        "automation",
+        "campaign-setup",
         "telegram"
       ],
-      "intent": "strategy"
+      "intent": "instruction"
     },
     {
       "slug": "oplata-za-konversii-yandex-direct",
