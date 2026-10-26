@@ -978,8 +978,8 @@
     },
     {
       "slug": "moderaciya-yandex-direct",
-      "topic": "direct-tools",
-      "topicLabel": "Инструменты Яндекс Директа",
+      "topic": "sites",
+      "topicLabel": "Сайты и конверсия",
       "tags": [
         "ad-formats"
       ],
@@ -1039,7 +1039,6 @@
       "topicLabel": "Показатели рекламы",
       "tags": [
         "economics",
-        "website",
         "lead-generation"
       ],
       "intent": "service"
@@ -1117,6 +1116,7 @@
       "topic": "direct-tools",
       "topicLabel": "Инструменты Яндекс Директа",
       "tags": [
+        "analytics",
         "search",
         "campaign-setup",
         "ad-formats"
@@ -1282,6 +1282,33 @@
       "topicLabel": "Маркетинг",
       "tags": [
         "economics"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "drr-v-reklame",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [],
+      "intent": "strategy"
+    },
+    {
+      "slug": "roas-v-marketinge",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "economics"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kakaya-konversiya-reklamy-schitaetsya-horoshey",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
+      "tags": [
+        "analytics",
+        "economics",
+        "lead-generation"
       ],
       "intent": "strategy"
     },
@@ -2319,11 +2346,12 @@
     },
     {
       "slug": "konversiya-v-yandex-direct",
-      "topic": "metrics",
-      "topicLabel": "Показатели рекламы",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
       "tags": [
         "analytics",
-        "economics"
+        "economics",
+        "campaign-setup"
       ],
       "intent": "strategy"
     },
@@ -2420,6 +2448,8 @@
       "topic": "direct-management",
       "topicLabel": "Настройка Яндекс Директа",
       "tags": [
+        "analytics",
+        "economics",
         "search",
         "ad-formats",
         "lead-generation"
