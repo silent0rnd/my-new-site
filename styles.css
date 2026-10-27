@@ -5550,6 +5550,11 @@ html.is-hero-video-played .portrait-video {
   padding-right: 0;
 }
 
+.article-page--sklikivanie .article-table th,
+.article-page--sklikivanie .article-table td {
+  padding-left: 8px;
+}
+
 .article-table.article-table--scenarios {
   table-layout: fixed;
 }
@@ -6086,6 +6091,11 @@ html.is-hero-video-played .portrait-video {
     padding: 0;
     border-bottom: 0;
     font-size: 17px;
+  }
+
+  .article-page--sklikivanie .article-table th,
+  .article-page--sklikivanie .article-table td {
+    padding-left: 8px;
   }
 
   .article-table tbody th {
