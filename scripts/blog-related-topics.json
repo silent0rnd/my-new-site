@@ -2,6 +2,17 @@
   "version": 1,
   "articles": [
     {
+      "slug": "kak-privlech-podpischikov-v-telegram-i-max",
+      "topic": "social-ads",
+      "topicLabel": "Реклама в соцсетях",
+      "tags": [
+        "analytics",
+        "economics",
+        "telegram"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "prodvizhenie-yuvelirnogo-magazina",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
@@ -2045,7 +2056,8 @@
       "topic": "specialist",
       "topicLabel": "Работа со специалистом",
       "tags": [
-        "specialist"
+        "specialist",
+        "lead-generation"
       ],
       "intent": "service"
     },
@@ -2054,7 +2066,8 @@
       "topic": "specialist",
       "topicLabel": "Работа со специалистом",
       "tags": [
-        "specialist"
+        "specialist",
+        "comparison"
       ],
       "intent": "service"
     },
@@ -2064,8 +2077,9 @@
       "topicLabel": "Работа со специалистом",
       "tags": [
         "analytics",
-        "campaign-setup",
-        "specialist"
+        "search",
+        "specialist",
+        "lead-generation"
       ],
       "intent": "service"
     },

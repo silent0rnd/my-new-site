@@ -444,7 +444,7 @@
   </url>
   <url>
     <loc>https://naklikay.ru/blog/chastnyj-specialist-yandex-direct/</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -480,7 +480,7 @@
   </url>
   <url>
     <loc>https://naklikay.ru/blog/vedenie-yandex-direct-cena/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1044,7 +1044,7 @@
   </url>
   <url>
     <loc>https://naklikay.ru/blog/stoimost-uslug-direktologa/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1062,7 +1062,7 @@
   </url>
   <url>
     <loc>https://naklikay.ru/blog/direktolog-dlya-biznesa/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1503,9 +1503,10 @@
   <url><loc>https://naklikay.ru/blog/prodvizhenie-lazernoy-epilyacii/</loc><lastmod>2026-10-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://naklikay.ru/blog/prodvizhenie-onlayn-shkoly-pohudeniya/</loc><lastmod>2026-10-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://naklikay.ru/blog/prodvizhenie-yuvelirnogo-magazina/</loc><lastmod>2026-10-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://naklikay.ru/blog/kak-privlech-podpischikov-v-telegram-i-max/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url>
     <loc>https://naklikay.ru/blog/page/2/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1529,7 +1530,7 @@
   </url>
   <url>
     <loc>https://naklikay.ru/blog/page/6/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1584,6 +1585,12 @@
   <url>
     <loc>https://naklikay.ru/blog/page/15/</loc>
     <lastmod>2026-08-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://naklikay.ru/blog/page/16/</loc>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
