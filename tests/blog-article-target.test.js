@@ -138,6 +138,9 @@ assert.equal(targetCards.length, 1, "archive needs exactly one article card");
 
 const sitemap = read(path.join(root, "sitemap.xml"));
 assert.equal(occurrences(sitemap, new RegExp(`<loc>${canonical.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}<\\/loc>`, "g")), 1, "sitemap needs exactly one canonical URL");
+const sitemapEntry = sitemap.match(new RegExp(`<url>\\s*<loc>${canonical.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}<\\/loc>[\\s\\S]*?<\\/url>`));
+assert.ok(sitemapEntry, "sitemap article entry is missing");
+assert.match(sitemapEntry[0], new RegExp(`<lastmod>${posting.dateModified}<\\/lastmod>`), "sitemap lastmod differs from article dateModified");
 
 const topicIndex = JSON.parse(read(path.join(root, "scripts", "blog-related-topics.json")));
 const topicRecords = topicIndex.articles.filter((article) => article.slug === slug);

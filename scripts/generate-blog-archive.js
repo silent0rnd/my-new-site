@@ -193,6 +193,22 @@ function classifyArticle(article, articleHtml) {
   return { ...article, topic: topic.id, topicLabel: topic.label, tags, intent: intentFor(titleText) };
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function articleModifiedDate(html, slug) {
+  const dates = [
+    ...html.matchAll(/<meta property="article:modified_time" content="([^"]+)"\s*\/?\s*>/gi),
+    ...html.matchAll(/"dateModified"\s*:\s*"([^"]+)"/g),
+  ].map((match) => match[1]);
+  const uniqueDates = [...new Set(dates)];
+  if (!uniqueDates.length) throw new Error(`Article dateModified is missing: ${slug}`);
+  if (uniqueDates.length !== 1) throw new Error(`Article dateModified values differ: ${slug}`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(uniqueDates[0])) throw new Error(`Article dateModified is invalid: ${slug}`);
+  return uniqueDates[0];
+}
+
 const stopWords = new Set([
   "для", "как", "что", "это", "или", "через", "когда", "почему", "который", "которая", "которые",
   "яндекс", "директ", "директа", "директе", "реклама", "рекламы", "рекламе", "настройка", "настроить",
@@ -599,13 +615,29 @@ if (fs.existsSync(pageRoot)) {
 
 const sitemapPath = path.join(root, "sitemap.xml");
 let sitemap = read(sitemapPath).replace(/\s*<url>\s*<loc>https:\/\/naklikay\.ru\/blog\/page\/\d+\/<\/loc>[\s\S]*?<\/url>/g, "");
-const missingArticleEntries = articles
-  .filter((article) => article.slug === targetArticleSlug)
-  .filter((article) => !sitemap.includes(`<loc>${siteUrl}/blog/${article.slug}/</loc>`))
-  .map((article) => `  <url><loc>${siteUrl}/blog/${article.slug}/</loc><lastmod>${article.date}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`)
-  .join("\n");
+let targetArticleEntry = "";
+let updatedArticleLastmod = 0;
+if (targetArticleSlug) {
+  const targetArticlePath = path.join(blogDir, targetArticleSlug, "index.html");
+  const modifiedDate = articleModifiedDate(read(targetArticlePath), targetArticleSlug);
+  const articleUrl = `${siteUrl}/blog/${targetArticleSlug}/`;
+  const articleEntryPattern = new RegExp(`<url>\\s*<loc>${escapeRegExp(articleUrl)}<\\/loc>[\\s\\S]*?<\\/url>`);
+  const articleEntryMatch = sitemap.match(articleEntryPattern);
+  if (articleEntryMatch) {
+    const currentEntry = articleEntryMatch[0];
+    const nextEntry = /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(currentEntry)
+      ? currentEntry.replace(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/, `<lastmod>${modifiedDate}</lastmod>`)
+      : currentEntry.replace(`</loc>`, `</loc><lastmod>${modifiedDate}</lastmod>`);
+    if (nextEntry !== currentEntry) {
+      sitemap = sitemap.replace(articleEntryPattern, nextEntry);
+      updatedArticleLastmod = 1;
+    }
+  } else {
+    targetArticleEntry = `  <url><loc>${articleUrl}</loc><lastmod>${modifiedDate}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`;
+  }
+}
 const generatedPages = pages.slice(1).map((pageCards, index) => `  <url>\n    <loc>${siteUrl}/blog/page/${index + 2}/</loc>\n    <lastmod>${pageLastmod(pageCards)}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`).join("\n");
-const generatedSitemapEntries = [missingArticleEntries, generatedPages].filter(Boolean).join("\n");
+const generatedSitemapEntries = [targetArticleEntry, generatedPages].filter(Boolean).join("\n");
 if (generatedSitemapEntries) sitemap = sitemap.replace("</urlset>", `${generatedSitemapEntries}\n</urlset>`);
 write(sitemapPath, sitemap);
-console.log(`Generated ${pages.length} blog archive page(s), related cards for ${cards.length} article(s), and ${missingArticleEntries ? missingArticleEntries.split("\n").length : 0} missing sitemap URL(s).`);
+console.log(`Generated ${pages.length} blog archive page(s), related cards for ${cards.length} article(s), ${targetArticleEntry ? 1 : 0} missing sitemap URL(s), and ${updatedArticleLastmod} updated article lastmod value(s).`);
