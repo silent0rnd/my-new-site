@@ -10,6 +10,7 @@
   "scripts": {
     "build:blog": "node scripts/generate-blog-archive.js",
     "optimize:blog-images": "node scripts/optimize-blog-images.js",
+    "validate:blog-illustration": "node scripts/validate-blog-illustration.js",
     "update:blog-article": "node scripts/update-blog-article.js",
     "sync:blog-card": "node scripts/sync-blog-card.js",
     "build:cases": "node scripts/generate-cases.js",
@@ -19,6 +20,7 @@
     "test:blog": "powershell -ExecutionPolicy Bypass -File tests/blog.test.ps1 && powershell -ExecutionPolicy Bypass -File tests/favicon.test.ps1 && node scripts/normalize-visible-number-format.js",
     "test:blog-toc": "node tests/blog-toc.test.js",
     "test:blog-images": "node tests/blog-images.test.js",
+    "test:blog-illustration-validator": "node tests/blog-illustration-validator.test.js",
     "test:favicon": "powershell -ExecutionPolicy Bypass -File tests/favicon.test.ps1",
     "test:related-articles": "node tests/related-articles.test.js",
     "test:blog-article": "node tests/blog-article-with-visible-numbers.test.js",

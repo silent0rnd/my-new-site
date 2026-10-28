@@ -882,9 +882,7 @@
       "topic": "local-promotion",
       "topicLabel": "Локальное продвижение",
       "tags": [
-        "b2b",
         "analytics",
-        "website",
         "telegram",
         "local"
       ],
@@ -1371,6 +1369,16 @@
         "lead-generation"
       ],
       "intent": "comparison"
+    },
+    {
+      "slug": "jtbd-v-marketinge",
+      "topic": "sites",
+      "topicLabel": "Сайты и конверсия",
+      "tags": [
+        "ad-formats",
+        "website"
+      ],
+      "intent": "strategy"
     },
     {
       "slug": "kak-ocenit-effektivnost-yandex-direct",
@@ -2191,7 +2199,11 @@
       "topic": "direct-management",
       "topicLabel": "Настройка Яндекс Директа",
       "tags": [
+        "analytics",
+        "economics",
+        "search",
         "campaign-setup",
+        "traffic-quality",
         "specialist"
       ],
       "intent": "service"
