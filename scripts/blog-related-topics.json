@@ -2,6 +2,16 @@
   "version": 1,
   "articles": [
     {
+      "slug": "geomarketing",
+      "topic": "local-promotion",
+      "topicLabel": "Локальное продвижение",
+      "tags": [
+        "economics",
+        "local"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "kak-privlech-podpischikov-v-telegram-i-max",
       "topic": "social-ads",
       "topicLabel": "Реклама в соцсетях",
@@ -673,6 +683,7 @@
       "tags": [
         "education",
         "economics",
+        "search",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -1016,9 +1027,10 @@
       "topic": "direct-management",
       "topicLabel": "Настройка Яндекс Директа",
       "tags": [
+        "economics",
         "campaign-setup"
       ],
-      "intent": "strategy"
+      "intent": "instruction"
     },
     {
       "slug": "banner-na-poiske",
@@ -1178,7 +1190,9 @@
       "topic": "direct-management",
       "topicLabel": "Настройка Яндекс Директа",
       "tags": [
-        "economics"
+        "economics",
+        "search",
+        "lead-generation"
       ],
       "intent": "strategy"
     },
@@ -1294,8 +1308,18 @@
     },
     {
       "slug": "analiz-reklamy-konkurentov",
-      "topic": "marketing",
-      "topicLabel": "Маркетинг",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "economics",
+        "ad-formats"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "roi-v-marketinge",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
       "tags": [
         "economics"
       ],
@@ -1647,8 +1671,7 @@
       "tags": [
         "ecommerce",
         "analytics",
-        "search",
-        "campaign-setup",
+        "economics",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -1857,10 +1880,9 @@
       "topicLabel": "Юридические услуги",
       "tags": [
         "legal",
-        "analytics",
-        "search",
-        "website",
+        "economics",
         "specialist",
+        "comparison",
         "seo",
         "lead-generation"
       ],
@@ -1976,8 +1998,9 @@
       "topicLabel": "Производство и B2B",
       "tags": [
         "b2b",
-        "analytics",
+        "economics",
         "search",
+        "website",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -2278,10 +2301,11 @@
     },
     {
       "slug": "cena-za-klik-v-yandex-direkte",
-      "topic": "metrics",
-      "topicLabel": "Показатели рекламы",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
       "tags": [
-        "economics"
+        "economics",
+        "lead-generation"
       ],
       "intent": "service"
     },

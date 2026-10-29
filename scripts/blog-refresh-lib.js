@@ -231,7 +231,7 @@ function inlineMarkdown(value) {
   text = escapeHtml(text)
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/(\d)-(\d)/g, "$1&#8209;$2")
-    .replace(/(\d) (\d{3})(?=\D|$)/g, "$1&nbsp;$2")
+    .replace(/(?<![\d ])(\d{2,}) (\d{3})(?=\D|$)/g, "$1&nbsp;$2")
     .replace(/(\d) ₽/g, "$1&nbsp;₽");
   links.forEach((link, index) => { text = text.replace(`@@BLOG_LINK_${index}@@`, link); });
   return text;

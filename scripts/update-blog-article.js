@@ -160,19 +160,28 @@ async function main(argv = process.argv.slice(2)) {
   bodyHtml = applyImageDimensions(bodyHtml, plan);
   let nextHtml = `${prefix}<h1>${inlineMarkdown(h1)}</h1>${metaMatch ? metaMatch[0] : ""}\n${introHtml}\n\n${tocMatch[0]}\n${bodyHtml}\n${suffix}`;
   nextHtml = replaceSingle(nextHtml, /<title>[\s\S]*?<\/title>/i, `<title>${escapeAttribute(seo.seo_title)}</title>`, "title");
-  nextHtml = replaceSingle(nextHtml, /<meta name="description" content="[^"]*"\s*\/>/i, `<meta name="description" content="${escapeAttribute(seo.meta_description)}" />`, "description");
-  nextHtml = replaceSingle(nextHtml, /<meta property="og:title" content="[^"]*"\s*\/>/i, `<meta property="og:title" content="${escapeAttribute(seo.seo_title)}" />`, "og:title");
-  nextHtml = replaceSingle(nextHtml, /<meta property="og:description" content="[^"]*"\s*\/>/i, `<meta property="og:description" content="${escapeAttribute(seo.meta_description)}" />`, "og:description");
-  nextHtml = nextHtml.replace(/<meta name="twitter:[^"]+" content="[^"]*"\s*\/>/gi, "");
-  nextHtml = replaceSingle(nextHtml, /<link rel="canonical" href="[^"]*"\s*\/>/i, `<link rel="canonical" href="${escapeAttribute(seo.canonical)}" />`, "canonical");
-  nextHtml = replaceSingle(nextHtml, /<meta property="og:url" content="[^"]*"\s*\/>/i, `<meta property="og:url" content="${escapeAttribute(seo.canonical)}" />`, "og:url");
-  nextHtml = replaceSingle(nextHtml, /<meta property="article:published_time" content="[^"]*"\s*\/>/i, `<meta property="article:published_time" content="${seo.date_published}" />`, "article:published_time");
-  if (/<meta property="article:modified_time"/i.test(nextHtml)) {
-    nextHtml = replaceSingle(nextHtml, /<meta property="article:modified_time" content="[^"]*"\s*\/>/i, `<meta property="article:modified_time" content="${seo.date_modified}" />`, "article:modified_time");
+  nextHtml = replaceSingle(nextHtml, /<meta name="description" content="[^"]*"\s*\/?\s*>/i, `<meta name="description" content="${escapeAttribute(seo.meta_description)}" />`, "description");
+  nextHtml = replaceSingle(nextHtml, /<meta property="og:title" content="[^"]*"\s*\/?\s*>/i, `<meta property="og:title" content="${escapeAttribute(seo.seo_title)}" />`, "og:title");
+  nextHtml = replaceSingle(nextHtml, /<meta property="og:description" content="[^"]*"\s*\/?\s*>/i, `<meta property="og:description" content="${escapeAttribute(seo.meta_description)}" />`, "og:description");
+  nextHtml = nextHtml.replace(/<meta name="twitter:[^"]+" content="[^"]*"\s*\/?\s*>/gi, "");
+  nextHtml = replaceSingle(nextHtml, /<link rel="canonical" href="[^"]*"\s*\/?\s*>/i, `<link rel="canonical" href="${escapeAttribute(seo.canonical)}" />`, "canonical");
+  nextHtml = replaceSingle(nextHtml, /<meta property="og:url" content="[^"]*"\s*\/?\s*>/i, `<meta property="og:url" content="${escapeAttribute(seo.canonical)}" />`, "og:url");
+  if (/<meta property="article:published_time"/i.test(nextHtml)) {
+    nextHtml = replaceSingle(nextHtml, /<meta property="article:published_time" content="[^"]*"\s*\/?\s*>/i, `<meta property="article:published_time" content="${seo.date_published}" />`, "article:published_time");
   } else {
-    nextHtml = replaceSingle(nextHtml, /(<meta property="article:published_time" content="[^"]*"\s*\/>)/i, `$1<meta property="article:modified_time" content="${seo.date_modified}" />`, "article:published_time");
+    nextHtml = replaceSingle(nextHtml, /(<meta property="og:url" content="[^"]*"\s*\/?\s*>)/i, `$1<meta property="article:published_time" content="${seo.date_published}" />`, "og:url");
   }
-  const ogImage = (nextHtml.match(/<meta property="og:image" content="([^"]+)"/i) || [])[1];
+  if (/<meta property="article:modified_time"/i.test(nextHtml)) {
+    nextHtml = replaceSingle(nextHtml, /<meta property="article:modified_time" content="[^"]*"\s*\/?\s*>/i, `<meta property="article:modified_time" content="${seo.date_modified}" />`, "article:modified_time");
+  } else {
+    nextHtml = replaceSingle(nextHtml, /(<meta property="article:published_time" content="[^"]*"\s*\/?\s*>)/i, `$1<meta property="article:modified_time" content="${seo.date_modified}" />`, "article:published_time");
+  }
+  const ogImage = plan.length
+    ? `https://naklikay.ru/blog/${plan[0].publishedName}`
+    : (nextHtml.match(/<meta property="og:image" content="([^"]+)"/i) || [])[1];
+  if (ogImage) {
+    nextHtml = replaceSingle(nextHtml, /<meta property="og:image" content="[^"]*"\s*\/?\s*>/i, `<meta property="og:image" content="${escapeAttribute(ogImage)}" />`, "og:image");
+  }
   nextHtml = replaceSchema(nextHtml, (items) => {
     const post = items.find((item) => item["@type"] === "BlogPosting" || item["@type"] === "Article");
     const breadcrumbs = items.find((item) => item["@type"] === "BreadcrumbList");
