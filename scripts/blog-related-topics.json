@@ -1317,6 +1317,17 @@
       "intent": "instruction"
     },
     {
+      "slug": "lidogeneraciya-chto-eto-i-kak-rabotaet",
+      "topic": "sites",
+      "topicLabel": "Сайты и конверсия",
+      "tags": [
+        "economics",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "explanation"
+    },
+    {
       "slug": "roi-v-marketinge",
       "topic": "metrics",
       "topicLabel": "Показатели рекламы",
@@ -1707,10 +1718,10 @@
       "topicLabel": "Недвижимость",
       "tags": [
         "real-estate-agency",
-        "analytics",
+        "economics",
         "search",
-        "website",
         "specialist",
+        "comparison",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -2274,8 +2285,7 @@
       "topic": "analytics",
       "topicLabel": "Аналитика",
       "tags": [
-        "analytics",
-        "traffic-quality"
+        "analytics"
       ],
       "intent": "instruction"
     },
