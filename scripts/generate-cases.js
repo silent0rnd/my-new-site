@@ -64,6 +64,10 @@ function assetUrl(src) {
   return `${siteUrl}/${src.replace(/^\/+/, "")}`;
 }
 
+function responsiveWebpSrc(src, width) {
+  return src.replace(/\.[^.]+$/, `-${width}.webp`);
+}
+
 function orb(variant) {
   return `<svg class="case-sketch-orb case-sketch-orb--${variant}" viewBox="0 0 210 210" aria-hidden="true" focusable="false" data-case-sketch-orb="${variant}"><path d="${ORB_PATHS[variant]}" vector-effect="non-scaling-stroke"></path></svg>`;
 }
@@ -103,6 +107,13 @@ function factsHtml(facts = []) {
 }
 
 function illustrationHtml(illustration) {
+  const image = `<img src="${attr(assetPath(illustration.src))}" alt="${attr(illustration.alt)}" width="${attr(illustration.width)}" height="${attr(illustration.height)}" loading="${attr(illustration.loading)}" decoding="${attr(illustration.decoding)}">`;
+  const responsiveWidths = Array.isArray(illustration.responsiveWidths)
+    ? illustration.responsiveWidths.filter((width) => Number.isInteger(width) && width > 0)
+    : [];
+  const media = responsiveWidths.length > 0
+    ? `<picture><source type="image/webp" srcset="${attr(responsiveWidths.map((width) => `${assetPath(responsiveWebpSrc(illustration.src, width))} ${width}w`).join(", "))}" sizes="(max-width: 720px) calc(100vw - 36px), 860px">${image}</picture>`
+    : image;
   const tapes = illustration.showMarks === false
     ? ""
     : [
@@ -111,7 +122,7 @@ function illustrationHtml(illustration) {
     ].join("");
   return [
     `<figure class="case-content-figure">`,
-    `<img src="${attr(assetPath(illustration.src))}" alt="${attr(illustration.alt)}" width="${attr(illustration.width)}" height="${attr(illustration.height)}" loading="${attr(illustration.loading)}" decoding="${attr(illustration.decoding)}">`,
+    media,
     tapes,
     `</figure>`,
   ].join("");

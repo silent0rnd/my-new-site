@@ -119,6 +119,9 @@
   function createIllustration(illustration) {
     const figure = createElement("figure", "case-content-figure");
     const image = document.createElement("img");
+    const responsiveWidths = Array.isArray(illustration.responsiveWidths)
+      ? illustration.responsiveWidths.filter((width) => Number.isInteger(width) && width > 0)
+      : [];
     const topLeftTape = createElement("span", "case-content-figure__tape case-content-figure__tape--top-left");
     const bottomRightTape = createElement("span", "case-content-figure__tape case-content-figure__tape--bottom-right");
     image.src = assetPath(illustration.src);
@@ -129,7 +132,19 @@
     image.decoding = illustration.decoding;
     topLeftTape.setAttribute("aria-hidden", "true");
     bottomRightTape.setAttribute("aria-hidden", "true");
-    figure.append(image, topLeftTape, bottomRightTape);
+    if (responsiveWidths.length > 0) {
+      const picture = document.createElement("picture");
+      const source = document.createElement("source");
+      source.type = "image/webp";
+      source.srcset = responsiveWidths
+        .map((width) => `${assetPath(illustration.src).replace(/\.[^.]+$/, `-${width}.webp`)} ${width}w`)
+        .join(", ");
+      source.sizes = "(max-width: 720px) calc(100vw - 36px), 860px";
+      picture.append(source, image);
+      figure.append(picture, topLeftTape, bottomRightTape);
+    } else {
+      figure.append(image, topLeftTape, bottomRightTape);
+    }
     return figure;
   }
 
