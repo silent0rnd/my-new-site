@@ -1757,9 +1757,7 @@
       "topicLabel": "Интернет-магазины",
       "tags": [
         "ecommerce",
-        "analytics",
-        "search",
-        "campaign-setup",
+        "economics",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -1773,6 +1771,7 @@
         "analytics",
         "search",
         "campaign-setup",
+        "website",
         "lead-generation"
       ],
       "intent": "instruction"
@@ -1785,7 +1784,6 @@
         "commercial-real-estate",
         "analytics",
         "search",
-        "campaign-setup",
         "website",
         "lead-generation"
       ],
@@ -1811,8 +1809,8 @@
       "tags": [
         "education",
         "analytics",
+        "economics",
         "search",
-        "campaign-setup",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -1836,13 +1834,12 @@
       "topic": "real-estate",
       "topicLabel": "Недвижимость",
       "tags": [
-        "analytics",
+        "economics",
         "search",
-        "campaign-setup",
         "website",
         "lead-generation"
       ],
-      "intent": "instruction"
+      "intent": "strategy"
     },
     {
       "slug": "prodvizhenie-reklamnogo-proizvodstva",
@@ -1864,10 +1861,9 @@
       "topicLabel": "Недвижимость",
       "tags": [
         "real-estate-agency",
-        "analytics",
+        "economics",
         "search",
         "campaign-setup",
-        "website",
         "specialist",
         "lead-generation"
       ],
