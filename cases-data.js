@@ -1932,10 +1932,11 @@
           "items": [],
           "illustrationAfterParagraph": {
             "index": 1,
-            "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-01-tema.jpg",
+            "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-01-demand.jpg",
             "alt": "Ограниченный поисковый спрос на услугу выкупа акций с высоким чеком.",
             "width": 2896,
             "height": 2172,
+            "responsiveWidths": [640, 1080, 1720],
             "loading": "lazy",
             "decoding": "async"
           }
@@ -1966,10 +1967,11 @@
           ],
           "illustrationAfterParagraph": {
             "index": 1,
-            "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-02-tema.jpg",
+            "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-02-five-campaigns-flow.jpg",
             "alt": "Система из пяти параллельных Мастер-кампаний для продвижения услуги выкупа акций.",
             "width": 2896,
             "height": 2172,
+            "responsiveWidths": [640, 1080, 1720],
             "loading": "lazy",
             "decoding": "async"
           }
@@ -2013,10 +2015,11 @@
           ],
           "illustrationAfterParagraph": {
             "index": 0,
-            "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-03-tema.jpg",
+            "src": "assets/cases/stock-buyout-high-ticket-yandex-direct-03-all-lead-channels.jpg",
             "alt": "Разница между CPL по целям Метрики и реальной стоимостью обращения с учетом всех каналов связи.",
             "width": 2896,
             "height": 2172,
+            "responsiveWidths": [640, 1080, 1720],
             "loading": "lazy",
             "decoding": "async"
           }
@@ -2116,6 +2119,7 @@
             "alt": "Оптовая продажа суперфуда мешками 20-40 кг вместо розничных пачек 200 г.",
             "width": 2896,
             "height": 2172,
+            "responsiveWidths": [640, 1080, 1720],
             "loading": "lazy",
             "decoding": "async"
           }
@@ -2145,6 +2149,7 @@
             "alt": "Перераспределение рекламного бюджета от слабых кампаний к работающим без увеличения расходов.",
             "width": 2896,
             "height": 2172,
+            "responsiveWidths": [640, 1080, 1720],
             "loading": "lazy",
             "decoding": "async"
           }
@@ -2176,6 +2181,7 @@
             "alt": "Снижение цены клика и рост конверсии в рекламе суперфуда привели к росту заявок с 35 до 113.",
             "width": 2896,
             "height": 2172,
+            "responsiveWidths": [640, 1080, 1720],
             "loading": "lazy",
             "decoding": "async"
           }

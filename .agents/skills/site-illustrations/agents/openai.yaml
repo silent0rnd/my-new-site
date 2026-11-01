@@ -1,0 +1,7 @@
+﻿interface:
+  display_name: "Иллюстрации сайта"
+  short_description: "Дизайн и генерация иллюстраций сайта"
+  default_prompt: "Используй $site-illustrations для создания или замены иллюстрации в статье или кейсе."
+policy:
+  allow_implicit_invocation: true
+
