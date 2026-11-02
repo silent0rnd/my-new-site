@@ -1745,6 +1745,7 @@
       "tags": [
         "healthcare",
         "analytics",
+        "economics",
         "website",
         "seo",
         "lead-generation"
@@ -1795,10 +1796,10 @@
       "topicLabel": "Недвижимость",
       "tags": [
         "analytics",
+        "economics",
         "search",
-        "campaign-setup",
-        "website",
-        "lead-generation"
+        "automation",
+        "campaign-setup"
       ],
       "intent": "instruction"
     },
@@ -1811,9 +1812,9 @@
         "analytics",
         "economics",
         "search",
-        "lead-generation"
+        "campaign-setup"
       ],
-      "intent": "strategy"
+      "intent": "instruction"
     },
     {
       "slug": "kontekstnaya-reklama-novostroek",
@@ -1821,10 +1822,9 @@
       "topicLabel": "Недвижимость",
       "tags": [
         "residential-real-estate",
-        "analytics",
+        "economics",
         "search",
         "campaign-setup",
-        "website",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -1848,8 +1848,7 @@
       "tags": [
         "manufacturing",
         "b2b",
-        "analytics",
-        "website",
+        "economics",
         "seo",
         "lead-generation"
       ],
@@ -1993,6 +1992,7 @@
       "tags": [
         "b2b",
         "analytics",
+        "economics",
         "search",
         "campaign-setup",
         "lead-generation"
