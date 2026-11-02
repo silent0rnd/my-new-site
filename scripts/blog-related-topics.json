@@ -2,6 +2,32 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-ekologicheskih-uslug-2026",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "b2b",
+        "economics",
+        "specialist",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "prodvizhenie-assenizatorskih-uslug",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "b2b",
+        "economics",
+        "specialist",
+        "avito",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
       "slug": "geomarketing",
       "topic": "local-promotion",
       "topicLabel": "Локальное продвижение",
@@ -1668,7 +1694,6 @@
       "topicLabel": "Недвижимость",
       "tags": [
         "residential-real-estate",
-        "analytics",
         "search",
         "website",
         "lead-generation"
@@ -1693,8 +1718,9 @@
       "topicLabel": "Недвижимость",
       "tags": [
         "commercial-real-estate",
-        "analytics",
-        "website",
+        "economics",
+        "ad-formats",
+        "comparison",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -1705,8 +1731,8 @@
       "topicLabel": "Строительство",
       "tags": [
         "house-building",
-        "analytics",
-        "campaign-setup",
+        "economics",
+        "search",
         "website",
         "lead-generation"
       ],
@@ -1927,9 +1953,10 @@
       "tags": [
         "manufacturing",
         "b2b",
-        "analytics",
+        "economics",
         "search",
-        "website"
+        "ad-formats",
+        "lead-generation"
       ],
       "intent": "strategy"
     },
