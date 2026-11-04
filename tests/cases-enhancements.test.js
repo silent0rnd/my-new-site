@@ -11,6 +11,15 @@ vm.runInContext(fs.readFileSync(path.join(root, "cases-data.js"), "utf8"), sandb
 const cases = sandbox.window.siteCases;
 assert.strictEqual(cases.length, 44, "Expected all 44 cases");
 
+function sectionIllustrations(section) {
+  return [
+    section.illustration,
+    section.illustrationAfterParagraph,
+    ...(Array.isArray(section.illustrationsAfterParagraph) ? section.illustrationsAfterParagraph : []),
+    section.illustrationAfterListItem,
+  ].filter(Boolean);
+}
+
 for (const caseItem of cases) {
   assert.ok(caseItem.h1Title.startsWith("Продвижение"), `${caseItem.slug}: H1 must describe promotion`);
   assert.ok(caseItem.intro.includes("Результат -"), `${caseItem.slug}: intro must contain the result`);
@@ -24,6 +33,21 @@ for (const caseItem of cases) {
   assert.ok(!html.includes('<section class="case-cta">'), `${caseItem.slug}: CTA block must be absent`);
   assert.ok(html.includes('class="case-gallery__caption"'), `${caseItem.slug}: visible gallery caption is missing`);
   assert.ok(html.includes('class="case-lightbox__counter"'), `${caseItem.slug}: separate lightbox counter is missing`);
+
+  for (const [sectionIndex, section] of (caseItem.sections || []).entries()) {
+    for (const illustration of sectionIllustrations(section)) {
+      const sourcePath = path.join(root, ...illustration.src.split("/"));
+      assert.ok(fs.existsSync(sourcePath), `${caseItem.slug}: illustration source is missing in section ${sectionIndex + 1}: ${illustration.src}`);
+      assert.ok(html.includes(`../../${illustration.src}`), `${caseItem.slug}: generated page does not reference illustration source in section ${sectionIndex + 1}: ${illustration.src}`);
+
+      for (const width of illustration.responsiveWidths || []) {
+        const responsiveSrc = illustration.src.replace(/\.[^.]+$/, `-${width}.webp`);
+        const responsivePath = path.join(root, ...responsiveSrc.split("/"));
+        assert.ok(fs.existsSync(responsivePath), `${caseItem.slug}: responsive illustration is missing in section ${sectionIndex + 1}: ${responsiveSrc}`);
+        assert.ok(html.includes(`../../${responsiveSrc} ${width}w`), `${caseItem.slug}: generated page does not reference responsive illustration in section ${sectionIndex + 1}: ${responsiveSrc}`);
+      }
+    }
+  }
 
   if (caseItem.seoTitle) {
     assert.ok(html.includes(`<title>${caseItem.seoTitle}</title>`), `${caseItem.slug}: SEO title changed`);

@@ -68,6 +68,37 @@ function responsiveWebpSrc(src, width) {
   return src.replace(/\.[^.]+$/, `-${width}.webp`);
 }
 
+function sectionIllustrations(section) {
+  return [
+    section.illustration,
+    section.illustrationAfterParagraph,
+    ...(Array.isArray(section.illustrationsAfterParagraph) ? section.illustrationsAfterParagraph : []),
+    section.illustrationAfterListItem,
+  ].filter(Boolean);
+}
+
+function validateCaseIllustrationAssets(caseItem) {
+  for (const [sectionIndex, section] of (caseItem.sections || []).entries()) {
+    for (const illustration of sectionIllustrations(section)) {
+      const sourcePath = path.join(root, illustration.src);
+      if (!fs.existsSync(sourcePath)) {
+        throw new Error(`${caseItem.slug}: missing illustration source in section ${sectionIndex + 1}: ${illustration.src}`);
+      }
+
+      const responsiveWidths = Array.isArray(illustration.responsiveWidths)
+        ? illustration.responsiveWidths.filter((width) => Number.isInteger(width) && width > 0)
+        : [];
+
+      for (const width of responsiveWidths) {
+        const responsiveSrc = responsiveWebpSrc(illustration.src, width);
+        if (!fs.existsSync(path.join(root, responsiveSrc))) {
+          throw new Error(`${caseItem.slug}: missing responsive illustration ${width}px in section ${sectionIndex + 1}: ${responsiveSrc}`);
+        }
+      }
+    }
+  }
+}
+
 function orb(variant) {
   return `<svg class="case-sketch-orb case-sketch-orb--${variant}" viewBox="0 0 210 210" aria-hidden="true" focusable="false" data-case-sketch-orb="${variant}"><path d="${ORB_PATHS[variant]}" vector-effect="non-scaling-stroke"></path></svg>`;
 }
@@ -633,6 +664,7 @@ const targets = only ? cases.filter((caseItem) => caseItem.slug === only) : case
 if (only && targets.length === 0) throw new Error(`Кейс «${only}» не найден в cases-data.js.`);
 
 for (const caseItem of targets) {
+  validateCaseIllustrationAssets(caseItem);
   const file = path.join(casesDir, caseItem.slug, "index.html");
   if (!fs.existsSync(path.dirname(file))) throw new Error(`Нет папки для кейса: ${caseItem.slug}`);
   fs.writeFileSync(file, pageHtml(caseItem, cases), "utf8");
