@@ -67,5 +67,8 @@ assert.ok(source.includes('fetch("../../data/russia-city-populations.json"'), "p
 assert.ok(html.includes("data-minus-group-limit") && html.includes("data-minus-campaign-limit"), "both Yandex Direct limits must be visible");
 assert.ok(source.includes('renderLimit(groupLimit, "Для группы объявлений в Яндекс Директе"'), "group limit must name Yandex Direct");
 assert.ok(source.includes('renderLimit(campaignLimit, "Для кампании в Яндекс Директе"'), "campaign limit must name Yandex Direct");
+assert.ok(html.includes("data-minus-clear-result") && html.includes("Очистить список"), "generated list must have its own clear button");
+assert.ok(source.includes('clearResult.addEventListener("click", clearGeneratedResult)'), "generated list clear button must clear the result");
+assert.ok(source.includes('result = { cities: [], regions: [], items: [], text: "", characters: 0 }'), "clearing the generated list must reset its data");
 assert.equal(source.includes("\\u0000"), false, "chip keys must be valid HTML attribute values");
 console.log(`minus-cities: ${data.cities.length} city records, ${full.cities.length} unique cities, ${fullWithRegions.regions.length} unique regions`);

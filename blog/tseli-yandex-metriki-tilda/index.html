@@ -170,28 +170,30 @@
 <section>
           <h2 id="section-kakie-tseli-nuzhny-na-sayte-tilda">Какие цели нужны на сайте Tilda</h2>
           <p>Набор целей зависит от того, какие действия действительно имеют значение для бизнеса. Не нужно превращать каждый клик на странице в основную конверсию.</p>
-          <table>
+          <div class="article-table-wrap">
+          <table class="article-table">
             <thead><tr><th>Действие</th><th>Что лучше отслеживать</th></tr></thead>
             <tbody>
-              <tr><td>Отправка формы</td><td>успешную отправку формы</td></tr>
-              <tr><td>Квиз</td><td>отправку формы и при необходимости отдельные шаги</td></tr>
-              <tr><td>Важная кнопка</td><td>клик по конкретной кнопке</td></tr>
-              <tr><td>Телефон</td><td>клик по номеру телефона</td></tr>
-              <tr><td>Email</td><td>клик по адресу email</td></tr>
-              <tr><td>Мессенджер</td><td>переход в мессенджер</td></tr>
-              <tr><td>Попап</td><td>открытие попапа, если это действительно полезно для анализа</td></tr>
+              <tr><td data-label="Действие">Отправка формы</td><td data-label="Что лучше отслеживать">успешную отправку формы</td></tr>
+              <tr><td data-label="Действие">Квиз</td><td data-label="Что лучше отслеживать">отправку формы и при необходимости отдельные шаги</td></tr>
+              <tr><td data-label="Действие">Важная кнопка</td><td data-label="Что лучше отслеживать">клик по конкретной кнопке</td></tr>
+              <tr><td data-label="Действие">Телефон</td><td data-label="Что лучше отслеживать">клик по номеру телефона</td></tr>
+              <tr><td data-label="Действие">Email</td><td data-label="Что лучше отслеживать">клик по адресу email</td></tr>
+              <tr><td data-label="Действие">Мессенджер</td><td data-label="Что лучше отслеживать">переход в мессенджер</td></tr>
+              <tr><td data-label="Действие">Попап</td><td data-label="Что лучше отслеживать">открытие попапа, если это действительно полезно для анализа</td></tr>
             </tbody>
           </table>
+          </div>
           <p class="content-key-point">Для рекламы основной целью обычно должно быть действие, максимально близкое к реальному обращению. Поэтому отправка формы полезнее простого клика по кнопке, которая только открывает форму.</p>
           <figure class="article-figure">
-            <picture data-blog-responsive="true"><source type="image/webp" srcset="01-tseli-metriki-tilda-640.webp 640w, 01-tseli-metriki-tilda-1080.webp 1080w, 01-tseli-metriki-tilda-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="01-tseli-metriki-tilda.jpg" alt="Цели Яндекс Метрики на Tilda: формы, кнопки, квиз, телефон и страница успешной отправки" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
+            <picture data-blog-responsive="true"><source type="image/webp" srcset="01-tseli-metriki-tilda-diorama-640.webp 640w, 01-tseli-metriki-tilda-diorama-1080.webp 1080w, 01-tseli-metriki-tilda-diorama-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="01-tseli-metriki-tilda-diorama.jpg" alt="Цели Яндекс Метрики на Tilda: формы, кнопки, квиз, телефон и страница успешной отправки" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
           <figcaption>Основные цели Яндекс Метрики на Tilda</figcaption></figure>
         </section>
 
         <section>
           <h2 id="section-snachala-podklyuchite-yandeks-metriku-k-tilda">Сначала подключите Яндекс Метрику к Tilda</h2>
           <p>Счетчик лучше подключать штатным способом через:</p>
-          <p><strong>Tilda -&gt; Настройки сайта -&gt; Аналитика -&gt; Яндекс Метрика</strong></p>
+          <p><strong>Откройте в Tilda «Настройки сайта», затем «Аналитика» и «Яндекс Метрика».</strong></p>
           <p>Укажите номер счетчика, сохраните изменения и переопубликуйте все страницы сайта.</p>
           <p>Переопубликация важна: после изменения настроек аналитики новый код должен попасть на опубликованные страницы. Tilda отдельно указывает, что после подключения или изменения счетчика страницы нужно опубликовать заново.</p>
           <p>Для целей Tilda штатное подключение особенно удобно, потому что платформа передает в аналитику виртуальные страницы действий.</p>
@@ -208,7 +210,7 @@
           <p><code>/tilda/form836770867/step1</code></p>
           <p>В Яндекс Метрике такую виртуальную страницу можно использовать как условие цели типа «Посещение страниц». Когда пользователь совершает действие, Tilda передает виртуальную страницу в Метрику, а та фиксирует ее и засчитывает достижение цели.</p>
           <figure class="article-figure">
-            <picture data-blog-responsive="true"><source type="image/webp" srcset="02-kak-tsel-popadaet-v-metriku-640.webp 640w, 02-kak-tsel-popadaet-v-metriku-1080.webp 1080w, 02-kak-tsel-popadaet-v-metriku-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="02-kak-tsel-popadaet-v-metriku.jpg" alt="Как действие пользователя на Tilda превращается в цель Яндекс Метрики" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
+            <picture data-blog-responsive="true"><source type="image/webp" srcset="02-put-tseli-tilda-metrika-640.webp 640w, 02-put-tseli-tilda-metrika-1080.webp 1080w, 02-put-tseli-tilda-metrika-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="02-put-tseli-tilda-metrika.jpg" alt="Как действие пользователя на Tilda превращается в цель Яндекс Метрики" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
           <figcaption>Передача действий с Tilda в Яндекс Метрику</figcaption></figure>
         </section>
 
@@ -220,8 +222,8 @@
           <p>Смысл конструкции простой. Номер формы между <code>form</code> и <code>submitted</code> может быть любым, поэтому цель продолжит работать для разных форм сайта.</p>
           <p>В Яндекс Метрике создайте цель типа «Посещение страниц» и задайте условие по регулярному выражению.</p>
           <p>Для подстраховки я дополнительно добавляю условие по <code>submitted</code>.</p>
-          <figure class="article-figure article-figure--narrow">
-            <picture data-blog-responsive="true"><source type="image/webp" srcset="../5.1-640.webp 640w, ../5.1-681.webp 681w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../5.1.jpg" alt="Настройка цели отправки всех форм Tilda в Яндекс Метрике" width="681" height="911" loading="lazy" decoding="async" /></picture>
+          <figure class="article-figure">
+            <picture data-blog-responsive="true"><source type="image/webp" srcset="../5.1-640.webp 640w, ../5.1-1080.webp 1080w, ../5.1-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../5.1.jpg" alt="Настройка цели отправки всех форм Tilda в Яндекс Метрике" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
             <figcaption>Два условия в одной цели: регулярное выражение и запасной вариант.</figcaption>
           </figure>
           <p>Tilda также рекомендует использовать <code>submitted</code>, если нужно создать общую цель для успешной отправки форм.</p>
@@ -238,8 +240,12 @@
           <h2 id="section-avtomaticheskie-tseli-yandeks-metriki-na-tilda">Автоматические цели Яндекс Метрики на Tilda</h2>
           <p>Яндекс Метрика умеет автоматически создавать цели для ряда действий на сайте. Среди них могут быть отправка формы, клик по номеру телефона, клик по email, переход в мессенджер и нажатие на кнопку.</p>
           <p>Автоматические цели полезны как дополнительный слой аналитики, особенно если нужно быстро увидеть базовые действия без ручной настройки каждой цели.</p>
-          <p class="content-key-point">Но для основной рекламной конверсии я предпочитаю контролируемую цель, где понятно, какое именно действие считается заявкой. Например, для формы Tilda это успешная отправка с виртуальной страницей <code>submitted</code>, а не просто клик по кнопке перед формой.</p>
-          <p>Проверить, включены ли автоматические цели, можно в настройках счетчика Яндекс Метрики.</p>
+    <p class="content-key-point">Но для основной рекламной конверсии я предпочитаю контролируемую цель, где понятно, какое именно действие считается заявкой. Например, для формы Tilda это успешная отправка с виртуальной страницей <code>submitted</code>, а не просто клик по кнопке перед формой.</p>
+    <figure class="article-figure">
+      <picture data-blog-responsive="true"><source type="image/webp" srcset="04-osnovnaya-tsel-reklamy-640.webp 640w, 04-osnovnaya-tsel-reklamy-1080.webp 1080w, 04-osnovnaya-tsel-reklamy-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="04-osnovnaya-tsel-reklamy.jpg" alt="Основная и вспомогательные цели Яндекс Метрики для оценки рекламы" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
+      <figcaption>Основная цель показывает реальную заявку, вспомогательные цели не заменяют её при оценке рекламы</figcaption>
+    </figure>
+    <p>Проверить, включены ли автоматические цели, можно в настройках счетчика Яндекс Метрики.</p>
         </section>
 
         <section>
@@ -268,8 +274,12 @@
           <p><code>/tilda/form836770867/step3</code></p>
           <p>Эти события позволяют увидеть, на каком этапе люди чаще прекращают заполнение квиза.</p>
           <p>Если много пользователей открывают первый шаг, но почти никто не доходит до формы контактов, проблема может быть не в рекламе. Возможно, сам квиз слишком длинный, один из вопросов непонятен или контактные данные запрашиваются слишком рано.</p>
-          <p>Отслеживание шагов позволяет увидеть эту картину в цифрах.</p>
-        </section>
+    <p>Отслеживание шагов позволяет увидеть эту картину в цифрах.</p>
+    <figure class="article-figure">
+      <picture data-blog-responsive="true"><source type="image/webp" srcset="05-poteri-na-shagah-kviza-640.webp 640w, 05-poteri-na-shagah-kviza-1080.webp 1080w, 05-poteri-na-shagah-kviza-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="05-poteri-na-shagah-kviza.jpg" alt="Потери пользователей на шагах квиза Tilda до формы контактов" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
+      <figcaption>Отслеживание шагов показывает, где пользователи прекращают заполнение квиза</figcaption>
+    </figure>
+  </section>
 
         <section>
           <h2 id="section-kak-sozdat-tsel-na-konkretnyy-shag-kviza">Как создать цель на конкретный шаг квиза</h2>
@@ -306,14 +316,14 @@
           <h2 id="section-pochemu-tsel-yandeks-metriki-na-tilda-ne-srabatyvaet">Почему цель Яндекс Метрики на Tilda не срабатывает</h2>
           <p>Если цель не фиксируется, проверяйте цепочку по порядку. Так быстрее понять, на каком этапе пропадают данные.</p>
           <ol>
-            <li>Убедитесь, что номер счетчика указан в Tilda через «Настройки сайта -&gt; Аналитика -&gt; Яндекс Метрика».</li>
+              <li>Убедитесь, что номер счетчика указан в Tilda. Откройте «Настройки сайта», затем «Аналитика» и «Яндекс Метрика».</li>
             <li>После подключения или изменения счетчика переопубликуйте все страницы.</li>
             <li>Выполните реальное целевое действие и проверьте, передает ли Tilda нужную виртуальную страницу.</li>
             <li>Сравните виртуальный адрес с условием созданной цели в Метрике.</li>
             <li>Проверьте событие через <code>_ym_debug=2</code>.</li>
           </ol>
           <figure class="article-figure">
-            <picture data-blog-responsive="true"><source type="image/webp" srcset="03-pochemu-tsel-ne-srabatyvaet-640.webp 640w, 03-pochemu-tsel-ne-srabatyvaet-1080.webp 1080w, 03-pochemu-tsel-ne-srabatyvaet-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="03-pochemu-tsel-ne-srabatyvaet.jpg" alt="Пять шагов проверки, если цель Яндекс Метрики на Tilda не срабатывает" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
+            <picture data-blog-responsive="true"><source type="image/webp" srcset="03-proverka-tseli-tilda-metrika-640.webp 640w, 03-proverka-tseli-tilda-metrika-1080.webp 1080w, 03-proverka-tseli-tilda-metrika-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="03-proverka-tseli-tilda-metrika.jpg" alt="Пять шагов проверки, если цель Яндекс Метрики на Tilda не срабатывает" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
           <figcaption>Проверка неработающей цели Яндекс Метрики</figcaption></figure>
           <p>Если отладчик вообще не видит счетчик или события, проверьте блокировщики рекламы и другие расширения браузера. Яндекс отдельно указывает AdBlock и другие скрипты среди возможных причин, по которым счетчик или отладчик может не работать.</p>
           <p>Есть еще один частый случай: в Метрике включен фильтр «Не учитывать мои визиты». Тогда собственная тестовая сессия может не попасть в статистику. Для проверки используйте приватный режим браузера.</p>
