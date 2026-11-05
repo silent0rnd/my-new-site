@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Варианты блока кейсов</title>
+  <style>
+    @font-face {
+      font-family: "TT Masters";
+      src: url("../assets/fonts/TTMasters-Regular.ttf") format("truetype");
+      font-display: block;
+    }
+
+    :root {
+      --paper: #f3f3f1;
+      --paper-deep: #ecebe6;
+      --ink: #2b2b2b;
+      --muted: #777772;
+      --line: #d9d9d4;
+      --orange: #ff9800;
+      --wood: #d9c7aa;
+      --cork: #c9a57b;
+      --green: #879d77;
+      --clay: #c98169;
+      --blue: #91a9b5;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #deddd7; color: var(--ink); font-family: "TT Masters", sans-serif; }
+    body { padding: 28px; }
+    .concept {
+      position: relative;
+      width: 1440px;
+      height: 1000px;
+      margin: 0 auto 28px;
+      overflow: hidden;
+      background: var(--paper);
+      isolation: isolate;
+    }
+    .wrap { position: relative; z-index: 4; width: 1180px; margin: 0 auto; padding-top: 66px; }
+    .eyebrow { margin: 0 0 12px; color: var(--muted); font-size: 16px; }
+    h2 { margin: 0; max-width: 850px; font-size: 44px; line-height: 1.05; font-weight: 400; letter-spacing: -1.1px; }
+    .accent-line { width: 160px; height: 7px; margin-top: 15px; border-radius: 999px; background: var(--orange); transform: rotate(-1.5deg); }
+    .concept-label { position: absolute; z-index: 20; top: 26px; right: 30px; padding: 9px 14px 8px; border: 1px solid #c7c6c0; border-radius: 999px; background: rgba(248,248,245,.88); color: #555550; font-size: 15px; }
+    .filters { display: flex; gap: 10px; margin-top: 34px; }
+    .filter { display: inline-flex; align-items: center; min-height: 42px; padding: 0 18px; border: 1px solid #c8c8c3; border-radius: 999px; background: rgba(248,248,245,.78); font-size: 16px; white-space: nowrap; }
+    .filter.active { border-color: var(--ink); background: var(--ink); color: #fff; box-shadow: 0 5px 0 rgba(43,43,43,.12); }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 32px; }
+    .case { position: relative; min-height: 278px; padding: 27px 30px; overflow: hidden; }
+    .case small { display: block; color: var(--muted); font-size: 15px; }
+    .case h3 { margin: 15px 0 0; max-width: 420px; font-size: 25px; line-height: 1.15; font-weight: 400; }
+    .result { margin-top: 22px; max-width: 470px; font-size: 39px; line-height: 1.02; letter-spacing: -.7px; }
+    .case footer { position: absolute; left: 30px; right: 30px; bottom: 24px; display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 14px; }
+    .more { color: var(--ink); border-bottom: 2px solid var(--orange); padding-bottom: 2px; }
+
+    /* Вариант 1: библиотека материалов */
+    .concept-1 {
+      background:
+        radial-gradient(circle at 8% 18%, rgba(201,165,123,.16) 0 88px, transparent 89px),
+        radial-gradient(circle at 94% 83%, rgba(135,157,119,.12) 0 124px, transparent 125px),
+        linear-gradient(115deg, #f5f4f0 0%, #f0efe9 100%);
+    }
+    .concept-1:before {
+      content: ""; position: absolute; inset: 0; opacity: .34; z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.10'/%3E%3C/svg%3E");
+    }
+    .concept-1 .filters { position: relative; padding: 15px 18px; border-radius: 22px; background: rgba(222,211,192,.55); box-shadow: inset 0 0 0 1px rgba(124,104,79,.13); }
+    .concept-1 .filters:after { content: ""; position: absolute; left: 24px; right: 24px; bottom: -8px; height: 8px; border-radius: 0 0 8px 8px; background: #d0bea0; opacity: .7; }
+    .concept-1 .case { border: 1px solid rgba(114,111,101,.28); border-radius: 6px 18px 9px 14px; background: #fbfaf6; box-shadow: 0 15px 28px rgba(73,68,57,.08), 4px 5px 0 #e1ded4; }
+    .concept-1 .case:nth-child(2) { transform: rotate(.3deg); }
+    .concept-1 .case:nth-child(3) { transform: rotate(-.35deg); }
+    .concept-1 .case:before { content: ""; position: absolute; right: 22px; top: 21px; width: 42px; height: 42px; border-radius: 50%; background: #e4d4b8; box-shadow: inset -5px -6px 0 rgba(111,89,56,.08); }
+    .concept-1 .case:nth-child(2):before { border-radius: 13px; background: #cbd6c4; transform: rotate(8deg); }
+    .concept-1 .case:nth-child(3):before { width: 48px; height: 35px; border-radius: 50% 50% 45% 45%; background: #d8c0b0; }
+    .concept-1 .case:nth-child(4):before { border-radius: 7px; background: #c7d1d4; transform: rotate(-5deg); }
+    .thread { position: absolute; z-index: 2; left: -20px; top: 330px; width: 270px; height: 380px; border: 5px solid rgba(255,152,0,.72); border-right: 0; border-radius: 160px 0 0 160px; transform: rotate(-8deg); }
+    .wood-pin { position: absolute; z-index: 3; width: 42px; height: 42px; border-radius: 50%; background: #ddcfb5; box-shadow: inset -7px -6px 0 rgba(84,64,31,.09), 0 8px 16px rgba(56,50,39,.1); }
+    .wood-pin.one { left: 70px; top: 224px; }
+    .wood-pin.two { right: 64px; bottom: 78px; width: 64px; height: 64px; }
+
+    /* Вариант 2: маршрут результата */
+    .concept-2 { background: #f1f0eb; }
+    .concept-2:before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0 49.85%, rgba(93,90,80,.055) 49.85% 50.15%, transparent 50.15%); }
+    .concept-2 .wrap { padding-top: 62px; }
+    .concept-2 h2 { max-width: 680px; }
+    .concept-2 .filters { position: absolute; top: 76px; right: 0; display: grid; grid-template-columns: repeat(3, auto); margin: 0; gap: 8px; }
+    .concept-2 .filter { min-height: 38px; padding: 0 14px; background: #ece7dd; border-color: #d4c8b3; }
+    .concept-2 .filter.active { background: var(--orange); border-color: var(--orange); color: var(--ink); box-shadow: 0 5px 0 rgba(165,106,17,.15); }
+    .concept-2 .grid { position: relative; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 48px; padding-top: 42px; }
+    .concept-2 .grid:before { content: ""; position: absolute; left: 7%; right: 7%; top: 16px; height: 10px; border-radius: 999px; background: var(--orange); box-shadow: 0 5px 0 rgba(118,78,20,.12); }
+    .concept-2 .case { min-height: 520px; padding: 30px 24px; border: 0; border-radius: 110px 110px 18px 18px; background: #fbfaf6; box-shadow: 0 18px 34px rgba(68,62,50,.1), inset 0 0 0 1px rgba(95,89,76,.16); }
+    .concept-2 .case:before { content: ""; position: absolute; left: 50%; top: -33px; width: 56px; height: 56px; transform: translateX(-50%); border-radius: 50%; background: #ddd0ba; border: 10px solid #f1f0eb; box-shadow: inset -4px -5px 0 rgba(78,60,37,.08); }
+    .concept-2 .case:nth-child(2):before { background: #b8c9b0; }
+    .concept-2 .case:nth-child(3):before { background: #c6d1d5; }
+    .concept-2 .case:nth-child(4):before { background: #d8b7a5; }
+    .concept-2 .case small { margin-top: 46px; text-align: center; }
+    .concept-2 .case h3 { min-height: 74px; margin-top: 18px; text-align: center; font-size: 23px; }
+    .concept-2 .result { margin: 28px -2px 0; padding: 24px 16px; border-radius: 16px; background: #eae3d7; text-align: center; font-size: 34px; }
+    .concept-2 .case:nth-child(2) .result { background: #e4ebe0; }
+    .concept-2 .case:nth-child(3) .result { background: #e2e9eb; }
+    .concept-2 .case:nth-child(4) .result { background: #eee1da; }
+    .concept-2 .case footer { left: 24px; right: 24px; bottom: 28px; display: block; text-align: center; }
+    .concept-2 .case footer span:first-child { display: block; margin-bottom: 15px; }
+    .ceramic-dot { position: absolute; right: 55px; bottom: 35px; width: 110px; height: 110px; border-radius: 46% 54% 50% 44%; background: #d9ddd1; box-shadow: inset -13px -12px 0 rgba(75,90,65,.06), 0 14px 22px rgba(65,60,51,.08); transform: rotate(14deg); }
+
+    /* Вариант 3: редакционный стол */
+    .concept-3 {
+      background:
+        linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,.4)),
+        repeating-linear-gradient(90deg, #ece5d9 0 2px, #efe9df 2px 55px, #e9e2d6 55px 57px);
+    }
+    .concept-3 .wrap { width: 1220px; padding-top: 54px; }
+    .concept-3 .header-row { display: flex; justify-content: space-between; align-items: flex-end; }
+    .concept-3 h2 { max-width: 650px; }
+    .concept-3 .filters { flex-wrap: wrap; justify-content: flex-end; max-width: 520px; margin: 0; }
+    .concept-3 .filter { background: #f7f4ed; box-shadow: 0 4px 0 rgba(78,64,45,.08); }
+    .concept-3 .filter.active { background: #2b2b2b; }
+    .concept-3 .grid { grid-template-columns: 1.15fr .85fr; grid-template-rows: 318px 318px; gap: 18px; margin-top: 30px; }
+    .concept-3 .case { display: grid; grid-template-columns: 44% 56%; min-height: 0; padding: 0; border: 1px solid rgba(99,88,72,.2); border-radius: 22px 7px 19px 8px; background: #faf8f2; box-shadow: 0 16px 30px rgba(67,55,40,.1); }
+    .concept-3 .case:nth-child(2), .concept-3 .case:nth-child(4) { grid-template-columns: 38% 62%; }
+    .scene { position: relative; overflow: hidden; background: #e6ddcf; border-radius: 20px 0 0 7px; }
+    .scene:before { content: ""; position: absolute; width: 142px; height: 105px; left: 26px; bottom: 41px; border-radius: 12px 12px 5px 5px; background: #f7f2e8; box-shadow: 12px 12px 0 rgba(72,59,44,.08); transform: rotate(-4deg); }
+    .scene:after { content: ""; position: absolute; width: 70px; height: 70px; right: 26px; top: 38px; border-radius: 50%; background: #c9b18d; box-shadow: inset -8px -8px 0 rgba(87,61,30,.08); }
+    .scene .bar { position: absolute; z-index: 3; left: 50px; bottom: 74px; width: 118px; height: 15px; border-radius: 999px; background: var(--orange); transform: rotate(-4deg); }
+    .scene .leaf { position: absolute; z-index: 4; right: 42px; bottom: 34px; width: 54px; height: 86px; border-radius: 90% 8% 90% 8%; background: #8ea280; transform: rotate(28deg); }
+    .case:nth-child(2) .scene { background: #dfe5dd; }
+    .case:nth-child(2) .scene:after { border-radius: 8px; background: #a9b9a4; transform: rotate(9deg); }
+    .case:nth-child(3) .scene { background: #dfe5e7; }
+    .case:nth-child(3) .scene:after { background: #a9bec6; }
+    .case:nth-child(4) .scene { background: #eadfd8; }
+    .case:nth-child(4) .scene:after { background: #cf9d87; }
+    .copy { position: relative; padding: 25px 26px; }
+    .concept-3 .case h3 { margin-top: 13px; font-size: 22px; }
+    .concept-3 .result { margin-top: 18px; font-size: 33px; }
+    .concept-3 .case footer { left: 26px; right: 26px; bottom: 22px; }
+    .tape { position: absolute; z-index: 8; top: 219px; left: 92px; width: 88px; height: 24px; background: rgba(225,202,158,.75); transform: rotate(-7deg); }
+    .pencil { position: absolute; z-index: 2; top: 38px; right: 118px; width: 230px; height: 13px; border-radius: 999px; background: #ff9800; transform: rotate(16deg); box-shadow: 0 5px 0 rgba(82,55,18,.1); }
+    .pencil:after { content: ""; position: absolute; right: -21px; top: 0; border-left: 23px solid #d8b98c; border-top: 6.5px solid transparent; border-bottom: 6.5px solid transparent; }
+  </style>
+</head>
+<body>
+  <section class="concept concept-1" id="concept-1">
+    <div class="concept-label">Вариант 1 - библиотека материалов</div>
+    <div class="thread"></div><div class="wood-pin one"></div><div class="wood-pin two"></div>
+    <div class="wrap">
+      <p class="eyebrow">Кейсы по контекстной рекламе</p>
+      <h2>Выберите направление, чтобы посмотреть проекты, похожие на вашу задачу</h2>
+      <div class="accent-line"></div>
+      <nav class="filters">
+        <span class="filter active">Все кейсы</span><span class="filter">Образование</span><span class="filter">Недвижимость</span><span class="filter">B2B</span><span class="filter">B2C</span><span class="filter">TG Ads</span>
+      </nav>
+      <div class="grid">
+        <article class="case"><small>Образование</small><h3>Масштабирование фотошколы</h3><div class="result">2500 лидов в месяц по 126₽ вместо 550₽</div><footer><span>Яндекс Директ</span><span class="more">Смотреть кейс</span></footer></article>
+        <article class="case"><small>Недвижимость</small><h3>Строительство домов</h3><div class="result">Снизили CPA в 2 раза</div><footer><span>Яндекс Директ</span><span class="more">Смотреть кейс</span></footer></article>
+        <article class="case"><small>B2B</small><h3>Поставщик промышленных дробилок</h3><div class="result">64 заявки по 546₽</div><footer><span>Яндекс Директ</span><span class="more">Смотреть кейс</span></footer></article>
+        <article class="case"><small>B2C</small><h3>Адвокат в Краснодаре</h3><div class="result">51 звонок по 1084₽, около 83% целевых</div><footer><span>Яндекс Директ</span><span class="more">Смотреть кейс</span></footer></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept concept-2" id="concept-2">
+    <div class="concept-label">Вариант 2 - маршрут результата</div><div class="ceramic-dot"></div>
+    <div class="wrap">
+      <p class="eyebrow">Кейсы по контекстной рекламе</p>
+      <h2>Проекты, где реклама стала измеримым результатом</h2>
+      <div class="accent-line"></div>
+      <nav class="filters">
+        <span class="filter active">Все</span><span class="filter">Образование</span><span class="filter">Недвижимость</span><span class="filter">B2B</span><span class="filter">B2C</span><span class="filter">TG Ads</span>
+      </nav>
+      <div class="grid">
+        <article class="case"><small>Образование</small><h3>Фотошкола</h3><div class="result">2500 лидов<br>по 126₽</div><footer><span>Яндекс Директ</span><span class="more">Открыть кейс</span></footer></article>
+        <article class="case"><small>Недвижимость</small><h3>Строительство домов</h3><div class="result">CPA ниже<br>в 2 раза</div><footer><span>Яндекс Директ</span><span class="more">Открыть кейс</span></footer></article>
+        <article class="case"><small>B2B</small><h3>Промышленные дробилки</h3><div class="result">64 заявки<br>по 546₽</div><footer><span>Яндекс Директ</span><span class="more">Открыть кейс</span></footer></article>
+        <article class="case"><small>B2C</small><h3>Адвокат</h3><div class="result">51 звонок<br>по 1084₽</div><footer><span>Яндекс Директ</span><span class="more">Открыть кейс</span></footer></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="concept concept-3" id="concept-3">
+    <div class="concept-label">Вариант 3 - редакционный стол</div><div class="pencil"></div><div class="tape"></div>
+    <div class="wrap">
+      <div class="header-row">
+        <div><p class="eyebrow">Кейсы по контекстной рекламе</p><h2>Выберите проект с похожей задачей</h2><div class="accent-line"></div></div>
+        <nav class="filters"><span class="filter active">Все кейсы</span><span class="filter">Образование</span><span class="filter">Недвижимость</span><span class="filter">B2B</span><span class="filter">B2C</span><span class="filter">TG Ads</span></nav>
+      </div>
+      <div class="grid">
+        <article class="case"><div class="scene"><i class="bar"></i><i class="leaf"></i></div><div class="copy"><small>Образование</small><h3>Масштабирование фотошколы</h3><div class="result">2500 лидов в месяц по 126₽</div><footer><span>Яндекс Директ</span><span class="more">Смотреть</span></footer></div></article>
+        <article class="case"><div class="scene"><i class="bar"></i><i class="leaf"></i></div><div class="copy"><small>Недвижимость</small><h3>Строительство домов</h3><div class="result">Снизили CPA в 2 раза</div><footer><span>Яндекс Директ</span><span class="more">Смотреть</span></footer></div></article>
+        <article class="case"><div class="scene"><i class="bar"></i><i class="leaf"></i></div><div class="copy"><small>B2B</small><h3>Промышленные дробилки</h3><div class="result">64 заявки по 546₽</div><footer><span>Яндекс Директ</span><span class="more">Смотреть</span></footer></div></article>
+        <article class="case"><div class="scene"><i class="bar"></i><i class="leaf"></i></div><div class="copy"><small>B2C</small><h3>Адвокат в Краснодаре</h3><div class="result">51 звонок по 1084₽</div><footer><span>Яндекс Директ</span><span class="more">Смотреть</span></footer></div></article>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
