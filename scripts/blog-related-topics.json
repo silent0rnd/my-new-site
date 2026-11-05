@@ -674,12 +674,13 @@
       "topicLabel": "Недвижимость",
       "tags": [
         "residential-real-estate",
-        "analytics",
         "economics",
         "specialist",
-        "avito"
+        "avito",
+        "seo",
+        "lead-generation"
       ],
-      "intent": "instruction"
+      "intent": "strategy"
     },
     {
       "slug": "prodvizhenie-gruzoperevozok-2026",
