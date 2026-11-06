@@ -2,6 +2,15 @@
   "version": 1,
   "articles": [
     {
+      "slug": "kak-nachat-prodavat-onlayn-kursy-s-nulya",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "prodvizhenie-ekologicheskih-uslug-2026",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
@@ -1024,9 +1033,7 @@
       "slug": "kreativy-yandex-direct",
       "topic": "metrics",
       "topicLabel": "Показатели рекламы",
-      "tags": [
-        "ad-formats"
-      ],
+      "tags": [],
       "intent": "strategy"
     },
     {
@@ -1458,7 +1465,7 @@
       "topic": "traffic-quality",
       "topicLabel": "Качество трафика",
       "tags": [
-        "campaign-setup",
+        "automation",
         "traffic-quality",
         "lead-generation"
       ],
