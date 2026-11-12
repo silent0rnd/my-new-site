@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <title>Офлайн-конверсии в Яндекс Метрике: как передавать квалифицированные лиды</title>
 <meta name="description" content="Как передавать квалифицированные лиды и продажи в Яндекс Метрику через CRM и без CRM, связывать их с визитами и использовать для оптимизации Яндекс Директа." />
 <meta name="robots" content="index,follow,max-image-preview:large" />
@@ -214,8 +215,8 @@
 <p>В «Неразобранных визитах» доступны визиты за последние 21 день, поэтому ручную квалификацию не стоит откладывать надолго.</p>
 <p>Ручная схема подходит при небольшом потоке обращений. Если лидов много, статусы лучше передавать автоматически из CRM, иначе ручная разметка быстро становится узким местом.</p>
 <figure class="article-figure">
-<picture data-blog-responsive="true"><source type="image/webp" srcset="../01-tema-640.webp 640w, ../01-tema-1080.webp 1080w, ../01-tema-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../01-tema.jpg" alt="Передача квалифицированных лидов в Яндекс Метрику через CRM и без CRM" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
-<figcaption>Два способа передавать квалифицированные лиды в Метрику: через CRM и вручную без CRM</figcaption>
+<picture data-blog-responsive="true"><source type="image/webp" srcset="../01-tema-640.webp 640w, ../01-tema-1080.webp 1080w, ../01-tema-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../01-tema.jpg" alt="Два способа передачи квалифицированных лидов в Яндекс Метрику: через CRM автоматически и вручную через CSV без CRM" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
+<figcaption>Передача квалифицированных лидов через CRM и без CRM</figcaption>
 </figure>
 </section>
 <section>
@@ -296,6 +297,10 @@
 <strong>не человек, который способен заполнить форму, а человек, похожий на тех, кто проходит дальнейший этап воронки.</strong>
 </p>
 <p>Именно поэтому передача офлайн-конверсий может существенно изменить логику оптимизации рекламы.</p>
+<figure class="article-figure">
+<picture data-blog-responsive="true"><source type="image/webp" srcset="../04-kachestvo-lidov-640.webp 640w, ../04-kachestvo-lidov-1080.webp 1080w, ../04-kachestvo-lidov-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../04-kachestvo-lidov.jpg" alt="Сравнение двух рекламных кампаний: дешёвые заявки и качество лидов после квалификации" width="1448" height="1086" loading="lazy" decoding="async" /></picture>
+<figcaption>Дешёвые заявки не всегда означают эффективную рекламную кампанию</figcaption>
+</figure>
 <p>Но выбирать самую глубокую цель автоматически тоже не стоит.</p>
 <p>Если оплаченных сделок мало, алгоритму может не хватать статистики. В таком случае разумнее сначала использовать более частое событие, например квалифицированный лид, подтвержденную запись или состоявшуюся встречу.</p>
 <p>Яндекс рекомендует для конверсионных стратегий иметь бюджет, достаточный примерно для 10-20 конверсий в неделю. При меньшем количестве данных обучение стратегии может быть затруднено.</p>
@@ -379,8 +384,8 @@
 <p>yclid создается при переходе по рекламе Яндекс Директа.</p>
 <p>Он удобен, если задача связана именно с рекламным трафиком Яндекса. Для более общей сквозной аналитики ClientID обычно универсальнее.</p>
 <figure class="article-figure">
-<picture data-blog-responsive="true"><source type="image/webp" srcset="../02-tema-640.webp 640w, ../02-tema-1080.webp 1080w, ../02-tema-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../02-tema.jpg" alt="Как Яндекс Метрика связывает визит с клиентом по ClientID, телефону, email и yclid" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
-<figcaption>ClientID как основной идентификатор для связи визита с лидом или сделкой</figcaption>
+<picture data-blog-responsive="true"><source type="image/webp" srcset="../02-tema-640.webp 640w, ../02-tema-1080.webp 1080w, ../02-tema-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../02-tema.jpg" alt="Как ClientID, телефон, email и yclid помогают Яндекс Метрике связать визит с лидом" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
+<figcaption>ClientID как основной способ связать визит с лидом</figcaption>
 </figure>
 </section>
 <section>
@@ -391,6 +396,10 @@
 <h2 id="section-pochemu-nelzya-slishkom-dolgo-otkladyvat-peredachu-dannyh">Почему нельзя слишком долго откладывать передачу данных</h2>
 <p>Для первоначальной привязки офлайн-данных к визиту важно не затягивать с передачей. В разделе «Неразобранные визиты» доступны визиты за последние 21 день.</p>
 <p>Если заказ уже успешно привязан к визиту, его данные можно изменять в течение 111 дней с начала визита: обновлять статус, сумму и другие параметры. Поэтому длинный цикл сделки не мешает передать ранний этап, а затем обновить его до оплаты.</p>
+<figure class="article-figure">
+<picture data-blog-responsive="true"><source type="image/webp" srcset="../05-sroki-konversiy-640.webp 640w, ../05-sroki-konversiy-1080.webp 1080w, ../05-sroki-konversiy-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../05-sroki-konversiy.jpg" alt="Сроки работы с офлайн-конверсиями: 21 день для ручной привязки и 111 дней для обновления привязанного заказа" width="1448" height="1086" loading="lazy" decoding="async" /></picture>
+<figcaption>Сроки 21 и 111 дней при работе с офлайн-конверсиями</figcaption>
+</figure>
 </section>
 <section>
 <h2 id="section-oflayn-konversii-i-strategiya-maksimum-pribyli">Офлайн-конверсии и стратегия «Максимум прибыли»</h2>
@@ -424,8 +433,8 @@
 <li><strong>Продажа</strong> - максимальная бизнес-ценность, но событие может быть слишком редким для стабильного обучения.</li>
 </ul>
 <figure class="article-figure">
-<picture data-blog-responsive="true"><source type="image/webp" srcset="../03-tema-640.webp 640w, ../03-tema-1080.webp 1080w, ../03-tema-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../03-tema.jpg" alt="Выбор цели для оптимизации Яндекс Директа между заявкой, квалифицированным лидом и продажей" width="2896" height="2172" loading="lazy" decoding="async" /></picture>
-<figcaption>Квалифицированный лид часто дает баланс между качеством сигнала и объемом статистики</figcaption>
+<picture data-blog-responsive="true"><source type="image/webp" srcset="../03-tema-640.webp 640w, ../03-tema-1080.webp 1080w, ../03-tema-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../03-tema.jpg" alt="Выбор между заявкой, квалифицированным лидом и продажей как целью оптимизации Яндекс Директа" width="1448" height="1086" loading="lazy" decoding="async" /></picture>
+<figcaption>Глубокая цель должна обеспечивать достаточно статистики для обучения</figcaption>
 </figure>
 <p>Самая глубокая цель не всегда является лучшей для оптимизации. Квалифицированный лид - частый практический баланс в лидовых проектах, когда статистики по квалифицированным обращениям достаточно.</p>
 </section>

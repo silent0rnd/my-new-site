@@ -513,7 +513,8 @@ function pageHtml(caseItem, cases) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
     <title>${esc(title)}</title>
     <meta name="description" content="${attr(description)}" />
     <meta name="robots" content="index,follow" />
@@ -613,7 +614,8 @@ function indexHtml(cases, categories) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/assets/avatar-donut.svg?v=2" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
     <title>${esc(title)}</title>
     <meta name="description" content="${attr(description)}" />
     <meta name="robots" content="index,follow" />

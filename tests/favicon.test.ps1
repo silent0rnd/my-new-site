@@ -1,8 +1,10 @@
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
-$faviconPath = Join-Path $root "assets/avatar-donut.svg"
-$faviconTag = '<link\s+rel="icon"\s+href="(?:/|(?:\.\./)+)assets/avatar-donut\.svg\?v=2"\s+type="image/svg\+xml"\s*/?>'
+$faviconIcoPath = Join-Path $root "favicon.ico"
+$faviconPngPath = Join-Path $root "favicon-32x32.png"
+$faviconIcoTag = '<link\s+rel="icon"\s+href="(?:/|(?:\.\./)+)favicon\.ico"\s+sizes="any"\s*/?>'
+$faviconPngTag = '<link\s+rel="icon"\s+href="(?:/|(?:\.\./)+)favicon-32x32\.png"\s+type="image/png"\s+sizes="32x32"\s*/?>'
 $doctypeBytes = [Text.Encoding]::ASCII.GetBytes("<!doctype html>")
 
 function Test-BytePrefix {
@@ -28,8 +30,12 @@ function Test-BytePrefix {
 $pages = Get-ChildItem -Path $root -Recurse -Filter "index.html" -File |
   Where-Object { $_.FullName -notmatch '\\(node_modules|tmp)\\' }
 
-if (-not (Test-Path -LiteralPath $faviconPath)) {
-  throw "Favicon file is missing: $faviconPath"
+if (-not (Test-Path -LiteralPath $faviconIcoPath)) {
+  throw "Favicon file is missing: $faviconIcoPath"
+}
+
+if (-not (Test-Path -LiteralPath $faviconPngPath)) {
+  throw "Favicon file is missing: $faviconPngPath"
 }
 
 $invalid = foreach ($page in $pages) {
@@ -47,7 +53,9 @@ $invalid = foreach ($page in $pages) {
 
   $html = [Text.Encoding]::UTF8.GetString($bytes)
   $head = [regex]::Match($html, '(?is)\A(?:\uFEFF)?<!doctype html>.*?<head\b[^>]*>(?<content>.*?)</head>')
-  if ($doctypeOffset -lt 0 -or -not $head.Success -or $head.Groups['content'].Value -notmatch $faviconTag) {
+  if ($doctypeOffset -lt 0 -or -not $head.Success -or
+    $head.Groups['content'].Value -notmatch $faviconIcoTag -or
+    $head.Groups['content'].Value -notmatch $faviconPngTag) {
     $page.FullName.Substring($root.Length + 1)
   }
 }

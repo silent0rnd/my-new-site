@@ -2,6 +2,16 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-uchastkov-izhs",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "avito"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "kak-nachat-prodavat-onlayn-kursy-s-nulya",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
