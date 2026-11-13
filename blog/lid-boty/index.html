@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <title>Лид-боты: как выявить фейковые заявки и защитить рекламу</title>
+    <meta name="description" content="Как работают лид-боты, чем опасны фейковые заявки, как проверить их в Яндекс Директе, Метрике и CRM и защитить формы сайта от спама." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://naklikay.ru/blog/lid-boty/" />
+    <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="../../styles.css?v=20260909-article-toc-3" />
+    <script src="../../script.js?v=20260909-article-toc-3" defer></script>
+    <meta property="og:type" content="article" /><meta property="og:site_name" content="Максим Мирошников" /><meta property="og:url" content="https://naklikay.ru/blog/lid-boty/" /><meta property="og:title" content="Лид-боты: как выявить фейковые заявки и защитить рекламу" /><meta property="og:description" content="Как работают лид-боты, чем опасны фейковые заявки, как проверить их в Яндекс Директе, Метрике и CRM и защитить формы сайта от спама." /><meta property="og:image" content="https://naklikay.ru/blog/01-kak-rabotayut-lid-boty-1720.webp" /><meta property="og:image:width" content="1720" /><meta property="og:image:height" content="1290" /><meta property="og:image:alt" content="Два способа отправки фейковых заявок через рекламу и напрямую в обработчик" /><meta property="article:published_time" content="2026-11-13" /><meta property="article:modified_time" content="2026-11-13" /><meta property="article:author" content="Максим Мирошников" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Лид-боты: как выявить фейковые заявки и защитить рекламу" /><meta name="twitter:description" content="Как работают лид-боты, чем опасны фейковые заявки, как проверить их в Яндекс Директе, Метрике и CRM и защитить формы сайта от спама." /><meta name="twitter:image" content="https://naklikay.ru/blog/01-kak-rabotayut-lid-boty-1720.webp" />
+    
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Лид-боты: как работают, чем опасны и как от них защититься","description":"Как работают лид-боты, чем опасны фейковые заявки, как проверить их в Яндекс Директе, Метрике и CRM и защитить формы сайта от спама.","url":"https://naklikay.ru/blog/lid-boty/","mainEntityOfPage":{"@type":"WebPage","@id":"https://naklikay.ru/blog/lid-boty/"},"image":["https://naklikay.ru/blog/01-kak-rabotayut-lid-boty-1720.webp","https://naklikay.ru/blog/01-kak-rabotayut-lid-boty.jpg","https://naklikay.ru/blog/03-feykovye-zayavki-i-cpl.jpg","https://naklikay.ru/blog/02-kak-vyyavit-lid-botov.jpg","https://naklikay.ru/blog/04-zashchita-formy-ot-botov.jpg"],"datePublished":"2026-11-13","dateModified":"2026-11-13","inLanguage":"ru-RU","author":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/","jobTitle":"Специалист по платному трафику и Яндекс Директу"},"publisher":{"@type":"Person","name":"Максим Мирошников","url":"https://naklikay.ru/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://naklikay.ru/"},{"@type":"ListItem","position":2,"name":"Блог","item":"https://naklikay.ru/blog/"},{"@type":"ListItem","position":3,"name":"Лид-боты","item":"https://naklikay.ru/blog/lid-boty/"}]}</script>
+  </head>
+  <body class="legal-page article-page"><header class="legal-topbar"><a class="legal-home-link" href="../../">Максим Мирошников</a><nav class="messenger-links" aria-label="Мессенджеры"><a href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">Telegram</a><a href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">Макс</a></nav></header>
+    <main class="legal-shell"><article class="legal-document"><nav class="article-breadcrumbs" aria-label="Хлебные крошки"><a href="../../">Главная</a><span aria-hidden="true">/</span><a href="../">Блог</a><span aria-hidden="true">/</span><span aria-current="page">Лид-боты</span></nav><p class="legal-kicker">Блог о платном трафике</p><h1>Лид-боты: как работают, чем опасны и как от них защититься</h1><p class="article-meta"><time datetime="2026-11-13">13 ноября 2026</time><span aria-hidden="true">·</span><span>Максим Мирошников</span></p>
+<p class="article-lead"><strong>Лид-боты</strong> - программы, которые автоматически отправляют заявки через формы на сайте или прямо в серверный обработчик. Из-за них в CRM появляются обращения с вымышленными или чужими контактами, менеджеры тратят время на проверку, а статистика конверсий может перестать отражать реальные запросы клиентов. Если такие обращения связаны с оплачиваемой рекламой и не отфильтрованы антифродом, они способны исказить оценку и оптимизацию кампаний.</p>
+<p>Однако фейковая заявка не означает, что за неё заплатили в Яндекс Директе. Спам может приходить напрямую на сайт, без рекламного клика. Для диагностики нужно сопоставить заявки, визиты, рекламные данные и результат обработки контакта.</p>
+
+<!-- article-toc:start -->
+<nav class="article-toc" id="article-toc" aria-labelledby="article-toc-title">
+  <p class="article-toc__eyebrow">Навигация по статье</p>
+  <h2 class="article-toc__title" id="article-toc-title">Содержание</h2>
+  <ol class="article-toc__list">
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-chto-takoe-lid-boty-i-zachem-oni-otpravlyayut-zayavki" data-article-anchor>Что такое лид-боты и зачем они отправляют заявки</a>
+    </li>
+    <li class="article-toc__item article-toc__item--has-children">
+      <div class="article-toc__section-row">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-lid-boty-ostavlyayut-feykovye-zayavki" data-article-anchor>Как лид-боты оставляют фейковые заявки</a>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-2" aria-label="Показать подразделы: Как лид-боты оставляют фейковые заявки">
+          <span aria-hidden="true">3</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
+        </button>
+      </div>
+      <ol class="article-toc__sublist" id="article-toc-subsections-2" hidden>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-cherez-reklamu-i-obychnuyu-stranitsu-sayta" data-article-anchor>Через рекламу и обычную страницу сайта</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-napryamuyu-v-obrabotchik-formy-bez-reklamnogo-klika" data-article-anchor>Напрямую в обработчик формы, без рекламного клика</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-s-ispolzovaniem-chuzhih-kontaktov-i-povtoryayuschihsya-shablonov" data-article-anchor>С использованием чужих контактов и повторяющихся шаблонов</a></li>
+      </ol>
+    </li>
+    <li class="article-toc__item article-toc__item--has-children">
+      <div class="article-toc__section-row">
+      <a class="article-toc__link article-toc__link--section" href="#section-chem-lid-boty-opasny-dlya-reklamy-i-biznesa" data-article-anchor>Чем лид-боты опасны для рекламы и бизнеса</a>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-3" aria-label="Показать подразделы: Чем лид-боты опасны для рекламы и бизнеса">
+          <span aria-hidden="true">1</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
+        </button>
+      </div>
+      <ol class="article-toc__sublist" id="article-toc-subsections-3" hidden>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-primer-kak-menyaetsya-stoimost-obrascheniya" data-article-anchor>Пример: как меняется стоимость обращения</a></li>
+      </ol>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-otlichit-lid-bota-ot-netselevogo-klienta" data-article-anchor>Как отличить лид-бота от нецелевого клиента</a>
+    </li>
+    <li class="article-toc__item article-toc__item--has-children">
+      <div class="article-toc__section-row">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-vyyavit-lid-botov-v-yandeks-direkte-metrike-i-crm" data-article-anchor>Как выявить лид-ботов в Яндекс Директе, Метрике и CRM</a>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-5" aria-label="Показать подразделы: Как выявить лид-ботов в Яндекс Директе, Метрике и CRM">
+          <span aria-hidden="true">5</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
+        </button>
+      </div>
+      <ol class="article-toc__sublist" id="article-toc-subsections-5" hidden>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-shag-1-proverit-nedeystvitelnyy-trafik-v-yandeks-direkte" data-article-anchor>Шаг 1. Проверить «Недействительный трафик» в Яндекс Директе</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-shag-2-nayti-problemnye-istochniki-vnutri-rsya" data-article-anchor>Шаг 2. Найти проблемные источники внутри РСЯ</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-shag-3-proverit-yandeks-metriku-i-vebvizor" data-article-anchor>Шаг 3. Проверить Яндекс Метрику и Вебвизор</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-shag-4-sopostavit-zayavki-s-crm" data-article-anchor>Шаг 4. Сопоставить заявки с CRM</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-shag-5-posmotret-servernye-zhurnaly-otpravki-form" data-article-anchor>Шаг 5. Посмотреть серверные журналы отправки форм</a></li>
+      </ol>
+    </li>
+    <li class="article-toc__item article-toc__item--has-children">
+      <div class="article-toc__section-row">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-zaschitit-formy-sayta-ot-lid-botov" data-article-anchor>Как защитить формы сайта от лид-ботов</a>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-6" aria-label="Показать подразделы: Как защитить формы сайта от лид-ботов">
+          <span aria-hidden="true">3</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
+        </button>
+      </div>
+      <ol class="article-toc__sublist" id="article-toc-subsections-6" hidden>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-captcha-s-servernoy-proverkoy" data-article-anchor>CAPTCHA с серверной проверкой</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-ogranichenie-chastoty-i-proverka-dubley" data-article-anchor>Ограничение частоты и проверка дублей</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-proverka-poley-i-kontrol-obrabotki" data-article-anchor>Проверка полей и контроль обработки</a></li>
+      </ol>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-zaschitit-obuchenie-yandeks-direkta-ot-feykovyh-konversiy" data-article-anchor>Как защитить обучение Яндекс Директа от фейковых конверсий</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-chto-delat-esli-feykovye-zayavki-uzhe-idut" data-article-anchor>Что делать, если фейковые заявки уже идут</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-mozhno-li-vernut-dengi-za-feykovye-zayavki-v-yandeks-direkte" data-article-anchor>Можно ли вернуть деньги за фейковые заявки в Яндекс Директе</a>
+    </li>
+  </ol>
+</nav>
+<!-- article-toc:end -->
+<h2 id="section-chto-takoe-lid-boty-i-zachem-oni-otpravlyayut-zayavki">Что такое лид-боты и зачем они отправляют заявки</h2>
+<p>Термином «лид-боты» в этой статье называются автоматизированные инструменты, которые создают фиктивные обращения. Их не следует путать с обычными чат-ботами и формами-лидогенераторами: те помогают реальным пользователям связаться с компанией.</p>
+<p>У автоматических отправок бывают разные цели. Одни программы массово рассылают спам по доступным формам. Другие пытаются перегрузить обработку заявок, заполнить CRM бессмысленными контактами или имитировать целевые действия. Наличие атаки само по себе не доказывает, кто её организовал и была ли она направлена против конкретной рекламной кампании.</p>
+<p>Подозрительное обращение может содержать правдоподобные имя и телефон. Иногда номер существует, но его владелец утверждает, что заявку не отправлял. Поэтому проверять нужно не только формат заполненных полей, но и источник заявки, историю её создания и результат контакта с человеком.</p>
+<h2 id="section-kak-lid-boty-ostavlyayut-feykovye-zayavki">Как лид-боты оставляют фейковые заявки</h2>
+<h3 id="section-cherez-reklamu-i-obychnuyu-stranitsu-sayta">Через рекламу и обычную страницу сайта</h3>
+<p>Автоматизированный браузер или управляемый скриптом пользователь может перейти по объявлению, открыть страницу, заполнить поля и нажать «Отправить». В аналитике при этом потенциально появятся визит и событие отправки формы. Но факт визита и достижения цели ещё не подтверждает заинтересованность человека в покупке.</p>
+<p>Если рекламная система определит переход или конверсию как недействительные, она может исключить их из своей статистики. При этом запись о посещении или заявке способна оставаться в Метрике и CRM. Поэтому показатели разных систем не всегда совпадают.</p>
+<h3 id="section-napryamuyu-v-obrabotchik-formy-bez-reklamnogo-klika">Напрямую в обработчик формы, без рекламного клика</h3>
+<p>Форма на сайте передаёт заполненные поля серверу. Если сервер принимает такие запросы без достаточной проверки, программа может направить данные прямо в этот обработчик. В таком случае браузерное посещение страницы и рекламный клик вообще не нужны.</p>
+<p>Результат для бизнеса выглядит одинаково: новая карточка в CRM, письмо или уведомление менеджеру. Но для расследования это принципиально разные ситуации. Вторая не свидетельствует о скликивании рекламных объявлений.</p>
+<figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="../01-kak-rabotayut-lid-boty-640.webp 640w, ../01-kak-rabotayut-lid-boty-1080.webp 1080w, ../01-kak-rabotayut-lid-boty-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../01-kak-rabotayut-lid-boty.jpg" alt="Два способа отправки фейковых заявок: после рекламного перехода через форму сайта и напрямую в серверный обработчик без клика" loading="lazy" decoding="async" width="2896" height="2172" /></picture><figcaption>Два разных маршрута отправки фейковой заявки: через рекламу и напрямую в серверный обработчик.</figcaption></figure>
+<h3 id="section-s-ispolzovaniem-chuzhih-kontaktov-i-povtoryayuschihsya-shablonov">С использованием чужих контактов и повторяющихся шаблонов</h3>
+<p>Автоматическая отправка не обязательно выглядит как набор случайных букв. В обращениях могут использоваться настоящие телефонные номера, распространённые имена, похожие комментарии и меняющиеся IP-адреса. Отдельные признаки легко совпадают с поведением реальных клиентов, поэтому искать нужно сочетание аномалий.</p>
+<h2 id="section-chem-lid-boty-opasny-dlya-reklamy-i-biznesa">Чем лид-боты опасны для рекламы и бизнеса</h2>
+<p>Первый ущерб - работа отдела продаж. Менеджер звонит по неверному номеру, проверяет дубль, уточняет, кто оставил обращение, и откладывает обработку настоящих клиентов. При массовом спаме растёт нагрузка на CRM, уведомления и интеграции.</p>
+<p>Второй риск - неправильные выводы об эффективности рекламы. Кампания может показывать привлекательный CPL по событиям «Отправка формы», хотя существенная часть таких обращений не приводит к предметному разговору. Если рекламная стратегия получает некорректные сигналы о конверсиях, не распознанных антифродом, это может ухудшать оптимизацию.</p>
+<h3 id="section-primer-kak-menyaetsya-stoimost-obrascheniya">Пример: как меняется стоимость обращения</h3>
+<p>Допустим, за период реклама потратила <strong>30&nbsp;000&nbsp;₽</strong>, а в CRM попало <strong>30 заявок</strong>, все они атрибутированы к рассматриваемой рекламе. При проверке установлено, что <strong>10 заявок фиктивные</strong>, остальные <strong>20 - реальные обращения</strong>. Для примера считаем, что 30 000&nbsp;₽ - окончательные расходы после возможных корректировок антифрода.</p>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Показатель</th><th scope="col">Значение</th></tr></thead><tbody><tr><td data-label="Показатель">Рекламные расходы</td><td data-label="Значение">30&nbsp;000&nbsp;₽</td></tr><tr><td data-label="Показатель">Все заявки</td><td data-label="Значение">30</td></tr><tr><td data-label="Показатель">Подтверждённые фейковые заявки</td><td data-label="Значение">10</td></tr><tr><td data-label="Показатель">Реальные обращения</td><td data-label="Значение">20</td></tr><tr><td data-label="Показатель">CPL по всем заявкам</td><td data-label="Значение">1000&nbsp;₽</td></tr><tr><td data-label="Показатель">Стоимость реального обращения</td><td data-label="Значение">1500&nbsp;₽</td></tr></tbody></table></div>
+<p>Расчёт: 30 000 / 30 = 1000&nbsp;₽, а 30 000 / 20 = 1500&nbsp;₽. Каждая третья заявка оказалась фиктивной, и реальная стоимость обращения выше на 50%. Это <strong>условный пример</strong>, не статистика конкретного проекта и не среднерыночная доля ботов. Реальный контакт ещё не равен квалифицированному лиду или продаже.</p>
+<figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="../03-feykovye-zayavki-i-cpl-640.webp 640w, ../03-feykovye-zayavki-i-cpl-1080.webp 1080w, ../03-feykovye-zayavki-i-cpl-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../03-feykovye-zayavki-i-cpl.jpg" alt="Пример расчёта: бюджет 30 000 рублей, 30 заявок, из них 10 фейковых, и рост стоимости реального обращения с 1000 до 1500 рублей" loading="lazy" decoding="async" width="2896" height="2172" /></picture><figcaption>Механическая сортировка показывает разницу между формальным CPL и стоимостью реального обращения.</figcaption></figure>
+<p>Если спам пришёл напрямую на сайт без участия рекламы, включать его в количество оплаченных рекламных лидов при расчёте CPL нельзя. Здесь требуется отдельно исправлять аналитику и защищать сайт.</p>
+<h2 id="section-kak-otlichit-lid-bota-ot-netselevogo-klienta">Как отличить лид-бота от нецелевого клиента</h2>
+<p>Не всякая плохая заявка создана ботом. Реальный человек мог ошибиться цифрой, забыть об обращении, не взять трубку, отказаться из-за цены или не подойти по условиям услуги. Для проверки нужны несколько независимых признаков.</p>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Что обнаружено</th><th scope="col">Что это может означать</th><th scope="col">Как проверить</th></tr></thead><tbody><tr><td data-label="Что обнаружено">Серия одинаковых комментариев за короткое время</td><td data-label="Что это может означать">Автоматизация или шаблонный спам</td><td data-label="Как проверить">Сравнить время, текст, данные отправки и серверные запросы</td></tr><tr><td data-label="Что обнаружено">Телефон не существует либо владелец отрицает заявку</td><td data-label="Что это может означать">Недостоверный контакт, ошибка или злоупотребление</td><td data-label="Как проверить">Проверить исходную запись и историю связи</td></tr><tr><td data-label="Что обнаружено">Заявки поступают, а визитов в Метрике почти нет</td><td data-label="Что это может означать">Прямые запросы к форме либо сбой аналитики</td><td data-label="Как проверить">Сопоставить журналы сервера, загрузку счётчика и события формы</td></tr><tr><td data-label="Что обнаружено">Много обращений из одной технической среды</td><td data-label="Что это может означать">Возможная массовая отправка</td><td data-label="Как проверить">Проверить IP и частоту запросов, учитывая прокси и общие сети</td></tr><tr><td data-label="Что обнаружено">В Метрике есть визит и отправка формы, но клиент не подтверждён</td><td data-label="Что это может означать">Бот, случайный или нецелевой посетитель</td><td data-label="Как проверить">Проверить Вебвизор, источник и результат обработки в CRM</td></tr><tr><td data-label="Что обнаружено">Только низкое время на сайте или высокий показатель роботов</td><td data-label="Что это может означать">Подозрительный трафик, но не доказательство фальшивой заявки</td><td data-label="Как проверить">Изучить другие сигналы и сравнить с рекламными расходами</td></tr></tbody></table></div>
+<p>Практическое правило: присваивать статус «фейковая» следует после проверки, а не автоматически по одному признаку. Для сомнительных случаев удобно иметь отдельный статус «требует проверки».</p>
+<h2 id="section-kak-vyyavit-lid-botov-v-yandeks-direkte-metrike-i-crm">Как выявить лид-ботов в Яндекс Директе, Метрике и CRM</h2>
+<p>Проверку лучше вести от конкретной заявки к источнику, а не пытаться определить бота по одной диаграмме посещаемости.</p>
+<h3 id="section-shag-1-proverit-nedeystvitelnyy-trafik-v-yandeks-direkte">Шаг 1. Проверить «Недействительный трафик» в Яндекс Директе</h3>
+<p>Откройте <strong>Статистика: Библиотека отчётов, «Недействительный трафик»</strong>. Сравните период подозрительных заявок с числом отфильтрованных кликов. По документации Яндекса недействительные конверсии в этом отчёте показываются для стратегий с оплатой за конверсии; недействительные клики доступны для всех типов кампаний.</p>
+<p>Антифрод исключает признанные недействительными события из отчётов Директа, а расходы за такой трафик не списываются или возвращаются. Поэтому подозрительные записи в CRM и Вебвизоре сами по себе не означают потерю рекламных денег.</p>
+<h3 id="section-shag-2-nayti-problemnye-istochniki-vnutri-rsya">Шаг 2. Найти проблемные источники внутри РСЯ</h3>
+<p>В <strong>Библиотеке отчётов: Оптимизация размещения, «Площадки»</strong> посмотрите расход, клики, конверсии и CPA по сайтам и приложениям. Сопоставьте эти данные с подтверждёнными и отклонёнными заявками из CRM.</p>
+<p>Отключать площадку только потому, что её название кажется подозрительным, не нужно. Основанием должны быть достаточный объём данных и реальные проблемы с результатом. Если часть заявок появилась без рекламных переходов, список площадок РСЯ эту проблему не устранит.</p>
+<p>Подробный разбор трафика есть в материале <a href="https://naklikay.ru/blog/boty-v-rsya/" target="_blank" rel="noopener noreferrer">«Боты в РСЯ: как определить и что с ними делать»</a>.</p>
+<h3 id="section-shag-3-proverit-yandeks-metriku-i-vebvizor">Шаг 3. Проверить Яндекс Метрику и Вебвизор</h3>
+<p>В Метрике откройте <strong>Отчёты: Мониторинг, «Роботы»</strong>. Этот отчёт показывает обнаруженную активность роботов, но не служит готовым списком фейковых заявок. Дополнительно проверьте источники визитов, страницы входа, достижение цели формы и доступные записи Вебвизора за нужный период.</p>
+<p>Учитывайте два ограничения. Во-первых, Вебвизор может содержать посещения, которые антифрод уже исключил из статистики Директа. Во-вторых, при прямой отправке в обработчик формы полноценного браузерного визита и записи Вебвизора может не быть. Отсутствие записи также возможно из-за настроек аналитики, блокировщиков и технических ошибок.</p>
+<h3 id="section-shag-4-sopostavit-zayavki-s-crm">Шаг 4. Сопоставить заявки с CRM</h3>
+<p>Для каждой подозрительной записи соберите в одну таблицу:</p>
+<ul><li>время создания заявки и её идентификатор в CRM;</li><li>страницу и форму, через которую она должна была поступить;</li><li>«ClientID» Метрики, если он сохранился;</li><li>«yclid» и UTM-метки, если они передавались;</li><li>рекламную кампанию и площадку, если источник надёжно определён;</li><li>статус дозвона и итог квалификации.</li></ul>
+<p>«ClientID» помогает связать визит и заявку, но его отсутствие не доказывает прямой запрос бота: идентификатор мог не записаться по техническим причинам. Проверьте, работает ли его сохранение на обычных тестовых обращениях.</p>
+<figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="../02-kak-vyyavit-lid-botov-640.webp 640w, ../02-kak-vyyavit-lid-botov-1080.webp 1080w, ../02-kak-vyyavit-lid-botov-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../02-kak-vyyavit-lid-botov.jpg" alt="Проверка происхождения подозрительных заявок по данным Яндекс Директа, Метрики, CRM и журналов сервера" loading="lazy" decoding="async" width="2896" height="2172" /></picture><figcaption>Одна заявка проходит последовательную проверку источника, связи визита, серверной отправки и результата контакта.</figcaption></figure>
+<h3 id="section-shag-5-posmotret-servernye-zhurnaly-otpravki-form">Шаг 5. Посмотреть серверные журналы отправки форм</h3>
+<p>Если заявки продолжают поступать при остановленной рекламе или без соответствующих визитов, попросите разработчика проверить <strong>POST-запросы к обработчику формы</strong>, частоту запросов, результат серверной проверки, источник интеграции и ошибки. Нужны именно данные по созданию заявок, а не только журналы загрузки страниц.</p>
+<p>Повторяющиеся запросы с одинаковыми параметрами, массовые отправки в течение секунд и обход клиентской проверки повышают вероятность автоматизации. При этом IP-адрес, User-Agent или отсутствие Referrer по отдельности ненадёжны. Собирайте минимально необходимую техническую информацию с учётом правил обработки персональных данных.</p>
+<h2 id="section-kak-zaschitit-formy-sayta-ot-lid-botov">Как защитить формы сайта от лид-ботов</h2>
+<p>Защита должна работать <strong>на сервере</strong>, там, где принимается решение о создании заявки и передаче её в CRM. Проверка только в интерфейсе страницы не остановит программу, отправляющую запрос прямо в обработчик.</p>
+<h3 id="section-captcha-s-servernoy-proverkoy">CAPTCHA с серверной проверкой</h3>
+<p>Для сайта можно использовать Yandex SmartCaptcha или аналогичный сервис. Важна не просто картинка или виджет на форме, а проверка одноразового токена на сервере перед принятием заявки. У SmartCaptcha серверная проверка предусмотрена документацией: токен ограничен по времени и проверяется через специальный метод сервиса.</p>
+<p>Если виджет подключён, но сервер никак не проверяет результат, защита остаётся неполной. Учитывайте и доступность формы для реальных посетителей: чрезмерно сложные проверки могут мешать конверсии.</p>
+<h3 id="section-ogranichenie-chastoty-i-proverka-dubley">Ограничение частоты и проверка дублей</h3>
+<p>На уровне сервера установите разумные лимиты отправок, например по сочетанию IP, технического идентификатора сессии и самой формы. Конкретные пороги выбирают по реальному трафику, а не одинаковыми для всех сайтов. Повторяющиеся одинаковые контакты и сообщения можно отправлять в отдельную очередь проверки.</p>
+<p>Избегайте безусловной блокировки всех запросов с одного IP: за одним адресом могут находиться сотрудники офиса, мобильные пользователи или общая сеть провайдера.</p>
+<h3 id="section-proverka-poley-i-kontrol-obrabotki">Проверка полей и контроль обработки</h3>
+<p>Проверяйте обязательные поля, разумную длину сообщений, формат контактов и корректность данных на сервере. Скрытое антиспам-поле может отсечь простые сценарии автоматизации, но не является самостоятельной защитой. При заметной нагрузке полезно подключать WAF или специализированную антибот-фильтрацию.</p>
+<figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="../04-zashchita-formy-ot-botov-640.webp 640w, ../04-zashchita-formy-ot-botov-1080.webp 1080w, ../04-zashchita-formy-ot-botov-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../04-zashchita-formy-ot-botov.jpg" alt="Многоуровневая защита веб-формы от лид-ботов: CAPTCHA, серверная проверка, лимиты запросов и фильтрация повторов до CRM" loading="lazy" decoding="async" width="2896" height="2172" /></picture><figcaption>Многоуровневая защита формы и передача проверенных данных из CRM в офлайн-конверсии.</figcaption></figure>
+<p>Сохраняйте причину отклонения заявки и аккуратно настраивайте интеграции. Отклонённый сервером запрос не должен одновременно создавать успешную заявку в CRM и отправлять рекламную цель «Форма отправлена».</p>
+<h2 id="section-kak-zaschitit-obuchenie-yandeks-direkta-ot-feykovyh-konversiy">Как защитить обучение Яндекс Директа от фейковых конверсий</h2>
+<p>Для рекламных отчётов полезно разделить три события: отправка формы, подтверждённый контакт и квалифицированный лид. Первое удобно для анализа поведения на сайте, второе показывает существование обращения, третье ближе к коммерческой ценности.</p>
+<p>После проверки CRM можно передавать квалифицированные лиды в Метрику как офлайн-конверсии или данные из CRM. Для точной связки Яндекс рекомендует сохранять «ClientID» при создании сделки. Проверяйте, что данные действительно привязались к визитам, прежде чем использовать такую цель в оптимизации.</p>
+<p>Переключать автостратегию на редкую цель без оценки объёма данных не следует: недостаточное число конверсий может ухудшить обучение. Сначала посчитайте количество подтверждённых лидов, проверьте стабильность передачи и только затем выбирайте целевое событие стратегии.</p>
+<p>Подробно об этом: <a href="https://naklikay.ru/blog/offline-conversions-yandex-direct/" target="_blank" rel="noopener noreferrer">«Офлайн-конверсии в Яндекс Директе»</a> и <a href="https://naklikay.ru/blog/kvalifikaciya-lidov-v-prodazhah/" target="_blank" rel="noopener noreferrer">«Квалификация лидов в продажах»</a>.</p>
+<h2 id="section-chto-delat-esli-feykovye-zayavki-uzhe-idut">Что делать, если фейковые заявки уже идут</h2>
+<ol><li><strong>Сохраните доказательства.</strong> Выгрузите период, ID заявок, время, статусы CRM, сопутствующие рекламные отчёты и доступные технические журналы. Не публикуйте персональные данные клиентов.</li><li><strong>Разделите источники.</strong> Определите, были ли оплаченные переходы, визиты без рекламы или прямые запросы к серверу. Не приписывайте все заявки одной площадке автоматически.</li><li><strong>Закройте уязвимость формы.</strong> Проверьте серверную валидацию, CAPTCHA, лимиты и передачу заявки в CRM. Перед включением жёсткой блокировки протестируйте реальное обращение.</li><li><strong>Проверьте аналитику.</strong> Убедитесь, что отклонённые запросы не создают конверсии и не искажают внутренние отчёты. Сохраните исходные данные, прежде чем исправлять классификацию.</li><li><strong>Оцените рекламу после очистки данных.</strong> Смотрите подтверждённые обращения и квалифицированные лиды, а не только заполнения формы.</li><li><strong>Обратитесь в поддержку Директа, если подозреваете именно рекламный фрод.</strong> Передайте номер объявления, даты, номер счётчика Метрики, ссылки на отчёты и описание аномалий.</li></ol>
+<h2 id="section-mozhno-li-vernut-dengi-za-feykovye-zayavki-v-yandeks-direkte">Можно ли вернуть деньги за фейковые заявки в Яндекс Директе</h2>
+<p>За трафик, который Яндекс признаёт недействительным, расходы обычно не списываются или автоматически возвращаются на баланс рекламного счёта. Если подозрения остаются, можно обратиться в поддержку с данными для проверки.</p>
+<p>Но <strong>сам факт фейковой заявки не означает право на возврат рекламного бюджета</strong>. Если форма была отправлена напрямую, оплаченного клика могло не быть. Если обращение оставил реальный, но неподходящий по условиям пользователь, это тоже не обязательно фрод. По актуальной справке Яндекса проверка конверсий на фрод возможна за последние 30 дней, поэтому обращаться с конкретными подозрениями лучше без промедления.</p>
+<p>При расследовании полезно отдельно рассчитать расходы по прошедшим антифрод кликам, число заявок в CRM, долю подтверждённых контактов и стоимость квалифицированного лида. Только эта связка показывает, где действительно теряются деньги: в рекламном трафике, обработке форм или работе отдела продаж.</p>
+<aside class="article-author" aria-label="Об авторе"><img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников, специалист по платному трафику" width="192" height="192" loading="lazy" decoding="async" /><div class="article-author__body"><p class="article-author__label">Автор</p><p class="article-author__name">Максим Мирошников</p><p class="article-author__role">Специалист по платному трафику и Яндекс Директу</p><p class="article-author__text">Занимаюсь интернет-рекламой более 10 лет. Работаю как ИП и веду проекты напрямую: запускаю рекламу, создаю сайты и воронки, помогаю выстраивать связь между маркетингом, заявками и продажами.</p><p class="article-author__link"><a href="../../#about">Подробнее обо мне</a></p></div></aside><!-- related-articles:start -->
+<section class="related-articles" aria-labelledby="related-articles-title">
+  <h2 id="related-articles-title">Похожие статьи</h2>
+  <div class="related-articles__list">
+        <a class="related-article-card" href="../prodvizhenie-event-agentstva-yandex-direct/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Маркетинг</span>
+          <span class="related-article-card__title">Реклама event-агентства в Яндекс Директе: свадьбы, корпоративы и праздники</span>
+          <span class="related-article-card__description">Как продвигать агентство по организации мероприятий через Яндекс Директ: Поиск, РСЯ, посадочные страницы, аналитика, свежие кейсы и прогноз бюджета.</span>
+        </a>
+        <a class="related-article-card" href="../kontekstnaya-reklama-pod-klyuch/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Маркетинг</span>
+          <span class="related-article-card__title">Контекстная реклама под ключ</span>
+          <span class="related-article-card__description">Что входит в настройку и ведение Яндекс Директ: анализ, аналитика, запуск, оптимизация и стоимость работы.</span>
+        </a>
+        <a class="related-article-card" href="../avito-ili-yandex-direct/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Маркетинг</span>
+          <span class="related-article-card__title">Авито или Яндекс Директ: что выбрать для рекламы бизнеса</span>
+          <span class="related-article-card__description">Что лучше для бизнеса: Авито или Яндекс Директ? Сравнение по спросу, бюджету, стоимости заявок и продаж. Как проверить нишу и выбрать рекламу.</span>
+        </a>
+  </div>
+</section>
+<!-- related-articles:end --></article></main>
+  </body>
+</html>

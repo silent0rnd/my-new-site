@@ -2,6 +2,18 @@
   "version": 1,
   "articles": [
     {
+      "slug": "lid-boty",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "analytics",
+        "traffic-quality",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "problem"
+    },
+    {
       "slug": "prodvizhenie-uchastkov-izhs",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
