@@ -13,6 +13,7 @@
     "validate:blog-illustration": "node scripts/validate-blog-illustration.js",
     "update:blog-article": "node scripts/update-blog-article.js",
     "sync:blog-card": "node scripts/sync-blog-card.js",
+    "notify:indexnow": "node scripts/notify-indexnow.js",
     "build:cases": "node scripts/generate-cases.js",
     "build:tgstat": "node scripts/build-tgstat-bookmarklet.js",
     "preview:tgstat": "node scripts/serve-tgstat-local.js",
