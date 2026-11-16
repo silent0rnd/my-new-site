@@ -15,6 +15,18 @@ metadata:
 
 # Content Quality & E-E-A-T Analysis
 
+## Naklikay article workflow
+
+For requests to create or plan an article for naklikay.ru, keep the existing content-quality analysis and additionally route the work through the imported article package:
+
+- `STANDARD` covers practical SEO articles, instructions, comparisons, diagnostics, and mixed informational-commercial topics.
+- `FORECAST` covers niche promotion with market research, advertising economics, budget and lead or sales calculations, and an explicit forecast.
+- Use [references/seo-agent-stati-prognozy-instruktsii/instructions/00-poryadok-raboty.md](references/seo-agent-stati-prognozy-instruktsii/instructions/00-poryadok-raboty.md) as the stage and stop-point contract.
+- Use [references/seo-agent-stati-prognozy-instruktsii/instructions/02-instruktsiya-dlya-seo-statey-final.md](references/seo-agent-stati-prognozy-instruktsii/instructions/02-instruktsiya-dlya-seo-statey-final.md) for the common article rules.
+- For `FORECAST`, also use [references/seo-agent-stati-prognozy-instruktsii/instructions/instruktsiya-statya-prognoz-v17.md](references/seo-agent-stati-prognozy-instruktsii/instructions/instruktsiya-statya-prognoz-v17.md) and its compatibility overrides.
+
+The first response for a new topic is only the analysis, outline, illustration count, and complete `IMAGE-SPEC` set. Do not output the full article or generate images until the user advances the workflow. Keep facts, calculations, and forecasts separate; do not invent cases, URLs, or market averages.
+
 ## Google's "Who / How / Why" Test (canonical heuristic)
 
 Before scoring E-E-A-T sub-factors, every page audit should pass Google's

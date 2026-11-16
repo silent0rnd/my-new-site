@@ -12,6 +12,12 @@ description: >-
 
 # SEO optimizer: naklikay.ru
 
+## Article workflow connection
+
+The imported article package is stored under `seo-content/references/seo-agent-stati-prognozy-instruktsii/`. Use its `00-poryadok-raboty.md` for stage boundaries, the common SEO article instruction for evidence and content quality, and the forecast instruction plus compatibility file for `FORECAST` materials.
+
+For `FORECAST`, independently recalculate CPC, CPL, CPA or CAC, lead-to-sale conversion, budget, and stated assumptions. Keep published data, author calculations, and forecasts separate. Use this skill for intent, cannibalization, metadata, internal-link, source-quality, and validation checks; `blog` remains responsible for site HTML, builds, and publication.
+
 ## Роль
 
 Единый навык для проверки данных, SEO-диагноза, решения, согласования,

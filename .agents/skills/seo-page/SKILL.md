@@ -16,6 +16,10 @@ metadata:
 
 # Single Page Analysis
 
+## Article workflow connection
+
+When the analyzed URL is a naklikay.ru article, preserve its slug, canonical, useful existing sections, confirmed facts, and working internal links. Feed the page analysis into the `STANDARD` or `FORECAST` brief before any article text is written. Check cannibalization against real site URLs and do not propose a new competing URL without a confirmed intent gap.
+
 ## What to Analyze
 
 ### On-Page SEO

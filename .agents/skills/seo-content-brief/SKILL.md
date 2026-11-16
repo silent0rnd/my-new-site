@@ -19,6 +19,12 @@ metadata:
 
 # SEO Content Brief Generator
 
+## Naklikay article handoff
+
+For naklikay.ru article requests, classify the material as `STANDARD` or `FORECAST` and make the brief the first workflow stage. Include intent, audience, existing-page strengths to preserve, cannibalization risk, verified facts and dates, H2/H3 structure, calculation assumptions, internal-link targets from real site URLs, and the exact number and placement of `IMAGE-SPEC` blocks. Stop after the brief and illustration specifications. Do not write the full `ARTICLE-BODY` or generate images at this stage.
+
+Use the imported workflow at `../seo-content/references/seo-agent-stati-prognozy-instruktsii/`, especially `instructions/00-poryadok-raboty.md`. For `FORECAST`, separate published figures, author calculations, and forecast assumptions, and prefer recent Russian evidence. Do not turn one case into a market average.
+
 Generate research-backed content briefs that help writers produce pages capable of outranking current top results. Briefs include competitor analysis with gap scoring, per-section word count breakdowns, keyword placement rules, and page-type-specific templates.
 
 ## Process

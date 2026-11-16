@@ -2,6 +2,16 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-tarologa-v-2026-godu",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "telegram",
+        "seo"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "prodvizhenie-fotografa-i-fotostudii",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
