@@ -1,6 +1,7 @@
 // SEO Webmaster v3.11: накопительная история запросов по URL, безопасная бесплатная PRO-квота.
 const SEO_CFG = {
   API_BASE: 'https://api.webmaster.yandex.net/v4',
+  SITEMAP_URL: 'https://naklikay.ru/sitemap.xml',
   TOKEN_PROPERTY: 'YANDEX_WEBMASTER_OAUTH',
   TIMEZONE: 'Europe/Moscow',
   PRO_HISTORY_DAYS: 28,
@@ -71,6 +72,8 @@ const SEO_CFG = {
     ]
   }
 };
+
+let SITEMAP_SYNC_CACHE = null;
 
 function onOpen() {
   try {
@@ -150,6 +153,7 @@ function runWeeklySeoAudit() {
 
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     assertSheets_(ss);
+    syncRegistryWithSitemap_(ss);
 
     const token = getToken_();
     const access = resolveAccess_(token);
@@ -609,6 +613,7 @@ function runDailyCollector() {
 
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     assertSheets_(ss);
+    syncRegistryWithSitemap_(ss);
 
     if (!settingIsTrue_('PRO_ENABLED', true)) {
       setSetting_('PRO_STATUS', 'DISABLED');
@@ -2494,7 +2499,7 @@ function readRegistry_(ss) {
   rows.forEach((row, index) => {
     const phrase = String(row[4] || '').trim();
     const url = String(row[5] || '').trim();
-    if (!phrase || !url) return;
+    if (!url) return;
 
     result.push({
       row: index + 2,
@@ -2508,6 +2513,260 @@ function readRegistry_(ss) {
   });
 
   return result;
+}
+
+function syncRegistryWithSitemap_(ss) {
+  if (SITEMAP_SYNC_CACHE) return SITEMAP_SYNC_CACHE;
+
+  const result = {
+    sourceUrls: 0,
+    checkedUrls: 0,
+    addedUrls: 0,
+    skippedUrls: 0,
+    duplicateUrls: 0,
+    error: ''
+  };
+
+  try {
+    const sheet = ss.getSheetByName(SEO_CFG.SHEETS.PHRASES);
+    if (!sheet) throw new Error('Не найден лист «Фразы».');
+
+    const response = UrlFetchApp.fetch(SEO_CFG.SITEMAP_URL, {
+      muteHttpExceptions: true,
+      followRedirects: true
+    });
+    const responseCode = response.getResponseCode();
+    if (responseCode < 200 || responseCode >= 300) {
+      throw new Error('Sitemap вернул HTTP ' + responseCode + '.');
+    }
+
+    const sitemapUrls = readSitemapUrls_(response.getContentText());
+    result.sourceUrls = sitemapUrls.length;
+
+    const registry = readRegistry_(ss);
+    const knownPaths = new Set();
+    registry.forEach(item => {
+      const path = canonicalPath_(item.url);
+      if (path) knownPaths.add(path);
+    });
+
+    const candidates = [];
+    const seenPaths = new Set();
+
+    sitemapUrls.forEach(url => {
+      const path = canonicalPath_(url);
+      if (!path || knownPaths.has(path)) return;
+      if (seenPaths.has(path)) {
+        result.duplicateUrls++;
+        return;
+      }
+      seenPaths.add(path);
+      candidates.push(url);
+    });
+
+    const rows = [];
+    const notes = [];
+
+    candidates.forEach(url => {
+      result.checkedUrls++;
+      const page = fetchIndexableSitemapPage_(url);
+      if (!page.indexable) {
+        result.skippedUrls++;
+        return;
+      }
+
+      const reasons = [
+        'Требует проверки: группа и контрольная фраза не назначены автоматически.'
+      ];
+      if (!page.page) reasons.push('Название страницы не определено из H1 или Title.');
+      if (!page.type) reasons.push('Тип страницы не определён правилом URL.');
+
+      rows.push([
+        true,
+        '',
+        page.type,
+        page.page,
+        '',
+        url
+      ]);
+      notes.push([reasons.join(' ')]);
+      knownPaths.add(canonicalPath_(url));
+      result.addedUrls++;
+    });
+
+    if (rows.length) {
+      const startRow = sheet.getLastRow() + 1;
+      ensureRows_(sheet, startRow + rows.length - 1);
+
+      if (startRow > 2) {
+        sheet
+          .getRange(startRow - 1, 1, 1, Math.max(6, sheet.getLastColumn()))
+          .copyTo(
+            sheet.getRange(startRow, 1, rows.length, Math.max(6, sheet.getLastColumn())),
+            SpreadsheetApp.CopyPasteType.PASTE_FORMAT,
+            false
+          );
+      }
+
+      sheet.getRange(startRow, 1, rows.length, 6).setValues(rows);
+      sheet.getRange(startRow, 2, notes.length, 1).setNotes(notes);
+    }
+
+    writeSitemapSyncState_(result);
+  } catch (e) {
+    result.error = errorText_(e);
+    writeSitemapSyncState_(result);
+    console.log('Sitemap sync skipped: ' + result.error);
+  }
+
+  SITEMAP_SYNC_CACHE = result;
+  return result;
+}
+
+function readSitemapUrls_(xmlText) {
+  const document = XmlService.parse(String(xmlText || ''));
+  const root = document.getRootElement();
+  const namespace = root.getNamespace();
+  const nodes = root.getName() === 'urlset'
+    ? root.getChildren('url', namespace)
+    : [];
+  const urls = [];
+  const seen = new Set();
+
+  nodes.forEach(node => {
+    const loc = node.getChild('loc', namespace);
+    const url = normalizeSitemapUrl_(loc ? loc.getText() : '');
+    if (!url || seen.has(canonicalPath_(url))) return;
+    seen.add(canonicalPath_(url));
+    urls.push(url);
+  });
+
+  return urls;
+}
+
+function normalizeSitemapUrl_(value) {
+  const url = String(value || '').trim();
+  if (!/^https:\/\/(?:www\.)?naklikay\.ru(?:\/|$)/i.test(url)) return '';
+  if (/[?#]/.test(url)) return '';
+
+  const rawPath = url.replace(/^https:\/\/(?:www\.)?naklikay\.ru/i, '');
+  const path = rawPath.replace(/\/+/g, '/').replace(/\/+$/, '') || '/';
+  return 'https://naklikay.ru' + (path === '/' ? '/' : path + '/');
+}
+
+function fetchIndexableSitemapPage_(url) {
+  try {
+    const response = UrlFetchApp.fetch(url, {
+      muteHttpExceptions: true,
+      followRedirects: true
+    });
+    const code = response.getResponseCode();
+    if (code < 200 || code >= 300) {
+      return { indexable: false, reason: 'HTTP ' + code };
+    }
+
+    const html = response.getContentText() || '';
+    const headers = response.getHeaders() || {};
+    const headerRobots = String(
+      headers['X-Robots-Tag'] || headers['x-robots-tag'] || ''
+    ).toLowerCase();
+    if (/\bnoindex\b/.test(headerRobots)) {
+      return { indexable: false, reason: 'X-Robots-Tag noindex' };
+    }
+
+    const metaRobots = htmlMetaContent_(html, 'robots').toLowerCase();
+    if (/\bnoindex\b/.test(metaRobots)) {
+      return { indexable: false, reason: 'meta robots noindex' };
+    }
+
+    const canonical = htmlCanonical_(html);
+    if (canonical && canonicalPath_(canonical) !== canonicalPath_(url)) {
+      return { indexable: false, reason: 'canonical указывает на другой URL' };
+    }
+
+    return {
+      indexable: true,
+      type: inferPageType_(canonicalPath_(url)),
+      page: htmlHeading_(html) || htmlTitle_(html)
+    };
+  } catch (e) {
+    return { indexable: false, reason: errorText_(e) };
+  }
+}
+
+function inferPageType_(path) {
+  if (path === '/') return 'Главная';
+  if (/^\/blog\/page\/\d+$/.test(path)) return 'Пагинация';
+  if (path === '/blog') return 'Хаб';
+  if (/^\/blog\//.test(path)) return 'Статья';
+  if (path === '/cases') return 'Хаб';
+  if (/^\/cases\//.test(path)) return 'Кейс';
+  if (/^\/tools\//.test(path) || path === '/tools') return 'Сервис';
+  if (/\/(?:cookie-policy|personal-data-consent)$/.test(path)) return 'Юридическая';
+  return '';
+}
+
+function htmlMetaContent_(html, name) {
+  const tags = String(html || '').match(/<meta\b[^>]*>/gi) || [];
+  for (let i = 0; i < tags.length; i++) {
+    const tag = tags[i];
+    const nameMatch = tag.match(/\bname\s*=\s*["']([^"']+)["']/i);
+    if (nameMatch && nameMatch[1].toLowerCase() === name.toLowerCase()) {
+      const contentMatch = tag.match(/\bcontent\s*=\s*["']([^"']*)["']/i);
+      return contentMatch ? decodeHtmlEntities_(contentMatch[1]) : '';
+    }
+  }
+  return '';
+}
+
+function htmlCanonical_(html) {
+  const tags = String(html || '').match(/<link\b[^>]*>/gi) || [];
+  for (let i = 0; i < tags.length; i++) {
+    const tag = tags[i];
+    const relMatch = tag.match(/\brel\s*=\s*["']([^"']+)["']/i);
+    if (!relMatch || !/(^|\s)canonical(\s|$)/i.test(relMatch[1])) continue;
+    const hrefMatch = tag.match(/\bhref\s*=\s*["']([^"']+)["']/i);
+    return hrefMatch ? decodeHtmlEntities_(hrefMatch[1]).trim() : '';
+  }
+  return '';
+}
+
+function htmlHeading_(html) {
+  const match = String(html || '').match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i);
+  return match ? cleanHtmlText_(match[1]) : '';
+}
+
+function htmlTitle_(html) {
+  const match = String(html || '').match(/<title\b[^>]*>([\s\S]*?)<\/title>/i);
+  return match ? cleanHtmlText_(match[1]) : '';
+}
+
+function cleanHtmlText_(value) {
+  return decodeHtmlEntities_(String(value || '').replace(/<[^>]+>/g, ' '))
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function decodeHtmlEntities_(value) {
+  return String(value || '')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>');
+}
+
+function writeSitemapSyncState_(result) {
+  try {
+    PropertiesService.getScriptProperties().setProperties({
+      SITEMAP_SYNC_LAST: nowText_(),
+      SITEMAP_SYNC_SOURCE_URLS: String(result.sourceUrls || 0),
+      SITEMAP_SYNC_ADDED_URLS: String(result.addedUrls || 0),
+      SITEMAP_SYNC_SKIPPED_URLS: String(result.skippedUrls || 0),
+      SITEMAP_SYNC_ERROR: String(result.error || '')
+    });
+  } catch (ignore) {}
 }
 
 function queryStatus_(m) {

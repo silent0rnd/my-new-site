@@ -320,18 +320,6 @@
       "intent": "strategy"
     },
     {
-      "slug": "yandex-direct-net-zayavok",
-      "topic": "analytics",
-      "topicLabel": "Аналитика",
-      "tags": [
-        "analytics",
-        "economics",
-        "automation",
-        "website"
-      ],
-      "intent": "instruction"
-    },
-    {
       "slug": "skolko-zayavok-dast-yandex-direct",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
@@ -1211,8 +1199,9 @@
       "tags": [
         "healthcare",
         "analytics",
+        "economics",
         "search",
-        "campaign-setup",
+        "specialist",
         "local"
       ],
       "intent": "strategy"
@@ -1625,14 +1614,12 @@
       "topicLabel": "Недвижимость",
       "tags": [
         "commercial-real-estate",
-        "analytics",
         "economics",
         "search",
         "campaign-setup",
-        "website",
         "lead-generation"
       ],
-      "intent": "strategy"
+      "intent": "instruction"
     },
     {
       "slug": "yandex-direct-stroitelstvo-domov",
@@ -1641,12 +1628,13 @@
       "tags": [
         "house-building",
         "analytics",
+        "economics",
         "search",
         "campaign-setup",
         "website",
         "lead-generation"
       ],
-      "intent": "strategy"
+      "intent": "instruction"
     },
     {
       "slug": "yandex-direct-dlya-zastroyshchika",
@@ -1655,7 +1643,6 @@
       "tags": [
         "residential-real-estate",
         "economics",
-        "search",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -2658,11 +2645,12 @@
       "topic": "local-promotion",
       "topicLabel": "Локальное продвижение",
       "tags": [
-        "analytics",
+        "economics",
+        "campaign-setup",
         "specialist",
         "local"
       ],
-      "intent": "strategy"
+      "intent": "service"
     },
     {
       "slug": "kak-dat-dostup-k-yandex-metrike",
