@@ -2,6 +2,42 @@
   "version": 1,
   "articles": [
     {
+      "slug": "sozdanie-mobilnyh-prilozheniy",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "specialist",
+        "telegram",
+        "avito",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
+      "slug": "golosovye-roboty-ii-sotrudniki-dlya-biznesa-v-2026-godu",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "traffic-quality",
+        "lead-generation"
+      ],
+      "intent": "problem"
+    },
+    {
+      "slug": "prodvizhenie-avtomatizatsii-biznesa-v-2027-godu",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "specialist",
+        "lead-generation"
+      ],
+      "intent": "service"
+    },
+    {
       "slug": "prodvizhenie-tarologa-v-2026-godu",
       "topic": "marketing",
       "topicLabel": "Маркетинг",
@@ -1469,18 +1505,6 @@
         "traffic-quality"
       ],
       "intent": "problem"
-    },
-    {
-      "slug": "poisk-ili-rsya-v-yandex-direct",
-      "topic": "direct-tools",
-      "topicLabel": "Инструменты Яндекс Директа",
-      "tags": [
-        "economics",
-        "search",
-        "comparison",
-        "lead-generation"
-      ],
-      "intent": "comparison"
     },
     {
       "slug": "jtbd-v-marketinge",
