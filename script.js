@@ -19,6 +19,7 @@
 
     const prepareLink = (link) => {
       if (link.hasAttribute("data-article-anchor")) return;
+      if (link.matches('a[href^="mailto:"]')) return;
 
       link.target = "_blank";
       link.relList.add("noopener", "noreferrer");
@@ -2898,7 +2899,30 @@ function initScrollToTopButton() {
   updateScrollToTopButton();
 }
 
+function initArticleAuthorCards() {
+  document.querySelectorAll('.article-author[data-author-card="interactive"]').forEach((card) => {
+    const toggle = card.querySelector(".article-author__toggle");
+    const toggleText = card.querySelector(".article-author__toggle-text");
+    const profilePage = card.querySelector(".article-author__page--profile");
+    const contactPage = card.querySelector(".article-author__page--contact");
+    if (!toggle || !toggleText || !profilePage || !contactPage) return;
+
+    toggle.addEventListener("click", () => {
+      const showContacts = !card.classList.contains("is-contact");
+      card.classList.toggle("is-contact", showContacts);
+      toggle.setAttribute("aria-expanded", String(showContacts));
+      toggle.setAttribute("aria-label", showContacts ? "Показать информацию об авторе" : "Показать контакты Максима Мирошникова");
+      toggleText.textContent = showContacts ? "Об авторе" : "Задать вопрос";
+      profilePage.setAttribute("aria-hidden", String(showContacts));
+      profilePage.toggleAttribute("inert", showContacts);
+      contactPage.setAttribute("aria-hidden", String(!showContacts));
+      contactPage.toggleAttribute("inert", !showContacts);
+    });
+  });
+}
+
 initFeedbackWidget();
 initScrollToTopButton();
 initArticleTableOfContents();
 initArticleTocReturnButton();
+initArticleAuthorCards();

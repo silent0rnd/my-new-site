@@ -660,11 +660,13 @@ foreach ($article in $articles) {
     throw "Article $slug must stay indexable"
   }
 
-  Assert-Contains $html '<aside class="article-author"' "Article $slug is missing the visible author block"
+  Assert-Contains $html '<aside class="article-author" data-author-card="interactive"' "Article $slug is missing the interactive author block"
   Assert-Contains $html 'src="../../assets/author-avatar.jpg"' "Article $slug author block is missing the author photo"
   Assert-Contains $html 'Максим Мирошников' "Article $slug author block is missing the author name"
-  Assert-Contains $html 'Специалист по платному трафику и Яндекс Директу' "Article $slug author block is missing the author role"
-  Assert-Contains $html 'href="../../#about"' "Article $slug author block is missing the about link"
+  Assert-Contains $html 'Специалист по платному трафику' "Article $slug author block is missing the author role"
+  Assert-Contains $html 'class="article-author__toggle article-author__fabric-tab"' "Article $slug author block is missing the contact toggle"
+  Assert-Contains $html 'href="mailto:direct@miroshnikov-maxim.ru"' "Article $slug author block is missing the email link"
+  Assert-Contains $html 'href="https://t.me/miroshnikov_maxim"' "Article $slug author block is missing the Telegram link"
 
   # Alt-тексты заданы заказчиком, менять их нельзя без согласования.
   foreach ($alt in $article.Alts) {

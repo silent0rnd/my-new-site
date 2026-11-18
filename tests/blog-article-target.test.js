@@ -82,7 +82,9 @@ assert.ok(breadcrumbs && Array.isArray(breadcrumbs.itemListElement), "Breadcrumb
 
 assert.equal(occurrences(html, /<aside class="article-author"/g), 1, "article needs one author block");
 assert.match(html, /class="article-author__name">Максим Мирошников</, "visible author is invalid");
-assert.match(html, /href="\.\.\/\.\.\/#about"/, "author link is missing");
+assert.match(html, /class="article-author" data-author-card="interactive"/, "interactive author block is missing");
+assert.match(html, /href="mailto:direct@miroshnikov-maxim\.ru"/, "author email link is missing");
+assert.match(html, /href="https:\/\/t\.me\/miroshnikov_maxim"/, "author Telegram link is missing");
 
 assert.equal(occurrences(html, /<!-- article-toc:start -->/g), 1, "TOC start marker is missing or duplicated");
 assert.equal(occurrences(html, /<!-- article-toc:end -->/g), 1, "TOC end marker is missing or duplicated");

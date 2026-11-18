@@ -13,7 +13,7 @@ const blogDir = path.join(root, "blog");
 const relatedTopicsPath = path.join(__dirname, "blog-related-topics.json");
 const pageSize = 15;
 const siteUrl = "https://naklikay.ru";
-const blogAssetVersion = "20260909-article-toc-3";
+const blogAssetVersion = "20261118-author-card-1";
 const articleArgumentIndex = process.argv.indexOf("--article");
 const targetArticleSlug = articleArgumentIndex >= 0 ? process.argv[articleArgumentIndex + 1] : "";
 if (articleArgumentIndex >= 0 && !targetArticleSlug) throw new Error("Use --article <slug>.");
@@ -375,7 +375,7 @@ ${items}
 function updateArticleTableOfContents(html, slug) {
   const withoutExistingToc = html.replace(/\s*<!-- article-toc:start -->[\s\S]*?<!-- article-toc:end -->/g, "");
   const articleOpen = withoutExistingToc.match(/<article class="legal-document"[^>]*>/);
-  const authorIndex = withoutExistingToc.indexOf('<aside class="article-author"');
+  const authorIndex = withoutExistingToc.indexOf('<aside class="article-author');
   if (!articleOpen || articleOpen.index === undefined) throw new Error(`Article document is missing: ${slug}`);
   if (authorIndex < 0) throw new Error(`Article author block is missing: ${slug}`);
 
@@ -443,6 +443,65 @@ function updateArticleTableOfContents(html, slug) {
   return `${withoutExistingToc.slice(0, contentStart)}${contentWithToc}${withoutExistingToc.slice(authorIndex)}`;
 }
 
+function articleAuthorHtml() {
+  return `<aside class="article-author" data-author-card="interactive" aria-label="Об авторе">
+  <span class="article-author__stud" aria-hidden="true"></span><span class="article-author__stud" aria-hidden="true"></span>
+  <button class="article-author__toggle article-author__fabric-tab" type="button" aria-expanded="false" aria-controls="article-author-pages" aria-label="Показать контакты Максима Мирошникова"><span class="article-author__toggle-text">Задать вопрос</span></button>
+  <div class="article-author__pages" id="article-author-pages">
+    <div class="article-author__page article-author__page--profile" aria-hidden="false">
+      <div class="article-author__portrait"><img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников" width="192" height="192" loading="lazy" decoding="async" /></div>
+      <div class="article-author__body">
+        <p class="article-author__label">Автор статьи</p>
+        <p class="article-author__name">Максим Мирошников</p>
+        <p class="article-author__role">Специалист по платному трафику</p>
+        <p class="article-author__text">Запускаю рекламу, создаю сайты и воронки, настраиваю аналитику и помогаю связать маркетинг с данными о заявках.</p>
+        <div class="article-author__footer"><p class="article-author__experience">10+ лет практики</p></div>
+      </div>
+    </div>
+    <div class="article-author__page article-author__page--contact" aria-hidden="true" inert>
+      <div class="article-author__contact-body">
+        <p class="article-author__label">Связаться со мной</p>
+        <p class="article-author__contact-title">Напишите мне</p>
+        <p class="article-author__contact-copy">Расскажите о задаче - обсудим проект и подходящий формат консультации.</p>
+        <div class="article-author__contacts" aria-label="Контакты Максима Мирошникова">
+          <a class="article-author__contact-link" href="mailto:direct@miroshnikov-maxim.ru"><span>Почта</span><b>direct@miroshnikov-maxim.ru</b></a>
+          <a class="article-author__contact-link" href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer"><span>MAX</span><b>Открыть профиль</b></a>
+          <a class="article-author__contact-link" href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer"><span>Telegram</span><b>@miroshnikov_maxim</b></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>`;
+}
+
+function updateAllArticleAuthorBlocks() {
+  let found = 0;
+  let updated = 0;
+  const articleDirectories = fs.readdirSync(blogDir, { withFileTypes: true })
+    .filter((item) => item.isDirectory() && item.name !== "page");
+
+  for (const item of articleDirectories) {
+    const articlePath = path.join(blogDir, item.name, "index.html");
+    if (!fs.existsSync(articlePath)) continue;
+
+    const currentHtml = read(articlePath);
+    const authorMatch = currentHtml.match(/<aside class="article-author[^"]*"[\s\S]*?<\/aside>/);
+    if (!authorMatch) continue;
+
+    found += 1;
+    const nextHtml = currentHtml
+      .replace(authorMatch[0], articleAuthorHtml())
+      .replace(/\.\.\/\.\.\/styles\.css(?:\?v=[^"]*)?/g, `../../styles.css?v=${blogAssetVersion}`)
+      .replace(/\.\.\/\.\.\/script\.js(?:\?v=[^"]*)?/g, `../../script.js?v=${blogAssetVersion}`);
+    if (nextHtml === currentHtml) continue;
+
+    write(articlePath, nextHtml);
+    updated += 1;
+  }
+
+  return { found, updated };
+}
+
 function updateRelatedArticles(article, articles) {
   const articlePath = path.join(blogDir, article.slug, "index.html");
   if (!fs.existsSync(articlePath)) throw new Error(`Article page is missing: ${article.slug}`);
@@ -453,10 +512,10 @@ function updateRelatedArticles(article, articles) {
     .replace(/\.\.\/\.\.\/styles\.css(?:\?v=[^"]*)?/g, `../../styles.css?v=${blogAssetVersion}`)
     .replace(/\.\.\/\.\.\/script\.js(?:\?v=[^"]*)?/g, `../../script.js?v=${blogAssetVersion}`);
   const withTableOfContents = updateArticleTableOfContents(withoutExistingBlock, article.slug);
-  const authorMatch = withTableOfContents.match(/<aside class="article-author"[\s\S]*?<\/aside>/);
+  const authorMatch = withTableOfContents.match(/<aside class="article-author[^"]*"[\s\S]*?<\/aside>/);
   if (!authorMatch) throw new Error(`Article author block is missing: ${article.slug}`);
 
-  const nextHtml = withTableOfContents.replace(authorMatch[0], `${authorMatch[0]}${relatedArticlesHtml(article, articles)}`);
+  const nextHtml = withTableOfContents.replace(authorMatch[0], `${articleAuthorHtml()}${relatedArticlesHtml(article, articles)}`);
   if (nextHtml !== currentHtml) write(articlePath, nextHtml);
 }
 
@@ -597,6 +656,7 @@ const relatedTopics = {
 };
 write(relatedTopicsPath, `${JSON.stringify(relatedTopics, null, 2)}\n`);
 articles.forEach((article) => updateRelatedArticles(article, articles));
+const authorBlocks = updateAllArticleAuthorBlocks();
 
 const pages = Array.from({ length: Math.ceil(cards.length / pageSize) }, (_, index) => cards.slice(index * pageSize, (index + 1) * pageSize));
 const pageLastmod = (pageCards) => pageCards.reduce((latest, card) => {
@@ -641,4 +701,4 @@ const generatedPages = pages.slice(1).map((pageCards, index) => `  <url>\n    <l
 const generatedSitemapEntries = [targetArticleEntry, generatedPages].filter(Boolean).join("\n");
 if (generatedSitemapEntries) sitemap = sitemap.replace("</urlset>", `${generatedSitemapEntries}\n</urlset>`);
 write(sitemapPath, sitemap);
-console.log(`Generated ${pages.length} blog archive page(s), related cards for ${cards.length} article(s), ${targetArticleEntry ? 1 : 0} missing sitemap URL(s), and ${updatedArticleLastmod} updated article lastmod value(s).`);
+console.log(`Generated ${pages.length} blog archive page(s), related cards for ${cards.length} article(s), author blocks for ${authorBlocks.found} article page(s) with ${authorBlocks.updated} update(s), ${targetArticleEntry ? 1 : 0} missing sitemap URL(s), and ${updatedArticleLastmod} updated article lastmod value(s).`);
