@@ -2,6 +2,18 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-avtoshkoly",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "economics",
+        "campaign-setup",
+        "traffic-quality",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "sozdanie-mobilnyh-prilozheniy",
       "topic": "budget",
       "topicLabel": "Бюджет и стоимость",
@@ -1601,10 +1613,8 @@
       "topicLabel": "Интернет-магазины",
       "tags": [
         "ecommerce",
-        "analytics",
-        "economics",
-        "automation",
-        "campaign-setup"
+        "campaign-setup",
+        "lead-generation"
       ],
       "intent": "instruction"
     },
@@ -1677,7 +1687,7 @@
       "topic": "real-estate",
       "topicLabel": "Недвижимость",
       "tags": [
-        "analytics",
+        "economics",
         "search",
         "campaign-setup",
         "website",
@@ -1691,9 +1701,8 @@
       "topicLabel": "Недвижимость",
       "tags": [
         "real-estate-agency",
-        "economics",
-        "search",
-        "campaign-setup",
+        "ad-formats",
+        "website",
         "specialist",
         "lead-generation"
       ],
