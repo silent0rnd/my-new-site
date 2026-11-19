@@ -69,7 +69,7 @@
       images: caseDetails.images || caseItem.images || [],
       // Поля для статичной сборки (scripts/generate-cases.js). Необязательные:
       // без них заголовок и описание собираются автоматически.
-      seoTitle: caseDetails.seoTitle || caseItem.seoTitle,
+      seoTitle: caseItem.seoTitle || caseDetails.seoTitle,
       seoDescription: caseDetails.seoDescription || caseItem.seoDescription,
       faq: caseDetails.faq || caseItem.faq,
       datePublished: caseDetails.datePublished || caseItem.datePublished,
@@ -86,7 +86,7 @@
 
   const yandexDirectCaseDetails = {
     "advokat-krasnodar-yandex-direct": {
-      seoTitle: "Адвокат в Краснодаре: 51 звонок, 83% целевых - кейс Яндекс Директ",
+      seoTitle: "Кейс продвижения адвоката в Яндекс Директ",
       seoDescription: "Кейс рекламы адвоката в Краснодаре: 51 звонок по 1084₽ за 30 дней, около 83% обращений целевые. Поиск, Мастер кампаний и коллтрекинг Гудок.",
       datePublished: "2026-10-23",
       dateModified: "2026-11-03",
@@ -5157,7 +5157,7 @@
         { value: "126₽", label: "цена лида" },
         { value: "350₽", label: "цена лида до оптимизации" },
       ],
-      seoTitle: "Фотошкола: 2500 лидов в месяц по 126₽ - кейс Яндекс Директ",
+      seoTitle: "Кейс продвижения и масштабирования фотошколы в Яндекс Директ",
       seoDescription: "Кейс Яндекс Директ: 5794 регистрации по 126₽ вместо 350₽ для онлайн-фотошколы. Укрупнили кампании, добавили автотаргетинг, Мастер-кампании и поиск за конверсию.",
       datePublished: "2022-04-01",
       dateModified: "2026-09-14",
@@ -5333,7 +5333,7 @@
       metrics: [
         { value: "31₽", label: "регистрация на вебинар" },
       ],
-      seoTitle: "Курсы кондитера: регистрация на вебинар по 31₽ - кейс Яндекс Директ",
+      seoTitle: "Кейс продвижения вебинарной воронки кондитера в Яндекс Директ",
       seoDescription: "Кейс Яндекс Директ: регистрация на вебинар по 31₽ для кондитерской школы. Убрали рецептурную семантику, оставили запросы про обучение, поиск отключили.",
       datePublished: "2022-06-01",
       dateModified: "2026-11-04",
@@ -5502,7 +5502,7 @@
       metrics: [
         { value: "271%", label: "ROMI за месяц" },
       ],
-      seoTitle: "Курс по лозоплетению: ROMI 271% - кейс Яндекс Директ",
+      seoTitle: "Кейс продвижения курса по лозоплетению в Яндекс Директ",
       seoDescription: "Кейс Яндекс Директ: 1673 регистрации по 141₽ на бесплатный мастер-класс по плетению из бумажной лозы. 81 оплата курса, выручка 754 900₽, ROMI 271%.",
       datePublished: "2023-09-01",
       dateModified: "2026-11-16",
@@ -5665,6 +5665,7 @@
     {
       title: "Эфиры топ-шеф-повара",
       slug: "chef-live-streams-yandex-direct",
+      seoTitle: "Кейс продвижения эфиров топ-шеф-повара в Яндекс Директ",
       category: "education",
       categoryLabel: "Образование",
       shortResult: "1500+ регистраций по ≤150₽",
@@ -5716,7 +5717,7 @@
         { value: "80", label: "заявок" },
         { value: "2049₽", label: "цена заявки" },
       ],
-      seoTitle: "Преподаватели цигун: 80 заявок по 2049₽ - кейс Яндекс Директ",
+      seoTitle: "Кейс продвижения курсов для преподавателей цигун в Яндекс Директ",
       seoDescription: "Кейс Яндекс Директ: 80 заявок по 2049₽ на курс преподавателей цигун с чеком до 75 000₽. Расход 163 922₽ за 3 месяца. Поиск и Мастер-кампании, без сетей.",
       datePublished: "2022-10-13",
       dateModified: "2026-11-04",
@@ -5882,7 +5883,7 @@
         { value: "96₽", label: "цена лида" },
         { value: "300₽", label: "KPI" },
       ],
-      seoTitle: "Онлайн-школа йоги: 447 лидов по 96₽ - кейс Яндекс Директ",
+      seoTitle: "Кейс продвижения курсов йоги Сурья Намаскар в Яндекс Директ",
       seoDescription: "Кейс Яндекс Директ: 447 лидов по 96,49₽ на бесплатный урок онлайн-школы йоги. Одна Мастер-кампания, расход 43 129₽ за март 2023, KPI 300₽ выполнен втрое.",
       datePublished: "2023-04-01",
       dateModified: "2026-08-23",
@@ -6045,6 +6046,7 @@
     {
       title: "Школа массажа в Москве",
       slug: "massage-school-moscow-yandex-direct",
+      seoTitle: "Кейс продвижения школы массажа в Яндекс Директ",
       category: "education",
       categoryLabel: "Образование",
       shortResult: "402 лида по 819₽ вместо 2000₽",
@@ -6053,7 +6055,7 @@
         { value: "819₽", label: "цена лида" },
         { value: "2000₽", label: "цена лида до оптимизации" },
       ],
-      "seoTitle": "Курсы массажа в Москве: 402 заявки по 819₽ - кейс Яндекс Директ",
+      "seoTitle": "Кейс продвижения школы массажа в Яндекс Директ",
       "seoDescription": "Кейс Яндекс Директ: школа массажа в Москве. 402 заявки по 819₽ за месяц при расходе 329 395₽. Год до этого заявка стоила 1952₽. Разбор структуры кампаний.",
       "datePublished": "2023-09-01",
       "dateModified": "2026-08-23",
@@ -6333,7 +6335,7 @@
         },
       ],
       conclusion: "В узких нишах нельзя начинать с терминологии для своих. Лучше заходить через понятную боль и бытовой язык: алгоритму проще масштабировать тему гармоничного дома, чем мини-курс по Васту.",
-      seoTitle: "Обучение Васту: 201 подписка в бот по 203₽ - кейс Яндекс Директ",
+      seoTitle: "Кейс продвижения обучения Васту в Яндекс Директ",
       seoDescription: "Кейс Яндекс Директ для эксперта по Васту: 201 запуск Telegram-бота по 203₽ за месяц. Бюджет 40 809₽, РСЯ и Мастер-кампании, оплата за конверсию по 150₽.",
       faq: [
         {
@@ -6509,7 +6511,7 @@
         },
       ],
       conclusion: "Даже в чувствительной тематике можно держать низкую стоимость лида, проходить модерацию и получать качественный трафик. Ключевое - корректная формулировка оффера, аккуратные креативы и правильная фиксация событий.",
-      seoTitle: "Ниша 18+: лиды по 50₽ в Telegram-бот - кейс Яндекс Директ",
+      seoTitle: "Кейс продвижения воронки 18+ в Яндекс Директ",
       seoDescription: "Кейс Яндекс Директ в нише 18+: лиды по 50₽ на запуск Telegram-бота и скачивание PDF-книги. Бюджет 15-20 тыс.₽ в неделю, полгода в 2025 году, трафик с видео.",
       faq: [
         {
@@ -6565,6 +6567,7 @@
     {
       title: "Строительство домов",
       slug: "house-construction-yandex-direct",
+      seoTitle: "Кейс продвижения строительства домов в Яндекс Директ",
       category: "real-estate",
       categoryLabel: "Недвижимость",
       shortResult: "Снизили CPA в 2 раза",
@@ -6575,6 +6578,7 @@
     {
       title: "ЖК Красногорск Парк",
       slug: "krasnogorsk-park-real-estate-yandex-direct",
+      seoTitle: "Кейс продвижения ЖК «Красногорск Парк» в Яндекс Директ",
       category: "real-estate",
       categoryLabel: "Недвижимость",
       shortResult: "Удержали поток лидов во время турбулентности рынка",
@@ -6585,6 +6589,7 @@
     {
       title: "Продажа студий в Москве",
       slug: "moscow-studios-real-estate-yandex-direct",
+      seoTitle: "Кейс продвижения продажи студий в Яндекс Директ",
       category: "real-estate",
       categoryLabel: "Недвижимость",
       shortResult: "528₽ за лид в Москве",
@@ -6595,6 +6600,7 @@
     {
       title: "Коммерческая недвижимость, ЖК Ватутинки Парк",
       slug: "vatutinki-park-commercial-real-estate-yandex-direct",
+      seoTitle: "Кейс продвижения коммерческой недвижимости в Яндекс Директ",
       category: "real-estate",
       categoryLabel: "Недвижимость",
       shortResult: "Снизили стоимость лида в 3,5 раза",
@@ -6605,6 +6611,7 @@
     {
       title: "Агентство недвижимости, Trade-in",
       slug: "real-estate-agency-trade-in-yandex-direct",
+      seoTitle: "Кейс продвижения агентства недвижимости Trade-in в Яндекс Директ",
       category: "real-estate",
       categoryLabel: "Недвижимость",
       shortResult: "83 заявки на trade-in по 1774₽",
@@ -6616,6 +6623,7 @@
     {
       title: "Поставщик промышленных дробилок",
       slug: "industrial-crushers-supplier-yandex-direct",
+      seoTitle: "Кейс продвижения промышленных дробилок в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "64 заявки по 546₽",
@@ -6627,6 +6635,7 @@
     {
       title: "Партнер Ozon и Яндекс Маркета",
       slug: "ozon-yandex-market-partner-yandex-direct",
+      seoTitle: "Кейс продвижения услуг для селлеров в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "175 заявок по 540₽",
@@ -6638,6 +6647,7 @@
     {
       title: "Юридический консалтинг",
       slug: "legal-consulting-yandex-direct",
+      seoTitle: "Кейс продвижения юридического консалтинга в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Лиды от 150₽ при бюджете более 18 млн рублей",
@@ -6649,6 +6659,7 @@
     {
       title: "Открытие бизнеса в ОАЭ",
       slug: "business-setup-uae-yandex-direct",
+      seoTitle: "Кейс продвижения услуг по открытию бизнеса в ОАЭ в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "215 заявок по 1775₽",
@@ -6660,6 +6671,7 @@
     {
       title: "Выкуп акций, высокий чек",
       slug: "stock-buyout-high-ticket-yandex-direct",
+      seoTitle: "Кейс продвижения услуги выкупа акций в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Лиды по 2500₽ для услуги с чеком в несколько миллионов",
@@ -6670,6 +6682,7 @@
     {
       title: "Продвижение суперфуда",
       slug: "superfood-promotion-yandex-direct",
+      seoTitle: "Кейс продвижения суперфуда в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Снизили стоимость лида в 2 раза, с 1300₽ до 600₽",
@@ -6681,6 +6694,7 @@
     {
       title: "Наружная реклама",
       slug: "outdoor-advertising-yandex-direct",
+      seoTitle: "Кейс продвижения услуг наружной рекламы в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Снизили стоимость лида с 1500₽ до 400₽",
@@ -6692,6 +6706,7 @@
     {
       title: "Продажа строительных бытовок",
       slug: "construction-cabins-sales-yandex-direct",
+      seoTitle: "Кейс продвижения строительных бытовок в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Лиды дешевле 1000₽",
@@ -6702,6 +6717,7 @@
     {
       title: "Грузоперевозки в Норильск",
       slug: "norilsk-cargo-transport-yandex-direct",
+      seoTitle: "Кейс продвижения грузоперевозок в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Снизили стоимость лида с 11 090₽ до 3684₽",
@@ -6713,6 +6729,7 @@
     {
       title: "Фабрика детской одежды",
       slug: "kids-clothing-factory-yandex-direct",
+      seoTitle: "Кейс продвижения фабрики детской одежды в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Лиды по 4$ для швейного производства",
@@ -6723,6 +6740,7 @@
     {
       title: "Организация швейного производства",
       slug: "sewing-production-organization-yandex-direct",
+      seoTitle: "Кейс продвижения швейного производства в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "Лиды по 1500₽",
@@ -6733,6 +6751,7 @@
     {
       title: "Оптовые продажи LED-светильников",
       slug: "led-lighting-wholesale-yandex-direct",
+      seoTitle: "Кейс продвижения оптовых LED-светильников в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "3074 лида по 1649₽",
@@ -6744,6 +6763,7 @@
     {
       title: "Найм персонала в стриптиз-клуб",
       slug: "strip-club-hiring-yandex-direct",
+      seoTitle: "Кейс продвижения вакансий стриптиз-клуба в Яндекс Директ",
       category: "b2b",
       categoryLabel: "B2B",
       shortResult: "330 заявок на работу по 384₽",
@@ -6755,6 +6775,7 @@
     {
       title: "Центр психологии в Липецке",
       slug: "psychology-center-lipetsk-yandex-direct",
+      seoTitle: "Кейс продвижения центра психологии в Яндекс Директ",
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Лиды по 700₽",
@@ -6765,6 +6786,7 @@
     {
       title: "Визовые услуги",
       slug: "visa-services-yandex-direct",
+      seoTitle: "Кейс продвижения визовых услуг в Яндекс Директ",
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Снизили стоимость заявки в 3 раза: с 1290₽ до 434₽",
@@ -6776,6 +6798,7 @@
     {
       title: "Таксопарк в Крыму",
       slug: "crimea-taxi-fleet-yandex-direct",
+      seoTitle: "Кейс продвижения таксопарка в Яндекс Директ",
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Снизили стоимость лида с 282₽ до 170₽ и увеличили поток в 2 раза",
@@ -6787,6 +6810,7 @@
     {
       title: "Фотосессии для беременных",
       slug: "pregnancy-photoshoots-yandex-direct",
+      seoTitle: "Кейс продвижения фотосессий для беременных в Яндекс Директ",
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Заявки по 162₽ в Санкт-Петербурге",
@@ -6797,6 +6821,7 @@
     {
       title: "Экскурсии по Санкт-Петербургу",
       slug: "saint-petersburg-tours-yandex-direct",
+      seoTitle: "Кейс продвижения экскурсий в Яндекс Директ",
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Лиды дешевле 500₽",
@@ -6807,6 +6832,7 @@
     {
       title: "Протезирование зубов в Москве",
       slug: "dental-prosthetics-moscow-yandex-direct",
+      seoTitle: "Кейс продвижения протезирования зубов в Яндекс Директ",
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "482 заявки на протезирование зубов из РСЯ",
@@ -6817,6 +6843,7 @@
     {
       title: "Медицинский сервис доктора Дзидзарии",
       slug: "doctor-dzidzaria-medical-service-yandex-direct",
+      seoTitle: "Кейс продвижения медицинского сервиса в Яндекс Директ",
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Снижение стоимости лида в 2 раза",
@@ -6827,6 +6854,7 @@
     {
       title: "Сеть химчисток",
       slug: "dry-cleaning-chain-yandex-direct",
+      seoTitle: "Кейс продвижения сети химчисток в Яндекс Директ",
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "Снизили стоимость лида с 1100₽ до 543₽",
@@ -6838,6 +6866,7 @@
     {
       title: "Автосервис в Рыбинске",
       slug: "rybinsk-car-service-yandex-direct",
+      seoTitle: "Кейс продвижения автосервиса в Яндекс Директ",
       category: "b2c",
       categoryLabel: "B2C",
       shortResult: "500+ заявок по 210₽",
@@ -6858,7 +6887,7 @@
         { value: "14 000₽", label: "средний чек" },
         { value: "x10", label: "выручка на вложенный рубль" },
       ],
-      seoTitle: "Японская косметика: выручка 656 000₽ - кейс Яндекс Директ",
+      seoTitle: "Кейс продвижения интернет-магазина японской косметики в Яндекс Директ",
       seoDescription: "Кейс Яндекс Директ: интернет-магазин японской косметики получил 656 000₽ выручки за 20 дней при бюджете 64 000₽. Поиск, товарный фид, смарт-баннеры, РСЯ.",
       datePublished: "2022-03-01",
       dateModified: "2026-08-23",
@@ -7019,7 +7048,7 @@
         { value: "54", label: "продажи за первые 10 дней" },
         { value: "1000₽", label: "KPI клиента по стоимости заказа" },
       ],
-      seoTitle: "Магазин мяса: 69 заказов по 408₽ - кейс Яндекс Директ",
+      seoTitle: "Кейс продвижения интернет-магазина «Мясницкий ряд» в Яндекс Директ",
       seoDescription: "Кейс Яндекс Директ: интернет-магазин «Мясницкий ряд». 69 заказов по 408₽ при KPI 1000₽ за три недели апреля 2022 года. Товарный фид, цели воронки, отказ от РСЯ.",
       datePublished: "2022-05-01",
       dateModified: "2026-11-04",
@@ -7271,7 +7300,7 @@
       h1Title: "Продвижение юридического консалтинга",
     },
     "advokat-krasnodar-yandex-direct": {
-      h1Title: "Продвижение адвоката в Краснодаре",
+      h1Title: "Кейс продвижения адвоката в Яндекс Директ",
     },
     "business-setup-uae-yandex-direct": {
       h1Title: "Продвижение услуг по открытию бизнеса в ОАЭ",
@@ -7364,7 +7393,7 @@
       shortResult: "71 лид с сайта по 1€ и подписчики по 1.3€",
       channel: "Telegram Ads",
       href: "/cases/yoga-qigong-telegram-ads",
-      seoTitle: "Курсы йоги и цигун: 71 лид по 1€ - кейс Telegram Ads",
+      seoTitle: "Кейс продвижения курсов йоги и цигун в Telegram Ads",
       seoDescription: "Кейс Telegram Ads: 71 регистрация на марафон по цигун по 1,1€ и 407 подписчиков в канал по йоге. Ручной подбор 200+ каналов, тесты текстов, лучший подписчик 1,32€.",
       datePublished: "2024-06-01",
       dateModified: "2026-08-24",
@@ -7528,7 +7557,7 @@
       shortResult: "Подписчики по 2€",
       channel: "Telegram Ads",
       href: "/cases/medcenter-telegram-ads",
-      seoTitle: "Медицинский центр: 62 подписчика по 2€ - кейс Telegram Ads",
+      seoTitle: "Кейс продвижения медицинского центра в Telegram Ads",
       seoDescription: "Кейс Telegram Ads: 62 подписчика по 2€ в канал медицинского центра в Коврове при бюджете 140€. Как прошли медицинскую модерацию и переписали тексты.",
       datePublished: "2022-06-01",
       dateModified: "2026-08-23",
@@ -7700,7 +7729,7 @@
         { value: "1,4€", label: "стоимость запуска бота" },
         { value: "Telegram", label: "вся воронка внутри мессенджера" },
       ],
-      seoTitle: "Менеджеры маркетплейсов: запуск бота 1,4€ - кейс Telegram Ads",
+      seoTitle: "Кейс продвижения обучения менеджеров маркетплейсов в Telegram Ads",
       seoDescription: "Кейс Telegram Ads 2022 года: запуск Telegram-бота по 1,4€ для курса менеджеров маркетплейсов. Две кампании на канал, таргет по каналам и по темам.",
       datePublished: "2022-06-01",
       dateModified: "2026-08-23",
@@ -7836,7 +7865,7 @@
       shortResult: "3570 запусков бота по 0,29€",
       channel: "Telegram Ads",
       href: "/cases/vpn-telegram-ads",
-      seoTitle: "VPN-сервис: 3570 запусков бота по 0,29€ - кейс Telegram Ads",
+      seoTitle: "Кейс продвижения VPN-сервиса в Telegram Ads",
       seoDescription: "Кейс Telegram Ads для VPN-сервиса: 3570 запусков бота по 0,29€ при расходе 1022€ за июнь 2025 года. Подписка дешевле 800₽, аналитика по каждой ссылке.",
       datePublished: "2025-07-01",
       dateModified: "2026-08-24",

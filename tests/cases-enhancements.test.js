@@ -21,7 +21,7 @@ function sectionIllustrations(section) {
 }
 
 for (const caseItem of cases) {
-  assert.ok(caseItem.h1Title.startsWith("Продвижение"), `${caseItem.slug}: H1 must describe promotion`);
+  assert.ok(caseItem.h1Title.startsWith("Продвижение") || caseItem.h1Title.startsWith("Кейс продвижения"), `${caseItem.slug}: H1 must describe promotion or identify the case`);
   assert.ok(caseItem.intro.includes("Результат -"), `${caseItem.slug}: intro must contain the result`);
 
   const pagePath = path.join(root, "cases", caseItem.slug, "index.html");

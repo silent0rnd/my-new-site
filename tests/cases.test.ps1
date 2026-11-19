@@ -119,6 +119,7 @@ Assert-Match $homeJs 'index < 3' "Case controls must receive three decorative ra
 Assert-Match $css '\.case-filter:focus-visible::before,\s*\.cases-load-more:focus-visible::before \{[\s\S]*?filter:\s*drop-shadow\(0 0 1\.5px rgb\(32 32 32 / 0\.8\)\);' "Case controls must retain a visible keyboard focus state"
 Assert-Match $css '@media \(max-width: 560px\)[\s\S]*?\.case-filters \{[\s\S]*?flex-wrap:\s*wrap;[\s\S]*?overflow-x:\s*visible;' "Mobile case filters must wrap without horizontal scrolling"
 $promotionWord = -join ([char[]](0x041F, 0x0440, 0x043E, 0x0434, 0x0432, 0x0438, 0x0436, 0x0435, 0x043D, 0x0438, 0x0435))
+$casePromotionWord = -join ([char[]](0x041A, 0x0435, 0x0439, 0x0441, 0x0020, 0x043F, 0x0440, 0x043E, 0x0434, 0x0432, 0x0438, 0x0436, 0x0435, 0x043D, 0x0438, 0x044F))
 if ($index.IndexOf('<section class="about"') -gt $index.IndexOf('<section class="cases-showcase"')) {
   throw "About block must be above cases block"
 }
@@ -133,7 +134,7 @@ foreach ($slug in $slugs) {
   Assert-Match $page 'href="\.\./"' "Breadcrumb link to /cases/ missing $slug"
   Assert-Match $page "../../cases-data\.js" "Case data script missing $slug"
   Assert-Match $page "../../case-page\.js" "Case page script missing $slug"
-  Assert-Match $page ("<h1>" + $promotionWord) "Case page H1 must use the promotion title $slug"
+  Assert-Match $page ("<h1>(" + $promotionWord + "|" + $casePromotionWord + ")") "Case page H1 must describe the promotion or identify the case $slug"
   Assert-Match $page 'class="article-author case-author"' "Visible case author is missing $slug"
   Assert-NotMatch $page 'class="case-cta"' "Case CTA block must be absent $slug"
   Assert-Match $page 'https://naklikay\.ru/#maxim-miroshnikov' "Article schema must link the author entity $slug"

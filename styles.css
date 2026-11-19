@@ -5045,6 +5045,12 @@ html.is-hero-video-played .portrait-video {
   line-height: 1.42;
 }
 
+/* TT Masters имеет выступающий левый элемент у заглавной «Д». Небольшой
+   внутренний зазор не даёт первой букве строки упираться в границу блока. */
+.article-page .legal-document {
+  padding-inline-start: 2px;
+}
+
 .article-page .legal-document > .section {
   margin-top: 52px;
 }

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="../../assets/avatar-donut.svg?v=2" type="image/svg+xml" />
+  <title>Почему не работает реклама ВКонтакте: диагностика VK Ads</title>
+  <meta name="description" content="Почему реклама ВКонтакте не даёт заявок: проверяем события, аудиторию, объявления, посадочную страницу и качество лидов в VK Ads." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://naklikay.ru/blog/pochemu-ne-rabotaet-reklama-vkontakte/" />
+  <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="stylesheet" href="../../styles.css?v=20261118-author-card-1" />
+  <script src="../../script.js?v=20261118-author-card-1" defer></script>
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Почему не работает реклама ВКонтакте: диагностика VK Ads" />
+  <meta property="og:description" content="Пошаговая диагностика VK Ads: события, аудитория, объявления, посадочная страница и качество лидов." />
+  <meta property="og:url" content="https://naklikay.ru/blog/pochemu-ne-rabotaet-reklama-vkontakte/" />
+  <meta property="og:image" content="https://naklikay.ru/blog/01-diagnostika-vk-ads.jpg" />
+  <meta property="og:image:width" content="2896" />
+  <meta property="og:image:height" content="2172" />
+  <meta property="article:published_time" content="2026-11-19" />
+  <meta property="article:modified_time" content="2026-11-19" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Почему не работает реклама ВКонтакте: диагностика VK Ads" />
+  <meta name="twitter:description" content="Проверяем, где теряются показы, клики, заявки и продажи в рекламной связке VK Ads." />
+  <meta name="twitter:image" content="https://naklikay.ru/blog/01-diagnostika-vk-ads.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Почему не работает реклама ВКонтакте",
+    "description": "Почему реклама ВКонтакте не даёт заявок: проверяем события, аудиторию, объявления, посадочную страницу и качество лидов в VK Ads.",
+    "url": "https://naklikay.ru/blog/pochemu-ne-rabotaet-reklama-vkontakte/",
+    "inLanguage": "ru-RU",
+    "datePublished": "2026-11-19",
+    "dateModified": "2026-11-19",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naklikay.ru/blog/pochemu-ne-rabotaet-reklama-vkontakte/"
+    },
+    "image": [
+      "https://naklikay.ru/blog/01-diagnostika-vk-ads.jpg",
+      "https://naklikay.ru/blog/02-simptomy-vk-ads.jpg",
+      "https://naklikay.ru/blog/03-checklist-diagnostiki-vk-ads.jpg"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Максим Мирошников",
+      "jobTitle": "Специалист по платному трафику и Яндекс Директу"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Максим Мирошников"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://naklikay.ru/"},
+      {"@type": "ListItem", "position": 2, "name": "Блог", "item": "https://naklikay.ru/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "Почему не работает реклама ВКонтакте", "item": "https://naklikay.ru/blog/pochemu-ne-rabotaet-reklama-vkontakte/"}
+    ]
+  }
+  </script>
+</head>
+<body class="legal-page article-page">
+  <header class="legal-topbar"><a class="legal-home-link" href="../../">Максим Мирошников</a></header>
+  <main class="legal-shell">
+    <article class="legal-document">
+      <nav class="article-breadcrumbs" aria-label="Хлебные крошки"><a href="../../">Главная</a><span>/</span><a href="../">Блог</a><span>/</span><span>Почему не работает реклама ВКонтакте</span></nav>
+      <p class="legal-kicker">Блог о платном трафике</p>
+      <h1>Почему не работает реклама ВКонтакте</h1>
+      <p class="article-meta"><time datetime="2026-11-19">19 ноября 2026</time><span>·</span><span>Максим Мирошников</span></p>
+      <p class="article-lead">Если реклама ВКонтакте не даёт заявок, сначала нужно определить, где обрывается путь от показа до продажи. Причина может быть в событии, аудитории, объявлении, посадочной странице или обработке обращения. Поэтому менять таргетинг и увеличивать бюджет до проверки всей связки рискованно.</p>
+      <aside class="content-key-point"><p>Коротко</p><ul><li>Нет показов - проверьте статус кампании, объявления, аудиторию и доступность размещения.</li><li>Есть клики, но нет заявок - сверьте событие, форму, страницу и фактический путь клиента.</li><li>Есть заявки, но нет продаж - проверьте качество обращений и работу менеджера.</li><li>Меняйте по одному параметру и фиксируйте, что именно изменилось.</li></ul></aside>
+
+      <figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="01-diagnostika-vk-ads-640.webp 640w, 01-diagnostika-vk-ads-1080.webp 1080w, 01-diagnostika-vk-ads-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="01-diagnostika-vk-ads.jpg" alt="Схема диагностики рекламы ВКонтакте по событиям, аудитории, креативу, посадочной странице и качеству лида" width="2896" height="2172" loading="lazy" decoding="async" /></picture><figcaption>Диагностика VK Ads должна охватывать всю рекламную связку, а не один показатель.</figcaption></figure>
+
+<!-- article-toc:start -->
+<nav class="article-toc" id="article-toc" aria-labelledby="article-toc-title">
+  <p class="article-toc__eyebrow">Навигация по статье</p>
+  <h2 class="article-toc__title" id="article-toc-title">Содержание</h2>
+  <ol class="article-toc__list">
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-ponyat-gde-imenno-obryvaetsya-reklamnaya-voronka" data-article-anchor>Как понять, где именно обрывается рекламная воронка</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-kampaniya-optimiziruetsya-ne-pod-tot-rezultat" data-article-anchor>Кампания оптимизируется не под тот результат</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-tselevoe-deystvie-ne-peredaetsya-ili-schitaetsya-nepravilno" data-article-anchor>Целевое действие не передаётся или считается неправильно</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-auditoriya-ne-sovpadaet-s-predlozheniem" data-article-anchor>Аудитория не совпадает с предложением</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-kreativ-ne-obyasnyaet-chto-poluchit-chelovek" data-article-anchor>Креатив не объясняет, что получит человек</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-reklama-vedet-na-slabuyu-posadochnuyu-stranitsu" data-article-anchor>Реклама ведёт на слабую посадочную страницу</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-kliki-est-no-zayavok-net" data-article-anchor>Клики есть, но заявок нет</a>
+    </li>
+    <li class="article-toc__item article-toc__item--has-children">
+      <div class="article-toc__section-row">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-provesti-diagnostiku-za-odin-rabochiy-tsikl" data-article-anchor>Как провести диагностику за один рабочий цикл</a>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-8" aria-label="Показать подразделы: Как провести диагностику за один рабочий цикл">
+          <span aria-hidden="true">3</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
+        </button>
+      </div>
+      <ol class="article-toc__sublist" id="article-toc-subsections-8" hidden>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-net-pokazov" data-article-anchor>Нет показов</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-est-kliki-net-zayavok" data-article-anchor>Есть клики, нет заявок</a></li>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-est-zayavki-net-prodazh" data-article-anchor>Есть заявки, нет продаж</a></li>
+      </ol>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-chto-menyat-pervym-a-chto-ostavit-do-nakopleniya-dannyh" data-article-anchor>Что менять первым, а что оставить до накопления данных</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-chek-list-diagnostiki-reklamnoy-kampanii" data-article-anchor>Чек-лист диагностики рекламной кампании</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-vyvod" data-article-anchor>Вывод</a>
+    </li>
+  </ol>
+</nav>
+<!-- article-toc:end -->
+<section class="article-content">
+        <h2 id="section-kak-ponyat-gde-imenno-obryvaetsya-reklamnaya-voronka">Как понять, где именно обрывается рекламная воронка</h2>
+        <p>Фраза «реклама не работает» описывает сразу несколько разных ситуаций. Кампания может не получать показы, привлекать внимание без переходов, приводить людей на сайт без заявок или давать обращения, которые не превращаются в продажи.</p>
+        <p>Сначала разделите эти симптомы. Для каждого нужен свой набор проверок, и универсальная правка здесь только увеличивает риск потерять накопленные данные.</p>
+        <div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Симптом</th><th scope="col">Где проверить</th><th scope="col">Что менять</th><th scope="col">Чего не делать</th></tr></thead><tbody>
+          <tr><td data-label="Симптом">Нет показов</td><td data-label="Где проверить">Статус кампании, группы и объявления, аудиторию, бюджет и доступность размещения</td><td data-label="Что менять">Сначала устранить техническую или статусную причину</td><td data-label="Чего не делать">Не переписывать креатив, пока объявление не получает показы</td></tr>
+          <tr><td data-label="Симптом">Показы есть, кликов мало</td><td data-label="Где проверить">Соответствие креатива аудитории и понятность предложения</td><td data-label="Что менять">Текст, визуал или сегмент в отдельной проверяемой версии</td><td data-label="Чего не делать">Не судить о продажах только по кликабельности</td></tr>
+          <tr><td data-label="Симптом">Есть клики, заявок нет</td><td data-label="Где проверить">Событие, форма, страница, скорость загрузки и совпадение обещания с предложением</td><td data-label="Что менять">Сначала устранить разрыв между объявлением и действием на странице</td><td data-label="Чего не делать">Не расширять аудиторию до проверки конверсии</td></tr>
+          <tr><td data-label="Симптом">Есть заявки, продаж нет</td><td data-label="Где проверить">Регион, задачу, бюджет и скорость обработки обращения</td><td data-label="Что менять">Квалификацию лида, сценарий обработки или условия предложения</td><td data-label="Чего не делать">Не объявлять кампанию неэффективной по одному показателю</td></tr>
+        </tbody></table></div>
+
+        <h2 id="section-kampaniya-optimiziruetsya-ne-pod-tot-rezultat">Кампания оптимизируется не под тот результат</h2>
+        <p>В VK Ads нужно заранее определить, какое действие является целевым. Для одного бизнеса это отправка формы, для другого звонок, переход в мессенджер, регистрация или покупка. Клик сам по себе ещё не означает, что система получает сигнал о нужном результате.</p>
+        <p>Если кампания настроена на переходы, алгоритм ищет пользователей, которые с большей вероятностью перейдут по объявлению. Это не то же самое, что поиск людей, готовых заполнить форму или купить. Поэтому сначала проверьте, совпадает ли цель кампании с задачей бизнеса.</p>
+        <p>Если нужное событие уже настроено, проверьте его на реальном пути клиента. Откройте страницу с телефона, заполните форму, убедитесь в появлении подтверждения и сопоставьте это действие с данными в кабинете. Тестовая отправка должна быть отличима от реальной заявки.</p>
+
+        <h2 id="section-tselevoe-deystvie-ne-peredaetsya-ili-schitaetsya-nepravilno">Целевое действие не передаётся или считается неправильно</h2>
+        <p>Пиксель и событие не заменяют проверку. Код может быть установлен не на всех страницах, событие может срабатывать при нажатии кнопки до успешной отправки формы, а страница подтверждения может быть недоступна после отправки.</p>
+        <p>Проверьте четыре вещи:</p>
+        <ul><li>событие срабатывает только после нужного действия;</li><li>форма действительно отправляет данные, а не только меняет состояние кнопки;</li><li>переходы с рекламы и органические визиты не смешиваются в одном отчёте;</li><li>в CRM или таблице появляется та же заявка, которая учитывается в рекламном кабинете.</li></ul>
+        <p>Если отчёт показывает конверсии, а менеджер не видит обращений, проблема может быть на стороне интеграции, формы или маршрутизации заявок. В этом случае изменение аудитории не исправит потерю данных.</p>
+
+        <h2 id="section-auditoriya-ne-sovpadaet-s-predlozheniem">Аудитория не совпадает с предложением</h2>
+        <p>Слишком узкая аудитория ограничивает объём показов. Слишком широкая может давать дешёвые переходы от людей, которым предложение не подходит. Оба случая выглядят как проблема рекламы, хотя причина находится в соответствии аудитории и продукта.</p>
+        <p>Проверяйте не только настройки сегмента, но и смысл предложения. Для услуги в конкретном городе важны регион, сценарий обращения и возможность быстро принять клиента. Для сложного продукта нужно учитывать, понимает ли аудитория задачу и готова ли изучать предложение до заявки.</p>
+        <p>Разделяйте аудитории в отчёте и не объединяйте в одну группу пользователей с разными потребностями. Так будет понятнее, какой сегмент даёт показы, переходы, заявки и подходящие обращения.</p>
+        <p>О выборе рекламного канала и состоянии спроса подробнее рассказано в статье <a href="https://naklikay.ru/blog/kontekstnaya-ili-targetirovannaya-reklama/" target="_blank" rel="noopener noreferrer">о различиях контекстной и таргетированной рекламы</a>.</p>
+
+        <h2 id="section-kreativ-ne-obyasnyaet-chto-poluchit-chelovek">Креатив не объясняет, что получит человек</h2>
+        <p>Креатив должен помочь человеку быстро понять, что ему предлагают, для кого это решение и какое действие нужно выполнить дальше. Красивое изображение без конкретного смысла может получить показы, но не дать осознанного перехода.</p>
+        <p>Проверьте связку из четырёх элементов:</p>
+        <ol><li>заголовок называет задачу или продукт;</li><li>текст объясняет существенное условие предложения;</li><li>визуал поддерживает смысл, а не отвлекает от него;</li><li>призыв соответствует действию на посадочной странице.</li></ol>
+        <p>Меняйте одну часть креатива за раз. Если одновременно заменить изображение, текст, аудиторию и страницу, результат невозможно связать с конкретным решением.</p>
+
+        <h2 id="section-reklama-vedet-na-slabuyu-posadochnuyu-stranitsu">Реклама ведёт на слабую посадочную страницу</h2>
+        <p>Клик показывает интерес к объявлению, но не подтверждает готовность оставить контакты. После перехода человек должен быстро увидеть то же предложение, которое привело его из рекламы.</p>
+        <p>Проверьте страницу в мобильном браузере. На первом экране должны быть понятны продукт, условия, регион или формат работы и следующий шаг. Форма не должна требовать данных, которые не нужны для первого контакта.</p>
+        <p>Отдельно проверьте технический путь: загрузку страницы, работу кнопки, обязательные поля, сообщение об успешной отправке и передачу контакта менеджеру. Если рекламируете несколько услуг, ведите человека на страницу, соответствующую конкретному объявлению.</p>
+        <p>Когда собственного сайта нет, точкой назначения может быть другая площадка, но проверять нужно тот же путь от перехода до обращения. Практические ограничения таких сценариев разобраны в статье <a href="https://naklikay.ru/blog/yandex-direct-bez-saita/" target="_blank" rel="noopener noreferrer">о рекламе без полноценного сайта</a>.</p>
+
+        <h2 id="section-kliki-est-no-zayavok-net">Клики есть, но заявок нет</h2>
+        <p>Это самый частый случай, когда рекламную проблему пытаются решить расширением аудитории. Сначала нужно понять, действительно ли пользователь не оставляет контакт или заявка просто не фиксируется.</p>
+        <p>Пройдите путь самостоятельно: объявление, страница, форма, подтверждение, уведомление менеджеру. Если отправка не проходит, исправляйте страницу или форму. Если отправка проходит, но событие не появляется, исправляйте аналитику. Если событие появляется, но обращение не подходит, проверяйте предложение и аудиторию.</p>
+        <p>Не смешивайте в одном выводе техническую конверсию и качество обращения. Человек может заполнить форму, но не иметь нужной задачи, бюджета или региона. Это уже следующий участок воронки.</p>
+
+        <figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="02-simptomy-vk-ads-640.webp 640w, 02-simptomy-vk-ads-1080.webp 1080w, 02-simptomy-vk-ads-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="02-simptomy-vk-ads.jpg" alt="Типы проблем в рекламе ВКонтакте и точки проверки для показов, заявок и продаж" loading="lazy" decoding="async" width="2896" height="2172" /></picture><figcaption>Один и тот же симптом в отчёте может требовать разных проверок.</figcaption></figure>
+
+        <h2 id="section-kak-provesti-diagnostiku-za-odin-rabochiy-tsikl">Как провести диагностику за один рабочий цикл</h2>
+        <p>Диагностику удобно проводить от факта к причине. Сначала зафиксируйте период, кампанию, группу и объявление. Затем проверьте сигнал, аудиторию, сообщение, страницу и качество обращения.</p>
+        <h3 id="section-net-pokazov">Нет показов</h3>
+        <p>Проверьте статус кампании, группы и объявления, наличие одобренного объявления, доступность аудитории, бюджет и выбранные настройки размещения. Зафиксируйте точное сообщение кабинета, если оно есть.</p>
+        <h3 id="section-est-kliki-net-zayavok">Есть клики, нет заявок</h3>
+        <p>Проверьте событие, форму и страницу на реальном устройстве. Сверьте ссылку из объявления с содержанием страницы и убедитесь, что заявка доходит до места обработки.</p>
+        <h3 id="section-est-zayavki-net-prodazh">Есть заявки, нет продаж</h3>
+        <p>Проверьте, соответствуют ли обращения региону, продукту и условиям. Затем посмотрите скорость ответа, число попыток связаться и причину отказа. Рекламный кабинет не может заменить проверку работы отдела продаж.</p>
+
+        <h2 id="section-chto-menyat-pervym-a-chto-ostavit-do-nakopleniya-dannyh">Что менять первым, а что оставить до накопления данных</h2>
+        <p>Первым исправляйте то, что блокирует измерение или сам путь клиента: статус, событие, форму, страницу и передачу обращения. Пока эти элементы не работают, выводы об аудитории и креативе будут ненадёжными.</p>
+        <p>После исправления одного узкого места дайте кампании собрать сопоставимые данные. Не меняйте одновременно бюджет, аудиторию, объявление и посадочную страницу. Иначе исчезнет связь между изменением и результатом.</p>
+        <p>Если кампания получает показы и клики, но результат нестабилен, не делайте вывод по одному короткому отрезку. Сначала убедитесь, что выбранный период завершён, данные обработаны, а событие не дублируется.</p>
+        <p>При выборе между каналами полезно отделять проблему связки от проблемы самого рекламного источника. В <a href="https://naklikay.ru/blog/reklama-vk-ili-yandex-direct/" target="_blank" rel="noopener noreferrer">сравнении VK Рекламы и Яндекс Директа</a> это различие разобрано отдельно.</p>
+
+        <h2 id="section-chek-list-diagnostiki-reklamnoy-kampanii">Чек-лист диагностики рекламной кампании</h2>
+        <p>Используйте этот порядок перед тем, как менять стратегию или увеличивать бюджет. Рядом с каждым пунктом зафиксируйте наблюдение и конкретное изменение.</p>
+        <figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="03-checklist-diagnostiki-vk-ads-640.webp 640w, 03-checklist-diagnostiki-vk-ads-1080.webp 1080w, 03-checklist-diagnostiki-vk-ads-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="03-checklist-diagnostiki-vk-ads.jpg" alt="Порядок диагностики рекламной кампании VK Ads от события до качества лида" loading="lazy" decoding="async" width="2896" height="2172" /></picture><figcaption>Последовательная проверка помогает не менять несколько частей рекламной связки одновременно.</figcaption></figure>
+        <ol><li><strong>Событие.</strong> Убедитесь, что нужное действие определяется корректно и передаётся после фактической отправки.</li><li><strong>Аудитория.</strong> Проверьте соответствие сегмента продукту, региону и сценарию покупки.</li><li><strong>Объявление.</strong> Сверьте обещание, визуал и призыв с тем, что человек увидит после клика.</li><li><strong>Посадочная страница.</strong> Пройдите страницу с телефона, заполните форму и проверьте подтверждение.</li><li><strong>Качество лида.</strong> Сопоставьте обращение с требованиями бизнеса и проверьте обработку менеджером.</li></ol>
+        <p>Такой порядок не делает кампанию эффективной автоматически, но помогает найти конкретное место потери и не маскировать одну проблему другой.</p>
+
+        <h2 id="section-vyvod">Вывод</h2>
+        <p>Реклама ВКонтакте может не давать заявок по разным причинам: от отсутствующего события до слабой обработки обращений. Начинайте с определения симптома, проверяйте связку по частям и фиксируйте каждое изменение. Только после этого можно оценивать аудиторию, креатив, бюджет и сам канал.</p>
+      </section>
+
+      <aside class="article-author" data-author-card="interactive" aria-label="Об авторе">
+  <span class="article-author__stud" aria-hidden="true"></span><span class="article-author__stud" aria-hidden="true"></span>
+  <button class="article-author__toggle article-author__fabric-tab" type="button" aria-expanded="false" aria-controls="article-author-pages" aria-label="Показать контакты Максима Мирошникова"><span class="article-author__toggle-text">Задать вопрос</span></button>
+  <div class="article-author__pages" id="article-author-pages">
+    <div class="article-author__page article-author__page--profile" aria-hidden="false">
+      <div class="article-author__portrait"><img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников" width="192" height="192" loading="lazy" decoding="async" /></div>
+      <div class="article-author__body">
+        <p class="article-author__label">Автор статьи</p>
+        <p class="article-author__name">Максим Мирошников</p>
+        <p class="article-author__role">Специалист по платному трафику</p>
+        <p class="article-author__text">Запускаю рекламу, создаю сайты и воронки, настраиваю аналитику и помогаю связать маркетинг с данными о заявках.</p>
+        <div class="article-author__footer"><p class="article-author__experience">10+ лет практики</p></div>
+      </div>
+    </div>
+    <div class="article-author__page article-author__page--contact" aria-hidden="true" inert>
+      <div class="article-author__contact-body">
+        <p class="article-author__label">Связаться со мной</p>
+        <p class="article-author__contact-title">Напишите мне</p>
+        <p class="article-author__contact-copy">Расскажите о задаче - обсудим проект и подходящий формат консультации.</p>
+        <div class="article-author__contacts" aria-label="Контакты Максима Мирошникова">
+          <a class="article-author__contact-link" href="mailto:direct@miroshnikov-maxim.ru"><span>Почта</span><b>direct@miroshnikov-maxim.ru</b></a>
+          <a class="article-author__contact-link" href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer"><span>MAX</span><b>Открыть профиль</b></a>
+          <a class="article-author__contact-link" href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer"><span>Telegram</span><b>@miroshnikov_maxim</b></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside><!-- related-articles:start -->
+<section class="related-articles" aria-labelledby="related-articles-title">
+  <h2 id="related-articles-title">Похожие статьи</h2>
+  <div class="related-articles__list">
+        <a class="related-article-card" href="../lid-boty/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Маркетинг</span>
+          <span class="related-article-card__title">Лид-боты: как выявить фейковые заявки и защитить рекламу</span>
+          <span class="related-article-card__description">Как работают лид-боты, чем опасны фейковые заявки, как проверить их в Яндекс Директе, Метрике и CRM и защитить формы сайта от спама.</span>
+        </a>
+        <a class="related-article-card" href="../prodvizhenie-event-agentstva-yandex-direct/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Маркетинг</span>
+          <span class="related-article-card__title">Реклама event-агентства в Яндекс Директе: свадьбы, корпоративы и праздники</span>
+          <span class="related-article-card__description">Как продвигать агентство по организации мероприятий через Яндекс Директ: Поиск, РСЯ, посадочные страницы, аналитика, свежие кейсы и прогноз бюджета.</span>
+        </a>
+        <a class="related-article-card" href="../kvalifikaciya-lidov-v-prodazhah/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Маркетинг</span>
+          <span class="related-article-card__title">Квалификация лидов в продажах: как определить качество заявок и улучшить рекламу</span>
+          <span class="related-article-card__description">Как отличить квалифицированный лид от обычной заявки, посчитать процент квалификации и стоимость лида, настроить статусы CRM и передать данные в Яндекс Директ.</span>
+        </a>
+  </div>
+</section>
+<!-- related-articles:end -->
+    </article>
+  </main>
+</body>
+</html>

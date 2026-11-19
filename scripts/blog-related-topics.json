@@ -2,6 +2,39 @@
   "version": 1,
   "articles": [
     {
+      "slug": "vebvizor-karta-klikov-i-skrollinga-yandex-metrika",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "website"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "kak-nastroit-avito-reklamu",
+      "topic": "direct-management",
+      "topicLabel": "Настройка Яндекс Директа",
+      "tags": [
+        "analytics",
+        "campaign-setup",
+        "ad-formats",
+        "avito"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "pochemu-ne-rabotaet-reklama-vkontakte",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
+      "tags": [
+        "ad-formats",
+        "website",
+        "lead-generation"
+      ],
+      "intent": "problem"
+    },
+    {
       "slug": "prodvizhenie-avtoshkoly",
       "topic": "direct-management",
       "topicLabel": "Настройка Яндекс Директа",
@@ -1224,6 +1257,7 @@
       "topicLabel": "Работа со специалистом",
       "tags": [
         "analytics",
+        "economics",
         "automation",
         "campaign-setup",
         "specialist",
@@ -2225,8 +2259,8 @@
       "topicLabel": "Работа со специалистом",
       "tags": [
         "analytics",
+        "economics",
         "campaign-setup",
-        "traffic-quality",
         "specialist"
       ],
       "intent": "service"

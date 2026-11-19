@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="../../assets/avatar-donut.svg?v=2" type="image/svg+xml" />
+  <title>Вебвизор, карта кликов и скроллинга в Яндекс Метрике: как находить проблемы сайта</title>
+  <meta name="description" content="Как использовать Вебвизор, карту кликов, карту скроллинга и карту ссылок в Яндекс Метрике, чтобы находить проблемы посадочной страницы и улучшать рекламу." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://naklikay.ru/blog/vebvizor-karta-klikov-i-skrollinga-yandex-metrika/" />
+  <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="stylesheet" href="../../styles.css?v=20261118-author-card-1" />
+  <script src="../../script.js?v=20261118-author-card-1" defer></script>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Максим Мирошников" />
+  <meta property="og:title" content="Вебвизор, карта кликов и скроллинга в Яндекс Метрике: как находить проблемы сайта" />
+  <meta property="og:description" content="Как использовать Вебвизор и карты Яндекс Метрики для диагностики посадочной страницы и улучшения рекламы." />
+  <meta property="og:url" content="https://naklikay.ru/blog/vebvizor-karta-klikov-i-skrollinga-yandex-metrika/" />
+  <meta property="og:image" content="https://naklikay.ru/blog/01-vybor-instrumenta.jpg" />
+  <meta property="og:image:width" content="2896" />
+  <meta property="og:image:height" content="2172" />
+  <meta property="article:published_time" content="2026-11-19" />
+  <meta property="article:modified_time" content="2026-11-19" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Вебвизор, карта кликов и скроллинга в Яндекс Метрике: как находить проблемы сайта" />
+  <meta name="twitter:description" content="Практическая диагностика посадочной страницы с помощью Вебвизора, карт кликов, скроллинга и ссылок." />
+  <meta name="twitter:image" content="https://naklikay.ru/blog/01-vybor-instrumenta.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Вебвизор, карта кликов и скроллинга в Яндекс Метрике",
+    "description": "Как использовать Вебвизор, карту кликов, карту скроллинга и карту ссылок в Яндекс Метрике, чтобы находить проблемы посадочной страницы и улучшать рекламу.",
+    "url": "https://naklikay.ru/blog/vebvizor-karta-klikov-i-skrollinga-yandex-metrika/",
+    "inLanguage": "ru-RU",
+    "datePublished": "2026-11-19",
+    "dateModified": "2026-11-19",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://naklikay.ru/blog/vebvizor-karta-klikov-i-skrollinga-yandex-metrika/"
+    },
+    "image": [
+      "https://naklikay.ru/blog/01-vybor-instrumenta.jpg",
+      "https://naklikay.ru/blog/02-karta-stranicy-i-tochki-rosta.jpg",
+      "https://naklikay.ru/blog/03-analiz-reklamnogo-vizita.jpg"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Максим Мирошников",
+      "jobTitle": "Специалист по платному трафику и Яндекс Директу",
+      "url": "https://naklikay.ru/#about"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Максим Мирошников",
+      "url": "https://naklikay.ru/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://naklikay.ru/"},
+      {"@type": "ListItem", "position": 2, "name": "Блог", "item": "https://naklikay.ru/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "Вебвизор, карта кликов и скроллинга в Яндекс Метрике", "item": "https://naklikay.ru/blog/vebvizor-karta-klikov-i-skrollinga-yandex-metrika/"}
+    ]
+  }
+  </script>
+</head>
+<body class="legal-page article-page">
+  <header class="legal-topbar"><a class="legal-home-link" href="../../">Максим Мирошников</a></header>
+  <main class="legal-shell">
+    <article class="legal-document">
+      <nav class="article-breadcrumbs" aria-label="Хлебные крошки"><a href="../../">Главная</a><span>/</span><a href="../">Блог</a><span>/</span><span>Вебвизор, карта кликов и скроллинга</span></nav>
+      <p class="legal-kicker">Яндекс Метрика</p>
+      <h1>Вебвизор, карта кликов и скроллинга в Яндекс Метрике</h1>
+      <p class="article-meta"><time datetime="2026-11-19">19 ноября 2026</time><span aria-hidden="true">·</span><span>Максим Мирошников</span></p>
+      <p class="article-lead">Вебвизор и карты Яндекс Метрики помогают понять, что происходит с посетителем после рекламного перехода. Их полезно использовать не по отдельности, а как последовательную проверку: сначала определить вопрос, затем выбрать инструмент, проверить повторяющийся сигнал и связать его с целью.</p>
+      <p>Карта кликов Яндекс Метрики показывает, куда посетители нажимают, карта скроллинга помогает оценить внимание к участкам страницы, а Вебвизор показывает отдельные визиты. Карта ссылок нужна для анализа переходов между страницами. Ни один из этих отчётов сам по себе не объясняет причину низкой конверсии.</p>
+
+
+<!-- article-toc:start -->
+<nav class="article-toc" id="article-toc" aria-labelledby="article-toc-title">
+  <p class="article-toc__eyebrow">Навигация по статье</p>
+  <h2 class="article-toc__title" id="article-toc-title">Содержание</h2>
+  <ol class="article-toc__list">
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-korotko-kakoy-instrument-vybrat" data-article-anchor>Коротко: какой инструмент выбрать под конкретный вопрос</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-vklyuchit-vebvizor-karty-i-analitiku-form" data-article-anchor>Как включить Вебвизор, карты и аналитику форм</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-vebvizor-kakie-vizity-smotret" data-article-anchor>Вебвизор: какие визиты смотреть и как проверять выводы</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-karta-klikov-kak-nayti-lozhnye-kliki" data-article-anchor>Карта кликов: как найти ложные клики и слабые CTA</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-karta-skrollinga-kak-ponyat-do-kakogo-bloka-doshli" data-article-anchor>Карта скроллинга: как понять, до какого блока дошли</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-karta-ssylok-kak-nayti-perehody" data-article-anchor>Карта ссылок: как найти незаметные и неиспользуемые переходы</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-obedinit-zapisi-karty-segmenty-i-celi" data-article-anchor>Как объединить записи, карты, сегменты и цели</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-tipichnye-oshibki-interpretacii" data-article-anchor>Типичные ошибки интерпретации</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-prakticheskiy-chek-list-dlya-stranicy-iz-reklamnoy-kampanii" data-article-anchor>Практический чек-лист для страницы из рекламной кампании</a>
+    </li>
+  </ol>
+</nav>
+<!-- article-toc:end -->
+<h2 id="section-korotko-kakoy-instrument-vybrat">Коротко: какой инструмент выбрать под конкретный вопрос</h2>
+<p>Начинайте не с открытия всех отчётов подряд, а с формулировки проблемы. Если нужно увидеть конкретное поведение посетителя, откройте запись Вебвизора. Если нужно найти повторяющуюся зону интереса или ложные клики, используйте карту кликов. Если вопрос связан с видимостью оффера, формы или доказательств, смотрите карту скроллинга. Если важно понять, по каким ссылкам переходят, нужна карта ссылок.</p>
+<div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Вопрос</th><th scope="col">Инструмент</th><th scope="col">Что проверять</th><th scope="col">Следующее действие</th></tr></thead><tbody>
+<tr><td data-label="Вопрос">Что делал конкретный посетитель?</td><td data-label="Инструмент">Вебвизор</td><td data-label="Что проверять">Путь по странице, паузы, возвраты, клики и достижение цели</td><td data-label="Следующее действие">Сравнить несколько похожих визитов</td></tr>
+<tr><td data-label="Вопрос">Куда нажимают, в том числе ошибочно?</td><td data-label="Инструмент">Карта кликов</td><td data-label="Что проверять">Клики по CTA, изображениям, заголовкам и пустым зонам</td><td data-label="Следующее действие">Проверить понятность элемента и его роль</td></tr>
+<tr><td data-label="Вопрос">До какого блока доходят?</td><td data-label="Инструмент">Карта скроллинга</td><td data-label="Что проверять">Видимость оффера, формы, цены и доказательств</td><td data-label="Следующее действие">Сопоставить расположение блока с целью</td></tr>
+<tr><td data-label="Вопрос">Какие ссылки используют?</td><td data-label="Инструмент">Карта ссылок</td><td data-label="Что проверять">Переходы по меню, кнопкам, телефону и служебным ссылкам</td><td data-label="Следующее действие">Убрать лишние маршруты или усилить нужный</td></tr>
+</tbody></table></div>
+<figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="../01-vybor-instrumenta-640.webp 640w, ../01-vybor-instrumenta-1080.webp 1080w, ../01-vybor-instrumenta-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../01-vybor-instrumenta.jpg" alt="Выбор инструментов поведения пользователей в Яндекс Метрике" width="2896" height="2172" loading="lazy" decoding="async" /></picture><figcaption>Инструмент выбирают под вопрос, который нужно проверить на странице.</figcaption></figure>
+
+<h2 id="section-kak-vklyuchit-vebvizor-karty-i-analitiku-form">Как включить Вебвизор, карты и аналитику форм</h2>
+<p>Отчёты поведения зависят от настройки счётчика и от того, установлен ли обновлённый код на страницах сайта. Перед анализом проверьте сам сбор данных, иначе отсутствие записей легко принять за отсутствие интереса к странице.</p>
+<ol>
+<li>Откройте нужный счётчик Яндекс Метрики.</li>
+<li>Перейдите в раздел «Настройки», затем откройте настройки счётчика.</li>
+<li>Включите опцию «Вебвизор, карта скроллинга, аналитика форм».</li>
+<li>На вкладке Вебвизора убедитесь, что запись включена.</li>
+<li>Сохраните изменения и установите обновлённый код счётчика на все страницы сайта.</li>
+</ol>
+<p>После этого проверьте, что цели фиксируют нужные действия: отправку формы, клик по телефону, переход в мессенджер или другой шаг воронки. Если цель настроена неправильно, карты помогут найти поведение, но не покажут корректный результат рекламной кампании.</p>
+<p>Перед просмотром визитов отдельно проверьте конфиденциальные поля. Данные, которые не должны записываться, нужно скрыть настройками Вебвизора. Для проверки самой цели используйте инструкцию <a href="../kak-proverit-tsel-v-yandex-metrike/" target="_blank" rel="noopener noreferrer">«Как проверить цель в Яндекс Метрике»</a>.</p>
+
+<h2 id="section-vebvizor-kakie-vizity-smotret">Вебвизор: какие визиты смотреть и как проверять выводы</h2>
+<p>Вебвизор полезен, когда агрегированный отчёт уже показал проблему, но не объяснил её. Например, карта кликов показывает интерес к кнопке, а цель не достигается. Запись помогает увидеть, что происходило между нажатием и результатом: открылась ли форма, появился ли ответ интерфейса, не возникла ли ошибка, не ушёл ли посетитель на другой шаг.</p>
+<p>Для рекламной страницы начните с сегмента визитов, в котором есть конкретный вопрос:</p>
+<ul>
+<li>посетители из нужной рекламной кампании;</li>
+<li>пользователи со смартфонов или компьютеров;</li>
+<li>визиты с просмотром страницы, но без достижения цели;</li>
+<li>визиты с достижением цели для сравнения поведения;</li>
+<li>переходы с нужной меткой или объявлением.</li>
+</ul>
+<p>Смотрите не одну необычную запись, а повторяющийся сценарий. Если несколько похожих визитов останавливаются перед формой, возвращаются к одному блоку или несколько раз нажимают на неактивный элемент, это уже материал для гипотезы. Но даже повторяющийся сценарий нужно сопоставить с целями, устройствами и источниками.</p>
+<p>По одной записи нельзя доказать, что именно этот элемент снизил конверсию. На визит могут влиять скорость загрузки, состав рекламного трафика, устройство, случайное действие пользователя и техническое состояние страницы. Вебвизор также может записать визит, который Метрика или Директ определили как роботный, поэтому подозрительные записи нужно проверять по параметрам визита.</p>
+<p>Если содержимое страницы меняется, запись может отличаться от текущего вида сайта. Это особенно важно для динамических блоков, рекламных вставок и элементов внутри iframe. Перед выводом убедитесь, что анализируете нужную версию страницы.</p>
+
+<h2 id="section-karta-klikov-kak-nayti-lozhnye-kliki">Карта кликов: как найти ложные клики и слабые CTA</h2>
+<p>Карта кликов показывает взаимодействия с элементами страницы, включая те, которые не являются ссылками. Поэтому она помогает заметить ложные ожидания: картинка выглядит как кнопка, заголовок воспринимается как ссылка, а декоративный элемент собирает клики без понятного продолжения.</p>
+<p>Для посадочной страницы проверяйте карту по четырём зонам:</p>
+<ul>
+<li>CTA: заметна ли кнопка, понятно ли её действие, нет ли рядом конкурирующих элементов;</li>
+<li>оффер: кликают ли по заголовку или изображению, хотя они ничего не открывают;</li>
+<li>доказательства: пытаются ли пользователи раскрыть отзыв, сертификат, кейс или условия;</li>
+<li>форма: нажимают ли на поля, есть ли клики по неактивным областям и повторные попытки отправки.</li>
+</ul>
+<p>Ложный клик не означает, что нужно сделать кликабельным каждый элемент. Сначала определите намерение. Если посетитель пытается открыть подробности услуги, добавьте понятный переход. Если он ожидает, что заголовок приведёт к нужному блоку, упростите структуру страницы или сделайте действие очевидным.</p>
+<p>Слабый CTA тоже нельзя определять только по цвету карты. Сопоставьте клики по кнопке с видимостью блока, источником трафика и достижением цели. Большое число кликов без заявок может указывать на проблему после нажатия, а малое число кликов может быть следствием того, что посетители не доходят до кнопки.</p>
+
+<h2 id="section-karta-skrollinga-kak-ponyat-do-kakogo-bloka-doshli">Карта скроллинга: как понять, до какого блока дошли</h2>
+<p>Карта скроллинга показывает, как распределяется внимание по участкам страницы. В отчёте можно увидеть среднее время и количество просмотров выбранной области. Это помогает понять, видят ли посетители оффер, форму, доказательства и условия, но не доказывает, что текст был прочитан или убедил человека.</p>
+<p>Проверьте последовательность блоков:</p>
+<ol>
+<li>Оффер находится в области, до которой доходят большинство нужных визитов.</li>
+<li>CTA появляется до того, как внимание заметно снижается.</li>
+<li>Форма не спрятана после длинного блока, который не помогает принять решение.</li>
+<li>Доказательства размещены там, где у посетителя уже возникает вопрос о доверии.</li>
+</ol>
+<p>Если до формы доходят редко, возможны две разные причины. Блок может быть расположен слишком низко, либо верхняя часть страницы не создаёт достаточного интереса. Карта скроллинга показывает место потери внимания, а Вебвизор помогает проверить, что именно происходило у отдельных посетителей.</p>
+<p>Данные карты скроллинга хранятся 15 дней, включая текущий день. Поэтому для регулярного анализа задайте короткий рабочий цикл: сохранить наблюдение, сформулировать гипотезу, проверить цель и зафиксировать изменение. Не сравнивайте старую карту с новой без учёта периода и изменений страницы.</p>
+
+<h2 id="section-karta-ssylok-kak-nayti-perehody">Карта ссылок: как найти незаметные и неиспользуемые переходы</h2>
+<p>Карта ссылок нужна для анализа переходов по ссылкам и кнопкам, а не всех взаимодействий. Она помогает увидеть, какие маршруты используют посетители, какие ссылки остаются незаметными и какие переходы не помогают приблизиться к цели.</p>
+<p>На рекламной посадочной странице проверьте меню, ссылки в первом экране, телефон, мессенджеры, переходы к условиям и ссылки на соседние услуги. Если посетители часто уходят по второстепенной ссылке до просмотра оффера, проверьте её место и формулировку. Если нужная ссылка почти не используется, убедитесь, что она заметна, понятна и находится в правильном контексте.</p>
+<p>Не путайте отсутствие переходов с отсутствием интереса. Пользователь может получить ответ на самой странице и не переходить дальше. Поэтому карту ссылок нужно рассматривать вместе с целями, картой скроллинга и записями визитов.</p>
+<figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="../02-karta-stranicy-i-tochki-rosta-640.webp 640w, ../02-karta-stranicy-i-tochki-rosta-1080.webp 1080w, ../02-karta-stranicy-i-tochki-rosta-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../02-karta-stranicy-i-tochki-rosta.jpg" alt="Анализ кликов и скроллинга на посадочной странице" width="2896" height="2172" loading="lazy" decoding="async" /></picture><figcaption>Карта помогает сформулировать гипотезу о странице, но решение проверяется отдельным действием и целью.</figcaption></figure>
+
+<h2 id="section-kak-obedinit-zapisi-karty-segmenty-i-celi">Как объединить записи, карты, сегменты и цели</h2>
+<p>Рабочая схема начинается с одного вопроса и заканчивается проверкой бизнес-действия. Если открыть все отчёты без задачи, легко получить много наблюдений, но не понять, что менять в рекламе или на странице.</p>
+<ol>
+<li>Сформулируйте вопрос. Например: почему рекламные визиты со смартфонов не доходят до формы.</li>
+<li>Создайте сегмент под этот вопрос: источник, устройство, страница и отсутствие нужной цели.</li>
+<li>Посмотрите карту кликов и карту скроллинга, чтобы найти повторяющуюся зону проблемы.</li>
+<li>Откройте несколько записей Вебвизора из того же сегмента и проверьте механизм проблемы.</li>
+<li>Сопоставьте наблюдение с целью и только после этого меняйте один элемент страницы или рекламы.</li>
+</ol>
+<p>Сегмент помогает отобрать нужные визиты, а Вебвизор и карты Метрики - понять, что происходило на странице. Подробно о создании выборки и условиях сегментации читайте в статье <a href="../segmenty-v-yandex-metrike/" target="_blank" rel="noopener noreferrer">«Сегменты в Яндекс Метрике»</a>.</p>
+<p>Если вопрос связан с отсутствием заявок, сначала разделите проблему рекламы и сайта. В статье <a href="../yandex-direct-ne-daet-zayavki/" target="_blank" rel="noopener noreferrer">«Почему Яндекс Директ не даёт заявки»</a> разобран порядок такой диагностики.</p>
+
+<h2 id="section-tipichnye-oshibki-interpretacii">Типичные ошибки интерпретации</h2>
+<ul>
+<li>Считать клики доказательством намерения купить. Клик показывает взаимодействие, но не качество обращения.</li>
+<li>Делать вывод по одной записи. Один визит может быть необычным и не отражать сценарий сегмента.</li>
+<li>Считать карту скроллинга измерением чтения. Она показывает внимание к области, а не понимание текста.</li>
+<li>Сравнивать разные устройства и источники в одной карте. Разные аудитории могут по-разному воспринимать одну страницу.</li>
+<li>Менять рекламную кампанию до проверки посадочной страницы. В этом случае можно скрыть проблему, а не устранить её.</li>
+<li>Игнорировать период хранения данных карты скроллинга. Наблюдение нужно фиксировать до истечения доступного периода.</li>
+<li>Принимать любое затемнение или яркую зону за готовое решение. Карта показывает направление проверки, а не готовую рекомендацию.</li>
+</ul>
+<aside class="content-key-point"><p><strong>Карта отвечает на вопрос «где возникает сигнал». Вебвизор помогает понять «как он возникает», а цель показывает, влияет ли это на нужный результат.</strong></p></aside>
+
+<h2 id="section-prakticheskiy-chek-list-dlya-stranicy-iz-reklamnoy-kampanii">Практический чек-лист для страницы из рекламной кампании</h2>
+<p>Перед изменением объявления или посадочной страницы пройдите проверку в одном сегменте. Так вы сохраните связь между рекламным переходом, поведением посетителя и результатом.</p>
+<figure class="article-figure"><picture data-blog-responsive="true"><source type="image/webp" srcset="../03-analiz-reklamnogo-vizita-640.webp 640w, ../03-analiz-reklamnogo-vizita-1080.webp 1080w, ../03-analiz-reklamnogo-vizita-1720.webp 1720w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../03-analiz-reklamnogo-vizita.jpg" alt="Связка рекламного визита и анализа поведения в Яндекс Метрике" width="2896" height="2172" loading="lazy" decoding="async" /></picture><figcaption>Вывод для рекламы делают после проверки перехода, действия на странице и достижения цели.</figcaption></figure>
+<ol>
+<li>Определите рекламный источник, кампанию и страницу входа.</li>
+<li>Проверьте, что счётчик установлен на странице и нужная цель действительно срабатывает.</li>
+<li>Выберите сегмент по источнику, устройству и условию достижения цели.</li>
+<li>Посмотрите карту скроллинга: видят ли нужные визиты оффер, CTA, форму и доказательства.</li>
+<li>Посмотрите карту кликов: нет ли ложных кликов и не теряется ли основная кнопка среди других действий.</li>
+<li>Проверьте карту ссылок: не уводят ли второстепенные переходы от главного маршрута.</li>
+<li>Откройте несколько записей Вебвизора и найдите повторяющийся сценарий, а не единичную странность.</li>
+<li>Сформулируйте одну гипотезу и измените только один существенный элемент.</li>
+<li>После накопления новых данных снова сравните тот же сегмент и ту же цель.</li>
+</ol>
+<p>Такой порядок помогает не путать слабый рекламный переход с проблемой страницы. Если посетители не видят оффер, не понимают действие или не могут завершить форму, сначала исправьте подтверждённое препятствие. Если страница работает, переходите к проверке качества аудитории и рекламного сообщения.</p>
+
+<p>Вебвизор и карты Яндекс Метрики полезны не как набор красивых визуализаций, а как связка для проверки гипотез. Сначала задайте вопрос, затем отделите нужные визиты, найдите повторяющийся сигнал и свяжите его с целью. Только после этого принимайте решение по рекламе или посадочной странице.</p>
+
+<aside class="article-author" data-author-card="interactive" aria-label="Об авторе">
+  <span class="article-author__stud" aria-hidden="true"></span><span class="article-author__stud" aria-hidden="true"></span>
+  <button class="article-author__toggle article-author__fabric-tab" type="button" aria-expanded="false" aria-controls="article-author-pages" aria-label="Показать контакты Максима Мирошникова"><span class="article-author__toggle-text">Задать вопрос</span></button>
+  <div class="article-author__pages" id="article-author-pages">
+    <div class="article-author__page article-author__page--profile" aria-hidden="false">
+      <div class="article-author__portrait"><img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников" width="192" height="192" loading="lazy" decoding="async" /></div>
+      <div class="article-author__body">
+        <p class="article-author__label">Автор статьи</p>
+        <p class="article-author__name">Максим Мирошников</p>
+        <p class="article-author__role">Специалист по платному трафику</p>
+        <p class="article-author__text">Запускаю рекламу, создаю сайты и воронки, настраиваю аналитику и помогаю связать маркетинг с данными о заявках.</p>
+        <div class="article-author__footer"><p class="article-author__experience">10+ лет практики</p></div>
+      </div>
+    </div>
+    <div class="article-author__page article-author__page--contact" aria-hidden="true" inert>
+      <div class="article-author__contact-body">
+        <p class="article-author__label">Связаться со мной</p>
+        <p class="article-author__contact-title">Напишите мне</p>
+        <p class="article-author__contact-copy">Расскажите о задаче - обсудим проект и подходящий формат консультации.</p>
+        <div class="article-author__contacts" aria-label="Контакты Максима Мирошникова">
+          <a class="article-author__contact-link" href="mailto:direct@miroshnikov-maxim.ru"><span>Почта</span><b>direct@miroshnikov-maxim.ru</b></a>
+          <a class="article-author__contact-link" href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer"><span>MAX</span><b>Открыть профиль</b></a>
+          <a class="article-author__contact-link" href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer"><span>Telegram</span><b>@miroshnikov_maxim</b></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside><!-- related-articles:start -->
+<section class="related-articles" aria-labelledby="related-articles-title">
+  <h2 id="related-articles-title">Похожие статьи</h2>
+  <div class="related-articles__list">
+        <a class="related-article-card" href="../srednie-pokazateli-po-industrii-yandex-metrika/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Аналитика</span>
+          <span class="related-article-card__title">Средние показатели по индустрии в Яндекс Метрике: как сравнить сайт с рынком</span>
+          <span class="related-article-card__description">Что показывает отчет «Средние показатели по индустрии» в Яндекс Метрике, как сравнить сайт с рынком и почему нельзя принимать решения только по бенчмаркам.</span>
+        </a>
+        <a class="related-article-card" href="../ecommerce-yandex-metrika/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Аналитика</span>
+          <span class="related-article-card__title">Электронная коммерция в Яндекс Метрике: что это и как настроить</span>
+          <span class="related-article-card__description">Как настроить электронную коммерцию в Яндекс Метрике: инструкция для Tilda и CMS, пример кода purchase, проверка dataLayer, ошибки и анализ продаж.</span>
+        </a>
+        <a class="related-article-card" href="../celi-dlya-marquiza-v-yandex-metrike/" target="_blank" rel="noopener noreferrer">
+          <span class="related-article-card__topic">Аналитика</span>
+          <span class="related-article-card__title">Цели Marquiz в Яндекс Метрике: настройка и проверка</span>
+          <span class="related-article-card__description">Как настроить цели Marquiz в Яндекс Метрике: идентификаторы marquiz-start, marquiz-form, marquiz-finish, автоматические цели и проверка ошибок.</span>
+        </a>
+  </div>
+</section>
+<!-- related-articles:end -->
+    </article>
+  </main>
+</body>
+</html>
