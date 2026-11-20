@@ -2,6 +2,25 @@
   "version": 1,
   "articles": [
     {
+      "slug": "lichnyy-kabinet-yandex-direct",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
+      "tags": [
+        "ad-formats"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "taym-aut-vizita-v-yandex-metrike",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
+      "tags": [
+        "analytics",
+        "campaign-setup"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "vebvizor-karta-klikov-i-skrollinga-yandex-metrika",
       "topic": "analytics",
       "topicLabel": "Аналитика",
@@ -2433,19 +2452,19 @@
       "topicLabel": "Настройка Яндекс Директа",
       "tags": [
         "analytics",
+        "economics",
         "automation"
       ],
       "intent": "strategy"
     },
     {
       "slug": "cena-za-klik-v-yandex-direkte",
-      "topic": "budget",
-      "topicLabel": "Бюджет и стоимость",
+      "topic": "metrics",
+      "topicLabel": "Показатели рекламы",
       "tags": [
-        "economics",
-        "lead-generation"
+        "search"
       ],
-      "intent": "service"
+      "intent": "strategy"
     },
     {
       "slug": "kak-izmenit-obekt-prodvizheniya-v-yandex-direkte",
@@ -2640,6 +2659,9 @@
       "topic": "local-promotion",
       "topicLabel": "Локальное продвижение",
       "tags": [
+        "economics",
+        "campaign-setup",
+        "specialist",
         "telegram",
         "local"
       ],
