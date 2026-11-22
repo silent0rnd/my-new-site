@@ -2,6 +2,31 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-magazina-postelnogo-belya",
+      "topic": "ecommerce",
+      "topicLabel": "Интернет-магазины",
+      "tags": [
+        "ecommerce",
+        "economics",
+        "seo",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-promyshlennogo-alpinizma-2027",
+      "topic": "production",
+      "topicLabel": "Производство и B2B",
+      "tags": [
+        "manufacturing",
+        "b2b",
+        "economics",
+        "avito",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "lichnyy-kabinet-yandex-direct",
       "topic": "direct-tools",
       "topicLabel": "Инструменты Яндекс Директа",
@@ -67,17 +92,14 @@
     },
     {
       "slug": "sozdanie-mobilnyh-prilozheniy",
-      "topic": "budget",
-      "topicLabel": "Бюджет и стоимость",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
       "tags": [
+        "analytics",
         "economics",
-        "specialist",
-        "telegram",
-        "avito",
-        "seo",
         "lead-generation"
       ],
-      "intent": "service"
+      "intent": "strategy"
     },
     {
       "slug": "golosovye-roboty-ii-sotrudniki-dlya-biznesa-v-2026-godu",
@@ -1346,8 +1368,6 @@
       "topicLabel": "Аналитика",
       "tags": [
         "analytics",
-        "economics",
-        "campaign-setup",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -2234,7 +2254,6 @@
       "topic": "specialist",
       "topicLabel": "Работа со специалистом",
       "tags": [
-        "economics",
         "campaign-setup",
         "specialist"
       ],
