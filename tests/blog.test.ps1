@@ -249,7 +249,7 @@ $articles = @(
   @{
     Slug  = "reklama-v-max-cherez-yandex-direct"
     Title = "Реклама в MAX через Яндекс Директ: настройка и 3 формата"
-    Desc  = "Как запустить рекламу в MAX через Яндекс Директ: три варианта размещения, таргетинги, стратегии, настройка кампании и ограничения нового формата."
+     Desc  = "Как запустить рекламу в MAX через Яндекс Директ: три формата, настройка кампании, стоимость клика и просмотра, стратегии, аналитика и ограничения."
     Images = @("01-reklama-v-max-cherez-yandex-direct", "02-nastroyka-reklamy-v-max-cherez-yandex-direct", "03-perspektivnost-reklamy-v-max-cherez-yandex-direct")
     Alts  = @(
       "Три варианта размещения рекламы в MAX через Яндекс Директ",

@@ -7,14 +7,14 @@ const sharp = require('sharp');
 const { validateIllustration } = require('../scripts/validate-blog-illustration');
 
 async function makeImage(filePath, width, height, background) {
-  await sharp({ create: { width, height, channels: 3, background } }).jpeg().toFile(filePath);
+  await sharp({ create: { width, height, channels: 3, background } }).png().toFile(filePath);
 }
 
-test('принимает светлый JPG 2896 x 2172', async function acceptsLightImage(t) {
+test('принимает светлый PNG 2096 x 1572', async function acceptsLightImage(t) {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'blog-illustration-'));
   t.after(function cleanup() { return fs.rm(directory, { recursive: true, force: true }); });
-  const filePath = path.join(directory, 'light.jpg');
-  await makeImage(filePath, 2896, 2172, '#FAFAF8');
+  const filePath = path.join(directory, 'light.png');
+  await makeImage(filePath, 2096, 1572, '#FAFAF8');
 
   const result = await validateIllustration(filePath);
   assert.deepEqual(result.errors, []);
@@ -23,8 +23,8 @@ test('принимает светлый JPG 2896 x 2172', async function accepts
 test('отклоняет тёмный фон', async function rejectsDarkImage(t) {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'blog-illustration-'));
   t.after(function cleanup() { return fs.rm(directory, { recursive: true, force: true }); });
-  const filePath = path.join(directory, 'dark.jpg');
-  await makeImage(filePath, 2896, 2172, '#151515');
+  const filePath = path.join(directory, 'dark.png');
+  await makeImage(filePath, 2096, 1572, '#151515');
 
   const result = await validateIllustration(filePath);
   assert.match(result.errors.join(' '), /тёмная|светлым/);
@@ -33,7 +33,7 @@ test('отклоняет тёмный фон', async function rejectsDarkImage(t
 test('отклоняет неверный размер и пропорции', async function rejectsWrongDimensions(t) {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'blog-illustration-'));
   t.after(function cleanup() { return fs.rm(directory, { recursive: true, force: true }); });
-  const filePath = path.join(directory, 'square.jpg');
+  const filePath = path.join(directory, 'square.png');
   await makeImage(filePath, 1024, 1024, '#FAFAF8');
 
   const result = await validateIllustration(filePath);

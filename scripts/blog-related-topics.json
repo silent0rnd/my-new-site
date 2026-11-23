@@ -312,13 +312,14 @@
     },
     {
       "slug": "reklama-wildberries-ozon-yandex-direct",
-      "topic": "metrics",
-      "topicLabel": "Показатели рекламы",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
       "tags": [
+        "economics",
         "campaign-setup",
         "lead-generation"
       ],
-      "intent": "instruction"
+      "intent": "strategy"
     },
     {
       "slug": "prodvizhenie-telegram-bota",
@@ -1173,7 +1174,7 @@
         "campaign-setup",
         "ad-formats"
       ],
-      "intent": "instruction"
+      "intent": "strategy"
     },
     {
       "slug": "bidder-yandex-direct",
@@ -1311,7 +1312,7 @@
       "topic": "local-promotion",
       "topicLabel": "Локальное продвижение",
       "tags": [
-        "campaign-setup",
+        "specialist",
         "local"
       ],
       "intent": "strategy"
@@ -1423,7 +1424,6 @@
       "tags": [
         "analytics",
         "economics",
-        "website",
         "comparison",
         "seo"
       ],
@@ -1450,7 +1450,6 @@
       "tags": [
         "economics",
         "search",
-        "comparison",
         "lead-generation"
       ],
       "intent": "strategy"

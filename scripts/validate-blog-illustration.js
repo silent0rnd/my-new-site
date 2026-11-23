@@ -1,8 +1,8 @@
 const path = require('node:path');
 const sharp = require('sharp');
 
-const REQUIRED_WIDTH = 2896;
-const REQUIRED_HEIGHT = 2172;
+const REQUIRED_WIDTH = 2096;
+const REQUIRED_HEIGHT = 1572;
 const SAMPLE_WIDTH = 400;
 const SAMPLE_HEIGHT = 300;
 const BORDER_SHARE = 0.1;
@@ -16,8 +16,8 @@ async function validateIllustration(filePath) {
   const metadata = await image.metadata();
   const errors = [];
 
-  if (metadata.format !== 'jpeg') {
-    errors.push('формат должен быть JPG');
+  if (metadata.format !== 'png') {
+    errors.push('формат должен быть PNG');
   }
 
   if (metadata.width !== REQUIRED_WIDTH || metadata.height !== REQUIRED_HEIGHT) {
@@ -92,7 +92,7 @@ async function validateIllustration(filePath) {
 
 async function main(args) {
   if (args.length === 0) {
-    throw new Error('Укажите хотя бы один путь к JPG');
+    throw new Error('Укажите хотя бы один путь к PNG');
   }
 
   let failed = false;
@@ -102,7 +102,7 @@ async function main(args) {
       failed = true;
       console.error(`Брак: ${filePath} - ${result.errors.join('; ')}`);
     } else {
-      console.log(`Готово: ${filePath} - 2896 x 2172, 4:3, светлый фон`);
+      console.log(`Готово: ${filePath} - 2096 x 1572, 4:3, светлый фон`);
     }
   }
 
