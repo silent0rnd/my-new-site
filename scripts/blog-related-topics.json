@@ -2524,7 +2524,7 @@
         "campaign-setup",
         "telegram"
       ],
-      "intent": "instruction"
+      "intent": "strategy"
     },
     {
       "slug": "oplata-za-konversii-yandex-direct",
