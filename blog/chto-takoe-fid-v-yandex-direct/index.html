@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
-    <title>Что такое фид в Яндекс Директ и для чего он нужен</title>
-    <meta name="description" content="Простыми словами о том, что такое фид в Яндекс Директе, какие данные в нем хранятся, как он используется для товарной рекламы и когда без него можно обойтись." />
+    <title>Фид в Яндекс Директе: что это, требования и как создать</title>
+    <meta name="description" content="Что такое фид в Яндекс Директе, какие поля нужны, как создать YML-файл, загрузить его, проверить ошибки и настроить обновление данных." />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href="https://naklikay.ru/blog/chto-takoe-fid-v-yandex-direct/" />
     <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
@@ -15,17 +15,18 @@
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Максим Мирошников" />
     <meta property="og:url" content="https://naklikay.ru/blog/chto-takoe-fid-v-yandex-direct/" />
-    <meta property="og:title" content="Что такое фид в Яндекс Директ и для чего он нужен" />
-    <meta property="og:description" content="Простыми словами о том, что такое фид в Яндекс Директе, какие данные в нем хранятся, как он используется для товарной рекламы и когда без него можно обойтись." />
+    <meta property="og:title" content="Фид в Яндекс Директе: что это, требования и как создать" />
+    <meta property="og:description" content="Какие поля нужны в фиде, как создать YML-файл, загрузить его в Директ, проверить ошибки и настроить обновление данных." />
     <meta property="og:image" content="https://naklikay.ru/blog/feed-yandex-direct-1.jpg" />
     <meta property="og:image:width" content="1448" />
     <meta property="og:image:height" content="1086" />
     <meta property="og:image:alt" content="Схема работы фида в Яндекс Директе" />
     <meta property="article:published_time" content="2026-08-21" />
+    <meta property="article:modified_time" content="2026-08-21" />
     <meta property="article:author" content="Максим Мирошников" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Что такое фид в Яндекс Директ и для чего он нужен" />
-    <meta name="twitter:description" content="Простыми словами о том, что такое фид в Яндекс Директе, какие данные в нем хранятся, как он используется для товарной рекламы и когда без него можно обойтись." />
+    <meta name="twitter:title" content="Фид в Яндекс Директе: что это, требования и как создать" />
+    <meta name="twitter:description" content="Какие поля нужны в фиде, как создать YML-файл, загрузить его в Директ, проверить ошибки и настроить обновление данных." />
     <meta name="twitter:image" content="https://naklikay.ru/blog/feed-yandex-direct-1.jpg" />
     <script type="application/ld+json">
       {
@@ -33,12 +34,13 @@
         "@graph": [
           {
             "@type": "BlogPosting",
-            "headline": "Что такое фид в Яндекс Директ и для чего он нужен",
-            "description": "Простыми словами о том, что такое фид в Яндекс Директе, какие данные в нем хранятся, как он используется для товарной рекламы и когда без него можно обойтись.",
+            "headline": "Фид в Яндекс Директе: что это и как его создать",
+            "description": "Что такое фид в Яндекс Директе, какие поля нужны, как создать YML-файл, загрузить его, проверить ошибки и настроить обновление данных.",
             "url": "https://naklikay.ru/blog/chto-takoe-fid-v-yandex-direct/",
             "mainEntityOfPage": { "@type": "WebPage", "@id": "https://naklikay.ru/blog/chto-takoe-fid-v-yandex-direct/" },
             "image": "https://naklikay.ru/blog/feed-yandex-direct-1.jpg",
             "datePublished": "2026-08-21",
+            "dateModified": "2026-08-21",
             "inLanguage": "ru-RU",
             "author": { "@type": "Person", "name": "Максим Мирошников", "url": "https://naklikay.ru/", "jobTitle": "Специалист по платному трафику и Яндекс Директу" },
             "publisher": { "@type": "Person", "name": "Максим Мирошников", "url": "https://naklikay.ru/" }
@@ -66,17 +68,17 @@
     <main class="legal-shell">
       <article class="legal-document">
         <nav class="article-breadcrumbs" aria-label="Хлебные крошки">
-          <a href="../../">Главная</a><span aria-hidden="true">/</span><a href="../">Блог</a><span aria-hidden="true">/</span><span aria-current="page">Что такое фид в Яндекс Директ</span>
+          <a href="../../">Главная</a><span aria-hidden="true">/</span><a href="../">Блог</a><span aria-hidden="true">/</span><span aria-current="page">Фид в Яндекс Директе: что это и как его создать</span>
         </nav>
         <p class="legal-kicker">Блог о платном трафике</p>
-        <h1>Что такое фид в Яндекс Директ</h1>
+        <h1>Фид в Яндекс Директе: что это и как его создать</h1>
         <p class="article-meta"><time datetime="2026-08-21">21 августа 2026</time><span aria-hidden="true">·</span><span>Максим Мирошников</span></p>
         <p class="article-lead"><strong>Фид в Яндекс Директе - это файл со структурированной информацией о товарах или услугах.</strong> В нем могут храниться названия, цены, ссылки на страницы сайта, изображения, категории, описания, характеристики и другие данные.</p>
         <section>
           <p>Яндекс Директ получает эту информацию и на ее основе автоматически создает объявления. Сейчас фиды используются в товарных кампаниях, а также для товарных объявлений и страниц каталога в Единой перфоманс-кампании. Такие объявления могут показываться на поиске, в РСЯ и товарной галерее.</p>
           <p>Проще говоря, фид можно представить как каталог, подготовленный в понятном для рекламной системы формате.</p>
           <figure class="article-figure">
-            <img src="../feed-yandex-direct-1.jpg" alt="Схема работы фида в Яндекс Директе" width="1448" height="1086" decoding="async" /></figure>
+            <img src="../feed-yandex-direct-1.jpg" alt="Схема работы фида в Яндекс Директе" width="1448" height="1086" decoding="async" /><figcaption>Фид передаёт данные каталога в Яндекс Директ, чтобы система могла сформировать товарные объявления.</figcaption></figure>
         </section>
 
 <!-- article-toc:start -->
@@ -93,17 +95,32 @@
     <li class="article-toc__item">
       <a class="article-toc__link article-toc__link--section" href="#section-fid-nuzhen-ne-tolko-internet-magazinam" data-article-anchor>Фид нужен не только интернет-магазинам</a>
     </li>
+    <li class="article-toc__item article-toc__item--has-children">
+      <div class="article-toc__section-row">
+      <a class="article-toc__link article-toc__link--section" href="#section-kakie-formaty-fidov-prinimaet-yandeks-direkt" data-article-anchor>Форматы и требования к фиду</a>
+        <button class="article-toc__toggle" type="button" aria-expanded="false" aria-controls="article-toc-subsections-4" aria-label="Показать подразделы: Форматы и требования к фиду">
+          <span aria-hidden="true">1</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7.5 5 5 5-5" /></svg>
+        </button>
+      </div>
+      <ol class="article-toc__sublist" id="article-toc-subsections-4" hidden>
+        <li><a class="article-toc__link article-toc__link--subsection" href="#section-minimalnyy-primer-yml-fida" data-article-anchor>Минимальный пример YML-фида</a></li>
+      </ol>
+    </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-kakie-formaty-fidov-prinimaet-yandeks-direkt" data-article-anchor>Какие форматы фидов принимает Яндекс Директ</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-sozdat-fid" data-article-anchor>Как создать фид</a>
     </li>
     <li class="article-toc__item">
       <a class="article-toc__link article-toc__link--section" href="#section-mozhno-li-zapustit-tovarnuyu-reklamu-bez-fida" data-article-anchor>Можно ли запустить товарную рекламу без фида</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-gde-nahoditsya-fid-v-yandeks-direkte" data-article-anchor>Где находится фид в Яндекс Директе</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-gde-nahoditsya-fid-v-yandeks-direkte" data-article-anchor>Как загрузить и проверить фид в Директе</a>
     </li>
     <li class="article-toc__item">
-      <a class="article-toc__link article-toc__link--section" href="#section-fid-i-obyavleniya-eto-ne-odno-i-to-zhe" data-article-anchor>Фид и объявления - это не одно и то же</a>
+      <a class="article-toc__link article-toc__link--section" href="#section-oshibki-v-fide" data-article-anchor>Частые ошибки в фиде</a>
+    </li>
+    <li class="article-toc__item">
+      <a class="article-toc__link article-toc__link--section" href="#section-kak-obnovlyat-fid" data-article-anchor>Как часто обновлять фид</a>
     </li>
     <li class="article-toc__item">
       <a class="article-toc__link article-toc__link--section" href="#section-korotko-chto-takoe-fid-v-yandeks-direkt" data-article-anchor>Коротко: что такое фид в Яндекс Директ</a>
@@ -118,7 +135,7 @@
           <ul><li>название товара;</li><li>уникальный ID;</li><li>цена;</li><li>старая цена, если она есть;</li><li>ссылка на страницу товара;</li><li>ссылка на изображение;</li><li>производитель;</li><li>модель;</li><li>категория;</li><li>описание;</li><li>наличие;</li><li>дополнительные характеристики.</li></ul>
           <p>Набор полей зависит от типа фида и тематики. Например, для автомобиля могут передаваться марка, модель, год выпуска и пробег, а для отеля - название, местоположение, цена, рейтинг и перечень услуг.</p>
           <p>Директ читает этот файл и понимает, какие предложения есть у рекламодателя. После этого система может автоматически сформировать подходящий рекламный формат для конкретного товара.</p>
-          <p>Получается цепочка: <strong>сайт или база товаров → фид → Яндекс Директ → автоматически сформированное объявление</strong>.</p>
+          <p>Сначала сайт или база товаров формирует фид. Затем Директ читает его и автоматически собирает объявления из переданных данных.</p>
           <p>Для большого ассортимента это намного удобнее ручного создания сотен или тысяч объявлений.</p>
         </section>
         <section>
@@ -139,41 +156,71 @@
           <p>Поэтому сам принцип можно использовать гораздо шире: есть много однотипных предложений - передаем их Директу структурированным списком.</p>
         </section>
         <section>
-          <h2 id="section-kakie-formaty-fidov-prinimaet-yandeks-direkt">Какие форматы фидов принимает Яндекс Директ</h2>
+          <h2 id="section-kakie-formaty-fidov-prinimaet-yandeks-direkt">Форматы и требования к фиду</h2>
           <p>Формат зависит от типа бизнеса и используемой структуры данных. Среди поддерживаемых вариантов есть YML, XML, CSV и формат Google Shopping.</p>
-          <p>Для классического интернет-магазина часто используется YML. В таком файле каждый товар описывается отдельным предложением, а внутри передаются необходимые параметры: ID, URL, цена, категория, изображение, название, производитель и другие сведения.</p>
+          <p>Для классического интернет-магазина часто используется YML. В таком файле каждый товар описывается отдельным предложением. Точный набор обязательных полей зависит от типа описания и категории бизнеса, поэтому перед выгрузкой нужно выбрать формат и сверить его с требованиями Директа.</p>
+          <div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Поле</th><th scope="col">Статус</th><th scope="col">Что проверить</th></tr></thead><tbody><tr><td data-label="Поле">ID</td><td data-label="Статус">Обязательное</td><td data-label="Что проверить">У каждого предложения уникальное и стабильное значение</td></tr><tr><td data-label="Поле">URL</td><td data-label="Статус">Обязательное</td><td data-label="Что проверить">Страница открывается и соответствует предложению</td></tr><tr><td data-label="Поле">Цена и валюта</td><td data-label="Статус">Обязательные при передаче цены</td><td data-label="Что проверить">Цена совпадает с посадочной страницей, старая цена выше новой</td></tr><tr><td data-label="Поле">Категория</td><td data-label="Статус">Нужна для структуры каталога</td><td data-label="Что проверить">categoryId ссылается на существующую категорию</td></tr><tr><td data-label="Поле">Название</td><td data-label="Статус">Обязательное для упрощенного описания</td><td data-label="Что проверить">Без рекламных обещаний, совпадает с товаром на сайте</td></tr><tr><td data-label="Поле">Изображение</td><td data-label="Статус">Рекомендуемое или обязательное в зависимости от формата</td><td data-label="Что проверить">Прямая доступная ссылка на актуальный файл</td></tr><tr><td data-label="Поле">Наличие</td><td data-label="Статус">Обязательное при фильтрации по наличию</td><td data-label="Что проверить">Значение совпадает с сайтом и оформлением заказа</td></tr><tr><td data-label="Поле">Описание и характеристики</td><td data-label="Статус">Рекомендуемые</td><td data-label="Что проверить">Конкретные свойства без ссылок, спама и чужих товаров</td></tr></tbody></table></div>
           <figure class="article-figure">
-            <img src="../feed-yandex-direct-2.jpg" alt="Пример полей товарного фида YML" width="1448" height="1086" loading="lazy" decoding="async" /></figure>
-          <p>Самостоятельно писать такой XML-код обычно не требуется. У многих CMS и платформ для интернет-магазинов есть готовые модули или плагины для генерации фида. Для нестандартного сайта выгрузку может сделать разработчик. Яндекс также допускает ручное создание или использование генератора.</p>
+            <img src="../feed-yandex-direct-2.jpg" alt="Пример полей товарного фида YML" width="1448" height="1086" loading="lazy" decoding="async" /><figcaption>В YML-фиде каждое предложение содержит идентификатор, ссылку, цену, категорию и данные товара.</figcaption></figure>
+          <h3 id="section-minimalnyy-primer-yml-fida">Минимальный пример YML-фида</h3>
+          <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;yml_catalog date="2026-11-24 12:00"&gt;
+  &lt;shop&gt;
+    &lt;name&gt;Магазин&lt;/name&gt;
+    &lt;company&gt;ООО Магазин&lt;/company&gt;
+    &lt;url&gt;https://example.ru/&lt;/url&gt;
+    &lt;currencies&gt;&lt;currency id="RUR" rate="1"/&gt;&lt;/currencies&gt;
+    &lt;categories&gt;&lt;category id="1"&gt;Холодильники&lt;/category&gt;&lt;/categories&gt;
+    &lt;offers&gt;
+      &lt;offer id="bosch-kgn39" available="true"&gt;
+        &lt;url&gt;https://example.ru/bosch-kgn39/&lt;/url&gt;
+        &lt;price&gt;64990&lt;/price&gt;
+        &lt;currencyId&gt;RUR&lt;/currencyId&gt;
+        &lt;categoryId&gt;1&lt;/categoryId&gt;
+        &lt;picture&gt;https://example.ru/images/bosch-kgn39.jpg&lt;/picture&gt;
+        &lt;name&gt;Холодильник Bosch KGN39&lt;/name&gt;
+      &lt;/offer&gt;
+    &lt;/offers&gt;
+  &lt;/shop&gt;
+&lt;/yml_catalog&gt;</code></pre>
+          <p>Это схема для понимания структуры, а не универсальный шаблон для любой ниши. Перед загрузкой добавьте поля, обязательные именно для выбранного типа фида.</p>
+        </section>
+        <section>
+          <h2 id="section-kak-sozdat-fid">Как создать фид</h2>
+          <p>Способ создания зависит от сайта и частоты обновления каталога.</p>
+          <ol><li><strong>Модуль CMS.</strong> Для популярных платформ обычно есть готовая выгрузка YML или Google Shopping. Это основной вариант для магазина с регулярным изменением цен и остатков.</li><li><strong>Встроенный генератор платформы.</strong> Подходит, если конструктор сайта умеет формировать ссылку на фид и обновлять ее вместе с каталогом.</li><li><strong>Выгрузка разработчиком.</strong> Нужна для самописного сайта, нестандартной базы или сложных правил отбора товаров.</li><li><strong>Ручной файл.</strong> Допустим для небольшого и редко меняющегося ассортимента, но любое изменение придется вносить и загружать заново.</li><li><strong>Фид по сайту.</strong> В некоторых товарных кампаниях Директ может собрать предложения со страниц сайта. Это ускоряет старт, но дает меньше контроля над полями и фильтрами.</li></ol>
         </section>
         <section>
           <h2 id="section-mozhno-li-zapustit-tovarnuyu-reklamu-bez-fida">Можно ли запустить товарную рекламу без фида</h2>
           <p>В некоторых случаях - да. В Единой перфоманс-кампании Яндекс Директ умеет автоматически искать товары непосредственно на сайте. Можно выбрать источник «Новый фид по сайту», загрузить собственный файл или добавить товары вручную.</p>
           <p>То есть для простого запуска интернет-магазина наличие заранее подготовленного файла не всегда обязательно.</p>
           <p>Но полноценный фид дает больше контроля над данными. Вы сами определяете, какие сведения передаются Директу, можете использовать дополнительные параметры и точнее настраивать фильтрацию товаров. Сам Яндекс указывает, что использование фида позволяет получить больше информации о каждой позиции и точнее задавать правила отбора.</p>
-          <table><thead><tr><th>Ситуация</th><th>Что использовать</th></tr></thead><tbody><tr><td>Небольшой магазин, нужен быстрый запуск</td><td>Можно начать с данных сайта</td></tr><tr><td>Большой интернет-магазин</td><td>Автоматический фид</td></tr><tr><td>Часто меняются цены и наличие</td><td>Автоматически обновляемый фид</td></tr><tr><td>Нужно точно отбирать группы товаров</td><td>Фид</td></tr><tr><td>Услуги и другие нетоварные предложения</td><td>Обычно удобнее фид</td></tr><tr><td>Несколько тысяч позиций</td><td>Фид практически необходим</td></tr></tbody></table>
+          <div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Ситуация</th><th scope="col">Что использовать</th></tr></thead><tbody><tr><td data-label="Ситуация">Небольшой магазин, нужен быстрый запуск</td><td data-label="Что использовать">Можно начать с данных сайта</td></tr><tr><td data-label="Ситуация">Большой интернет-магазин</td><td data-label="Что использовать">Автоматический фид</td></tr><tr><td data-label="Ситуация">Часто меняются цены и наличие</td><td data-label="Что использовать">Автоматически обновляемый фид</td></tr><tr><td data-label="Ситуация">Нужно точно отбирать группы товаров</td><td data-label="Что использовать">Фид</td></tr><tr><td data-label="Ситуация">Услуги и другие нетоварные предложения</td><td data-label="Что использовать">Обычно удобнее фид</td></tr><tr><td data-label="Ситуация">Несколько тысяч позиций</td><td data-label="Что использовать">Фид практически необходим</td></tr></tbody></table></div>
         </section>
         <section>
-          <h2 id="section-gde-nahoditsya-fid-v-yandeks-direkte">Где находится фид в Яндекс Директе</h2>
-          <p>Управление уже добавленными фидами находится в разделе: <strong>Библиотека → Фиды → Добавить фид.</strong></p>
+          <h2 id="section-gde-nahoditsya-fid-v-yandeks-direkte">Как загрузить и проверить фид в Директе</h2>
+          <p>Откройте «Библиотеку», выберите «Фиды» и нажмите «Добавить фид».</p>
           <p>Данные можно передать двумя основными способами:</p>
           <ol><li>Загрузить файл с компьютера.</li><li>Указать URL, по которому Директ сможет его получать.</li></ol>
           <p>Второй вариант удобнее для постоянно меняющегося каталога, поскольку файл на сервере можно автоматически обновлять вместе с ценами, остатками и ассортиментом.</p>
           <figure class="article-figure">
-            <img src="../feed-yandex-direct-3.jpg" alt="Раздел добавления фида в Яндекс Директе" width="1448" height="1086" loading="lazy" decoding="async" /></figure>
-          <p>После добавления Директ проверяет файл. Если структура или данные не соответствуют требованиям, фид может получить статус ошибки, а система покажет отчет о проблемах.</p>
+            <img src="../feed-yandex-direct-3.jpg" alt="Раздел добавления фида в Яндекс Директе" width="1448" height="1086" loading="lazy" decoding="async" /><figcaption>Фид можно загрузить файлом или подключить по ссылке в разделе управления фидами.</figcaption></figure>
+          <p>После добавления дождитесь валидации и откройте отчет об ошибках. Исправьте не только ошибочные строки, но и предложения, которые Директ проигнорировал: формально фид может загрузиться, но часть ассортимента не попадет в рекламу.</p>
         </section>
         <section>
-          <h2 id="section-fid-i-obyavleniya-eto-ne-odno-i-to-zhe">Фид и объявления - это не одно и то же</h2>
-          <p>Это частая путаница. Фид сам по себе не является рекламным объявлением. Это источник данных для рекламной системы.</p>
-          <p>В нем хранится информация о том, что вы продаете. Уже после обработки этих данных Яндекс создает товарные объявления и выбирает подходящие предложения для показа пользователям.</p>
-          <p>Поэтому качество исходных данных имеет значение. Если в фиде неправильная цена, плохое название товара или устаревшая ссылка, проблема может перейти и в рекламу. Для рекламодателя задача обычно состоит не в том, чтобы просто «загрузить фид», а в том, чтобы передавать Директу чистые и актуальные данные об ассортименте.</p>
-          <p>Как устроена рекламная система в целом, читайте в статье <a href="../kak-rabotaet-yandex-direct/">«Как работает Яндекс Директ»</a>.</p>
+          <h2 id="section-oshibki-v-fide">Частые ошибки в фиде</h2>
+          <ul><li><strong>Цена не совпадает с сайтом.</strong> Проверьте актуальную цену, валюту и условие показа старой цены.</li><li><strong>Ссылка не открывается.</strong> URL должен вести на доступную страницу конкретного предложения без ошибки и лишнего перенаправления.</li><li><strong>Изображение недоступно.</strong> Используйте прямую ссылку на файл. Если изображение заменено, но URL остался прежним, обновление в объявлениях может задержаться.</li><li><strong>Категория не существует.</strong> Каждый categoryId должен быть описан в разделе categories.</li><li><strong>Повторяется ID.</strong> У каждого товара должен быть уникальный идентификатор. Для одного и того же товара сохраняйте одинаковый ID при последующих выгрузках.</li><li><strong>Название расходится с посадочной страницей.</strong> Не добавляйте в него рекламные обещания и признаки, которых нет у товара.</li></ul>
+          <p>После исправления повторно запустите проверку и убедитесь, что число принятых предложений соответствует ожидаемому ассортименту.</p>
+        </section>
+        <section>
+          <h2 id="section-kak-obnovlyat-fid">Как часто обновлять фид</h2>
+          <p>Фид по ссылке Директ скачивает автоматически. Основной импорт выполняется раз в сутки, поэтому этот способ подходит для каталога, где меняются цены, остатки и ассортимент. Загруженный с компьютера файл автоматически не обновляется.</p>
+          <p>Частоту генерации на сайте выбирайте по скорости изменений. Если остатки меняются несколько раз в день, формируйте актуальный файл чаще, даже если рекламная система забирает его по собственному расписанию. Для редко меняющегося каталога достаточно обновления после фактических изменений.</p>
         </section>
         <section>
           <h2 id="section-korotko-chto-takoe-fid-v-yandeks-direkt">Коротко: что такое фид в Яндекс Директ</h2>
-          <p>Фид - это структурированный файл с товарами или услугами, который Яндекс Директ использует как источник данных для автоматического создания рекламы.</p>
-          <p>Для небольшого сайта иногда можно обойтись автоматическим сбором информации со страниц. Для интернет-магазина с большим ассортиментом лучше использовать полноценный автоматически обновляемый фид. Он дает Директу актуальные цены, изображения, характеристики, ссылки и другие данные по каждой позиции.</p>
+          <p>Фид - это структурированный файл с товарами или услугами, который Яндекс Директ использует как источник данных для автоматического создания рекламы. Рабочая подготовка состоит из четырех действий: выбрать формат, передать обязательные поля, пройти валидацию и настроить обновление.</p>
+          <p>Для небольшого сайта иногда можно начать со сбора предложений со страниц. Для магазина с большим или часто меняющимся ассортиментом лучше использовать фид по ссылке: он дает контроль над ценами, изображениями, характеристиками, фильтрами и составом рекламируемых товаров.</p>
           <p>Услуги и кейсы по Яндекс Директу собраны на <a href="../../#work">главной странице сайта</a>.</p>
         </section>
         <aside class="article-author" data-author-card="interactive" aria-label="Об авторе">

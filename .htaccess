@@ -1,5 +1,10 @@
 RewriteEngine On
 
+# Постоянное перенаправление HTTP на канонический HTTPS-адрес.
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+RewriteRule ^ https://naklikay.ru%{REQUEST_URI} [R=301,L]
+
 RewriteRule ^blog/nastroyka-direkta-dlya-internet-magazina/?$ https://naklikay.ru/blog/yandex-direct-dlya-internet-magazina/ [R=301,L]
 
 # 1. Точные канонические URL. Выполняются до DirectorySlash, чтобы прокси не
