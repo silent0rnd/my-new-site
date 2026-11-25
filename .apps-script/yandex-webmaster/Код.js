@@ -25,6 +25,7 @@ const SEO_CFG = {
     GROUPS: 'Группы',
     QUERIES: 'Запросы',
     PAGES: 'Страницы',
+    PAGE_HISTORY: 'История страниц',
     PROBLEMS: 'Проблемы',
     WEEKLY_HISTORY: 'Недельная история',
     PRO_RAW: 'URL-запросы PRO',
@@ -61,6 +62,14 @@ const SEO_CFG = {
       'Средняя позиция', 'Реальных запросов', 'ТОП-10',
       'Страниц в поиске', 'Исключено', 'FATAL', 'CRITICAL', 'Проблем всего'
     ],
+    PAGE_HISTORY: [
+      'Дата данных', 'Группа', 'Тип', 'Страница', 'URL',
+      'Показы', 'Клики', 'CTR, %', 'Позиция', 'Собрано',
+      'Период', 'Показы предыдущего периода', 'Клики предыдущего периода',
+      'CTR предыдущего периода', 'Позиция предыдущего периода', 'Источник',
+      'Строка журнала', 'Дата усиления', 'Что изменили', 'Результат',
+      'Контроль после', 'Окно до, дней', 'Статус наблюдения'
+    ],
     PRO_RAW: [
       'Дата', 'Группа', 'URL', 'Запрос', 'Регион',
       'Показы', 'Клики', 'Позиция', 'Загружено'
@@ -85,6 +94,7 @@ function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('SEO аудит')
     .addItem('1. Обновить SEO-данные сейчас', 'runSeoRefresh')
+    .addItem('Обновить данные Метрики', 'runMetrikaRefresh')
     .addItem('Отчёт по запросам из PRO', 'rebuildProQueryReport')
     .addSeparator()
     .addItem('2. Включить автообновление', 'installAutomation')
@@ -152,6 +162,7 @@ function runWeeklySeoAudit() {
     setSetting_('LAST_ERROR', '');
 
     const ss = SpreadsheetApp.getActiveSpreadsheet();
+    ensurePageHistorySheet_(ss);
     assertSheets_(ss);
     syncRegistryWithSitemap_(ss);
 
@@ -267,7 +278,7 @@ function runWeeklySeoAudit() {
         hostPath_(access) + '/search-urls/in-search/samples',
         'samples',
         100,
-        50000
+        5000
       ),
       { items: [], count: null, failed: true },
       collectionErrors,
@@ -381,6 +392,7 @@ function runWeeklySeoAudit() {
     updateTargetPhrases_(ss, registry, queryModels, periods);
     writeQueries_(ss, visibleQueryModels);
     writePages_(ss, pageModels);
+    upsertPageHistory_(ss, pageModels, periods);
     writeGroups_(ss, registry, queryModels);
     writeProblems_(ss, problems);
 
@@ -458,26 +470,16 @@ function runSeoRefresh() {
       return;
     }
 
-    markRunStage_('Выполняется', 'Запускаю основной SEO-отчёт', 18);
-
-    // Основной отчёт обновляем сразу. Если PRO ещё формируется,
-    // после его готовности фоновый обработчик сам импортирует данные
-    // и повторно пересчитает недельный SEO-отчёт.
-    runWeeklySeoAudit();
-
-    if (getSetting_('PRO_PENDING_TASK_ID')) {
-      markRunStage_(
-        'Ожидание PRO',
-        'Основной SEO-отчёт готов. PRO-выгрузка формируется автоматически',
-        95
-      );
-    } else {
-      completeRun_('SEO-данные полностью обновлены');
-    }
+    markRunStage_(
+      'Выполняется',
+      'PRO-этап завершён. Основной SEO-отчёт поставлен отдельным запуском',
+      18
+    );
+    scheduleSeoRefreshContinuation_(2);
 
     ui.alert(
-      'SEO-данные обновлены',
-      seoRefreshMessage_(proState),
+      'SEO-обновление запущено',
+      'PRO-этап завершён. Основной SEO-отчёт будет обновлён отдельным автоматическим этапом.',
       ui.ButtonSet.OK
     );
   } catch (e) {
@@ -508,21 +510,50 @@ function runSeoRefreshAuto() {
       return;
     }
 
-    markRunStage_('Выполняется', 'Обновляю все основные SEO-данные Яндекс Вебмастера', 18);
+    markRunStage_(
+      'Выполняется',
+      'PRO-этап завершён. Основной SEO-отчёт поставлен отдельным запуском',
+      18
+    );
+    scheduleSeoRefreshContinuation_(2);
+  } catch (e) {
+    setSetting_('LAST_ERROR', errorText_(e));
+    markRunError_('Ошибка автоматического SEO-обновления', e);
+    throw e;
+  }
+}
+
+function scheduleSeoRefreshContinuation_(minutes) {
+  deleteTriggersByHandler_('runSeoRefreshContinuation');
+  ScriptApp.newTrigger('runSeoRefreshContinuation')
+    .timeBased()
+    .after((Number(minutes) || 2) * 60 * 1000)
+    .create();
+}
+
+function runSeoRefreshContinuation() {
+  deleteTriggersByHandler_('runSeoRefreshContinuation');
+
+  try {
     runWeeklySeoAudit();
 
     if (getSetting_('PRO_PENDING_TASK_ID')) {
       markRunStage_(
         'Ожидание PRO',
-        'Основной ежедневный SEO-отчёт готов. PRO формируется и будет импортирован автоматически',
+        'Основной SEO-отчёт готов. PRO-выгрузка формируется автоматически',
         95
       );
     } else {
-      completeRun_('Ежедневные SEO-данные полностью обновлены');
+      completeRun_('SEO-данные полностью обновлены');
     }
   } catch (e) {
+    if (/Другой запуск SEO-аудита уже выполняется/i.test(errorText_(e))) {
+      scheduleSeoRefreshContinuation_(5);
+      return;
+    }
+
     setSetting_('LAST_ERROR', errorText_(e));
-    markRunError_('Ошибка автоматического SEO-обновления', e);
+    markRunError_('Ошибка отдельного запуска SEO-отчёта', e);
     throw e;
   }
 }
@@ -612,6 +643,7 @@ function runDailyCollector() {
     ensureRunStarted_('Проверяю PRO-выгрузку', 10);
 
     const ss = SpreadsheetApp.getActiveSpreadsheet();
+    ensurePageHistorySheet_(ss);
     assertSheets_(ss);
     syncRegistryWithSitemap_(ss);
 
@@ -767,6 +799,7 @@ function runDailyCollector() {
 // v3.11: непрерывная история по парам URL + дата, без повторного расхода квоты.
 function ensureProHistorySheets_() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
+  ensurePageHistorySheet_(ss);
   let coverage = ss.getSheetByName(SEO_CFG.SHEETS.PRO_COVERAGE);
   if (!coverage) {
     coverage = ss.insertSheet(SEO_CFG.SHEETS.PRO_COVERAGE);
@@ -788,6 +821,158 @@ function ensureProHistorySheets_() {
     .setValues([SEO_CFG.HEADERS.PRO_REPORT]);
   report.getRange(1, 1, 1, SEO_CFG.HEADERS.PRO_REPORT.length)
     .setFontWeight('bold');
+}
+
+function ensurePageHistorySheet_(ss) {
+  let sheet = ss.getSheetByName(SEO_CFG.SHEETS.PAGE_HISTORY);
+  if (!sheet) sheet = ss.insertSheet(SEO_CFG.SHEETS.PAGE_HISTORY);
+
+  sheet.getRange(1, 1, 1, SEO_CFG.HEADERS.PAGE_HISTORY.length)
+    .setValues([SEO_CFG.HEADERS.PAGE_HISTORY]);
+  sheet.setFrozenRows(1);
+  sheet.getRange(1, 1, 1, SEO_CFG.HEADERS.PAGE_HISTORY.length)
+    .setFontWeight('bold');
+}
+
+function upsertPageHistory_(ss, models, periods) {
+  const sheet = ss.getSheetByName(SEO_CFG.SHEETS.PAGE_HISTORY);
+  if (!sheet) return;
+
+  const headers = SEO_CFG.HEADERS.PAGE_HISTORY;
+  sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+
+  const existing = {};
+  const lastRow = sheet.getLastRow();
+  if (lastRow > 1) {
+    const values = sheet.getRange(2, 1, lastRow - 1, Math.max(headers.length, 10)).getValues();
+    values.forEach((row, index) => {
+      const date = normalizeDateText_(row[0]);
+      const url = canonicalPath_(row[4]);
+      if (date && url) existing[date + '|' + url] = index + 2;
+    });
+  }
+
+  const observationDate = periods.current.end;
+  const collectedAt = nowText_();
+  const journal = readEnhancementIndex_(ss);
+  const rows = (models || []).filter(m => m && m.url).map(m => {
+    const change = findLatestEnhancement_(journal, m.url, observationDate);
+    const status = !m.current || !m.current.hasData
+      ? 'Нет данных'
+      : (m.current.impressions > 0 ? 'Есть показы' : 'Есть запись без показов');
+
+    return [
+      observationDate,
+      m.group,
+      m.type,
+      m.page || '',
+      m.url,
+      m.current.impressions,
+      m.current.clicks,
+      round2_(m.current.ctr),
+      blankIfNull_(m.current.position),
+      collectedAt,
+      periods.current.start + ' - ' + periods.current.end,
+      m.previous.impressions,
+      m.previous.clicks,
+      round2_(m.previous.ctr),
+      blankIfNull_(m.previous.position),
+      'Яндекс Вебмастер: регулярная аналитика',
+      change ? change.row : '',
+      change ? change.date : '',
+      change ? change.description : '',
+      change ? change.result : '',
+      change ? change.controlDate : '',
+      change ? change.controlWindow : '',
+      status
+    ];
+  });
+
+  const appendRows = [];
+  const updateRows = [];
+
+  rows.forEach(row => {
+    const key = observationDate + '|' + canonicalPath_(row[4]);
+    const targetRow = existing[key];
+    if (targetRow) {
+      updateRows.push({ rowNumber: targetRow, values: row });
+    } else {
+      appendRows.push(row);
+    }
+  });
+
+  if (appendRows.length) {
+    const appendStart = sheet.getLastRow() + 1;
+    ensureRows_(sheet, appendStart + appendRows.length - 1);
+    sheet.getRange(appendStart, 1, appendRows.length, headers.length)
+      .setValues(appendRows);
+  }
+
+  updateRows.sort((a, b) => a.rowNumber - b.rowNumber);
+  let updateStart = null;
+  let updateBatch = [];
+  updateRows.forEach(item => {
+    if (updateStart === null) {
+      updateStart = item.rowNumber;
+      updateBatch = [item.values];
+      return;
+    }
+
+    const expectedRow = updateStart + updateBatch.length;
+    if (item.rowNumber === expectedRow) {
+      updateBatch.push(item.values);
+      return;
+    }
+
+    sheet.getRange(updateStart, 1, updateBatch.length, headers.length)
+      .setValues(updateBatch);
+    updateStart = item.rowNumber;
+    updateBatch = [item.values];
+  });
+
+  if (updateBatch.length) {
+    sheet.getRange(updateStart, 1, updateBatch.length, headers.length)
+      .setValues(updateBatch);
+  }
+
+  if (rows.length) {
+    const first = 2;
+    const count = sheet.getLastRow() - first + 1;
+    sheet.getRange(first, 6, count, 3).setNumberFormat('0.00');
+    sheet.getRange(first, 9, count, 1).setNumberFormat('0.00');
+    sheet.getRange(first, 12, count, 4).setNumberFormat('0.00');
+    sheet.getRange(first, 22, count, 1).setNumberFormat('0');
+  }
+}
+
+function readEnhancementIndex_(ss) {
+  const sheet = ss.getSheetByName('Журнал усилений');
+  if (!sheet || sheet.getLastRow() < 2) return [];
+
+  const values = sheet.getRange(2, 1, sheet.getLastRow() - 1, 13).getValues();
+  return values.map((row, index) => ({
+    row: index + 2,
+    description: String(row[0] || '').trim(),
+    date: normalizeDateText_(row[1]),
+    result: String(row[2] || '').trim(),
+    url: String(row[4] || '').trim(),
+    controlDate: normalizeDateText_(row[6]),
+    controlWindow: row[7] == null ? '' : row[7]
+  })).filter(item => item.url && item.date);
+}
+
+function findLatestEnhancement_(journal, url, observationDate) {
+  const path = canonicalPath_(url);
+  let latest = null;
+
+  (journal || []).forEach(item => {
+    if (canonicalPath_(item.url) !== path || item.date > observationDate) return;
+    if (!latest || item.date > latest.date || (item.date === latest.date && item.row > latest.row)) {
+      latest = item;
+    }
+  });
+
+  return latest;
 }
 
 function proCoverageKey_(date, path) {
@@ -1142,7 +1327,8 @@ function removeAutomation_(showAlert) {
     'runWeeklySeoAudit',
     'runSeoMonitoring',
     'runSeoRefreshAuto',
-    'runSeoRefreshAutoRetry'
+    'runSeoRefreshAutoRetry',
+    'runSeoRefreshContinuation'
   ]);
 
   ScriptApp.getProjectTriggers().forEach(trigger => {
@@ -2299,7 +2485,7 @@ function buildProblems_(ctx) {
         'Динамика страницы',
         m.url,
         'Сильно снизились показы страницы',
-        m.previous.impressions + ' -> ' + m.current.impressions +
+        'before: ' + m.previous.impressions + '; after: ' + m.current.impressions +
           ' (' + round2_(m.deltaImpressionsPct) + '%)',
         'Проверить запросы страницы, изменения контента, сниппета и конкуренцию. Не переписывать страницу только по одному недельному колебанию.',
         ctx.periods.current.start + ' - ' + ctx.periods.current.end,
@@ -2319,7 +2505,7 @@ function buildProblems_(ctx) {
         'Динамика страницы',
         m.url,
         'Средняя позиция страницы ухудшилась',
-        round2_(m.previous.position) + ' -> ' + round2_(m.current.position) +
+        'before: ' + round2_(m.previous.position) + '; after: ' + round2_(m.current.position) +
           ' (' + round2_(m.deltaPosition) + ' п.)',
         'Посмотреть запросы страницы и изменения в выдаче. Реагировать, если падение сохраняется несколько недель или затрагивает важные коммерческие запросы.',
         ctx.periods.current.start + ' - ' + ctx.periods.current.end,
@@ -2403,7 +2589,6 @@ function writeProblems_(ss, problems) {
 
   if (problems.length) {
     sheet.getRange(2, 1, problems.length, 8).setWrap(true);
-    sheet.setRowHeights(2, problems.length, 48);
   }
 }
 
@@ -3159,7 +3344,7 @@ function settingDefaultValue_(key) {
     DOMAIN: 'naklikay.ru',
     DEVICE: 'ALL',
     SEARCH_LOCATION: 'WEB_LOCATION',
-    MAX_ANALYTICS_ITEMS: '10000',
+    MAX_ANALYTICS_ITEMS: '3000',
     PRO_ROTATION_CURSOR: '0',
     PRO_ROTATION_CYCLE: '1',
     MIN_IMPRESSIONS_ALERT: '20',
@@ -3382,6 +3567,7 @@ function assertSheets_(ss) {
     SEO_CFG.SHEETS.GROUPS,
     SEO_CFG.SHEETS.QUERIES,
     SEO_CFG.SHEETS.PAGES,
+    SEO_CFG.SHEETS.PAGE_HISTORY,
     SEO_CFG.SHEETS.PROBLEMS,
     SEO_CFG.SHEETS.WEEKLY_HISTORY,
     SEO_CFG.SHEETS.PRO_RAW,

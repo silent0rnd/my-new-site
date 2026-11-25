@@ -261,7 +261,7 @@ $articles = @(
     Slug  = "reklama-telegram-kanala-v-yandex-direkte"
     Title = "Реклама Telegram-канала через Яндекс Директ: настройка и стоимость подписчика"
     Desc  = "Как запустить рекламу Telegram-канала в Яндекс Директе в 2026 году. Мастер кампаний, реклама в каналах, способы оплаты, учёт подписок, Метрика и расчёт стоимости подписчика."
-    Images = @("01-sposoby-reklamy-telegram", "02-klik-perekhod-podpiska", "03-otslezhivanie-podpischikov", "04-uchet-zapuskov-telegram-bota", "05-stoimost-podpischika-telegram")
+    Images = @("reklama-telegram-kanala-v-yandex-direkte-01-sposoby-reklamy", "reklama-telegram-kanala-v-yandex-direkte-02-perehod-podpiska", "reklama-telegram-kanala-v-yandex-direkte-03-otslezhivanie-podpischikov", "reklama-telegram-kanala-v-yandex-direkte-04-zapusk-telegram-bota", "reklama-telegram-kanala-v-yandex-direkte-05-stoimost-podpischika")
     Alts  = @(
       "Три способа рекламы Telegram-канала через Яндекс Директ: Мастер кампаний, автоподбор и каталог.",
       "Разница между рекламным кликом, вовлечённым переходом и фактической подпиской на Telegram-канал.",

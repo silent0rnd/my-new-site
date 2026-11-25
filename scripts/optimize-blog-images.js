@@ -219,6 +219,19 @@ async function main() {
   const argv = process.argv.slice(2);
   const articleInputs = readArgumentValues(argv, "--article");
   const imageInputs = readArgumentValues(argv, "--image");
+  const sourceInputs = readArgumentValues(argv, "--source");
+  if (sourceInputs.length) {
+    if (articleInputs.length || imageInputs.length) {
+      throw new Error("Для экспорта файлов укажите только --source.");
+    }
+    for (const input of new Set(sourceInputs)) {
+      const sourcePath = path.resolve(input);
+      const dimensions = displayedDimensions(await sharp(sourcePath).metadata());
+      const variants = await createWebpVariants(sourcePath, candidateWidths(dimensions.width));
+      for (const variant of variants) console.log(variant.outputPath);
+    }
+    return;
+  }
   const result = await optimizeArticle(articleInputs[0], { imageInputs });
   const variants = result.images.reduce((total, image) => total + image.variants.length, 0);
   console.log(`Статья: ${path.relative(PROJECT_ROOT, result.articlePath)}`);

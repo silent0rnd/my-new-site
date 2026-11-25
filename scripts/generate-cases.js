@@ -344,17 +344,41 @@ function datesHtml(caseItem) {
 }
 
 function authorHtml() {
-  return [
-    `<aside class="article-author case-author" aria-label="Об авторе кейса">`,
-    `<img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников, специалист по платному трафику" width="192" height="192" loading="lazy" decoding="async">`,
-    `<div class="article-author__body">`,
-    `<p class="article-author__label">Автор кейса</p>`,
-    `<p class="article-author__name">Максим Мирошников</p>`,
-    `<p class="article-author__role">Специалист по платному трафику и Яндекс Директу</p>`,
-    `<p class="article-author__text">Занимаюсь интернет-рекламой более 10 лет. Работаю как ИП и веду проекты напрямую: запускаю рекламу, создаю сайты и воронки, помогаю выстраивать связь между маркетингом, заявками и продажами.</p>`,
-    `<p class="article-author__link"><a href="../../#about">Подробнее обо мне</a></p>`,
-    `</div></aside>`,
-  ].join("");
+  return `<aside class="article-author case-author" data-author-card="interactive" aria-label="Об авторе кейса">
+  <span class="article-author__stud" aria-hidden="true"></span><span class="article-author__stud" aria-hidden="true"></span>
+  <button class="article-author__toggle article-author__fabric-tab" type="button" aria-expanded="false" aria-controls="article-author-pages" aria-label="Показать контакты Максима Мирошникова"><span class="article-author__toggle-text">Задать вопрос</span></button>
+  <div class="article-author__pages" id="article-author-pages">
+    <div class="article-author__page article-author__page--profile" aria-hidden="false">
+      <div class="article-author__portrait"><img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников" width="192" height="192" loading="lazy" decoding="async" /></div>
+      <div class="article-author__body">
+        <p class="article-author__label">Автор кейса</p>
+        <p class="article-author__name">Максим Мирошников</p>
+        <p class="article-author__role">Специалист по платному трафику</p>
+        <p class="article-author__text">Запускаю рекламу, создаю сайты и воронки, настраиваю аналитику и помогаю связать маркетинг с данными о заявках.</p>
+        <div class="article-author__footer">
+          <div class="article-author__proofs" aria-label="Опыт и результаты">
+            <div class="article-author__proof"><strong>10+</strong><span>лет практики</span></div>
+            <div class="article-author__proof"><strong>40+</strong><span>кейсов</span></div>
+            <div class="article-author__proof"><strong>200+ млн</strong><span>бюджета освоено</span></div>
+          </div>
+          <p class="article-author__offer"><span>Ведение вашего проекта</span><strong>от 30&nbsp;000&nbsp;₽</strong><span>в месяц</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="article-author__page article-author__page--contact" aria-hidden="true" inert>
+      <div class="article-author__contact-body">
+        <p class="article-author__label">Связаться со мной</p>
+        <p class="article-author__contact-title">Напишите мне</p>
+        <p class="article-author__contact-copy">Расскажите о задаче - обсудим проект и подходящий формат консультации.</p>
+        <div class="article-author__contacts" aria-label="Контакты Максима Мирошникова">
+          <a class="article-author__contact-link" href="mailto:direct@miroshnikov-maxim.ru"><span>Почта</span><b>direct@miroshnikov-maxim.ru</b></a>
+          <a class="article-author__contact-link" href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer"><span>MAX</span><b>Открыть профиль</b></a>
+          <a class="article-author__contact-link" href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer"><span>Telegram</span><b>@miroshnikov_maxim</b></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>`;
 }
 
 function relatedHtml(caseItem, cases) {
@@ -520,9 +544,9 @@ function pageHtml(caseItem, cases) {
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="${pageUrl}" />
     <link rel="preload" href="../../assets/fonts/TTMasters-Regular.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="../../styles.css?v=20260928-case-tape-clearance-v5" />
+    <link rel="stylesheet" href="../../styles.css?v=20261125-case-author-exact" />
     <script src="../../cases-data.js?v=20261023-advokat-case" defer></script>
-    <script src="../../case-page.js?v=20260921-case-illustrations-layout" defer></script>
+    <script src="../../case-page.js?v=20261125-interactive-case-author" defer></script>
     <script src="../../script.js?v=20260810-mobile-layout" defer></script>
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="${attr(author)}" />

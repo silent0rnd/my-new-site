@@ -674,29 +674,42 @@
 
   function renderAuthor() {
     const aside = createElement("aside", "article-author case-author");
-    const photo = document.createElement("img");
-    const body = createElement("div", "article-author__body");
-    const linkLine = createElement("p", "article-author__link");
-    const link = createElement("a", "", "Подробнее обо мне");
-
+    aside.dataset.authorCard = "interactive";
     aside.setAttribute("aria-label", "Об авторе кейса");
-    photo.className = "article-author__photo";
-    photo.src = "../../assets/author-avatar.jpg";
-    photo.alt = "Максим Мирошников, специалист по платному трафику";
-    photo.width = 192;
-    photo.height = 192;
-    photo.loading = "lazy";
-    photo.decoding = "async";
-    link.href = "../../#about";
-    linkLine.append(link);
-    body.append(
-      createElement("p", "article-author__label", "Автор кейса"),
-      createElement("p", "article-author__name", "Максим Мирошников"),
-      createElement("p", "article-author__role", "Специалист по платному трафику и Яндекс Директу"),
-      createElement("p", "article-author__text", "Занимаюсь интернет-рекламой более 10 лет. Работаю как ИП и веду проекты напрямую: запускаю рекламу, создаю сайты и воронки, помогаю выстраивать связь между маркетингом, заявками и продажами."),
-      linkLine,
-    );
-    aside.append(photo, body);
+    aside.innerHTML = `
+      <span class="article-author__stud" aria-hidden="true"></span><span class="article-author__stud" aria-hidden="true"></span>
+      <button class="article-author__toggle article-author__fabric-tab" type="button" aria-expanded="false" aria-controls="article-author-pages" aria-label="Показать контакты Максима Мирошникова"><span class="article-author__toggle-text">Задать вопрос</span></button>
+      <div class="article-author__pages" id="article-author-pages">
+        <div class="article-author__page article-author__page--profile" aria-hidden="false">
+          <div class="article-author__portrait"><img class="article-author__photo" src="../../assets/author-avatar.jpg" alt="Максим Мирошников" width="192" height="192" loading="lazy" decoding="async"></div>
+          <div class="article-author__body">
+            <p class="article-author__label">Автор кейса</p>
+            <p class="article-author__name">Максим Мирошников</p>
+            <p class="article-author__role">Специалист по платному трафику</p>
+            <p class="article-author__text">Запускаю рекламу, создаю сайты и воронки, настраиваю аналитику и помогаю связать маркетинг с данными о заявках.</p>
+            <div class="article-author__footer">
+              <div class="article-author__proofs" aria-label="Опыт и результаты">
+                <div class="article-author__proof"><strong>10+</strong><span>лет практики</span></div>
+                <div class="article-author__proof"><strong>40+</strong><span>кейсов</span></div>
+                <div class="article-author__proof"><strong>200+ млн</strong><span>бюджета освоено</span></div>
+              </div>
+              <p class="article-author__offer"><span>Ведение вашего проекта</span><strong>от 30&nbsp;000&nbsp;₽</strong><span>в месяц</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="article-author__page article-author__page--contact" aria-hidden="true" inert>
+          <div class="article-author__contact-body">
+            <p class="article-author__label">Связаться со мной</p>
+            <p class="article-author__contact-title">Напишите мне</p>
+            <p class="article-author__contact-copy">Расскажите о задаче - обсудим проект и подходящий формат консультации.</p>
+            <div class="article-author__contacts" aria-label="Контакты Максима Мирошникова">
+              <a class="article-author__contact-link" href="mailto:direct@miroshnikov-maxim.ru"><span>Почта</span><b>direct@miroshnikov-maxim.ru</b></a>
+              <a class="article-author__contact-link" href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer"><span>MAX</span><b>Открыть профиль</b></a>
+              <a class="article-author__contact-link" href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer"><span>Telegram</span><b>@miroshnikov_maxim</b></a>
+            </div>
+          </div>
+        </div>
+      </div>`;
     return aside;
   }
 

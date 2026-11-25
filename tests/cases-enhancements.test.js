@@ -10,6 +10,12 @@ vm.runInContext(fs.readFileSync(path.join(root, "cases-data.js"), "utf8"), sandb
 
 const cases = sandbox.window.siteCases;
 assert.strictEqual(cases.length, 44, "Expected all 44 cases");
+const casePageScript = fs.readFileSync(path.join(root, "case-page.js"), "utf8");
+const styles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
+assert.match(casePageScript, /aside\.dataset\.authorCard = "interactive"/, "Case runtime author must use the interactive card");
+assert.match(casePageScript, /article-author__page--contact/, "Case runtime author must include the contact screen");
+assert.match(styles, /\.case-detail > \.article-author\s*\{[\s\S]*?margin-top:\s*0;/, "Case author must use the shared section spacing");
+assert.match(styles, /\.related-cases\s*\{[\s\S]*?border-top:\s*0;/, "Related cases must not have a separator line");
 
 function sectionIllustrations(section) {
   return [
@@ -29,7 +35,12 @@ for (const caseItem of cases) {
   const h1 = html.match(/<h1>([^<]+)<\/h1>/)?.[1];
   assert.strictEqual(h1, caseItem.h1Title, `${caseItem.slug}: generated H1 differs from h1Title`);
   assert.ok(html.includes(`<span aria-current="page">${caseItem.title}</span>`), `${caseItem.slug}: breadcrumb must keep card title`);
-  assert.ok(html.includes('<aside class="article-author case-author"'), `${caseItem.slug}: visible author is missing`);
+  assert.ok(html.includes('<aside class="article-author case-author" data-author-card="interactive"'), `${caseItem.slug}: interactive case author is missing`);
+  assert.strictEqual((html.match(/data-author-card="interactive"/g) || []).length, 1, `${caseItem.slug}: case author must have one interactive card`);
+  assert.ok(html.includes('class="article-author__label">Автор кейса</p>'), `${caseItem.slug}: case author label is missing`);
+  assert.ok(html.includes('class="article-author__toggle article-author__fabric-tab"'), `${caseItem.slug}: case author contact toggle is missing`);
+  assert.ok(html.includes("case-page.js?v=20261125-interactive-case-author"), `${caseItem.slug}: case runtime asset version is stale`);
+  assert.ok(html.includes("styles.css?v=20261125-case-author-exact"), `${caseItem.slug}: case styles asset version is stale`);
   assert.ok(!html.includes('<section class="case-cta">'), `${caseItem.slug}: CTA block must be absent`);
   assert.ok(html.includes('class="case-gallery__caption"'), `${caseItem.slug}: visible gallery caption is missing`);
   assert.ok(html.includes('class="case-lightbox__counter"'), `${caseItem.slug}: separate lightbox counter is missing`);

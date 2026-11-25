@@ -1,8 +1,8 @@
 const path = require('node:path');
 const sharp = require('sharp');
 
-const REQUIRED_WIDTH = 2096;
-const REQUIRED_HEIGHT = 1572;
+const REQUIRED_WIDTH = 2896;
+const REQUIRED_HEIGHT = 2172;
 const SAMPLE_WIDTH = 400;
 const SAMPLE_HEIGHT = 300;
 const BORDER_SHARE = 0.1;
@@ -102,7 +102,7 @@ async function main(args) {
       failed = true;
       console.error(`Брак: ${filePath} - ${result.errors.join('; ')}`);
     } else {
-      console.log(`Готово: ${filePath} - 2096 x 1572, 4:3, светлый фон`);
+      console.log(`Готово: ${filePath} - ${REQUIRED_WIDTH} x ${REQUIRED_HEIGHT}, 4:3, светлый фон`);
     }
   }
 

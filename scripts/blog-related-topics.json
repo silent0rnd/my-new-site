@@ -2,6 +2,19 @@
   "version": 1,
   "articles": [
     {
+      "slug": "reklama-stroitelnogo-magazina",
+      "topic": "construction",
+      "topicLabel": "Строительство",
+      "tags": [
+        "analytics",
+        "economics",
+        "website",
+        "avito",
+        "lead-generation"
+      ],
+      "intent": "strategy"
+    },
+    {
       "slug": "prodvizhenie-magazina-postelnogo-belya",
       "topic": "ecommerce",
       "topicLabel": "Интернет-магазины",

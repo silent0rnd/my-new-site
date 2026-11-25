@@ -13,7 +13,7 @@ const blogDir = path.join(root, "blog");
 const relatedTopicsPath = path.join(__dirname, "blog-related-topics.json");
 const pageSize = 15;
 const siteUrl = "https://naklikay.ru";
-const blogAssetVersion = "20261118-author-card-1";
+const blogAssetVersion = "20261125-author-card-4";
 const articleArgumentIndex = process.argv.indexOf("--article");
 const targetArticleSlug = articleArgumentIndex >= 0 ? process.argv[articleArgumentIndex + 1] : "";
 if (articleArgumentIndex >= 0 && !targetArticleSlug) throw new Error("Use --article <slug>.");
@@ -455,7 +455,14 @@ function articleAuthorHtml() {
         <p class="article-author__name">Максим Мирошников</p>
         <p class="article-author__role">Специалист по платному трафику</p>
         <p class="article-author__text">Запускаю рекламу, создаю сайты и воронки, настраиваю аналитику и помогаю связать маркетинг с данными о заявках.</p>
-        <div class="article-author__footer"><p class="article-author__experience">10+ лет практики</p></div>
+        <div class="article-author__footer">
+          <div class="article-author__proofs" aria-label="Опыт и результаты">
+            <div class="article-author__proof"><strong>10+</strong><span>лет практики</span></div>
+            <div class="article-author__proof"><strong>40+</strong><span>кейсов</span></div>
+            <div class="article-author__proof"><strong>200+ млн</strong><span>бюджета освоено</span></div>
+          </div>
+          <p class="article-author__offer"><span>Ведение вашего проекта</span><strong>от 30&nbsp;000&nbsp;₽</strong><span>в месяц</span></p>
+        </div>
       </div>
     </div>
     <div class="article-author__page article-author__page--contact" aria-hidden="true" inert>

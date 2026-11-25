@@ -22,6 +22,7 @@ const SEO_METRIKA_CFG = Object.freeze({
   SHEET_REGISTRY: 'Фразы',
   SHEET_SETTINGS: 'Настройки',
   SHEET_METRIKA: 'Метрика',
+  SHEET_HISTORY: 'История Метрики',
   SHEET_GOALS: 'Цели Метрики',
   TOKEN_PROPERTY: 'YANDEX_METRIKA_OAUTH',
   FALLBACK_TOKEN_PROPERTY: 'OAUTH_TOKEN',
@@ -31,7 +32,8 @@ const SEO_METRIKA_CFG = Object.freeze({
   REPORT_LIMIT: 100000,
   DEFAULT_WEEKLY_DAY: 'MONDAY',
   DEFAULT_WEEKLY_HOUR: 9,
-  WEEKLY_DELAY_HOURS: 1
+  WEEKLY_DELAY_HOURS: 1,
+  MESSENGER_GOAL_ID: '581021196'
 });
 
 const SEO_METRIKA_HEADERS = Object.freeze([
@@ -58,7 +60,17 @@ const SEO_METRIKA_HEADERS = Object.freeze([
   'Визиты 90 дн',
   'Избранные цели 90 дн',
   'Статус Метрики',
-  'Период'
+  'Период',
+  'Переходы в мессенджер 28 дн',
+  'Переходы в мессенджер пред. 28 дн',
+  'Δ переходов в мессенджер, %',
+  'Переходы в мессенджер 90 дн'
+]);
+
+const SEO_METRIKA_HISTORY_HEADERS = Object.freeze([
+  'Дата снимка', 'Период', 'Группа', 'Тип', 'Страница', 'URL',
+  'Визиты', 'Просмотры', 'Глубина', 'Время, сек', 'Отказы, %',
+  'Переходы в мессенджер', 'Конверсия в мессенджер, %', 'Статус', 'Источник'
 ]);
 
 /**
@@ -223,7 +235,11 @@ function runMetrikaRefresh() {
         metrikaRound_(lng.visits, 0),
         metrikaRound_(lng.favoriteGoalsReaches, 0),
         status,
-        periods.current.from + ' - ' + periods.current.to
+        periods.current.from + ' - ' + periods.current.to,
+        metrikaRound_(cur.messengerGoalReaches, 0),
+        metrikaRound_(prev.messengerGoalReaches, 0),
+        metrikaPctChange_(cur.messengerGoalReaches, prev.messengerGoalReaches),
+        metrikaRound_(lng.messengerGoalReaches, 0)
       ];
     });
 
@@ -235,6 +251,7 @@ function runMetrikaRefresh() {
     });
 
     metrikaWriteReport_(ss, rows);
+    metrikaUpsertHistory_(ss, rows, periods.current.from + ' - ' + periods.current.to, periods.current.to);
 
     metrikaSetSettings_([
       ['METRIKA_ENABLED', 'TRUE'],
@@ -369,7 +386,8 @@ function metrikaFetchLandingReport_(token, counterId, dateFrom, dateTo) {
       'ym:s:pageDepth',
       'ym:s:avgVisitDurationSeconds',
       'ym:s:favoriteGoalsReaches',
-      'ym:s:favoriteGoalsUserConversionRate'
+      'ym:s:favoriteGoalsUserConversionRate',
+      'ym:s:goal' + SEO_METRIKA_CFG.MESSENGER_GOAL_ID + 'reaches'
     ].join(','),
     filters: "ym:s:trafficSource=='organic' AND ym:s:isRobot=='No'",
     date1: dateFrom,
@@ -398,7 +416,8 @@ function metrikaFetchLandingReport_(token, counterId, dateFrom, dateTo) {
       pageDepth: Number(m[4]) || 0,
       avgDuration: Number(m[5]) || 0,
       favoriteGoalsReaches: Number(m[6]) || 0,
-      favoriteGoalsUserConversionRate: Number(m[7]) || 0
+      favoriteGoalsUserConversionRate: Number(m[7]) || 0,
+      messengerGoalReaches: Number(m[8]) || 0
     };
   });
 
@@ -528,9 +547,58 @@ function metrikaWriteReport_(ss, rows) {
   metrikaFormatReportSheet_(sh, rows.length + 1);
 }
 
+function metrikaUpsertHistory_(ss, rows, period, snapshotDate) {
+  const sh = ss.getSheetByName(SEO_METRIKA_CFG.SHEET_HISTORY) || ss.insertSheet(SEO_METRIKA_CFG.SHEET_HISTORY);
+  const width = SEO_METRIKA_HISTORY_HEADERS.length;
+  sh.getRange(1, 1, 1, width).setValues([SEO_METRIKA_HISTORY_HEADERS]);
+  sh.setFrozenRows(1);
+
+  const lastRow = sh.getLastRow();
+  const existing = {};
+  if (lastRow > 1) {
+    sh.getRange(2, 1, lastRow - 1, 6).getValues().forEach(function(row, index) {
+      const key = String(row[0] || '') + '|' + metrikaNormalizePath_(row[5]);
+      if (row[0] && row[5]) existing[key] = index + 2;
+    });
+  }
+
+  rows.forEach(function(row) {
+    const historyRow = [
+      snapshotDate,
+      period,
+      row[0],
+      row[1],
+      row[2],
+      row[3],
+      row[4],
+      row[8],
+      row[9],
+      row[12],
+      row[15],
+      row[24],
+      row[24] && row[4] ? metrikaRound_(row[24] / row[4] * 100, 2) : 0,
+      row[22],
+      'Яндекс Метрика: органический поиск без роботов'
+    ];
+    const key = snapshotDate + '|' + metrikaNormalizePath_(row[3]);
+    const targetRow = existing[key] || sh.getLastRow() + 1;
+    if (targetRow > sh.getMaxRows()) sh.insertRowsAfter(sh.getMaxRows(), targetRow - sh.getMaxRows());
+    sh.getRange(targetRow, 1, 1, historyRow.length).setValues([historyRow]);
+    existing[key] = targetRow;
+  });
+
+  const count = sh.getLastRow() - 1;
+  if (count > 0) {
+    sh.getRange(2, 7, count, 2).setNumberFormat('0');
+    sh.getRange(2, 9, count, 2).setNumberFormat('0.00');
+    sh.getRange(2, 11, count, 3).setNumberFormat('0.00');
+  }
+}
+
 function metrikaEnsureStructure_() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   if (!ss.getSheetByName(SEO_METRIKA_CFG.SHEET_METRIKA)) ss.insertSheet(SEO_METRIKA_CFG.SHEET_METRIKA);
+  if (!ss.getSheetByName(SEO_METRIKA_CFG.SHEET_HISTORY)) ss.insertSheet(SEO_METRIKA_CFG.SHEET_HISTORY);
   if (!ss.getSheetByName(SEO_METRIKA_CFG.SHEET_GOALS)) ss.insertSheet(SEO_METRIKA_CFG.SHEET_GOALS);
 
   const defaults = [
@@ -841,6 +909,9 @@ function metrikaFormatReportSheet_(sh, lastRow) {
     sh.getRange(2, 19, lastRow - 1, 1).setNumberFormat('0');
     sh.getRange(2, 20, lastRow - 1, 1).setNumberFormat('0.00');
     sh.getRange(2, 21, lastRow - 1, 2).setNumberFormat('0');
+    sh.getRange(2, 25, lastRow - 1, 2).setNumberFormat('0');
+    sh.getRange(2, 26, lastRow - 1, 1).setNumberFormat('0.00');
+    sh.getRange(2, 28, lastRow - 1, 1).setNumberFormat('0');
     sh.getRange(2, 3, lastRow - 1, 2).setWrap(true).setVerticalAlignment('middle');
   }
 
@@ -851,6 +922,7 @@ function metrikaFormatReportSheet_(sh, lastRow) {
   for (let c = 5; c <= 22; c++) sh.setColumnWidth(c, 120);
   sh.setColumnWidth(23, 180);
   sh.setColumnWidth(24, 185);
+  for (let c = 25; c <= 28; c++) sh.setColumnWidth(c, 150);
 
   const filter = sh.getFilter();
   if (filter) filter.remove();
@@ -905,7 +977,8 @@ function metrikaEmptyMetrics_() {
     pageDepth: 0,
     avgDuration: 0,
     favoriteGoalsReaches: 0,
-    favoriteGoalsUserConversionRate: 0
+    favoriteGoalsUserConversionRate: 0,
+    messengerGoalReaches: 0
   };
 }
 
