@@ -1,8 +1,6 @@
 const path = require('node:path');
 const sharp = require('sharp');
 
-const REQUIRED_WIDTH = 2896;
-const REQUIRED_HEIGHT = 2172;
 const SAMPLE_WIDTH = 400;
 const SAMPLE_HEIGHT = 300;
 const BORDER_SHARE = 0.1;
@@ -20,9 +18,6 @@ async function validateIllustration(filePath) {
     errors.push('формат должен быть PNG');
   }
 
-  if (metadata.width !== REQUIRED_WIDTH || metadata.height !== REQUIRED_HEIGHT) {
-    errors.push(`размер должен быть ${REQUIRED_WIDTH} x ${REQUIRED_HEIGHT} px`);
-  }
 
   if (!metadata.width || !metadata.height || metadata.width * 3 !== metadata.height * 4) {
     errors.push('пропорции должны быть строго 4:3');

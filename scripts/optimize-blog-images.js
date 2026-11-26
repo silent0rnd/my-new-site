@@ -44,10 +44,7 @@ function displayedDimensions(metadata) {
 }
 
 function candidateWidths(sourceWidth) {
-  const maximumWebWidth = Math.min(sourceWidth, TARGET_WIDTHS[TARGET_WIDTHS.length - 1]);
-  return [...new Set([...TARGET_WIDTHS.filter((width) => width < maximumWebWidth), maximumWebWidth])]
-    .filter((width) => width > 0)
-    .sort((first, second) => first - second);
+  return sourceWidth > 0 ? [...TARGET_WIDTHS] : [];
 }
 
 function resolveArticlePath(articleInput, blogRoot = BLOG_ROOT) {
@@ -93,7 +90,7 @@ async function createWebpVariants(sourcePath, widths) {
     const outputPath = `${basePath}-${width}.webp`;
     await sharp(sourcePath)
       .rotate()
-      .resize({ width, withoutEnlargement: true, fit: "inside" })
+      .resize({ width, fit: "inside", kernel: "lanczos3" })
       .webp({ quality: WEBP_QUALITY, effort: 6, smartSubsample: true })
       .toFile(outputPath);
     outputs.push({ width, outputPath });

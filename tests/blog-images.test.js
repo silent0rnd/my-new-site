@@ -19,8 +19,8 @@ test("responsive image settings remain stable", () => {
   assert.equal(WEBP_QUALITY, 92);
   assert.equal(RESPONSIVE_SIZES, "(max-width: 720px) calc(100vw - 36px), 860px");
   assert.deepEqual(candidateWidths(2896), [640, 1080, 1720]);
-  assert.deepEqual(candidateWidths(1200), [640, 1080, 1200]);
-  assert.deepEqual(candidateWidths(600), [600]);
+  assert.deepEqual(candidateWidths(1200), [640, 1080, 1720]);
+  assert.deepEqual(candidateWidths(600), [640, 1080, 1720]);
   assert.equal(imageMatchesSelector("../new-image.jpg", "new-image.jpg"), true);
   assert.equal(imageMatchesSelector("../legacy-image.jpg", "new-image.jpg"), false);
 });
@@ -46,13 +46,14 @@ test("optimizer creates WebP variants and idempotent picture markup", async (con
   const firstRun = await optimizeArticle(articlePath, optimizerOptions);
   assert.equal(firstRun.images.length, 1);
   assert.equal(firstRun.images[0].variants.length, 3);
-  for (const width of [640, 1080, 1200]) {
+  for (const width of [640, 1080, 1720]) {
     assert.equal(fs.existsSync(path.join(temporaryRoot, "blog", `sample-${width}.webp`)), true);
+    assert.equal((await sharp(fs.readFileSync(path.join(temporaryRoot, "blog", `sample-${width}.webp`))).metadata()).width, width);
   }
 
   const firstHtml = fs.readFileSync(articlePath, "utf8");
   assert.match(firstHtml, /<picture data-blog-responsive="true">/);
-  assert.match(firstHtml, /sample-640\.webp 640w, \.\.\/sample-1080\.webp 1080w, \.\.\/sample-1200\.webp 1200w/);
+  assert.match(firstHtml, /sample-640\.webp 640w, \.\.\/sample-1080\.webp 1080w, \.\.\/sample-1720\.webp 1720w/);
   assert.match(firstHtml, /sizes="\(max-width: 720px\) calc\(100vw - 36px\), 860px"/);
   assert.match(firstHtml, /width="1200" height="900" loading="lazy" decoding="async"/);
 

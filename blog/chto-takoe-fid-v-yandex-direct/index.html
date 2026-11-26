@@ -17,9 +17,9 @@
     <meta property="og:url" content="https://naklikay.ru/blog/chto-takoe-fid-v-yandex-direct/" />
     <meta property="og:title" content="Фид в Яндекс Директе: что это, требования и как создать" />
     <meta property="og:description" content="Какие поля нужны в фиде, как создать YML-файл, загрузить его в Директ, проверить ошибки и настроить обновление данных." />
-    <meta property="og:image" content="https://naklikay.ru/blog/feed-yandex-direct-1.jpg" />
-    <meta property="og:image:width" content="1448" />
-    <meta property="og:image:height" content="1086" />
+    <meta property="og:image" content="https://naklikay.ru/blog/chto-takoe-fid-v-yandex-direct-01-yandex-direct-feed-1080.webp" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="810" />
     <meta property="og:image:alt" content="Схема работы фида в Яндекс Директе" />
     <meta property="article:published_time" content="2026-08-21" />
     <meta property="article:modified_time" content="2026-08-21" />
@@ -27,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Фид в Яндекс Директе: что это, требования и как создать" />
     <meta name="twitter:description" content="Какие поля нужны в фиде, как создать YML-файл, загрузить его в Директ, проверить ошибки и настроить обновление данных." />
-    <meta name="twitter:image" content="https://naklikay.ru/blog/feed-yandex-direct-1.jpg" />
+    <meta name="twitter:image" content="https://naklikay.ru/blog/chto-takoe-fid-v-yandex-direct-01-yandex-direct-feed-1080.webp" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -38,7 +38,7 @@
             "description": "Что такое фид в Яндекс Директе, какие поля нужны, как создать YML-файл, загрузить его, проверить ошибки и настроить обновление данных.",
             "url": "https://naklikay.ru/blog/chto-takoe-fid-v-yandex-direct/",
             "mainEntityOfPage": { "@type": "WebPage", "@id": "https://naklikay.ru/blog/chto-takoe-fid-v-yandex-direct/" },
-            "image": "https://naklikay.ru/blog/feed-yandex-direct-1.jpg",
+            "image": "https://naklikay.ru/blog/chto-takoe-fid-v-yandex-direct-01-yandex-direct-feed-1080.webp",
             "datePublished": "2026-08-21",
             "dateModified": "2026-08-21",
             "inLanguage": "ru-RU",
@@ -78,7 +78,7 @@
           <p>Яндекс Директ получает эту информацию и на ее основе автоматически создает объявления. Сейчас фиды используются в товарных кампаниях, а также для товарных объявлений и страниц каталога в Единой перфоманс-кампании. Такие объявления могут показываться на поиске, в РСЯ и товарной галерее.</p>
           <p>Проще говоря, фид можно представить как каталог, подготовленный в понятном для рекламной системы формате.</p>
           <figure class="article-figure">
-            <img src="../feed-yandex-direct-1.jpg" alt="Схема работы фида в Яндекс Директе" width="1448" height="1086" decoding="async" /><figcaption>Фид передаёт данные каталога в Яндекс Директ, чтобы система могла сформировать товарные объявления.</figcaption></figure>
+            <picture data-blog-responsive="true"><source type="image/webp" srcset="../chto-takoe-fid-v-yandex-direct-01-yandex-direct-feed-640.webp 640w, ../chto-takoe-fid-v-yandex-direct-01-yandex-direct-feed-1080.webp 1080w, ../chto-takoe-fid-v-yandex-direct-01-yandex-direct-feed-1448.webp 1448w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../chto-takoe-fid-v-yandex-direct-01-yandex-direct-feed.png" alt="Схема работы фида в Яндекс Директе" width="1448" height="1086" decoding="async" /></picture><figcaption>Фид передаёт данные каталога в Яндекс Директ, чтобы система могла сформировать товарные объявления.</figcaption></figure>
         </section>
 
 <!-- article-toc:start -->
@@ -161,7 +161,7 @@
           <p>Для классического интернет-магазина часто используется YML. В таком файле каждый товар описывается отдельным предложением. Точный набор обязательных полей зависит от типа описания и категории бизнеса, поэтому перед выгрузкой нужно выбрать формат и сверить его с требованиями Директа.</p>
           <div class="article-table-wrap"><table class="article-table"><thead><tr><th scope="col">Поле</th><th scope="col">Статус</th><th scope="col">Что проверить</th></tr></thead><tbody><tr><td data-label="Поле">ID</td><td data-label="Статус">Обязательное</td><td data-label="Что проверить">У каждого предложения уникальное и стабильное значение</td></tr><tr><td data-label="Поле">URL</td><td data-label="Статус">Обязательное</td><td data-label="Что проверить">Страница открывается и соответствует предложению</td></tr><tr><td data-label="Поле">Цена и валюта</td><td data-label="Статус">Обязательные при передаче цены</td><td data-label="Что проверить">Цена совпадает с посадочной страницей, старая цена выше новой</td></tr><tr><td data-label="Поле">Категория</td><td data-label="Статус">Нужна для структуры каталога</td><td data-label="Что проверить">categoryId ссылается на существующую категорию</td></tr><tr><td data-label="Поле">Название</td><td data-label="Статус">Обязательное для упрощенного описания</td><td data-label="Что проверить">Без рекламных обещаний, совпадает с товаром на сайте</td></tr><tr><td data-label="Поле">Изображение</td><td data-label="Статус">Рекомендуемое или обязательное в зависимости от формата</td><td data-label="Что проверить">Прямая доступная ссылка на актуальный файл</td></tr><tr><td data-label="Поле">Наличие</td><td data-label="Статус">Обязательное при фильтрации по наличию</td><td data-label="Что проверить">Значение совпадает с сайтом и оформлением заказа</td></tr><tr><td data-label="Поле">Описание и характеристики</td><td data-label="Статус">Рекомендуемые</td><td data-label="Что проверить">Конкретные свойства без ссылок, спама и чужих товаров</td></tr></tbody></table></div>
           <figure class="article-figure">
-            <img src="../feed-yandex-direct-2.jpg" alt="Пример полей товарного фида YML" width="1448" height="1086" loading="lazy" decoding="async" /><figcaption>В YML-фиде каждое предложение содержит идентификатор, ссылку, цену, категорию и данные товара.</figcaption></figure>
+            <picture data-blog-responsive="true"><source type="image/webp" srcset="../chto-takoe-fid-v-yandex-direct-02-yml-offer-fields-640.webp 640w, ../chto-takoe-fid-v-yandex-direct-02-yml-offer-fields-1080.webp 1080w, ../chto-takoe-fid-v-yandex-direct-02-yml-offer-fields-1448.webp 1448w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../chto-takoe-fid-v-yandex-direct-02-yml-offer-fields.png" alt="Пример полей товарного фида YML" width="1448" height="1086" loading="lazy" decoding="async" /></picture><figcaption>В YML-фиде каждое предложение содержит идентификатор, ссылку, цену, категорию и данные товара.</figcaption></figure>
           <h3 id="section-minimalnyy-primer-yml-fida">Минимальный пример YML-фида</h3>
           <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;yml_catalog date="2026-11-24 12:00"&gt;
@@ -204,7 +204,7 @@
           <ol><li>Загрузить файл с компьютера.</li><li>Указать URL, по которому Директ сможет его получать.</li></ol>
           <p>Второй вариант удобнее для постоянно меняющегося каталога, поскольку файл на сервере можно автоматически обновлять вместе с ценами, остатками и ассортиментом.</p>
           <figure class="article-figure">
-            <img src="../feed-yandex-direct-3.jpg" alt="Раздел добавления фида в Яндекс Директе" width="1448" height="1086" loading="lazy" decoding="async" /><figcaption>Фид можно загрузить файлом или подключить по ссылке в разделе управления фидами.</figcaption></figure>
+            <picture data-blog-responsive="true"><source type="image/webp" srcset="../chto-takoe-fid-v-yandex-direct-03-upload-validation-640.webp 640w, ../chto-takoe-fid-v-yandex-direct-03-upload-validation-1080.webp 1080w, ../chto-takoe-fid-v-yandex-direct-03-upload-validation-1448.webp 1448w" sizes="(max-width: 720px) calc(100vw - 36px), 860px" /><img src="../chto-takoe-fid-v-yandex-direct-03-upload-validation.png" alt="Раздел добавления фида в Яндекс Директе" width="1448" height="1086" loading="lazy" decoding="async" /></picture><figcaption>Фид можно загрузить файлом или подключить по ссылке в разделе управления фидами.</figcaption></figure>
           <p>После добавления дождитесь валидации и откройте отчет об ошибках. Исправьте не только ошибочные строки, но и предложения, которые Директ проигнорировал: формально фид может загрузиться, но часть ассортимента не попадет в рекламу.</p>
         </section>
         <section>
@@ -269,19 +269,6 @@
       <ul class="related-articles__list">
         <li>
           <span class="related-articles__hardware" aria-hidden="true"><span class="related-articles__ring"></span></span>
-          <a class="related-article-card" href="../contextnaya-reklama-internet-magazina/" target="_blank" rel="noopener noreferrer">
-            <div>
-              <p class="related-article-card__topic">Интернет-магазины</p>
-              <h3 class="related-article-card__title">Контекстная реклама интернет-магазина: как получать продажи из Яндекс Директа</h3>
-            </div>
-            <div class="related-article-card__copy">
-              <p class="related-article-card__description">Как запустить контекстную рекламу интернет-магазина: выбрать Товарную кампанию или ЕПК, подготовить фид, рассчитать бюджет, CPO и ДРР, оценить продажи.</p>
-              <span class="related-article-card__action" aria-hidden="true">Читать статью</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <span class="related-articles__hardware" aria-hidden="true"><span class="related-articles__ring"></span></span>
           <a class="related-article-card" href="../tovarnaya-kampaniya-yandex-direct/" target="_blank" rel="noopener noreferrer">
             <div>
               <p class="related-article-card__topic">Интернет-магазины</p>
@@ -295,13 +282,26 @@
         </li>
         <li>
           <span class="related-articles__hardware" aria-hidden="true"><span class="related-articles__ring"></span></span>
-          <a class="related-article-card" href="../kak-otlichit-tovarnye-obyavleniya-s-kartinkoy-v-poiske/" target="_blank" rel="noopener noreferrer">
+          <a class="related-article-card" href="../yandex-direct-dlya-internet-magazina/" target="_blank" rel="noopener noreferrer">
             <div>
               <p class="related-article-card__topic">Интернет-магазины</p>
-              <h3 class="related-article-card__title">Как отличить товарные объявления с картинкой в поиске Яндекса</h3>
+              <h3 class="related-article-card__title">Яндекс Директ для интернет-магазина и контекстная реклама: настройка и эффективность</h3>
             </div>
             <div class="related-article-card__copy">
-              <p class="related-article-card__description">Показываю, как по одному взгляду отличить РСЯ, Товарную галерею, органику и обычные поисковые объявления с картинкой в Яндексе.</p>
+              <p class="related-article-card__description">Контекстная реклама интернет-магазина в Яндекс Директе: настройка фида, электронной коммерции, кампаний и оценка продаж по CPO и ДРР.</p>
+              <span class="related-article-card__action" aria-hidden="true">Читать статью</span>
+            </div>
+          </a>
+        </li>
+        <li>
+          <span class="related-articles__hardware" aria-hidden="true"><span class="related-articles__ring"></span></span>
+          <a class="related-article-card" href="../prodvizhenie-magazina-postelnogo-belya/" target="_blank" rel="noopener noreferrer">
+            <div>
+              <p class="related-article-card__topic">Интернет-магазины</p>
+              <h3 class="related-article-card__title">Продвижение интернет-магазина постельного белья: реклама, каналы и прогноз на 2026 год</h3>
+            </div>
+            <div class="related-article-card__copy">
+              <p class="related-article-card__description">Открытые кейсы, бюджеты, стоимость лида и заказа, Яндекс Директ, маркетплейсы, VK Ads, SEO, CRM и расчёт рекламной экономики.</p>
               <span class="related-article-card__action" aria-hidden="true">Читать статью</span>
             </div>
           </a>

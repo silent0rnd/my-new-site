@@ -612,9 +612,8 @@
       "topicLabel": "Бюджет и стоимость",
       "tags": [
         "economics",
-        "search",
-        "campaign-setup",
-        "lead-generation"
+        "ad-formats",
+        "specialist"
       ],
       "intent": "strategy"
     },
@@ -2565,15 +2564,17 @@
       "topic": "ecommerce",
       "topicLabel": "Интернет-магазины",
       "tags": [
-        "ecommerce"
+        "ecommerce",
+        "campaign-setup"
       ],
-      "intent": "explanation"
+      "intent": "strategy"
     },
     {
       "slug": "kak-otklyuchit-avtotargeting-yandex-direct",
       "topic": "direct-tools",
       "topicLabel": "Инструменты Яндекс Директа",
       "tags": [
+        "search",
         "automation"
       ],
       "intent": "problem"
@@ -2812,8 +2813,8 @@
     },
     {
       "slug": "kak-otlichit-tovarnye-obyavleniya-s-kartinkoy-v-poiske",
-      "topic": "ecommerce",
-      "topicLabel": "Интернет-магазины",
+      "topic": "direct-tools",
+      "topicLabel": "Инструменты Яндекс Директа",
       "tags": [
         "ecommerce",
         "search",

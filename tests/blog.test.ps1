@@ -206,7 +206,9 @@ $articles = @(
     Slug  = "chto-takoe-fid-v-yandex-direct"
     Title = "Что такое фид в Яндекс Директ и для чего он нужен"
     Desc  = "Простыми словами о том, что такое фид в Яндекс Директе, какие данные в нем хранятся, как он используется для товарной рекламы и когда без него можно обойтись."
-    Images = @("feed-yandex-direct-1", "feed-yandex-direct-2", "feed-yandex-direct-3")
+    Images = @("chto-takoe-fid-v-yandex-direct-01-yandex-direct-feed", "chto-takoe-fid-v-yandex-direct-02-yml-offer-fields", "chto-takoe-fid-v-yandex-direct-03-upload-validation")
+    ImageExtension = ".png"
+    CardImage = "chto-takoe-fid-v-yandex-direct-01-yandex-direct-feed-1080"
     Alts  = @(
       "Схема работы фида в Яндекс Директе",
       "Пример полей товарного фида YML",
@@ -637,8 +639,9 @@ foreach ($article in $articles) {
   # Все иллюстрации статьи хранятся в исходном JPG. WebP нужен для обложки
   # карточки, а в старых статьях может быть подготовлен для каждой иллюстрации.
   foreach ($name in $article.Images) {
-    if (-not (Test-Path (Join-Path $root "blog/$name.jpg"))) {
-      throw "Missing blog image: $name.jpg"
+    $imageExtension = if ($article.ImageExtension) { $article.ImageExtension } else { ".jpg" }
+    if (-not (Test-Path (Join-Path $root "blog/$name$imageExtension"))) {
+      throw "Missing blog image: $name$imageExtension"
     }
     if (-not $article.CardImage -and -not (Test-Path (Join-Path $root "blog/$name.webp"))) {
       throw "Missing blog image: $name.webp"
@@ -675,7 +678,8 @@ foreach ($article in $articles) {
 
   # Fallback всегда исходный JPG, иначе в старых браузерах картинки пропадут.
   foreach ($name in $article.Images) {
-    Assert-Contains $html "src=`"../$name.jpg`"" "Article $slug must use the original JPG as fallback for $name.jpg"
+    $imageExtension = if ($article.ImageExtension) { $article.ImageExtension } else { ".jpg" }
+    Assert-Contains $html "src=`"../$name$imageExtension`"" "Article $slug must use the original image as fallback for $name$imageExtension"
   }
 
   # У картинок должны быть width/height, иначе текст прыгает при загрузке.
