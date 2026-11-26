@@ -12,6 +12,17 @@ const articleSlugs = fs.readdirSync(blogDir, { withFileTypes: true })
   .map((item) => item.name)
   .sort();
 const topicsBySlug = new Map(topicIndex.articles.map((article) => [article.slug, article]));
+const archivePages = fs.readdirSync(path.join(blogDir, "page"), { withFileTypes: true })
+  .filter((item) => item.isDirectory() && /^\d+$/.test(item.name))
+  .map((item) => path.join(blogDir, "page", item.name, "index.html"))
+  .filter(fs.existsSync);
+const archiveSlugs = new Set();
+for (const file of [path.join(blogDir, "index.html"), ...archivePages]) {
+  const html = fs.readFileSync(file, "utf8");
+  for (const match of html.matchAll(/<h2 class="blog-card__title">\s*<a href="(?:\.\.\/\.\.\/)?([^/"]+)\//g)) {
+    archiveSlugs.add(match[1]);
+  }
+}
 const articleArgumentIndex = process.argv.indexOf("--article");
 const requestedSlug = articleArgumentIndex >= 0 ? process.argv[articleArgumentIndex + 1] : "";
 if (articleArgumentIndex >= 0 && !requestedSlug) throw new Error("Use --article <slug>.");
@@ -20,13 +31,13 @@ const targetSlugs = requestedSlug ? [requestedSlug] : articleSlugs;
 if (requestedSlug) {
   test("service topic index covers the target article", () => {
     assert.ok(articleSlugs.includes(requestedSlug), `${requestedSlug} article page is missing`);
-    assert.ok(topicsBySlug.has(requestedSlug), `${requestedSlug} is missing from the service topic index`);
+    assert.equal(topicsBySlug.has(requestedSlug), archiveSlugs.has(requestedSlug), `${requestedSlug} has inconsistent archive topic data`);
   });
 } else {
-  test("service topic index covers every article", () => {
+  test("service topic index covers every archived article", () => {
     assert.equal(topicIndex.version, 1);
-    assert.equal(topicIndex.articles.length, articleSlugs.length);
-    assert.deepEqual([...topicsBySlug.keys()].sort(), articleSlugs);
+    assert.equal(topicIndex.articles.length, archiveSlugs.size);
+    assert.deepEqual([...topicsBySlug.keys()].sort(), [...archiveSlugs].sort());
 
     for (const article of topicIndex.articles) {
       assert.ok(article.topic, `${article.slug} is missing its service topic`);
@@ -47,6 +58,9 @@ test(requestedSlug ? "target article has three valid related links after the aut
     const html = fs.readFileSync(path.join(blogDir, slug, "index.html"), "utf8");
     assert.equal((html.match(/<section class="related-articles"/g) || []).length, 1, `${slug} needs one related section`);
     assert.ok(html.indexOf("<!-- related-articles:start -->") > html.indexOf('<aside class="article-author"'), `${slug} must place related articles after the author`);
+    assert.match(html, /class="related-articles__binder"/, `${slug} needs the binder layout`);
+    assert.match(html, /<ul class="related-articles__list">/, `${slug} needs a semantic list`);
+    assert.equal((html.match(/class="related-articles__ring"/g) || []).length, 3, `${slug} needs three rings`);
 
     const relatedSlugs = [...html.matchAll(/<a class="related-article-card" href="\.\.\/([^/]+)\/" target="_blank" rel="noopener noreferrer">/g)]
       .map((match) => match[1]);
@@ -58,16 +72,14 @@ test(requestedSlug ? "target article has three valid related links after the aut
       assert.ok(fs.existsSync(path.join(blogDir, relatedSlug, "index.html")), `${slug} links to missing article ${relatedSlug}`);
     }
 
-    const topicRecord = topicsBySlug.get(slug);
-    assert.ok(topicRecord, `${slug} is missing from the service topic index`);
-    const topic = topicRecord.topic;
-    const expectedSameTopic = Math.min(3, topicCounts.get(topic) - 1);
-    const actualSameTopic = relatedSlugs.filter((relatedSlug) => {
-      const relatedTopic = topicsBySlug.get(relatedSlug);
-      assert.ok(relatedTopic, `${relatedSlug} is missing from the service topic index`);
-      return relatedTopic.topic === topic;
-    }).length;
-    assert.ok(actualSameTopic >= expectedSameTopic, `${slug} does not prioritize its topic`);
+    if (archiveSlugs.has(slug)) {
+      const topicRecord = topicsBySlug.get(slug);
+      assert.ok(topicRecord, `${slug} is missing from the service topic index`);
+      const topic = topicRecord.topic;
+      const expectedSameTopic = Math.min(3, topicCounts.get(topic) - 1);
+      const actualSameTopic = relatedSlugs.filter((relatedSlug) => topicsBySlug.get(relatedSlug)?.topic === topic).length;
+      assert.ok(actualSameTopic >= expectedSameTopic, `${slug} does not prioritize its topic`);
+    }
 
     for (const className of ["related-article-card__topic", "related-article-card__title", "related-article-card__description"]) {
       assert.equal((html.match(new RegExp(`class="${className}"`, "g")) || []).length, 3, `${slug} needs ${className} in every card`);
@@ -76,14 +88,12 @@ test(requestedSlug ? "target article has three valid related links after the aut
   }
 });
 
-test("related article behavior is hover-only and has reduced-motion fallback", () => {
+test("related article feedback uses CSS hover and keyboard focus and respects reduced motion", () => {
   const script = fs.readFileSync(path.join(root, "script.js"), "utf8");
   const styles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 
-  assert.match(script, /function initRelatedArticleCardsHover\(\)/);
-  assert.match(script, /document\.querySelectorAll\("\.related-article-card"\)/);
-  assert.match(script, /\(hover: hover\) and \(pointer: fine\)/);
+  assert.doesNotMatch(script, /initRelatedArticleCardsHover|--related-article-hover/);
   assert.match(styles, /\.related-articles__list\s*{/);
-  assert.match(styles, /\.related-article-card:hover/);
+  assert.match(styles, /\.related-article-card:is\(:hover, :focus-visible\)/);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.related-article-card/);
 });

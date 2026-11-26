@@ -13,7 +13,7 @@ const blogDir = path.join(root, "blog");
 const relatedTopicsPath = path.join(__dirname, "blog-related-topics.json");
 const pageSize = 15;
 const siteUrl = "https://naklikay.ru";
-const blogAssetVersion = "20261125-author-card-4";
+const blogAssetVersion = "20261126-related-binder";
 const articleArgumentIndex = process.argv.indexOf("--article");
 const targetArticleSlug = articleArgumentIndex >= 0 ? process.argv[articleArgumentIndex + 1] : "";
 if (articleArgumentIndex >= 0 && !targetArticleSlug) throw new Error("Use --article <slug>.");
@@ -288,21 +288,73 @@ function relatedArticlesFor(article, articles) {
   return [...sameTopic, ...otherTopic].map(({ candidate }) => candidate);
 }
 
-function relatedArticlesHtml(article, articles) {
-  const cards = relatedArticlesFor(article, articles).map((candidate) => `        <a class="related-article-card" href="../${candidate.slug}/" target="_blank" rel="noopener noreferrer">
-          <span class="related-article-card__topic">${escapeHtml(candidate.topicLabel)}</span>
-          <span class="related-article-card__title">${escapeHtml(candidate.title)}</span>
-          <span class="related-article-card__description">${escapeHtml(candidate.description)}</span>
-        </a>`).join("\n");
+function relatedArticlesHtml(candidates) {
+  const cards = candidates.map(function (candidate) {
+    return `        <li>
+          <span class="related-articles__hardware" aria-hidden="true"><span class="related-articles__ring"></span></span>
+          <a class="related-article-card" href="../${escapeHtml(candidate.slug)}/" target="_blank" rel="noopener noreferrer">
+            <div>
+              <p class="related-article-card__topic">${escapeHtml(candidate.topicLabel)}</p>
+              <h3 class="related-article-card__title">${escapeHtml(candidate.title)}</h3>
+            </div>
+            <div class="related-article-card__copy">
+              <p class="related-article-card__description">${escapeHtml(candidate.description)}</p>
+              <span class="related-article-card__action" aria-hidden="true">Читать статью</span>
+            </div>
+          </a>
+        </li>`;
+  }).join("\n");
 
   return `<!-- related-articles:start -->
 <section class="related-articles" aria-labelledby="related-articles-title">
-  <h2 id="related-articles-title">Похожие статьи</h2>
-  <div class="related-articles__list">
+  <div class="related-articles__binder">
+    <header class="related-articles__heading">
+      <h2 id="related-articles-title"><span class="related-articles__title-paper" aria-hidden="true"></span>Похожие статьи</h2>
+      <span class="related-articles__cup-mark" aria-hidden="true"></span>
+    </header>
+    <div class="related-articles__sheets">
+      <span class="related-articles__spine" aria-hidden="true"></span>
+      <ul class="related-articles__list">
 ${cards}
+      </ul>
+    </div>
   </div>
 </section>
 <!-- related-articles:end -->`;
+}
+
+function refreshRelatedArticleLayouts() {
+  const updates = [];
+  for (const entry of fs.readdirSync(blogDir, { withFileTypes: true })) {
+    if (!entry.isDirectory() || entry.name === "page") continue;
+    const file = path.join(blogDir, entry.name, "index.html");
+    if (!fs.existsSync(file)) continue;
+
+    const html = read(file);
+    const blocks = [...html.matchAll(/<!-- related-articles:start -->[\s\S]*?<!-- related-articles:end -->/g)];
+    if (blocks.length !== 1) throw new Error(`Expected one related articles block: ${entry.name}`);
+    const block = blocks[0][0];
+    const cards = [...block.matchAll(/<a class="related-article-card" href="\.\.\/([^/"]+)\/"[^>]*>([\s\S]*?)<\/a>/g)];
+    if (cards.length !== 3) throw new Error(`Expected three related cards: ${entry.name}`);
+
+    const candidates = cards.map(function (card) {
+      function field(name) {
+        const value = card[2].match(new RegExp(`class="related-article-card__${name}">([^<]+)<`));
+        if (!value) throw new Error(`Missing related card ${name}: ${entry.name}`);
+        return decodeHtml(value[1]);
+      }
+
+      return { slug: card[1], topicLabel: field("topic"), title: field("title"), description: field("description") };
+    });
+    const nextBlock = html.includes("\r\n") ? relatedArticlesHtml(candidates).replace(/\n/g, "\r\n") : relatedArticlesHtml(candidates);
+    const nextHtml = html.replace(block, function () { return nextBlock; })
+      .replace(/\.\.\/\.\.\/styles\.css(?:\?v=[^"]*)?/g, `../../styles.css?v=${blogAssetVersion}`)
+      .replace(/\.\.\/\.\.\/script\.js(?:\?v=[^"]*)?/g, `../../script.js?v=${blogAssetVersion}`);
+    if (nextHtml !== html) updates.push({ file, html: nextHtml });
+  }
+
+  for (const update of updates) write(update.file, update.html);
+  console.log(`Updated related article layout on ${updates.length} article page(s).`);
 }
 
 const headingTransliteration = {
@@ -522,7 +574,8 @@ function updateRelatedArticles(article, articles) {
   const authorMatch = withTableOfContents.match(/<aside class="article-author[^"]*"[\s\S]*?<\/aside>/);
   if (!authorMatch) throw new Error(`Article author block is missing: ${article.slug}`);
 
-  const nextHtml = withTableOfContents.replace(authorMatch[0], `${articleAuthorHtml()}${relatedArticlesHtml(article, articles)}`);
+  const candidates = relatedArticlesFor(article, articles);
+  const nextHtml = withTableOfContents.replace(authorMatch[0], `${articleAuthorHtml()}${relatedArticlesHtml(candidates)}`);
   if (nextHtml !== currentHtml) write(articlePath, nextHtml);
 }
 
@@ -626,6 +679,11 @@ ${cardsHtml}
   </body>
 </html>
 `;
+}
+
+if (process.argv.includes("--related-only")) {
+  refreshRelatedArticleLayouts();
+  process.exit(0);
 }
 
 const cardsBySlug = new Map();
