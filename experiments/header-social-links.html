@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Картонные ярлыки в шапке - Эксперименты Naklikay</title>
+  <style>
+    @font-face {
+      font-family: "TT Masters";
+      src: url("../assets/fonts/TTMasters-Regular.ttf") format("truetype");
+      font-style: normal;
+      font-weight: 300 700;
+      font-display: swap;
+    }
+
+    :root {
+      color-scheme: light;
+      --site-paper: #f3f3f1;
+      --ink: #2b2b2b;
+      --rule: #d9d9d4;
+      --accent: #ff9800;
+      --fibers: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='105'%3E%3Cfilter id='grain' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.32 .8' numOctaves='3' seed='19' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 .23 0 0 0 0 .22 0 0 0 0 .17 .45 0 0 0 -.12'/%3E%3C/filter%3E%3Cpath d='M0 0H150V105H0z' filter='url(%23grain)'/%3E%3C/svg%3E");
+      background: var(--site-paper);
+      color: var(--ink);
+      font: 16px/1.4 "TT Masters", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+
+    main {
+      width: min(840px, 100% - 40px);
+      margin-inline: auto;
+      padding-block: clamp(32px, 7vw, 78px);
+    }
+
+    h1 {
+      margin: 0 0 34px;
+      font-size: clamp(36px, 5.7vw, 62px);
+      font-weight: 500;
+      line-height: 1.02;
+      text-wrap: balance;
+    }
+
+    .sample {
+      display: grid;
+      grid-template-columns: 182px minmax(0, 1fr);
+      align-items: center;
+      column-gap: 20px;
+      min-height: 105px;
+      border-block-start: 1px solid var(--rule);
+    }
+
+    .sample:last-child { border-block-end: 1px solid var(--rule); }
+
+    h2 {
+      margin: 0;
+      font-size: 21px;
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .social-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .tag {
+      position: relative;
+      display: inline-grid;
+      align-items: center;
+      min-height: 48px;
+      padding-inline: 13px;
+      color: #22221f;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .tag:focus-visible {
+      border-radius: 3px;
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+    }
+
+    .tag__board {
+      position: absolute;
+      inset: 6px 0;
+      pointer-events: none;
+    }
+
+    .tag__name { position: relative; }
+
+    .torn {
+      --deckle: polygon(1% 12%, 4% 8%, 8% 10%, 12% 5%, 17% 7%, 22% 3%, 27% 6%, 33% 4%, 39% 7%, 45% 3%, 52% 5%, 59% 2%, 67% 4%, 73% 2%, 80% 6%, 87% 4%, 94% 8%, 98% 6%, 98% 19%, 96% 28%, 99% 37%, 97% 46%, 99% 57%, 97% 68%, 100% 80%, 97% 92%, 92% 91%, 85% 96%, 79% 93%, 72% 97%, 64% 93%, 57% 97%, 50% 95%, 43% 98%, 36% 95%, 28% 97%, 20% 93%, 14% 96%, 7% 92%, 2% 94%, 3% 83%, 0 73%, 3% 63%, 1% 51%, 3% 41%, 0 30%, 2% 23%);
+      padding-inline: 15px 16px;
+    }
+
+    .torn:nth-child(2) {
+      --deckle: polygon(1% 10%, 6% 7%, 12% 8%, 18% 3%, 24% 6%, 31% 2%, 38% 5%, 44% 3%, 51% 7%, 58% 5%, 66% 8%, 72% 4%, 80% 8%, 86% 5%, 93% 8%, 98% 6%, 96% 17%, 99% 27%, 98% 39%, 100% 50%, 98% 63%, 99% 73%, 96% 82%, 98% 93%, 91% 91%, 85% 97%, 78% 93%, 72% 96%, 64% 94%, 57% 98%, 51% 95%, 44% 98%, 36% 94%, 28% 97%, 20% 95%, 13% 97%, 8% 93%, 2% 94%, 3% 84%, 0 75%, 2% 64%, 1% 52%, 3% 43%, 0 34%, 2% 24%);
+    }
+
+    .torn .tag__board {
+      inset: 5px -2px;
+      filter: drop-shadow(0 -.6px 1px rgb(43 43 43 / 17%))
+        drop-shadow(0 1px 0 #d9d9d1) drop-shadow(1px 2px 2px rgb(43 43 43 / 10%));
+      transform: rotate(-2.5deg);
+      transform-origin: 14% 62%;
+      transition: transform 300ms cubic-bezier(.2, .75, .25, 1), filter 300ms ease;
+    }
+
+    .torn:nth-child(2) .tag__board { transform: rotate(2deg); }
+
+    .torn .tag__board::before,
+    .torn .tag__board::after {
+      position: absolute;
+      clip-path: var(--deckle);
+      content: "";
+    }
+
+    .torn .tag__board::before {
+      inset: 0;
+      background: #fcfcf8;
+    }
+
+    .torn .tag__board::after {
+      inset: 1px 1px 2px;
+      background: linear-gradient(rgb(250 250 247 / 65%), rgb(250 250 247 / 65%)),
+        var(--fibers), linear-gradient(158deg, #fbfbf8, #efefe9);
+    }
+
+    .torn .tag__name::after {
+      position: absolute;
+      right: -6px;
+      bottom: -4px;
+      width: 10px;
+      height: 2px;
+      border-radius: 55% 30% 62% 40%;
+      background: var(--accent);
+      transform: rotate(-9deg);
+      content: "";
+    }
+
+    .torn:is(:hover, :focus-visible) .tag__board {
+      filter: drop-shadow(0 -.6px 1px rgb(43 43 43 / 17%))
+        drop-shadow(0 1px 0 #d9d9d1) drop-shadow(1px 4px 3px rgb(43 43 43 / 13%));
+      transform: translateY(-1px) rotate(-.5deg);
+    }
+
+    .pressed {
+      padding-inline: 18px;
+      text-shadow: 0 1px #faf9f1;
+    }
+
+    .pressed .tag__board {
+      border: 1px solid #cccbc1;
+      border-radius: 5px;
+      background: var(--fibers), linear-gradient(155deg, #e7e5dc, #efeee7 78%);
+      box-shadow: inset 0 1px #fcfbf5, inset 0 -1px #d5d3c8, 0 1px #bcbbaf, 0 3px 3px rgb(55 50 36 / 12%);
+      transition: box-shadow 210ms ease, transform 210ms ease;
+    }
+
+    .pressed .tag__board::before {
+      position: absolute;
+      inset: 3px;
+      border: 1px solid rgb(86 81 63 / 20%);
+      border-radius: 3px;
+      box-shadow: inset 0 1px 1px rgb(86 81 63 / 15%), 0 1px rgb(255 255 249 / 87%);
+      content: "";
+    }
+
+    .pressed .tag__board::after {
+      position: absolute;
+      bottom: 2px;
+      left: 9px;
+      width: 13px;
+      height: 2px;
+      border-radius: 1px;
+      background: var(--accent);
+      content: "";
+    }
+
+    .pressed:is(:hover, :focus-visible) .tag__board {
+      box-shadow: inset 0 1px #fcfbf5, inset 0 -1px #d5d3c8, 0 1px #bcbbaf, 0 1px 1px rgb(55 50 36 / 14%);
+      transform: translateY(1px);
+    }
+
+    .folded {
+      padding-inline: 14px 21px;
+    }
+
+    .folded .tag__board {
+      filter: drop-shadow(0 1px 0 #c3c1b5) drop-shadow(1px 3px 2px rgb(55 50 36 / 16%));
+    }
+
+    .folded .tag__board::before,
+    .folded .tag__board::after {
+      position: absolute;
+      content: "";
+    }
+
+    .folded .tag__board::before {
+      inset: 0;
+      border-radius: 3px 0 3px 3px;
+      clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 13px, 100% 100%, 0 100%);
+      background: var(--fibers), linear-gradient(150deg, #fbfaf5, #eae8df);
+      box-shadow: inset 0 0 0 1px #d4d2c7, inset 0 -2px #dfddd2;
+    }
+
+    .folded .tag__board::after {
+      top: 0;
+      right: 0;
+      width: 13px;
+      height: 13px;
+      clip-path: polygon(0 0, 100% 100%, 8% 93%);
+      background: var(--fibers), linear-gradient(128deg, #e4a452, #ffb24a 68%, #c97a26);
+      transform-origin: 0 0;
+      transition: transform 275ms cubic-bezier(.2, .75, .25, 1);
+    }
+
+    .folded:is(:hover, :focus-visible) .tag__board::after {
+      transform: rotate(-8deg) scale(1.12);
+    }
+
+    @media (max-width: 520px) {
+      .sample {
+        grid-template-columns: 1fr;
+        justify-items: start;
+        gap: 12px;
+        padding-block: 14px 16px;
+      }
+
+      h1 { margin-bottom: 27px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tag__board,
+      .tag__board::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Картонные ярлыки в шапке</h1>
+
+    <section class="sample">
+      <h2 id="torn-heading">Рваная кромка</h2>
+      <nav class="social-links" aria-labelledby="torn-heading">
+        <a class="tag torn" href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">
+          <span class="tag__board" aria-hidden="true"></span><span class="tag__name">Telegram</span>
+        </a>
+        <a class="tag torn" href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">
+          <span class="tag__board" aria-hidden="true"></span><span class="tag__name">Макс</span>
+        </a>
+      </nav>
+    </section>
+
+    <section class="sample">
+      <h2 id="pressed-heading">Тиснёный картон</h2>
+      <nav class="social-links" aria-labelledby="pressed-heading">
+        <a class="tag pressed" href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">
+          <span class="tag__board" aria-hidden="true"></span><span class="tag__name">Telegram</span>
+        </a>
+        <a class="tag pressed" href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">
+          <span class="tag__board" aria-hidden="true"></span><span class="tag__name">Макс</span>
+        </a>
+      </nav>
+    </section>
+
+    <section class="sample">
+      <h2 id="folded-heading">Загнутый угол</h2>
+      <nav class="social-links" aria-labelledby="folded-heading">
+        <a class="tag folded" href="https://t.me/miroshnikov_maxim" target="_blank" rel="noopener noreferrer">
+          <span class="tag__board" aria-hidden="true"></span><span class="tag__name">Telegram</span>
+        </a>
+        <a class="tag folded" href="https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE" target="_blank" rel="noopener noreferrer">
+          <span class="tag__board" aria-hidden="true"></span><span class="tag__name">Макс</span>
+        </a>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>

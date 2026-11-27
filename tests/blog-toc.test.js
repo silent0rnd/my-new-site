@@ -110,11 +110,9 @@ test("table of contents controls use local smooth navigation and reduced-motion 
   const styles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 
   assert.match(script, /function initArticleTableOfContents\(\)/);
-  assert.match(script, /function initArticleTocReturnButton\(\)/);
   assert.match(script, /link\.hasAttribute\("data-article-anchor"\)/);
   assert.match(script, /window\.history\.pushState\(null, "", hash\)/);
   assert.match(script, /behavior: prefersReducedMotion\.matches \? "auto" : "smooth"/);
-  assert.match(script, /tableOfContents\.getBoundingClientRect\(\)\.bottom < 0/);
   assert.match(script, /character === " " \? "\\u00A0" : character/);
   assert.match(script, /const sublistAnimations = new WeakMap\(\)/);
   assert.match(script, /prefersReducedMotion\.matches \|\| typeof sublist\.animate !== "function"/);
@@ -126,9 +124,6 @@ test("table of contents controls use local smooth navigation and reduced-motion 
   assert.match(styles, /\.article-toc__link:hover::after,[\s\S]*?clip-path: inset\(0 0 0 0\);/);
   assert.doesNotMatch(styles, /\.article-toc__link:hover,[\s\S]*?transform: translateX\(3px\);/);
   assert.match(styles, /\.article-toc__sublist\.is-animating\s*{[\s\S]*?overflow: hidden;/);
-  assert.match(styles, /\.article-toc-return\s*{/);
-  assert.match(styles, /\.cookie-consent-open \.article-toc-return/);
-  assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.article-toc-return/);
 });
 
 test("legacy article keeps its introduction before the table of contents", () => {

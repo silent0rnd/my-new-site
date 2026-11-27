@@ -14,6 +14,102 @@
   const rootScript = document.currentScript || document.querySelector('script[src*="script.js"]');
   const SITE_ROOT = new URL(".", rootScript ? rootScript.src : location.href).href;
 
+  function initHeaderMessengerLinks() {
+    let links = document.querySelector(".messenger-links");
+    if (!links) {
+      const caseShell = document.querySelector(".case-shell");
+      let header = document.querySelector(".legal-topbar, .topbar");
+      if (!header && !caseShell) {
+        const legalShell = document.querySelector(".legal-shell");
+        if (!legalShell) return;
+
+        header = document.createElement("header");
+        header.className = "legal-topbar legal-topbar--messengers-only";
+        legalShell.before(header);
+      }
+
+      links = document.createElement("nav");
+      links.className = "messenger-links";
+      links.setAttribute("aria-label", "Мессенджеры");
+      const destinations = [
+        ["Telegram", "https://t.me/miroshnikov_maxim"],
+        ["Макс", "https://max.ru/u/f9LHodD0cOIgA7Bv0YjmbdPunU2SNMxoBHXbc-v6QicEIYa6pEGXQlYaqtE"]
+      ];
+      for (const [name, href] of destinations) {
+        const link = document.createElement("a");
+        link.href = href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = name;
+        links.append(link);
+      }
+
+      if (header) header.append(links);
+      else caseShell.prepend(links);
+    }
+
+    for (const link of links.querySelectorAll("a")) {
+      if (link.querySelector(".messenger-links__board")) continue;
+
+      const board = document.createElement("span");
+      board.className = "messenger-links__board";
+      board.setAttribute("aria-hidden", "true");
+      const label = document.createElement("span");
+      label.className = "messenger-links__label";
+      label.append(...link.childNodes);
+      link.append(board, label);
+    }
+  }
+
+  initHeaderMessengerLinks();
+
+  function showArticleDates() {
+    if (!document.body.classList.contains("article-page")) return;
+    let article;
+    for (const script of document.querySelectorAll('script[type="application/ld+json"]')) {
+      try {
+        const data = JSON.parse(script.textContent);
+        const items = Array.isArray(data) ? data : (data["@graph"] || [data]);
+        article = items.find((item) => item && ["Article", "BlogPosting"].includes(item["@type"]));
+        if (article) break;
+      } catch (_) { /* Ignore unrelated invalid structured data. */ }
+    }
+    if (!article || !/^\d{4}-\d{2}-\d{2}$/.test(article.datePublished || "")) return;
+    const heading = document.querySelector(".legal-document h1");
+    if (!heading) return;
+    let meta = document.querySelector(".legal-document .article-meta");
+    if (!meta) {
+      meta = document.createElement("p");
+      meta.className = "article-meta";
+      heading.insertAdjacentElement("afterend", meta);
+    }
+    const formatDate = (value) => {
+      const [year, month, day] = value.split("-").map(Number);
+      return new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(Date.UTC(year, month - 1, day))).replace(/ г\.$/, "");
+    };
+    let published = meta.querySelector("time");
+    if (!published) {
+      published = document.createElement("time");
+      published.dateTime = article.datePublished;
+      published.textContent = formatDate(article.datePublished);
+      meta.prepend(published);
+    }
+    if (/^\d{4}-\d{2}-\d{2}$/.test(article.dateModified || "") && article.dateModified > article.datePublished && !meta.querySelector("[data-article-updated]")) {
+      const separator = document.createElement("span");
+      separator.setAttribute("aria-hidden", "true");
+      separator.textContent = "·";
+      const updated = document.createElement("span");
+      updated.dataset.articleUpdated = "";
+      const time = document.createElement("time");
+      time.dateTime = article.dateModified;
+      time.textContent = formatDate(article.dateModified);
+      updated.append("Обновлено: ", time);
+      published.after(separator, updated);
+    }
+  }
+
+  showArticleDates();
+
   function openBlogLinksInNewTab() {
     if (!/^\/blog(?:\/|$)/.test(window.location.pathname)) return;
 
@@ -346,7 +442,6 @@ const SCROLL_RESTORE_KEY = "naklikayScrollY";
 const HERO_VIDEO_PLAYED_KEY = "heroVideoPlayed";
 
 const statsTargets = document.querySelectorAll(".stats strong, .stats span");
-const messengerLinkTargets = document.querySelectorAll(".messenger-links a");
 const workResultTargets = document.querySelectorAll(".work-card__result > span");
 const workCards = document.querySelectorAll(".work-card");
 const casesLeadHighlight = document.querySelector(".cases-showcase__lead-highlight");
@@ -772,14 +867,6 @@ if (shouldRunHeroIntroAnimation()) {
 
   const subtitleLetters = subtitleTarget ? buildTextRoll(subtitleTarget, delayedStart, TEXT_LETTER_DELAY_MS) : 0;
   const heroCopyStart = delayedStart + ANIMATION_DURATION_MS + subtitleLetters * TEXT_LETTER_DELAY_MS + AFTER_TEXT_PAUSE_MS;
-
-  messengerLinkTargets.forEach((link) => {
-    const underlinedLink = attachDelayedUnderline(link);
-
-    setTimeout(() => {
-      underlinedLink.classList.add("is-underlined");
-    }, heroHighlightDelay);
-  });
 
   if (heroCopyTarget) {
     buildTextRoll(heroCopyTarget, heroCopyStart, TEXT_LETTER_DELAY_MS, HERO_HIGHLIGHT_TEXT);
@@ -2510,70 +2597,6 @@ function initArticleTableOfContents() {
   });
 }
 
-function initArticleTocReturnButton() {
-  const tableOfContents = document.querySelector(".article-page .article-toc");
-  if (!tableOfContents) return;
-
-  const button = document.createElement("button");
-  const label = createFloatingControlLabel("К содержанию");
-  button.className = "article-toc-return";
-  button.type = "button";
-  button.setAttribute("aria-label", "Вернуться к содержанию статьи");
-  button.append(label);
-  button.insertAdjacentHTML("beforeend", `
-    <svg class="article-toc-return__art" viewBox="0 0 54 56" aria-hidden="true" focusable="false">
-      <circle class="article-toc-return__dot" cx="8" cy="14" r="1.7" />
-      <circle class="article-toc-return__dot" cx="8" cy="28" r="1.7" />
-      <circle class="article-toc-return__dot" cx="8" cy="42" r="1.7" />
-      <path class="article-toc-return__line" d="M15 14.2C24 13.5 34.2 14.5 46 13.9M15 28.2C25.2 27.5 36.5 28.7 46 28M15 42.1C25.5 41.5 35.2 42.5 46 41.8" />
-    </svg>`);
-  document.body.append(button);
-
-  let isScrollTicking = false;
-  let labelBurstTimer = 0;
-  const canShowLabel = () => window.matchMedia("(min-width: 721px) and (hover: hover) and (pointer: fine)").matches;
-  const canAnimateLabel = () => !prefersReducedMotion.matches && canShowLabel();
-
-  const setLabelVisible = (isVisible) => {
-    if (!canShowLabel()) return;
-    button.classList.toggle("has-floating-control-label", isVisible);
-  };
-
-  const playLabelBurst = () => {
-    if (!canAnimateLabel()) return;
-
-    window.clearTimeout(labelBurstTimer);
-    button.classList.remove("has-floating-control-label", "is-floating-control-label-burst");
-    void label.offsetWidth;
-    button.classList.add("is-floating-control-label-burst");
-    labelBurstTimer = window.setTimeout(() => {
-      button.classList.remove("is-floating-control-label-burst");
-    }, 460);
-  };
-
-  const updateVisibility = () => {
-    button.classList.toggle("is-visible", tableOfContents.getBoundingClientRect().bottom < 0);
-    isScrollTicking = false;
-  };
-
-  window.addEventListener("scroll", () => {
-    if (isScrollTicking) return;
-    isScrollTicking = true;
-    window.requestAnimationFrame(updateVisibility);
-  }, { passive: true });
-
-  button.addEventListener("pointerenter", () => setLabelVisible(true));
-  button.addEventListener("pointerleave", () => setLabelVisible(false));
-  button.addEventListener("focus", () => setLabelVisible(true));
-  button.addEventListener("blur", () => setLabelVisible(false));
-  button.addEventListener("click", () => {
-    playLabelBurst();
-    scrollToArticleTarget(tableOfContents, "#article-toc");
-  });
-
-  updateVisibility();
-}
-
 function initFeedbackWidget() {
   const widget = document.createElement("div");
   const trigger = document.createElement("button");
@@ -2876,5 +2899,4 @@ function initArticleAuthorCards() {
 initFeedbackWidget();
 initScrollToTopButton();
 initArticleTableOfContents();
-initArticleTocReturnButton();
 initArticleAuthorCards();

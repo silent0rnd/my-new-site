@@ -2,6 +2,35 @@
   "version": 1,
   "articles": [
     {
+      "slug": "prodvizhenie-avtorskih-turov",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "telegram"
+      ],
+      "intent": "strategy"
+    },
+    {
+      "slug": "prodvizhenie-kriptovalyutnyh-proektov",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
+      "tags": [
+        "economics",
+        "telegram"
+      ],
+      "intent": "instruction"
+    },
+    {
+      "slug": "reklama-zaymov-pod-zalog-nedvizhimosti",
+      "topic": "real-estate",
+      "topicLabel": "Недвижимость",
+      "tags": [
+        "economics"
+      ],
+      "intent": "instruction"
+    },
+    {
       "slug": "reklama-stroitelnogo-magazina",
       "topic": "construction",
       "topicLabel": "Строительство",
@@ -237,13 +266,14 @@
     },
     {
       "slug": "prodvizhenie-yuvelirnogo-magazina",
-      "topic": "budget",
-      "topicLabel": "Бюджет и стоимость",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
       "tags": [
+        "ecommerce",
         "economics",
-        "avito"
+        "local"
       ],
-      "intent": "service"
+      "intent": "strategy"
     },
     {
       "slug": "prodvizhenie-onlayn-shkoly-pohudeniya",
@@ -550,11 +580,11 @@
     },
     {
       "slug": "reklama-kreditov-mfo",
-      "topic": "budget",
-      "topicLabel": "Бюджет и стоимость",
+      "topic": "analytics",
+      "topicLabel": "Аналитика",
       "tags": [
         "economics",
-        "specialist",
+        "search",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -716,13 +746,15 @@
     },
     {
       "slug": "reklama-mebeli-na-zakaz-yandex-direct",
-      "topic": "local-promotion",
-      "topicLabel": "Локальное продвижение",
+      "topic": "budget",
+      "topicLabel": "Бюджет и стоимость",
       "tags": [
         "analytics",
         "economics",
         "search",
-        "website"
+        "campaign-setup",
+        "website",
+        "lead-generation"
       ],
       "intent": "instruction"
     },
@@ -2097,7 +2129,8 @@
         "legal",
         "economics",
         "search",
-        "specialist"
+        "specialist",
+        "lead-generation"
       ],
       "intent": "service"
     },
@@ -2136,9 +2169,9 @@
       "tags": [
         "manufacturing",
         "b2b",
-        "analytics",
+        "economics",
         "search",
-        "website",
+        "ad-formats",
         "lead-generation"
       ],
       "intent": "strategy"
