@@ -6347,7 +6347,10 @@ html.is-hero-video-played .portrait-video {
 }
 
 .related-articles__binder:is(:hover, :has(.related-article-card:focus-visible)) {
-  border-color: #c8c0b4;
+  --related-stamp-ink: #655e55;
+  --related-stamp-outline: #c8c0b4;
+  --related-stamp-inner-outline: #c8c0b4c7;
+  border-color: var(--related-stamp-outline);
   box-shadow: 3px 4px 0 #efede7, 4px 5px 0 #d7d0c4, 0 17px 34px rgb(70 58 42 / 0.14);
 }
 
@@ -6374,73 +6377,37 @@ html.is-hero-video-played .portrait-video {
 .legal-document .related-articles__heading h2 {
   position: relative;
   justify-self: start;
-  font-size: clamp(42px, 5.2vw, 72px);
-  letter-spacing: -0.035em;
-  padding: clamp(14px, 2vw, 22px) clamp(17px, 2.5vw, 33px);
-  transform: rotate(-1.5deg);
+  isolation: isolate;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: clamp(14px, 2vw, 22px) clamp(16px, 3.5vw, 40px);
   border: 1px solid transparent;
   margin: 0;
-  line-height: 1.03;
-  font-weight: 400;
+  color: var(--related-stamp-ink, #34576a);
+  font: 750 clamp(21px, 3.9vw, 52px)/1.08 "Arial Narrow", "Segoe UI", sans-serif;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  transform: rotate(-2.5deg);
+  mask: url("./assets/related-articles-stamp-mask.png") center / 100% 100% no-repeat;
+  transition: color 180ms ease;
 }
 .related-articles__binder .related-articles__title-paper {
   display: block;
   position: absolute;
-  inset: -1px;
+  inset: 0;
   z-index: -1;
-  filter: drop-shadow(1px 2px 1px rgb(67 63 49 / 0.15));
+  border: 2px solid var(--related-stamp-outline, #46697cbf);
+  border-radius: 6px 4px 5px 7px;
   pointer-events: none;
+  transition: border-color 180ms ease;
 }
 .related-articles__title-paper::before {
   position: absolute;
-  inset: 0;
-  border: 1px solid #d8d7ca;
-  background: var(--related-paper-fiber), #faf8ed;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 3px),
-    93% calc(100% - 2px), 86% 100%, 79% calc(100% - 2px), 71% calc(100% - 1px),
-    62% 100%, 53% calc(100% - 2px), 44% calc(100% - 1px), 35% 100%,
-    27% calc(100% - 2px), 18% 100%, 9% calc(100% - 2px), 0 calc(100% - 1px));
+  inset: 4px;
+  border: 1px solid var(--related-stamp-inner-outline, #46697c8f);
+  border-radius: 3px;
   content: "";
-}
-.related-articles__title-paper::after {
-  position: absolute;
-  right: 2%;
-  bottom: -1px;
-  width: 39%;
-  height: 7px;
-  z-index: -1;
-  background: rgb(75 67 51 / 0.24);
-  border-radius: 50%;
-  filter: blur(3px);
-  transform: rotate(1deg);
-  content: "";
-}
-.legal-document .related-articles__heading h2::before,
-.legal-document .related-articles__heading h2::after {
-  position: absolute;
-  left: calc(50% - 6px);
-  top: 1px;
-  width: 12px;
-  height: 12px;
-  content: "";
-  border: 1px solid;
-  border-radius: 50%;
-  pointer-events: none;
-}
-.legal-document .related-articles__heading h2::before {
-  border-color: #cb7500;
-  background: linear-gradient(180deg, #ffad32 0%, #f29100 100%);
-  box-shadow: 1px 2px 1px rgb(67 63 49 / 0.22);
-}
-.legal-document .related-articles__heading h2::after {
-  border-color: #81796d;
-  background: radial-gradient(circle at 34% 28%, #fff 0 10%, #d8d4cc 26%, #aaa397 58%, #756d62);
-  opacity: 0;
-  transition: opacity 180ms ease;
-}
-.related-articles__binder:has(.related-article-card:focus-visible) .related-articles__heading h2::after { opacity: 1; }
-@media (hover: hover) and (pointer: fine) {
-  .related-articles__binder:hover .related-articles__heading h2::after { opacity: 1; }
+  transition: border-color 180ms ease;
 }
 
 .related-articles__binder .related-articles__heading {
@@ -6557,9 +6524,9 @@ html.is-hero-video-played .portrait-video {
 }
 
 .legal-document .related-article-card:is(:hover, :focus-visible) {
-  border-color: #c8c0b4;
-  background-color: #fffaf3;
-  box-shadow: 1px 2px 0 #efede7, 0 6px 14px rgb(70 58 42 / 0.14);
+  border-color: #aebfc6;
+  background-color: #fff;
+  box-shadow: 1px 2px 0 #e5ebed, 0 6px 14px rgb(43 66 74 / 0.12);
 }
 
 .legal-document .related-article-card:focus-visible {
@@ -6632,7 +6599,9 @@ html.is-hero-video-played .portrait-video {
 
 @media (prefers-reduced-motion: reduce) {
   .related-articles__binder,
-  .legal-document .related-articles__heading h2::after,
+  .legal-document .related-articles__heading h2,
+  .related-articles__binder .related-articles__title-paper,
+  .related-articles__title-paper::before,
   .legal-document .related-article-card,
   .related-articles__binder .related-article-card__action::after { transition: none; }
 }

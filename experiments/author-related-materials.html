@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Дерево и камень в блоках статьи | Эксперименты Naklikay</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .material-preview .legal-shell { padding-top: clamp(24px, 3vw, 40px); padding-bottom: 104px; }
+    .material-preview .preview-heading h1 { margin: 0 0 8px; font-size: clamp(40px, 5vw, 64px); }
+    .material-preview .preview-heading p { margin: 0 0 22px; }
+    .material-preview .legal-document > .article-author[data-author-card="interactive"] { margin-top: 0; }
+    .material-preview .article-author[data-author-card="interactive"],
+    .material-preview .related-articles__binder { overflow: visible; }
+    .material-preview .related-articles { margin-bottom: 0; }
+
+    /* Дерево: обе поверхности собраны из широких светлых досок. */
+    [data-material="details"] :is(.article-author[data-author-card], .related-articles__binder) {
+      background:
+        repeating-linear-gradient(0deg, #69523447 0 1px, #ffffff48 1px 2px, transparent 2px 111px),
+        linear-gradient(115deg, #fff8e67a, #f3e7cf50 55%, #d8bc9550),
+        var(--wood) center / 100% 286px #c9b08a;
+      border-color: #a38c69;
+      box-shadow: inset 0 1px #fff5dcbd, 0 5px #9c825e, 0 15px 25px #634f3230;
+    }
+    [data-material="details"] .article-author__proof,
+    [data-material="details"] .related-article-card { background-color: #fcf7ea; }
+    [data-material="details"] .related-articles__spine {
+      background: var(--stone) center / 155px #656965;
+      border-color: #4b514e;
+      box-shadow: inset 1px 0 #ffffff45, 1px 3px 4px #28282455;
+    }
+
+    /* Сланец: цельные тёмные плиты со светлыми карточками. */
+    [data-material="slabs"] :is(.article-author[data-author-card], .related-articles__binder) {
+      background: linear-gradient(155deg, #1c23273d, #131c21a8),
+        var(--stone) center / 245px #656965;
+      border-color: #343b3d;
+      box-shadow: inset 0 1px #ffffff45, 0 6px #353c40, 0 16px 26px #35404742;
+    }
+    .material-preview [data-material="slabs"] .article-author[data-author-card] :is(
+      .article-author__name, .article-author__contact-title, .article-author__role,
+      .article-author__text, .article-author__label, .article-author__offer, .article-author__contact-copy
+    ) { color: #fffcf4; }
+    .material-preview [data-material="slabs"] .article-author[data-author-card] :is(
+      .article-author__experience, .article-author__offer strong
+    ) { color: #ffd49a; }
+    [data-material="slabs"] .article-author__portrait {
+      background: var(--wood) center / 125px #c9b08a;
+    }
+    [data-material="slabs"] .related-articles__spine {
+      background: var(--wood) center / 155px #c9b08a;
+      border-color: #877354;
+    }
+    [data-material="slabs"] .related-articles__cup-mark { display: none; }
+
+    /* Комбинация: каменная ниша для портрета и деревянная полка для заголовка. */
+    [data-material="binding"] .article-author[data-author-card] {
+      isolation: isolate;
+      --portrait-bay: clamp(135px, 23vw, 195px);
+    }
+    [data-material="binding"] .article-author[data-author-card]::before {
+      position: absolute;
+      z-index: -1;
+      inset: 3px auto 3px 3px;
+      width: var(--portrait-bay);
+      border-radius: 7px 2px 2px 6px;
+      background: linear-gradient(145deg, #ffffff16, #17212855),
+        var(--stone) center / 190px #656965;
+      box-shadow: inset 0 1px #ffffff55, 3px 0 6px #292c2b30;
+      pointer-events: none;
+      content: "";
+    }
+    [data-material="binding"] .article-author.is-contact::before { opacity: 0; }
+    [data-material="binding"] .related-articles__heading {
+      isolation: isolate;
+      margin-inline: clamp(-46px, -3.5vw, -20px);
+      padding: 12px clamp(20px, 3.5vw, 46px);
+    }
+    [data-material="binding"] .related-articles__heading::before {
+      position: absolute;
+      z-index: -1;
+      inset: -4px -1px;
+      border-block: 1px solid #9d835c;
+      background: linear-gradient(0deg, #60492747, #fff4da40 21%, #f7ead43d 88%, #ffffff50),
+        var(--wood) center / 100% 205px #c9b08a;
+      box-shadow: 0 4px #aa9068, 0 9px 13px #67471e21;
+      pointer-events: none;
+      content: "";
+    }
+    @media (max-width: 720px) {
+      [data-material="binding"] .article-author[data-author-card]::before {
+        inset: 3px 3px auto;
+        width: auto;
+        height: 112px;
+        border-radius: 7px 12px 2px 2px;
+        box-shadow: inset 0 1px #ffffff55, 0 3px 6px #292c2b30;
+      }
+    }
+    @media (min-width: 721px) {
+      .material-preview [data-material="binding"] .article-author[data-author-card] .article-author__page--profile {
+        column-gap: clamp(42px, 7vw, 64px);
+      }
+    }
+
+    .proto-picker {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2147483647;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(10, 10, 10, 0.82);
+      -webkit-backdrop-filter: blur(12px) saturate(1.4);
+      backdrop-filter: blur(12px) saturate(1.4);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+        0 8px 24px rgba(0, 0, 0, 0.24),
+        0 2px 6px rgba(0, 0, 0, 0.12);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .proto-picker-highlight {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      will-change: transform;
+    }
+    .proto-picker[data-ready] .proto-picker-highlight {
+      transition:
+        transform 250ms cubic-bezier(0.23, 1, 0.32, 1),
+        width 250ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .proto-picker[data-ready] .proto-picker-highlight { transition: none; }
+    }
+    .proto-picker-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 28px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.55);
+      font: inherit;
+      cursor: pointer;
+      transition: color 150ms ease-out;
+    }
+    .proto-picker-item:hover { color: rgba(255, 255, 255, 0.85); }
+    .proto-picker-item:active { transform: scale(0.97); }
+    .proto-picker-item:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.4);
+      outline-offset: 2px;
+    }
+    .proto-picker-item[data-active] { color: #fff; }
+  </style>
+</head>
+<body class="legal-page article-page material-preview">
+  <main class="legal-shell">
+    <article class="legal-document" id="stage">
+      <header class="preview-heading">
+        <h1>Дерево и камень</h1>
+        <p id="variant-description" aria-live="polite">Загружаем блоки статьи…</p>
+      </header>
+    </article>
+  </main>
+  <nav class="proto-picker" aria-label="Варианты оформления">
+    <span class="proto-picker-highlight" aria-hidden="true"></span>
+    <button type="button" class="proto-picker-item" data-active aria-current="true">Дерево</button>
+    <button type="button" class="proto-picker-item">Комбинация</button>
+    <button type="button" class="proto-picker-item">Сланец</button>
+  </nav>
+  <script type="module">
+    const variants = [
+      { id: "details", description: "Оба блока собраны из широких светлых досок. Карточки и ярлык остаются бумажными." },
+      { id: "binding", description: "Портрет размещён в каменной нише, а заголовок похожих статей лежит на широкой деревянной полке." },
+      { id: "slabs", description: "Оба блока сделаны из тёмного матового камня. На нём лежат светлые карточки и детали из дерева." }
+    ];
+    const stage = document.getElementById("stage");
+    const description = document.getElementById("variant-description");
+    const picker = document.querySelector(".proto-picker");
+    const highlight = picker.querySelector(".proto-picker-highlight");
+    const items = [...picker.querySelectorAll(".proto-picker-item")];
+    let current = 0;
+
+    function moveHighlight() {
+      const active = items[current];
+      highlight.style.width = active.offsetWidth + "px";
+      highlight.style.transform = "translateX(" + active.offsetLeft + "px)";
+    }
+
+    function setActive(index) {
+      current = index;
+      stage.dataset.material = variants[index].id;
+      description.textContent = variants[index].description;
+      items.forEach((item, position) => {
+        item.toggleAttribute("data-active", position === index);
+        if (position === index) item.setAttribute("aria-current", "true");
+        else item.removeAttribute("aria-current");
+      });
+      moveHighlight();
+      const url = new URL(location.href);
+      url.searchParams.set("v", index + 1);
+      history.replaceState(null, "", url);
+    }
+
+    function materialTexture(isWood) {
+      const canvas = document.createElement("canvas");
+      const size = 192;
+      canvas.width = canvas.height = size;
+      const context = canvas.getContext("2d");
+      const image = context.createImageData(size, size);
+      const base = isWood ? [203, 179, 145] : [100, 103, 100];
+      let seed = 1147;
+      for (let y = 0; y < size; y += 1) {
+        for (let x = 0; x < size; x += 1) {
+          seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+          const noise = seed / 4294967296 - 0.5;
+          const offset = (y * size + x) * 4;
+          const grain = y + 2.5 * Math.sin(x / 24 + y / 27) + 0.9 * Math.sin(x / 9);
+          const mottling = Math.sin(x / 12 + Math.cos(y / 15)) * Math.cos(y / 8 - x / 16);
+          const tone = isWood
+            ? 9 * Math.sin(grain / 3.6) + 6 * Math.sin(grain * 1.73) + noise * 12
+            : mottling * 10 + noise * 29 + (noise > 0.48 ? 19 : 0);
+          base.forEach((channel, index) => { image.data[offset + index] = channel + tone; });
+          image.data[offset + 3] = 255;
+        }
+      }
+      context.putImageData(image, 0, 0);
+      return 'url("' + canvas.toDataURL() + '")';
+    }
+
+    function wireAuthorCard(card) {
+      const button = card.querySelector(".article-author__toggle");
+      const label = card.querySelector(".article-author__toggle-text");
+      const profile = card.querySelector(".article-author__page--profile");
+      const contacts = card.querySelector(".article-author__page--contact");
+      button.addEventListener("click", () => {
+        const showContacts = card.classList.toggle("is-contact");
+        button.setAttribute("aria-expanded", String(showContacts));
+        button.setAttribute("aria-label", showContacts ? "Показать информацию об авторе" : "Показать контакты Максима Мирошникова");
+        label.textContent = showContacts ? "Об авторе" : "Задать вопрос";
+        profile.setAttribute("aria-hidden", String(showContacts));
+        profile.inert = showContacts;
+        contacts.setAttribute("aria-hidden", String(!showContacts));
+        contacts.inert = !showContacts;
+      });
+    }
+
+    try {
+      const response = await fetch("../blog/roas-v-marketinge/");
+      if (!response.ok) throw new Error("Article unavailable");
+      const parsed = new DOMParser().parseFromString(await response.text(), "text/html");
+      const author = parsed.querySelector(".article-author[data-author-card]");
+      const related = parsed.querySelector(".related-articles");
+      if (!author || !related) throw new Error("Article components unavailable");
+      for (const block of [author, related]) {
+        block.querySelectorAll("[src], [href]").forEach((element) => {
+          for (const attribute of ["src", "href"]) {
+            if (element.hasAttribute(attribute)) {
+              element.setAttribute(attribute, new URL(element.getAttribute(attribute), response.url).href);
+            }
+          }
+        });
+      }
+      stage.style.setProperty("--wood", materialTexture(true));
+      stage.style.setProperty("--stone", materialTexture(false));
+      stage.append(author, related);
+      wireAuthorCard(author);
+
+      items.forEach((item, index) => item.addEventListener("click", () => setActive(index)));
+      window.addEventListener("resize", moveHighlight);
+      document.addEventListener("keydown", (event) => {
+        if (event.ctrlKey || event.altKey || event.metaKey ||
+            event.target.closest("input, select, textarea, [contenteditable]")) return;
+        const number = Number(event.key);
+        if (Number.isInteger(number) && number >= 1 && number <= variants.length) setActive(number - 1);
+        else if (event.key === "ArrowRight") setActive((current + 1) % variants.length);
+        else if (event.key === "ArrowLeft") setActive((current - 1 + variants.length) % variants.length);
+      });
+      const initial = Number(new URLSearchParams(location.search).get("v")) - 1;
+      setActive(Number.isInteger(initial) && variants[initial] ? initial : 0);
+      requestAnimationFrame(() => requestAnimationFrame(() => { picker.dataset.ready = ""; }));
+    } catch (error) {
+      description.textContent = "Не удалось загрузить блоки. Откройте страницу через локальный сервер сайта.";
+      picker.hidden = true;
+      console.error(error);
+    }
+  </script>
+</body>
+</html>

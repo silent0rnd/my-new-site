@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Заголовок похожих статей | Эксперименты Naklikay</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .heading-preview .legal-shell { padding-top: clamp(22px, 4vw, 50px); padding-bottom: 110px; }
+    .heading-preview .preview-intro h1 { margin: 0 0 8px; font-size: clamp(32px, 5vw, 55px); }
+    .heading-preview .preview-intro p { min-height: 2.8em; margin: 0; }
+    .heading-preview .legal-document .related-articles { margin-top: 16px; }
+
+    .heading-preview [data-heading]:where(:not([data-heading="original"])) .related-articles__heading h2 {
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+    .heading-preview [data-heading]:where(:not([data-heading="original"])) .related-articles__heading h2::before,
+    .heading-preview [data-heading]:where(:not([data-heading="original"])) .related-articles__heading h2::after {
+      content: none;
+    }
+    .heading-preview [data-heading]:where(:not([data-heading="original"])) .related-articles__title-paper::before,
+    .heading-preview [data-heading]:where(:not([data-heading="original"])) .related-articles__title-paper::after {
+      content: none;
+    }
+
+    /* Типографский оттиск прямо на бумаге блока. */
+    .heading-preview [data-heading="stamp"] .related-articles__binder:is(:hover, :has(.related-article-card:focus-visible)) {
+      --stamp-ink: #655e55;
+      --stamp-outline: #c8c0b4;
+      --stamp-inner-outline: #c8c0b4c7;
+    }
+    .heading-preview [data-heading="stamp"] .related-articles__heading h2 {
+      isolation: isolate;
+      padding: clamp(14px, 2vw, 22px) clamp(16px, 3.5vw, 40px);
+      color: var(--stamp-ink, #34576a);
+      font: 750 clamp(21px, 3.9vw, 52px)/1.08 "Arial Narrow", "Segoe UI", sans-serif;
+      letter-spacing: 0.035em;
+      text-transform: uppercase;
+      transform: rotate(-2.5deg);
+      mask-image: var(--stamp-texture, none);
+      mask-size: 100% 100%;
+      mask-repeat: no-repeat;
+      transition: color 180ms ease;
+    }
+    .heading-preview [data-heading="stamp"] .related-articles__title-paper {
+      inset: 0;
+      border: 2px solid var(--stamp-outline, #46697cbf);
+      border-radius: 6px 4px 5px 7px;
+      filter: none;
+      transition: border-color 180ms ease;
+    }
+    .heading-preview [data-heading="stamp"] .related-articles__title-paper::before {
+      inset: 4px;
+      border: 1px solid var(--stamp-inner-outline, #46697c8f);
+      border-radius: 3px;
+      background: none;
+      clip-path: none;
+      content: "";
+      transition: border-color 180ms ease;
+    }
+
+    .heading-preview .legal-document .related-article-card:is(:hover, :focus-visible) {
+      border-color: #aebfc6;
+      background-color: #fff;
+      box-shadow: 1px 2px 0 #e5ebed, 0 6px 14px rgb(43 66 74 / 0.12);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .heading-preview [data-heading="stamp"] .related-articles__heading h2,
+      .heading-preview [data-heading="stamp"] .related-articles__title-paper,
+      .heading-preview [data-heading="stamp"] .related-articles__title-paper::before {
+        transition: none;
+      }
+    }
+
+    .heading-switch {
+      position: fixed;
+      z-index: 100;
+      bottom: calc(18px + env(safe-area-inset-bottom));
+      left: 50%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2px;
+      width: max-content;
+      max-width: calc(100vw - 16px);
+      padding: 4px;
+      border-radius: 999px;
+      background: #25292a;
+      box-shadow: 0 6px 20px #232b3140;
+      transform: translateX(-50%);
+    }
+    .heading-switch button {
+      padding: 8px clamp(7px, 2vw, 14px);
+      border: 0;
+      border-radius: inherit;
+      background: transparent;
+      color: #d8dddf;
+      font: 500 12px/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+    .heading-switch button[aria-pressed="true"] { background: #53616a; color: #fff; }
+    .heading-switch button:focus-visible { outline: 2px solid #ffbd55; outline-offset: -2px; }
+  </style>
+</head>
+<body class="legal-page article-page heading-preview">
+  <main class="legal-shell">
+    <article class="legal-document" id="preview">
+      <header class="preview-intro">
+        <h1>Табличка «Похожие статьи»</h1>
+        <p id="preview-description" aria-live="polite"></p>
+      </header>
+      <section class="related-articles" aria-labelledby="related-articles-title">
+        <div class="related-articles__binder">
+          <header class="related-articles__heading">
+            <h2 id="related-articles-title"><span class="related-articles__title-paper" aria-hidden="true"></span>Похожие статьи</h2>
+            <span class="related-articles__cup-mark" aria-hidden="true"></span>
+          </header>
+          <div class="related-articles__sheets">
+            <span class="related-articles__spine" aria-hidden="true"></span>
+            <ul class="related-articles__list">
+              <li>
+                <span class="related-articles__hardware" aria-hidden="true"><span class="related-articles__ring"></span></span>
+                <a class="related-article-card" href="../blog/roi-v-marketinge/" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <p class="related-article-card__topic">Показатели рекламы</p>
+                    <h3 class="related-article-card__title">ROI в&nbsp;маркетинге: что это, формула и&nbsp;как рассчитать</h3>
+                  </div>
+                  <div class="related-article-card__copy">
+                    <p class="related-article-card__description">Что такое ROI в&nbsp;маркетинге и&nbsp;как его рассчитать: формула, пример, состав затрат, отличие от&nbsp;ROMI, ROAS и&nbsp;ДРР, расчет в&nbsp;Excel.</p>
+                    <span class="related-article-card__action" aria-hidden="true">Читать статью</span>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <span class="related-articles__hardware" aria-hidden="true"><span class="related-articles__ring"></span></span>
+                <a class="related-article-card" href="../blog/kakaya-konversiya-reklamy-schitaetsya-horoshey/" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <p class="related-article-card__topic">Показатели рекламы</p>
+                    <h3 class="related-article-card__title">Какая конверсия рекламы считается хорошей</h3>
+                  </div>
+                  <div class="related-article-card__copy">
+                    <p class="related-article-card__description">Какая конверсия рекламы нормальная: 1%, 3%, 5% или 10%? Реальные ориентиры 2026 года, примеры и&nbsp;расчёт хорошего CR&nbsp;через стоимость заявки и&nbsp;продажи.</p>
+                    <span class="related-article-card__action" aria-hidden="true">Читать статью</span>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <span class="related-articles__hardware" aria-hidden="true"><span class="related-articles__ring"></span></span>
+                <a class="related-article-card" href="../blog/cps-v-marketinge/" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <p class="related-article-card__topic">Показатели рекламы</p>
+                    <h3 class="related-article-card__title">CPS в&nbsp;маркетинге: что это и&nbsp;как считать стоимость продажи</h3>
+                  </div>
+                  <div class="related-article-card__copy">
+                    <p class="related-article-card__description">Что такое CPS и&nbsp;как рассчитать стоимость продажи: формула, примеры, отличия от&nbsp;CPA и&nbsp;CPO, допустимый CPS по&nbsp;марже и&nbsp;учёт продаж из&nbsp;CRM.</p>
+                    <span class="related-article-card__action" aria-hidden="true">Читать статью</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+  <nav class="heading-switch" aria-label="Варианты таблички">
+    <button type="button" data-option="stamp" aria-pressed="false">Оттиск</button>
+    <button type="button" data-option="original" aria-pressed="false">Сейчас</button>
+  </nav>
+  <script type="module">
+    const descriptions = {
+      stamp: "При наведении на блок оттиск меняет голубой цвет на тёплый серый.",
+      original: "Табличка, которая сейчас используется на сайте."
+    };
+    const preview = document.getElementById("preview");
+    const description = document.getElementById("preview-description");
+    const picker = document.querySelector(".heading-switch");
+    const buttons = [...picker.querySelectorAll("button")];
+
+    function makeStampTexture() {
+      const canvas = document.createElement("canvas");
+      const width = canvas.width = 640;
+      const height = canvas.height = 144;
+      const context = canvas.getContext("2d");
+      if (!context) return;
+
+      const image = context.createImageData(width, height);
+      const sparsePatches = [
+        { x: 0.17, y: 0.2, width: 0.11, height: 0.32, depth: 0.26 },
+        { x: 0.46, y: 0.8, width: 0.15, height: 0.26, depth: 0.18 },
+        { x: 0.81, y: 0.46, width: 0.08, height: 0.3, depth: 0.29 }
+      ];
+      let seed = 1847;
+      for (let y = 0; y < height; y += 1) {
+        for (let x = 0; x < width; x += 1) {
+          // Широкие пятна имитируют разный нажим, мелкие просветы имитируют зерно бумаги.
+          let ink = 0.99;
+          for (const patch of sparsePatches) {
+            const distanceX = (x / width - patch.x) / patch.width;
+            const distanceY = (y / height - patch.y) / patch.height;
+            ink -= patch.depth * Math.exp(-(distanceX * distanceX + distanceY * distanceY));
+          }
+          seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+          const grain = seed / 4294967296;
+          const gap = grain < 0.07 + (1 - ink) * 0.2 ? 0.37 : grain * 0.12;
+          image.data[(y * width + x) * 4 + 3] = 255 * (ink - gap);
+        }
+      }
+      context.putImageData(image, 0, 0);
+      preview.style.setProperty("--stamp-texture", 'url("' + canvas.toDataURL("image/png") + '")');
+    }
+
+    function select(option) {
+      preview.dataset.heading = option;
+      description.textContent = descriptions[option];
+      for (const button of buttons) {
+        button.setAttribute("aria-pressed", String(button.dataset.option === option));
+      }
+      const url = new URL(location.href);
+      url.searchParams.set("v", option);
+      history.replaceState(null, "", url);
+    }
+
+    const initial = new URL(location.href).searchParams.get("v");
+    makeStampTexture();
+    select(Object.hasOwn(descriptions, initial) ? initial : "stamp");
+    for (const button of buttons) {
+      button.addEventListener("click", () => select(button.dataset.option));
+    }
+  </script>
+</body>
+</html>

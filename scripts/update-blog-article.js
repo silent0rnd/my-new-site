@@ -144,7 +144,6 @@ async function main(argv = process.argv.slice(2)) {
   assertSourceImageCaptions(blocks, slug);
   const h1 = blocks[0].text;
   const { names, plan } = await prepareAssets({ articleHtml, articlePath, blocks, imageInputs: readArgumentValues(argv, "--image"), slug });
-  const metaMatch = articleHtml.match(/<p class="article-meta">[\s\S]*?<\/p>/i);
   const tocMatch = articleHtml.match(/<!-- article-toc:start -->[\s\S]*?<!-- article-toc:end -->/i);
   const h1Match = articleHtml.match(/<h1\b[^>]*>[\s\S]*?<\/h1>/i);
   const authorIndex = articleHtml.indexOf('<aside class="article-author"');
@@ -158,7 +157,7 @@ async function main(argv = process.argv.slice(2)) {
   const introHtml = intro.map((block, index) => `<p${index === 0 ? ' class="article-lead"' : ""}>${inlineMarkdown(block.text)}</p>`).join("\n");
   let bodyHtml = content.map((block) => renderBlock(block, names)).join("\n");
   bodyHtml = applyImageDimensions(bodyHtml, plan);
-  let nextHtml = `${prefix}<h1>${inlineMarkdown(h1)}</h1>${metaMatch ? metaMatch[0] : ""}\n${introHtml}\n\n${tocMatch[0]}\n${bodyHtml}\n${suffix}`;
+  let nextHtml = `${prefix}<h1>${inlineMarkdown(h1)}</h1>\n${introHtml}\n\n${tocMatch[0]}\n${bodyHtml}\n${suffix}`;
   nextHtml = replaceSingle(nextHtml, /<title>[\s\S]*?<\/title>/i, `<title>${escapeAttribute(seo.seo_title)}</title>`, "title");
   nextHtml = replaceSingle(nextHtml, /<meta name="description" content="[^"]*"\s*\/?\s*>/i, `<meta name="description" content="${escapeAttribute(seo.meta_description)}" />`, "description");
   nextHtml = replaceSingle(nextHtml, /<meta property="og:title" content="[^"]*"\s*\/?\s*>/i, `<meta property="og:title" content="${escapeAttribute(seo.seo_title)}" />`, "og:title");

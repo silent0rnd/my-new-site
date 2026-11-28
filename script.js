@@ -77,24 +77,20 @@
     if (!article || !/^\d{4}-\d{2}-\d{2}$/.test(article.datePublished || "")) return;
     const heading = document.querySelector(".legal-document h1");
     if (!heading) return;
-    let meta = document.querySelector(".legal-document .article-meta");
-    if (!meta) {
-      meta = document.createElement("p");
-      meta.className = "article-meta";
-      heading.insertAdjacentElement("afterend", meta);
-    }
     const formatDate = (value) => {
       const [year, month, day] = value.split("-").map(Number);
       return new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(Date.UTC(year, month - 1, day))).replace(/ г\.$/, "");
     };
-    let published = meta.querySelector("time");
-    if (!published) {
-      published = document.createElement("time");
-      published.dateTime = article.datePublished;
-      published.textContent = formatDate(article.datePublished);
-      meta.prepend(published);
-    }
-    if (/^\d{4}-\d{2}-\d{2}$/.test(article.dateModified || "") && article.dateModified > article.datePublished && !meta.querySelector("[data-article-updated]")) {
+    const articleRoot = heading.closest(".legal-document");
+    const oldRows = [...articleRoot.querySelectorAll(".article-meta")].filter((row) => row.parentElement === heading.parentElement && (row.previousElementSibling === heading || row.nextElementSibling === heading));
+    const meta = oldRows.shift() || document.createElement("p");
+    oldRows.forEach((row) => row.remove());
+    meta.className = "article-meta";
+    const published = document.createElement("time");
+    published.dateTime = article.datePublished;
+    published.textContent = formatDate(article.datePublished);
+    meta.replaceChildren("Опубликовано: ", published);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(article.dateModified || "") && article.dateModified > article.datePublished) {
       const separator = document.createElement("span");
       separator.setAttribute("aria-hidden", "true");
       separator.textContent = "·";
@@ -104,8 +100,9 @@
       time.dateTime = article.dateModified;
       time.textContent = formatDate(article.dateModified);
       updated.append("Обновлено: ", time);
-      published.after(separator, updated);
+      meta.append(separator, updated);
     }
+    heading.before(meta);
   }
 
   showArticleDates();

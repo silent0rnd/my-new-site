@@ -204,6 +204,8 @@
       "topicLabel": "Бюджет и стоимость",
       "tags": [
         "economics",
+        "ad-formats",
+        "website",
         "avito"
       ],
       "intent": "strategy"
@@ -372,7 +374,7 @@
         "economics",
         "telegram"
       ],
-      "intent": "strategy"
+      "intent": "service"
     },
     {
       "slug": "prodvizhenie-mototekhniki",
@@ -413,7 +415,7 @@
       "topicLabel": "Маркетинг",
       "tags": [
         "economics",
-        "avito",
+        "ad-formats",
         "lead-generation"
       ],
       "intent": "service"
@@ -483,10 +485,11 @@
       "topic": "analytics",
       "topicLabel": "Аналитика",
       "tags": [
-        "analytics",
-        "economics"
+        "economics",
+        "search",
+        "campaign-setup"
       ],
-      "intent": "strategy"
+      "intent": "instruction"
     },
     {
       "slug": "srednie-pokazateli-po-industrii-yandex-metrika",
@@ -677,6 +680,7 @@
       "tags": [
         "manufacturing",
         "b2b",
+        "analytics",
         "economics",
         "website",
         "lead-generation"
@@ -709,11 +713,12 @@
     },
     {
       "slug": "prodvizhenie-plastikovyh-okon",
-      "topic": "real-estate",
-      "topicLabel": "Недвижимость",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
       "tags": [
         "economics",
-        "campaign-setup",
+        "ad-formats",
+        "avito",
         "lead-generation"
       ],
       "intent": "strategy"
@@ -834,10 +839,11 @@
     },
     {
       "slug": "prodvizhenie-restorana-i-dostavki-edy-v-2026-godu",
-      "topic": "metrics",
-      "topicLabel": "Показатели рекламы",
+      "topic": "marketing",
+      "topicLabel": "Маркетинг",
       "tags": [
-        "economics"
+        "economics",
+        "ad-formats"
       ],
       "intent": "strategy"
     },
@@ -882,9 +888,8 @@
       "tags": [
         "residential-real-estate",
         "economics",
-        "specialist",
+        "search",
         "avito",
-        "seo",
         "lead-generation"
       ],
       "intent": "strategy"
